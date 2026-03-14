@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Festa das Cruzes - Barcelos | Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+        
+        /* Estilos da Galeria (4 fotos) */
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        /* Modal (Janela de Ampliação) */
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; cursor: zoom-out; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" alt="Logo" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Festa das Cruzes - Barcelos</h1></div>
+
+        <section class="conteudo-principal">
+            <div class="coluna-texto">
+                <p>Rumamos a Barcelos para viver uma das festas mais tradicionais e emblemáticas de Portugal. Um dia de cor, tradição e alegria.</p>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li>✅ <strong>Data:</strong> 01 de Maio de 2026</li>
+                    <li>✅ <strong>Locais de Recolha:</strong> Viseu, São Pedro do Sul, Vouzela e Oliveira de Frades</li>
+                </ul>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Programa da Viagem</h3>
+                <ul style="line-height: 1.8;">
+                    <li>Tempo livre para desfrutar do ambiente festivo no centro histórico.</li>
+                    <li>Visita à feira tradicional e ao artesanato local.</li>
+                    <li><strong>Ponto alto:</strong> Batalha das Flores e desfile de carros alegóricos.</li>
+                </ul>
+            </div>
+
+            <div class="coluna-imagem">
+                <img src="https://i.imgur.com/uC6VTVp.png" alt="Festa das Cruzes" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                
+                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">Valor Único</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">30,00€</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 20px; font-size: 0.9em; line-height: 1.5; color: #444;">
+                    <p><strong>O Preço Inclui:</strong> Transporte em autocarro turismo, guia acompanhante.</p>
+                    <p><strong>O Preço Não Inclui:</strong> Despesas de caráter pessoal, refeições e entradas em monumentos.</p>
+                </div>
+            </div>
+        </section>
+
+        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 O que vamos ver</h3>
+        <div class="galeria">
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cru1').style.display='flex';"><img src="https://i.imgur.com/6B2EkQL.jpg" alt="Foto 1"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cru2').style.display='flex';"><img src="https://i.imgur.com/4EpVA7m.jpg" alt="Foto 2"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cru3').style.display='flex';"><img src="https://i.imgur.com/Y1X07Lx.jpg" alt="Foto 3"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cru4').style.display='flex';"><img src="https://i.imgur.com/x1dYBrH.jpg" alt="Foto 4"></a>
+        </div>
+
+        <div id="cru1" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/6B2EkQL.jpg"></div>
+
+        <div id="cru2" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/4EpVA7m.jpg"></div>
+
+        <div id="cru3" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/Y1X07Lx.jpg"></div>
+
+        <div id="cru4" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/x1dYBrH.jpg"></div>
+
+
+        <a href="inscricao.html?passeio=Festa+das+Cruzes" class="btn-detalhes" 
+           style="margin-top: 40px; display: block; text-align: center; max-width: 300px; margin-left: auto; margin-right: auto; padding: 15px;">
+            Inscrever-me neste passeio
+        </a>
+    </main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

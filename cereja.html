@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Rota da Cereja - Fundão - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+        
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; cursor: zoom-out; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" alt="Logo" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Rota da Cereja - Fundão</h1></div>
+
+        <section class="conteudo-principal">
+            <div class="coluna-texto">
+                <p>Venha desfrutar de um dia de descoberta, tradição e contacto com a natureza na região do Fundão, famosa pela sua excelência na produção de cerejas.</p>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li>✅ <strong>Data:</strong> 14 de Junho de 2026</li>
+                    <li>✅ <strong>Locais:</strong> Quinta das Rasas, Casa da Cereja e Castelo Novo</li>
+                    <li>✅ <strong>Recolhas:</strong> Viseu, S. Pedro do Sul, Vouzela, Oliveira de Frades</li>
+                </ul>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Itinerário</h3>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Quinta das Rasas:</strong> Participação na apanha da cereja e degustação (inclui 1kg de oferta).</li>
+                    <li><strong>Casa da Cereja (Alcongosta):</strong> Visita guiada pela história e tradição local.</li>
+                    <li><strong>Castelo Novo:</strong> Visita guiada à Aldeia Histórica.</li>
+                </ul>
+            </div>
+
+            <div class="coluna-imagem">
+                <img src="https://i.imgur.com/kX8ScBU.jpg" alt="Rota da Cereja" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                
+                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
+<table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+    <thead>
+        <tr style="background-color: #f4f7f9;">
+            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: left;"></th>
+            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: center;">C/ Almoço</th>
+            <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: center;">S/ Almoço</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">Adultos</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">45€</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">65€</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">6 aos 10 Anos</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">35€</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">45€</td>
+        </tr>
+    </tbody>
+</table>
+
+            </div>
+        </section>
+
+        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 O que vamos ver</h3>
+        <div class="galeria">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img1').style.display='flex';">
+                <img src="https://i.imgur.com/AFUqUpt.jpg" alt="Foto 1">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img3').style.display='flex';">
+                <img src="https://i.imgur.com/nOBqp4R.jpg" alt="Foto 3">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img4').style.display='flex';">
+                <img src="https://i.imgur.com/TpfS7cy.jpg" alt="Foto 4">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img5').style.display='flex';">
+                <img src="https://i.imgur.com/QiSried.jpg" alt="Foto 5">
+            </a>
+        </div>
+
+        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/AFUqUpt.jpg"></div>
+
+        <div id="img3" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/nOBqp4R.jpg"></div>
+
+        <div id="img4" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/TpfS7cy.jpg"></div>
+
+        <div id="img5" class="modal" 
+onclick="this.style.display='none'"><img src="https://i.imgur.com/QiSried.jpg"></div>
+
+        <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-detalhes" 
+           style="margin-top: 40px; display: block; text-align: center; max-width: 300px; margin-left: auto; margin-right: auto; padding: 15px;">
+            Inscrever-me neste passeio
+        </a>
+    </main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

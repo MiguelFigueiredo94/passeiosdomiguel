@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscrição - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+            <li><a href="inscricao.html">Inscrição</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Inscrição</h1></div>
+        <section>
+            <form action="https://formspree.io/f/manjdnbw" method="POST">
+                <h2>Dados do Responsável</h2>
+                <input type="text" name="nomeResponsavel" placeholder="Nome Completo" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+                <input type="tel" name="contactoResponsavel" placeholder="Contacto Telefónico" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+                <input type="text" name="localidadeResponsavel" placeholder="Localidade" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+                <input type="date" name="nascimentoResponsavel" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+
+                <hr style="margin: 30px 0;">
+
+                <label><strong>Passeio Escolhido:</strong></label>
+                <select id="passeioEscolhido" name="Passeio" required style="width: 100%; padding: 10px; margin-bottom:20px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+                     <option value="Festa das Camélias">Festa das Camélias</option>
+                    <option value="Rota da Cereja">Rota da Cereja</option>
+                    <option value="Festa das Cruzes">Festa das Cruzes</option>
+
+		<option value="Festas do Povo de Campo Maior">Festas do Povo de Campo Maior</option>
+
+
+                </select>
+
+                <label>Quantas pessoas adicionais pretende inscrever?</label>
+                <input type="number" id="numPessoas" min="0" max="10" value="0" onchange="gerarCampos()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+
+                <div id="camposDinamicos" style="margin-top:20px;"></div>
+
+                <button type="submit" class="btn-detalhes" style="width:100%; margin-top:30px; cursor:pointer;">Enviar Inscrição</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Preenche o passeio automaticamente ao carregar a página
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const passeio = params.get('passeio');
+            if(passeio) document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
+        };
+
+        function gerarCampos() {
+            const qtd = document.getElementById('numPessoas').value;
+            const container = document.getElementById('camposDinamicos');
+            container.innerHTML = '';
+            for(let i=1; i<=qtd; i++) {
+                container.innerHTML += `
+                <div style="background:#f4f7f9; padding:15px; border-radius:10px; margin-bottom:15px;">
+                    <strong>Pessoa Adicional ${i}:</strong>
+                    <input type="text" name="nomeExtra${i}" placeholder="Nome Completo" required style="width:100%; margin:5px 0; padding:8px;">
+                    <input type="text" name="localidadeExtra${i}" placeholder="Localidade" required style="width:100%; margin:5px 0; padding:8px;">
+                    <input type="date" name="nascExtra${i}" required style="width:100%; margin:5px 0; padding:8px;">
+                    <input type="tel" name="telExtra${i}" placeholder="Contacto" required style="width:100%; margin:5px 0; padding:8px;">
+                </div>`;
+            }
+        }
+    </script>
+</body>
+</html>

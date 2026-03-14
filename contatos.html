@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Contatos - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .seccao-contatos { padding: 40px 20px; }
+        .grid-contatos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card-contato { background: #f4f7f9; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card-contato i { font-size: 30px; color: #1e4d8c; margin-bottom: 15px; display: block; }
+        
+        /* Estilo do Formulário */
+        .form-container { margin-top: 50px; background: #f4f7f9; padding: 30px; border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .form-container input, .form-container textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .form-container button { background: #1e4d8c; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1em; }
+        .form-container button:hover { background: #153b6e; }
+        
+        .social-icons-big { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
+        .social-icons-big a { font-size: 40px; color: #333; transition: 0.3s; }
+        .social-icons-big a:hover { color: #1e4d8c; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Entre em Contacto</h1></div>
+
+        <section class="seccao-contatos">
+            <div class="grid-contatos">
+                <div class="card-contato"><i class="fas fa-user"></i><p><strong>Organizador</strong><br>Miguel Figueiredo</p></div>
+                <div class="card-contato"><i class="fas fa-phone"></i><p><strong>Telefone</strong><br><a href="tel:+351965715465">+351 965 715 465</a></p></div>
+                <div class="card-contato"><i class="fas fa-envelope"></i><p><strong>E-mail</strong><br><a href="mailto:passeiosdomiguel@gmail.com">passeiosdomiguel@gmail.com</a></p></div>
+                <div class="card-contato"><i class="fas fa-map-marker-alt"></i><p><strong>Localização</strong><br>São Pedro do Sul, Viseu</p></div>
+            </div>
+
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 20px;">Envie-nos uma mensagem</h2>
+                <form action="https://formspree.io/f/mdawddar" method="POST">
+                    <input type="text" name="nome" placeholder="O teu nome" required>
+                    <input type="email" name="email" placeholder="O teu e-mail" required>
+                    <input type="tel" name="telefone" placeholder="O teu contacto telefónico (opcional)">
+                    <textarea name="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+                    <button type="submit">Enviar Mensagem</button>
+                </form>
+            </div>
+
+            <h2 style="text-align: center; margin-top: 50px;">Redes Sociais</h2>
+            <div class="social-icons-big">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </section>
+    </main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

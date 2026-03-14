@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Festas do Povo de Campo Maior | Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+        
+        /* Estilos da Galeria */
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; cursor: zoom-out; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" alt="Logo" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Festas do Povo de Campo Maior</h1></div>
+
+        <section class="conteudo-principal">
+            <div class="coluna-texto">
+                <p>Descubra uma das festas mais singulares de Portugal, onde as ruas "florem" por vontade e mãos do seu povo.</p>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li>✅ <strong>Data:</strong> 08 de Agosto de 2026</li>
+                    <li>✅ <strong>Locais de Recolha:</strong> Castro Daire, São Pedro do Sul, Viseu, Vouzela e Oliveira de Frades</li>
+                </ul>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Programa da Viagem</h3>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Passeio de Barco:</strong> Início do dia com um passeio pelo rio Tejo (duração de 2h30) com almoço incluído a bordo, passando pelo Monumento Natural das Portas do Ródão.</li>
+                    <li><strong>Campo Maior:</strong> À tarde, visita à vila onde centenas de arcos e fachadas se transformam num cenário vibrante, reconhecido como Património Cultural Imaterial da Humanidade pela UNESCO.</li>
+                </ul>
+            </div>
+
+            <div class="coluna-imagem">
+                <img src="https://i.imgur.com/L58QRQc.jpg" alt="Campo Maior" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                
+                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">Valor Único</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">75,00€</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 20px; font-size: 0.9em; line-height: 1.5; color: #444;">
+                    <p><strong>O Preço Inclui:</strong> Transporte em autocarro, guia, passeio de barco e almoço a bordo.</p>
+                    <p><strong>O Preço Não Inclui:</strong> Despesas de caráter pessoal, refeições e entradas em monumentos não mencionados.</p>
+                </div>
+            </div>
+        </section>
+
+        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 O que vamos ver</h3>
+        <div class="galeria">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cm1').style.display='flex';"><img src="https://i.imgur.com/95QU3cr.jpg" alt="Foto 1"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cm2').style.display='flex';"><img src="https://i.imgur.com/Un4E3qX.jpg" alt="Foto 2"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cm3').style.display='flex';"><img src="https://i.imgur.com/hRNi17b.jpg" alt="Foto 3"></a>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('cm4').style.display='flex';"><img src="https://i.imgur.com/zCcIkQr.jpg" alt="Foto 4"></a>
+        </div>
+
+        <div id="cm1" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/95QU3cr.jpg"></div>
+
+        <div id="cm2" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/Un4E3qX.jpg"></div>
+
+        <div id="cm3" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/hRNi17b.jpg"></div>
+
+        <div id="cm4" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/zCcIkQr.jpg"></div>
+
+        <a href="inscricao.html?passeio=Festas+do+Povo+de+Campo+Maior" class="btn-detalhes" 
+           style="margin-top: 40px; display: block; text-align: center; max-width: 300px; margin-left: auto; margin-right: auto; padding: 15px;">
+            Inscrever-me neste passeio
+        </a>
+    </main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
