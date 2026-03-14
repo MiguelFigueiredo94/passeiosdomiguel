@@ -1,2 +1,0 @@
-# passeiosdomiguel
-Passeios do Miguel
