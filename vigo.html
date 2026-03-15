@@ -2,42 +2,88 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Passeio de Natal: Valença & Vigo | Passeios do Miguel</title>
+    <title>Passeio de Natal: Valença & Vigo - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
-        .hero { background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; }
-        h1 { color: #d32f2f; }
-        .info-box { background: #fff3e0; padding: 15px; border-left: 5px solid #ff9800; margin: 20px 0; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 10px; }
+        /* Estrutura Principal */
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+        
+        /* Estilos da Galeria */
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        /* Modal (Janela de Ampliação) */
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; }
+        .modal:target { display: flex; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
     </style>
 </head>
 <body>
 
-<div class="hero">
-    <h1>Passeio Especial de Natal: Valença & Vigo</h1>
-    <p><strong>Data de realização:</strong> 07 de Dezembro de 2025</p>
-    <h2 style="color: #555;">Preço: 45€</h2>
-</div>
+    <nav>
+        <a href="index.html"><img src="https://imgur.com/PmjIQux.png" alt="Logo" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+            <li><a href="inscricao.html">Inscrição</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="banner"><h1>Passeio Especial de Natal: Valença & Vigo</h1></div>
 
-<div class="info-box">
-    <h3>Locais de Recolha</h3>
-    <p>Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
-</div>
+        <section class="conteudo-principal">
+            <div class="coluna-texto">
+                <p>Venha viver connosco este dia cheio de magia e sabor! Um passeio inesquecível rumo à beleza das iluminações natalícias e à tradição da fortaleza de chocolate.</p>
 
-<h3>Resumo da Viagem</h3>
-<ul>
-    <li>⭐ <strong>Partida rumo a Valença:</strong> Viagem até à joia medieval junto ao rio Minho.</li>
-    <li>🍫 <strong>Fortaleza de Chocolate:</strong> Prova de waffles, trufas e chocolates artesanais.</li>
-    <li>🛍️ <strong>Tempo livre:</strong> Para almoço e compras no centro histórico.</li>
-    <li>🎄 <strong>Duendelândia:</strong> Magia para toda a família com atividades infantis.</li>
-    <li>✨ <strong>Tarde em Vigo:</strong> O espetáculo das luzes de Natal mais famoso da Europa.</li>
-</ul>
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li>✅ <strong>Data:</strong> 07 de Dezembro de 2025</li>
+                    <li>✅ <strong>Locais de Recolha:</strong> Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades</li>
+                </ul>
 
-<div style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; color: #666;">
-    <p><strong>O Preço Incluiu:</strong> Viagem em Autocarro Turismo e Guia Acompanhante.</p>
-    <p><strong>O Preço Não Incluiu:</strong> Despesas de caráter pessoal e refeições.</p>
-</div>
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Itinerário</h3>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Partida rumo a Valença:</strong> Descoberta da joia medieval junto ao rio Minho.</li>
+                    <li><strong>Visita à Fortaleza de Chocolate:</strong> Prova de waffles quentinhos, trufas artesanais e fundues.</li>
+                    <li><strong>Tempo livre:</strong> Para almoço e compras no centro histórico.</li>
+                    <li><strong>Duendelândia:</strong> Magia para toda a família (trampolins, insufláveis, comboio e Casa do Pai Natal).</li>
+                    <li><strong>Tarde em Vigo:</strong> O espetáculo das luzes de Natal mais famoso da Europa.</li>
+                </ul>
+            </div>
+
+            <div class="coluna-imagem">
+                <img src="VALENCA_E_VIGO_IMAGEM_LINK" alt="Passeio de Natal" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                
+                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
+                <div style="background-color: #f4f7f9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <p style="font-size: 1.5em; font-weight: bold; color: #d32f2f;">45,00€</p>
+                    <p style="font-size: 0.9em;">* Inclui: Viagem em Autocarro Turismo e Guia Acompanhante.</p>
+                </div>
+                <p style="font-size: 0.8em; color: #666; margin-top: 10px;">* Não inclui despesas de caráter pessoal e refeições. Mínimo de 35 viajantes.</p>
+            </div>
+        </section>
+
+        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 Momentos do Passeio</h3>
+        <div class="galeria">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img1').style.display='flex';"><img src="LINK_FOTO_1" alt="Valença"></a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img2').style.display='flex';"><img src="LINK_FOTO_2" alt="Luzes de Vigo"></a>
+        </div>
+
+        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="LINK_FOTO_1"></div>
+        <div id="img2" class="modal" onclick="this.style.display='none'"><img src="LINK_FOTO_2"></div>
+
+    </main>
+
+<footer>
+    </footer>
 
 </body>
 </html>
