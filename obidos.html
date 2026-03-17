@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Festival do Chocolate Óbidos - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Estrutura Principal */
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+        
+        /* Estilos da Galeria */
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        /* Modal (Janela de Ampliação) */
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; }
+        .modal:target { display: flex; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="https://imgur.com/PmjIQux.png" alt="Logo" class="logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="passeios.html">Passeios</a></li>
+            <li><a href="contatos.html">Contatos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="banner"><h1>Festival Internacional do Chocolate</h1></div>
+
+        <section class="conteudo-principal">
+            <div class="coluna-texto">
+                <p>A combinação perfeita de cultura, história e sabor. Explore o melhor de Óbidos e do Festival Internacional do Chocolate num ambiente descontraído e único.</p>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li>✅ <strong>Data:</strong> 6 de Abril de 2025</li>
+                    <li>✅ <strong>Destino:</strong> Caldas da Rainha e Óbidos</li>
+                    <li>✅ <strong>Locais de Recolha:</strong> São Pedro do Sul.</li>
+                </ul>
+
+                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Itinerário</h3>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Manhã:</strong> Passeio pelas Caldas da Rainha (Parque D. Carlos I, Praça da Fruta, Hospital Termal e Rua das Montras).</li>
+                    <li><strong>Cultura:</strong> Possibilidade de visitar o Museu do Ciclismo, Museu da Cerâmica ou Museu José Malhoa.</li>
+                    <li><strong>Paragem:</strong> Visita ao Santuário do Senhor Jesus da Pedra antes de chegar a Óbidos.</li>
+                    <li><strong>Tarde:</strong> Entrada na Feira do Chocolate em Óbidos com tempo livre para explorar a vila e as atrações da feira.</li>
+                    <li><strong>Regresso:</strong> Viagem de regresso a São Pedro do Sul após uma tarde de lazer.</li>
+                </ul>
+            </div>
+
+            <div class="coluna-imagem">
+                <img src="https://i.imgur.com/dJqHQFF.png" alt="Festival do Chocolate" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                
+                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="background-color: #f4f7f9;">
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Preço Único</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">35,00€</td>
+                    </tr>
+                </table>
+                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">* <strong>Inclui:</strong> Viagem em Autocarro Turismo, Guia Acompanhante e Entrada no Festival do Chocolate.</p>
+                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">* <strong>Observações:</strong> O passeio realiza-se com um mínimo de 50 pessoas.</p>
+            </div>
+        </section>
+
+
+        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 Galeria do Evento</h3>
+        <div class="galeria">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img1').style.display='flex';">
+                <img src="https://i.imgur.com/AzdZYuK.png" alt="Foto 1">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img2').style.display='flex';">
+                <img src="https://i.imgur.com/4AN69jn.png" alt="Foto 2">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img3').style.display='flex';">
+                <img src="https://i.imgur.com/mj2zdBW.png" alt="Foto 3">
+            </a>
+            <a href="#" onclick="event.preventDefault(); document.getElementById('img4').style.display='flex';">
+                <img src="https://i.imgur.com/W2sCQ2B.png" alt="Foto 4">
+            </a>
+        </div>
+
+        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/AzdZYuK.png"></div>
+        <div id="img2" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/4AN69jn.png"></div>
+        <div id="img3" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/mj2zdBW.png"></div>
+        <div id="img4" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/W2sCQ2B.png"></div>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Passeios do Miguel</h4>
+                <p>&copy; 2026 - Todos os direitos reservados.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Informações</h4>
+                <a href="cancelamento.html">Política de Cancelamento</a>
+                <a href="contatos.html">Contactos</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="social-icons-footer">
+                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
