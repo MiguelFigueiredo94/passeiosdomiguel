@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Festa da Castanha - Nisa & Marvão</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
+        .coluna-texto { flex: 2; min-width: 300px; }
+        .coluna-imagem { flex: 1; min-width: 250px; }
+
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .galeria img:hover { opacity: 0.8; }
+
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; }
+
+        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html"><img src="https://imgur.com/PmjIQux.png" alt="Logo" class="logo"></a>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="passeios.html">Passeios</a></li>
+        <li><a href="contatos.html">Contatos</a></li>
+        <li><a href="inscricao.html">Inscrição</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="banner"><h1>Festa da Castanha - Nisa & Marvão</h1></div>
+
+    <section class="conteudo-principal">
+        <div class="coluna-texto">
+            <p>Venha viver um dia único no Alentejo, repleto de cultura, tradição e sabores únicos na animada Festa da Castanha.</p>
+
+            <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li>✅ <strong>Data:</strong> 09 de novembro de 2025</li>
+                <li>✅ <strong>Locais de Recolha:</strong> Castro Daire, S. Pedro do Sul, Viseu, Mangualde e Celorico da Beira</li>
+                <li>🕒 <em>Locais e horários a combinar</em></li>
+            </ul>
+
+            <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Itinerário</h3>
+            <ul style="line-height: 1.8;">
+                <li>Viagem rumo ao Alentejo.</li>
+                <li>Visita a Nisa: centro histórico, muralhas, judiaria e artesanato local.</li>
+                <li>Tempo livre para lojas típicas e fotografias.</li>
+                <li>Seguimos para Marvão: participação na Feira da Castanha.</li>
+                <li>Degustação de magustos, produtos regionais e animação de rua.</li>
+                <li>Possibilidade de visitar o castelo e desfrutar dos miradouros.</li>
+            </ul>
+
+            <p style="margin-top:20px;">
+                Um passeio pensado para combinar património, sabores e convívio, proporcionando um dia inesquecível.
+            </p>
+        </div>
+
+        <div class="coluna-imagem">
+            <img src="https://imgur.com/oDpPY1r" alt="Festa da Castanha" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+
+            <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background-color: #f4f7f9;">
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">Preço único</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">40€</td>
+                </tr>
+            </table>
+            <p style="font-size: 0.8em; color: #666; margin-top: 5px;">
+                * Pagamento no ato da inscrição. Inclui viagem, entrada na feira e guia acompanhante.
+            </p>
+        </div>
+    </section>
+
+    <h3 style="color: #1e4d8c; margin-top: 50px;">📸 O que vamos ver</h3>
+    <div class="galeria">
+        <a href="#" onclick="event.preventDefault(); document.getElementById('img1').style.display='flex';">
+            <img src="https://imgur.com/YTCz9fh" alt="">
+        </a>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('img2').style.display='flex';">
+            <img src="https://imgur.com/YcjYX3C" alt="">
+        </a>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('img3').style.display='flex';">
+            <img src="https://imgur.com/9FzF6rf" alt="">
+        </a>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('img4').style.display='flex';">
+            <img src="https://imgur.com/DRUKOJL" alt="">
+        </a>
+    </div>
+
+    <div id="img1" class="modal" onclick="this.style.display='none'"><img src="https://imgur.com/YTCz9fh"></div>
+    <div id="img2" class="modal" onclick="this.style.display='none'"><img src="https://imgur.com/YcjYX3C"></div>
+    <div id="img3" class="modal" onclick="this.style.display='none'"><img src="https://imgur.com/9FzF6rf"></div>
+    <div id="img4" class="modal" onclick="this.style.display='none'"><img src="https://imgur.com/DRUKOJL"></div>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
