@@ -3,112 +3,89 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    min-height: 100vh;
     display: grid; 
-    grid-template-columns: 280px 1fr; /* Coluna 1: Menu | Coluna 2: Conteúdo */
-    grid-template-rows: 1fr auto;
+    grid-template-columns: 280px 1fr; 
     font-family: 'Poppins', sans-serif;
     background: #f4f7f9;
 }
 
-/* --- BARRA LATERAL FIXA --- */
+/* BARRA LATERAL */
 nav { 
-    grid-column: 1; 
-    grid-row: 1 / 3; 
     background: #1e4d8c; 
     padding: 40px 20px; 
-    color: white; 
-    text-align: center; 
+    height: 100vh;
     position: sticky;
     top: 0;
-    height: 100vh;
-    z-index: 100;
+    z-index: 999;
 }
 
-.logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 30px; object-fit: cover; }
+.logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #fff; margin: 0 auto 30px; display: block; object-fit: cover; }
 
 nav ul { list-style: none; }
-nav ul li { position: relative; margin: 12px 0; }
+nav ul li { position: relative; margin-bottom: 15px; }
 
-/* Links Principais (Botões Azuis) */
+/* BOTÕES PRINCIPAIS */
 nav ul li a { 
-    color: #ffffff; 
+    color: #fff; 
     text-decoration: none; 
     display: block; 
-    padding: 12px 20px; 
-    border: 2px solid rgba(255, 255, 255, 0.2); 
-    border-radius: 50px; 
-    text-transform: uppercase; 
-    transition: 0.3s; 
-    font-size: 0.85em;
+    padding: 12px; 
+    border: 1px solid rgba(255,255,255,0.3); 
+    border-radius: 30px; 
+    text-align: center;
+    font-size: 13px;
     font-weight: 600;
+    transition: 0.3s;
 }
 
-nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
+nav ul li a:hover { background: #2a66ff; }
 
-/* --- CASCATA NÍVEL 1 (Categorias: Inscrições/Anos) --- */
+/* DROPDOWN NÍVEL 1 (Categorias) */
 .dropdown-content {
     display: none;
     position: absolute;
-    left: 100%; /* Empurra para fora da barra azul */
+    left: 100%; /* Cola à direita da barra azul */
     top: 0;
-    background: white;
-    min-width: 220px;
-    box-shadow: 10px 5px 20px rgba(0,0,0,0.1);
-    border-radius: 0 10px 10px 10px;
+    background: #fff;
+    min-width: 200px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    border-radius: 0 10px 10px 0;
     padding: 10px 0;
-    margin-left: 10px;
-    z-index: 1000;
 }
 
-/* --- CASCATA NÍVEL 2 (Listagem de Passeios) --- */
+/* DROPDOWN NÍVEL 2 (Passeios) */
 .nested-content {
     display: none;
     position: absolute;
-    left: 100%; /* Empurra para a direita do nível anterior */
+    left: 100%; /* Cola à direita da caixa de categorias */
     top: 0;
-    background: white;
-    min-width: 250px;
-    box-shadow: 10px 5px 20px rgba(0,0,0,0.1);
-    border-radius: 0 10px 10px 10px;
+    background: #fff;
+    min-width: 230px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    border-radius: 0 10px 10px 0;
     padding: 10px 0;
-    margin-left: 5px;
-    border-left: 4px solid #1e4d8c;
-    z-index: 1001;
+    border-left: 3px solid #1e4d8c;
 }
 
-/* --- REGRAS DE VISIBILIDADE --- */
-nav ul li.dropdown:hover > .dropdown-content { display: block; }
+/* MOSTRAR NO HOVER */
+.dropdown:hover > .dropdown-content { display: block; }
 .nested-dropdown:hover > .nested-content { display: block; }
 
-/* Estilo dos links internos (Preto no Branco) */
+/* LINKS DENTRO DOS SUBMENUS */
 .dropdown-content a, .nested-content a {
     color: #333 !important;
     text-align: left !important;
     border: none !important;
     border-radius: 0 !important;
-    text-transform: none !important;
     padding: 10px 20px !important;
-    display: block !important;
-    font-size: 0.9em !important;
+    font-size: 13px !important;
+    text-transform: none !important;
 }
 
 .dropdown-content a:hover, .nested-content a:hover {
-    background: #f1f4f8 !important;
+    background: #f0f4f8 !important;
     color: #1e4d8c !important;
 }
 
-/* --- CONTEÚDO PRINCIPAL (Para não ficar por baixo do menu) --- */
-main { 
-    grid-column: 2; 
-    padding: 40px; 
-}
-
-section { 
-    background: white; 
-    padding: 40px; 
-    border-radius: 20px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-}
-
-footer { grid-column: 2; padding: 40px; background: white; border-top: 1px solid #eee; }
+/* CONTEÚDO À DIREITA */
+main { padding: 40px; }
