@@ -165,6 +165,61 @@ section {
 .card-arquivo { background: #f9f9f9; filter: grayscale(30%); opacity: 0.9; }
 
 /* --- RODAPÉ --- */
-footer { grid-column: 2; background: #ffffff; color: #1e4d8c; padding: 40px; border-top: 1px solid #eee; }
-.footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-.footer-col h4 { margin-bottom: 15px; color: #1e4d8c; text-transform: uppercase; font-size: 0.9em; }
+footer { 
+    grid-column: 2; 
+    background: #ffffff; 
+    color: #1e4d8c; 
+    padding: 60px 40px; /* Aumentei o espaço interno */
+    border-top: 1px solid #eee; 
+}
+
+.footer-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 40px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.footer-col h4 { 
+    margin-bottom: 20px; 
+    color: #1e4d8c; 
+    text-transform: uppercase; 
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+/* Forçar links um por baixo do outro */
+.footer-col a, .footer-col p { 
+    color: #555; 
+    text-decoration: none; 
+    display: block; /* Ocupa a linha toda */
+    margin-bottom: 12px; /* Espaço entre as linhas */
+    font-size: 0.9em; 
+    line-height: 1.4;
+}
+
+.footer-col a:hover {
+    color: #2a66ff;
+    text-decoration: underline;
+}
+
+/* Espaçamento dos Ícones Sociais */
+.social-icons-footer { 
+    display: flex; 
+    gap: 25px; /* Aumentei o espaço entre os ícones aqui */
+    margin-top: 15px; 
+}
+
+.social-icons-footer a { 
+    font-size: 22px; 
+    color: #1e4d8c; 
+    display: inline-block !important; /* Aqui deve ser inline para ficarem lado a lado */
+    margin-bottom: 0 !important;
+}
+
+.social-icons-footer a:hover {
+    color: #2a66ff;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
