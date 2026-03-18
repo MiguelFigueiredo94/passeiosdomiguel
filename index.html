@@ -2,70 +2,93 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Home</title>
+    <title>Passeios do Miguel - Passeios com Alma e Aventura</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Estilo para o vídeo no Index */
+        .container-video-index { width: 100%; max-width: 1000px; margin: 30px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .container-video-index video { width: 100%; display: block; }
+        .intro-text { text-align: center; padding: 20px; font-size: 1.2em; color: #333; }
+        
+        /* Estilo do botão de música */
+        #btnMusica {
+            position: fixed; bottom: 20px; right: 20px; background: #1e4d8c; color: white;
+            border: 2px solid white; padding: 10px 20px; border-radius: 30px; cursor: pointer;
+            z-index: 1000; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #btnMusica:hover { background: #2a66ff; }
+    </style>
 </head>
 <body>
 
-    <nav id="navbar-principal"></nav>
+<audio id="musicaFundo" loop>
+    <source src="travel.mp3" type="audio/mpeg">
+</audio>
+<button id="btnMusica" onclick="toggleMusica()">🎵 Música: <span id="estado">OFF</span></button>
 
-    <main>
-        <section class="banner">
-            <h1>Bem-vindo aos Passeios do Miguel</h1>
-        </section>
+<nav>
+    <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo"></a>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="passeios.html">Passeios</a></li>
+        <li><a href="contatos.html">Contatos</a></li>
+    </ul>
+</nav>
 
-        <section>
-            <h2>Próximos Passeios</h2>
-            <div class="container-passeios">
-                <div class="card-passeio">
-                    <img src="https://i.imgur.com/8N3Z3XG.jpg" alt="Festas do Povo">
-                    <h3>Festas do Povo</h3>
-                    <p>Campo Maior - Agosto 2026</p>
-                    <a href="campomaior.html" class="btn-detalhes">Ver Detalhes</a>
-                </div>
+<main>
+    <section>
+        <div class="banner"><h1>Bem-vindo aos Passeios do Miguel</h1></div>
+        
+        <div class="intro-text">
+            <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
+        </div>
 
-                <div class="card-passeio">
-                    <img src="https://i.imgur.com/XyZ1234.jpg" alt="Rota da Cereja">
-                    <h3>Rota da Cereja</h3>
-                    <p>Resende - Junho 2026</p>
-                    <a href="cereja.html" class="btn-detalhes">Ver Detalhes</a>
-                </div>
-            </div>
-        </section>
-    </main>
+        <div class="container-video-index">
+            <video controls autoplay muted loop poster="poster.jpg">
+                <source src="Video Project 1.mp4" type="video/mp4">
+                O teu navegador não suporta vídeos.
+            </video>
+        </div>
+    </section>
+</main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Contatos</h4>
-                <p><i class="fas fa-phone"></i> +351 9xx xxx xxx</p>
-                <p><i class="fas fa-envelope"></i> info@passeiosdomiguel.com</p>
-            </div>
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>&copy; 2026 - Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Informações</h4>
+            <a href="cancelamento.html">Política de Cancelamento</a>
+            <a href="contatos.html">Contactos</a>
+        </div>
+        <div class="footer-col">
+            <h4>Siga-nos</h4>
+            <div class="social-icons-footer">
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('menu.html')
-                .then(response => {
-                    if (!response.ok) throw new Error("Erro ao carregar menu.html");
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('navbar-principal').innerHTML = data;
-                })
-                .catch(error => console.error('Erro no menu:', error));
-        });
-    </script>
+<script>
+    function toggleMusica() {
+        var audio = document.getElementById("musicaFundo");
+        var estado = document.getElementById("estado");
+        if (audio.paused) {
+            audio.play();
+            estado.innerHTML = "ON";
+        } else {
+            audio.pause();
+            estado.innerHTML = "OFF";
+        }
+    }
+</script>
 
 </body>
 </html>
