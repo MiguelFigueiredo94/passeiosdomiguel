@@ -1,22 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* --- 1. RESET E ESTRUTURA --- */
+/* --- 1. RESET E FUNDAÇÃO --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     margin: 0;
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    grid-template-rows: auto 1fr auto;
+    display: flex; /* Usamos flex para estabilidade máxima entre menu e conteúdo */
     font-family: 'Poppins', sans-serif;
     background: #f4f7f9;
 }
 
-/* --- 2. MENU LATERAL (CORRIGIDO) --- */
+/* --- 2. MENU LATERAL (CORREÇÃO DE SOBREPOSIÇÃO) --- */
+#menu-placeholder {
+    width: 280px;
+    flex-shrink: 0;
+    z-index: 9999; /* PRIORIDADE MÁXIMA PARA O MENU */
+    position: relative; /* Necessário para o z-index funcionar */
+}
+
 nav { 
-    grid-column: 1; 
-    grid-row: 1 / 4; 
     background: #1e4d8c; 
     padding: 30px 15px; 
     color: white; 
@@ -24,7 +27,7 @@ nav {
     position: sticky;
     top: 0;
     height: 100vh;
-    overflow-y: auto; /* Permite scroll no menu se houver muitos itens */
+    border-right: 1px solid rgba(255,255,255,0.1);
 }
 
 .logo { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 25px; object-fit: cover; }
@@ -33,36 +36,27 @@ nav ul { list-style: none; padding: 0; }
 nav ul li { position: relative; margin-bottom: 8px; }
 
 nav ul li a { 
-    color: #ffffff; 
-    text-decoration: none; 
-    display: block; 
-    padding: 10px 15px; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    border-radius: 50px; 
-    font-size: 0.8em; 
-    text-transform: uppercase; 
-    transition: 0.3s;
-    font-weight: 600;
+    color: #ffffff; text-decoration: none; display: block; padding: 10px 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px; 
+    font-size: 0.8em; text-transform: uppercase; transition: 0.3s; font-weight: 600;
 }
-
 nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
-/* --- SUBMENUS (CASCATA) --- */
-/* Esconde por defeito */
+/* CORREÇÃO DA CASCATA (DROPDOWNS) - AGORA FICA À FRENTE */
 .dropdown-content, .nested-content {
     display: none; 
     position: absolute; 
     left: 100%; 
     top: 0;
     background: #ffffff; 
-    min-width: 200px; 
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-    border-radius: 0 10px 10px 10px; 
+    min-width: 220px; 
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.2); /* Sombra mais forte para destacar */
+    border-radius: 0 12px 12px 12px; 
     padding: 10px 0;
-    z-index: 1000;
+    z-index: 10000; /* AINDA MAIS PRIORIDADE QUE O NAV */
+    border: 1px solid #ddd;
 }
 
-/* Mostra ao passar o rato */
 .dropdown:hover > .dropdown-content, 
 .nested-dropdown:hover > .nested-content { 
     display: block; 
@@ -70,18 +64,26 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
 .dropdown-content a, .nested-content a {
     color: #333 !important;
-    border: none !important;
-    border-radius: 0 !important;
     text-align: left !important;
-    padding: 8px 20px !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    display: block !important;
     text-transform: none !important;
-    font-size: 0.85em !important;
+    border: none !important;
+    font-weight: 400 !important;
 }
-
 .dropdown-content a:hover { background: #f0f0f0 !important; color: #1e4d8c !important; }
 
-/* --- 3. CONTEÚDO PRINCIPAL --- */
-main { grid-column: 2; padding: 40px; }
+/* --- 3. CONTEÚDO PRINCIPAL (CORREÇÃO DE LARGURA) --- */
+main { 
+    flex-grow: 1; 
+    padding: 40px; 
+    min-width: 0; /* Impede o conteúdo de empurrar o menu */
+    position: relative; 
+    z-index: 1; /* Prioridade baixa para ficar atrás do menu */
+}
+
+h1, h2 { color: #1e4d8c; text-align: center; margin-bottom: 25px; }
 
 section { 
     background: #ffffff; 
@@ -91,36 +93,47 @@ section {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
 }
 
-/* Grelha de Passeios (FORÇADA A 3 COLUNAS) */
+/* GRELHA DE PASSEIOS (REPARADA E ALINHADA) */
 .container-passeios { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
+    /* Volta a ser flexível mas com largura mínima para não esmagar */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    width: 100%;
+    justify-content: center; /* Alinha os cartões ao centro se houver poucos */
 }
 
 .card-passeio, .card-arquivo { 
     background: #ffffff; border: 1px solid #eee; border-radius: 20px; 
-    padding: 15px; text-align: center; display: flex; flex-direction: column;
+    padding: 20px; text-align: center; display: flex; flex-direction: column;
+    min-height: 420px; /* Garante espaço para data e botão não encavalarem */
 }
 
-.card-passeio img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; }
+.card-passeio img { 
+    width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; 
+}
+
+/* Espaçamento para a data e botão */
+.card-passeio p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: #555;
+}
 
 .btn-detalhes { 
-    margin-top: auto; background: #2a66ff; color: white; padding: 10px; 
-    border-radius: 8px; text-decoration: none; font-size: 0.9em;
+    margin-top: auto; /* Empurra o botão para o fundo do cartão */
+    background: #2a66ff; color: white; padding: 12px; 
+    border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9em;
+    display: block;
 }
 
 /* --- 4. NEWSLETTER --- */
 .newsletter-section { border: 2px solid #e1e8f0; margin-top: 20px; }
-.newsletter-container { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-.newsletter-form { display: flex; gap: 10px; flex-grow: 1; max-width: 400px; }
-.newsletter-form input { flex-grow: 1; padding: 10px 15px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
-.btn-newsletter { background: #1e4d8c; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+.newsletter-container { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+.newsletter-form { display: flex; gap: 10px; flex-grow: 1; max-width: 450px; }
+.newsletter-form input { padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; flex-grow: 1; outline: none;}
+.btn-newsletter { background: #1e4d8c; color: white; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: 600; }
 
 /* --- 5. RODAPÉ --- */
-footer { grid-column: 2; background: #ffffff; padding: 30px 40px; border-top: 1px solid #eee; }
-.footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.social-icons-footer a { font-size: 20px; color: #1e4d8c; margin-right: 15px; }
-
-/* Botão Música */
-#btnMusica { position: fixed; bottom: 20px; right: 20px; z-index: 2000; }
+footer { grid-column: 2; background: #ffffff; padding: 40px; border-top: 1px solid #eee; width: 100%;}
+.footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
