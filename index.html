@@ -8,103 +8,68 @@
     <style>
         /* Estilo para o container do vídeo do YouTube */
         .container-video-index { width: 100%; max-width: 1000px; margin: 30px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        /* Garante que o iframe ocupa todo o espaço do container */
         .container-video-index iframe { width: 100%; height: 500px; display: block; }
-        
         .intro-text { text-align: center; padding: 20px; font-size: 1.2em; color: #333; }
+        
+        /* Garante que o menu carregado via JS respeite o layout original */
+        #menu-placeholder { grid-column: 1; grid-row: 1 / 3; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo"></a>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        
-        <li class="dropdown">
-            <a href="passeios.html">Passeios <i class="fas fa-chevron-right" style="font-size: 10px; margin-left: 5px;"></i></a>
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <section>
+            <div class="banner"><h1>Bem-vindo aos Passeios do Miguel</h1></div>
             
-            <div class="dropdown-content">
-                <div class="nested-dropdown">
-                    <a href="#">Próximas Datas <i class="fas fa-chevron-right" style="float: right; margin-top: 3px;"></i></a>
-                    <div class="nested-content">
-                        <a href="campomaior.html">Campo Maior (08 Ago)</a>
-                        <a href="cereja.html">Rota da Cereja (14 Jun)</a>
-                        <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
-                    </div>
-                </div>
+            <div class="intro-text">
+                <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
+            </div>
 
-                <div class="nested-dropdown">
-                    <a href="#">Arquivo 2026 <i class="fas fa-chevron-right" style="float: right; margin-top: 3px;"></i></a>
-                    <div class="nested-content">
-                        <a href="camelias.html">Festa das Camélias</a>
-                        <a href="gaia.html">Magia Animal</a>
-                    </div>
-                </div>
+            <div class="container-video-index">
+                <iframe width="100%" height="500" 
+                    src="https://www.youtube.com/embed/7uOx4BxH0rk" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </main>
 
-                <div class="nested-dropdown">
-                    <a href="#">Arquivo 2025 <i class="fas fa-chevron-right" style="float: right; margin-top: 3px;"></i></a>
-                    <div class="nested-content">
-                        <a href="vigo.html">Valença & Vigo</a>
-                        <a href="marvao.html">Marvão</a>
-                        <a href="espinho.html">Espinho</a>
-                        <a href="viana.html">Viana do Castelo</a>
-                        <a href="geres.html">Gerês</a>
-                        <a href="fatima.html">Fátima</a>
-                        <a href="obidos.html">Óbidos</a>
-                        <a href="amendoeiras.html">Amendoeiras</a>
-                    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Passeios do Miguel</h4>
+                <p>&copy; 2026 - Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Informações</h4>
+                <a href="cancelamento.html">Política de Cancelamento</a>
+                <a href="contatos.html">Contactos</a>
+            </div>
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="social-icons-footer">
+                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-        </li>
+        </div>
+    </footer>
 
-        <li><a href="contatos.html">Contatos</a></li>
-    </ul>
-</nav>
-
-<main>
-    <section>
-        <div class="banner"><h1>Bem-vindo aos Passeios do Miguel</h1></div>
-        
-        <div class="intro-text">
-            <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
-        </div>
-
-        <div class="container-video-index">
-            <iframe width="100%" height="500" 
-                src="https://www.youtube.com/embed/7uOx4BxH0rk" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-col">
-            <h4>Passeios do Miguel</h4>
-            <p>&copy; 2026 - Todos os direitos reservados.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Informações</h4>
-            <a href="cancelamento.html">Política de Cancelamento</a>
-            <a href="contatos.html">Contactos</a>
-        </div>
-        <div class="footer-col">
-            <h4>Siga-nos</h4>
-            <div class="social-icons-footer">
-                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.warn('Erro ao carregar o menu:', err));
+    </script>
 
 </body>
 </html>
