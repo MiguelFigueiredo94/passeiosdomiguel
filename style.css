@@ -78,9 +78,10 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 main { 
     flex-grow: 1; 
     padding: 40px; 
-    min-width: 0; /* Impede o conteúdo de empurrar o menu */
-    position: relative; 
-    z-index: 1; /* Prioridade baixa para ficar atrás do menu */
+    min-width: 0; 
+    display: flex;
+    flex-direction: column; /* Faz com que os elementos dentro do main fiquem em fila vertical */
+    min-height: 100vh;
 }
 
 h1, h2 { color: #1e4d8c; text-align: center; margin-bottom: 25px; }
@@ -135,5 +136,24 @@ section {
 .btn-newsletter { background: #1e4d8c; color: white; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: 600; }
 
 /* --- 5. RODAPÉ --- */
-footer { grid-column: 2; background: #ffffff; padding: 40px; border-top: 1px solid #eee; width: 100%;}
-.footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
+/* --- CORREÇÃO DO RODAPÉ (FOOTER) --- */
+footer { 
+    margin-top: auto; /* Truque mágico: empurra o rodapé para o fim da página */
+    background: #ffffff; 
+    padding: 40px; 
+    border-top: 1px solid #eee; 
+    width: 100%; /* Garante que ocupa a largura disponível à direita do menu */
+}
+
+.footer-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* Garante que o menu de cascata não fica "preso" por baixo do footer */
+#menu-placeholder {
+    z-index: 9999;
+}
