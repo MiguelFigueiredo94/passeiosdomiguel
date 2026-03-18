@@ -2,40 +2,30 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Teste de Menu em Cascata - Passeios do Miguel</title>
+    <title>Teste Menu Cascata</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <nav id="navbar-principal"></nav>
+<nav id="navbar-principal"></nav>
 
-    <main>
-        <section>
-            <h1>Página de Teste (Index2)</h1>
-            <p>Passa o rato no botão <strong>Passeios</strong> à esquerda para testar o menu em cascata.</p>
-            <div style="margin-top: 20px; padding: 20px; border: 2px dashed #ccc; color: #666;">
-                Nota: O menu só aparecerá se estiveres a usar um servidor (como Live Server) ou se o site já estiver online.
-            </div>
-        </section>
-    </main>
+<main>
+    <section>
+        <h1>Teste de Menu Dinâmico</h1>
+        <p>1. Passa o rato em <strong>Passeios</strong>.</p>
+        <p>2. Depois passa o rato em <strong>2025</strong>.</p>
+    </section>
+</main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('menu.html')
-                .then(response => {
-                    if (!response.ok) throw new Error("Ficheiro menu.html não encontrado");
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('navbar-principal').innerHTML = data;
-                })
-                .catch(err => {
-                    console.error('Erro:', err);
-                    document.getElementById('navbar-principal').innerHTML = "<p style='color:white; padding:20px;'>Erro ao carregar menu. Verifica se o ficheiro menu.html existe.</p>";
-                });
+<script>
+    // Carrega o menu.html automaticamente
+    fetch('menu.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('navbar-principal').innerHTML = data;
         });
-    </script>
+</script>
 
 </body>
 </html>
