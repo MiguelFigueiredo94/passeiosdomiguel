@@ -5,15 +5,13 @@
 body {
     min-height: 100vh;
     display: grid; 
-    grid-template-columns: 280px 1fr; 
+    grid-template-columns: 280px 1fr; /* Coluna 1: Menu | Coluna 2: Conteúdo */
     grid-template-rows: 1fr auto;
     font-family: 'Poppins', sans-serif;
     background: #f4f7f9;
 }
 
-/* ==========================================================================
-   NAVEGAÇÃO LATERAL (BARRA AZUL)
-   ========================================================================== */
+/* --- BARRA LATERAL FIXA --- */
 nav { 
     grid-column: 1; 
     grid-row: 1 / 3; 
@@ -24,27 +22,15 @@ nav {
     position: sticky;
     top: 0;
     height: 100vh;
-    z-index: 100; /* Garante que a barra fica na frente do conteúdo */
+    z-index: 100;
 }
 
-.logo { 
-    width: 140px; 
-    height: 140px; 
-    border-radius: 50%; 
-    border: 4px solid #ffffff; 
-    margin-bottom: 30px; 
-    object-fit: cover; 
-}
+.logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 30px; object-fit: cover; }
 
 nav ul { list-style: none; }
+nav ul li { position: relative; margin: 12px 0; }
 
-/* Item da lista principal */
-nav ul li { 
-    position: relative; 
-    margin: 12px 0; 
-}
-
-/* Links principais (HOME, SOBRE MIM, PASSEIOS...) */
+/* Links Principais (Botões Azuis) */
 nav ul li a { 
     color: #ffffff; 
     text-decoration: none; 
@@ -52,133 +38,77 @@ nav ul li a {
     padding: 12px 20px; 
     border: 2px solid rgba(255, 255, 255, 0.2); 
     border-radius: 50px; 
-    text-align: center; 
     text-transform: uppercase; 
-    transition: 0.3s ease; 
+    transition: 0.3s; 
     font-size: 0.85em;
     font-weight: 600;
 }
 
-nav ul li a:hover { 
-    background: #2a66ff; 
-    border-color: #2a66ff; 
-    padding-left: 25px; 
-}
+nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
-/* ==========================================================================
-   SISTEMA DE CASCATA (DROPDOWNS)
-   ========================================================================== */
-
-/* NÍVEL 1: Categorias (Inscrições, 2026, 2025) */
+/* --- CASCATA NÍVEL 1 (Categorias: Inscrições/Anos) --- */
 .dropdown-content {
-    display: none; /* Escondido por padrão */
+    display: none;
     position: absolute;
-    left: 100%; /* Abre exatamente à direita da barra azul */
+    left: 100%; /* Empurra para fora da barra azul */
     top: 0;
-    background-color: #ffffff;
+    background: white;
     min-width: 220px;
-    box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 10px 5px 20px rgba(0,0,0,0.1);
+    border-radius: 0 10px 10px 10px;
+    padding: 10px 0;
+    margin-left: 10px;
     z-index: 1000;
-    border-radius: 0 12px 12px 12px;
-    padding: 10px 0;
-    margin-left: 10px; /* Pequeno espaço para não colar na barra */
 }
 
-/* NÍVEL 2: Listagem de Passeios (Fátima, Gerês, etc) */
+/* --- CASCATA NÍVEL 2 (Listagem de Passeios) --- */
 .nested-content {
-    display: none; /* Escondido por padrão */
+    display: none;
     position: absolute;
-    left: 100%; /* Abre à direita da caixa de categorias */
+    left: 100%; /* Empurra para a direita do nível anterior */
     top: 0;
-    background-color: #ffffff;
-    min-width: 260px;
-    box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
-    z-index: 1001;
-    border-radius: 0 12px 12px 12px;
+    background: white;
+    min-width: 250px;
+    box-shadow: 10px 5px 20px rgba(0,0,0,0.1);
+    border-radius: 0 10px 10px 10px;
     padding: 10px 0;
-    margin-left: 2px;
-    border-left: 4px solid #1e4d8c; /* Linha de destaque lateral */
+    margin-left: 5px;
+    border-left: 4px solid #1e4d8c;
+    z-index: 1001;
 }
 
-/* --- REGRAS DE VISIBILIDADE NO HOVER --- */
+/* --- REGRAS DE VISIBILIDADE --- */
+nav ul li.dropdown:hover > .dropdown-content { display: block; }
+.nested-dropdown:hover > .nested-content { display: block; }
 
-/* Ao passar o rato em PASSEIOS -> Mostra Categorias */
-nav ul li.dropdown:hover > .dropdown-content {
-    display: block;
-}
-
-/* Ao passar o rato numa CATEGORIA -> Mostra os Passeios dela */
-.nested-dropdown:hover > .nested-content {
-    display: block;
-}
-
-/* --- ESTILO DOS LINKS DENTRO DOS SUBMENUS --- */
-
-/* Links de Categorias (Inscrições/Anos) */
-.nested-dropdown > a {
-    color: #1e4d8c !important;
+/* Estilo dos links internos (Preto no Branco) */
+.dropdown-content a, .nested-content a {
+    color: #333 !important;
     text-align: left !important;
     border: none !important;
-    padding: 12px 20px !important;
-    text-transform: none !important;
-    font-weight: bold !important;
-    display: flex !important;
-    justify-content: space-between; /* Empurra a seta para o canto */
-    align-items: center;
     border-radius: 0 !important;
-}
-
-/* Links Finais dos Passeios */
-.nested-content a {
-    color: #444 !important;
-    font-weight: 400 !important;
+    text-transform: none !important;
     padding: 10px 20px !important;
-    font-size: 0.85em !important;
-    border: none !important;
-    text-align: left !important;
-    border-radius: 0 !important;
-    text-transform: none !important;
     display: block !important;
-    transition: 0.2s;
+    font-size: 0.9em !important;
 }
 
-.nested-content a:hover {
-    background-color: #f1f4f8 !important;
+.dropdown-content a:hover, .nested-content a:hover {
+    background: #f1f4f8 !important;
     color: #1e4d8c !important;
-    padding-left: 25px !important;
 }
 
-/* Ícones de Seta */
-.fa-chevron-right, .fa-caret-right { 
-    font-size: 0.7em; 
-    opacity: 0.6; 
+/* --- CONTEÚDO PRINCIPAL (Para não ficar por baixo do menu) --- */
+main { 
+    grid-column: 2; 
+    padding: 40px; 
 }
-
-/* ==========================================================================
-   CONTEÚDO PRINCIPAL (MAIN E CARDS)
-   ========================================================================== */
-main { padding: 40px; grid-column: 2; }
-
-h1, h2 { color: #1e4d8c; margin-bottom: 20px; }
 
 section { 
-    background: #ffffff; 
+    background: white; 
     padding: 40px; 
     border-radius: 20px; 
-    margin-bottom: 30px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
 }
 
-.banner { width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; }
-
-/* Rodapé */
-footer { grid-column: 2; background: #ffffff; color: #1e4d8c; padding: 40px; border-top: 1px solid #eee; }
-.footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-.footer-col h4 { margin-bottom: 15px; color: #1e4d8c; text-transform: uppercase; font-size: 0.9em; }
-.footer-col p, .footer-col a { color: #555; text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9em; }
-.social-icons-footer { display: flex; gap: 15px; margin-top: 10px; }
-.social-icons-footer a { font-size: 20px; color: #1e4d8c; }
-
-/* Botão Flutuante Música */
-#btnMusica { position: fixed; bottom: 20px; right: 20px; background: #1e4d8c; color: white; border: 2px solid white; padding: 10px 20px; border-radius: 30px; cursor: pointer; z-index: 1000; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-#btnMusica:hover { background: #2a66ff; }
+footer { grid-column: 2; padding: 40px; background: white; border-top: 1px solid #eee; }
