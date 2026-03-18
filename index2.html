@@ -6,56 +6,74 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estilo para o container do vídeo do YouTube */
+        /* --- ESTILOS DO VÍDEO E INTRO --- */
         .container-video-index { width: 100%; max-width: 1000px; margin: 30px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .container-video-index iframe { width: 100%; height: 500px; display: block; }
-        
         .intro-text { text-align: center; padding: 20px; font-size: 1.2em; color: #333; }
 
         /* --- ESTILOS DO SUB-MENU (DROPDOWN) --- */
         nav ul li { position: relative; display: inline-block; }
         
-        /* Esconde o sub-menu por padrão */
         .dropdown-content {
             display: none;
             position: absolute;
             background-color: #ffffff;
-            min-width: 200px;
+            min-width: 240px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1000;
             border-radius: 0 0 10px 10px;
             padding: 10px 0;
             text-align: left;
+            max-height: 450px; /* Limita a altura para não sair do ecrã */
+            overflow-y: auto;  /* Cria scroll se houver muitos passeios */
         }
 
-        /* Estilo dos links dentro do sub-menu */
         .dropdown-content a {
             color: #333 !important;
-            padding: 12px 16px;
+            padding: 10px 20px;
             text-decoration: none;
             display: block;
             font-size: 0.9em;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f1f1f1;
+            transition: 0.3s;
         }
 
-        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f8f9fa; color: #1e4d8c !important; }
 
-        /* Hover no item do sub-menu */
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: #1e4d8c !important;
+        /* Títulos de Categoria dentro do Menu */
+        .dropdown-header {
+            background-color: #f1f4f8;
+            color: #1e4d8c;
+            font-weight: bold;
+            font-size: 0.7em;
+            padding: 8px 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid #1e4d8c;
+            margin: 5px 0;
         }
 
-        /* Mostra o menu ao passar o rato */
-        nav ul li:hover .dropdown-content {
-            display: block;
+        /* Destaque para Inscrições Abertas */
+        .link-aberto { font-weight: bold; color: #28a745 !important; }
+        
+        /* Links de Arquivo (Recuados) */
+        .arquivo-link { padding-left: 30px !important; font-size: 0.85em !important; color: #666 !important; }
+
+        /* Mostrar o menu ao passar o rato */
+        nav ul li:hover .dropdown-content { display: block; }
+
+        /* Ícone de seta */
+        .fa-caret-down { font-size: 0.8em; margin-left: 5px; }
+
+        @media (max-width: 768px) {
+            .dropdown-content { position: static; box-shadow: none; width: 100%; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo"></a>
+    <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Logo"></a>
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="sobre.html">Sobre Mim</a></li>
@@ -63,19 +81,24 @@
         <li class="dropdown">
             <a href="passeios.html">Passeios <i class="fa fa-caret-down"></i></a>
             <div class="dropdown-content">
-                <a href="amendoeiras.html">Amendoeiras em Flor</a>
-                <a href="camelias.html">Camelias</a>
-                <a href="campomaior.html">Campo Maior</a>
-                <a href="cereja.html">Festa da Cereja</a>
-                <a href="cruzes.html">Festa das Cruzes</a>
-                <a href="espinho.html">Espinho</a>
-                <a href="fatima.html">Fátima</a>
-                <a href="gaia.html">Gaia</a>
-                <a href="geres.html">Gerês</a>
-                <a href="marvao.html">Marvão</a>
-                <a href="obidos.html">Óbidos</a>
-                <a href="viana.html">Viana do Castelo</a>
-                <a href="vigo.html">Vigo</a>
+                <div class="dropdown-header">🟢 Inscrições Abertas</div>
+                <a href="campomaior.html" class="link-aberto">Festas do Povo (Ago/26)</a>
+                <a href="cereja.html" class="link-aberto">Rota da Cereja (Jun/26)</a>
+                <a href="cruzes.html" class="link-aberto">Festa das Cruzes (Mai/26)</a>
+
+                <div class="dropdown-header">📂 Arquivo 2026</div>
+                <a href="camelias.html" class="arquivo-link">Festa das Camélias</a>
+                <a href="gaia.html" class="arquivo-link">Magia Animal em Gaia</a>
+
+                <div class="dropdown-header">📂 Arquivo 2025</div>
+                <a href="vigo.html" class="arquivo-link">Natal Valença e Vigo</a>
+                <a href="marvao.html" class="arquivo-link">Festa da Castanha</a>
+                <a href="espinho.html" class="arquivo-link">Sra. d'Ajuda (Espinho)</a>
+                <a href="viana.html" class="arquivo-link">Sra. d'Agonia (Viana)</a>
+                <a href="geres.html" class="arquivo-link">Peneda-Gerês & Braga</a>
+                <a href="fatima.html" class="arquivo-link">Santuário de Fátima</a>
+                <a href="obidos.html" class="arquivo-link">Chocolate Óbidos</a>
+                <a href="amendoeiras.html" class="arquivo-link">Amendoeiras em Flor</a>
             </div>
         </li>
 
@@ -120,11 +143,4 @@
             <div class="social-icons-footer">
                 <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
+                <a href="
