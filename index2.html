@@ -2,67 +2,40 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Passeios do Miguel - Passeios com Alma e Aventura</title>
+    <title>Teste de Menu em Cascata - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-<nav id="navbar-principal"></nav>
+    <nav id="navbar-principal"></nav>
 
-<main>
-    <section>
-        <div class="banner"><h1>Bem-vindo aos Passeios do Miguel</h1></div>
-        
-        <div class="intro-text">
-            <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
-        </div>
-
-        <div class="container-video-index">
-            <iframe width="100%" height="500" 
-                src="https://www.youtube.com/embed/7uOx4BxH0rk" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-col">
-            <h4>Passeios do Miguel</h4>
-            <p>&copy; 2026 - Todos os direitos reservados.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Informações</h4>
-            <a href="cancelamento.html">Política de Cancelamento</a>
-            <a href="contatos.html">Contactos</a>
-        </div>
-        <div class="footer-col">
-            <h4>Siga-nos</h4>
-            <div class="social-icons-footer">
-                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <main>
+        <section>
+            <h1>Página de Teste (Index2)</h1>
+            <p>Passa o rato no botão <strong>Passeios</strong> à esquerda para testar o menu em cascata.</p>
+            <div style="margin-top: 20px; padding: 20px; border: 2px dashed #ccc; color: #666;">
+                Nota: O menu só aparecerá se estiveres a usar um servidor (como Live Server) ou se o site já estiver online.
             </div>
-        </div>
-    </div>
-</footer>
+        </section>
+    </main>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-principal').innerHTML = data;
-            })
-            .catch(err => console.warn('Erro ao carregar o menu:', err));
-    });
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('menu.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("Ficheiro menu.html não encontrado");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('navbar-principal').innerHTML = data;
+                })
+                .catch(err => {
+                    console.error('Erro:', err);
+                    document.getElementById('navbar-principal').innerHTML = "<p style='color:white; padding:20px;'>Erro ao carregar menu. Verifica se o ficheiro menu.html existe.</p>";
+                });
+        });
+    </script>
 
 </body>
 </html>
