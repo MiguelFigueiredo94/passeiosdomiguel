@@ -1,109 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Passeios do Miguel - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ESTILO DO VÍDEO - EXATAMENTE COMO TINHAS (500PX) */
+        .container-video-index { 
+            width: 100%; 
+            max-width: 1000px; 
+            margin: 30px auto; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+        }
+        .container-video-index iframe { 
+            width: 100%; 
+            height: 500px; 
+            display: block; 
+            border: none;
+        }
+        .intro-text { text-align: center; padding: 20px; font-size: 1.2em; color: #333; }
+    </style>
+</head>
+<body>
 
-/* --- RESET E GRID ESTRUTURAL --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    <div id="menu-placeholder"></div>
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid; 
-    /* Define 280px para o menu e o restante (1fr) para o conteúdo */
-    grid-template-columns: 280px 1fr; 
-    /* Garante que o rodapé fica no fim da página */
-    grid-template-rows: auto 1fr auto;
-    font-family: 'Poppins', sans-serif;
-    background: #f4f7f9;
-}
+    <main>
+        <section>
+            <div class="banner"><h1>Bem-vindo aos Passeios do Miguel</h1></div>
+            
+            <div class="intro-text">
+                <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
+            </div>
 
-/* --- COLUNA 1: MENU LATERAL --- */
-#menu-placeholder {
-    grid-column: 1;
-    grid-row: 1 / 4; /* Ocupa do topo ao fundo, impedindo o rodapé de "escorregar" para a esquerda */
-}
+            <div class="container-video-index">
+                <iframe 
+                    src="https://www.youtube.com/embed/7uOx4BxH0rk" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
 
-/* Estilo que será aplicado ao <nav> dentro do menu.html */
-nav { 
-    background: #1e4d8c; 
-    padding: 40px 20px; 
-    color: white; 
-    text-align: center; 
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    z-index: 100;
-}
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <div class="newsletter-text">
+                    <h3>📩 Receba os nossos programas</h3>
+                    <p>Inscreva-se para receber as novidades por e-mail.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xgonpjqv" method="POST">
+                    <input type="email" name="email" placeholder="O seu e-mail..." required>
+                    <input type="hidden" name="_subject" value="Nova Inscrição na Newsletter!">
+                    <button type="submit" class="btn-newsletter">Aderir</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-.logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 30px; object-fit: cover; display: block; margin-left: auto; margin-right: auto; }
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Passeios do Miguel</h4>
+                <p>&copy; 2026 - Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Informações</h4>
+                <a href="cancelamento.html">Política de Cancelamento</a>
+                <a href="contatos.html">Contactos</a>
+            </div>
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="social-icons-footer">
+                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-nav ul { list-style: none; padding: 0; }
-nav ul li { position: relative; margin: 12px 0; }
-nav ul li a { 
-    color: #ffffff; text-decoration: none; display: block; padding: 12px 15px; 
-    border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50px; 
-    text-transform: uppercase; transition: 0.3s; font-size: 0.85em; font-weight: 600;
-}
-nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.warn('Erro ao carregar o menu:', err));
+    </script>
 
-/* --- SISTEMA DE CASCATA (DROPDOWNS) --- */
-.dropdown-content, .nested-content {
-    display: none; position: absolute; left: 100%; top: 0;
-    background: #ffffff; min-width: 220px; box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
-    border-radius: 0 12px 12px 12px; padding: 10px 0; margin-left: 10px; z-index: 1000;
-}
-.dropdown:hover > .dropdown-content, .nested-dropdown:hover > .nested-content { display: block; }
-
-.dropdown-content a, .nested-content a {
-    color: #333 !important; text-align: left !important; border: none !important;
-    padding: 10px 20px !important; font-size: 13px !important; display: block !important;
-    text-transform: none !important; font-weight: 400 !important;
-}
-.dropdown-content a:hover, .nested-content a:hover { background: #f1f4f8 !important; color: #1e4d8c !important; }
-
-/* --- COLUNA 2: CONTEÚDO PRINCIPAL --- */
-main { 
-    grid-column: 2; 
-    padding: 40px; 
-}
-
-section { 
-    background: #ffffff; padding: 40px; border-radius: 20px; 
-    margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-}
-
-.banner { 
-    width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; 
-    background: #f9f9f9; border-radius: 15px; margin-bottom: 20px;
-}
-
-/* --- NEWSLETTER --- */
-.newsletter-section {
-    background: #ffffff; padding: 30px; border-radius: 20px;
-    margin: 30px 0; border: 2px solid #e1e8f0;
-}
-.newsletter-container {
-    max-width: 900px; margin: 0 auto; display: flex;
-    justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
-}
-.newsletter-text h3 { color: #1e4d8c; margin-bottom: 5px; }
-.newsletter-form { display: flex; gap: 10px; flex-grow: 1; max-width: 400px; }
-.newsletter-form input {
-    flex-grow: 1; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none;
-}
-.btn-newsletter {
-    background: #1e4d8c; color: #fff; border: none; padding: 12px 25px;
-    border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s;
-}
-
-/* --- RODAPÉ (COLUNA 2) --- */
-footer { 
-    grid-column: 2; 
-    background: #ffffff; padding: 60px 40px; border-top: 1px solid #eee; 
-}
-.footer-container { 
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 40px; max-width: 1200px; margin: 0 auto; 
-}
-.footer-col h4 { margin-bottom: 20px; color: #1e4d8c; text-transform: uppercase; font-size: 0.95em; }
-.footer-col a, .footer-col p { color: #555; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.9em; }
-.social-icons-footer { display: flex; gap: 25px; margin-top: 15px; }
-.social-icons-footer a { font-size: 22px; color: #1e4d8c; }
+</body>
+</html>
