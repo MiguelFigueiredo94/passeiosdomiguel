@@ -54,6 +54,7 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
 /* --- SISTEMA DE CASCATA (DROPDOWNS) --- */
 
+/* Nível 1: Próximo ao botão de Passeios */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -64,12 +65,15 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
-    /* Ponte invisível para o rato não "cair" no vazio */
-    border-left: 20px solid transparent;
-    margin-left: -10px;
+    
+    /* ESTA É A PONTE: */
+    border-left: 25px solid transparent; /* Aumentei para 25px para ser impossível falhar */
+    margin-left: -20px; /* Puxa a caixa para cima do botão azul (invisivelmente) */
+    
     z-index: 1000;
 }
 
+/* Nível 2: Próximo às Datas/Anos */
 .nested-content {
     display: none;
     position: absolute;
@@ -80,19 +84,18 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
-    /* Ponte invisível para o segundo nível */
-    border-left: 20px solid transparent;
-    margin-left: -10px;
-    border-right: none;
+    
+    /* ESTA É A PONTE PARA A ESCADA: */
+    border-left: 25px solid transparent;
+    margin-left: -20px;
+    
     z-index: 1001;
 }
 
-/* Linha decorativa azul apenas no conteúdo final do submenu */
-.nested-content { border-left: 4px solid #1e4d8c !important; margin-left: -4px; }
-
+/* Garante que o hover se mantém enquanto o rato está na "ponte" */
 .dropdown:hover > .dropdown-content,
-.nested-dropdown:hover > .nested-content { 
-    display: block !important; 
+.nested-dropdown:hover > .nested-content {
+    display: block !important;
 }
 
 .dropdown-content a, .nested-content a {
