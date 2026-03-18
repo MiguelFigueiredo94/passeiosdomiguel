@@ -52,25 +52,7 @@
 
 <body>
 
-
-
-    <nav>
-
-        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" alt="Logo" class="logo"></a>
-
-        <ul>
-
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        <li><a href="passeios.html">Passeios</a></li>
-        <li><a href="contatos.html">Contatos</a></li>
-
-        </ul>
-
-    </nav>
-
-
-
+<div id="menu-placeholder"></div>
     
 
 <main>
@@ -245,7 +227,14 @@
 
 </footer>
 
-
+<script>
+    fetch('menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        })
+        .catch(err => console.warn('Erro ao carregar o menu:', err));
+</script>
 
 </body>
 
