@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* --- 1. RESET RESPEITADOR --- */
+/* --- RESET TOTAL --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex; /* Menu à esquerda, conteúdo à direita */
     font-family: 'Poppins', sans-serif;
     background: #f4f7f9;
-    display: flex; /* Menu à esquerda, resto à direita */
-    min-height: 100vh;
 }
 
-/* --- 2. MENU LATERAL (ESTÁVEL) --- */
+/* --- MENU LATERAL (FIXO) --- */
 #menu-placeholder {
     width: 280px;
     flex-shrink: 0;
-    background: #1e4d8c;
 }
 
 nav { 
@@ -26,69 +25,97 @@ nav {
     position: sticky;
     top: 0;
     height: 100vh;
-    z-index: 1000;
+    z-index: 100;
 }
 
-/* --- 3. CONTEÚDO (ONDE ESTÃO AS TUAS TABELAS) --- */
+.logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 30px; object-fit: cover; display: block; margin-left: auto; margin-right: auto; }
+
+nav ul { list-style: none; padding: 0; }
+nav ul li { position: relative; margin: 12px 0; }
+nav ul li a { 
+    color: #ffffff; text-decoration: none; display: block; padding: 12px 15px; 
+    border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50px; 
+    text-transform: uppercase; transition: 0.3s; font-size: 0.85em; font-weight: 600;
+}
+nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
+
+/* --- CONTEÚDO PRINCIPAL --- */
 main { 
     flex-grow: 1; 
     padding: 40px; 
     min-width: 0; 
 }
 
-/* GARANTE QUE AS TUAS TABELAS NÃO "REBENTAM" O LAYOUT */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
+h1, h2 { color: #1e4d8c; margin-bottom: 20px; text-align: center; }
 
-/* --- 4. NEWSLETTER (ESTILO DISCRETO) --- */
-.newsletter-section {
+section { 
     background: #ffffff; 
-    padding: 30px; 
-    border-radius: 20px;
-    margin: 40px 0; 
-    border: 2px solid #e1e8f0;
-    clear: both; /* Garante que não fica colada a tabelas flutuantes */
+    padding: 40px; 
+    border-radius: 20px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
 }
 
-.newsletter-container {
-    max-width: 900px; 
-    margin: 0 auto; 
+/* --- A TUA GRELHA ORIGINAL (RESTAURADA) --- */
+.container-passeios { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* FORÇA 3 COLUNAS COMO TINHAS */
+    gap: 25px; 
+}
+
+.card-passeio, .card-arquivo { 
+    background: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 20px; 
+    padding: 20px; 
+    text-align: center; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    transition: 0.3s;
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    gap: 20px; 
-    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 400px;
 }
 
-.newsletter-form { display: flex; gap: 10px; flex-grow: 1; max-width: 400px; }
-.newsletter-form input { padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; flex-grow: 1; }
-.btn-newsletter { background: #1e4d8c; color: #fff; border: none; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: 600; }
+.card-passeio:hover { transform: translateY(-5px); }
 
-/* --- 5. RODAPÉ --- */
+.card-passeio img, .card-arquivo img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 15px; 
+    margin-bottom: 15px; 
+}
+
+.btn-detalhes, .btn-resumo { 
+    margin-top: auto; 
+    background: #2a66ff; 
+    color: white; 
+    padding: 12px; 
+    border-radius: 10px; 
+    text-decoration: none; 
+    font-weight: 600; 
+}
+
+/* --- NEWSLETTER (AJUSTADA PARA NÃO ESTRAGAR NADA) --- */
+.newsletter-section {
+    background: #ffffff; padding: 30px; border-radius: 20px;
+    margin: 40px 0; border: 2px solid #e1e8f0;
+}
+.newsletter-container {
+    max-width: 900px; margin: 0 auto; display: flex;
+    justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.newsletter-form { display: flex; gap: 10px; }
+.newsletter-form input { padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none; }
+.btn-newsletter { background: #1e4d8c; color: #fff; border: none; padding: 12px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; }
+
+/* --- RODAPÉ --- */
 footer { 
-    background: #ffffff; 
-    padding: 60px 40px; 
-    border-top: 1px solid #eee;
-    width: 100%;
-    display: block;
+    background: #ffffff; padding: 60px 40px; border-top: 1px solid #eee; width: 100%;
 }
-
 .footer-container { 
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap; 
-    gap: 40px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 40px; max-width: 1200px; margin: 0 auto; 
 }
-
-/* --- ACERTOS DE IMAGEM (Para as tabelas) --- */
-td img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-}
+.social-icons-footer { display: flex; gap: 25px; }
+.social-icons-footer a { font-size: 22px; color: #1e4d8c; }
