@@ -54,6 +54,8 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
 /* --- SISTEMA DE CASCATA (DROPDOWNS) --- */
 
+/* --- AJUSTE DE ESTABILIDADE E AFASTAMENTO DO MENU --- */
+
 /* Nível 1: Próximo ao botão de Passeios */
 .dropdown-content {
     display: none;
@@ -66,14 +68,16 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
     
-    /* ESTA É A PONTE: */
-    border-left: 25px solid transparent; /* Aumentei para 25px para ser impossível falhar */
-    margin-left: -20px; /* Puxa a caixa para cima do botão azul (invisivelmente) */
+    /* A PONTE INVISÍVEL (Sem ocultar o botão) */
+    padding-left: 20px !important; /* Cria o espaço invisível tocoável */
+    
+    /* O AFASTAMENTO VISUAL */
+    margin-left: 10px; /* Afasta visualmente a caixa branca do botão azul */
     
     z-index: 1000;
 }
 
-/* Nível 2: Próximo às Datas/Anos */
+/* Nível 2: Próximo às Datas/Anos (A Escada) */
 .nested-content {
     display: none;
     position: absolute;
@@ -85,17 +89,19 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
     
-    /* ESTA É A PONTE PARA A ESCADA: */
-    border-left: 25px solid transparent;
-    margin-left: -20px;
+    /* A PONTE INVISÍVEL PARA A ESCADA */
+    padding-left: 20px !important;
+    
+    /* O AFASTAMENTO VISUAL DA ESCADA */
+    margin-left: 5px; /* Afasta visualmente o segundo nível do primeiro */
     
     z-index: 1001;
 }
 
-/* Garante que o hover se mantém enquanto o rato está na "ponte" */
-.dropdown:hover > .dropdown-content,
-.nested-dropdown:hover > .nested-content {
-    display: block !important;
+/* Mantém o visual limpo para os links internos */
+.dropdown-content a, .nested-content a {
+    /* ... (restante do código original) ... */
+    padding: 10px 20px !important; /* Garante o clique fácil */
 }
 
 .dropdown-content a, .nested-content a {
