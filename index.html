@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estilo para o container do vídeo do YouTube */
+        /* ESTILO ORIGINAL DO VÍDEO (RESTAURADO) */
         .container-video-index { 
             width: 100%; 
             max-width: 1000px; 
@@ -14,20 +14,15 @@
             border-radius: 20px; 
             overflow: hidden; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
-            position: relative;
-            padding-bottom: 56.25%; /* Mantém proporção 16:9 */
-            height: 0;
         }
         .container-video-index iframe { 
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%; 
+            width: 100%; 
+            height: 500px; /* Altura que tu gostas */
             display: block; 
             border: none;
         }
         .intro-text { text-align: center; padding: 20px; font-size: 1.2em; color: #333; }
         
-        /* Garante que o menu carregado via JS respeite o layout original */
         #menu-placeholder { grid-column: 1; grid-row: 1 / 3; }
     </style>
 </head>
@@ -45,9 +40,11 @@
 
             <div class="container-video-index">
                 <iframe 
-                    src="https://www.youtube.com/embed/7uOx4BxH0rk?autoplay=1&mute=1&loop=1&playlist=7uOx4BxH0rk" 
+                    src="https://www.youtube.com/embed/7uOx4BxH0rk" 
                     title="YouTube video player" 
+                    frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
                     allowfullscreen>
                 </iframe>
             </div>
@@ -56,11 +53,11 @@
         <section class="newsletter-section">
             <div class="newsletter-container">
                 <div class="newsletter-text">
-                    <h3>📩 Receba os próximos programas</h3>
-                    <p>Inscreva-se para receber as novidades diretamente no seu e-mail.</p>
+                    <h3>📩 Receba os nossos programas</h3>
+                    <p>Inscreva-se para receber as novidades por e-mail.</p>
                 </div>
                 <form class="newsletter-form" action="https://formspree.io/f/xgonpjqv" method="POST">
-                    <input type="email" name="email" placeholder="O seu melhor e-mail..." required>
+                    <input type="email" name="email" placeholder="O seu e-mail..." required>
                     <input type="hidden" name="_subject" value="Nova Inscrição na Newsletter!">
                     <button type="submit" class="btn-newsletter">Aderir</button>
                 </form>
