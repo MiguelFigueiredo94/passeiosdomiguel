@@ -27,6 +27,12 @@ nav {
     z-index: 100;
 }
 
+/* Ajuste para o placeholder do menu automático */
+#menu-placeholder {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
 .logo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 30px; object-fit: cover; display: block; margin-left: auto; margin-right: auto; }
 
 nav ul { list-style: none; padding: 0; }
@@ -50,7 +56,7 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
 /* --- SISTEMA DE CASCATA (DROPDOWNS) --- */
 
-/* Nível 1: Inscrições / 2026 / 2025 */
+/* Nível 1: Escondido por padrão */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -65,7 +71,7 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     z-index: 1000;
 }
 
-/* Nível 2: Lista de cada passeio */
+/* Nível 2: Escondido por padrão */
 .nested-content {
     display: none;
     position: absolute;
@@ -81,11 +87,11 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     z-index: 1001;
 }
 
-/* Mostrar ao passar o rato */
-.dropdown:hover > .dropdown-content { display: block; }
-.nested-dropdown:hover > .nested-content { display: block; }
+/* Mostrar ao passar o rato (Com !important para garantir que o JS não interfira) */
+.dropdown:hover > .dropdown-content { display: block !important; }
+.nested-dropdown:hover > .nested-content { display: block !important; }
 
-/* Estilo dos textos dentro do menu branco */
+/* Estilo dos textos dentro do menu branco (Remove o estilo de botão azul) */
 .dropdown-content a, .nested-content a {
     color: #333 !important;
     text-align: left !important;
@@ -95,6 +101,9 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     padding: 10px 20px !important;
     font-size: 13px !important;
     display: block !important;
+    background: transparent !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
 }
 
 .dropdown-content a:hover, .nested-content a:hover {
@@ -102,9 +111,8 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     color: #1e4d8c !important;
 }
 
-/* --- CONTEÚDO PRINCIPAL (RESTAURADO) --- */
+/* --- CONTEÚDO PRINCIPAL --- */
 main { padding: 40px; grid-column: 2; }
-
 h1, h2 { color: #1e4d8c; margin-bottom: 20px; }
 
 section { 
@@ -126,7 +134,7 @@ section {
     margin-bottom: 20px;
 }
 
-/* --- GRELHA DE PASSEIOS (RESTAURADO) --- */
+/* --- GRELHA DE PASSEIOS --- */
 .container-passeios { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -147,10 +155,7 @@ section {
 }
 
 .card-passeio:hover, .card-arquivo:hover { transform: translateY(-5px); }
-
-.card-passeio img, .card-arquivo img { 
-    width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; 
-}
+.card-passeio img, .card-arquivo img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; }
 
 .btn-detalhes { 
     margin-top: auto; 
@@ -159,13 +164,7 @@ section {
 
 .card-arquivo { background: #f9f9f9; filter: grayscale(30%); opacity: 0.9; }
 
-/* --- RODAPÉ (RESTAURADO) --- */
+/* --- RODAPÉ --- */
 footer { grid-column: 2; background: #ffffff; color: #1e4d8c; padding: 40px; border-top: 1px solid #eee; }
 .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
 .footer-col h4 { margin-bottom: 15px; color: #1e4d8c; text-transform: uppercase; font-size: 0.9em; }
-.footer-col p, .footer-col a { color: #555; text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9em; }
-.social-icons-footer { display: flex; gap: 15px; margin-top: 10px; }
-.social-icons-footer a { font-size: 20px; color: #1e4d8c; }
-
-/* Botão Música */
-#btnMusica { position: fixed; bottom: 20px; right: 20px; background: #1e4d8c; color: white; border: 2px solid white; padding: 10px 20px; border-radius: 30px; cursor: pointer; z-index: 1000; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
