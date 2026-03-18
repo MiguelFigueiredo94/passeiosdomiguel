@@ -27,7 +27,6 @@ nav {
     z-index: 100;
 }
 
-/* Ajuste para o placeholder do menu automático */
 #menu-placeholder {
     grid-column: 1;
     grid-row: 1 / 3;
@@ -38,7 +37,6 @@ nav {
 nav ul { list-style: none; padding: 0; }
 nav ul li { position: relative; margin: 12px 0; }
 
-/* Links Principais (Botões com borda) */
 nav ul li a { 
     color: #ffffff; 
     text-decoration: none; 
@@ -56,7 +54,6 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
 /* --- SISTEMA DE CASCATA (DROPDOWNS) --- */
 
-/* Nível 1: Escondido por padrão */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -67,11 +64,12 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
-    margin-left: 10px;
+    /* Ponte invisível para o rato não "cair" no vazio */
+    border-left: 20px solid transparent;
+    margin-left: -10px;
     z-index: 1000;
 }
 
-/* Nível 2: Escondido por padrão */
 .nested-content {
     display: none;
     position: absolute;
@@ -82,16 +80,21 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     box-shadow: 10px 5px 20px rgba(0,0,0,0.15);
     border-radius: 0 12px 12px 12px;
     padding: 10px 0;
-    margin-left: 2px;
-    border-left: 4px solid #1e4d8c;
+    /* Ponte invisível para o segundo nível */
+    border-left: 20px solid transparent;
+    margin-left: -10px;
+    border-right: none;
     z-index: 1001;
 }
 
-/* Mostrar ao passar o rato (Com !important para garantir que o JS não interfira) */
-.dropdown:hover > .dropdown-content { display: block !important; }
-.nested-dropdown:hover > .nested-content { display: block !important; }
+/* Linha decorativa azul apenas no conteúdo final do submenu */
+.nested-content { border-left: 4px solid #1e4d8c !important; margin-left: -4px; }
 
-/* Estilo dos textos dentro do menu branco (Remove o estilo de botão azul) */
+.dropdown:hover > .dropdown-content,
+.nested-dropdown:hover > .nested-content { 
+    display: block !important; 
+}
+
 .dropdown-content a, .nested-content a {
     color: #333 !important;
     text-align: left !important;
@@ -169,7 +172,7 @@ footer {
     grid-column: 2; 
     background: #ffffff; 
     color: #1e4d8c; 
-    padding: 60px 40px; /* Aumentei o espaço interno */
+    padding: 60px 40px; 
     border-top: 1px solid #eee; 
 }
 
@@ -189,12 +192,11 @@ footer {
     font-weight: 600;
 }
 
-/* Forçar links um por baixo do outro */
 .footer-col a, .footer-col p { 
     color: #555; 
     text-decoration: none; 
-    display: block; /* Ocupa a linha toda */
-    margin-bottom: 12px; /* Espaço entre as linhas */
+    display: block; 
+    margin-bottom: 12px; 
     font-size: 0.9em; 
     line-height: 1.4;
 }
@@ -204,17 +206,16 @@ footer {
     text-decoration: underline;
 }
 
-/* Espaçamento dos Ícones Sociais */
 .social-icons-footer { 
     display: flex; 
-    gap: 25px; /* Aumentei o espaço entre os ícones aqui */
+    gap: 25px; 
     margin-top: 15px; 
 }
 
 .social-icons-footer a { 
     font-size: 22px; 
     color: #1e4d8c; 
-    display: inline-block !important; /* Aqui deve ser inline para ficarem lado a lado */
+    display: inline-block !important; 
     margin-bottom: 0 !important;
 }
 
