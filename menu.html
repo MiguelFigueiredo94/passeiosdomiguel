@@ -1,89 +1,112 @@
 <style>
-    /* Estilo do Botão Dúvidas no Menu */
-    #botaoDuvidas {
-        background: #ff9800 !important;
-        color: white !important;
-        border-radius: 5px !important;
-        margin-top: 15px !important;
-        width: 100%;
-        padding: 12px;
-        font-weight: bold !important;
-        border: none !important;
+    /* Estilo Base do Menu Lateral */
+    nav { font-family: 'Poppins', sans-serif; }
+
+    /* Botão Flutuante (O "Chique") */
+    .btn-flutuante-faq {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 65px;
+        height: 65px;
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         cursor: pointer;
-        display: block;
-        font-family: 'Poppins', sans-serif;
-        text-transform: uppercase;
-        font-size: 0.8em;
+        z-index: 999998;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 3px solid white;
+    }
+
+    .btn-flutuante-faq:hover {
+        transform: scale(1.15) rotate(15deg);
+        background: linear-gradient(135deg, #1e4d8c, #2a66ff);
+    }
+
+    /* Balão de texto ao lado do botão */
+    .btn-flutuante-faq::before {
+        content: "Dúvidas?";
+        position: absolute;
+        right: 80px;
+        background: #1e4d8c;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        opacity: 0;
         transition: 0.3s;
+        pointer-events: none;
+        white-space: nowrap;
     }
 
-    #botaoDuvidas:hover {
-        background: #e68a00 !important;
-        transform: scale(1.02);
+    .btn-flutuante-faq:hover::before {
+        opacity: 1;
+        right: 85px;
     }
 
-    /* Estrutura da Janela Modal (FAQ) */
+    /* Modal FAQ com Efeito Vidro (Glassmorphism) */
     #janelaFaq {
         display: none; 
         position: fixed; 
         z-index: 999999; 
-        left: 0; 
-        top: 0; 
-        width: 100%; 
-        height: 100%; 
-        background: rgba(0,0,0,0.85); 
-        backdrop-filter: blur(4px);
+        left: 0; top: 0; width: 100%; height: 100%; 
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(8px); /* Efeito de vidro fosco */
     }
 
     .faq-card {
-        background: white; 
-        margin: 8% auto; 
-        width: 90%; 
-        max-width: 450px; 
-        border-radius: 15px; 
-        overflow: hidden; 
-        position: relative; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-        font-family: sans-serif;
-        animation: deslizar 0.3s ease-out;
+        background: white;
+        margin: 6% auto;
+        width: 90%;
+        max-width: 480px;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        position: relative;
+        animation: abrirModal 0.4s ease-out;
     }
 
-    @keyframes deslizar {
-        from { transform: translateY(-20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+    @keyframes abrirModal {
+        from { transform: scale(0.7); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
 
     .faq-header {
-        background: #1e4d8c; 
-        color: white; 
-        padding: 20px; 
+        background: #1e4d8c;
+        color: white;
+        padding: 25px;
         text-align: center;
-        position: relative;
     }
 
     .faq-body {
-        padding: 25px; 
-        color: #333; 
-        line-height: 1.6; 
-        font-size: 14px; 
-        text-align: left;
-        max-height: 60vh;
+        padding: 30px;
+        color: #333;
+        line-height: 1.8;
+        font-size: 15px;
+        max-height: 65vh;
         overflow-y: auto;
     }
 
     #fecharFaq {
-        position: absolute; 
-        right: 15px; 
-        top: 10px; 
-        font-size: 30px; 
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 35px;
         cursor: pointer;
-        line-height: 1;
+        color: white;
+        transition: 0.2s;
     }
 
-    .faq-body hr {
-        opacity: 0.1; 
-        margin: 12px 0;
-    }
+    #fecharFaq:hover { transform: scale(1.2); }
+    
+    .faq-body hr { border: 0; border-top: 1px dashed #ddd; margin: 15px 0; }
+    .faq-body strong { color: #1e4d8c; }
 </style>
 
 <nav>
@@ -106,7 +129,6 @@
                         <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
                     </div>
                 </div>
-
                 <div class="nested-dropdown">
                     <a href="#">2026 <i class="fas fa-chevron-right" style="float: right;"></i></a>
                     <div class="nested-content">
@@ -114,7 +136,6 @@
                         <a href="gaia.html">Magia Animal em Gaia</a>
                     </div>
                 </div>
-
                 <div class="nested-dropdown">
                     <a href="#">2025 <i class="fas fa-chevron-right" style="float: right;"></i></a>
                     <div class="nested-content">
@@ -130,44 +151,38 @@
                 </div>
             </div> 
         </li>
-
         <li><a href="contatos.html">Contactos</a></li>
-        
-        <li>
-            <button id="botaoDuvidas" type="button">
-                Dúvidas?
-            </button>
-        </li>
     </ul>
 </nav>
+
+<div id="botaoDuvidas" class="btn-flutuante-faq" title="Dúvidas? Clique aqui!">
+    <i class="fas fa-question"></i>
+</div>
 
 <div id="janelaFaq">
     <div class="faq-card">
         <div class="faq-header">
             <span id="fecharFaq">&times;</span>
-            <h3 style="margin: 0;">❓ Perguntas Frequentes</h3>
+            <h2 style="margin: 0; font-family: 'Poppins', sans-serif;">Central de Ajuda</h2>
         </div>
         <div class="faq-body">
             <p><strong>📍 Partidas e Horários:</strong><br>
             Confirmados via telefone até 48h antes da viagem.</p>
             <hr>
-            <p><strong>💳 Pagamentos:</strong><br>
-            MB Way, Transferência ou Numerário. Pagamento no ato da reserva.</p>
+            <p><strong>💳 Métodos de Pagamento:</strong><br>
+            Aceitamos MB Way, Transferência ou Numerário no ato da reserva.</p>
             <hr>
-            <p><strong>📝 Inscrições:</strong><br>
-            965 715 476 ou na página <a href="inscricoes.html" style="color: #1e4d8c; font-weight: bold;">Inscrever-me</a>.</p>
+            <p><strong>📝 Como se inscrever:</strong><br>
+            965 715 476 ou na página <a href="inscricoes.html" style="color: #ff9800; font-weight: bold; text-decoration: none;">Inscrever-me</a>.</p>
             <hr>
             <p><strong>📋 Dados Necessários:</strong><br>
-            Nome, data de nascimento e localidade de residência.</p>
+            Nome completo, data de nascimento e localidade.</p>
             <hr>
-            <p><strong>👥 Descontos e Preços:</strong><br>
-            Depende do passeio. O valor por lugar é fixo (mesmo preço para 1 ou 10 pessoas).</p>
+            <p><strong>🚫 Política de Cancelamento:</strong><br>
+            Reembolso 100% até 30 dias antes. Depois desse prazo, não há reembolso.</p>
             <hr>
-            <p><strong>🚫 Cancelamento:</strong><br>
-            Reembolso 100% até 30 dias antes. Após isso, sem reembolso.</p>
-            <hr>
-            <p><strong>🆔 Documentos:</strong><br>
-            Responsabilidade do passageiro. Não são necessários para a reserva interna.</p>
+            <p><strong>🆔 Documentação:</strong><br>
+            Apenas responsabilidade do passageiro. Dispensáveis para a reserva interna.</p>
         </div>
     </div>
 </div>
