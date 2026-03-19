@@ -140,6 +140,23 @@ onclick="this.style.display='none'"><img src="https://i.imgur.com/QiSried.jpg"><
         })
         .catch(err => console.warn('Erro ao carregar o menu:', err));
 </script>
+
+<script>
+    document.addEventListener('click', function (e) {
+        // Deteta clique no botão flutuante ou no ícone que está dentro dele
+        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+            var modal = document.getElementById('janelaFaq');
+            if (modal) modal.style.display = 'block';
+        }
+        
+        // Deteta clique no X ou fora da janela para fechar
+        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+            var modal = document.getElementById('janelaFaq');
+            if (modal) modal.style.display = 'none';
+        }
+    });
+</script>
+
 	
 </body>
 </html>
