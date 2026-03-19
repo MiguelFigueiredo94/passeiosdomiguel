@@ -93,5 +93,23 @@
             .catch(err => console.warn('Erro ao carregar o menu:', err));
     </script>
 
+
+<script>
+    // Este código deteta cliques mesmo em elementos carregados por fetch
+    document.addEventListener('click', function (e) {
+        // Se o utilizador clicar no botão de dúvidas
+        if (e.target && e.target.id === 'botaoDuvidas') {
+            var modal = document.getElementById('janelaFaq');
+            if (modal) modal.style.display = 'block';
+        }
+        
+        // Se o utilizador clicar no X ou fora da caixa branca para fechar
+        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+            var modal = document.getElementById('janelaFaq');
+            if (modal) modal.style.display = 'none';
+        }
+    });
+</script>
+    
 </body>
 </html>
