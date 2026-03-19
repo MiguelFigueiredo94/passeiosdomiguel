@@ -9,7 +9,6 @@
         
         <li class="dropdown">
             <a href="passeios.html">Passeios <i class="fas fa-chevron-right" style="font-size: 10px; margin-left: 8px;"></i></a>
-            
             <div class="dropdown-content">
                 <div class="nested-dropdown">
                     <a href="#">Próximas Datas <i class="fas fa-chevron-right" style="float: right;"></i></a>
@@ -19,7 +18,6 @@
                         <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
                     </div>
                 </div>
-
                 <div class="nested-dropdown">
                     <a href="#">2026 <i class="fas fa-chevron-right" style="float: right;"></i></a>
                     <div class="nested-content">
@@ -27,7 +25,6 @@
                         <a href="gaia.html">Magia Animal em Gaia</a>
                     </div>
                 </div>
-
                 <div class="nested-dropdown">
                     <a href="#">2025 <i class="fas fa-chevron-right" style="float: right;"></i></a>
                     <div class="nested-content">
@@ -43,87 +40,55 @@
                 </div>
             </div> 
         </li>
-
         <li><a href="contatos.html">Contactos</a></li>
-        <br><br><br>
+        
         <li>
-            <a href="javascript:void(0)" id="faqBtn" style="background: #ff9800; color: white; border-radius: 5px; margin-top: 15px; text-align: center; font-weight: bold; border: none;">
-                <i class="fas fa-question-circle"></i> Dúvidas?
+            <a href="javascript:void(0)" onclick="abrirFaq()" style="background: #ff9800; color: white; border-radius: 5px; margin-top: 15px; text-align: center; font-weight: bold; border: none; display: block; padding: 10px;">
+                Dúvidas?
             </a>
         </li>
     </ul>
 </nav>
 
-<div id="faqModal" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); font-family: 'Poppins', sans-serif;">
-    <div style="background-color: #ffffff; margin: 5% auto; padding: 0; border-radius: 15px; width: 90%; max-width: 550px; position: relative; overflow: hidden; box-shadow: 0 5px 30px rgba(0,0,0,0.5);">
+<div id="janelaFaq" style="display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);">
+    <div style="background-color: white; margin: 5% auto; width: 90%; max-width: 500px; border-radius: 15px; overflow: hidden; font-family: sans-serif; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
         
-        <div style="background: #1e4d8c; color: white; padding: 20px; text-align: center;">
-            <span id="closeFaq" style="position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: white; opacity: 0.8;">&times;</span>
-            <h2 style="margin: 0; font-size: 1.4em;">❓ Perguntas Frequentes</h2>
+        <div style="background: #1e4d8c; color: white; padding: 20px; position: relative; text-align: center;">
+            <h3 style="margin: 0;">❓ Perguntas Frequentes</h3>
+            <span onclick="fecharFaq()" style="position: absolute; right: 15px; top: 15px; font-size: 30px; cursor: pointer;">&times;</span>
         </div>
 
-        <div style="padding: 25px; line-height: 1.6; color: #333; max-height: 70vh; overflow-y: auto;">
-            
-            <p><strong>📍 Onde e quando é confirmada a partida?</strong><br>
-            Os locais de partida/chegada e horários são sempre confirmados via telefone até **48h antes** da viagem.</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>💳 Como funcionam os pagamentos?</strong><br>
-            Aceitamos pagamentos via **MB Way, Transferência e Numerário**. Os pagamentos devem ser efetuados sempre no ato da reserva para garantir o seu lugar.</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>📝 Onde me posso inscrever?</strong><br>
-            Pode inscrever-se via chamada telefónica ou WhatsApp pelo número **965 715 476**, ou diretamente aqui no site em <a href="inscricoes.html" style="color: #1e4d8c; font-weight: bold; text-decoration: underline;">Inscrever-me</a>.</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>📋 Que dados devo fornecer para a inscrição?</strong><br>
-            Para validar a sua reserva, necessitamos apenas do seu **Nome, Data de Nascimento e Localidade de Residência**.</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>👥 Existe desconto para grupos ou seniores?</strong><br>
-            Depende do tipo de passeio. Alguns destinos preveem descontos para crianças, enquanto outros têm valor único. O valor por lugar é fixo, independentemente do número de inscrições (1 ou 10 pessoas pagam o mesmo valor individual).</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>🚫 Qual a política de cancelamento?</strong><br>
-            • Até 30 dias antes: Reembolso de 100%.<br>
-            • Menos de 30 dias: Não há lugar a reembolso devido a custos operacionais já assumidos.</p>
-
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <p><strong>🆔 É necessário levar documentos?</strong><br>
-            Para os nossos passeios, os documentos pessoais (como o CC) não nos servem de nada para efeitos internos, sendo apenas da responsabilidade do passageiro para identificação civil, se necessário.</p>
-        </div>
-        
-        <div style="background: #f9f9f9; padding: 15px; text-align: center; font-size: 0.85em; color: #777;">
-            Passeios do Miguel - São Pedro do Sul
+        <div style="padding: 20px; color: #333; line-height: 1.5; max-height: 60vh; overflow-y: auto; text-align: left;">
+            <p><strong>📍 Partidas:</strong> Confirmadas via telefone até 48h antes.</p>
+            <hr>
+            <p><strong>💳 Pagamentos:</strong> MB Way, Transferência ou Numerário no ato da reserva.</p>
+            <hr>
+            <p><strong>📝 Inscrições:</strong> Telemóvel/WhatsApp 965 715 476 ou na página <a href="inscricoes.html">Inscrever-me</a>.</p>
+            <hr>
+            <p><strong>📋 Dados necessários:</strong> Nome, data de nascimento e localidade.</p>
+            <hr>
+            <p><strong>👥 Descontos:</strong> Depende do passeio. O valor por lugar é fixo.</p>
+            <hr>
+            <p><strong>🚫 Cancelamento:</strong> Reembolso 100% até 30 dias antes. Depois disso, sem reembolso.</p>
+            <hr>
+            <p><strong>🆔 Documentos:</strong> Apenas responsabilidade do passageiro; não são necessários para a reserva interna.</p>
         </div>
     </div>
 </div>
 
 <script>
-    var faqModal = document.getElementById("faqModal");
-    var faqBtn = document.getElementById("faqBtn");
-    var closeFaq = document.getElementById("closeFaq");
-
-    // Abrir janela
-    faqBtn.onclick = function() { 
-        faqModal.style.display = "block"; 
+    // Funções diretas para evitar conflitos de ID
+    function abrirFaq() {
+        document.getElementById('janelaFaq').style.display = 'block';
     }
-
-    // Fechar no X
-    closeFaq.onclick = function() { 
-        faqModal.style.display = "none"; 
+    function fecharFaq() {
+        document.getElementById('janelaFaq').style.display = 'none';
     }
-
-    // Fechar ao clicar fora da janela branca
+    // Fechar se clicar fora da caixa branca
     window.onclick = function(event) {
-        if (event.target == faqModal) { 
-            faqModal.style.display = "none"; 
+        var modal = document.getElementById('janelaFaq');
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     }
 </script>
