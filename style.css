@@ -131,3 +131,28 @@ body.modal-open {
     background: #ccc;
     border-radius: 10px;
 }
+
+
+
+
+/* Copia isto para o final do teu ficheiro style.css 
+   Sim, dentro do CSS podes usar este truque se o teu sistema permitir, 
+   MAS o ideal é colocar isto num ficheiro chamado 'script.js' 
+   que já tenhas a carregar em todo o lado.
+*/
+
+// Se não tiveres um ficheiro .js comum, cola este script APENAS na index.html 
+// antes do </body> para testares agora:
+
+<script>
+document.addEventListener('click', function (e) {
+    // Se clicar no botão de dúvidas
+    if (e.target && e.target.id === 'botaoDuvidas') {
+        document.getElementById('janelaFaq').style.display = 'block';
+    }
+    // Se clicar no X ou fora da caixa
+    if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+        document.getElementById('janelaFaq').style.display = 'none';
+    }
+});
+</script>
