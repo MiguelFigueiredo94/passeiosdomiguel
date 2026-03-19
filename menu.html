@@ -1,94 +1,23 @@
-<nav>
-    <a href="index.html">
-        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
-    </a>
+<li>
+    <button id="botaoDuvidas" style="background: #ff9800; color: white; border-radius: 5px; margin-top: 15px; width: 100%; padding: 10px; font-weight: bold; border: none; cursor: pointer;">
+        Dúvidas?
+    </button>
+</li>
 
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
-        
-        <li class="dropdown">
-            <a href="passeios.html">Passeios <i class="fas fa-chevron-right" style="font-size: 10px; margin-left: 8px;"></i></a>
-            <div class="dropdown-content">
-                <div class="nested-dropdown">
-                    <a href="#">Próximas Datas <i class="fas fa-chevron-right" style="float: right;"></i></a>
-                    <div class="nested-content">
-                        <a href="campomaior.html">Festas do Povo (08 Ago)</a>
-                        <a href="cereja.html">Rota da Cereja (14 Jun)</a>
-                        <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
-                    </div>
-                </div>
-                <div class="nested-dropdown">
-                    <a href="#">2026 <i class="fas fa-chevron-right" style="float: right;"></i></a>
-                    <div class="nested-content">
-                        <a href="camelias.html">Festa das Camélias</a>
-                        <a href="gaia.html">Magia Animal em Gaia</a>
-                    </div>
-                </div>
-                <div class="nested-dropdown">
-                    <a href="#">2025 <i class="fas fa-chevron-right" style="float: right;"></i></a>
-                    <div class="nested-content">
-                        <a href="vigo.html">Valença & Vigo</a>
-                        <a href="marvao.html">Nisa & Marvão</a>
-                        <a href="espinho.html">Senhora d'Ajuda</a>
-                        <a href="viana.html">Senhora d'Agonia</a>
-                        <a href="geres.html">Gerês & Braga</a>
-                        <a href="fatima.html">Fátima</a>
-                        <a href="obidos.html">Festival do Chocolate</a>
-                        <a href="amendoeiras.html">Amendoeiras em Flor</a>
-                    </div>
-                </div>
-            </div> 
-        </li>
-        <li><a href="contatos.html">Contactos</a></li>
-        
-        <li>
-            <a href="javascript:void(0)" onclick="abrirFaq()" style="background: #ff9800; color: white; border-radius: 5px; margin-top: 15px; text-align: center; font-weight: bold; border: none; display: block; padding: 10px;">
-                Dúvidas?
-            </a>
-        </li>
-    </ul>
-</nav>
-
-<div id="janelaFaq" style="display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);">
-    <div style="background-color: white; margin: 5% auto; width: 90%; max-width: 500px; border-radius: 15px; overflow: hidden; font-family: sans-serif; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
-        
-        <div style="background: #1e4d8c; color: white; padding: 20px; position: relative; text-align: center;">
+<div id="janelaFaq" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);">
+    <div style="background: white; margin: 10% auto; width: 90%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">
+        <div style="background: #1e4d8c; color: white; padding: 15px; text-align: center;">
             <h3 style="margin: 0;">❓ Perguntas Frequentes</h3>
-            <span onclick="fecharFaq()" style="position: absolute; right: 15px; top: 15px; font-size: 30px; cursor: pointer;">&times;</span>
+            <span id="fecharFaq" style="position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer;">&times;</span>
         </div>
-
-        <div style="padding: 20px; color: #333; line-height: 1.5; max-height: 60vh; overflow-y: auto; text-align: left;">
+        <div style="padding: 20px; color: #333; font-size: 14px; text-align: left;">
             <p><strong>📍 Partidas:</strong> Confirmadas via telefone até 48h antes.</p>
-            <hr>
+            <hr style="margin: 10px 0; opacity: 0.2;">
             <p><strong>💳 Pagamentos:</strong> MB Way, Transferência ou Numerário no ato da reserva.</p>
-            <hr>
-            <p><strong>📝 Inscrições:</strong> Telemóvel/WhatsApp 965 715 476 ou na página <a href="inscricoes.html">Inscrever-me</a>.</p>
-            <hr>
-            <p><strong>📋 Dados necessários:</strong> Nome, data de nascimento e localidade.</p>
-            <hr>
-            <p><strong>👥 Descontos:</strong> Depende do passeio. O valor por lugar é fixo.</p>
-            <hr>
-            <p><strong>🚫 Cancelamento:</strong> Reembolso 100% até 30 dias antes. Depois disso, sem reembolso.</p>
-            <hr>
-            <p><strong>🆔 Documentos:</strong> Apenas responsabilidade do passageiro; não são necessários para a reserva interna.</p>
+            <hr style="margin: 10px 0; opacity: 0.2;">
+            <p><strong>📝 Inscrições:</strong> 965 715 476 ou na página <a href="inscricoes.html" style="color: #1e4d8c; font-weight: bold;">Inscrever-me</a>.</p>
+            <hr style="margin: 10px 0; opacity: 0.2;">
+            <p><strong>🚫 Cancelamento:</strong> Reembolso 100% até 30 dias antes.</p>
         </div>
     </div>
 </div>
-
-<script>
-    // Funções diretas para evitar conflitos de ID
-    function abrirFaq() {
-        document.getElementById('janelaFaq').style.display = 'block';
-    }
-    function fecharFaq() {
-        document.getElementById('janelaFaq').style.display = 'none';
-    }
-    // Fechar se clicar fora da caixa branca
-    window.onclick = function(event) {
-        var modal = document.getElementById('janelaFaq');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
