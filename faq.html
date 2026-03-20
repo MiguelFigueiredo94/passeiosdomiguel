@@ -8,60 +8,103 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* Layout Base */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner FAQ */
+        /* Banner Moderno */
         .banner-faq {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 100px 20px; text-align: center; border-radius: 0 0 60px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .banner-faq h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .banner-faq p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
 
-        /* Acordeão FAQ */
-        .seccao-faq { padding: 50px 20px; background: white; flex-grow: 1; }
-        .container-faq { max-width: 850px; margin: 0 auto; }
+        /* Área das Perguntas (Design Refinado) */
+        .seccao-faq { padding: 60px 20px; flex-grow: 1; }
+        .container-faq { max-width: 900px; margin: 0 auto; }
 
         .faq-item {
-            background: #fff; margin-bottom: 15px; border-radius: 12px;
-            border: 1px solid #eee; overflow: hidden; transition: 0.3s;
+            background: white; 
+            margin-bottom: 20px; 
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f6;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #ff8c00;
         }
 
         .faq-pergunta {
-            padding: 22px 25px; width: 100%; display: flex; justify-content: space-between;
-            align-items: center; cursor: pointer; background: none; border: none;
-            text-align: left; font-size: 1.1em; font-weight: bold; color: #1e4d8c;
+            padding: 25px 30px; 
+            width: 100%; 
+            display: flex; 
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer; 
+            background: none; 
+            border: none;
+            text-align: left;
+            outline: none;
         }
 
+        .faq-titulo-wrapper { display: flex; align-items: center; gap: 20px; }
+        .faq-icon-circulo {
+            width: 45px; height: 45px; 
+            background: #f0f4f8; 
+            border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center;
+            color: #1e4d8c; font-size: 1.2em; transition: 0.3s;
+        }
+
+        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; transition: 0.3s; }
+
+        .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
+
+        /* Resposta */
         .faq-resposta {
-            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
-            background: #fafafa;
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fdfdfd;
         }
 
-        .faq-resposta-inner { padding: 20px 25px; color: #555; line-height: 1.7; border-top: 1px solid #eee; }
+        .faq-resposta-inner { 
+            padding: 0 30px 30px 95px; /* Alinhado com o texto da pergunta */
+            color: #666; 
+            line-height: 1.8; 
+            font-size: 1.05em;
+        }
 
-        /* Estados Ativos */
-        .faq-item.ativo { border-left: 6px solid #ff8c00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .faq-item.ativo .faq-pergunta { color: #ff8c00; }
-        .faq-item.ativo .faq-resposta { max-height: 300px; }
-        .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
-        .faq-pergunta i { transition: 0.3s; color: #ccc; }
+        /* Estado Aberto (Ativo) */
+        .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
+        .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
+        .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
+        .faq-item.ativo .faq-resposta { max-height: 400px; }
+        .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
 
-        /* RODAPÉ PADRÃO */
-        .footer-wave-container { background: white; line-height: 0; margin-top: auto; }
-        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
-
-        footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
+        /* Rodapé */
+        .footer-wave-container { background: transparent; line-height: 0; margin-top: auto; }
+        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; }
+        footer { background: #1e4d8c; color: white; padding: 60px 30px; }
         .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
-        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
-        .footer-col a:hover { color: white; padding-left: 8px; }
+        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; }
+        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 10px 0; }
+        .footer-col a:hover { color: white; padding-left: 5px; transition: 0.3s; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; min-height: auto; position: relative; }
+            .faq-resposta-inner { padding: 0 25px 25px 25px; }
+            .banner-faq h1 { font-size: 2em; }
         }
     </style>
 </head>
@@ -71,63 +114,99 @@
 
     <main>
         <div class="banner-faq">
-            <h1>Como podemos ajudar?</h1>
-            <p>Encontra aqui as respostas às tuas dúvidas mais comuns.</p>
+            <h1>Central de Ajuda</h1>
+            <p>Tudo o que precisas de saber sobre as tuas viagens</p>
         </div>
 
         <section class="seccao-faq">
             <div class="container-faq">
                 
                 <div class="faq-item">
-                    <button class="faq-pergunta">📍 Partidas e Horários <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-map-marker-alt"></i></div>
+                            <span class="faq-texto-pergunta">Partidas e Horários</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Confirmados via telefone até 48h antes da viagem.
+                            Os horários e pontos exatos de partida são confirmados via telefone até 48h antes da viagem.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">💳 Métodos de Pagamento <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-credit-card"></i></div>
+                            <span class="faq-texto-pergunta">Métodos de Pagamento</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Aceitamos MB Way, Transferência ou Numerário no ato da reserva.
+                            Aceitamos pagamentos via MB Way, Transferência Bancária ou em Numerário no ato da reserva.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">📝 Como se inscrever <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-edit"></i></div>
+                            <span class="faq-texto-pergunta">Como se inscrever</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Através do número 965 715 476 ou na página Inscrever-me.
+                            Podes inscrever-te ligando para o 965 715 476 ou utilizando o formulário na página Inscrever-me.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">📋 Dados Necessários <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-file-alt"></i></div>
+                            <span class="faq-texto-pergunta">Dados Necessários</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Nome completo, data de nascimento e localidade.
+                            Para formalizar a reserva e o seguro, solicitamos o nome completo, data de nascimento e localidade.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">🚫 Política de Cancelamento <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-ban"></i></div>
+                            <span class="faq-texto-pergunta">Política de Cancelamento</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Reembolso 100% até 30 dias antes. Depois desse prazo, não há reembolso.
+                            Garantimos o reembolso de 100% se o cancelamento for feito até 30 dias antes da viagem. Após este prazo, não se efetuam reembolsos.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">🆔 Documentação <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-id-card"></i></div>
+                            <span class="faq-texto-pergunta">Documentação</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Apenas responsabilidade do passageiro. Dispensáveis para a reserva interna.
+                            A validade dos documentos é responsabilidade do passageiro. São dispensáveis para a reserva interna, mas obrigatórios para a viagem.
                         </div>
                     </div>
                 </div>
@@ -140,7 +219,6 @@
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
             </svg>
         </div>
-
         <footer>
             <div class="footer-grid">
                 <div class="footer-col">
@@ -163,23 +241,23 @@
     </main>
 
     <script>
-        // Carrega o Menu
+        // Carregar Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        // Lógica das Perguntas (Acordeão)
+        // Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
-            botao.onclick = () => {
+            botao.addEventListener('click', () => {
                 const item = botao.parentElement;
                 const estaAtivo = item.classList.contains('ativo');
                 
-                // Fecha as outras
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('ativo'));
+                // Fecha outros
+                document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
                 
-                // Abre a clicada se não estava ativa
+                // Abre o atual
                 if (!estaAtivo) item.classList.add('ativo');
-            };
+            });
         });
     </script>
 </body>
