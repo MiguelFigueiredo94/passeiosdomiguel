@@ -58,15 +58,16 @@
 
         .faq-pergunta:hover { background: #f8f9fa; color: #ff8c00; }
 
+        /* Correção da Resposta */
         .faq-resposta {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease-in-out;
             background: #fafafa;
         }
 
         .faq-resposta-inner { 
-            padding: 5px 25px 25px 25px; 
+            padding: 20px 25px; 
             color: #555; 
             line-height: 1.8;
             font-size: 1.05em;
@@ -75,22 +76,20 @@
         /* ESTADO ATIVO */
         .faq-item.ativo { border-left: 6px solid #ff8c00; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .faq-item.ativo .faq-pergunta { color: #ff8c00; }
-        .faq-item.ativo .faq-resposta { max-height: 400px; } 
+        .faq-item.ativo .faq-resposta { max-height: 500px; } /* Aumentado para garantir que cabe tudo */
         .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
         
         .faq-pergunta i { transition: 0.3s; font-size: 0.9em; color: #ccc; }
 
-        /* RODAPÉ DINÂMICO */
+        /* RODAPÉ */
         .footer-wave-container { background: white; line-height: 0; }
         .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
-
         footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
         .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
         .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
         .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
         .footer-col a:hover { color: white; padding-left: 8px; }
 
-        /* RESPONSIVIDADE BÁSICA */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; min-height: auto; position: relative; }
@@ -104,7 +103,7 @@
     <main>
         <div class="banner-faq">
             <h1>Como podemos ajudar?</h1>
-            <p>Encontre aqui as respostas às dúvidas mais comuns dos nossos viajantes.</p>
+            <p>Encontre aqui as respostas às dúvidas mais comuns.</p>
         </div>
 
         <section class="seccao-faq">
@@ -114,7 +113,7 @@
                     <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento (sinalização).
+                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou WhatsApp. A confirmação ocorre após o envio do comprovativo de pagamento.
                         </div>
                     </div>
                 </div>
@@ -123,7 +122,7 @@
                     <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Os nossos passeios partem habitualmente de **São Pedro do Sul**. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em **Viseu** ou **Castro Daire**. Confirme sempre no detalhe do passeio escolhido.
+                            Partimos habitualmente de **São Pedro do Sul**, com paragens em **Viseu** ou **Castro Daire** conforme o trajeto.
                         </div>
                     </div>
                 </div>
@@ -132,34 +131,7 @@
                     <button class="faq-pergunta">Os lugares no autocarro são marcados? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Sim! Os lugares são atribuídos rigorosamente por **ordem de inscrição**. Quanto mais cedo reservar e sinalizar o seu lugar, mais à frente ficará sentado.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">O que acontece se eu precisar de cancelar? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página de **Políticas de Cancelamento** no rodapé para saber prazos e condições de reembolso.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">O valor do passeio inclui refeições? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Depende do programa. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">Podem crianças participar nos passeios? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Claro que sim! Os nossos passeios são familiares e adequados a todas as idades. Crianças costumam ter descontos especiais no valor do transporte (consulte-nos para saber idades).
+                            Sim! Os lugares são atribuídos por **ordem de inscrição**. Reserve cedo para ficar nas primeiras filas!
                         </div>
                     </div>
                 </div>
@@ -167,58 +139,46 @@
             </div>
         </section>
 
-        <div class="footer-wave-container">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-            </svg>
-        </div>
-
         <footer>
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>&copy; 2026 - Todos os direitos reservados.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <a href="index.html">Página Inicial</a>
-                    <a href="passeios.html">Próximos Passeios</a>
-                    <a href="contatos.html">Contactos</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Ajuda</h4>
-                    <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Regras de Cancelamento</a>
-                    <a href="dicas.html">Dicas para Viajantes</a>
-                </div>
-            </div>
-        </footer>
+            </footer>
     </main>
 
     <script>
-        // Carrega o Menu Lateral e ativa o botão correspondente
+        // 1. CARREGAR MENU E MARCAR ATIVO
         fetch('menu.html')
             .then(res => res.text())
             .then(data => {
-                const menuPlaceholder = document.getElementById('menu-placeholder');
-                menuPlaceholder.innerHTML = data;
+                document.getElementById('menu-placeholder').innerHTML = data;
+                
+                // Pequena pausa para garantir que o DOM processou o menu
+                setTimeout(() => {
+                    const links = document.querySelectorAll('#menu-placeholder a');
+                    links.forEach(link => {
+                        // Verifica se é o link de ajuda/FAQ
+                        if (link.href.includes('faq.html') || link.textContent.includes('?')) {
+                            link.style.color = "#ff8c00";
+                            link.style.fontWeight = "bold";
+                        }
+                    });
+                }, 100);
+            })
+            .catch(err => console.error("Erro ao carregar menu:", err));
 
-                // Lógica para marcar o botão "?" como ativo no menu lateral
-                // Procura por um link que aponte para esta página ou que tenha um ID específico
-                const links = menuPlaceholder.querySelectorAll('a');
-                links.forEach(link => {
-                    if (link.href.includes('faq.html') || link.innerText.includes('?')) {
-                        link.classList.add('active'); // Certifica-te que 'active' está no teu style.css do menu
-                        link.style.color = "#ff8c00"; // Destaque visual direto
-                    }
-                });
-            });
-
-        // Lógica do Acordeão
-        document.querySelectorAll('.faq-pergunta').forEach(botao => {
-            botao.addEventListener('click', () => {
+        // 2. LÓGICA DO ACORDEÃO (REFEITA PARA FUNCIONAR SEMPRE)
+        document.addEventListener('click', function (event) {
+            // Verifica se o que foi clicado é o botão da pergunta ou o ícone dentro dele
+            if (event.target.closest('.faq-pergunta')) {
+                const botao = event.target.closest('.faq-pergunta');
                 const item = botao.parentElement;
+
+                // Fecha outros itens (opcional - para abrir apenas um de cada vez)
+                document.querySelectorAll('.faq-item').forEach(outroItem => {
+                    if (outroItem !== item) outroItem.classList.remove('ativo');
+                });
+
+                // Abre/Fecha o item clicado
                 item.classList.toggle('ativo');
-            });
+            }
         });
     </script>
 </body>
