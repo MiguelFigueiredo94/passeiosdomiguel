@@ -89,6 +89,12 @@
         .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
         .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
         .footer-col a:hover { color: white; padding-left: 8px; }
+
+        /* RESPONSIVIDADE BÁSICA */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
+        }
     </style>
 </head>
 <body>
@@ -189,19 +195,28 @@
     </main>
 
     <script>
-        // Carrega o Menu Lateral
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
+        // Carrega o Menu Lateral e ativa o botão correspondente
+        fetch('menu.html')
+            .then(res => res.text())
+            .then(data => {
+                const menuPlaceholder = document.getElementById('menu-placeholder');
+                menuPlaceholder.innerHTML = data;
+
+                // Lógica para marcar o botão "?" como ativo no menu lateral
+                // Procura por um link que aponte para esta página ou que tenha um ID específico
+                const links = menuPlaceholder.querySelectorAll('a');
+                links.forEach(link => {
+                    if (link.href.includes('faq.html') || link.innerText.includes('?')) {
+                        link.classList.add('active'); // Certifica-te que 'active' está no teu style.css do menu
+                        link.style.color = "#ff8c00"; // Destaque visual direto
+                    }
+                });
+            });
 
         // Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
             botao.addEventListener('click', () => {
                 const item = botao.parentElement;
-                
-                // Fecha outros itens ao abrir um (opcional, se quiseres apenas um aberto de cada vez)
-                // document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('ativo'); });
-
                 item.classList.toggle('ativo');
             });
         });
