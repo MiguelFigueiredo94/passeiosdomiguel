@@ -3,92 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dúvidas Frequentes - Passeios do Miguel</title>
+    <title>Dicas de Viagem - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Base e Layout Lateral */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        /* Layout Base */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
 
-        /* BANNER PREMIUM */
-        .banner-faq {
+        /* Banner */
+        .banner-dicas {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-            border-radius: 0 0 50px 0;
-        }
-        .banner-faq h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-
-        /* SECÇÃO DE CONTEÚDO */
-        .seccao-faq { padding: 60px 20px; background: white; flex-grow: 1; }
-        .container-faq { max-width: 900px; margin: 0 auto; }
-
-        /* ESTILO DO ACORDEÃO */
-        .faq-item {
-            background: #fff;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            border: 1px solid #eee;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            overflow: hidden;
-            transition: 0.3s;
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            color: white; padding: 100px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        .faq-pergunta {
-            padding: 22px 25px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #1e4d8c;
-            transition: 0.3s;
+        /* Grid de Dicas */
+        .seccao-dicas { padding: 60px 30px; background: white; flex-grow: 1; }
+        .container-dicas {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
         }
 
-        .faq-pergunta:hover { background: #f8f9fa; color: #ff8c00; }
+        .card-dica {
+            background: #fff; border-radius: 20px; padding: 35px 25px; text-align: center;
+            border: 1px solid #eee; border-bottom: 5px solid #1e4d8c; transition: 0.3s;
+        }
+        .card-dica:hover { transform: translateY(-5px); border-bottom-color: #ff8c00; }
+        .icon-dica { font-size: 40px; color: #ff8c00; margin-bottom: 15px; }
 
-        /* Correção da Resposta */
-        .faq-resposta {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease-in-out;
-            background: #fafafa;
+        /* --- O BOTÃO FLUTUANTE LARANJA (Igual ao da tua foto) --- */
+        .faq-float { 
+            position: fixed; bottom: 20px; right: 20px; 
+            background: #ff8c00; color: white; 
+            width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 24px; cursor: pointer; border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999;
         }
 
-        .faq-resposta-inner { 
-            padding: 20px 25px; 
-            color: #555; 
-            line-height: 1.8;
-            font-size: 1.05em;
+        /* --- O MODAL (A Janela que abre) --- */
+        .modal-faq {
+            display: none; position: fixed; z-index: 10001; 
+            left: 0; top: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
         }
-
-        /* ESTADO ATIVO */
-        .faq-item.ativo { border-left: 6px solid #ff8c00; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .faq-item.ativo .faq-pergunta { color: #ff8c00; }
-        .faq-item.ativo .faq-resposta { max-height: 500px; } /* Aumentado para garantir que cabe tudo */
-        .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
+        .modal-faq-content {
+            background: white; margin: 10% auto; padding: 30px;
+            width: 90%; max-width: 500px; border-radius: 20px; position: relative;
+        }
+        .fechar-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #666; }
         
-        .faq-pergunta i { transition: 0.3s; font-size: 0.9em; color: #ccc; }
-
-        /* RODAPÉ */
-        .footer-wave-container { background: white; line-height: 0; }
-        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
-        footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
-        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
-        .footer-col a:hover { color: white; padding-left: 8px; }
+        .faq-item-modal { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #ff8c00; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -101,119 +69,78 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-faq">
-            <h1>Como podemos ajudar?</h1>
-            <p>Encontre aqui as respostas às dúvidas mais comuns.</p>
+        <div class="banner-dicas">
+            <h1>💡 Dicas do Miguel</h1>
+            <p>Tudo o que precisas para uma viagem perfeita.</p>
         </div>
 
-        <section class="seccao-faq">
-            <div class="container-faq">
-                
-                <div class="faq-item">
-                    <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou WhatsApp. A confirmação ocorre após o envio do comprovativo de pagamento.
-                        </div>
-                    </div>
+        <section class="seccao-dicas">
+            <div class="container-dicas">
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
+                    <h3>Calçado Confortável</h3>
+                    <p>Evita estrear sapatos. Sapatilhas usadas são as tuas melhores amigas.</p>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Partimos habitualmente de **São Pedro do Sul**, com paragens em **Viseu** ou **Castro Daire** conforme o trajeto.
-                        </div>
-                    </div>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
+                    <h3>Powerbank</h3>
+                    <p>Não fiques sem bateria para as fotos! Traz um carregador portátil.</p>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">Os lugares no autocarro são marcados? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Sim! Os lugares são atribuídos por **ordem de inscrição**. Reserve cedo para ficar nas primeiras filas!
-                        </div>
-                    </div>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-umbrella"></i></div>
+                    <h3>Previsão do Tempo</h3>
+                    <p>Dá uma olhadela no tempo antes de sair, mas traz sempre um agasalho.</p>
                 </div>
-
             </div>
         </section>
 
-        <footer>
-            </footer>
+        <button class="faq-float" id="btnAjuda">
+            <i class="fas fa-question"></i>
+        </button>
     </main>
 
-    <script>
-        // 1. CARREGAR MENU E MARCAR ATIVO
-        fetch('menu.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-                
-                // Pequena pausa para garantir que o DOM processou o menu
-                setTimeout(() => {
-                    const links = document.querySelectorAll('#menu-placeholder a');
-                    links.forEach(link => {
-                        // Verifica se é o link de ajuda/FAQ
-                        if (link.href.includes('faq.html') || link.textContent.includes('?')) {
-                            link.style.color = "#ff8c00";
-                            link.style.fontWeight = "bold";
-                        }
-                    });
-                }, 100);
-            })
-            .catch(err => console.error("Erro ao carregar menu:", err));
-
-        // 2. LÓGICA DO ACORDEÃO (REFEITA PARA FUNCIONAR SEMPRE)
-        document.addEventListener('click', function (event) {
-            // Verifica se o que foi clicado é o botão da pergunta ou o ícone dentro dele
-            if (event.target.closest('.faq-pergunta')) {
-                const botao = event.target.closest('.faq-pergunta');
-                const item = botao.parentElement;
-
-                // Fecha outros itens (opcional - para abrir apenas um de cada vez)
-                document.querySelectorAll('.faq-item').forEach(outroItem => {
-                    if (outroItem !== item) outroItem.classList.remove('ativo');
-                });
-
-                // Abre/Fecha o item clicado
-                item.classList.toggle('ativo');
-            }
-        });
-    </script>
-
-        <button class="faq-float" onclick="abrirFaq()" title="Dúvidas sobre as dicas?">
-        <i class="fas fa-question"></i>
-    </button>
-
-    <div id="janelaFaq" class="modal-faq">
+    <div id="modalAjuda" class="modal-faq">
         <div class="modal-faq-content">
-            <span class="fechar-modal" onclick="fecharFaq()">&times;</span>
-            <h3 style="color: #1e4d8c;"><i class="fas fa-lightbulb"></i> Precisa de mais dicas?</h3>
-            <hr>
-            <p><strong>Tem uma dúvida específica sobre o vestuário ou percurso?</strong><br>Cada passeio tem as suas particularidades. Se não encontrar aqui o que precisa, fale connosco pelo WhatsApp!</p>
-            <p><strong>A lista de dicas é atualizada?</strong><br>Sim! Adaptamos as dicas conforme a estação do ano (verão ou inverno).</p>
-            <br>
-            <button onclick="fecharFaq()" style="background:#1e4d8c; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; width:100%; font-weight:bold;">Entendido!</button>
+            <span class="fechar-modal" id="btnFechar">&times;</span>
+            <h2 style="color: #1e4d8c; margin-top: 0;">Ajuda Rápida</h2>
+            <div class="faq-item-modal">
+                <strong>Como reservo?</strong><br>Basta enviar mensagem pelo WhatsApp ou ligar!
+            </div>
+            <div class="faq-item-modal">
+                <strong>Posso cancelar?</strong><br>Sim, consulta as nossas regras de cancelamento no rodapé.
+            </div>
+            <div class="faq-item-modal">
+                <strong>Animais de estimação?</strong><br>Não é permitido o transporte no autocarro.
+            </div>
+            <button id="btnEntendido" style="width:100%; padding:15px; background:#1e4d8c; color:white; border:none; border-radius:10px; margin-top:10px; cursor:pointer; font-weight:bold;">ENTENDIDO!</button>
         </div>
     </div>
 
     <script>
-        // Carrega o Menu
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
+        // 1. Carrega o Menu (SEM ADICIONAR PONTOS DE INTERROGAÇÃO EXTRAS)
+        fetch('menu.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            });
 
-        // Funções para a Janela Modal
-        function abrirFaq() {
-            document.getElementById('janelaFaq').style.display = 'block';
-        }
-        function fecharFaq() {
-            document.getElementById('janelaFaq').style.display = 'none';
-        }
-        // Fechar se clicar fora da modal
+        // 2. Lógica do Modal (Blindada)
+        const modal = document.getElementById('modalAjuda');
+        const btnAbrir = document.getElementById('btnAjuda');
+        const btnFecharX = document.getElementById('btnFechar');
+        const btnEntendido = document.getElementById('btnEntendido');
+
+        // Abrir
+        btnAbrir.onclick = function() { modal.style.display = "block"; }
+
+        // Fechar no X
+        btnFecharX.onclick = function() { modal.style.display = "none"; }
+
+        // Fechar no botão azul
+        btnEntendido.onclick = function() { modal.style.display = "none"; }
+
+        // Fechar se clicar fora da caixa branca
         window.onclick = function(event) {
-            let modal = document.getElementById('janelaFaq');
             if (event.target == modal) { modal.style.display = "none"; }
         }
     </script>
