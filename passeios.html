@@ -3,123 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Catálogo</title>
+    <title>Passeios do Miguel - Passeios</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* AJUSTE DE LAYOUT PARA O TEU MENU ESPECÍFICO */
+        /* 1. ESTRUTURA IDÊNTICA À TUA HOME */
         body {
             margin: 0;
-            display: flex;
+            padding: 0;
+            display: flex; /* Alinha o menu e o conteúdo lado a lado */
             background-color: #f4f7f6;
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Esta classe garante que o conteúdo comece APÓS a tua barra azul */
-        .conteudo-direira {
+        /* Este bloco principal TEM de ter a margem que empurra o texto para fora do menu */
+        main {
             flex: 1;
-            margin-left: 260px; /* Ajuste exato para a largura da tua sidebar */
-            padding: 30px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            margin-left: 260px; /* VALOR CRÍTICO: Ajusta para a largura exata da tua barra azul */
+            padding: 40px;
+            box-sizing: border-box;
         }
 
-        /* BANNER (IGUAL À TUA FOTO) */
-        .banner-passeios {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1200');
+        /* 2. BANNER COM CANTOS ARREDONDADOS (IGUAL À TUA IMAGEM) */
+        .banner-index {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            height: 250px;
-            border-radius: 25px;
+            color: white;
+            padding: 80px 20px;
+            border-radius: 20px; /* Cantos arredondados como na foto */
+            text-align: center;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .banner-passeios h1 { font-size: 3em; margin: 0; }
-        .banner-passeios p { font-size: 1.1em; opacity: 0.9; }
+        .banner-index h1 { font-size: 2.8em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .banner-index p { font-size: 1.2em; margin-top: 10px; }
 
-        /* TÍTULOS DE SECÇÃO COM ÍCONE */
-        .seccao-titulo {
+        /* 3. GRID DE PASSEIOS */
+        .titulo-seccao {
             color: #1e4d8c;
+            font-size: 1.8em;
+            margin: 30px 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.6em;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
+            gap: 10px;
         }
 
-        /* GRID DE CARDS */
-        .grid-container {
+        .grid-passeios {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            gap: 25px;
         }
 
         .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            transition: 0.3s;
+            border: 1px solid #eee;
         }
-        .card:hover { transform: translateY(-5px); }
 
-        .card-img { height: 200px; position: relative; }
+        .card-img { height: 180px; position: relative; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .tag-status {
+        .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.75em;
+            top: 10px;
+            right: 10px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.7em;
             font-weight: bold;
             color: white;
             text-transform: uppercase;
         }
 
-        .info { padding: 20px; text-align: center; flex-grow: 1; }
-        .info .data { color: #1e4d8c; font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 5px; }
-        .info h3 { margin: 10px 0; color: #333; font-size: 1.3em; }
-        .info .local { color: #777; font-size: 0.9em; }
+        .info-card { padding: 20px; text-align: center; flex-grow: 1; }
+        .info-card .data { color: #1e4d8c; font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 5px; }
+        .info-card h3 { margin: 10px 0; font-size: 1.2em; color: #333; }
 
-        /* BOTÕES IGUAIS À TUA FOTO */
-        .card-btns { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .btn-full { background: #eef2f7; color: #1e4d8c; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
-        .btn-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .btn-blue { background: #1e4d8c; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
-        .btn-green { background: #2ecc71; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
+        .botoes-card { padding: 15px; display: flex; flex-direction: column; gap: 8px; background: #fafafa; }
+        .btn { padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; }
+        .btn-itinerario { background: #e1e9f1; color: #1e4d8c; }
+        .btn-inscricao { background: #1e4d8c; color: white; }
+        .btn-whats { background: #2ecc71; color: white; }
+        .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-        /* RODAPÉ */
+        /* 4. RODAPÉ */
         footer {
+            margin-left: 260px; /* Tem de ser igual à margem do main */
             background: #1e4d8c;
             color: white;
-            padding: 40px;
+            padding: 40px 20px;
             text-align: center;
-            border-radius: 30px 30px 0 0;
-            margin-top: auto;
-        }
-
-        /* Responsividade para ecrãs pequenos */
-        @media (max-width: 992px) {
-            .conteudo-direira { margin-left: 0; }
-            nav { display: none; } /* Aqui terias de implementar um menu mobile */
         }
     </style>
 </head>
@@ -127,98 +112,56 @@
 
     <div id="menu-placeholder"></div>
 
-    <div class="conteudo-direira">
-        <header class="banner-passeios">
+    <main>
+        <div class="banner-index">
             <h1>Os Nossos Passeios</h1>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
-        </header>
-
-        <h2 class="seccao-titulo"><i class="fas fa-bus"></i> Inscrições Abertas</h2>
-        
-        <div class="grid-container">
-            <article class="card">
-                <div class="card-img">
-                    <span class="tag-status" style="background: #2ecc71;">Aberto</span>
-                    <img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg">
-                </div>
-                <div class="info">
-                    <span class="data">Agosto 2026</span>
-                    <h3>Festas do Povo</h3>
-                    <span class="local">(Campo Maior)</span>
-                </div>
-                <div class="card-btns">
-                    <a href="campomaior.html" class="btn-full">Ver Itinerário</a>
-                    <div class="btn-split">
-                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
-                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-img">
-                    <span class="tag-status" style="background: #e67e22;">Últimos Lugares</span>
-                    <img src="https://fundaoatual.pt/wp-content/uploads/2021/05/cereja-fundao-igp.jpg">
-                </div>
-                <div class="info">
-                    <span class="data">Junho 2026</span>
-                    <h3>Rota da Cereja</h3>
-                    <span class="local">(Fundão)</span>
-                </div>
-                <div class="card-btns">
-                    <a href="cereja.html" class="btn-full">Ver Itinerário</a>
-                    <div class="btn-split">
-                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
-                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-img">
-                    <span class="tag-status" style="background: #2ecc71;">Aberto</span>
-                    <img src="https://moraremportugal.com/wp-content/uploads/2021/05/Barcelos-Portugal.jpg">
-                </div>
-                <div class="info">
-                    <span class="data">Maio 2026</span>
-                    <h3>Festa das Cruzes</h3>
-                    <span class="local">(Barcelos)</span>
-                </div>
-                <div class="card-btns">
-                    <a href="cruzes.html" class="btn-full">Ver Itinerário</a>
-                    <div class="btn-split">
-                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
-                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
-            </article>
+            <p>Descubra Portugal connosco. Experiências únicas e boa companhia.</p>
         </div>
 
-        <footer>
-            <h3>Passeios do Miguel</h3>
-            <p>Criando memórias em cada quilómetro.</p>
-            <p style="font-size: 0.8em; opacity: 0.7; margin-top: 20px;">&copy; 2026 Passeios do Miguel.</p>
-        </footer>
-    </div>
+        <h2 class="titulo-seccao"><i class="fas fa-bus"></i> Inscrições Abertas</h2>
+
+        <div class="grid-passeios">
+            <article class="card">
+                <div class="card-img">
+                    <span class="badge" style="background: #2ecc71;">Aberto</span>
+                    <img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg" alt="Campo Maior">
+                </div>
+                <div class="info-card">
+                    <span class="data">Agosto 2026</span>
+                    <h3>Festas do Povo</h3>
+                    <p style="color: #777; font-size: 0.9em;">(Campo Maior)</p>
+                </div>
+                <div class="botoes-card">
+                    <a href="campomaior.html" class="btn btn-itinerario">Ver Itinerário</a>
+                    <div class="row-btns">
+                        <a href="inscricao.html" class="btn btn-inscricao">Inscrição</a>
+                        <a href="https://wa.me/351965715476" class="btn btn-whats"><i class="fab fa-whatsapp"></i> Chat</a>
+                    </div>
+                </div>
+            </article>
+
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+    </footer>
 
     <script>
-        // Carregar o Menu
+        // Carrega o menu e garante que o FAQ funciona
         fetch('menu.html')
             .then(res => res.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
                 
-                // Ativar o Modal FAQ que está dentro do menu.html
-                const btnFaq = document.getElementById('botaoDuvidas');
-                const janelaFaq = document.getElementById('janelaFaq');
-                const fecharFaq = document.getElementById('fecharFaq');
+                // Ativação do Modal FAQ
+                const btn = document.getElementById('botaoDuvidas');
+                const modal = document.getElementById('janelaFaq');
+                const fechar = document.getElementById('fecharFaq');
 
-                if(btnFaq) {
-                    btnFaq.onclick = () => janelaFaq.style.display = "block";
-                    fecharFaq.onclick = () => janelaFaq.style.display = "none";
-                    window.onclick = (event) => {
-                        if (event.target == janelaFaq) janelaFaq.style.display = "none";
-                    }
+                if(btn && modal) {
+                    btn.onclick = () => modal.style.display = "block";
+                    fechar.onclick = () => modal.style.display = "none";
                 }
             });
     </script>
