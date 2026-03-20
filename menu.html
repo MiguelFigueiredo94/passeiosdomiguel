@@ -9,9 +9,11 @@
         padding: 25px 15px; 
         box-sizing: border-box;
         z-index: 9999;
+        /* Adicionado para empurrar as redes sociais para o fundo */
+        display: flex;
+        flex-direction: column;
     }
     
-    /* LOGOTIPO: Proporção original preservada */
     .logo { 
         width: 100%; 
         max-width: 180px; 
@@ -21,7 +23,7 @@
         object-fit: contain; 
     }
 
-    #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
+    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } /* flex-grow faz a lista ocupar o espaço disponível */
     #menu-lateral li { margin-bottom: 12px; position: relative; }
 
     /* --- Botões do Menu Principal --- */
@@ -39,7 +41,7 @@
         color: white;
     }
 
-    /* --- DROPDOWN (Correção total da visibilidade) --- */
+    /* --- DROPDOWN (Passeios) --- */
     .dropdown-content {
         display: none;
         position: absolute;
@@ -73,7 +75,6 @@
         padding-left: 25px !important;
     }
 
-    /* --- SUBMENUS POR ANOS --- */
     .nested-dropdown { position: relative; }
     .nested-content {
         display: none;
@@ -87,8 +88,38 @@
         border: 1px solid #ddd;
     }
     .nested-dropdown:hover > .nested-content { display: block; }
-
     .fa-chevron-right { margin-left: auto; font-size: 10px; }
+
+    /* --- REDES SOCIAIS NO FUNDO --- */
+    .redes-sociais-menu {
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+    }
+    .redes-sociais-menu p {
+        color: rgba(255,255,255,0.6);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    .icones-redes {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .icones-redes a {
+        color: white;
+        font-size: 20px;
+        transition: 0.3s;
+        opacity: 0.8;
+    }
+    .icones-redes a:hover {
+        transform: translateY(-3px);
+        opacity: 1;
+        color: #ff9800;
+    }
 </style>
 
 <nav id="menu-lateral">
@@ -106,7 +137,6 @@
                 <i class="fas fa-chevron-right"></i>
             </a>
             <div class="dropdown-content">
-                
                 <div class="nested-dropdown">
                     <a href="#">Programação 2026 <i class="fas fa-chevron-right"></i></a>
                     <div class="nested-content">
@@ -117,7 +147,6 @@
                         <a href="gaia.html">Magia Animal - Gaia (15 Fev)</a>
                     </div>
                 </div>
-
                 <div class="nested-dropdown">
                     <a href="#">Programação 2025 <i class="fas fa-chevron-right"></i></a>
                     <div class="nested-content">
@@ -131,7 +160,6 @@
                         <a href="amendoeiras.html">Amendoeiras em Flor (02 Mar)</a>
                     </div>
                 </div>
-
             </div>
         </li>
 
@@ -141,4 +169,14 @@
         <li><a href="dicas.html"><i class="fas fa-lightbulb" style="margin-right:10px"></i> Dicas Úteis</a></li>
         <li><a href="faq.html"><i class="fas fa-question-circle" style="margin-right:10px"></i> FAQ</a></li>
     </ul>
+
+    <div class="redes-sociais-menu">
+        <p>Siga-nos</p>
+        <div class="icones-redes">
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" title="Página Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" title="Grupo Facebook"><i class="fas fa-users"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" title="Grupo WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
 </nav>
