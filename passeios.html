@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* SECÇÃO BRANCA AMPLA (IGUAL À HOME E SOBRE) */
+        /* SECÇÃO BRANCA AMPLA */
         .seccao-branca {
             background: white;
             margin: 20px;
@@ -15,7 +15,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* GRELHA DE PASSEIOS */
         .grid-passeios {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -24,14 +23,12 @@
             margin: 0 auto;
         }
 
-        /* CARD DE PASSEIO */
         .card-passeio {
             background: #fff;
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #eee;
             transition: 0.3s;
-            position: relative;
             display: flex;
             flex-direction: column;
         }
@@ -41,19 +38,9 @@
             box-shadow: 0 12px 25px rgba(0,0,0,0.1);
         }
 
-        /* IMAGEM DO DESTINO */
-        .img-container {
-            position: relative;
-            height: 220px;
-        }
+        .img-container { position: relative; height: 220px; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* ETIQUETA DE STATUS */
         .badge {
             position: absolute;
             top: 15px;
@@ -70,36 +57,11 @@
         .status-ultimos { background: #e67e22; }
         .status-completo { background: #e74c3c; }
 
-        /* CONTEÚDO DO CARD */
-        .info-passeio {
-            padding: 25px;
-            flex-grow: 1;
-        }
-
-        .info-passeio h3 {
-            color: #1e4d8c;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .detalhes-rapidos {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            color: #777;
-            font-size: 1em;
-            font-weight: bold;
-        }
-
+        .info-passeio { padding: 25px; flex-grow: 1; }
+        .info-passeio h3 { color: #1e4d8c; font-size: 1.4em; margin-bottom: 10px; }
+        .detalhes-rapidos { display: flex; gap: 15px; margin-bottom: 15px; color: #777; font-weight: bold; }
         .detalhes-rapidos i { color: #ff9800; margin-right: 8px; }
 
-        .descricao-curta {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* BOTÕES */
         .botoes-card {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -115,7 +77,6 @@
             text-decoration: none;
             text-align: center;
             font-weight: bold;
-            transition: 0.3s;
         }
 
         .btn-reservar {
@@ -126,12 +87,10 @@
             text-decoration: none;
             text-align: center;
             font-weight: bold;
-            transition: 0.3s;
         }
 
         .btn-reservar:hover { background: #ff9800; }
 
-        /* BANNER */
         .banner-passeios {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80');
@@ -161,17 +120,17 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-aberto">Inscrições Abertas</span>
-                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=600&q=80" alt="Porto">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=600&q=80" alt="Gaia">
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 15 de Abril</span>
+                            <span><i class="fas fa-calendar-alt"></i> 15 Março</span>
                         </div>
-                        <h3>Porto e Vila Nova de Gaia</h3>
-                        <p class="descricao-curta">Visita às caves do vinho do Porto, passeio de barco no Douro e almoço tradicional na Ribeira.</p>
+                        <h3>Exposição de Camélias (Gaia)</h3>
+                        <p class="descricao-curta">Uma visita encantadora à exposição internacional de camélias, com almoço e passeio à beira-mar.</p>
                     </div>
                     <div class="botoes-card">
-                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="camélias.html" class="btn-detalhes">Ver Mais</a>
                         <a href="https://wa.me/351910000000" class="btn-reservar">Reservar</a>
                     </div>
                 </article>
@@ -179,17 +138,17 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-ultimos">Últimos Lugares!</span>
-                        <img src="https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&w=600&q=80" alt="Gerês">
+                        <img src="https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&w=600&q=80" alt="Vila Viçosa">
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 22 de Abril</span>
+                            <span><i class="fas fa-calendar-alt"></i> 22 Março</span>
                         </div>
-                        <h3>Encantos do Gerês</h3>
-                        <p class="descricao-curta">Explore as cascatas mais bonitas, o Santuário de São Bento da Porta Aberta e paisagens de cortar o fôlego.</p>
+                        <h3>Vila Viçosa e Paço Ducal</h3>
+                        <p class="descricao-curta">Descubra a "Princesa do Alentejo" nesta viagem cultural pela história da monarquia e mármores icónicos.</p>
                     </div>
                     <div class="botoes-card">
-                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="vilavicosa.html" class="btn-detalhes">Ver Mais</a>
                         <a href="https://wa.me/351910000000" class="btn-reservar">Reservar</a>
                     </div>
                 </article>
@@ -197,17 +156,17 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-completo">Esgotado</span>
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Elvas">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Badajoz">
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 01 de Maio</span>
+                            <span><i class="fas fa-calendar-alt"></i> 05 Abril</span>
                         </div>
-                        <h3>Fim de Semana em Elvas</h3>
-                        <p class="descricao-curta">Visita às fortificações Património Mundial, Museus e a excelente gastronomia alentejana.</p>
+                        <h3>Dia de Compras em Badajoz</h3>
+                        <p class="descricao-curta">Visita ao centro histórico e tempo livre para as tradicionais compras no El Corte Inglés e arredores.</p>
                     </div>
                     <div class="botoes-card">
-                        <a href="#" class="btn-detalhes">Detalhes</a>
+                        <a href="badajoz.html" class="btn-detalhes">Ver Mais</a>
                         <a href="#" class="btn-reservar" style="background:#ccc; cursor:not-allowed;">Indisponível</a>
                     </div>
                 </article>
@@ -219,7 +178,6 @@
     <script>
         fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
-        // Lógica do Modal FAQ
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 var modal = document.getElementById('janelaFaq');
