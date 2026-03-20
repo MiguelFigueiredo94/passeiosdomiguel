@@ -87,10 +87,11 @@
             gap: 15px;
             margin-bottom: 15px;
             color: #777;
-            font-size: 0.9em;
+            font-size: 1em;
+            font-weight: bold;
         }
 
-        .detalhes-rapidos i { color: #ff9800; margin-right: 5px; }
+        .detalhes-rapidos i { color: #ff9800; margin-right: 8px; }
 
         .descricao-curta {
             color: #555;
@@ -164,15 +165,14 @@
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 15 Abr</span>
-                            <span><i class="fas fa-clock"></i> 08:00</span>
+                            <span><i class="fas fa-calendar-alt"></i> 15 de Abril</span>
                         </div>
                         <h3>Porto e Vila Nova de Gaia</h3>
                         <p class="descricao-curta">Visita às caves do vinho do Porto, passeio de barco no Douro e almoço tradicional na Ribeira.</p>
                     </div>
                     <div class="botoes-card">
                         <a href="#" class="btn-detalhes">Ver Mais</a>
-                        <a href="https://wa.me/351910000000?text=Olá! Quero reservar o passeio ao Porto." class="btn-reservar">Reservar</a>
+                        <a href="https://wa.me/351910000000" class="btn-reservar">Reservar</a>
                     </div>
                 </article>
 
@@ -183,15 +183,14 @@
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 22 Abr</span>
-                            <span><i class="fas fa-clock"></i> 07:30</span>
+                            <span><i class="fas fa-calendar-alt"></i> 22 de Abril</span>
                         </div>
                         <h3>Encantos do Gerês</h3>
                         <p class="descricao-curta">Explore as cascatas mais bonitas, o Santuário de São Bento da Porta Aberta e paisagens de cortar o fôlego.</p>
                     </div>
                     <div class="botoes-card">
                         <a href="#" class="btn-detalhes">Ver Mais</a>
-                        <a href="https://wa.me/351910000000?text=Olá! Quero reservar o passeio ao Gerês." class="btn-reservar">Reservar</a>
+                        <a href="https://wa.me/351910000000" class="btn-reservar">Reservar</a>
                     </div>
                 </article>
 
@@ -202,14 +201,13 @@
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
-                            <span><i class="fas fa-calendar-alt"></i> 01 Mai</span>
-                            <span><i class="fas fa-clock"></i> 06:00</span>
+                            <span><i class="fas fa-calendar-alt"></i> 01 de Maio</span>
                         </div>
                         <h3>Fim de Semana em Elvas</h3>
                         <p class="descricao-curta">Visita às fortificações Património Mundial, Museus e a excelente gastronomia alentejana.</p>
                     </div>
                     <div class="botoes-card">
-                        <a href="#" class="btn-detalhes">Ver Detalhes</a>
+                        <a href="#" class="btn-detalhes">Detalhes</a>
                         <a href="#" class="btn-reservar" style="background:#ccc; cursor:not-allowed;">Indisponível</a>
                     </div>
                 </article>
@@ -218,21 +216,16 @@
         </section>
     </main>
 
-    <footer>
-        </footer>
-
     <script>
-        // Carrega o Menu
         fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
-        // Lógica do Modal FAQ (O teu "Sprite")
+        // Lógica do Modal FAQ
         document.addEventListener('click', function (e) {
-            const botaoDuvidas = e.target.closest('#botaoDuvidas');
-            if (botaoDuvidas) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 var modal = document.getElementById('janelaFaq');
                 if (modal) modal.style.display = 'block';
             }
-            if (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq') {
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
                 var modal = document.getElementById('janelaFaq');
                 if (modal) modal.style.display = 'none';
             }
