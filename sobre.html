@@ -10,45 +10,8 @@
         /* Layout Base */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
         
-        /* MENU LATERAL - IGUAL AO INDEX */
-        #menu-lateral { 
-            width: 250px; 
-            background-color: #1e4d8c; 
-            min-height: 100vh; 
-            position: sticky; 
-            top: 0; 
-            padding: 25px 15px; 
-            box-sizing: border-box;
-            z-index: 9999;
-        }
-        
-        .logo { 
-            width: 100%; 
-            max-width: 180px; 
-            height: auto;
-            margin: 0 auto 30px; 
-            display: block; 
-            object-fit: contain; 
-        }
-
-        #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
-        #menu-lateral li { margin-bottom: 12px; }
-
-        #menu-lateral ul li a { 
-            display: flex; align-items: center; color: white; text-decoration: none; 
-            padding: 12px 18px; font-size: 0.95em; font-weight: 600;
-            transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
-            border: 2px solid transparent;
-        }
-
-        #menu-lateral ul li a:hover { 
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            transform: scale(1.05);
-            border-color: white;
-            color: white;
-        }
-
-        #menu-lateral i { width: 25px; font-size: 1.1em; margin-right: 10px; }
+        /* Onde o menu vai aparecer */
+        #container-menu { min-width: 250px; }
 
         /* Conteúdo Principal */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
@@ -73,28 +36,13 @@
         @media (max-width: 900px) {
             .seccao-sobre { flex-direction: column; text-align: center; }
             body { flex-direction: column; }
-            #menu-lateral { width: 100%; min-height: auto; position: relative; }
+            #container-menu { min-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <nav id="menu-lateral">
-        <a href="index.html">
-            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
-        </a>
-
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="sobre.html" style="background: linear-gradient(135deg, #ff9800, #f57c00);"><i class="fas fa-user"></i> Sobre Mim</a></li>
-            <li><a href="passeios.html"><i class="fas fa-bus"></i> Passeios</a></li>
-            <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
-            <br>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-            <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
-            <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
-        </ul>
-    </nav>
+    <div id="container-menu"></div>
 
     <main>
         <div class="banner-sobre">
@@ -106,9 +54,9 @@
             <img src="https://via.placeholder.com/300" class="foto-miguel" alt="Miguel">
             <div class="texto-sobre">
                 <h2>Olá, eu sou o Miguel!</h2>
-                <p>Desde cedo que a paixão por descobrir novos recantos de Portugal me move. O que começou como pequenos passeios entre amigos, tornou-se num projeto dedicado a proporcionar experiências autênticas a todos os que queiram viajar sem preocupações.</p>
-                <p>O meu objetivo é simples: garantir que cada viagem seja mais do que um simples transporte. Quero que cada passageiro sinta o conforto, a segurança e a alegria de conhecer o nosso país com quem realmente percebe do assunto.</p>
-                <p><strong>Acompanhe-nos nesta jornada!</strong></p>
+                <p>Desde cedo que a paixão por descobrir novos recantos de Portugal me move. O que começou como pequenos passeios entre amigos, tornou-se num projeto dedicado a proporcionar experiências autênticas.</p>
+                <p>O meu objetivo é garantir que cada viagem seja confortável, segura e alegre. Viajar comigo é descobrir o país com quem realmente se dedica a criar sorrisos em cada paragem.</p>
+                <p><strong>Junte-se a nós na próxima aventura!</strong></p>
             </div>
         </section>
 
@@ -120,6 +68,14 @@
             <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
         </footer>
     </main>
+
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('container-menu').innerHTML = data;
+            });
+    </script>
 
 </body>
 </html>
