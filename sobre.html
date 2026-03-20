@@ -2,11 +2,10 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Sobre Mim - Passeios do Miguel</title>
+    <title>Sobre Nós - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ESTILOS ESPECÍFICOS DA PÁGINA SOBRE */
         .container-sobre {
             max-width: 1000px;
             margin: 60px auto;
@@ -14,42 +13,32 @@
             display: flex;
             gap: 50px;
             align-items: center;
-            flex-wrap: wrap; /* Para telemóveis */
+            flex-wrap: wrap;
         }
 
-        .foto-perfil {
+        .foto-logotipo {
             flex: 1;
             min-width: 300px;
             text-align: center;
         }
 
-        .foto-perfil img {
+        .foto-logotipo img {
             width: 100%;
-            max-width: 350px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 5px solid white;
+            max-width: 300px;
+            border-radius: 20px;
+            /* Se o teu logo tiver fundo branco, a sombra ajuda a destacar */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
         }
 
         .texto-sobre {
-            flex: 2;
+            flex: 1.5;
             min-width: 300px;
         }
 
         .texto-sobre h2 {
             color: #1e4d8c;
-            font-size: 2.2em;
+            font-size: 2em;
             margin-bottom: 20px;
-            position: relative;
-        }
-
-        .texto-sobre h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #ff9800;
-            margin-top: 10px;
         }
 
         .texto-sobre p {
@@ -57,12 +46,23 @@
             line-height: 1.8;
             color: #444;
             margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .destaque-frase {
+            background: #f0f4f8;
+            padding: 20px;
+            border-left: 5px solid #ff9800;
+            font-style: italic;
+            margin-top: 30px;
+            color: #1e4d8c;
+            font-weight: 500;
         }
 
         /* BANNER PREMIUM */
         .banner-sobre {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1551882547-ff43c63fedfe?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -73,18 +73,6 @@
         }
 
         .banner-sobre h1 { font-size: 3em; }
-
-        /* DESTAQUES NO FUNDO */
-        .stats-sobre {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        .stat-item i { font-size: 2.5em; color: #ff9800; margin-bottom: 10px; }
-        .stat-item h4 { font-size: 1.5em; color: #1e4d8c; }
     </style>
 </head>
 <body>
@@ -93,35 +81,29 @@
 
     <main>
         <div class="banner-sobre">
-            <h1>A Nossa História</h1>
-            <p>Conheça quem organiza os seus momentos de lazer.</p>
+            <h1>A Nossa Essência</h1>
+            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
         </div>
 
         <section class="container-sobre">
-            <div class="foto-perfil">
-                <img src="https://i.imgur.com/your-photo-here.jpg" alt="Miguel - Organizador">
+            <div class="foto-logotipo">
+                <img src="logo.png" alt="Logótipo Passeios do Miguel">
             </div>
 
             <div class="texto-sobre">
-                <h2>Olá, eu sou o Miguel!</h2>
+                <h2>Bem-vindos aos Passeios do Miguel!</h2>
                 <p>
-                    Desde muito cedo que a paixão por viajar e descobrir os recantos escondidos do nosso Portugal me acompanha. O que começou como pequenos passeios com amigos, transformou-se hoje num projeto dedicado a proporcionar experiências únicas a todos os que se juntam a nós.
+                    Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.
                 </p>
                 <p>
-                    A minha missão é simples: garantir que cada passeio seja mais do que uma viagem de autocarro. Quero que seja um dia de convívio, alegria e descoberta, onde cada detalhe é planeado para o seu máximo conforto.
+                    Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.
+                </p>
+                <p>
+                    Aqui encontrará a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às suas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!
                 </p>
                 
-                <div class="stats-sobre">
-                    <div class="stat-item">
-                        <i class="fas fa-bus"></i>
-                        <h4>+50</h4>
-                        <p>Passeios Realizados</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-smile"></i>
-                        <h4>+1000</h4>
-                        <p>Viajantes Felizes</p>
-                    </div>
+                <div class="destaque-frase">
+                    "Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta."
                 </div>
             </div>
         </section>
@@ -151,15 +133,22 @@
         </div>
     </footer>
 
-    <script>
-        // Carregar o Menu
-        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
+        <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.warn('Erro ao carregar o menu:', err));
 
-        // O "SPRITE" DO BOTÃO FLUTUANTE
         document.addEventListener('click', function (e) {
-            const botaoDuvidas = e.target.closest('#botaoDuvidas');
-            if (botaoDuvidas) {
-                window.location.href = 'faq.html';
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
             }
         });
     </script>
