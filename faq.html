@@ -2,11 +2,17 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dúvidas Frequentes - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ESTILO PARA O BANNER FICAR AMPLO (IGUAL À HOME) */
+        /* Base e Layout Lateral */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* BANNER PREMIUM */
         .banner-faq {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
@@ -14,40 +20,28 @@
             background-position: center;
             color: white;
             padding: 100px 20px;
-            border-radius: 20px;
             text-align: center;
-            margin: 20px; /* Margem igual à da Home */
+            border-radius: 0 0 50px 0;
         }
+        .banner-faq h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-        .banner-faq h1 { font-size: 3em; margin-bottom: 10px; }
+        /* SECÇÃO DE CONTEÚDO */
+        .seccao-faq { padding: 60px 20px; background: white; flex-grow: 1; }
+        .container-faq { max-width: 900px; margin: 0 auto; }
 
-        /* SECÇÃO BRANCA AMPLA PARA O CONTEÚDO */
-        .seccao-branca {
-            background: white;
-            margin: 20px; /* Alinhado com o banner */
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        /* CONTAINER DAS PERGUNTAS (Para não esticarem até ao infinito em ecrãs gigantes) */
-        .container-faq {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
+        /* ESTILO DO ACORDEÃO */
         .faq-item {
             background: #fff;
-            margin-bottom: 20px;
-            border-radius: 12px;
+            margin-bottom: 15px;
+            border-radius: 15px;
             border: 1px solid #eee;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
             overflow: hidden;
             transition: 0.3s;
         }
 
         .faq-pergunta {
-            padding: 25px;
+            padding: 22px 25px;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -56,12 +50,13 @@
             background: none;
             border: none;
             text-align: left;
-            font-size: 1.15em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #1e4d8c;
+            transition: 0.3s;
         }
 
-        .faq-pergunta:hover { background: #fcfcfc; }
+        .faq-pergunta:hover { background: #f8f9fa; color: #ff8c00; }
 
         .faq-resposta {
             max-height: 0;
@@ -77,11 +72,23 @@
             font-size: 1.05em;
         }
 
-        /* ESTADO ATIVO DO ACORDEÃO */
-        .faq-item.ativo { border-left: 5px solid #ff9800; }
-        .faq-item.ativo .faq-pergunta { color: #ff9800; }
-        .faq-item.ativo .faq-resposta { max-height: 300px; } 
-        .faq-item.ativo i { transform: rotate(180deg); color: #ff9800; }
+        /* ESTADO ATIVO */
+        .faq-item.ativo { border-left: 6px solid #ff8c00; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .faq-item.ativo .faq-pergunta { color: #ff8c00; }
+        .faq-item.ativo .faq-resposta { max-height: 400px; } 
+        .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
+        
+        .faq-pergunta i { transition: 0.3s; font-size: 0.9em; color: #ccc; }
+
+        /* RODAPÉ DINÂMICO */
+        .footer-wave-container { background: white; line-height: 0; }
+        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
+
+        footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
+        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
+        .footer-col a:hover { color: white; padding-left: 8px; }
     </style>
 </head>
 <body>
@@ -94,14 +101,14 @@
             <p>Encontre aqui as respostas às dúvidas mais comuns dos nossos viajantes.</p>
         </div>
 
-        <section class="seccao-branca">
+        <section class="seccao-faq">
             <div class="container-faq">
                 
                 <div class="faq-item">
                     <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento.
+                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento (sinalização).
                         </div>
                     </div>
                 </div>
@@ -110,7 +117,7 @@
                     <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Os nossos passeios partem habitualmente de São Pedro do Sul. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em Viseu ou Castro Daire. Confirme sempre no detalhe do passeio.
+                            Os nossos passeios partem habitualmente de **São Pedro do Sul**. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em **Viseu** ou **Castro Daire**. Confirme sempre no detalhe do passeio escolhido.
                         </div>
                     </div>
                 </div>
@@ -119,7 +126,7 @@
                     <button class="faq-pergunta">Os lugares no autocarro são marcados? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Sim! Os lugares são atribuídos rigorosamente por ordem de inscrição. Quanto mais cedo reservar e sinalizar o seu lugar, mais à frente ficará sentado.
+                            Sim! Os lugares são atribuídos rigorosamente por **ordem de inscrição**. Quanto mais cedo reservar e sinalizar o seu lugar, mais à frente ficará sentado.
                         </div>
                     </div>
                 </div>
@@ -128,7 +135,7 @@
                     <button class="faq-pergunta">O que acontece se eu precisar de cancelar? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página dedicada no rodapé para saber prazos e condições de reembolso.
+                            Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página de **Políticas de Cancelamento** no rodapé para saber prazos e condições de reembolso.
                         </div>
                     </div>
                 </div>
@@ -137,7 +144,7 @@
                     <button class="faq-pergunta">O valor do passeio inclui refeições? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Depende do programa específico. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
+                            Depende do programa. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
                         </div>
                     </div>
                 </div>
@@ -146,65 +153,57 @@
                     <button class="faq-pergunta">Podem crianças participar nos passeios? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Claro que sim! Os nossos passeios são familiares e adequados a todas as idades. Crianças costumam ter descontos especiais no valor do transporte.
+                            Claro que sim! Os nossos passeios são familiares e adequados a todas as idades. Crianças costumam ter descontos especiais no valor do transporte (consulte-nos para saber idades).
                         </div>
                     </div>
                 </div>
 
             </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>&copy; 2026 - Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a><br>
-                <a href="contatos.html">Contactos</a><br>
-                <a href="dicas.html">Dicas Úteis</a><br>
-                <a href="faq.html">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="footer-wave-container">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>&copy; 2026 - Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <a href="index.html">Página Inicial</a>
+                    <a href="passeios.html">Próximos Passeios</a>
+                    <a href="contatos.html">Contactos</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Ajuda</h4>
+                    <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Regras de Cancelamento</a>
+                    <a href="dicas.html">Dicas para Viajantes</a>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <script>
         // Carrega o Menu Lateral
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
 
-        // Lógica do Acordeão (Abrir/Fechar Perguntas)
+        // Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
             botao.addEventListener('click', () => {
                 const item = botao.parentElement;
+                
+                // Fecha outros itens ao abrir um (opcional, se quiseres apenas um aberto de cada vez)
+                // document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('ativo'); });
+
                 item.classList.toggle('ativo');
             });
-        });
-
-        // Lógica do Botão FAQ flutuante para abrir o Modal
-        document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'none';
-            }
         });
     </script>
 </body>
