@@ -1,5 +1,5 @@
 <style>
-    /* --- Estilo Base do Menu Lateral --- */
+    /* --- Layout e Menu Lateral --- */
     #menu-lateral { 
         width: 250px; 
         background-color: #1e4d8c; 
@@ -8,125 +8,76 @@
         top: 0; 
         padding: 20px; 
         box-sizing: border-box;
-        color: white;
-        z-index: 1000;
+        z-index: 9999; /* Garante que o menu está acima de tudo */
     }
     
-    .logo { 
-        width: 100%; 
-        max-width: 170px; 
-        margin: 0 auto 30px; 
-        display: block; 
-    }
-
+    .logo { width: 100%; max-width: 170px; margin: 0 auto 30px; display: block; }
     #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
     #menu-lateral li { margin-bottom: 12px; position: relative; }
 
-    /* --- BOTÕES ESTILO INDEX (Pílula com Degradê no Hover) --- */
+    /* --- Botões do Menu --- */
     #menu-lateral ul li a { 
-        display: flex;
-        align-items: center;
-        color: white; 
-        text-decoration: none; 
-        padding: 12px 20px; 
-        font-size: 15px; 
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border-radius: 50px; 
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid transparent;
+        display: flex; align-items: center; color: white; text-decoration: none; 
+        padding: 12px 18px; font-size: 15px; font-weight: 600;
+        transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
     }
 
     #menu-lateral ul li a:hover { 
         background: linear-gradient(135deg, #ff9800, #f57c00);
         transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
-        border-color: white;
+        color: white;
     }
 
-    #menu-lateral i { width: 20px; margin-right: 10px; }
-    #menu-lateral i.fa-chevron-right { margin-left: auto; margin-right: 0; font-size: 10px; }
-
-    /* --- DROPDOWNS (CORREÇÃO DE VISIBILIDADE) --- */
+    /* --- CORREÇÃO DO INVISÍVEL: SUBMENU COM FUNDO SÓLIDO --- */
     .dropdown-content {
         display: none;
         position: absolute;
-        left: 90%; /* Abre ligeiramente ao lado para não tapar o menu */
+        left: 100%; /* Abre exatamente ao lado */
         top: 0;
-        background-color: #ffffff; /* Fundo branco sólido para contraste total */
-        min-width: 220px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 1001;
+        background: #ffffff !important; /* BRANCO PURO PARA TOTAL VISIBILIDADE */
+        min-width: 240px;
+        box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
         border-radius: 15px;
         padding: 10px 0;
-        border: 1px solid #e0e0e0;
+        z-index: 10000;
+        border: 1px solid #ddd;
     }
 
     .dropdown:hover > .dropdown-content { display: block; }
 
-    /* Links dentro do Dropdown */
+    /* Itens dentro do Submenu */
     .dropdown-content a {
-        color: #1e4d8c !important; /* Texto azul escuro no fundo branco */
+        color: #1e4d8c !important; /* TEXTO ESCURO NO FUNDO BRANCO */
         background: none !important;
-        border: none !important;
-        border-radius: 0 !important;
         padding: 10px 20px !important;
-        font-weight: 500 !important;
         font-size: 14px !important;
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
+        font-weight: 500 !important;
+        display: block !important;
+        border-bottom: 1px solid #f0f0f0;
     }
 
     .dropdown-content a:hover {
         background-color: #f8f9fa !important;
         color: #ff9800 !important;
-        transform: translateX(5px) !important;
-        box-shadow: none !important;
+        padding-left: 25px !important;
     }
 
-    /* Submenus (Anos 2025/2026) */
+    /* Sub-submenus (Anos) */
     .nested-dropdown { position: relative; }
     .nested-content {
         display: none;
         position: absolute;
         left: 100%;
-        top: -10px;
-        background-color: #ffffff;
-        min-width: 200px;
-        box-shadow: 10px 8px 16px rgba(0,0,0,0.1);
+        top: 0;
+        background: #ffffff !important;
+        min-width: 230px;
+        box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
         border-radius: 0 15px 15px 15px;
-        border: 1px solid #e0e0e0;
+        border: 1px solid #ddd;
     }
-
     .nested-dropdown:hover > .nested-content { display: block; }
 
-    /* --- Botão Flutuante e Modal --- */
-    .btn-flutuante-faq {
-        position: fixed; bottom: 30px; right: 30px;
-        width: 65px; height: 65px;
-        background: linear-gradient(135deg, #ff9800, #f57c00);
-        color: white; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        cursor: pointer; z-index: 9999;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 3px solid white;
-    }
-    .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
-
-    #janelaFaq {
-        display: none; position: fixed; z-index: 10000;
-        left: 0; top: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-    }
-    .faq-card {
-        background: white; margin: 6% auto; width: 90%; max-width: 480px;
-        border-radius: 25px; overflow: hidden; position: relative;
-    }
-    .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
-    #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
-    .faq-body { padding: 30px; color: #333; line-height: 1.8; }
+    .fa-chevron-right { margin-left: auto; font-size: 10px; }
 </style>
 
 <nav id="menu-lateral">
@@ -135,48 +86,55 @@
     </a>
 
     <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="sobre.html"><i class="fas fa-user"></i> Sobre Mim</a></li>
+        <li><a href="index.html"><i class="fas fa-home" style="margin-right:10px"></i> Home</a></li>
+        <li><a href="sobre.html"><i class="fas fa-user" style="margin-right:10px"></i> Sobre Mim</a></li>
         
         <li class="dropdown">
             <a href="passeios.html">
-                <i class="fas fa-bus"></i> Passeios 
+                <i class="fas fa-bus" style="margin-right:10px"></i> Passeios 
                 <i class="fas fa-chevron-right"></i>
             </a>
             <div class="dropdown-content">
                 <div class="nested-dropdown">
-                    <a href="passeios.html#proximas">Próximas Datas <i class="fas fa-chevron-right"></i></a>
+                    <a href="#">Próximas Datas <i class="fas fa-chevron-right"></i></a>
                     <div class="nested-content">
                         <a href="campomaior.html">Festas do Povo (08 Ago)</a>
                         <a href="cereja.html">Rota da Cereja (14 Jun)</a>
                         <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
                     </div>
                 </div>
+
                 <div class="nested-dropdown">
-                    <a href="passeios.html#2026">Programação 2026 <i class="fas fa-chevron-right"></i></a>
+                    <a href="#">Programação 2026 <i class="fas fa-chevron-right"></i></a>
                     <div class="nested-content">
                         <a href="camelias.html">Festa das Camélias</a>
                         <a href="gaia.html">Magia Animal em Gaia</a>
+                        <a href="vilareal.html">Vila Real & Mateus</a>
+                        <a href="regua.html">Peso da Régua</a>
                     </div>
                 </div>
+
                 <div class="nested-dropdown">
-                    <a href="passeios.html#2025">Programação 2025 <i class="fas fa-chevron-right"></i></a>
+                    <a href="#">Programação 2025 <i class="fas fa-chevron-right"></i></a>
                     <div class="nested-content">
                         <a href="vigo.html">Valença & Vigo</a>
                         <a href="marvao.html">Nisa & Marvão</a>
                         <a href="viana.html">Senhora d'Agonia</a>
+                        <a href="aveiro.html">Canais de Aveiro</a>
+                        <a href="braga.html">Braga Romana</a>
                     </div>
                 </div>
-                <a href="passeios.html" style="color: #ff9800 !important; font-weight: bold !important;">
-                    Ver todos os Passeios
+
+                <a href="passeios.html" style="color: #ff9800 !important; font-weight: bold !important; border-bottom: none;">
+                    <i class="fas fa-plus-circle"></i> VER TODOS OS PASSEIOS
                 </a>
             </div>
         </li>
 
-        <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
+        <li><a href="contatos.html"><i class="fas fa-envelope" style="margin-right:10px"></i> Contactos</a></li>
         <br>
         <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 10px 0;">
-        <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
-        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+        <li><a href="dicas.html"><i class="fas fa-lightbulb" style="margin-right:10px"></i> Dicas Úteis</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle" style="margin-right:10px"></i> FAQ</a></li>
     </ul>
 </nav>
