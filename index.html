@@ -10,46 +10,39 @@
         /* Layout Base */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
         
-        /* Menu Lateral - MEDIDAS IGUAIS AO MENU.HTML */
+        /* MENU LATERAL - CONFIGURAÇÃO IDÊNTICA AO MENU.HTML */
         #menu-lateral { 
-            width: 250px; /* Ajustado de 260px para 250px */
+            width: 250px; 
             background-color: #1e4d8c; 
             min-height: 100vh; 
             position: sticky; 
             top: 0; 
-            padding: 20px; /* Ajustado para bater certo com o original */
+            padding: 25px 15px; 
             box-sizing: border-box;
-            color: white;
-            z-index: 1000;
+            z-index: 9999;
         }
-
-        /* LOGOTIPO ORIGINAL */
-        #menu-lateral .logo { 
+        
+        /* LOGOTIPO: Proporção original preservada */
+        .logo { 
             width: 100%; 
             max-width: 180px; 
+            height: auto;
             margin: 0 auto 30px; 
             display: block; 
+            object-fit: contain; 
         }
 
         #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
-        #menu-lateral li { margin-bottom: 12px; }
+        #menu-lateral li { margin-bottom: 12px; position: relative; }
 
-        /* Estilo de Botões Menu (Igual ao menu.html) */
+        /* Botões do Menu */
         #menu-lateral ul li a { 
-            display: flex;
-            align-items: center;
-            color: white; 
-            text-decoration: none; 
-            padding: 12px 18px; /* Reduzi um pouco o padding lateral para caber melhor nos 250px */
-            font-size: 0.95em; 
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-radius: 50px; 
-            background: rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; color: white; text-decoration: none; 
+            padding: 12px 18px; font-size: 0.95em; font-weight: 600;
+            transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
             border: 2px solid transparent;
         }
 
-        /* Efeito Hover Laranja */
         #menu-lateral ul li a:hover { 
             background: linear-gradient(135deg, #ff9800, #f57c00);
             transform: scale(1.05);
@@ -58,11 +51,60 @@
             color: white;
         }
 
-        #menu-lateral i { width: 25px; font-size: 1.1em; margin-right: 10px; }
+        #menu-lateral i { width: 20px; margin-right: 10px; }
+        #menu-lateral i.fa-chevron-right { margin-left: auto; margin-right: 0; font-size: 10px; }
 
+        /* DROPDOWNS SÓLIDOS (Para total visibilidade) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 100%; 
+            top: 0;
+            background: #ffffff !important; 
+            min-width: 280px;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 12px 0;
+            z-index: 10000;
+            border: 1px solid #ddd;
+        }
+
+        .dropdown:hover > .dropdown-content { display: block; }
+
+        .dropdown-content a {
+            color: #1e4d8c !important;
+            background: none !important;
+            padding: 10px 20px !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            display: block !important;
+            border-bottom: 1px solid #f0f0f0;
+            border-radius: 0 !important;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa !important;
+            color: #ff9800 !important;
+            padding-left: 25px !important;
+        }
+
+        .nested-dropdown { position: relative; }
+        .nested-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #ffffff !important;
+            min-width: 280px;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+            border-radius: 0 15px 15px 15px;
+            border: 1px solid #ddd;
+        }
+        .nested-dropdown:hover > .nested-content { display: block; }
+
+        /* Conteúdo Principal */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner e Conteúdo */
         .banner-index {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
@@ -74,7 +116,7 @@
         .container-video-index { width: 100%; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .container-video-index iframe { width: 100%; height: 500px; display: block; border: none; }
 
-        /* BOTÃO FLUTUANTE */
+        /* Botão Flutuante */
         .btn-flutuante-faq {
             position: fixed; bottom: 30px; right: 30px;
             width: 65px; height: 65px;
@@ -117,12 +159,44 @@
         <ul>
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="sobre.html"><i class="fas fa-user"></i> Sobre Mim</a></li>
-            <li><a href="passeios.html"><i class="fas fa-bus"></i> Passeios</a></li>
-            <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
             
+            <li class="dropdown">
+                <a href="passeios.html">
+                    <i class="fas fa-bus"></i> Passeios 
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <div class="dropdown-content">
+                    
+                    <div class="nested-dropdown">
+                        <a href="#">Programação 2026 <i class="fas fa-chevron-right"></i></a>
+                        <div class="nested-content">
+                            <a href="campomaior.html">Festas do Povo (08 Ago)</a>
+                            <a href="cereja.html">Rota da Cereja (14 Jun)</a>
+                            <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
+                            <a href="camelias.html">Festa das Camélias (15 Mar)</a>
+                            <a href="gaia.html">Magia Animal - Gaia (15 Fev)</a>
+                        </div>
+                    </div>
+
+                    <div class="nested-dropdown">
+                        <a href="#">Programação 2025 <i class="fas fa-chevron-right"></i></a>
+                        <div class="nested-content">
+                            <a href="vigo.html">Especial Natal Vigo (07 Dez)</a>
+                            <a href="marvao.html">Festa da Castanha (09 Nov)</a>
+                            <a href="espinho.html">Sra. da Ajuda - Espinho (12 Set)</a>
+                            <a href="viana.html">Sra. d'Agonia (16 Ago)</a>
+                            <a href="geres.html">Gerês & Braga (20 Jul)</a>
+                            <a href="fatima.html">Santuário de Fátima (15 Jun)</a>
+                            <a href="obidos.html">Festa do Chocolate (06 Abr)</a>
+                            <a href="amendoeiras.html">Amendoeiras em Flor (02 Mar)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
             <br>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-            
             <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
         </ul>
