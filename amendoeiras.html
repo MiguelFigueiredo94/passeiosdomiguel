@@ -2,26 +2,55 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amendoeiras em Flor - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estrutura Principal */
-        .conteudo-principal { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-top: 20px; }
-        .coluna-texto { flex: 2; min-width: 300px; }
-        .coluna-imagem { flex: 1; min-width: 250px; }
+        /* Estrutura Base */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* Banner de Destaque */
+        .banner-passeio {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://i.imgur.com/VJkJt5h.png');
+            background-size: cover; background-position: center;
+            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 50px 0;
+        }
+        .banner-passeio h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+
+        /* Grid de Conteúdo */
+        .seccao-detalhes { padding: 50px 30px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+
+        .cartao { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        h3 { color: #1e4d8c; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
         
-        /* Estilos da Galeria */
-        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
-        .galeria img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .galeria img:hover { opacity: 0.8; }
+        .info-lista { list-style: none; padding: 0; }
+        .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; }
+        .info-lista i { color: #ff8c00; margin-top: 4px; }
 
-        /* Modal (Janela de Ampliação) */
-        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
-        .modal img { max-width: 90%; max-height: 80%; border-radius: 10px; border: 3px solid white; }
-        .modal:target { display: flex; }
+        /* Preço e Botão */
+        .box-preco { background: #1e4d8c; color: white; padding: 30px; border-radius: 20px; text-align: center; }
+        .valor { font-size: 2.5em; font-weight: bold; display: block; margin: 10px 0; }
+        .btn-reservar { 
+            display: block; background: #ff8c00; color: white; text-decoration: none; 
+            padding: 15px; border-radius: 12px; font-weight: bold; margin-top: 20px; transition: 0.3s;
+        }
+        .btn-reservar:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4); }
 
-        @media (max-width: 768px) { .conteudo-principal { flex-direction: column-reverse; } }
+        /* Galeria */
+        .galeria-container { padding: 40px; background: white; border-radius: 30px; margin: 0 30px 50px 30px; }
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: 0.3s; border: 3px solid transparent; }
+        .galeria-grid img:hover { border-color: #ff8c00; transform: scale(1.02); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+
+        @media (max-width: 900px) { .seccao-detalhes { grid-template-columns: 1fr; } #menu-placeholder { display: none; } }
     </style>
 </head>
 <body>
@@ -29,117 +58,86 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner"><h1>Amendoeiras em Flor - Vila Nova de Foz Côa</h1></div>
+        <div class="banner-passeio">
+            <h1>Amendoeiras em Flor</h1>
+            <p><i class="fas fa-map-marker-alt"></i> Foz Côa & Figueira de Castelo Rodrigo</p>
+        </div>
 
-        <section class="conteudo-principal">
+        <section class="seccao-detalhes">
             <div class="coluna-texto">
-                <p>Venha deslumbrar-se com as magníficas Amendoeiras em Flor, um cenário perfeito para fotos inesquecíveis e um dia repleto de história e tradição no Douro Superior.</p>
-
-                <h3 style="color: #1e4d8c; margin-top: 30px;">📅 Informações Gerais</h3>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li>✅ <strong>Data:</strong> 02 de Março de 2025</li>
-                    <li>✅ <strong>Destino:</strong> Figueira de Castelo Rodrigo e Vila Nova de Foz Côa</li>
-                    <li>✅ <strong>Locais de Recolha:</strong> São Pedro do Sul.</li>
-                </ul>
-
-                <h3 style="color: #1e4d8c; margin-top: 30px;">📍 Itinerário</h3>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Manhã:</strong> Visita ao Cristo Rei da Marofa e visita guiada à vila medieval de Castelo Rodrigo (Palácio de Cristóvão de Moura, Igreja e Pelourinho).</li>
-                    <li><strong>Paisagem:</strong> Passagem por Almendra e Castelo Melhor para apreciar as Amendoeiras em Flor.</li>
-                    <li><strong>Tarde:</strong> Vila Nova de Foz Côa com visita à feira tradicional e assistência ao Desfile Etnográfico.</li>
-                    <li><strong>Natureza:</strong> Paragem no Parque Arqueológico do Vale do Côa para explorar os Passadiços do Côa.</li>
-                    <li><strong>Regresso:</strong> Chegada prevista a São Pedro do Sul pelas 20h15.</li>
-                </ul>
+                <div class="cartao">
+                    <h3><i class="fas fa-info-circle"></i> Descrição do Passeio</h3>
+                    <p>Venha deslumbrar-se com as magníficas Amendoeiras em Flor, um cenário único no Douro Superior. Um dia dedicado à natureza, história medieval e tradições transmontanas.</p>
+                    
+                    <h3 style="margin-top:40px;"><i class="fas fa-route"></i> Itinerário Previsto</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-sun"></i> <div><strong>Manhã:</strong> Visita ao Cristo Rei da Marofa e à vila medieval de Castelo Rodrigo (Palácio, Igreja e Pelourinho).</div></li>
+                        <li><i class="fas fa-leaf"></i> <div><strong>Paisagem:</strong> Travessia por Almendra e Castelo Melhor para apreciar o "neve de flores" das amendoeiras.</div></li>
+                        <li><i class="fas fa-users"></i> <div><strong>Tarde:</strong> Foz Côa com feira tradicional e o emblemático Desfile Etnográfico.</div></li>
+                        <li><i class="fas fa-walking"></i> <div><strong>Natureza:</strong> Paragem no Parque Arqueológico para explorar os Passadiços do Côa.</div></li>
+                        <li><i class="fas fa-home"></i> <div><strong>Regresso:</strong> Chegada prevista a S. Pedro do Sul pelas 20h15.</div></li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="coluna-imagem">
-                <img src="https://i.imgur.com/VJkJt5h.png" alt="Amendoeiras em Flor" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                
-                <h3 style="color: #1e4d8c; margin-top: 30px;">💰 Valor da Inscrição</h3>
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tr style="background-color: #f4f7f9;">
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Preço Único</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">25,00€</td>
-                    </tr>
-                </table>
-                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">* <strong>Inclui:</strong> Viagem em Autocarro e Entrada nos Monumentos a visitar.</p>
-                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">* Pagamento no ato da inscrição.</p>
+            <div class="coluna-aside">
+                <div class="box-preco">
+                    <span>Preço por Pessoa</span>
+                    <span class="valor">25,00€</span>
+                    <p><i class="fas fa-bus"></i> Inclui Autocarro e Entradas</p>
+                    <a href="inscricao.html?passeio=Amendoeiras+em+Flor" class="btn-reservar">RESERVAR AGORA</a>
+                </div>
+
+                <div class="cartao" style="margin-top: 20px;">
+                    <h3><i class="fas fa-calendar-day"></i> Detalhes</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Data:</strong> 02 de Março de 2025</li>
+                        <li><i class="fas fa-clock"></i> <strong>Partida:</strong> São Pedro do Sul</li>
+                        <li><i class="fas fa-wallet"></i> <strong>Pagamento:</strong> No ato da inscrição</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-
-        <h3 style="color: #1e4d8c; margin-top: 50px;">📸 O que vamos ver</h3>
-        <div class="galeria">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('img1').style.display='flex';">
-                <img src="https://i.imgur.com/1jwmSiO.png" alt="Foto 1">
-            </a>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('img2').style.display='flex';">
-                <img src="https://i.imgur.com/wEJDQXr.png" alt="Foto 2">
-            </a>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('img3').style.display='flex';">
-                <img src="https://i.imgur.com/lzztxZn.png" alt="Foto 3">
-            </a>
-            <a href="#" onclick="event.preventDefault(); document.getElementById('img4').style.display='flex';">
-                <img src="https://i.imgur.com/kp55DTl.png" alt="Foto 4">
-            </a>
+        <div class="galeria-container">
+            <h3><i class="fas fa-camera"></i> Álbum do Destino</h3>
+            <div class="galeria-grid">
+                <img src="https://i.imgur.com/1jwmSiO.png" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/wEJDQXr.png" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/lzztxZn.png" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/kp55DTl.png" onclick="abrirModal(this.src)">
+            </div>
         </div>
 
-        <div id="img1" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/1jwmSiO.png"></div>
-        <div id="img2" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/wEJDQXr.png"></div>
-        <div id="img3" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/lzztxZn.png"></div>
-        <div id="img4" class="modal" onclick="this.style.display='none'"><img src="https://i.imgur.com/kp55DTl.png"></div>
+        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
+            <img id="imgModal">
+        </div>
 
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>&copy; 2026 - Todos os direitos reservados.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a>
-                <a href="contatos.html">Contactos</a>
-            </div>
-
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
+        // Carregar Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(err => console.warn('Erro ao carregar o menu:', err));
-</script>
+        });
 
-<script>
-    document.addEventListener('click', function (e) {
-        // Deteta clique no botão flutuante ou no ícone que está dentro dele
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'block';
+        // Função da Galeria
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'flex';
+            document.getElementById('imgModal').src = src;
         }
-        
-        // Deteta clique no X ou fora da janela para fechar
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
-    
-    
+
+        // Script para o botão FAQ (se existir no menu)
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
