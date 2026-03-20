@@ -5,13 +5,43 @@
     <title>Os Nossos Passeios - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
+        .banner-passeios {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .banner-passeios h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Estilos específicos para os títulos de arquivo */
+        .titulo-ano {
+            color: #1e4d8c; 
+            margin-top: 50px; 
+            border-bottom: 2px solid #ddd; 
+            padding-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body class="layout-passeios">
 
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner"><h1>Os Nossos Passeios</h1></div>
+        <div class="banner-passeios">
+            <h1>Os Nossos Passeios</h1>
+        </div>
 
         <h2 style="text-align: center; margin-bottom: 30px;">Próximas Datas</h2>
         <section class="container-passeios">
@@ -32,9 +62,9 @@
             </div>
         </section>
 
-        <h2 style="text-align: center; margin-top: 60px; color: #666;">Arquivo Histórico</h2>
+        <h2 style="text-align: center; margin-top: 80px; color: #666; font-size: 1.8em;">Arquivo Histórico</h2>
 
-        <h3 style="color: #1e4d8c; margin-top: 40px; border-bottom: 2px solid #ddd; padding-bottom: 5px;">Ano 2026</h3>
+        <h3 class="titulo-ano">Ano 2026</h3>
         <section class="container-passeios">
             <div class="card-passeio card-arquivo">
                 <img src="https://i.imgur.com/PmjIQux.jpg" alt="Festa das Camélias">
@@ -48,7 +78,7 @@
             </div>
         </section>
 
-        <h3 style="color: #1e4d8c; margin-top: 40px; border-bottom: 2px solid #ddd; padding-bottom: 5px;">Ano 2025</h3>
+        <h3 class="titulo-ano">Ano 2025</h3>
         <section class="container-passeios">
             <div class="card-passeio card-arquivo">
                 <img src="https://i.imgur.com/aUixZ0Y.jpg" alt="Especial de Natal - Valença e Vigo">
@@ -101,8 +131,9 @@
             </div>
             <div class="footer-col">
                 <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a>
-                <a href="contatos.html">Contactos</a>
+                <a href="cancelamento.html">Política de Cancelamento</a><br>
+                <a href="contatos.html">Contactos</a><br>
+                <a href="dicas.html">Dicas Úteis</a>
             </div>
             <div class="footer-col">
                 <h4>Siga-nos</h4>
@@ -124,21 +155,17 @@
             .catch(err => console.warn('Erro ao carregar o menu:', err));
     </script>
 
-<script>
-    document.addEventListener('click', function (e) {
-        // Deteta clique no botão flutuante ou no ícone que está dentro dele
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'block';
-        }
-        
-        // Deteta clique no X ou fora da janela para fechar
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
-    
+    <script>
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
