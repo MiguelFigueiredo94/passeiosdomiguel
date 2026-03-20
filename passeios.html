@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Mantendo o layout exatamente como solicitado */
         .banner-passeios {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200');
             background-size: cover; background-position: center; color: white;
             padding: 60px 20px; border-radius: 20px; text-align: center; margin: 20px;
         }
@@ -18,7 +16,6 @@
         .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .card-passeio { border-radius: 15px; border: 1px solid #eee; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
         
-        /* Estilo do Calendário Pequeno */
         .data-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
         .cal-pope { width: 50px; background: white; border: 1px solid #1e4d8c; border-radius: 8px; overflow: hidden; text-align: center; }
         .cal-mes { background: #1e4d8c; color: white; font-size: 0.7em; font-weight: bold; padding: 2px 0; text-transform: uppercase; }
@@ -47,45 +44,23 @@
     <main>
         <div class="banner-passeios">
             <h1>Os Nossos Passeios</h1>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
+            <p>A sua próxima aventura começa aqui.</p>
         </div>
 
         <section class="seccao-branca">
-            <h2 class="titulo-lista"><i class="fas fa-bus"></i> Próximos Passeios 2026</h2>
+            <h2 class="titulo-lista"><i class="fas fa-bus"></i> Próximas Datas 2026</h2>
             <div class="grid-passeios">
                 
                 <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=400"></div>
+                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg"></div>
                     <div class="card-info">
                         <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
-                            <div><h3>Magia Animal em Gaia</h3><p>(Vila Nova de Gaia)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="gaia.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
-                            <div><h3>Festa Internacional das Camélias</h3><p>(Celorico de Basto)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="camelias.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://moraremportugal.com/wp-content/uploads/2021/05/Barcelos-Portugal.jpg"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div><div class="cal-ano">2026</div></div>
-                            <div><h3>Festa das Cruzes</h3><p>(Barcelos)</p></div>
+                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div><div class="cal-ano">2026</div></div>
+                            <div><h3>Festas do Povo de Campo Maior</h3><p>(Campo Maior)</p></div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="cruzes.html" class="btn-full btn-iti">Ver Detalhes</a>
+                        <a href="campomaior.html" class="btn-full btn-iti">Ver Detalhes</a>
                         <div class="row-btns">
                             <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
                             <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i> Chat</a>
@@ -111,90 +86,56 @@
                 </article>
 
                 <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg"></div>
+                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://moraremportugal.com/wp-content/uploads/2021/05/Barcelos-Portugal.jpg"></div>
                     <div class="card-info">
                         <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div><div class="cal-ano">2026</div></div>
-                            <div><h3>Festas do Povo de Campo Maior</h3><p>(Campo Maior)</p></div>
+                            <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div><div class="cal-ano">2026</div></div>
+                            <div><h3>Festa das Cruzes</h3><p>(Barcelos)</p></div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="campomaior.html" class="btn-full btn-iti">Ver Detalhes</a>
+                        <a href="cruzes.html" class="btn-full btn-iti">Ver Detalhes</a>
                         <div class="row-btns">
                             <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
                             <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i> Chat</a>
                         </div>
                     </div>
                 </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
+                            <div><h3>Festa Internacional das Camélias</h3><p>(Celorico de Basto)</p></div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="camelias.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
+                            <div><h3>Magia Animal em Gaia</h3><p>(Vila Nova de Gaia)</p></div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="gaia.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                </article>
             </div>
 
-            <h2 class="titulo-lista"><i class="fas fa-history"></i> Memórias 2025</h2>
+            <h2 class="titulo-lista"><i class="fas fa-history"></i> Histórico 2025</h2>
             <div class="grid-passeios">
-                
                 <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1613917631300-34863346e927?q=80&w=400"></div>
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=400"></div>
                     <div class="card-info">
                         <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Amendoeiras em Flor</h3><p>(Vila Nova de Foz Côa)</p></div>
+                            <div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div><div class="cal-ano">2025</div></div>
+                            <h3>Vigo e Valença do Minho</h3>
                         </div>
                     </div>
-                    <div class="card-footer"><a href="amendoeiras.html" class="btn-full btn-iti">Ver Itinerário</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1555527840-9a259972355f?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Festival do Chocolate</h3><p>(Óbidos)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="obidos.html" class="btn-full btn-iti">Ver Itinerário</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1549603091-76495111162f?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Santuário de Fátima</h3><p>(Fátima)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="fatima.html" class="btn-full btn-iti">Ver Itinerário</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1627916183990-25e2978c4333?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Gerês e Braga</h3><p>(Gerês e Braga)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="geres.html" class="btn-full btn-iti">Ver Itinerário</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1633511090164-b43840ea1607?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Nossa Senhora d'Agonia</h3><p>(Viana do Castelo)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="viana.html" class="btn-full btn-iti">Ver Itinerário</a></div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=400"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Nossa Senhora d'Ajuda</h3><p>(Espinho)</p></div>
-                        </div>
-                    </div>
-                    <div class="card-footer"><a href="espinho.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                    <div class="card-footer"><a href="vigo.html" class="btn-full btn-iti">Ver Itinerário</a></div>
                 </article>
 
                 <article class="card-passeio">
@@ -202,23 +143,77 @@
                     <div class="card-info">
                         <div class="data-container">
                             <div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Festa da Castanha - Marvão</h3><p>(Nisa e Marvão)</p></div>
+                            <h3>Festa da Castanha - Marvão</h3><p>(Nisa e Marvão)</p>
                         </div>
                     </div>
                     <div class="card-footer"><a href="marvao.html" class="btn-full btn-iti">Ver Itinerário</a></div>
                 </article>
 
                 <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=400"></div>
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=400"></div>
                     <div class="card-info">
                         <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div><div class="cal-ano">2025</div></div>
-                            <div><h3>Vigo e Valença do Minho</h3><p>(Vigo e Valença do Minho)</p></div>
+                            <div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div><div class="cal-ano">2025</div></div>
+                            <h3>Nossa Senhora d'Ajuda</h3><p>(Espinho)</p>
                         </div>
                     </div>
-                    <div class="card-footer"><a href="vigo.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                    <div class="card-footer"><a href="espinho.html" class="btn-full btn-iti">Ver Itinerário</a></div>
                 </article>
 
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1633511090164-b43840ea1607?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div><div class="cal-ano">2025</div></div>
+                            <h3>Nossa Senhora d'Agonia</h3><p>(Viana do Castelo)</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="viana.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1627916183990-25e2978c4333?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div><div class="cal-ano">2025</div></div>
+                            <h3>Gerês e Braga</h3>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="geres.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1549603091-76495111162f?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div><div class="cal-ano">2025</div></div>
+                            <h3>Santuário de Fátima</h3>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="fatima.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1555527840-9a259972355f?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div><div class="cal-ano">2025</div></div>
+                            <h3>Festival do Chocolate</h3><p>(Óbidos)</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="obidos.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                </article>
+
+                <article class="card-passeio">
+                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1613917631300-34863346e927?q=80&w=400"></div>
+                    <div class="card-info">
+                        <div class="data-container">
+                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div><div class="cal-ano">2025</div></div>
+                            <h3>Amendoeiras em Flor</h3><p>(Vila Nova de Foz Côa)</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><a href="amendoeiras.html" class="btn-full btn-iti">Ver Itinerário</a></div>
+                </article>
             </div>
         </section>
     </main>
