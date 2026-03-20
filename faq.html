@@ -6,25 +6,48 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* AJUSTES DE ESPAÇAMENTO E RESPIRAÇÃO */
-        .container-faq { 
-            max-width: 900px; 
-            margin: 60px auto; /* Aumentei a margem superior */
-            padding: 0 20px; 
+        /* ESTILO PARA O BANNER FICAR AMPLO (IGUAL À HOME) */
+        .banner-faq {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px; /* Margem igual à da Home */
         }
-        
+
+        .banner-faq h1 { font-size: 3em; margin-bottom: 10px; }
+
+        /* SECÇÃO BRANCA AMPLA PARA O CONTEÚDO */
+        .seccao-branca {
+            background: white;
+            margin: 20px; /* Alinhado com o banner */
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* CONTAINER DAS PERGUNTAS (Para não esticarem até ao infinito em ecrãs gigantes) */
+        .container-faq {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .faq-item {
             background: #fff;
-            margin-bottom: 20px; /* Mais espaço entre perguntas */
+            margin-bottom: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais suave e ampla */
-            overflow: hidden;
             border: 1px solid #eee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
             transition: 0.3s;
         }
 
         .faq-pergunta {
-            padding: 25px; /* Mais espaço interno */
+            padding: 25px;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -50,32 +73,15 @@
         .faq-resposta-inner { 
             padding: 5px 25px 25px 25px; 
             color: #555; 
-            line-height: 1.8; /* Texto mais legível */
+            line-height: 1.8;
             font-size: 1.05em;
         }
 
-        .faq-item.ativo {
-            border-left: 5px solid #ff9800; /* Destaque lateral quando aberto */
-        }
-        
+        /* ESTADO ATIVO DO ACORDEÃO */
+        .faq-item.ativo { border-left: 5px solid #ff9800; }
         .faq-item.ativo .faq-pergunta { color: #ff9800; }
         .faq-item.ativo .faq-resposta { max-height: 300px; } 
         .faq-item.ativo i { transform: rotate(180deg); color: #ff9800; }
-
-        /* BANNER CORRIGIDO (MENOS ARREDONDADO E MAIS AMPLO) */
-        .banner-faq {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 20px; /* Mais altura para o banner */
-            border-radius: 15px; /* Bordas menos exageradas */
-            text-align: center;
-            margin: 20px; /* Margem lateral para não colar nos cantos */
-        }
-
-        .banner-faq h1 { font-size: 3em; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -88,86 +94,66 @@
             <p>Encontre aqui as respostas às dúvidas mais comuns dos nossos viajantes.</p>
         </div>
 
-        <section class="container-faq">
-            
-            <div class="faq-item">
-                <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento.
+        <section class="seccao-branca">
+            <div class="container-faq">
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        Os nossos passeios partem habitualmente de São Pedro do Sul. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em Viseu ou Castro Daire. Confirme sempre no detalhe do passeio.
+                <div class="faq-item">
+                    <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Os nossos passeios partem habitualmente de São Pedro do Sul. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em Viseu ou Castro Daire. Confirme sempre no detalhe do passeio.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-pergunta">Os lugares no autocarro são marcados? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        Sim! Os lugares são atribuídos rigorosamente por ordem de inscrição. Quanto mais cedo reservar e sinalizar o seu lugar, mais à frente ficará sentado.
+                <div class="faq-item">
+                    <button class="faq-pergunta">Os lugares no autocarro são marcados? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Sim! Os lugares são atribuídos rigorosamente por ordem de inscrição. Quanto mais cedo reservar e sinalizar o seu lugar, mais à frente ficará sentado.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-pergunta">O que acontece se eu precisar de cancelar? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página dedicada no rodapé para saber prazos e condições de reembolso.
+                <div class="faq-item">
+                    <button class="faq-pergunta">O que acontece se eu precisar de cancelar? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página dedicada no rodapé para saber prazos e condições de reembolso.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-pergunta">O valor do passeio inclui refeições? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        Depende do programa específico. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
+                <div class="faq-item">
+                    <button class="faq-pergunta">O valor do passeio inclui refeições? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Depende do programa específico. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-pergunta">Podem crianças participar nos passeios? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-resposta">
-                    <div class="faq-resposta-inner">
-                        Claro que sim! Os nossos passeios são familiares e adequados a todas as idades. Crianças costumam ter descontos especiais no valor do transporte.
+                <div class="faq-item">
+                    <button class="faq-pergunta">Podem crianças participar nos passeios? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Claro que sim! Os nossos passeios são familiares e adequados a todas as idades. Crianças costumam ter descontos especiais no valor do transporte.
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </section>
     </main>
-
-    <footer id="footer-placeholder"></footer> <script>
-        // Carrega o Menu
-        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
-
-        // Lógica do Acordeão
-        document.querySelectorAll('.faq-pergunta').forEach(botao => {
-            botao.addEventListener('click', () => {
-                const item = botao.parentElement;
-                item.classList.toggle('ativo');
-            });
-        });
-
-        // O "SPRITE" DO BOTÃO FLUTUANTE
-        document.addEventListener('click', function (e) {
-            const botaoDuvidas = e.target.closest('#botaoDuvidas');
-            if (botaoDuvidas) {
-                // Se já estamos no FAQ, podemos fazer scroll para o topo ou apenas ignorar
-                window.location.href = 'faq.html';
-            }
-        });
-    </script>
 
     <footer>
         <div class="footer-container">
@@ -194,28 +180,22 @@
     </footer>
 
     <script>
-        // Carregar o Menu
-        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
-
-        // O "SPRITE" DO BOTÃO FLUTUANTE
-        document.addEventListener('click', function (e) {
-            const botaoDuvidas = e.target.closest('#botaoDuvidas');
-            if (botaoDuvidas) {
-                window.location.href = 'faq.html';
-            }
-        });
-    </script>
-
-    
-
-   <script>
+        // Carrega o Menu Lateral
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.warn('Erro ao carregar o menu:', err));
+            });
 
+        // Lógica do Acordeão (Abrir/Fechar Perguntas)
+        document.querySelectorAll('.faq-pergunta').forEach(botao => {
+            botao.addEventListener('click', () => {
+                const item = botao.parentElement;
+                item.classList.toggle('ativo');
+            });
+        });
+
+        // Lógica do Botão FAQ flutuante para abrir o Modal
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 var modal = document.getElementById('janelaFaq');
@@ -227,6 +207,5 @@
             }
         });
     </script>
-    
 </body>
 </html>
