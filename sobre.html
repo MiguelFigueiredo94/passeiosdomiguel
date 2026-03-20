@@ -7,209 +7,119 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base e Menu Lateral */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        /* Layout Base */
+        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        
+        /* MENU LATERAL - IGUAL AO INDEX */
+        #menu-lateral { 
+            width: 250px; 
+            background-color: #1e4d8c; 
+            min-height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            padding: 25px 15px; 
+            box-sizing: border-box;
+            z-index: 9999;
+        }
+        
+        .logo { 
+            width: 100%; 
+            max-width: 180px; 
+            height: auto;
+            margin: 0 auto 30px; 
+            display: block; 
+            object-fit: contain; 
+        }
+
+        #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
+        #menu-lateral li { margin-bottom: 12px; }
+
+        #menu-lateral ul li a { 
+            display: flex; align-items: center; color: white; text-decoration: none; 
+            padding: 12px 18px; font-size: 0.95em; font-weight: 600;
+            transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+        }
+
+        #menu-lateral ul li a:hover { 
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            transform: scale(1.05);
+            border-color: white;
+            color: white;
+        }
+
+        #menu-lateral i { width: 25px; font-size: 1.1em; margin-right: 10px; }
+
+        /* Conteúdo Principal */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner Principal */
         .banner-sobre {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; color: white;
-            padding: 100px 20px; text-align: center; border-radius: 0 0 50px 0;
-        }
-        .banner-sobre h1 { font-size: 3em; margin-bottom: 10px; }
-
-        /* Secção de Conteúdo */
-        .seccao-branca { background: white; padding: 60px 30px; flex-grow: 1; }
-        .conteudo-flex { max-width: 1100px; margin: 0 auto; display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
-
-        .coluna-logo { flex: 1; min-width: 300px; text-align: center; }
-        .coluna-logo img { width: 100%; max-width: 320px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
-
-        .coluna-texto { flex: 1.5; min-width: 300px; }
-        .coluna-texto h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 25px; }
-        .coluna-texto p { font-size: 1.1em; line-height: 1.8; color: #444; margin-bottom: 20px; text-align: justify; }
-
-        .frase-assinatura {
-            border-left: 5px solid #ff8c00; padding-left: 20px; margin-top: 30px;
-            font-style: italic; color: #1e4d8c; font-weight: 600; font-size: 1.2em;
+            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        /* --- BOTÃO FLUTUANTE (FIX: Z-INDEX) --- */
-        .faq-float { 
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #ff8c00; color: white; 
-            width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 28px; cursor: pointer; border: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4); 
-            z-index: 9999; /* Garante que fica por cima do logótipo */
-            transition: 0.3s;
-        }
-        .faq-float:hover { transform: scale(1.1); background: #e67e22; }
+        .seccao-sobre { background: white; padding: 60px 40px; flex-grow: 1; display: flex; align-items: center; gap: 40px; }
+        .foto-miguel { width: 300px; height: 300px; border-radius: 30px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .texto-sobre { max-width: 700px; color: #444; line-height: 1.8; }
+        .texto-sobre h2 { color: #1e4d8c; margin-top: 0; }
 
-        /* --- JANELA MODAL DE AJUDA --- */
-        .modal-faq {
-            display: none; position: fixed; z-index: 10000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
-        }
-        .modal-faq-content {
-            background-color: white; margin: 10% auto; padding: 30px;
-            width: 85%; max-width: 500px; border-radius: 20px; position: relative;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-        }
-        .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #666; }
-
-        /* Rodapé Estilizado */
+        /* Rodapé */
         .footer-wave-container { background: white; line-height: 0; }
         .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
-        footer { background: #1e4d8c; color: white; padding: 50px 30px; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; font-size: 1.3em; }
-        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 10px 0; transition: 0.3s; }
-        .footer-col a:hover { color: white; padding-left: 5px; }
-        .social-links { display: flex; gap: 20px; margin-top: 20px; font-size: 1.6em; }
-        .social-links a { color: white; }
+        footer { background: #1e4d8c; color: white; padding: 40px 20px; text-align: center; }
+
+        @media (max-width: 900px) {
+            .seccao-sobre { flex-direction: column; text-align: center; }
+            body { flex-direction: column; }
+            #menu-lateral { width: 100%; min-height: auto; position: relative; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <nav id="menu-lateral">
+        <a href="index.html">
+            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+        </a>
+
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="sobre.html" style="background: linear-gradient(135deg, #ff9800, #f57c00);"><i class="fas fa-user"></i> Sobre Mim</a></li>
+            <li><a href="passeios.html"><i class="fas fa-bus"></i> Passeios</a></li>
+            <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
+            <br>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
+            <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+        </ul>
+    </nav>
 
     <main>
         <div class="banner-sobre">
-            <h1>A Nossa História</h1>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
+            <h1>A História por trás dos Passeios</h1>
+            <p>Conheça quem organiza as suas próximas memórias.</p>
         </div>
 
-        <section class="seccao-branca">
-            <div class="conteudo-flex">
-                
-                <div class="coluna-logo">
-                    <img src="https://i.imgur.com/X1xT7Fx.png" alt="Logótipo Passeios do Miguel">
-                </div>
-
-                <div class="coluna-texto">
-                    <h2>Bem-vindos aos Passeios do Miguel!</h2>
-                    <p>
-                        Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.
-                    </p>
-                    <p>
-                        Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.
-                    </p>
-                    <p>
-                        Aqui encontrará a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às suas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!
-                    </p>
-                    
-                    <div class="frase-assinatura">
-                        "Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta."
-                    </div>
-                </div>
-
+        <section class="seccao-sobre">
+            <img src="https://via.placeholder.com/300" class="foto-miguel" alt="Miguel">
+            <div class="texto-sobre">
+                <h2>Olá, eu sou o Miguel!</h2>
+                <p>Desde cedo que a paixão por descobrir novos recantos de Portugal me move. O que começou como pequenos passeios entre amigos, tornou-se num projeto dedicado a proporcionar experiências autênticas a todos os que queiram viajar sem preocupações.</p>
+                <p>O meu objetivo é simples: garantir que cada viagem seja mais do que um simples transporte. Quero que cada passageiro sinta o conforto, a segurança e a alegria de conhecer o nosso país com quem realmente percebe do assunto.</p>
+                <p><strong>Acompanhe-nos nesta jornada!</strong></p>
             </div>
         </section>
 
         <div class="footer-wave-container">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-            </svg>
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg>
         </div>
 
         <footer>
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>&copy; 2026 - Todos os direitos reservados.</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://instagram.com/passeiosdomiguel" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/351965715466" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Acesso Rápido</h4>
-                    <a href="index.html">Início</a>
-                    <a href="passeios.html">Próximos Passeios</a>
-                    <a href="contatos.html">Contactos</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Informações</h4>
-                    <a href="#" onclick="abrirFaq()">Quem somos nós?</a>
-                    <a href="cancelamento.html">Política de Cancelamento</a>
-                </div>
-            </div>
+            <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
         </footer>
     </main>
 
-    <button class="faq-float" onclick="abrirFaq()" title="Precisa de ajuda?">
-        <i class="fas fa-question"></i>
-    </button>
-
-<div id="janelaFaq">
-        <div class="faq-card">
-            <div class="faq-header">
-                <span id="fecharFaq">&times;</span>
-                <h2 style="margin: 0;">Central de Ajuda</h2>
-            </div>
-            <div class="faq-body" style="max-height: 70vh; overflow-y: auto;">
-                
-                <p><strong>📍 Partidas e Horários:</strong><br>Os locais exatos e horas de partida são confirmados via telefone ou WhatsApp até 48h antes da viagem.</p>
-                
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                
-                <p><strong>💳 Métodos de Pagamento:</strong><br>Aceitamos MB Way, Transferência Bancária ou Numerário no ato da reserva.</p>
-                
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                
-                <p><strong>🚫 Política de Cancelamento:</strong><br>Reembolso de 100% para cancelamentos feitos até 30 dias antes da data da viagem.</p>
-                
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-
-                <p><strong>🎒 O que está incluído?</strong><br>Geralmente o transporte em autocarro de turismo e o Guia Acompanhante. Refeições e entradas em monumentos dependem de cada passeio (ver descrição).</p>
-
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-
-                <p><strong>👶 Crianças e Famílias:</strong><br>Crianças são bem-vindas! Em alguns passeios dispomos de preços especiais para menores de 12 anos (ver descrições).</p>
-
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-
-                <p><strong>🪑 Reserva de Lugares:</strong><br>Os lugares no autocarro são atribuídos por ordem de reserva. Se tiver preferência por viajar à frente, reserve com antecedência!</p>
-
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-
-                <p><strong>🐾 Animais de Estimação:</strong><br>Infelizmente, por questões de segurança e higiene no autocarro, não é permitido o transporte de animais.</p>
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Carrega o Menu Lateral dinamicamente
-        fetch('menu.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar menu:', err));
-
-        // Funções para controlar a Janela de Ajuda
-        function abrirFaq() {
-            document.getElementById('janelaFaq').style.display = 'block';
-        }
-
-        function fecharFaq() {
-            document.getElementById('janelaFaq').style.display = 'none';
-        }
-
-        // Fecha o modal se o utilizador clicar fora da caixa branca
-        window.onclick = function(event) {
-            let modal = document.getElementById('janelaFaq');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
