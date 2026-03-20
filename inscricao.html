@@ -2,94 +2,191 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscrição - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Layout Base Lateral */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f0f2f5; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* Banner Curvo */
+        .banner-inscricao {
+            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
+                        url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; color: white;
+            padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
+        }
+        .banner-inscricao h1 { font-size: 2.5em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
+
+        /* Secção do Formulário */
+        .seccao-form { padding: 40px 20px; flex-grow: 1; }
+        .container-form { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 { color: #1e4d8c; font-size: 1.5em; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        h2 i { color: #ff8c00; }
+
+        /* Estilo dos Inputs */
+        .campo-grupo { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; font-size: 0.95em; }
+        
+        input, select {
+            width: 100%; padding: 14px; border: 2px solid #e1e5e9; border-radius: 12px;
+            box-sizing: border-box; font-size: 1em; transition: 0.3s; background: #fdfdfd;
+        }
+        input:focus, select:focus { border-color: #1e4d8c; outline: none; background: #fff; box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.1); }
+
+        /* Grid para Nome e Telefone em linha no desktop */
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .grid-inputs { grid-template-columns: 1fr; } }
+
+        /* Cartões Dinâmicos */
+        .card-extra {
+            background: #f8f9fa; padding: 25px; border-radius: 20px; 
+            margin-top: 20px; border: 1px dashed #aac6ff;
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Botão Submeter */
+        .btn-enviar {
+            background: #1e4d8c; color: white; padding: 20px; border: none; border-radius: 15px;
+            width: 100%; font-weight: bold; font-size: 1.2em; cursor: pointer; margin-top: 30px;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-enviar:hover { background: #ff8c00; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3); }
+
+        /* Rodapé com Onda */
+        .footer-wave { background: white; line-height: 0; }
+        .footer-wave svg { width: 100%; height: 50px; fill: #1e4d8c; }
+        footer { background: #1e4d8c; color: white; padding: 40px 20px; text-align: center; }
+    </style>
 </head>
 <body>
+
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner"><h1>Inscrição</h1></div>
-        <section>
-            <form action="https://formspree.io/f/manjdnbw" method="POST">
-                <h2>Dados do Responsável</h2>
-                <input type="text" name="nomeResponsavel" placeholder="Nome Completo" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
-                <input type="tel" name="contactoResponsavel" placeholder="Contacto Telefónico" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
-                <input type="text" name="localidadeResponsavel" placeholder="Localidade" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
-                <input type="date" name="nascimentoResponsavel" required style="width: 100%; padding: 10px; margin-bottom:10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+        <div class="banner-inscricao">
+            <h1>Reserva de Lugar</h1>
+            <p>Preencha os dados abaixo para garantir a sua viagem.</p>
+        </div>
 
-                <hr style="margin: 30px 0;">
+        <section class="seccao-form">
+            <div class="container-form">
+                <form action="https://formspree.io/f/manjdnbw" method="POST">
+                    
+                    <h2><i class="fas fa-user-circle"></i> Dados do Responsável</h2>
+                    
+                    <div class="campo-grupo">
+                        <label>Nome Completo</label>
+                        <input type="text" name="nomeResponsavel" placeholder="Ex: Maria Silva" required>
+                    </div>
 
-                <label><strong>Passeio Escolhido:</strong></label>
-                <select id="passeioEscolhido" name="Passeio" required style="width: 100%; padding: 10px; margin-bottom:20px; border-radius: 8px; border: 1.5px solid #aac6ff;">
-                     <option value="Festa das Camélias">Festa das Camélias</option>
-                    <option value="Rota da Cereja">Rota da Cereja</option>
-                    <option value="Festa das Cruzes">Festa das Cruzes</option>
+                    <div class="grid-inputs">
+                        <div class="campo-grupo">
+                            <label>Telemóvel</label>
+                            <input type="tel" name="contactoResponsavel" placeholder="9xx xxx xxx" required>
+                        </div>
+                        <div class="campo-grupo">
+                            <label>Data de Nascimento</label>
+                            <input type="date" name="nascimentoResponsavel" required>
+                        </div>
+                    </div>
 
-		<option value="Festas do Povo de Campo Maior">Festas do Povo de Campo Maior</option>
+                    <div class="campo-grupo">
+                        <label>Localidade</label>
+                        <input type="text" name="localidadeResponsavel" placeholder="Onde reside?" required>
+                    </div>
 
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
-                </select>
+                    <h2><i class="fas fa-bus"></i> Detalhes da Viagem</h2>
 
-                <label>Quantas pessoas adicionais pretende inscrever?</label>
-                <input type="number" id="numPessoas" min="0" max="10" value="0" onchange="gerarCampos()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #aac6ff;">
+                    <div class="campo-grupo">
+                        <label>Escolha o Passeio</label>
+                        <select id="passeioEscolhido" name="Passeio" required>
+                            <option value="">Selecione um passeio...</option>
+                            <option value="Festa das Camélias">Festa das Camélias</option>
+                            <option value="Rota da Cereja">Rota da Cereja</option>
+                            <option value="Festa das Cruzes">Festa das Cruzes</option>
+                            <option value="Festas do Povo de Campo Maior">Festas do Povo de Campo Maior</option>
+                        </select>
+                    </div>
 
-                <div id="camposDinamicos" style="margin-top:20px;"></div>
+                    <div class="campo-grupo">
+                        <label>Quantos acompanhantes leva consigo?</label>
+                        <select id="numPessoas" onchange="gerarCampos()">
+                            <option value="0">Vou sozinho(a)</option>
+                            <option value="1">1 Acompanhante</option>
+                            <option value="2">2 Acompanhantes</option>
+                            <option value="3">3 Acompanhantes</option>
+                            <option value="4">4 Acompanhantes</option>
+                            <option value="5">5 Acompanhantes</option>
+                        </select>
+                    </div>
 
-                <button type="submit" class="btn-detalhes" style="width:100%; margin-top:30px; cursor:pointer;">Enviar Inscrição</button>
-            </form>
+                    <div id="camposDinamicos"></div>
+
+                    <button type="submit" class="btn-enviar">
+                        Confirmar Inscrição <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
         </section>
+
+        <div class="footer-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+        <footer>
+            <p>&copy; 2026 Passeios do Miguel - Inscrições Online</p>
+        </footer>
     </main>
 
     <script>
-        // Preenche o passeio automaticamente ao carregar a página
+        // Preenche o passeio via URL
         window.onload = () => {
             const params = new URLSearchParams(window.location.search);
             const passeio = params.get('passeio');
             if(passeio) document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
         };
 
+        // Lógica dos campos dinâmicos com melhor design
         function gerarCampos() {
             const qtd = document.getElementById('numPessoas').value;
             const container = document.getElementById('camposDinamicos');
             container.innerHTML = '';
+            
             for(let i=1; i<=qtd; i++) {
                 container.innerHTML += `
-                <div style="background:#f4f7f9; padding:15px; border-radius:10px; margin-bottom:15px;">
-                    <strong>Pessoa Adicional ${i}:</strong>
-                    <input type="text" name="nomeExtra${i}" placeholder="Nome Completo" required style="width:100%; margin:5px 0; padding:8px;">
-                    <input type="text" name="localidadeExtra${i}" placeholder="Localidade" required style="width:100%; margin:5px 0; padding:8px;">
-                    <input type="date" name="nascExtra${i}" required style="width:100%; margin:5px 0; padding:8px;">
-                    <input type="tel" name="telExtra${i}" placeholder="Contacto" required style="width:100%; margin:5px 0; padding:8px;">
+                <div class="card-extra">
+                    <h3 style="color:#1e4d8c; margin-top:0; font-size:1.1em;"><i class="fas fa-user-plus"></i> Acompanhante ${i}</h3>
+                    <div class="campo-grupo">
+                        <input type="text" name="nomeExtra${i}" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="grid-inputs">
+                        <input type="date" name="nascExtra${i}" required>
+                        <input type="tel" name="telExtra${i}" placeholder="Contacto (Opcional)">
+                    </div>
                 </div>`;
             }
         }
-    </script>
 
-<script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
+        // Carregar Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(err => console.warn('Erro ao carregar o menu:', err));
-</script>
-
-<script>
-    document.addEventListener('click', function (e) {
-        // Deteta clique no botão flutuante ou no ícone que está dentro dele
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'block';
-        }
-        
-        // Deteta clique no X ou fora da janela para fechar
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
-	
+        });
+    </script>
 </body>
 </html>
