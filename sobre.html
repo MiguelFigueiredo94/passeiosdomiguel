@@ -2,77 +2,83 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Sobre Nós - Passeios do Miguel</title>
+    <title>Sobre Mim - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .container-sobre {
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 0 20px;
+        /* ESTILO PARA O FUNDO BRANCO FICAR AMPLO COMO NA HOME */
+        .seccao-branca {
+            background: white;
+            margin: 20px; /* Margem igual à do banner */
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .conteudo-flex {
+            max-width: 1200px; /* Largura máxima interna para o texto não esticar demasiado */
+            margin: 0 auto;
             display: flex;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        .foto-logotipo {
+        .coluna-logo {
             flex: 1;
             min-width: 300px;
             text-align: center;
         }
 
-        .foto-logotipo img {
+        .coluna-logo img {
             width: 100%;
-            max-width: 300px;
-            border-radius: 20px;
-            /* Se o teu logo tiver fundo branco, a sombra ajuda a destacar */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            max-width: 320px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
 
-        .texto-sobre {
+        .coluna-texto {
             flex: 1.5;
             min-width: 300px;
         }
 
-        .texto-sobre h2 {
+        .coluna-texto h2 {
             color: #1e4d8c;
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.2em;
+            margin-bottom: 25px;
         }
 
-        .texto-sobre p {
-            font-size: 1.1em;
+        .coluna-texto p {
+            font-size: 1.15em;
             line-height: 1.8;
             color: #444;
             margin-bottom: 20px;
             text-align: justify;
         }
 
-        .destaque-frase {
-            background: #f0f4f8;
-            padding: 20px;
+        .frase-assinatura {
             border-left: 5px solid #ff9800;
-            font-style: italic;
+            padding-left: 20px;
             margin-top: 30px;
+            font-style: italic;
             color: #1e4d8c;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.2em;
         }
 
-        /* BANNER PREMIUM */
+        /* BANNER IGUAL À HOME */
         .banner-sobre {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                         url('https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 100px 20px;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
             margin: 20px;
         }
 
-        .banner-sobre h1 { font-size: 3em; }
+        .banner-sobre h1 { font-size: 3em; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -81,30 +87,34 @@
 
     <main>
         <div class="banner-sobre">
-            <h1>A Nossa Essência</h1>
+            <h1>A Nossa História</h1>
             <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
         </div>
 
-        <section class="container-sobre">
-            <div class="foto-logotipo">
-                <img src="logo.png" alt="Logótipo Passeios do Miguel">
-            </div>
-
-            <div class="texto-sobre">
-                <h2>Bem-vindos aos Passeios do Miguel!</h2>
-                <p>
-                    Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.
-                </p>
-                <p>
-                    Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.
-                </p>
-                <p>
-                    Aqui encontrará a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às suas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!
-                </p>
+        <section class="seccao-branca">
+            <div class="conteudo-flex">
                 
-                <div class="destaque-frase">
-                    "Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta."
+                <div class="coluna-logo">
+                    <img src="https://i.imgur.com/X1xT7Fx.png" alt="Logótipo Passeios do Miguel">
                 </div>
+
+                <div class="coluna-texto">
+                    <h2>Bem-vindos aos Passeios do Miguel!</h2>
+                    <p>
+                        Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.
+                    </p>
+                    <p>
+                        Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.
+                    </p>
+                    <p>
+                        Aqui encontrará a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às suas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!
+                    </p>
+                    
+                    <div class="frase-assinatura">
+                        "Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta."
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -133,7 +143,7 @@
         </div>
     </footer>
 
-        <script>
+    <script>
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
@@ -141,6 +151,7 @@
             })
             .catch(err => console.warn('Erro ao carregar o menu:', err));
 
+        // Script para o botão FAQ abrir o modal (janelaFaq)
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 var modal = document.getElementById('janelaFaq');
