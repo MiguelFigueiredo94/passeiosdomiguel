@@ -3,63 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mim - Passeios do Miguel</title>
+    <title>Sobre Nós - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base */
-        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        /* Layout Base Profissional */
+        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; }
         
-        /* Espaço para o menu importado */
+        /* Container do Menu Importado */
         #container-menu { min-width: 250px; }
 
         /* Conteúdo Principal */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        .banner-sobre {
-            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
+        /* --- HERO BANNER PREMIUM --- */
+        .hero-sobre {
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 80px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .hero-sobre h1 { font-size: 42px; margin: 0 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-sobre p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        .seccao-sobre { background: white; padding: 60px 40px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        /* --- SECÇÃO DE CONTEÚDO PRINCIPAL --- */
+        .seccao-premium-sobre { padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
+
+        /* Card do Título e Logotipo */
+        .card-introducao {
+            background: white; padding: 50px; border-radius: 40px; text-align: center;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06); width: 100%; max-width: 1000px;
+            margin-bottom: 60px; border: 1px solid #eef1f5;
+        }
+        .logo-sobre-premium { width: 100%; max-width: 150px; height: auto; margin-bottom: 25px; object-fit: contain; }
+        .card-introducao h2 { color: #1e4d8c; font-size: 32px; margin: 0 0 15px; font-weight: 800; }
+        .boas-vindas-sobre { font-size: 17px; color: #555; max-width: 750px; margin: 0 auto 30px; line-height: 1.8; }
         
-        /* LOGOTIPO NO CONTEÚDO */
-        .logo-sobre { width: 100%; max-width: 220px; height: auto; margin-bottom: 30px; object-fit: contain; }
-
-        .texto-sobre { max-width: 850px; color: #444; line-height: 1.8; font-size: 16px; }
-        .texto-sobre h2 { color: #1e4d8c; margin-bottom: 25px; font-size: 28px; }
-        .destaque-azul { color: #1e4d8c; font-weight: 700; }
-
-        /* --- ESTILOS DO MODAL FAQ --- */
-        .btn-flutuante-faq {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 65px; height: 65px;
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            cursor: pointer; z-index: 9999;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid white;
+        /* --- SECÇÃO HISTÓRIA (Texto com Imagem Lateral) --- */
+        .bloco-historia {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1000px;
+            margin-bottom: 60px; align-items: center;
         }
-        .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
+        .imagem-historia {
+            width: 100%; height: auto; border-radius: 30px; object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 10px solid white;
+        }
+        .texto-historia h3 { color: #1e4d8c; font-size: 26px; margin: 0 0 20px; }
+        .texto-historia p { font-size: 16px; color: #444; line-height: 1.9; margin-bottom: 20px; }
+        
+        /* Destaque para São Pedro do Sul */
+        .destaque-sul {
+            background: rgba(30, 77, 140, 0.08); border-left: 5px solid #ff9800;
+            padding: 20px; border-radius: 0 15px 15px 0; color: #1e4d8c; font-weight: 600; font-style: italic;
+        }
 
-        #janelaFaq { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+        /* --- SECÇÃO MISSÃO E VALORES (Cards) --- */
+        .grid-valores-premium {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            width: 100%; max-width: 1000px; margin-top: 40px;
+        }
+        .valor-card-premium {
+            background: white; padding: 40px; border-radius: 25px; text-align: center;
+            border: 1px solid #eef1f5; transition: all 0.4s ease;
+        }
+        .valor-card-premium:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(30, 77, 140, 0.1); border-color: #ddd; }
+        .valor-icon-premium { font-size: 35px; color: #ff9800; background: rgba(255,152,0,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .valor-card-premium h4 { color: #1e4d8c; font-size: 20px; margin: 0 0 15px; }
+        .valor-card-premium p { font-size: 15px; color: #666; line-height: 1.7; margin: 0; }
+
+        /* --- MODAL FAQ (MANUTENÇÃO DO ESTILO QUE FUNCIONA) --- */
+        .btn-flutuante-faq { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: linear-gradient(135deg, #ff9800, #f57c00); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 999998; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 3px solid white; }
+        .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
+        #janelaFaq { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
         .faq-card { background: white; margin: 6% auto; width: 90%; max-width: 480px; border-radius: 25px; overflow: hidden; position: relative; animation: abrirModal 0.4s ease-out; }
+        @keyframes abrirModal { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
         #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
-        .faq-body { padding: 30px; color: #333; line-height: 1.8; font-size: 15px; max-height: 70vh; overflow-y: auto; }
+        .faq-body { padding: 30px; color: #333; line-height: 1.8; max-height: 70vh; overflow-y: auto; }
 
-        /* Rodapé */
-        .footer-wave-container { background: white; line-height: 0; }
+        /* Rodapé com Wave */
+        .footer-wave-container { background: #f0f3f7; line-height: 0; }
         .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
-        footer { background: #1e4d8c; color: white; padding: 40px 20px; text-align: center; }
+        footer { background: #1e4d8c; color: white; padding: 50px 30px; text-align: center; }
 
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .seccao-premium-sobre { padding: 60px 30px; }
+            .bloco-historia { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .grid-valores-premium { grid-template-columns: 1fr; gap: 20px; }
+        }
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #container-menu { min-width: 100%; }
+            .hero-sobre h1 { font-size: 30px; }
         }
     </style>
 </head>
@@ -68,26 +105,60 @@
     <div id="container-menu"></div>
 
     <main>
-        <div class="banner-sobre">
-            <h1>Sobre Mim</h1>
-            <p>A história por trás de cada quilómetro percorrido.</p>
+        <div class="hero-sobre">
+            <h1>Sobre Nós</h1>
+            <p>A história por trás de cada quilómetro percorrido, onde a alma de Portugal encontra a aventura.</p>
         </div>
 
-        <section class="seccao-sobre">
-            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre" alt="Passeios do Miguel">
-
-            <div class="texto-sobre">
+        <section class="seccao-premium-sobre">
+            
+            <div class="card-introducao">
+                <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre-premium" alt="Passeios do Miguel Logo">
                 <h2>Bem Vindos! 😉</h2>
-                <p><strong>Bem-vindos aos Passeios do Miguel!</strong> Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou. Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos.</p>
-                
-                <p>Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias. Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
-                
-                <p class="destaque-azul">Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta.</p>
-                
-                <p>De <span class="destaque-azul">São Pedro do Sul 🗺️🗾</span> para os cantos mais bonitos de Portugal.</p>
-                
-                <p><strong>Junte-se a nós e venha viver momentos incríveis!</strong></p>
+                <p class="boas-vindas-sobre">Estamos muito felizes por o ter aqui. Esta página nasceu de uma paixão e transforma cada viagem numa memória inesquecível. Conheça a nossa jornada.</p>
             </div>
+
+            <div class="bloco-historia">
+                <img src="https://images.unsplash.com/photo-1471180625746-9645f39b2fa2?auto=format&fit=crop&w=600&q=80" class="imagem-historia" alt="Passeio Organizado">
+                <div class="texto-historia">
+                    <h3>De um Gesto ao Projeto de Vida</h3>
+                    <p><strong>Passeios do Miguel:</strong> Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
+                    <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos.</p>
+                </div>
+            </div>
+
+            <div class="bloco-historia" style="direction: rtl;">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" class="imagem-historia" alt="Exploração de Portugal">
+                <div class="texto-historia" style="direction: ltr;">
+                    <h3>Passeios com Alma e Aventura</h3>
+                    <p>Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
+                    <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
+                    
+                    <p class="destaque-sul">
+                        Venha explorar Portugal com boa disposição e espírito de descoberta.<br>
+                        De São Pedro do Sul 🗺️🗾 para os cantos mais bonitos do país.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-valores-premium">
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-smile"></i></div>
+                    <h4>Boa Disposição</h4>
+                    <p>Garantimos um ambiente descontraído e alegre em cada viagem.</p>
+                </div>
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4>Cultura e Natureza</h4>
+                    <p>Mostramos os cantos mais bonitos e históricos de Portugal.</p>
+                </div>
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-heart"></i></div>
+                    <h4>Espírito de Comunidade</h4>
+                    <p>Crescemos com as vossas sugestões. Vocês são parte da jornada.</p>
+                </div>
+            </div>
+
         </section>
 
         <div class="footer-wave-container">
@@ -95,7 +166,7 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 Passeios do Miguel - De São Pedro do Sul para o país.</p>
+            <p style="margin: 0; font-size: 15px;">&copy; 2026 Passeios do Miguel - De São Pedro do Sul para o país.</p>
         </footer>
     </main>
 
@@ -124,14 +195,14 @@
     </div>
 
     <script>
-        // Importar o Menu
+        // Importar o Menu.html
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('container-menu').innerHTML = data;
             });
 
-        // Modal FAQ
+        // Controlo do Modal FAQ
         const modal = document.getElementById('janelaFaq');
         const btn = document.getElementById('botaoDuvidas');
         const span = document.getElementById('fecharFaq');
