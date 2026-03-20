@@ -6,20 +6,25 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ESTILO ESPECÍFICO DO FAQ */
-        .container-faq { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        /* AJUSTES DE ESPAÇAMENTO E RESPIRAÇÃO */
+        .container-faq { 
+            max-width: 900px; 
+            margin: 60px auto; /* Aumentei a margem superior */
+            padding: 0 20px; 
+        }
         
         .faq-item {
             background: #fff;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px; /* Mais espaço entre perguntas */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais suave e ampla */
             overflow: hidden;
             border: 1px solid #eee;
+            transition: 0.3s;
         }
 
         .faq-pergunta {
-            padding: 20px;
+            padding: 25px; /* Mais espaço interno */
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -28,39 +33,49 @@
             background: none;
             border: none;
             text-align: left;
-            font-size: 1.1em;
+            font-size: 1.15em;
             font-weight: bold;
             color: #1e4d8c;
-            transition: 0.3s;
         }
 
-        .faq-pergunta:hover { background: #f9f9f9; }
+        .faq-pergunta:hover { background: #fcfcfc; }
 
         .faq-resposta {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background: #fdfdfd;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fafafa;
         }
 
-        .faq-resposta-inner { padding: 0 20px 20px 20px; color: #555; line-height: 1.6; }
+        .faq-resposta-inner { 
+            padding: 5px 25px 25px 25px; 
+            color: #555; 
+            line-height: 1.8; /* Texto mais legível */
+            font-size: 1.05em;
+        }
 
+        .faq-item.ativo {
+            border-left: 5px solid #ff9800; /* Destaque lateral quando aberto */
+        }
+        
         .faq-item.ativo .faq-pergunta { color: #ff9800; }
-        .faq-item.ativo .faq-resposta { max-height: 200px; } /* Ajustar se a resposta for muito longa */
+        .faq-item.ativo .faq-resposta { max-height: 300px; } 
         .faq-item.ativo i { transform: rotate(180deg); color: #ff9800; }
 
-        /* BANNER PREMIUM */
+        /* BANNER CORRIGIDO (MENOS ARREDONDADO E MAIS AMPLO) */
         .banner-faq {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 20px;
-            border-radius: 25px;
+            padding: 100px 20px; /* Mais altura para o banner */
+            border-radius: 15px; /* Bordas menos exageradas */
             text-align: center;
-            margin-bottom: 40px;
+            margin: 20px; /* Margem lateral para não colar nos cantos */
         }
+
+        .banner-faq h1 { font-size: 3em; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -79,7 +94,7 @@
                 <button class="faq-pergunta">Como posso fazer a minha reserva? <i class="fas fa-chevron-down"></i></button>
                 <div class="faq-resposta">
                     <div class="faq-resposta-inner">
-                        As reservas podem ser feitas através do nosso site na página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento.
+                        As reservas podem ser feitas através da nossa página de contactos, por telefone ou mensagem de WhatsApp. A reserva só é considerada confirmada após o envio do comprovativo de pagamento.
                     </div>
                 </div>
             </div>
@@ -88,7 +103,7 @@
                 <button class="faq-pergunta">Onde são os pontos de partida? <i class="fas fa-chevron-down"></i></button>
                 <div class="faq-resposta">
                     <div class="faq-resposta-inner">
-                        Os nossos passeios partem habitualmente de São Pedro do Sul. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em Viseu ou Castro Daire. Confirme sempre no detalhe do passeio escolhido.
+                        Os nossos passeios partem habitualmente de São Pedro do Sul. Dependendo do trajeto, poderemos ter pontos de recolha adicionais em Viseu ou Castro Daire. Confirme sempre no detalhe do passeio.
                     </div>
                 </div>
             </div>
@@ -106,7 +121,7 @@
                 <button class="faq-pergunta">O que acontece se eu precisar de cancelar? <i class="fas fa-chevron-down"></i></button>
                 <div class="faq-resposta">
                     <div class="faq-resposta-inner">
-                        Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página de "Política de Cancelamento" no rodapé para saber prazos e condições de reembolso.
+                        Temos uma política de cancelamento transparente. Pedimos que consulte a nossa página dedicada no rodapé para saber prazos e condições de reembolso.
                     </div>
                 </div>
             </div>
@@ -115,7 +130,7 @@
                 <button class="faq-pergunta">O valor do passeio inclui refeições? <i class="fas fa-chevron-down"></i></button>
                 <div class="faq-resposta">
                     <div class="faq-resposta-inner">
-                        Depende do programa. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada passeio.
+                        Depende do programa específico. Alguns passeios incluem almoço em restaurantes típicos, enquanto outros são livres. Essa informação está sempre detalhada na descrição de cada evento.
                     </div>
                 </div>
             </div>
@@ -132,31 +147,8 @@
         </section>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>&copy; 2026 - Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a><br>
-                <a href="contatos.html">Contactos</a><br>
-                <a href="dicas.html">Dicas Úteis</a><br>
-                <a href="faq.html">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
+    <footer id="footer-placeholder"></footer> <script>
+        // Carrega o Menu
         fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
         // Lógica do Acordeão
@@ -166,53 +158,15 @@
                 item.classList.toggle('ativo');
             });
         });
-    </script>
 
-<script>
-    // 1. Carregar o Menu Dinâmico
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(err => console.warn('Erro ao carregar o menu:', err));
-
-    // 2. Lógica do Acordeão (Específica para a página FAQ)
-    document.querySelectorAll('.faq-pergunta').forEach(botao => {
-        botao.addEventListener('click', () => {
-            const item = botao.parentElement;
-            // Fecha outros itens se quiseres que apenas um esteja aberto de cada vez
-            // document.querySelectorAll('.faq-item').forEach(i => i !== item && i.classList.remove('ativo'));
-            item.classList.toggle('ativo');
-        });
-    });
-
-    // 3. O "SPRITE" DE CONTROLO DO BOTÃO FLUTUANTE
-    // Este código deteta o clique no botão de dúvidas em qualquer página
-    document.addEventListener('click', function (e) {
-        // Seleciona o botão ou qualquer elemento dentro dele (o ícone)
-        const botaoDuvidas = e.target.closest('#botaoDuvidas');
-        
-        if (botaoDuvidas) {
-            // OPÇÃO A: Se quiseres que o botão leve para a NOVA PÁGINA FAQ:
-            window.location.href = 'faq.html';
-            
-            /* OPÇÃO B: Se preferires abrir a janela pop-up (Modal) como dantes:
-            var modal = document.getElementById('janelaFaq');
-            if (modal) {
-                modal.style.display = 'block';
+        // O "SPRITE" DO BOTÃO FLUTUANTE
+        document.addEventListener('click', function (e) {
+            const botaoDuvidas = e.target.closest('#botaoDuvidas');
+            if (botaoDuvidas) {
+                // Se já estamos no FAQ, podemos fazer scroll para o topo ou apenas ignorar
+                window.location.href = 'faq.html';
             }
-            */
-        }
-
-        // Lógica para fechar o Modal (se estiveres a usar a Opção B)
-        if (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq') {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
-
-    
+        });
+    </script>
 </body>
 </html>
