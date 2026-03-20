@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* SECÇÃO BRANCA AMPLA (IGUAL À HOME) */
+        /* SECÇÃO BRANCA AMPLA (IGUAL À HOME E SOBRE) */
         .seccao-branca {
             background: white;
             margin: 20px;
@@ -64,6 +64,7 @@
             font-weight: bold;
             color: white;
             text-transform: uppercase;
+            z-index: 2;
         }
         .status-aberto { background: #2ecc71; }
         .status-ultimos { background: #e67e22; }
@@ -171,7 +172,7 @@
                     </div>
                     <div class="botoes-card">
                         <a href="#" class="btn-detalhes">Ver Mais</a>
-                        <a href="https://wa.me/teunumeroaqui" class="btn-reservar">Reservar</a>
+                        <a href="https://wa.me/351910000000?text=Olá! Quero reservar o passeio ao Porto." class="btn-reservar">Reservar</a>
                     </div>
                 </article>
 
@@ -190,14 +191,14 @@
                     </div>
                     <div class="botoes-card">
                         <a href="#" class="btn-detalhes">Ver Mais</a>
-                        <a href="https://wa.me/teunumeroaqui" class="btn-reservar">Reservar</a>
+                        <a href="https://wa.me/351910000000?text=Olá! Quero reservar o passeio ao Gerês." class="btn-reservar">Reservar</a>
                     </div>
                 </article>
 
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-completo">Esgotado</span>
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Algarve">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Elvas">
                     </div>
                     <div class="info-passeio">
                         <div class="detalhes-rapidos">
@@ -208,7 +209,7 @@
                         <p class="descricao-curta">Visita às fortificações Património Mundial, Museus e a excelente gastronomia alentejana.</p>
                     </div>
                     <div class="botoes-card">
-                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="#" class="btn-detalhes">Ver Detalhes</a>
                         <a href="#" class="btn-reservar" style="background:#ccc; cursor:not-allowed;">Indisponível</a>
                     </div>
                 </article>
@@ -217,16 +218,21 @@
         </section>
     </main>
 
+    <footer>
+        </footer>
+
     <script>
+        // Carrega o Menu
         fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
-        // Lógica do Modal FAQ
+        // Lógica do Modal FAQ (O teu "Sprite")
         document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+            const botaoDuvidas = e.target.closest('#botaoDuvidas');
+            if (botaoDuvidas) {
                 var modal = document.getElementById('janelaFaq');
                 if (modal) modal.style.display = 'block';
             }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+            if (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq') {
                 var modal = document.getElementById('janelaFaq');
                 if (modal) modal.style.display = 'none';
             }
