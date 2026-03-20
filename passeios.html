@@ -10,30 +10,42 @@
         /* AJUSTE PARA O MENU FIXO */
         body { padding-top: 80px; margin: 0; background-color: #f4f7f6; }
 
-        /* BANNER DE TÍTULO (ESTILO A NOSSA HISTÓRIA / INDEX) */
-        .banner-topo {
-            height: 350px;
-            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
-                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200');
+        <!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Passeios do Miguel - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
+        .banner-index {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             color: white;
-            margin-bottom: 40px;
-            border-radius: 0 0 50px 50px;
+            padding: 80px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .banner-topo h1 {
-            font-size: 3em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            margin: 0;
+        .banner-index h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
+        .banner-index p {
+            font-size: 1.2em;
+            max-width: 600px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
         /* GRID E CARDS */
         .seccao-branca { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px 20px; }
         .grid-passeios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
