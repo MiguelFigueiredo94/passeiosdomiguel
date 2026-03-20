@@ -17,18 +17,22 @@
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         .banner-sobre {
-            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), 
+            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        .seccao-sobre { background: white; padding: 60px 40px; flex-grow: 1; display: flex; align-items: center; gap: 40px; }
-        .foto-miguel { width: 300px; height: 300px; border-radius: 30px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .texto-sobre { max-width: 700px; color: #444; line-height: 1.8; }
-        .texto-sobre h2 { color: #1e4d8c; margin-top: 0; }
+        .seccao-sobre { background: white; padding: 60px 40px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        
+        /* LOGOTIPO NO CONTEÚDO */
+        .logo-sobre { width: 100%; max-width: 220px; height: auto; margin-bottom: 30px; object-fit: contain; }
 
-        /* --- ESTILOS DO MODAL FAQ (IGUAIS AO INDEX) --- */
+        .texto-sobre { max-width: 850px; color: #444; line-height: 1.8; font-size: 16px; }
+        .texto-sobre h2 { color: #1e4d8c; margin-bottom: 25px; font-size: 28px; }
+        .destaque-azul { color: #1e4d8c; font-weight: 700; }
+
+        /* --- ESTILOS DO MODAL FAQ --- */
         .btn-flutuante-faq {
             position: fixed; bottom: 30px; right: 30px;
             width: 65px; height: 65px;
@@ -44,7 +48,6 @@
 
         #janelaFaq { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
         .faq-card { background: white; margin: 6% auto; width: 90%; max-width: 480px; border-radius: 25px; overflow: hidden; position: relative; animation: abrirModal 0.4s ease-out; }
-        @keyframes abrirModal { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
         #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
         .faq-body { padding: 30px; color: #333; line-height: 1.8; font-size: 15px; max-height: 70vh; overflow-y: auto; }
@@ -54,8 +57,7 @@
         .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
         footer { background: #1e4d8c; color: white; padding: 40px 20px; text-align: center; }
 
-        @media (max-width: 900px) {
-            .seccao-sobre { flex-direction: column; text-align: center; }
+        @media (max-width: 768px) {
             body { flex-direction: column; }
             #container-menu { min-width: 100%; }
         }
@@ -67,17 +69,24 @@
 
     <main>
         <div class="banner-sobre">
-            <h1>A História por trás dos Passeios</h1>
-            <p>Conheça quem organiza as suas próximas memórias.</p>
+            <h1>Sobre Mim</h1>
+            <p>A história por trás de cada quilómetro percorrido.</p>
         </div>
 
         <section class="seccao-sobre">
-            <img src="https://via.placeholder.com/300" class="foto-miguel" alt="Miguel">
+            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre" alt="Passeios do Miguel">
+
             <div class="texto-sobre">
-                <h2>Olá, eu sou o Miguel!</h2>
-                <p>Desde cedo que a paixão por descobrir novos recantos de Portugal me move. O que começou como pequenos passeios entre amigos, tornou-se num projeto dedicado a proporcionar experiências autênticas.</p>
-                <p>O meu objetivo é garantir que cada viagem seja confortável, segura e alegre. Viajar comigo é descobrir o país com quem realmente se dedica a criar sorrisos em cada paragem.</p>
-                <p><strong>Junte-se a nós na próxima aventura!</strong></p>
+                <h2>Bem Vindos! 😉</h2>
+                <p><strong>Bem-vindos aos Passeios do Miguel!</strong> Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou. Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos.</p>
+                
+                <p>Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias. Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
+                
+                <p class="destaque-azul">Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta.</p>
+                
+                <p>De <span class="destaque-azul">São Pedro do Sul 🗺️🗾</span> para os cantos mais bonitos de Portugal.</p>
+                
+                <p><strong>Junte-se a nós e venha viver momentos incríveis!</strong></p>
             </div>
         </section>
 
@@ -86,7 +95,7 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+            <p>&copy; 2026 Passeios do Miguel - De São Pedro do Sul para o país.</p>
         </footer>
     </main>
 
@@ -109,26 +118,23 @@
                 <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
                 <p><strong>🎒 O que está incluído?</strong><br>Geralmente o transporte e seguro. Refeições variam conforme o passeio.</p>
                 <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                <p><strong>👶 Crianças e Famílias:</strong><br>Preços especiais para menores de 12 anos em passeios selecionados.</p>
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
                 <p><strong>🐾 Animais de Estimação:</strong><br>Não é permitido o transporte de animais (exceto cães-guia).</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Carrega o menu lateral
+        // Importar o Menu
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('container-menu').innerHTML = data;
             });
 
-        // Controlo do Modal FAQ
+        // Modal FAQ
         const modal = document.getElementById('janelaFaq');
         const btn = document.getElementById('botaoDuvidas');
         const span = document.getElementById('fecharFaq');
-
         btn.onclick = () => modal.style.display = "block";
         span.onclick = () => modal.style.display = "none";
         window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
