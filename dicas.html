@@ -2,54 +2,81 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dicas de Viagem - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* GRELHA DE CARDS (RESPONSIVA) */
+        /* Base e Layout Lateral */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* BANNER PREMIUM */
+        .banner-dicas {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 0;
+        }
+
+        .banner-dicas h1 { font-size: 3em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .banner-dicas p { font-size: 1.2em; opacity: 0.9; }
+
+        /* CONTENTOR DE DICAS */
+        .seccao-dicas { padding: 60px 30px; background: white; flex-grow: 1; }
         .container-dicas {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         /* ESTILO DOS CARDS */
         .card-dica {
-            background: white;
+            background: #fff;
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-bottom: 4px solid #1e4d8c;
+            border: 1px solid #eee;
+            border-bottom: 5px solid #1e4d8c;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            align-items: center;
         }
 
         .card-dica:hover {
             transform: translateY(-10px);
-            border-bottom-color: #ff9800;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom-color: #ff8c00;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .icon-dica {
-            font-size: 45px;
-            color: #1e4d8c;
-            margin-bottom: 20px;
+            font-size: 50px;
+            color: #ff8c00; /* Laranja para destaque no ícone */
+            margin-bottom: 25px;
+            height: 60px;
+            display: flex;
+            align-items: center;
         }
 
         .card-dica h3 {
             color: #1e4d8c;
             margin-bottom: 15px;
-            font-size: 1.25em;
+            font-size: 1.4em;
         }
 
         .card-dica p {
             color: #555;
-            font-size: 0.95em;
-            line-height: 1.6;
+            font-size: 1em;
+            line-height: 1.7;
             margin: 0;
         }
 
@@ -57,27 +84,21 @@
             color: #1e4d8c;
             font-weight: bold;
             text-decoration: none;
-            border-bottom: 2px solid #ff9800;
+            border-bottom: 2px solid #ff8c00;
+            transition: 0.3s;
         }
+        
+        .card-dica a:hover { color: #ff8c00; }
 
-        /* BANNER PREMIUM COM SOBREPOSIÇÃO */
-        .banner-dicas {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 90px 20px;
-            border-radius: 25px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        /* RODAPÉ DINÂMICO (ONDA) */
+        .footer-wave-container { background: white; line-height: 0; }
+        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
 
-        .banner-dicas h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+        footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
+        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 12px 0; transition: 0.3s; }
+        .footer-col a:hover { color: white; padding-left: 8px; }
     </style>
 </head>
 <body>
@@ -85,130 +106,120 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section>
-            <div class="banner-dicas">
-                <h1>💡 Dicas do Miguel</h1>
-                <p>Tudo o que precisa de saber para que o seu passeio seja inesquecível.</p>
-            </div>
+        <div class="banner-dicas">
+            <h1>💡 Dicas do Miguel</h1>
+            <p>Tudo o que precisa de saber para que o seu passeio seja inesquecível.</p>
+        </div>
 
+        <section class="seccao-dicas">
             <div class="container-dicas">
                 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
                     <h3>O Calçado Ideal</h3>
-                    <p>Privilegie sapatilhas confortáveis e já habituadas ao pé. Evite estrear sapatos novos em dias de passeio para garantir o seu conforto.</p>
+                    <p>Privilegie sapatilhas confortáveis e já habituadas ao pé. Evite estrear sapatos novos em dias de passeio.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
                     <h3>Roupa Prática</h3>
-                    <p>Escolha vestuário que lhe dê total liberdade de movimentos. Vestir "à cebola" (camadas) é a melhor opção para as variações de temperatura.</p>
+                    <p>Escolha vestuário que lhe dê liberdade. Vestir em camadas ("à cebola") é a melhor opção para as variações de temperatura.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
                     <h3>Registe os Momentos</h3>
-                    <p>Traga o telemóvel carregado e, se possível, um powerbank. Não vai querer ficar sem bateria no meio de paisagens incríveis!</p>
+                    <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio de paisagens incríveis!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
                     <h3>Água e Lanches</h3>
-                    <p>Tenha sempre consigo uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante a viagem.</p>
+                    <p>Tenha sempre consigo uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante o trajeto.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-chair"></i></div>
                     <h3>Marcação de Lugares</h3>
-                    <p>Os lugares no autocarro são atribuídos por ordem de inscrição. Garanta a sua reserva cedo para assegurar os lugares da sua preferência!</p>
+                    <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus lugares preferidos!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-clock"></i></div>
                     <h3>Seja Pontual</h3>
-                    <p>Tente chegar ao local de partida 10 a 15 minutos antes. A pontualidade de todos garante que aproveitamos o dia ao máximo!</p>
+                    <p>Tente chegar 10 a 15 minutos antes da partida. A pontualidade de todos garante que aproveitamos o dia ao máximo!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-wallet"></i></div>
                     <h3>Numerário (Dinheiro)</h3>
-                    <p>Em feiras tradicionais ou aldeias, nem sempre há multibanco por perto. Traga alguns euros em numerário para pequenas compras ou café.</p>
+                    <p>Em feiras ou aldeias isoladas, nem sempre há multibanco. Traga alguns euros para pequenas compras ou café.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-pills"></i></div>
                     <h3>Saúde e Bem-estar</h3>
-                    <p>Não esqueça os seus medicamentos de uso diário. Um pequeno kit com pensos rápidos ou algo para o enjoo pode ser um grande aliado.</p>
+                    <p>Não esqueça os seus medicamentos diários. Um pequeno kit com algo para o enjoo pode ser um grande aliado.</p>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fab fa-facebook"></i></div>
+                    <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
                     <h3>Partilha de Fotos</h3>
-                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a>. É lá que partilhamos as fotografias e revivemos as melhores memórias!</p>
+                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-id-card"></i></div>
                     <h3>Identificação</h3>
-                    <p>Tenha sempre consigo o seu Cartão de Cidadão. É essencial para qualquer eventualidade ou identificação necessária durante o trajeto.</p>
+                    <p>Tenha sempre consigo o seu Cartão de Cidadão. É essencial para qualquer eventualidade durante o trajeto.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-leaf"></i></div>
                     <h3>Natureza Limpa</h3>
-                    <p>Vamos cuidar do que é nosso! Pedimos que não deixe lixo nos locais visitados nem no autocarro. Juntos, mantemos o nosso país impecável.</p>
+                    <p>Vamos cuidar do que é nosso! Pedimos que não deixe lixo nos locais visitados nem no autocarro.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-users"></i></div>
                     <h3>Espírito de Grupo</h3>
-                    <p>Traga boa disposição e espírito de descoberta. O convívio e as novas amizades são o que tornam os nossos passeios verdadeiramente especiais!</p>
+                    <p>Traga boa disposição! O convívio e as novas amizades são o que tornam os nossos passeios especiais.</p>
                 </div>
 
             </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>&copy; 2026 - Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a><br>
-                <a href="contatos.html">Contactos</a><br>
-            </div>
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="footer-wave-container">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>&copy; 2026 - Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <a href="index.html">Início</a>
+                    <a href="passeios.html">Passeios</a>
+                    <a href="contatos.html">Contactos</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Informações</h4>
+                    <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Regras de Cancelamento</a>
+                    <a href="faq.html">Perguntas Frequentes</a>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <script>
         // Carrega o Menu
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
-
-        // FAQ Modal logic
-        document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'none';
-            }
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
         });
     </script>
 
