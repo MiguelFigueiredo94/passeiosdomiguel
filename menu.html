@@ -6,37 +6,48 @@
         min-height: 100vh; 
         position: sticky; 
         top: 0; 
-        padding: 20px; 
+        padding: 25px 15px; 
         box-sizing: border-box;
-        z-index: 9999; /* Garante que o menu está acima de tudo */
+        z-index: 9999;
     }
     
-    .logo { width: 100%; max-width: 170px; margin: 0 auto 30px; display: block; }
+    /* LOGOTIPO: Corrigido para não esticar */
+    .logo { 
+        width: 100%; 
+        max-width: 180px; 
+        height: auto;
+        margin: 0 auto 30px; 
+        display: block; 
+        object-fit: contain; 
+    }
+
     #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
     #menu-lateral li { margin-bottom: 12px; position: relative; }
 
-    /* --- Botões do Menu --- */
+    /* --- Botões do Menu Principal --- */
     #menu-lateral ul li a { 
         display: flex; align-items: center; color: white; text-decoration: none; 
         padding: 12px 18px; font-size: 15px; font-weight: 600;
         transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
     }
 
     #menu-lateral ul li a:hover { 
         background: linear-gradient(135deg, #ff9800, #f57c00);
         transform: scale(1.05);
+        border-color: white;
         color: white;
     }
 
-    /* --- CORREÇÃO DO INVISÍVEL: SUBMENU COM FUNDO SÓLIDO --- */
+    /* --- SUBMENU (DROPDOWN) VISÍVEL E SÓLIDO --- */
     .dropdown-content {
         display: none;
         position: absolute;
-        left: 100%; /* Abre exatamente ao lado */
+        left: 100%; 
         top: 0;
-        background: #ffffff !important; /* BRANCO PURO PARA TOTAL VISIBILIDADE */
-        min-width: 240px;
-        box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+        background: #ffffff !important; 
+        min-width: 260px;
+        box-shadow: 8px 8px 25px rgba(0,0,0,0.3);
         border-radius: 15px;
         padding: 10px 0;
         z-index: 10000;
@@ -45,24 +56,25 @@
 
     .dropdown:hover > .dropdown-content { display: block; }
 
-    /* Itens dentro do Submenu */
     .dropdown-content a {
-        color: #1e4d8c !important; /* TEXTO ESCURO NO FUNDO BRANCO */
+        color: #1e4d8c !important;
         background: none !important;
         padding: 10px 20px !important;
-        font-size: 14px !important;
+        font-size: 13px !important;
         font-weight: 500 !important;
         display: block !important;
         border-bottom: 1px solid #f0f0f0;
+        border-radius: 0 !important;
     }
 
     .dropdown-content a:hover {
         background-color: #f8f9fa !important;
         color: #ff9800 !important;
         padding-left: 25px !important;
+        transform: none !important;
     }
 
-    /* Sub-submenus (Anos) */
+    /* --- NESTED (ANOS) --- */
     .nested-dropdown { position: relative; }
     .nested-content {
         display: none;
@@ -70,8 +82,8 @@
         left: 100%;
         top: 0;
         background: #ffffff !important;
-        min-width: 230px;
-        box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+        min-width: 260px;
+        box-shadow: 8px 8px 25px rgba(0,0,0,0.3);
         border-radius: 0 15px 15px 15px;
         border: 1px solid #ddd;
     }
@@ -122,12 +134,13 @@
                         <a href="viana.html">Senhora d'Agonia</a>
                         <a href="aveiro.html">Canais de Aveiro</a>
                         <a href="braga.html">Braga Romana</a>
+                        <a href="fatima.html">Santuário de Fátima</a>
+                        <a href="coimbra.html">Coimbra dos Estudantes</a>
+                        <a href="douro.html">Cruzeiro no Douro</a>
+                        <a href="geres.html">Paisagens do Gerês</a>
+                        <a href="lamego.html">N. Sra. dos Remédios</a>
                     </div>
                 </div>
-
-                <a href="passeios.html" style="color: #ff9800 !important; font-weight: bold !important; border-bottom: none;">
-                    <i class="fas fa-plus-circle"></i> VER TODOS OS PASSEIOS
-                </a>
             </div>
         </li>
 
