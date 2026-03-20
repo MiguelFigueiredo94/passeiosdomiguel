@@ -2,11 +2,19 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passeios do Miguel - Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
+        /* Base e Layout Lateral para manter a consistência */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* Banner Principal com Estilo de Passeios */
         .banner-index {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
@@ -14,35 +22,24 @@
             background-position: center;
             color: white;
             padding: 80px 20px;
-            border-radius: 20px;
             text-align: center;
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            border-radius: 0 0 50px 0; /* Arredondamento apenas no canto inferior direito para colar no menu */
         }
 
-        .banner-index h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+        .banner-index h1 { font-size: 2.5em; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .banner-index p { font-size: 1.2em; max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
 
-        .banner-index p {
-            font-size: 1.2em;
-            max-width: 600px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        }
+        /* Secção de Conteúdo */
+        .seccao-conteudo { background: white; padding: 50px 20px; flex-grow: 1; }
 
-        /* ESTILO DO VÍDEO (500PX) */
+        /* Estilo do Vídeo */
         .container-video-index { 
             width: 100%; 
-            max-width: 1000px; 
-            margin: 30px auto; 
+            max-width: 900px; 
+            margin: 0 auto; 
             border-radius: 20px; 
             overflow: hidden; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
         }
         .container-video-index iframe { 
             width: 100%; 
@@ -50,6 +47,28 @@
             display: block; 
             border: none;
         }
+
+        /* FAQ Botão Flutuante Laranja */
+        .faq-float { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #ff8c00; color: white; 
+            width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 28px; text-decoration: none; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 999; 
+        }
+
+        /* RODAPÉ DINÂMICO (IGUAL A PASSEIOS.HTML) */
+        .footer-wave-container { background: white; line-height: 0; }
+        .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
+
+        footer { background: #1e4d8c; color: white; padding: 50px 30px; margin: 0; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .footer-col h4 { font-size: 1.3em; margin-bottom: 20px; color: #ff8c00; }
+        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 10px 0; font-size: 0.95em; transition: 0.3s; }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+        .social-links { display: flex; gap: 20px; margin-top: 20px; }
+        .social-links a { font-size: 1.6em; color: white; }
     </style>
 </head>
 <body>
@@ -62,20 +81,22 @@
             <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
         </div>
 
-        <section>
+        <section class="seccao-conteudo">
             <div class="container-video-index">
                 <iframe 
                     src="https://www.youtube.com/embed/7uOx4BxH0rk" 
                     title="YouTube video player" 
-                    frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen>
                 </iframe>
             </div>
         </section>
 
-        
-    </main>
+        <div class="footer-wave-container">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
 
         <footer>
             <div class="footer-grid">
@@ -102,26 +123,20 @@
                 </div>
             </div>
         </footer>
+    </main>
+
+    <a href="faq.html" class="faq-float" id="botaoDuvidas">
+        <i class="fas fa-question"></i>
+    </a>
 
     <script>
+        // Carregar Menu Lateral
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
             })
             .catch(err => console.warn('Erro ao carregar o menu:', err));
-
-        document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'none';
-            }
-        });
     </script>
-    
 </body>
 </html>
