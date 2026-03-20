@@ -1,112 +1,99 @@
 <style>
     /* Estilo Base do Menu Lateral */
-    nav { font-family: 'Poppins', sans-serif; }
+    nav { font-family: 'Poppins', sans-serif; padding: 20px 15px; }
+    
+    .logo { 
+        width: 100%; 
+        max-width: 170px; 
+        margin: 0 auto 30px; 
+        display: block; 
+    }
 
-    /* Botão Flutuante (O "Chique") */
-    .btn-flutuante-faq {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 65px;
-        height: 65px;
-        background: linear-gradient(135deg, #ff9800, #f57c00);
-        color: white;
-        border-radius: 50%;
+    nav ul { list-style: none; padding: 0; margin: 0; }
+    nav ul li { margin-bottom: 12px; position: relative; }
+
+    /* BOTÕES ESTILO INDEX (Degradê Laranja no Hover) */
+    nav ul li a { 
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 26px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        cursor: pointer;
-        z-index: 999998;
+        color: white; 
+        text-decoration: none; 
+        padding: 12px 20px; 
+        font-size: 15px; 
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 50px; 
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
+    }
+
+    /* Efeito de Destaque igual ao Botão Flutuante */
+    nav ul li a:hover { 
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        border-color: white;
+        color: white;
+    }
+
+    /* Ajuste para o ícone de seta nos menus com dropdown */
+    nav ul li a i.fa-chevron-right {
+        margin-left: auto;
+        font-size: 10px;
+    }
+
+    /* --- Manutenção dos Dropdowns --- */
+    .dropdown-content, .nested-content {
+        display: none;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    .dropdown:hover > .dropdown-content { display: block; }
+    .nested-dropdown:hover > .nested-content { display: block; }
+
+    /* Links dentro dos submenus (mais simples para não sobrecarregar) */
+    .dropdown-content a, .nested-content a {
+        background: none !important;
+        border: none !important;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+    
+    .dropdown-content a:hover { color: #ff9800 !important; transform: translateX(5px) !important; box-shadow: none !important; }
+
+    /* --- Botão Flutuante "Chique" --- */
+    .btn-flutuante-faq {
+        position: fixed; bottom: 30px; right: 30px;
+        width: 65px; height: 65px;
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        cursor: pointer; z-index: 999998;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: 3px solid white;
     }
+    .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
 
-    .btn-flutuante-faq:hover {
-        transform: scale(1.15) rotate(15deg);
-        background: linear-gradient(135deg, #1e4d8c, #2a66ff);
-    }
-
-    /* Balão de texto ao lado do botão */
-    .btn-flutuante-faq::before {
-        content: "Dúvidas?";
-        position: absolute;
-        right: 80px;
-        background: #1e4d8c;
-        color: white;
-        padding: 6px 15px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        opacity: 0;
-        transition: 0.3s;
-        pointer-events: none;
-        white-space: nowrap;
-    }
-
-    .btn-flutuante-faq:hover::before {
-        opacity: 1;
-        right: 85px;
-    }
-
-    /* Modal FAQ com Efeito Vidro (Glassmorphism) */
+    /* Modal com Efeito Vidro */
     #janelaFaq {
-        display: none; 
-        position: fixed; 
-        z-index: 999999; 
-        left: 0; top: 0; width: 100%; height: 100%; 
-        background: rgba(0,0,0,0.7);
-        backdrop-filter: blur(8px); /* Efeito de vidro fosco */
+        display: none; position: fixed; z-index: 999999;
+        left: 0; top: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
     }
-
     .faq-card {
-        background: white;
-        margin: 6% auto;
-        width: 90%;
-        max-width: 480px;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-        position: relative;
-        animation: abrirModal 0.4s ease-out;
+        background: white; margin: 6% auto; width: 90%; max-width: 480px;
+        border-radius: 25px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        position: relative; animation: abrirModal 0.4s ease-out;
     }
-
-    @keyframes abrirModal {
-        from { transform: scale(0.7); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    .faq-header {
-        background: #1e4d8c;
-        color: white;
-        padding: 25px;
-        text-align: center;
-    }
-
-    .faq-body {
-        padding: 30px;
-        color: #333;
-        line-height: 1.8;
-        font-size: 15px;
-        max-height: 65vh;
-        overflow-y: auto;
-    }
-
-    #fecharFaq {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 35px;
-        cursor: pointer;
-        color: white;
-        transition: 0.2s;
-    }
-
-    #fecharFaq:hover { transform: scale(1.2); }
-    
-    .faq-body hr { border: 0; border-top: 1px dashed #ddd; margin: 15px 0; }
-    .faq-body strong { color: #1e4d8c; }
+    @keyframes abrirModal { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
+    #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
+    .faq-body { padding: 30px; color: #333; line-height: 1.8; max-height: 65vh; overflow-y: auto; }
 </style>
 
 <nav>
@@ -115,14 +102,17 @@
     </a>
 
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre Mim</a></li>
+        <li><a href="index.html"><i class="fas fa-home" style="margin-right:10px"></i> Home</a></li>
+        <li><a href="sobre.html"><i class="fas fa-user" style="margin-right:10px"></i> Sobre Mim</a></li>
         
         <li class="dropdown">
-            <a href="passeios.html">Passeios <i class="fas fa-chevron-right" style="font-size: 10px; margin-left: 8px;"></i></a>
+            <a href="passeios.html">
+                <i class="fas fa-bus" style="margin-right:10px"></i> Passeios 
+                <i class="fas fa-chevron-right"></i>
+            </a>
             <div class="dropdown-content">
                 <div class="nested-dropdown">
-                    <a href="#">Próximas Datas <i class="fas fa-chevron-right" style="float: right;"></i></a>
+                    <a href="#">Próximas Datas <i class="fas fa-chevron-right" style="float: right; font-size: 10px; margin-top: 5px;"></i></a>
                     <div class="nested-content">
                         <a href="campomaior.html">Festas do Povo (08 Ago)</a>
                         <a href="cereja.html">Rota da Cereja (14 Jun)</a>
@@ -130,35 +120,32 @@
                     </div>
                 </div>
                 <div class="nested-dropdown">
-                    <a href="#">2026 <i class="fas fa-chevron-right" style="float: right;"></i></a>
+                    <a href="#">2026 <i class="fas fa-chevron-right" style="float: right; font-size: 10px; margin-top: 5px;"></i></a>
                     <div class="nested-content">
                         <a href="camelias.html">Festa das Camélias</a>
                         <a href="gaia.html">Magia Animal em Gaia</a>
                     </div>
                 </div>
                 <div class="nested-dropdown">
-                    <a href="#">2025 <i class="fas fa-chevron-right" style="float: right;"></i></a>
+                    <a href="#">2025 <i class="fas fa-chevron-right" style="float: right; font-size: 10px; margin-top: 5px;"></i></a>
                     <div class="nested-content">
                         <a href="vigo.html">Valença & Vigo</a>
                         <a href="marvao.html">Nisa & Marvão</a>
-                        <a href="espinho.html">Senhora d'Ajuda</a>
                         <a href="viana.html">Senhora d'Agonia</a>
-                        <a href="geres.html">Gerês & Braga</a>
-                        <a href="fatima.html">Fátima</a>
-                        <a href="obidos.html">Festival do Chocolate</a>
-                        <a href="amendoeiras.html">Amendoeiras em Flor</a>
                     </div>
                 </div>
             </div> 
         </li>
-        <li><a href="contatos.html">Contactos</a></li>
-        <br><br>
-        <li><a href="dicas.html">Dicas Úteis</a></li>
-         <li><a href="faq.html">FAQ</a></li>
+
+        <li><a href="contatos.html"><i class="fas fa-envelope" style="margin-right:10px"></i> Contactos</a></li>
+        <br>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+        <li><a href="dicas.html"><i class="fas fa-lightbulb" style="margin-right:10px"></i> Dicas Úteis</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle" style="margin-right:10px"></i> FAQ</a></li>
     </ul>
 </nav>
 
-<div id="botaoDuvidas" class="btn-flutuante-faq" title="Dúvidas? Clique aqui!">
+<div id="botaoDuvidas" class="btn-flutuante-faq">
     <i class="fas fa-question"></i>
 </div>
 
@@ -166,26 +153,14 @@
     <div class="faq-card">
         <div class="faq-header">
             <span id="fecharFaq">&times;</span>
-            <h2 style="margin: 0; font-family: 'Poppins', sans-serif;">Central de Ajuda</h2>
+            <h2 style="margin: 0;">Central de Ajuda</h2>
         </div>
         <div class="faq-body">
-            <p><strong>📍 Partidas e Horários:</strong><br>
-            Confirmados via telefone até 48h antes da viagem.</p>
+            <p><strong>📍 Partidas e Horários:</strong><br>Confirmados até 48h antes.</p>
             <hr>
-            <p><strong>💳 Métodos de Pagamento:</strong><br>
-            Aceitamos MB Way, Transferência ou Numerário no ato da reserva.</p>
+            <p><strong>💳 Pagamentos:</strong><br>MB Way, Transferência ou Numerário.</p>
             <hr>
-            <p><strong>📝 Como se inscrever:</strong><br>
-            965 715 476 ou na página <a href="inscricao.html" style="color: #ff9800; font-weight: bold; text-decoration: none;">Inscrever-me</a>.</p>
-            <hr>
-            <p><strong>📋 Dados Necessários:</strong><br>
-            Nome completo, data de nascimento e localidade.</p>
-            <hr>
-            <p><strong>🚫 Política de Cancelamento:</strong><br>
-            Reembolso 100% até 30 dias antes. Depois desse prazo, não há reembolso.</p>
-            <hr>
-            <p><strong>🆔 Documentação:</strong><br>
-            Apenas responsabilidade do passageiro. Dispensáveis para a reserva interna.</p>
+            <p><strong>🚫 Cancelamento:</strong><br>Reembolso 100% até 30 dias antes.</p>
         </div>
     </div>
 </div>
