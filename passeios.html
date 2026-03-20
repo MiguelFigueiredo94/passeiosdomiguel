@@ -7,10 +7,34 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .seccao-branca { background: white; margin: 20px; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* ESTILO DO BANNER (IGUAL AO "SOBRE NÓS") */
+        .banner-topo {
+            height: 350px;
+            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
+                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200'); /* Podes trocar pela tua imagem de capa */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 50px 50px; /* Curvatura elegante no fundo */
+            margin-bottom: 40px;
+        }
+
+        .banner-topo h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* GRID E CARDS */
+        .seccao-branca { background: white; margin: 0 20px; padding: 10px 30px 40px; border-radius: 20px; }
         .grid-passeios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         
-        .card-passeio { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; }
+        .card-passeio { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .card-passeio:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
 
         .img-container { height: 200px; position: relative; }
@@ -30,7 +54,7 @@
         .botoes-card { display: flex; flex-direction: column; gap: 8px; padding: 15px; background: #f9f9f9; }
         .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         
-        .btn { padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; transition: 0.2s; border: none; cursor: pointer; }
+        .btn { padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; transition: 0.2s; border: none; }
         .btn-detalhes { background: #e1e9f1; color: #1e4d8c; width: 100%; display: block; }
         .btn-inscricao { background: #1e4d8c; color: white; }
         .btn-whatsapp { background: #25D366; color: white; }
@@ -45,6 +69,10 @@
 
 <div id="menu-placeholder"></div>
 
+<header class="banner-topo">
+    <h1>Os Nossos Passeios</h1>
+</header>
+
 <main>
     <section class="seccao-branca">
         <div class="grid-passeios">
@@ -54,7 +82,7 @@
             <article class="card-passeio">
                 <div class="img-container">
                     <span class="badge status-aberto">Aberto</span>
-                    <img src="https://images.unsplash.com/photo-1557241334-037f5947a27b?w=500" alt="Campo Maior">
+                    <img src="https://images.unsplash.com/photo-1557241334-037f5947a27b?w=500">
                 </div>
                 <div class="info-passeio">
                     <div class="data-tag"><i class="far fa-calendar-alt"></i> Abril 2026</div>
@@ -73,7 +101,7 @@
             <article class="card-passeio">
                 <div class="img-container">
                     <span class="badge status-ultimos">Últimos Lugares</span>
-                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?w=500" alt="Cerejas">
+                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?w=500">
                 </div>
                 <div class="info-passeio">
                     <div class="data-tag"><i class="far fa-calendar-alt"></i> Maio 2026</div>
@@ -92,7 +120,7 @@
             <article class="card-passeio">
                 <div class="img-container">
                     <span class="badge status-aberto">Aberto</span>
-                    <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?w=500" alt="Barcelos">
+                    <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?w=500">
                 </div>
                 <div class="info-passeio">
                     <div class="data-tag"><i class="far fa-calendar-alt"></i> Maio 2026</div>
@@ -109,12 +137,8 @@
             </article>
 
             <h2 class="titulo-seccao"><i class="fas fa-check-circle"></i> Temporada 2026</h2>
-            
             <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Camélias">
-                </div>
+                <div class="img-container"><span class="badge status-realizado">Realizado</span><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500"></div>
                 <div class="info-passeio">
                     <div class="data-tag"><i class="far fa-calendar-check"></i> Março 2026</div>
                     <h3>Festa das Camélias</h3>
@@ -123,148 +147,17 @@
                 <div class="botoes-card"><a href="camelias.html" class="btn btn-detalhes">Ver Memórias</a></div>
             </article>
 
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500" alt="Gaia">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Março 2026</div>
-                    <h3>Magia Animal</h3>
-                    <span class="localidade">(Gaia)</span>
-                </div>
-                <div class="botoes-card"><a href="gaia.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <h2 class="titulo-seccao"><i class="fas fa-star"></i> Temporada 2025</h2>
-            
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?w=500" alt="Vigo">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Dez 2025</div>
-                    <h3>Valença & Vigo</h3>
-                    <span class="localidade">(Galiza)</span>
-                </div>
-                <div class="botoes-card"><a href="vigo.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1621245749070-e04797079237?w=500" alt="Marvão">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Nov 2025</div>
-                    <h3>Festa da Castanha</h3>
-                    <span class="localidade">(Nisa & Marvão)</span>
-                </div>
-                <div class="botoes-card"><a href="marvao.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500" alt="Espinho">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Out 2025</div>
-                    <h3>Nossa Senhora d'Ajuda</h3>
-                    <span class="localidade">(Espinho)</span>
-                </div>
-                <div class="botoes-card"><a href="espinho.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1633511090164-b43840ea1607?w=500" alt="Viana">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Set 2025</div>
-                    <h3>Nossa Senhora d'Agonia</h3>
-                    <span class="localidade">(Viana do Castelo)</span>
-                </div>
-                <div class="botoes-card"><a href="viana.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1627916183990-25e2978c4333?w=500" alt="Gerês">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Ago 2025</div>
-                    <h3>Gerês e Braga</h3>
-                    <span class="localidade">(Minho)</span>
-                </div>
-                <div class="botoes-card"><a href="geres.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1549603091-76495111162f?w=500" alt="Fátima">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Mai 2025</div>
-                    <h3>Santuário de Fátima</h3>
-                    <span class="localidade">(Fátima)</span>
-                </div>
-                <div class="botoes-card"><a href="fatima.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1555527840-9a259972355f?w=500" alt="Óbidos">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Abr 2025</div>
-                    <h3>Festival Internacional do Chocolate</h3>
-                    <span class="localidade">(Óbidos)</span>
-                </div>
-                <div class="botoes-card"><a href="obidos.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
-            <article class="card-passeio">
-                <div class="img-container">
-                    <span class="badge status-realizado">Realizado</span>
-                    <img src="https://images.unsplash.com/photo-1613917631300-34863346e927?w=500" alt="Amendoeiras">
-                </div>
-                <div class="info-passeio">
-                    <div class="data-tag"><i class="far fa-calendar-check"></i> Mar 2025</div>
-                    <h3>Amendoeiras em Flor</h3>
-                    <span class="localidade">(Vila Nova de Foz Côa)</span>
-                </div>
-                <div class="botoes-card"><a href="amendoeiras.html" class="btn btn-detalhes">Ver Memórias</a></div>
-            </article>
-
         </div>
     </section>
 </main>
 
 <footer>
     <h3>Passeios do Miguel</h3>
-    <p>A criar memórias inesquecíveis em cada quilómetro.</p>
-    <div style="margin-top: 20px;">
-        <a href="https://wa.me/351910000000" style="color: #25D366; text-decoration: none; font-size: 1.8em; margin: 0 15px;"><i class="fab fa-whatsapp"></i></a>
-        <a href="contatos.html" style="color: white; text-decoration: none; font-size: 1.8em; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
-    </div>
+    <p>© 2026 Todos os direitos reservados.</p>
 </footer>
 
 <script>
-    // Carregar Menu
     fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
-
-    // FAQ Lógica (Menu)
-    document.addEventListener('click', function (e) {
-        const modal = document.getElementById('janelaFaq');
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) { if (modal) modal.style.display = 'block'; }
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) { if (modal) modal.style.display = 'none'; }
-    });
 </script>
 
 </body>
