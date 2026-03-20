@@ -9,7 +9,7 @@
     <style>
         /* Layout Base */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* Banner */
@@ -25,10 +25,10 @@
         .seccao-branca { background: white; padding: 60px 20px; flex-grow: 1; }
         .container-contatos { max-width: 1100px; margin: 0 auto; }
 
-        /* GRID COM 3 CAIXAS - Perfeito para o centro do ecrã */
+        /* GRID COM 3 CAIXAS */
         .grid-contatos { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 25px; 
             margin-bottom: 60px; 
         }
@@ -71,8 +71,33 @@
         }
         .form-container button:hover { background: #ff8c00; transform: scale(1.02); }
 
+        /* --- BOTÃO FLUTUANTE (O ponto de interrogação) --- */
+        .faq-float { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #ff8c00; color: white; 
+            width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 28px; cursor: pointer; border: none;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.4); 
+            z-index: 9999; 
+            transition: 0.3s;
+        }
+        .faq-float:hover { transform: scale(1.1); background: #e67e22; }
+
+        /* --- JANELA MODAL DE AJUDA --- */
+        .modal-faq {
+            display: none; position: fixed; z-index: 10001; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
+        }
+        .modal-faq-content {
+            background-color: white; margin: 10% auto; padding: 30px;
+            width: 85%; max-width: 500px; border-radius: 20px; position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+        .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #666; }
+
         /* Rodapé com Onda */
-        .footer-wave-container { background: white; line-height: 0; }
+        .footer-wave-container { background: white; line-height: 0; margin-top: auto; }
         .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
         footer { background: #1e4d8c; color: white; padding: 60px 30px; }
         .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
@@ -142,16 +167,46 @@
                 <div class="footer-col">
                     <h4>Informações Extra</h4>
                     <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Política de Cancelamento</a>
-                    <a href="faq.html">Dúvidas Frequentes</a>
+                    <a href="#" onclick="abrirFaq()">Dúvidas Frequentes</a>
                 </div>
             </div>
         </footer>
     </main>
 
+    <button class="faq-float" onclick="abrirFaq()" title="Dúvidas?">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <div id="janelaFaq" class="modal-faq">
+        <div class="modal-faq-content">
+            <span class="fechar-modal" onclick="fecharFaq()">&times;</span>
+            <h3 style="color: #1e4d8c;"><i class="fas fa-info-circle"></i> Ajuda Rápida</h3>
+            <hr>
+            <p><strong>Como recebo confirmação?</strong><br>Após enviar o formulário ou mensagem WhatsApp, entraremos em contacto em menos de 24h.</p>
+            <p><strong>Onde posso ver os preços?</strong><br>Os preços detalhados estão na página de cada passeio em "Ver Detalhes".</p>
+            <br>
+            <button onclick="fecharFaq()" style="background:#1e4d8c; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; width:100%; font-weight:bold;">Fechar</button>
+        </div>
+    </div>
+
     <script>
+        // Menu dinâmico
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
+
+        // Funções para a Janela Modal funcionar
+        function abrirFaq() {
+            document.getElementById('janelaFaq').style.display = 'block';
+        }
+        function fecharFaq() {
+            document.getElementById('janelaFaq').style.display = 'none';
+        }
+        // Fechar ao clicar fora da caixa branca
+        window.onclick = function(event) {
+            let modal = document.getElementById('janelaFaq');
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
     </script>
 </body>
 </html>
