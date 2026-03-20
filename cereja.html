@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rota da Cereja - Passeios do Miguel</title>
+    <title>Rota da Cereja - Fundão - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -12,35 +12,39 @@
         #menu-placeholder { width: 250px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner - Usando uma imagem de cerejas/Fundão */
+        /* Banner */
         .banner-passeio {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1528821128474-27f9e7d45d9d?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://i.imgur.com/kX8ScBU.jpg');
             background-size: cover; background-position: center;
             color: white; padding: 80px 40px; text-align: center; border-radius: 0 0 50px 0;
         }
 
         /* Grid de Conteúdo */
         .seccao-detalhes { padding: 40px 30px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+
         .cartao { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         h3 { color: #1e4d8c; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
         
         .info-lista { list-style: none; padding: 0; }
         .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; color: #444; }
-        .info-lista i { color: #cc0000; margin-top: 4px; } /* Ícones vermelhos para combinar com a cereja */
+        .info-lista i { color: #1e4d8c; margin-top: 4px; }
 
-        /* Bloco de Preço Azul */
-        .box-preco { background: #1e4d8c; color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
-        .valor { font-size: 2.5em; font-weight: bold; display: block; margin: 10px 0; }
+        /* Bloco de Preço Especial para Tabela */
+        .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
+        .caixa-inscricao table { width: 100%; border-collapse: collapse; color: white; margin-bottom: 20px; }
+        .caixa-inscricao th { border-bottom: 1px solid rgba(255,255,255,0.2); padding: 10px; font-size: 0.8em; opacity: 0.9; }
+        .caixa-inscricao td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: center; font-weight: bold; }
+        
         .btn-reservar { 
             display: block; background: #ff8c00; color: white; text-decoration: none; 
-            padding: 15px; border-radius: 12px; font-weight: bold; margin-top: 20px; transition: 0.3s;
+            padding: 15px; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s;
         }
         .btn-reservar:hover { background: #e67e00; transform: translateY(-3px); }
 
-        /* Secção Álbum */
+        /* Secção Álbum (Descolado) */
         .galeria-container { 
-            margin: 40px 30px 60px 30px;
+            margin: 40px 30px 60px 30px; 
             padding: 40px; 
             background: white; 
             border-radius: 30px; 
@@ -50,12 +54,21 @@
         .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; cursor: pointer; transition: 0.3s; }
         .galeria-grid img:hover { transform: scale(1.03); }
 
+        /* Modal Galeria */
+        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; }
+
         /* Rodapé */
         footer { background: #1e4d8c; color: white; padding: 40px; margin-top: auto; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
         .footer-col a { color: #ddd; text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9em; }
+        .social-icons a { font-size: 1.5em; margin-right: 15px; color: white; }
 
-        @media (max-width: 900px) { .seccao-detalhes { grid-template-columns: 1fr; } #menu-placeholder { display: none; } }
+        @media (max-width: 900px) { 
+            .seccao-detalhes { grid-template-columns: 1fr; } 
+            #menu-placeholder { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -65,41 +78,63 @@
     <main>
         <div class="banner-passeio">
             <h1>Rota da Cereja</h1>
-            <p><i class="fas fa-calendar-alt"></i> Junho de 2025</p>
+            <p><i class="fas fa-calendar-alt"></i> 14 de Junho de 2026</p>
         </div>
 
         <section class="seccao-detalhes">
             <div class="coluna-texto">
                 <div class="cartao">
-                    <h3><i class="fas fa-info-circle"></i> Descrição do Passeio</h3>
-                    <p>Vamos até à Gardunha saborear as melhores cerejas do país! Um passeio pelos pomares carregados, com direito a paisagens deslumbrantes e muita animação.</p>
+                    <h3><i class="fas fa-info-circle"></i> Descrição</h3>
+                    <p>Venha desfrutar de um dia de descoberta, tradição e contacto com a natureza na região do Fundão, famosa pela sua excelência na produção de cerejas.</p>
                     
-                    <h3 style="margin-top:30px;"><i class="fas fa-map-signs"></i> Itinerário Previsto</h3>
+                    <h3 style="margin-top:30px;"><i class="fas fa-map-signs"></i> Itinerário</h3>
                     <ul class="info-lista">
-                        <li><i class="fas fa-check-circle"></i> <strong>Manhã:</strong> Visita aos pomares em Alcongosta e subida à Serra da Gardunha.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Tarde:</strong> Almoço livre no Fundão e visita à Festa da Cereja (artesanato e produtos locais).</li>
-                        <li><i class="fas fa-clock"></i> <strong>Regresso:</strong> Paragem em Belmonte (Vila Histórica) antes de voltar.</li>
+                        <li><i class="fas fa-check-circle"></i> <div><strong>Quinta das Rasas:</strong> Participação na apanha e degustação (inclui 1kg de oferta).</div></li>
+                        <li><i class="fas fa-check-circle"></i> <div><strong>Casa da Cereja:</strong> Visita guiada em Alcongosta pela história local.</div></li>
+                        <li><i class="fas fa-check-circle"></i> <div><strong>Castelo Novo:</strong> Passeio guiado pela Aldeia Histórica.</div></li>
                     </ul>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-bus"></i> Recolhas</h3>
+                    <p style="font-size: 0.9em; color: #666;">Viseu, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
                 </div>
             </div>
 
-            <div class="coluna-preco">
-                <div class="box-preco">
-                    <span>Preço por Pessoa</span>
-                    <span class="valor">28,00€</span>
-                    <p><i class="fas fa-bus"></i> Inclui Autocarro e Surpresa Doce</p>
-                    <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">RESERVAR AGORA</a>
+            <div class="coluna-aside">
+                <div class="caixa-inscricao">
+                    <h3 style="color: white; border-color: rgba(255,255,255,0.2);"><i class="fas fa-ticket-alt"></i> Inscrição</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>S/ Almoço</th>
+                                <th>C/ Almoço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left; font-size: 0.9em;">Crianças (6-10)</td>
+                                <td>30€</td>
+                                <td>40€</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left; font-size: 0.9em;">Adultos</td>
+                                <td>35€</td>
+                                <td>55€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">INSCREVER-ME AGORA</a>
                 </div>
             </div>
         </section>
 
         <div class="galeria-container">
-            <h3><i class="fas fa-camera"></i> O que nos espera</h3>
+            <h3><i class="fas fa-camera"></i> Álbum do Destino</h3>
             <div class="galeria-grid">
-                <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=400&q=80" alt="Cerejas">
-                <img src="https://images.unsplash.com/photo-1521320243813-9b932230a10b?auto=format&fit=crop&w=400&q=80" alt="Pomares">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" alt="Serra">
-                <img src="https://images.unsplash.com/photo-1527524804192-277163b1ab07?auto=format&fit=crop&w=400&q=80" alt="Festa">
+                <img src="https://i.imgur.com/AFUqUpt.jpg" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/nOBqp4R.jpg" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/TpfS7cy.jpg" onclick="abrirModal(this.src)">
+                <img src="https://i.imgur.com/QiSried.jpg" onclick="abrirModal(this.src)">
             </div>
         </div>
 
@@ -107,24 +142,50 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>&copy; 2026 - Todos os direitos reservados.</p>
+                    <p style="font-size: 0.9em; opacity: 0.8;">© 2026 - Todos os direitos reservados.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <a href="index.html">Início</a>
-                    <a href="passeios.html">Passeios</a>
+                    <h4>Informações</h4>
+                    <a href="cancelamento.html">Política de Cancelamento</a>
+                    <a href="contatos.html">Contactos</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Informações Extra</h4>
-                    <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Política de Cancelamento</a>
+                    <h4>Siga-nos</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
         </footer>
+
+        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
+            <img id="imgModal">
+        </div>
     </main>
 
     <script>
+        // Carregar Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
+        });
+
+        // Função Galeria
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'flex';
+            document.getElementById('imgModal').src = src;
+        }
+
+        // Script FAQ (do menu)
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
         });
     </script>
 </body>
