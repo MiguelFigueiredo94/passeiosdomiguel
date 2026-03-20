@@ -3,98 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Os Nossos Passeios</title>
+    <title>Passeios do Miguel - Catálogo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* 1. ESTRUTURA BASE PARA MANTER O MENU ORIGINAL */
-        body { 
-            margin: 0; 
-            background-color: #f4f7f6; 
-            display: flex; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* AJUSTE DE LAYOUT PARA O TEU MENU ESPECÍFICO */
+        body {
+            margin: 0;
+            display: flex;
+            background-color: #f4f7f6;
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* O segredo está aqui: esta margem tem de ser igual à largura da tua barra azul */
-        .main-wrapper { 
-            flex: 1; 
-            margin-left: 260px; /* Largura aproximada do teu menu lateral largo */
+        /* Esta classe garante que o conteúdo comece APÓS a tua barra azul */
+        .conteudo-direira {
+            flex: 1;
+            margin-left: 260px; /* Ajuste exato para a largura da tua sidebar */
+            padding: 30px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            width: calc(100% - 260px);
-            padding: 20px;
         }
 
-        /* 2. BANNER DE TÍTULO (CONFORME A TUA IMAGEM "OS NOSSOS PASSEIOS") */
-        .banner-topo {
-            height: 300px;
+        /* BANNER (IGUAL À TUA FOTO) */
+        .banner-passeios {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200');
+                        url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1200');
             background-size: cover;
             background-position: center;
+            height: 250px;
+            border-radius: 25px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
+            align-items: center;
             color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .banner-passeios h1 { font-size: 3em; margin: 0; }
+        .banner-passeios p { font-size: 1.1em; opacity: 0.9; }
+
+        /* TÍTULOS DE SECÇÃO COM ÍCONE */
+        .seccao-titulo {
+            color: #1e4d8c;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        /* GRID DE CARDS */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: white;
             border-radius: 20px;
-            margin-bottom: 30px;
-        }
-
-        .banner-topo h1 { font-size: 3.5em; margin: 0; font-weight: bold; }
-        .banner-topo p { font-size: 1.2em; margin-top: 10px; opacity: 0.9; }
-
-        /* 3. GRID DE PASSEIOS */
-        .grid-passeios { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 25px; 
-            padding-bottom: 60px;
-        }
-
-        .card-passeio { 
-            background: #fff; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        .card-img { height: 200px; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .tag-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
         }
 
-        .img-container { height: 200px; position: relative; background: #eee; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .info { padding: 20px; text-align: center; flex-grow: 1; }
+        .info .data { color: #1e4d8c; font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 5px; }
+        .info h3 { margin: 10px 0; color: #333; font-size: 1.3em; }
+        .info .local { color: #777; font-size: 0.9em; }
 
-        .badge { position: absolute; top: 15px; right: 15px; padding: 6px 12px; border-radius: 50px; font-size: 0.75em; font-weight: bold; color: white; text-transform: uppercase; }
-        .status-aberto { background: #2ecc71; }
-        .status-ultimos { background: #e67e22; }
+        /* BOTÕES IGUAIS À TUA FOTO */
+        .card-btns { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .btn-full { background: #eef2f7; color: #1e4d8c; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
+        .btn-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-blue { background: #1e4d8c; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
+        .btn-green { background: #2ecc71; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; }
 
-        .info-passeio { padding: 20px; text-align: center; flex-grow: 1; }
-        .info-passeio h3 { color: #1e4d8c; margin: 5px 0; font-size: 1.3em; font-weight: bold; }
-        .localidade { color: #666; font-size: 0.95em; display: block; margin-bottom: 10px; }
-        .data-tag { background: #eef2f7; color: #1e4d8c; padding: 5px 15px; border-radius: 8px; font-size: 0.85em; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-
-        .botoes-card { padding: 20px; background: #fff; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #f9f9f9; }
-        .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        
-        .btn { padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.9em; transition: 0.3s; }
-        .btn-itinerario { background: #eef2f7; color: #1e4d8c; width: 100%; }
-        .btn-inscricao { background: #1e4d8c; color: white; }
-        .btn-whatsapp { background: #2ecc71; color: white; }
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
-
-        .titulo-seccao { color: #1e4d8c; font-size: 1.8em; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-
-        /* 4. RODAPÉ UNIFICADO */
-        footer { 
-            background: #1e4d8c; 
-            color: white; 
-            padding: 50px 20px; 
-            text-align: center; 
+        /* RODAPÉ */
+        footer {
+            background: #1e4d8c;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 30px 30px 0 0;
             margin-top: auto;
-            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsividade para ecrãs pequenos */
+        @media (max-width: 992px) {
+            .conteudo-direira { margin-left: 0; }
+            nav { display: none; } /* Aqui terias de implementar um menu mobile */
         }
     </style>
 </head>
@@ -102,93 +127,100 @@
 
     <div id="menu-placeholder"></div>
 
-    <div class="main-wrapper">
-        <header class="banner-topo">
+    <div class="conteudo-direira">
+        <header class="banner-passeios">
             <h1>Os Nossos Passeios</h1>
             <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
         </header>
 
-        <main>
-            <h2 class="titulo-seccao"><i class="fas fa-bus"></i> Inscrições Abertas</h2>
-            
-            <div class="grid-passeios">
-                <article class="card-passeio">
-                    <div class="img-container">
-                        <span class="badge status-aberto">Aberto</span>
-                        <img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg">
+        <h2 class="seccao-titulo"><i class="fas fa-bus"></i> Inscrições Abertas</h2>
+        
+        <div class="grid-container">
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag-status" style="background: #2ecc71;">Aberto</span>
+                    <img src="https://osmeustrilhos.pt/wp-content/uploads/2015/08/festas-do-povo-campo-maior-2.jpg">
+                </div>
+                <div class="info">
+                    <span class="data">Agosto 2026</span>
+                    <h3>Festas do Povo</h3>
+                    <span class="local">(Campo Maior)</span>
+                </div>
+                <div class="card-btns">
+                    <a href="campomaior.html" class="btn-full">Ver Itinerário</a>
+                    <div class="btn-split">
+                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
+                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
                     </div>
-                    <div class="info-passeio">
-                        <div class="data-tag">Abril 2026</div>
-                        <h3>Festas do Povo</h3>
-                        <span class="localidade">(Campo Maior)</span>
-                    </div>
-                    <div class="botoes-card">
-                        <a href="campomaior.html" class="btn btn-itinerario">Ver Itinerário</a>
-                        <div class="btn-row">
-                            <a href="inscricao.html" class="btn btn-inscricao">Inscrição</a>
-                            <a href="https://wa.me/351910000000" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat</a>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <article class="card-passeio">
-                    <div class="img-container">
-                        <span class="badge status-ultimos">Últimos Lugares</span>
-                        <img src="https://fundaoatual.pt/wp-content/uploads/2021/05/cereja-fundao-igp.jpg">
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag-status" style="background: #e67e22;">Últimos Lugares</span>
+                    <img src="https://fundaoatual.pt/wp-content/uploads/2021/05/cereja-fundao-igp.jpg">
+                </div>
+                <div class="info">
+                    <span class="data">Junho 2026</span>
+                    <h3>Rota da Cereja</h3>
+                    <span class="local">(Fundão)</span>
+                </div>
+                <div class="card-btns">
+                    <a href="cereja.html" class="btn-full">Ver Itinerário</a>
+                    <div class="btn-split">
+                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
+                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
                     </div>
-                    <div class="info-passeio">
-                        <div class="data-tag">Maio 2026</div>
-                        <h3>Rota da Cereja</h3>
-                        <span class="localidade">(Fundão)</span>
-                    </div>
-                    <div class="botoes-card">
-                        <a href="cereja.html" class="btn btn-itinerario">Ver Itinerário</a>
-                        <div class="btn-row">
-                            <a href="inscricao.html" class="btn btn-inscricao">Inscrição</a>
-                            <a href="https://wa.me/351910000000" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat</a>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-                <article class="card-passeio">
-                    <div class="img-container">
-                        <span class="badge status-aberto">Aberto</span>
-                        <img src="https://moraremportugal.com/wp-content/uploads/2021/05/Barcelos-Portugal.jpg">
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag-status" style="background: #2ecc71;">Aberto</span>
+                    <img src="https://moraremportugal.com/wp-content/uploads/2021/05/Barcelos-Portugal.jpg">
+                </div>
+                <div class="info">
+                    <span class="data">Maio 2026</span>
+                    <h3>Festa das Cruzes</h3>
+                    <span class="local">(Barcelos)</span>
+                </div>
+                <div class="card-btns">
+                    <a href="cruzes.html" class="btn-full">Ver Itinerário</a>
+                    <div class="btn-split">
+                        <a href="inscricao.html" class="btn-blue">Inscrição</a>
+                        <a href="https://wa.me/351965715476" class="btn-green"><i class="fab fa-whatsapp"></i> Chat</a>
                     </div>
-                    <div class="info-passeio">
-                        <div class="data-tag">Maio 2026</div>
-                        <h3>Festa das Cruzes</h3>
-                        <span class="localidade">(Barcelos)</span>
-                    </div>
-                    <div class="botoes-card">
-                        <a href="cruzes.html" class="btn btn-itinerario">Ver Itinerário</a>
-                        <div class="btn-row">
-                            <a href="inscricao.html" class="btn btn-inscricao">Inscrição</a>
-                            <a href="https://wa.me/351910000000" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </main>
+                </div>
+            </article>
+        </div>
 
         <footer>
-            <div class="footer-info">
-                <h3>Passeios do Miguel</h3>
-                <p>Criando memórias em cada quilómetro.</p>
-                <div class="redes" style="margin-top: 20px;">
-                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5em;"><i class="fab fa-facebook"></i></a>
-                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5em;"><i class="fab fa-instagram"></i></a>
-                </div>
-                <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">&copy; 2026 Todos os direitos reservados.</p>
-            </div>
+            <h3>Passeios do Miguel</h3>
+            <p>Criando memórias em cada quilómetro.</p>
+            <p style="font-size: 0.8em; opacity: 0.7; margin-top: 20px;">&copy; 2026 Passeios do Miguel.</p>
         </footer>
     </div>
 
     <script>
-        // Carrega o teu menu lateral largo
-        fetch('menu.html').then(r => r.text()).then(d => {
-            document.getElementById('menu-placeholder').innerHTML = d;
-        });
+        // Carregar o Menu
+        fetch('menu.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+                
+                // Ativar o Modal FAQ que está dentro do menu.html
+                const btnFaq = document.getElementById('botaoDuvidas');
+                const janelaFaq = document.getElementById('janelaFaq');
+                const fecharFaq = document.getElementById('fecharFaq');
+
+                if(btnFaq) {
+                    btnFaq.onclick = () => janelaFaq.style.display = "block";
+                    fecharFaq.onclick = () => janelaFaq.style.display = "none";
+                    window.onclick = (event) => {
+                        if (event.target == janelaFaq) janelaFaq.style.display = "none";
+                    }
+                }
+            });
     </script>
 </body>
 </html>
