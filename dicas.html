@@ -9,7 +9,7 @@
     <style>
         /* Base e Layout Lateral */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* BANNER PREMIUM */
@@ -60,38 +60,45 @@
 
         .icon-dica {
             font-size: 50px;
-            color: #ff8c00; /* Laranja para destaque no ícone */
+            color: #ff8c00;
             margin-bottom: 25px;
             height: 60px;
             display: flex;
             align-items: center;
         }
 
-        .card-dica h3 {
-            color: #1e4d8c;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .card-dica p {
-            color: #555;
-            font-size: 1em;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        .card-dica a {
-            color: #1e4d8c;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 2px solid #ff8c00;
-            transition: 0.3s;
-        }
-        
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.4em; }
+        .card-dica p { color: #555; font-size: 1em; line-height: 1.7; margin: 0; }
+        .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; transition: 0.3s; }
         .card-dica a:hover { color: #ff8c00; }
 
-        /* RODAPÉ DINÂMICO (ONDA) */
-        .footer-wave-container { background: white; line-height: 0; }
+        /* --- BOTÃO FLUTUANTE AJUDA --- */
+        .faq-float { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #ff8c00; color: white; 
+            width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 28px; cursor: pointer; border: none;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.4); 
+            z-index: 9999; 
+            transition: 0.3s;
+        }
+        .faq-float:hover { transform: scale(1.1); background: #e67e22; }
+
+        /* --- JANELA MODAL AJUDA --- */
+        .modal-faq {
+            display: none; position: fixed; z-index: 10001; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
+        }
+        .modal-faq-content {
+            background-color: white; margin: 10% auto; padding: 30px;
+            width: 85%; max-width: 500px; border-radius: 20px; position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+        .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #666; }
+
+        /* RODAPÉ DINÂMICO */
+        .footer-wave-container { background: white; line-height: 0; margin-top: auto; }
         .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; margin-bottom: -1px; }
 
         footer { background: #1e4d8c; color: white; padding: 60px 30px; margin: 0; }
@@ -168,24 +175,6 @@
                     <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
                 </div>
 
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-id-card"></i></div>
-                    <h3>Identificação</h3>
-                    <p>Tenha sempre consigo o seu Cartão de Cidadão. É essencial para qualquer eventualidade durante o trajeto.</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-leaf"></i></div>
-                    <h3>Natureza Limpa</h3>
-                    <p>Vamos cuidar do que é nosso! Pedimos que não deixe lixo nos locais visitados nem no autocarro.</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-users"></i></div>
-                    <h3>Espírito de Grupo</h3>
-                    <p>Traga boa disposição! O convívio e as novas amizades são o que tornam os nossos passeios especiais.</p>
-                </div>
-
             </div>
         </section>
 
@@ -210,17 +199,46 @@
                 <div class="footer-col">
                     <h4>Informações</h4>
                     <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Regras de Cancelamento</a>
-                    <a href="faq.html">Perguntas Frequentes</a>
+                    <a href="#" onclick="abrirFaq()">Dúvidas Frequentes</a>
                 </div>
             </div>
         </footer>
     </main>
+
+    <button class="faq-float" onclick="abrirFaq()" title="Dúvidas sobre as dicas?">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <div id="janelaFaq" class="modal-faq">
+        <div class="modal-faq-content">
+            <span class="fechar-modal" onclick="fecharFaq()">&times;</span>
+            <h3 style="color: #1e4d8c;"><i class="fas fa-lightbulb"></i> Precisa de mais dicas?</h3>
+            <hr>
+            <p><strong>Tem uma dúvida específica sobre o vestuário ou percurso?</strong><br>Cada passeio tem as suas particularidades. Se não encontrar aqui o que precisa, fale connosco pelo WhatsApp!</p>
+            <p><strong>A lista de dicas é atualizada?</strong><br>Sim! Adaptamos as dicas conforme a estação do ano (verão ou inverno).</p>
+            <br>
+            <button onclick="fecharFaq()" style="background:#1e4d8c; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; width:100%; font-weight:bold;">Entendido!</button>
+        </div>
+    </div>
 
     <script>
         // Carrega o Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
+
+        // Funções para a Janela Modal
+        function abrirFaq() {
+            document.getElementById('janelaFaq').style.display = 'block';
+        }
+        function fecharFaq() {
+            document.getElementById('janelaFaq').style.display = 'none';
+        }
+        // Fechar se clicar fora da modal
+        window.onclick = function(event) {
+            let modal = document.getElementById('janelaFaq');
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
     </script>
 
 </body>
