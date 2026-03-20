@@ -7,53 +7,16 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* SECÇÃO BRANCA AMPLA */
-        .seccao-branca {
-            background: white;
-            margin: 20px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .grid-passeios {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* CARD DESIGN */
-        .card-passeio {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
+        .seccao-branca { background: white; margin: 20px; padding: 40px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        
+        .card-passeio { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; position: relative; }
         .card-passeio:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         .img-container { position: relative; height: 180px; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* BADGES */
-        .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.7em;
-            font-weight: 800;
-            color: white;
-            text-transform: uppercase;
-            z-index: 2;
-        }
+        .badge { position: absolute; top: 12px; right: 12px; padding: 6px 12px; border-radius: 50px; font-size: 0.7em; font-weight: 800; color: white; text-transform: uppercase; z-index: 2; }
         .status-aberto { background: #2ecc71; }
         .status-ultimos { background: #e67e22; }
         .status-esgotado { background: #e74c3c; }
@@ -61,65 +24,21 @@
 
         .info-passeio { padding: 20px; flex-grow: 1; }
         .info-passeio h3 { color: #1e4d8c; font-size: 1.2em; margin-bottom: 8px; }
-        
-        .data-viagem { 
-            display: inline-block;
-            background: #f0f4f8;
-            color: #1e4d8c;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 0.85em;
-        }
+        .data-viagem { display: inline-block; background: #f0f4f8; color: #1e4d8c; padding: 4px 10px; border-radius: 5px; font-weight: bold; margin-bottom: 10px; font-size: 0.85em; }
 
-        .botoes-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 0 20px 20px 20px;
-        }
-
+        .botoes-card { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 20px 20px 20px; }
         .btn { padding: 10px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; transition: 0.3s; }
         .btn-ver { background: #f0f4f8; color: #1e4d8c; }
         .btn-reserva { background: #1e4d8c; color: white; }
         .btn-reserva:hover { background: #ff9800; }
         .btn-off { background: #eee !important; color: #aaa !important; cursor: not-allowed; }
 
-        .titulo-arquivo {
-            grid-column: 1 / -1;
-            color: #1e4d8c;
-            margin: 40px 0 15px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f4f8;
-            font-size: 1.6em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .titulo-arquivo { grid-column: 1 / -1; color: #1e4d8c; margin: 40px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f0f4f8; font-size: 1.6em; display: flex; align-items: center; gap: 10px; }
 
-        /* RODAPÉ */
-        footer {
-            background: #1e4d8c;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            margin-top: 40px;
-            border-radius: 30px 30px 0 0;
-        }
-        .footer-links { margin: 20px 0; }
-        .footer-links a { color: #ff9800; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 1.1em; }
+        footer { background: #1e4d8c; color: white; padding: 50px 20px; text-align: center; margin-top: 40px; border-radius: 30px 30px 0 0; }
+        .footer-links a { color: #ff9800; text-decoration: none; margin: 0 15px; font-weight: bold; }
         
-        .banner-passeios {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('image_a80020.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 20px;
-            text-align: center;
-            color: white;
-            border-radius: 20px;
-            margin: 20px;
-        }
+        .banner-passeios { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.imgur.com/X1xT7Fx.png'); background-size: cover; padding: 80px 20px; text-align: center; color: white; border-radius: 20px; margin: 20px; }
     </style>
 </head>
 <body>
@@ -129,7 +48,7 @@
     <main>
         <div class="banner-passeios">
             <h1>Nossos Passeios</h1>
-            <p>Viagens planeadas com carinho para momentos inesquecíveis.</p>
+            <p>Viagens planeadas com todo o detalhe.</p>
         </div>
 
         <section class="seccao-branca">
@@ -140,7 +59,7 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-aberto">Aberto</span>
-                        <img src="image_a80020.jpg" alt="Campo Maior">
+                        <img src="https://i.imgur.com/X1xT7Fx.png" alt="Campo Maior">
                     </div>
                     <div class="info-passeio">
                         <span class="data-viagem">Abril 2026</span>
@@ -155,7 +74,7 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-ultimos">Últimos Lugares</span>
-                        <img src="image_a81e63.png" alt="Cereja">
+                        <img src="image_a81e63.png" alt="Rota da Cereja">
                     </div>
                     <div class="info-passeio">
                         <span class="data-viagem">Maio 2026</span>
@@ -163,21 +82,6 @@
                     </div>
                     <div class="botoes-card">
                         <a href="cereja.html" class="btn btn-ver">Detalhes</a>
-                        <a href="https://wa.me/351910000000" class="btn btn-reserva">Reservar</a>
-                    </div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-container">
-                        <span class="badge status-aberto">Aberto</span>
-                        <img src="image_a800a0.png" alt="Cruzes">
-                    </div>
-                    <div class="info-passeio">
-                        <span class="data-viagem">Maio 2026</span>
-                        <h3>Festa das Cruzes</h3>
-                    </div>
-                    <div class="botoes-card">
-                        <a href="cruzes.html" class="btn btn-ver">Detalhes</a>
                         <a href="https://wa.me/351910000000" class="btn btn-reserva">Reservar</a>
                     </div>
                 </article>
@@ -194,7 +98,7 @@
                         <h3>Festa das Camélias</h3>
                     </div>
                     <div class="botoes-card">
-                        <a href="camelias.html" class="btn btn-ver">Ver Arquivo</a>
+                        <a href="camelias.html" class="btn btn-ver">Ver</a>
                         <a href="#" class="btn btn-off">Esgotado</a>
                     </div>
                 </article>
@@ -209,7 +113,7 @@
                         <h3>Magia Animal (Gaia)</h3>
                     </div>
                     <div class="botoes-card">
-                        <a href="gaia.html" class="btn btn-ver">Ver Arquivo</a>
+                        <a href="gaia.html" class="btn btn-ver">Ver</a>
                         <a href="#" class="btn btn-off">Esgotado</a>
                     </div>
                 </article>
@@ -219,60 +123,38 @@
                 <article class="card-passeio">
                     <div class="img-container">
                         <span class="badge status-fechado">Passou</span>
-                        <img src="image_a800a0.png" alt="Vigo">
+                        <img src="image_a800a0.png" alt="Fátima">
                     </div>
                     <div class="info-passeio">
-                        <span class="data-viagem">Dez 2025</span>
-                        <h3>Valença & Vigo</h3>
+                        <span class="data-viagem">Mai 2025</span>
+                        <h3>Fátima</h3>
                     </div>
                     <div class="botoes-card">
-                        <a href="vigo.html" class="btn btn-ver">Ver</a>
+                        <a href="fatima.html" class="btn btn-ver">Arquivo</a>
                         <a href="#" class="btn btn-off">Fechado</a>
                     </div>
                 </article>
 
-                <article class="card-passeio">
-                    <div class="img-container">
-                        <span class="badge status-fechado">Passou</span>
-                        <img src="image_a80020.jpg" alt="Marvão">
-                    </div>
-                    <div class="info-passeio">
-                        <span class="data-viagem">Nov 2025</span>
-                        <h3>Marvão</h3>
-                    </div>
-                    <div class="botoes-card">
-                        <a href="marvao.html" class="btn btn-ver">Ver</a>
-                        <a href="#" class="btn btn-off">Fechado</a>
-                    </div>
-                </article>
-
-                </div>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <h3>Passeios do Miguel</h3>
-            <p>A criar memórias inesquecíveis em cada quilómetro.</p>
             <div class="footer-links">
-                <a href="https://wa.me/351910000000"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a>
+                <a href="https://wa.me/351910000000">WhatsApp</a> | <a href="contatos.html">Contactos</a>
             </div>
-            <p style="margin-top: 25px; font-size: 0.8em; opacity: 0.6;">© 2026 Passeios do Miguel. Todos os direitos reservados.</p>
+            <p>© 2026 Passeios do Miguel.</p>
         </div>
     </footer>
 
     <script>
         fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
-        
         document.addEventListener('click', function (e) {
             const modal = document.getElementById('janelaFaq');
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                if (modal) modal.style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                if (modal) modal.style.display = 'none';
-            }
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) { if (modal) modal.style.display = 'block'; }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) { if (modal) modal.style.display = 'none'; }
         });
     </script>
 </body>
