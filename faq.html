@@ -3,72 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dúvidas Frequentes - Passeios do Miguel</title>
+    <title>Central de Ajuda - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout e Menu */
+        /* Layout */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner FAQ */
+        /* Banner */
         .banner-faq {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 40px 0;
         }
 
-        /* Estilo do Acordeão (FAQ) */
-        .seccao-faq { padding: 50px 20px; background: white; flex-grow: 1; }
-        .container-faq { max-width: 850px; margin: 0 auto; }
+        /* FAQ Estilo Acordeão */
+        .seccao-faq { padding: 40px 20px; background: white; flex-grow: 1; }
+        .container-faq { max-width: 800px; margin: 0 auto; }
 
         .faq-item {
-            background: #fff; margin-bottom: 12px; border-radius: 12px;
+            background: #fff; margin-bottom: 15px; border-radius: 12px;
             border: 1px solid #eee; overflow: hidden; transition: 0.3s;
         }
 
         .faq-pergunta {
-            padding: 20px 25px; width: 100%; display: flex; justify-content: space-between;
+            padding: 22px 25px; width: 100%; display: flex; justify-content: space-between;
             align-items: center; cursor: pointer; background: none; border: none;
             text-align: left; font-size: 1.1em; font-weight: bold; color: #1e4d8c;
         }
 
-        .faq-pergunta:hover { background: #fcfcfc; color: #ff8c00; }
-
         .faq-resposta {
-            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
-            background: #fafafa; border-top: 0 solid #eee;
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
+            background: #fafafa;
         }
 
-        .faq-resposta-inner { padding: 20px 25px; color: #555; line-height: 1.6; }
+        .faq-resposta-inner { padding: 20px 25px; color: #555; line-height: 1.7; border-top: 1px solid #eee; }
 
-        /* Estado Aberto */
-        .faq-item.ativo { border-left: 5px solid #ff8c00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* Ativo */
+        .faq-item.ativo { border-left: 6px solid #ff8c00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .faq-item.ativo .faq-pergunta { color: #ff8c00; }
-        .faq-item.ativo .faq-resposta { max-height: 300px; border-top-width: 1px; }
+        .faq-item.ativo .faq-resposta { max-height: 400px; }
         .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
-        .faq-pergunta i { transition: 0.3s; color: #ccc; }
 
-        /* Botão Flutuante (O Laranja da foto) */
-        .faq-float { 
-            position: fixed; bottom: 25px; right: 25px; 
-            background: #ff8c00; color: white; 
-            width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 26px; cursor: pointer; border: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 9999;
+        /* BOTÕES FLUTUANTES (Corrigindo a sobreposição) */
+        .float-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 9999; }
+        
+        .btn-float {
+            width: 60px; height: 60px; border-radius: 50%; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; color: white; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s; text-decoration: none;
         }
 
-        /* Modal de Suporte Direto */
+        .btn-whatsapp { background: #25d366; } /* Botão do Zap */
+        .btn-duvidas { background: #ff8c00; } /* Botão das Dúvidas */
+        .btn-float:hover { transform: scale(1.1); }
+
+        /* Modal */
         .modal-suporte {
             display: none; position: fixed; z-index: 10001; 
             left: 0; top: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
         }
         .modal-content {
-            background: white; margin: 12% auto; padding: 30px;
+            background: white; margin: 10% auto; padding: 30px;
             width: 90%; max-width: 450px; border-radius: 20px; position: relative;
         }
         .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #888; }
@@ -85,45 +86,63 @@
 
     <main>
         <div class="banner-faq">
-            <h1>Como podemos ajudar?</h1>
-            <p>Respostas rápidas às dúvidas mais frequentes dos nossos viajantes.</p>
+            <h1>Central de Ajuda</h1>
+            <p>Tudo o que precisas de saber sobre os nossos passeios.</p>
         </div>
 
         <section class="seccao-faq">
             <div class="container-faq">
                 
                 <div class="faq-item">
-                    <button class="faq-pergunta">Como faço a minha reserva? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">📍 Partidas e Horários <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            As reservas são feitas via WhatsApp ou telefone. Só ficam garantidas após o envio do comprovativo de pagamento (sinal).
+                            Os horários e pontos exatos de encontro são confirmados via telefone/WhatsApp até **48h antes da viagem**. Fica atento ao teu telemóvel!
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">Onde são os pontos de recolha? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">💳 Métodos de Pagamento <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Saímos de **São Pedro do Sul**, com paragens em **Viseu** ou **Castro Daire** dependendo do destino. Confirma sempre no programa do passeio.
+                            Aceitamos **MB Way**, **Transferência Bancária** ou **Numerário** no ato da reserva. A vaga só é garantida após a recepção do comprovativo.
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">Os lugares no autocarro são fixos? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">📝 Como se inscrever? <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Sim. Os lugares são atribuídos por **ordem de inscrição/pagamento**. Quem reserva primeiro, fica mais à frente.
+                            Podes inscrever-te diretamente pelo número **965 715 476** ou através da nossa página oficial no botão "Inscrever-me".
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-pergunta">Posso levar crianças ou animais? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-pergunta">📋 Dados Necessários para Reserva <i class="fas fa-chevron-down"></i></button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Crianças são super bem-vindas (com desconto!). Animais de estimação não são permitidos no autocarro por questões de segurança e higiene.
+                            Para o seguro e lista de passageiros, necessitamos do seu **Nome Completo**, **Data de Nascimento** e **Localidade**.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">🚫 Política de Cancelamento <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Oferecemos **reembolso de 100%** para cancelamentos feitos até **30 dias antes** da viagem. Após esse prazo, infelizmente não há lugar a reembolso.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">🆔 Documentação Necessária <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            A validade dos documentos de identificação (Cartão de Cidadão/Passaporte) é da inteira responsabilidade do passageiro. São dispensáveis apenas para a nossa reserva interna, mas obrigatórios durante a viagem.
                         </div>
                     </div>
                 </div>
@@ -132,50 +151,50 @@
         </section>
     </main>
 
-    <button class="faq-float" id="abrirModal">
-        <i class="fas fa-question"></i>
-    </button>
+    <div class="float-container">
+        <a href="https://wa.me/351965715476" target="_blank" class="btn-float btn-whatsapp" title="Falar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="btn-float btn-duvidas" id="btnSuporte" title="Dúvidas Rápidas">
+            <i class="fas fa-question"></i>
+        </button>
+    </div>
 
     <div id="modalSuporte" class="modal-suporte">
         <div class="modal-content">
             <span class="fechar-modal" id="fecharModal">&times;</span>
-            <h3 style="color: #1e4d8c;"><i class="fas fa-headset"></i> Suporte Direto</h3>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-            <p>Não encontraste a tua dúvida nas perguntas acima?</p>
-            <p><strong>Clica abaixo para falar connosco:</strong></p>
-            <a href="https://wa.me/351900000000" target="_blank" style="display: block; background: #25d366; color: white; text-align: center; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold;">
-                <i class="fab fa-whatsapp"></i> Falar com o Miguel
-            </a>
+            <h3 style="color: #1e4d8c; margin-top:0;">Dúvidas Rápidas</h3>
+            <p>Ainda tens alguma questão sobre os passeios?</p>
+            <p>Clica no botão verde ali ao lado para falar diretamente com o Miguel via WhatsApp, ou liga para o <strong>965 715 476</strong>.</p>
+            <button id="btnOK" style="width:100%; padding:15px; background:#1e4d8c; color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold;">FECHAR</button>
         </div>
     </div>
 
     <script>
-        // 1. Carrega o Menu
+        // 1. Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        // 2. Lógica do Acordeão (Clica e Abre)
+        // 2. Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
             botao.onclick = () => {
                 const item = botao.parentElement;
-                const estaAtivo = item.classList.contains('ativo');
-                
-                // Fecha todos antes de abrir o novo
+                const ativo = item.classList.contains('ativo');
                 document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('ativo'));
-                
-                // Se não estava aberto, abre
-                if (!estaAtivo) item.classList.add('ativo');
+                if (!ativo) item.classList.add('ativo');
             };
         });
 
-        // 3. Lógica do Modal do Botão Laranja
+        // 3. Lógica do Modal (O botão laranja de baixo agora funciona!)
         const modal = document.getElementById('modalSuporte');
-        const btnAbrir = document.getElementById('abrirModal');
-        const btnFechar = document.getElementById('fecharModal');
+        const btnSuporte = document.getElementById('btnSuporte');
+        const fecharX = document.getElementById('fecharModal');
+        const fecharBtn = document.getElementById('btnOK');
 
-        btnAbrir.onclick = () => modal.style.display = "block";
-        btnFechar.onclick = () => modal.style.display = "none";
+        btnSuporte.onclick = () => modal.style.display = "block";
+        fecharX.onclick = () => modal.style.display = "none";
+        fecharBtn.onclick = () => modal.style.display = "none";
         window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
     </script>
 </body>
