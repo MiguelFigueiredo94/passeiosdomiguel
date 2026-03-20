@@ -2,54 +2,89 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Passeios do Miguel - Home</title>
+    <title>Sobre Mim - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
-        .banner-index {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
+        /* ESTILOS ESPECÍFICOS DA PÁGINA SOBRE */
+        .container-sobre {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap; /* Para telemóveis */
+        }
+
+        .foto-perfil {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .foto-perfil img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 5px solid white;
+        }
+
+        .texto-sobre {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .texto-sobre h2 {
+            color: #1e4d8c;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .texto-sobre h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #ff9800;
+            margin-top: 10px;
+        }
+
+        .texto-sobre p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* BANNER PREMIUM */
+        .banner-sobre {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1551882547-ff43c63fedfe?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 20px;
-            border-radius: 20px;
+            padding: 100px 20px;
+            border-radius: 15px;
             text-align: center;
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            margin: 20px;
         }
 
-        .banner-index h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        .banner-sobre h1 { font-size: 3em; }
+
+        /* DESTAQUES NO FUNDO */
+        .stats-sobre {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            text-align: center;
         }
 
-        .banner-index p {
-            font-size: 1.2em;
-            max-width: 600px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        }
-
-        /* ESTILO DO VÍDEO (500PX) */
-        .container-video-index { 
-            width: 100%; 
-            max-width: 1000px; 
-            margin: 30px auto; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
-        }
-        .container-video-index iframe { 
-            width: 100%; 
-            height: 500px; 
-            display: block; 
-            border: none;
-        }
+        .stat-item i { font-size: 2.5em; color: #ff9800; margin-bottom: 10px; }
+        .stat-item h4 { font-size: 1.5em; color: #1e4d8c; }
     </style>
 </head>
 <body>
@@ -57,34 +92,37 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-index">
-            <h1>Bem-vindo aos Passeios do Miguel</h1>
-            <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
+        <div class="banner-sobre">
+            <h1>A Nossa História</h1>
+            <p>Conheça quem organiza os seus momentos de lazer.</p>
         </div>
 
-        <section>
-            <div class="container-video-index">
-                <iframe 
-                    src="https://www.youtube.com/embed/7uOx4BxH0rk" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+        <section class="container-sobre">
+            <div class="foto-perfil">
+                <img src="https://i.imgur.com/your-photo-here.jpg" alt="Miguel - Organizador">
             </div>
-        </section>
 
-        <section class="newsletter-section">
-            <div class="newsletter-container">
-                <div class="newsletter-text">
-                    <h3>📩 Receba os nossos programas</h3>
-                    <p>Inscreva-se para receber as novidades por e-mail.</p>
+            <div class="texto-sobre">
+                <h2>Olá, eu sou o Miguel!</h2>
+                <p>
+                    Desde muito cedo que a paixão por viajar e descobrir os recantos escondidos do nosso Portugal me acompanha. O que começou como pequenos passeios com amigos, transformou-se hoje num projeto dedicado a proporcionar experiências únicas a todos os que se juntam a nós.
+                </p>
+                <p>
+                    A minha missão é simples: garantir que cada passeio seja mais do que uma viagem de autocarro. Quero que seja um dia de convívio, alegria e descoberta, onde cada detalhe é planeado para o seu máximo conforto.
+                </p>
+                
+                <div class="stats-sobre">
+                    <div class="stat-item">
+                        <i class="fas fa-bus"></i>
+                        <h4>+50</h4>
+                        <p>Passeios Realizados</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-smile"></i>
+                        <h4>+1000</h4>
+                        <p>Viajantes Felizes</p>
+                    </div>
                 </div>
-                <form class="newsletter-form" action="https://formspree.io/f/xgonpjqv" method="POST">
-                    <input type="email" name="email" placeholder="O seu e-mail..." required>
-                    <input type="hidden" name="_subject" value="Nova Inscrição na Newsletter!">
-                    <button type="submit" class="btn-newsletter">Aderir</button>
-                </form>
             </div>
         </section>
     </main>
@@ -97,9 +135,11 @@
             </div>
             <div class="footer-col">
                 <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a>
-                <a href="contatos.html">Contactos</a>
-                <a href="dicas.html">Dicas Úteis</a> </div>
+                <a href="cancelamento.html">Política de Cancelamento</a><br>
+                <a href="contatos.html">Contactos</a><br>
+                <a href="dicas.html">Dicas Úteis</a><br>
+                <a href="faq.html">FAQ</a>
+            </div>
             <div class="footer-col">
                 <h4>Siga-nos</h4>
                 <div class="social-icons-footer">
@@ -112,24 +152,16 @@
     </footer>
 
     <script>
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.warn('Erro ao carregar o menu:', err));
+        // Carregar o Menu
+        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
+        // O "SPRITE" DO BOTÃO FLUTUANTE
         document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                var modal = document.getElementById('janelaFaq');
-                if (modal) modal.style.display = 'none';
+            const botaoDuvidas = e.target.closest('#botaoDuvidas');
+            if (botaoDuvidas) {
+                window.location.href = 'faq.html';
             }
         });
     </script>
-    
 </body>
 </html>
