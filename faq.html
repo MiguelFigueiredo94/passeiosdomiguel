@@ -167,5 +167,52 @@
             });
         });
     </script>
+
+<script>
+    // 1. Carregar o Menu Dinâmico
+    fetch('menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        })
+        .catch(err => console.warn('Erro ao carregar o menu:', err));
+
+    // 2. Lógica do Acordeão (Específica para a página FAQ)
+    document.querySelectorAll('.faq-pergunta').forEach(botao => {
+        botao.addEventListener('click', () => {
+            const item = botao.parentElement;
+            // Fecha outros itens se quiseres que apenas um esteja aberto de cada vez
+            // document.querySelectorAll('.faq-item').forEach(i => i !== item && i.classList.remove('ativo'));
+            item.classList.toggle('ativo');
+        });
+    });
+
+    // 3. O "SPRITE" DE CONTROLO DO BOTÃO FLUTUANTE
+    // Este código deteta o clique no botão de dúvidas em qualquer página
+    document.addEventListener('click', function (e) {
+        // Seleciona o botão ou qualquer elemento dentro dele (o ícone)
+        const botaoDuvidas = e.target.closest('#botaoDuvidas');
+        
+        if (botaoDuvidas) {
+            // OPÇÃO A: Se quiseres que o botão leve para a NOVA PÁGINA FAQ:
+            window.location.href = 'faq.html';
+            
+            /* OPÇÃO B: Se preferires abrir a janela pop-up (Modal) como dantes:
+            var modal = document.getElementById('janelaFaq');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+            */
+        }
+
+        // Lógica para fechar o Modal (se estiveres a usar a Opção B)
+        if (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq') {
+            var modal = document.getElementById('janelaFaq');
+            if (modal) modal.style.display = 'none';
+        }
+    });
+</script>
+
+    
 </body>
 </html>
