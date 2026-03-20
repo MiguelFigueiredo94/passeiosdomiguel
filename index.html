@@ -10,32 +10,55 @@
         /* Layout Base */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
         
-        /* Menu Lateral Fixo (Sem os submenus de passeios) */
+        /* Menu Lateral Fixo */
         #menu-lateral { 
-            width: 250px; 
+            width: 260px; 
             background-color: #1e4d8c; 
             min-height: 100vh; 
             position: sticky; 
             top: 0; 
-            padding: 20px;
+            padding: 25px 15px;
             box-sizing: border-box;
             color: white;
             z-index: 1000;
         }
-        #menu-lateral .logo { width: 100%; max-width: 180px; margin: 0 auto 30px; display: block; }
-        #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
-        #menu-lateral li { margin-bottom: 10px; }
-        #menu-lateral a { 
+
+        /* LOGOTIPO - Mantido original e sem estilos de botão */
+        #menu-lateral .logo { 
+            width: 100%; 
+            max-width: 180px; 
+            margin: 0 auto 30px; 
             display: block; 
+        }
+
+        #menu-lateral ul { list-style: none; padding: 0; margin: 0; }
+        #menu-lateral li { margin-bottom: 12px; }
+
+        /* Estilo de Botoes Menu (Igual ao menu.html) */
+        #menu-lateral ul li a { 
+            display: flex;
+            align-items: center;
             color: white; 
             text-decoration: none; 
-            padding: 12px 15px; 
-            font-size: 1.05em; 
-            transition: 0.3s;
-            border-radius: 8px;
+            padding: 12px 20px; 
+            font-size: 0.95em; 
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 50px; 
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
         }
-        #menu-lateral a:hover { background: rgba(255,255,255,0.1); color: #ff8c00; padding-left: 20px; }
-        #menu-lateral i { width: 25px; }
+
+        /* Efeito Hover igual ao botão flutuante */
+        #menu-lateral ul li a:hover { 
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+            border-color: white;
+            color: white;
+        }
+
+        #menu-lateral i { width: 25px; font-size: 1.1em; margin-right: 10px; }
 
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
@@ -85,34 +108,34 @@
         .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
         .faq-body { padding: 30px; color: #333; line-height: 1.8; font-size: 15px; max-height: 65vh; overflow-y: auto; }
         #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
-        .faq-body hr { border: 0; border-top: 1px dashed #ddd; margin: 15px 0; }
 
         /* Rodapé */
         .footer-wave-container { background: white; line-height: 0; }
         .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
         footer { background: #1e4d8c; color: white; padding: 50px 30px; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; }
-        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 10px 0; transition: 0.3s; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #menu-lateral { width: 100%; min-height: auto; position: relative; }
+            #menu-lateral { width: 100%; min-height: auto; position: relative; padding: 15px; }
         }
     </style>
 </head>
 <body>
 
     <nav id="menu-lateral">
-        <a href="index.html"><img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Logo"></a>
+        <a href="index.html">
+            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+        </a>
+
         <ul>
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="sobre.html"><i class="fas fa-user"></i> Sobre Mim</a></li>
             <li><a href="passeios.html"><i class="fas fa-bus"></i> Passeios</a></li>
             <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
+            
             <br>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
-            <br>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            
             <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
         </ul>
@@ -135,16 +158,9 @@
         </div>
 
         <footer>
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>&copy; 2026 - Todos os direitos reservados.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Informações Extra</h4>
-                    <a href="cancelamento.html">⚠️ Política de Cancelamento</a>
-                    <a href="faq.html">Dúvidas Frequentes</a>
-                </div>
+            <div style="text-align: center;">
+                <h4 style="color: #ff8c00;">Passeios do Miguel</h4>
+                <p>&copy; 2026 - Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
@@ -164,8 +180,6 @@
                 <hr>
                 <p><strong>💳 Métodos de Pagamento:</strong><br>Aceitamos MB Way, Transferência ou Numerário.</p>
                 <hr>
-                <p><strong>📝 Como se inscrever:</strong><br>965 715 476 ou na página Inscrever-me.</p>
-                <hr>
                 <p><strong>🚫 Política de Cancelamento:</strong><br>Reembolso 100% até 30 dias antes.</p>
             </div>
         </div>
@@ -175,10 +189,9 @@
         const modal = document.getElementById('janelaFaq');
         const btn = document.getElementById('botaoDuvidas');
         const span = document.getElementById('fecharFaq');
-
         btn.onclick = () => modal.style.display = "block";
         span.onclick = () => modal.style.display = "none";
-        window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     </script>
 </body>
 </html>
