@@ -2,258 +2,250 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passeios - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f8f9fa; overflow-x: hidden; }
         
+        /* Banner */
         .banner-passeios {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
             background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; border-radius: 0 0 50px 50px; text-align: center; margin-bottom: 30px;
+            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 50px;
         }
 
-        .seccao-branca { background: white; margin: 0 20px; padding: 40px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* Estrutura */
+        .seccao-branca { background: white; padding: 40px 20px; position: relative; z-index: 1; }
+        .container-cards { max-width: 1200px; margin: 0 auto; }
         .titulo-lista { color: #1e4d8c; font-size: 1.8em; margin: 40px 0 20px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
         
-        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .card-passeio { border-radius: 15px; border: 1px solid #eee; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; background: #fff; }
+        /* Grid */
+        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .card-passeio { border-radius: 15px; border: 1px solid #eee; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; background: #fff; height: 100%; }
         .card-passeio:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         
-        .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .data-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
-        
-        .cal-pope { width: 55px; background: white; border: 1px solid #1e4d8c; border-radius: 8px; overflow: hidden; text-align: center; margin-bottom: 10px; }
-        .cal-mes { background: #1e4d8c; color: white; font-size: 0.75em; font-weight: bold; padding: 2px 0; text-transform: uppercase; }
-        .cal-dia { font-size: 1.2em; font-weight: bold; color: #333; padding: 2px 0; }
-        .cal-ano { font-size: 0.65em; color: #777; padding-bottom: 3px; }
-
+        /* Imagem e Badge */
         .img-box { height: 200px; position: relative; overflow: hidden; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card-passeio:hover .img-box img { scale: 1.1; }
-        
         .status-badge { position: absolute; top: 12px; right: 12px; padding: 4px 12px; border-radius: 20px; color: white; font-weight: bold; font-size: 0.75em; text-transform: uppercase; z-index: 2; }
         .badge-aberto { background: #2ecc71; }
         .badge-realizado { background: #95a5a6; }
         
-        .card-info h3 { margin: 5px 0 2px 0; color: #1e4d8c; font-size: 1.15em; line-height: 1.2; }
-        .card-info p { color: #666; font-size: 0.9em; margin: 0; font-weight: 500; }
+        /* Info */
+        .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .cal-pope { width: 55px; background: white; border: 1px solid #1e4d8c; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+        .cal-mes { background: #1e4d8c; color: white; font-size: 0.75em; font-weight: bold; padding: 2px 0; text-transform: uppercase; }
+        .cal-dia { font-size: 1.2em; font-weight: bold; color: #333; padding: 2px 0; }
+        .card-info h3 { margin: 5px 0; color: #1e4d8c; font-size: 1.1em; }
+        .card-info p { color: #666; font-size: 0.85em; margin: 0; }
 
+        /* Botões */
         .card-footer { padding: 15px; background: #fcfcfc; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; }
-        .btn-full { padding: 10px; border-radius: 6px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; transition: 0.2s; }
+        .btn-full { padding: 10px; border-radius: 6px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.85em; }
         .btn-iti { background: #eef2f7; color: #1e4d8c; }
         .btn-ins { background: #1e4d8c; color: white; }
         .btn-wts { background: #2ecc71; color: white; }
-        .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+        .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-        /* --- Estilo do Rodapé Dinâmico --- */
-        .footer-dinamico { background: #1e4d8c; color: white; position: relative; padding: 100px 20px 40px; margin-top: 80px; }
-        .onda-footer { position: absolute; top: 0; left: 0; width: 100%; line-height: 0; transform: translateY(-98%); }
-        .onda-footer svg { display: block; width: 100%; height: 80px; }
-        .onda-footer .shape-fill { fill: #1e4d8c; }
+        /* FAQ Flutuante */
+        .faq-float { position: fixed; bottom: 25px; right: 25px; background: #ff8c00; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; }
 
+        /* Rodapé Ajustado */
+        .footer-dinamico { background: #1e4d8c; color: white; position: relative; padding: 60px 20px 30px; margin-top: 0; }
+        .onda-footer { position: absolute; top: 0; left: 0; width: 100%; line-height: 0; transform: translateY(-99%); }
+        .onda-footer svg { display: block; width: 100%; height: 60px; fill: #1e4d8c; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-box h4 { color: #2ecc71; margin-bottom: 20px; font-size: 1.2em; position: relative; }
-        .footer-box h4::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 30px; height: 2px; background: white; }
-        .footer-box p, .footer-box a { color: #dce4ed; text-decoration: none; margin: 10px 0; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .footer-box a:hover { color: white; transform: translateX(5px); }
-
-        .social-pills { display: flex; gap: 15px; margin-top: 15px; }
-        .pill { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2em; transition: 0.3s; color: white; text-decoration: none; }
-        .pill:hover { transform: scale(1.2); color: white; }
-        .pill-fb:hover { background: #1877f2; }
-        .pill-ig:hover { background: #e4405f; }
-        .pill-wa:hover { background: #25d366; }
-
-        .bottom-bar { margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.85em; opacity: 0.8; }
+        .footer-box a { color: #dce4ed; text-decoration: none; display: block; margin: 8px 0; font-size: 0.9em; }
+        .social-icons a { font-size: 1.4em; color: white; margin-right: 15px; }
     </style>
 </head>
 <body>
+
     <div id="menu-placeholder"></div>
+
     <main>
         <div class="banner-passeios">
             <h1>Os Nossos Passeios</h1>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal.</p>
+            <p>Descobre Portugal com o Miguel</p>
         </div>
 
         <section class="seccao-branca">
-            <h2 class="titulo-lista"><i class="fas fa-bus"></i> Próximos Passeios 2026</h2>
-            <div class="grid-passeios">
+            <div class="container-cards">
                 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/L58QRQc.png"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div><div class="cal-ano">2026</div></div>
+                <h2 class="titulo-lista"><i class="fas fa-bus"></i> Próximos Passeios 2026</h2>
+                <div class="grid-passeios">
+                    
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/L58QRQc.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div>
                             <h3>Festas do Povo</h3><p>(Campo Maior)</p>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="campomaior.html" class="btn-full btn-iti">Ver Detalhes</a>
-                        <div class="row-btns">
-                            <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
-                            <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i> Chat</a>
+                        <div class="card-footer">
+                            <a href="campomaior.html" class="btn-full btn-iti">Ver Detalhes</a>
+                            <div class="row-btns">
+                                <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
+                                <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i></a>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div><div class="cal-ano">2026</div></div>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div>
                             <h3>Rota da Cereja</h3><p>(Fundão)</p>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="cereja.html" class="btn-full btn-iti">Ver Detalhes</a>
-                        <div class="row-btns"><a href="inscricao.html" class="btn-full btn-ins">Inscrição</a><a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i> Chat</a></div>
-                    </div>
-                </article>
+                        <div class="card-footer">
+                            <a href="cereja.html" class="btn-full btn-iti">Ver Detalhes</a>
+                            <div class="row-btns">
+                                <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
+                                <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div><div class="cal-ano">2026</div></div>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div>
                             <h3>Festa das Cruzes</h3><p>(Barcelos)</p>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="cruzes.html" class="btn-full btn-iti">Ver Detalhes</a>
-                        <div class="row-btns"><a href="inscricao.html" class="btn-full btn-ins">Inscrição</a><a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i> Chat</a></div>
-                    </div>
-                </article>
-
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
-                            <h3>Festa Internacional das Camélias</h3><p>(Celorico de Basto)</p>
+                        <div class="card-footer">
+                            <a href="cruzes.html" class="btn-full btn-iti">Ver Detalhes</a>
+                            <div class="row-btns">
+                                <a href="inscricao.html" class="btn-full btn-ins">Inscrição</a>
+                                <a href="https://wa.me/3519657154665" class="btn-full btn-wts"><i class="fab fa-whatsapp"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer"><a href="camelias.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
-                    <div class="card-info">
-                        <div class="data-container">
-                            <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">15</div><div class="cal-ano">2026</div></div>
-                            <h3>Magia Animal em Gaia</h3><p>(Vila Nova de Gaia)</p>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div>
+                            <h3>Festa das Camélias</h3><p>(Celorico de Basto)</p>
                         </div>
-                    </div>
-                    <div class="card-footer"><a href="gaia.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
-            </div>
+                        <div class="card-footer"><a href="camelias.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-            <h2 class="titulo-lista"><i class="fas fa-history"></i> Memórias 2025</h2>
-            <div class="grid-passeios">
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div><div class="cal-ano">2025</div></div><h3>Vigo e Valença do Minho</h3></div>
-                    </div>
-                    <div class="card-footer"><a href="vigo.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">15</div></div>
+                            <h3>Magia Animal</h3><p>(Vila Nova de Gaia)</p>
+                        </div>
+                        <div class="card-footer"><a href="gaia.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div><div class="cal-ano">2025</div></div><h3>Festa da Castanha</h3><p>(Marvão)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="marvao.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                </div>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div><div class="cal-ano">2025</div></div><h3>Nossa Senhora d'Ajuda</h3><p>(Espinho)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="espinho.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                <h2 class="titulo-lista"><i class="fas fa-history"></i> Memórias 2025</h2>
+                <div class="grid-passeios">
+                    
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div>
+                            <h3>Vigo e Valença</h3>
+                        </div>
+                        <div class="card-footer"><a href="vigo.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div><div class="cal-ano">2025</div></div><h3>Nossa Senhora d'Agonia</h3><p>(Viana do Castelo)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="viana.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div>
+                            <h3>Festa da Castanha</h3><p>(Marvão)</p>
+                        </div>
+                        <div class="card-footer"><a href="marvao.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div><div class="cal-ano">2025</div></div><h3>Gerês e Braga</h3></div>
-                    </div>
-                    <div class="card-footer"><a href="geres.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div>
+                            <h3>N. Sra. d'Ajuda</h3><p>(Espinho)</p>
+                        </div>
+                        <div class="card-footer"><a href="espinho.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div><div class="cal-ano">2025</div></div><h3>Santuário de Fátima</h3><p>(Fátima)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="fatima.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div>
+                            <h3>N. Sra. d'Agonia</h3><p>(Viana do Castelo)</p>
+                        </div>
+                        <div class="card-footer"><a href="viana.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div><div class="cal-ano">2025</div></div><h3>Festival do Chocolate</h3><p>(Óbidos)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="obidos.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div>
+                            <h3>Gerês e Braga</h3>
+                        </div>
+                        <div class="card-footer"><a href="geres.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
 
-                <article class="card-passeio">
-                    <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div>
-                    <div class="card-info">
-                        <div class="data-container"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div><div class="cal-ano">2025</div></div><h3>Amendoeiras em Flor</h3><p>(Vila Nova de Foz Côa)</p></div>
-                    </div>
-                    <div class="card-footer"><a href="amendoeiras.html" class="btn-full btn-iti">Ver Detalhes</a></div>
-                </article>
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div>
+                            <h3>Santuário de Fátima</h3>
+                        </div>
+                        <div class="card-footer"><a href="fatima.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div>
+                            <h3>Festival Chocolate</h3><p>(Óbidos)</p>
+                        </div>
+                        <div class="card-footer"><a href="obidos.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div>
+                            <h3>Amendoeiras em Flor</h3>
+                        </div>
+                        <div class="card-footer"><a href="amendoeiras.html" class="btn-full btn-iti">Ver Detalhes</a></div>
+                    </article>
+
+                </div>
             </div>
         </section>
     </main>
 
+    <a href="faq.html" class="faq-float"><i class="fas fa-question"></i></a>
+
     <footer class="footer-dinamico">
         <div class="onda-footer">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg>
         </div>
-
         <div class="footer-container">
             <div class="footer-box">
                 <h4>Passeios do Miguel</h4>
-                <p>Criamos memórias inesquecíveis através das paisagens de Portugal.</p>
-                <div class="social-pills">
-                    <a href="#" class="pill pill-fb"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="pill pill-ig"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/3519657154665" class="pill pill-wa"><i class="fab fa-whatsapp"></i></a>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/3519657154665" title="Grupo 📱"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-
             <div class="footer-box">
-                <h4>Acesso Rápido</h4>
-                <a href="index.html"><i class="fas fa-chevron-right"></i> Início</a>
-                <a href="passeios.html"><i class="fas fa-chevron-right"></i> Todos os Passeios</a>
-                <a href="politica-cancelamento.html" style="color: #ffb8b8;"><i class="fas fa-exclamation-triangle"></i> Política de Cancelamento</a>
+                <h4>Info</h4>
+                <a href="cancelamento.html" style="color:#ffb8b8">🚨 Cancelamento</a>
+                <a href="contatos.html">Contactos</a>
             </div>
-
             <div class="footer-box">
-                <h4>Comunidade</h4>
                 <p><i class="fas fa-phone"></i> +351 965 715 466</p>
-                <a href="https://chat.whatsapp.com/LINK_DO_GRUPO" target="_blank" style="color: #2ecc71; font-weight: bold;">
-                    <i class="fab fa-whatsapp"></i> Grupo VIP de Clientes
-                </a>
+                <p><i class="fas fa-map-marker-alt"></i> São Pedro do Sul</p>
             </div>
-        </div>
-
-        <div class="bottom-bar">
-            <p>&copy; 2026 Passeios do Miguel - São Pedro do Sul. Todos os direitos reservados.</p>
         </div>
     </footer>
 
