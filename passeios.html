@@ -2,160 +2,225 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Os Nossos Passeios - Passeios do Miguel</title>
+    <title>Nossos Passeios - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
+        /* SECÇÃO BRANCA AMPLA (IGUAL À HOME) */
+        .seccao-branca {
+            background: white;
+            margin: 20px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* GRELHA DE PASSEIOS */
+        .grid-passeios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CARD DE PASSEIO */
+        .card-passeio {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-passeio:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        /* IMAGEM DO DESTINO */
+        .img-container {
+            position: relative;
+            height: 220px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ETIQUETA DE STATUS */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        .status-aberto { background: #2ecc71; }
+        .status-ultimos { background: #e67e22; }
+        .status-completo { background: #e74c3c; }
+
+        /* CONTEÚDO DO CARD */
+        .info-passeio {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .info-passeio h3 {
+            color: #1e4d8c;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .detalhes-rapidos {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        .detalhes-rapidos i { color: #ff9800; margin-right: 5px; }
+
+        .descricao-curta {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* BOTÕES */
+        .botoes-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 25px 25px 25px;
+        }
+
+        .btn-detalhes {
+            background: #f0f4f8;
+            color: #1e4d8c;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-reservar {
+            background: #1e4d8c;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-reservar:hover { background: #ff9800; }
+
+        /* BANNER */
         .banner-passeios {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px;
             border-radius: 20px;
             text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .banner-passeios h1 {
-            font-size: 2.5em;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Estilos específicos para os títulos de arquivo */
-        .titulo-ano {
-            color: #1e4d8c; 
-            margin-top: 50px; 
-            border-bottom: 2px solid #ddd; 
-            padding-bottom: 10px;
-            font-family: 'Poppins', sans-serif;
+            margin: 20px;
         }
     </style>
 </head>
-<body class="layout-passeios">
+<body>
 
     <div id="menu-placeholder"></div>
 
     <main>
         <div class="banner-passeios">
-            <h1>Os Nossos Passeios</h1>
+            <h1>Próximos Destinos</h1>
+            <p>Escolha a sua próxima aventura e reserve o seu lugar!</p>
         </div>
 
-        <h2 style="text-align: center; margin-bottom: 30px;">Próximas Datas</h2>
-        <section class="container-passeios">
-            <div class="card-passeio">
-                <img src="https://i.imgur.com/L58QRQc.jpg" alt="Festas do Povo">
-                <h3>08 de agosto de 2026</h3>
-                <a href="campomaior.html" class="btn-detalhes">Ver Detalhes</a>
-            </div>
-            <div class="card-passeio">
-                <img src="https://i.imgur.com/kX8ScBU.jpg" alt="Rota da Cereja">
-                <h3>14 de junho de 2026</h3>
-                <a href="cereja.html" class="btn-detalhes">Ver Detalhes</a>
-            </div>
-            <div class="card-passeio">
-                <img src="https://i.imgur.com/uC6VTVp.jpg" alt="Festa das Cruzes">
-                <h3>01 de maio de 2026</h3>
-                <a href="cruzes.html" class="btn-detalhes">Ver Detalhes</a>
-            </div>
-        </section>
+        <section class="seccao-branca">
+            <div class="grid-passeios">
+                
+                <article class="card-passeio">
+                    <div class="img-container">
+                        <span class="badge status-aberto">Inscrições Abertas</span>
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=600&q=80" alt="Porto">
+                    </div>
+                    <div class="info-passeio">
+                        <div class="detalhes-rapidos">
+                            <span><i class="fas fa-calendar-alt"></i> 15 Abr</span>
+                            <span><i class="fas fa-clock"></i> 08:00</span>
+                        </div>
+                        <h3>Porto e Vila Nova de Gaia</h3>
+                        <p class="descricao-curta">Visita às caves do vinho do Porto, passeio de barco no Douro e almoço tradicional na Ribeira.</p>
+                    </div>
+                    <div class="botoes-card">
+                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="https://wa.me/teunumeroaqui" class="btn-reservar">Reservar</a>
+                    </div>
+                </article>
 
-        <h2 style="text-align: center; margin-top: 80px; color: #666; font-size: 1.8em;">Arquivo Histórico</h2>
+                <article class="card-passeio">
+                    <div class="img-container">
+                        <span class="badge status-ultimos">Últimos Lugares!</span>
+                        <img src="https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&w=600&q=80" alt="Gerês">
+                    </div>
+                    <div class="info-passeio">
+                        <div class="detalhes-rapidos">
+                            <span><i class="fas fa-calendar-alt"></i> 22 Abr</span>
+                            <span><i class="fas fa-clock"></i> 07:30</span>
+                        </div>
+                        <h3>Encantos do Gerês</h3>
+                        <p class="descricao-curta">Explore as cascatas mais bonitas, o Santuário de São Bento da Porta Aberta e paisagens de cortar o fôlego.</p>
+                    </div>
+                    <div class="botoes-card">
+                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="https://wa.me/teunumeroaqui" class="btn-reservar">Reservar</a>
+                    </div>
+                </article>
 
-        <h3 class="titulo-ano">Ano 2026</h3>
-        <section class="container-passeios">
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/PmjIQux.jpg" alt="Festa das Camélias">
-                <h3>15 de Março de 2026</h3>
-                <a href="camelias.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div> 
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/TBLxBlw.jpg" alt="Magia Animal em Gaia">
-                <h3>15 de Fevereiro de 2026</h3>
-                <a href="gaia.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-        </section>
+                <article class="card-passeio">
+                    <div class="img-container">
+                        <span class="badge status-completo">Esgotado</span>
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Algarve">
+                    </div>
+                    <div class="info-passeio">
+                        <div class="detalhes-rapidos">
+                            <span><i class="fas fa-calendar-alt"></i> 01 Mai</span>
+                            <span><i class="fas fa-clock"></i> 06:00</span>
+                        </div>
+                        <h3>Fim de Semana em Elvas</h3>
+                        <p class="descricao-curta">Visita às fortificações Património Mundial, Museus e a excelente gastronomia alentejana.</p>
+                    </div>
+                    <div class="botoes-card">
+                        <a href="#" class="btn-detalhes">Ver Mais</a>
+                        <a href="#" class="btn-reservar" style="background:#ccc; cursor:not-allowed;">Indisponível</a>
+                    </div>
+                </article>
 
-        <h3 class="titulo-ano">Ano 2025</h3>
-        <section class="container-passeios">
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/aUixZ0Y.jpg" alt="Especial de Natal - Valença e Vigo">
-                <h3>07 de dezembro de 2025</h3>
-                <a href="vigo.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/oDpPY1r.jpg" alt="Festa da Castanha de Marvão">
-                <h3>09 de novembro de 2025</h3>
-                <a href="marvao.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/1OhlRDd.jpg" alt="Senhora d'Ajuda - Espinho">
-                <h3>21 de Setembro de 2025</h3>
-                <a href="espinho.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/NmjlEsz.jpg" alt="Senhora d'Agonia - Viana do Castelo">
-                <h3>16 de agosto de 2025</h3>
-                <a href="viana.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/NqapppF.jpg" alt="Penada-Gerês & Braga">
-                <h3>20 de julho de 2025</h3>
-                <a href="geres.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/dZF0utN.jpg" alt="Santuário de Fátima">
-                <h3>15 de junho de 2025</h3>
-                <a href="fatima.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/dJqHQFF.jpg" alt="Óbidos">
-                <h3>06 de abril de 2025</h3>
-                <a href="obidos.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
-            </div>
-            <div class="card-passeio card-arquivo">
-                <img src="https://i.imgur.com/VJkJt5h.jpg" alt="Amendoeiras em Flor">
-                <h3>02 de março de 2025</h3>
-                <a href="amendoeiras.html" class="btn-detalhes" style="background: #6c757d;">Ver Resumo</a>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>&copy; 2026 - Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Informações</h4>
-                <a href="cancelamento.html">Política de Cancelamento</a><br>
-                <a href="contatos.html">Contactos</a><br>
-                <a href="dicas.html">Dicas Úteis</a>
-            </div>
-            <div class="footer-col">
-                <h4>Siga-nos</h4>
-                <div class="social-icons-footer">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.warn('Erro ao carregar o menu:', err));
-    </script>
+        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
 
-    <script>
+        // Lógica do Modal FAQ
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 var modal = document.getElementById('janelaFaq');
