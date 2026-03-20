@@ -2,35 +2,90 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Sobre Mim - Passeios do Miguel</title>
+    <title>Passeios do Miguel - Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* O estilo section já trata do fundo branco e sombra no style.css */
-        .conteudo-sobre { padding: 20px; color: #333; line-height: 1.8; }
-        .conteudo-sobre h2 { color: #1e4d8c; margin-top: 30px; }
-        .conteudo-sobre p { margin-bottom: 20px; text-align: justify; }
-        .imagem-final { width: 100%; max-width: 600px; display: block; margin: 30px auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* NOVO ESTILO DO BANNER COM FUNDO DE IMAGEM */
+        .banner-index {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-index h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .banner-index p {
+            font-size: 1.2em;
+            max-width: 600px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* ESTILO DO VÍDEO (500PX) */
+        .container-video-index { 
+            width: 100%; 
+            max-width: 1000px; 
+            margin: 30px auto; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+        }
+        .container-video-index iframe { 
+            width: 100%; 
+            height: 500px; 
+            display: block; 
+            border: none;
+        }
     </style>
 </head>
 <body>
+
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner"><h1>Sobre Mim</h1></div>
+        <div class="banner-index">
+            <h1>Bem-vindo aos Passeios do Miguel</h1>
+            <p>Descubra Portugal connosco. Experiências únicas, paisagens inesquecíveis e boa companhia.</p>
+        </div>
 
-        <section class="conteudo-sobre">
-            <h2>Como tudo começou...</h2>
-            
-            <p>Bem-vindos aos Passeios do Miguel! Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou. Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos.</p>
+        <section>
+            <div class="container-video-index">
+                <iframe 
+                    src="https://www.youtube.com/embed/7uOx4BxH0rk" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
 
-            <p>Os <b> Passeios do Miguel</b> nasceram do desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias. Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
-
-            <p>Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta.</p>
-
-            <p>De São Pedro do Sul 🗺️ para os cantos mais bonitos de Portugal. Junte-se a nós e venha viver momentos incríveis!</p>
-
-            <img src="https://i.imgur.com/X1xT7Fx.jpg" alt="Passeios do Miguel" class="imagem-final">
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <div class="newsletter-text">
+                    <h3>📩 Receba os nossos programas</h3>
+                    <p>Inscreva-se para receber as novidades por e-mail.</p>
+                </div>
+                <form class="newsletter-form" action="https://formspree.io/f/xgonpjqv" method="POST">
+                    <input type="email" name="email" placeholder="O seu e-mail..." required>
+                    <input type="hidden" name="_subject" value="Nova Inscrição na Newsletter!">
+                    <button type="submit" class="btn-newsletter">Aderir</button>
+                </form>
+            </div>
         </section>
     </main>
 
@@ -44,7 +99,7 @@
                 <h4>Informações</h4>
                 <a href="cancelamento.html">Política de Cancelamento</a>
                 <a href="contatos.html">Contactos</a>
-            </div>
+                <a href="dicas.html">Dicas Úteis</a> </div>
             <div class="footer-col">
                 <h4>Siga-nos</h4>
                 <div class="social-icons-footer">
@@ -56,30 +111,25 @@
         </div>
     </footer>
 
-<script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(err => console.warn('Erro ao carregar o menu:', err));
-</script>
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.warn('Erro ao carregar o menu:', err));
 
-<script>
-    document.addEventListener('click', function (e) {
-        // Deteta clique no botão flutuante ou no ícone que está dentro dele
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'block';
-        }
-        
-        // Deteta clique no X ou fora da janela para fechar
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+    </script>
     
 </body>
 </html>
