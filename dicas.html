@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Passeios do Miguel - Dicas de Viagem</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container-dicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .card-dica {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-bottom: 4px solid #1e4d8c;
+        }
+
+        .card-dica:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #ff9800;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon-dica {
+            font-size: 40px;
+            color: #1e4d8c;
+            margin-bottom: 20px;
+        }
+
+        .card-dica h3 {
+            color: #1e4d8c;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .card-dica p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .banner-dicas {
+            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <section>
+            <div class="banner-dicas">
+                <h1>💡 Dicas do Miguel</h1>
+                <p>Tudo o que precisa de saber para aproveitar o seu passeio ao máximo!</p>
+            </div>
+
+            <div class="container-dicas">
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
+                    <h3>O Calçado Ideal</h3>
+                    <p>Privilegie sempre calçado confortável e já "habituado" ao pé. Evite estrear sapatos em dias de passeio, pois vamos caminhar e descobrir locais magníficos!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-cloud-sun"></i></div>
+                    <h3>Vestir "à Cebola"</h3>
+                    <p>O tempo em Portugal pode mudar. Use várias camadas de roupa leve para poder tirar ou pôr conforme a temperatura ao longo do dia.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
+                    <h3>Registe os Momentos</h3>
+                    <p>Traga o telemóvel carregado e, se possível, um powerbank. Vai querer tirar muitas fotos das paisagens e dos nossos convívios!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
+                    <h3>Água e Lanches</h3>
+                    <p>Embora tenhamos paragens previstas, traga sempre uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante a viagem.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-clock"></i></div>
+                    <h3>Seja Pontual</h3>
+                    <p>Para aproveitarmos o dia todo, tente chegar ao local de partida 10 a 15 minutos antes. O grupo agradece e a diversão começa mais cedo!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-id-card"></i></div>
+                    <h3>Documentos à Mão</h3>
+                    <p>Tenha sempre consigo o seu Cartão de Cidadão. É essencial para qualquer imprevisto ou apenas para identificação pessoal durante o trajeto.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            });
+
+        // Script do FAQ (para o botão flutuante funcionar aqui também)
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
