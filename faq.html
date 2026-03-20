@@ -3,60 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas de Viagem - Passeios do Miguel</title>
+    <title>Dúvidas Frequentes - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base */
+        /* Layout e Menu */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner */
-        .banner-dicas {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
+        /* Banner FAQ */
+        .banner-faq {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 100px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        /* Grid de Dicas */
-        .seccao-dicas { padding: 60px 30px; background: white; flex-grow: 1; }
-        .container-dicas {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
+        /* Estilo do Acordeão (FAQ) */
+        .seccao-faq { padding: 50px 20px; background: white; flex-grow: 1; }
+        .container-faq { max-width: 850px; margin: 0 auto; }
+
+        .faq-item {
+            background: #fff; margin-bottom: 12px; border-radius: 12px;
+            border: 1px solid #eee; overflow: hidden; transition: 0.3s;
         }
 
-        .card-dica {
-            background: #fff; border-radius: 20px; padding: 35px 25px; text-align: center;
-            border: 1px solid #eee; border-bottom: 5px solid #1e4d8c; transition: 0.3s;
+        .faq-pergunta {
+            padding: 20px 25px; width: 100%; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer; background: none; border: none;
+            text-align: left; font-size: 1.1em; font-weight: bold; color: #1e4d8c;
         }
-        .card-dica:hover { transform: translateY(-5px); border-bottom-color: #ff8c00; }
-        .icon-dica { font-size: 40px; color: #ff8c00; margin-bottom: 15px; }
 
-        /* --- O BOTÃO FLUTUANTE LARANJA (Igual ao da tua foto) --- */
+        .faq-pergunta:hover { background: #fcfcfc; color: #ff8c00; }
+
+        .faq-resposta {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+            background: #fafafa; border-top: 0 solid #eee;
+        }
+
+        .faq-resposta-inner { padding: 20px 25px; color: #555; line-height: 1.6; }
+
+        /* Estado Aberto */
+        .faq-item.ativo { border-left: 5px solid #ff8c00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .faq-item.ativo .faq-pergunta { color: #ff8c00; }
+        .faq-item.ativo .faq-resposta { max-height: 300px; border-top-width: 1px; }
+        .faq-item.ativo i { transform: rotate(180deg); color: #ff8c00; }
+        .faq-pergunta i { transition: 0.3s; color: #ccc; }
+
+        /* Botão Flutuante (O Laranja da foto) */
         .faq-float { 
-            position: fixed; bottom: 20px; right: 20px; 
+            position: fixed; bottom: 25px; right: 25px; 
             background: #ff8c00; color: white; 
             width: 60px; height: 60px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; 
-            font-size: 24px; cursor: pointer; border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999;
+            font-size: 26px; cursor: pointer; border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 9999;
         }
 
-        /* --- O MODAL (A Janela que abre) --- */
-        .modal-faq {
+        /* Modal de Suporte Direto */
+        .modal-suporte {
             display: none; position: fixed; z-index: 10001; 
             left: 0; top: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
         }
-        .modal-faq-content {
-            background: white; margin: 10% auto; padding: 30px;
-            width: 90%; max-width: 500px; border-radius: 20px; position: relative;
+        .modal-content {
+            background: white; margin: 12% auto; padding: 30px;
+            width: 90%; max-width: 450px; border-radius: 20px; position: relative;
         }
-        .fechar-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #666; }
-        
-        .faq-item-modal { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #ff8c00; }
+        .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #888; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -69,80 +84,99 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-dicas">
-            <h1>💡 Dicas do Miguel</h1>
-            <p>Tudo o que precisas para uma viagem perfeita.</p>
+        <div class="banner-faq">
+            <h1>Como podemos ajudar?</h1>
+            <p>Respostas rápidas às dúvidas mais frequentes dos nossos viajantes.</p>
         </div>
 
-        <section class="seccao-dicas">
-            <div class="container-dicas">
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
-                    <h3>Calçado Confortável</h3>
-                    <p>Evita estrear sapatos. Sapatilhas usadas são as tuas melhores amigas.</p>
+        <section class="seccao-faq">
+            <div class="container-faq">
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta">Como faço a minha reserva? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            As reservas são feitas via WhatsApp ou telefone. Só ficam garantidas após o envio do comprovativo de pagamento (sinal).
+                        </div>
+                    </div>
                 </div>
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
-                    <h3>Powerbank</h3>
-                    <p>Não fiques sem bateria para as fotos! Traz um carregador portátil.</p>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">Onde são os pontos de recolha? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Saímos de **São Pedro do Sul**, com paragens em **Viseu** ou **Castro Daire** dependendo do destino. Confirma sempre no programa do passeio.
+                        </div>
+                    </div>
                 </div>
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-umbrella"></i></div>
-                    <h3>Previsão do Tempo</h3>
-                    <p>Dá uma olhadela no tempo antes de sair, mas traz sempre um agasalho.</p>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">Os lugares no autocarro são fixos? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Sim. Os lugares são atribuídos por **ordem de inscrição/pagamento**. Quem reserva primeiro, fica mais à frente.
+                        </div>
+                    </div>
                 </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">Posso levar crianças ou animais? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Crianças são super bem-vindas (com desconto!). Animais de estimação não são permitidos no autocarro por questões de segurança e higiene.
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
-
-        <button class="faq-float" id="btnAjuda">
-            <i class="fas fa-question"></i>
-        </button>
     </main>
 
-    <div id="modalAjuda" class="modal-faq">
-        <div class="modal-faq-content">
-            <span class="fechar-modal" id="btnFechar">&times;</span>
-            <h2 style="color: #1e4d8c; margin-top: 0;">Ajuda Rápida</h2>
-            <div class="faq-item-modal">
-                <strong>Como reservo?</strong><br>Basta enviar mensagem pelo WhatsApp ou ligar!
-            </div>
-            <div class="faq-item-modal">
-                <strong>Posso cancelar?</strong><br>Sim, consulta as nossas regras de cancelamento no rodapé.
-            </div>
-            <div class="faq-item-modal">
-                <strong>Animais de estimação?</strong><br>Não é permitido o transporte no autocarro.
-            </div>
-            <button id="btnEntendido" style="width:100%; padding:15px; background:#1e4d8c; color:white; border:none; border-radius:10px; margin-top:10px; cursor:pointer; font-weight:bold;">ENTENDIDO!</button>
+    <button class="faq-float" id="abrirModal">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <div id="modalSuporte" class="modal-suporte">
+        <div class="modal-content">
+            <span class="fechar-modal" id="fecharModal">&times;</span>
+            <h3 style="color: #1e4d8c;"><i class="fas fa-headset"></i> Suporte Direto</h3>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+            <p>Não encontraste a tua dúvida nas perguntas acima?</p>
+            <p><strong>Clica abaixo para falar connosco:</strong></p>
+            <a href="https://wa.me/351900000000" target="_blank" style="display: block; background: #25d366; color: white; text-align: center; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold;">
+                <i class="fab fa-whatsapp"></i> Falar com o Miguel
+            </a>
         </div>
     </div>
 
     <script>
-        // 1. Carrega o Menu (SEM ADICIONAR PONTOS DE INTERROGAÇÃO EXTRAS)
-        fetch('menu.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
+        // 1. Carrega o Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
 
-        // 2. Lógica do Modal (Blindada)
-        const modal = document.getElementById('modalAjuda');
-        const btnAbrir = document.getElementById('btnAjuda');
-        const btnFecharX = document.getElementById('btnFechar');
-        const btnEntendido = document.getElementById('btnEntendido');
+        // 2. Lógica do Acordeão (Clica e Abre)
+        document.querySelectorAll('.faq-pergunta').forEach(botao => {
+            botao.onclick = () => {
+                const item = botao.parentElement;
+                const estaAtivo = item.classList.contains('ativo');
+                
+                // Fecha todos antes de abrir o novo
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('ativo'));
+                
+                // Se não estava aberto, abre
+                if (!estaAtivo) item.classList.add('ativo');
+            };
+        });
 
-        // Abrir
-        btnAbrir.onclick = function() { modal.style.display = "block"; }
+        // 3. Lógica do Modal do Botão Laranja
+        const modal = document.getElementById('modalSuporte');
+        const btnAbrir = document.getElementById('abrirModal');
+        const btnFechar = document.getElementById('fecharModal');
 
-        // Fechar no X
-        btnFecharX.onclick = function() { modal.style.display = "none"; }
-
-        // Fechar no botão azul
-        btnEntendido.onclick = function() { modal.style.display = "none"; }
-
-        // Fechar se clicar fora da caixa branca
-        window.onclick = function(event) {
-            if (event.target == modal) { modal.style.display = "none"; }
-        }
+        btnAbrir.onclick = () => modal.style.display = "block";
+        btnFechar.onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
     </script>
 </body>
 </html>
