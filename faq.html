@@ -181,5 +181,41 @@
             }
         });
     </script>
+
+        <button class="faq-float" onclick="abrirFaq()" title="Dúvidas sobre as dicas?">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <div id="janelaFaq" class="modal-faq">
+        <div class="modal-faq-content">
+            <span class="fechar-modal" onclick="fecharFaq()">&times;</span>
+            <h3 style="color: #1e4d8c;"><i class="fas fa-lightbulb"></i> Precisa de mais dicas?</h3>
+            <hr>
+            <p><strong>Tem uma dúvida específica sobre o vestuário ou percurso?</strong><br>Cada passeio tem as suas particularidades. Se não encontrar aqui o que precisa, fale connosco pelo WhatsApp!</p>
+            <p><strong>A lista de dicas é atualizada?</strong><br>Sim! Adaptamos as dicas conforme a estação do ano (verão ou inverno).</p>
+            <br>
+            <button onclick="fecharFaq()" style="background:#1e4d8c; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; width:100%; font-weight:bold;">Entendido!</button>
+        </div>
+    </div>
+
+    <script>
+        // Carrega o Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
+
+        // Funções para a Janela Modal
+        function abrirFaq() {
+            document.getElementById('janelaFaq').style.display = 'block';
+        }
+        function fecharFaq() {
+            document.getElementById('janelaFaq').style.display = 'none';
+        }
+        // Fechar se clicar fora da modal
+        window.onclick = function(event) {
+            let modal = document.getElementById('janelaFaq');
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
 </body>
 </html>
