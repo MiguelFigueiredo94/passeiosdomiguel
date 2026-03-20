@@ -2,110 +2,112 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Política de Cancelamento e Reembolso | Passeios do Miguel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Cancelamento - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .conteudo-legal { max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.7; color: #333; }
-        .conteudo-legal h1 { color: #1e4d8c; margin-bottom: 20px; border-bottom: 2px solid #1e4d8c; padding-bottom: 10px; }
-        .conteudo-legal h2 { color: #1e4d8c; margin-top: 35px; font-size: 1.4em; }
-        .conteudo-legal ul { margin-left: 20px; }
-        .conteudo-legal li { margin-bottom: 10px; }
-        .box-aviso { background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 20px 0; }
-        .btn-voltar { display: inline-block; margin-top: 30px; padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; }
+        /* Base e Layout Lateral */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* BANNER PREMIUM */
+        .banner-legal {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; color: white;
+            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+        }
+        .banner-legal h1 { font-size: 2.5em; margin-bottom: 10px; }
+
+        /* CONTEÚDO LEGAL */
+        .seccao-legal { padding: 60px 20px; background: white; flex-grow: 1; }
+        .container-legal { max-width: 850px; margin: 0 auto; line-height: 1.8; color: #444; }
+        
+        h2 { color: #1e4d8c; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; margin-top: 45px; display: flex; align-items: center; gap: 10px; }
+        h2 i { color: #ff8c00; font-size: 0.9em; }
+
+        .box-alerta { 
+            background: #fff9e6; border-left: 5px solid #ffbc00; 
+            padding: 25px; margin: 30px 0; border-radius: 8px;
+            color: #856404; font-weight: 500;
+        }
+
+        .lista-legal { list-style: none; padding: 0; }
+        .lista-legal li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        .lista-legal li::before { content: "\f058"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: #1e4d8c; }
+
+        .btn-voltar {
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
+            padding: 12px 25px; background: #1e4d8c; color: white; text-decoration: none;
+            border-radius: 12px; font-weight: bold; transition: 0.3s;
+        }
+        .btn-voltar:hover { background: #ff8c00; transform: translateX(-5px); }
+
+        /* RODAPÉ ONDA */
+        .footer-wave { background: white; line-height: 0; }
+        .footer-wave svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
+        footer { background: #1e4d8c; color: white; padding: 60px 30px; }
     </style>
 </head>
 <body>
-   
+
     <div id="menu-placeholder"></div>
 
-    <main class="conteudo-legal">
-        <h1>Política de Cancelamento e Reembolso</h1>
-        <p>Para garantir a melhor organização e evitar imprevistos, os <strong>"Passeios do Miguel"</strong> estabelecem as seguintes condições para inscrições, cancelamentos, reembolsos e a participação nos seus passeios.</p>
-
-        <h2>1. Inscrição e Pagamento</h2>
-        <p>A sua inscrição em qualquer passeio é confirmada <strong>apenas após o pagamento do valor total</strong>. A reserva só é efetivada após a confirmação do pagamento, sendo os lugares atribuídos por ordem de chegada da mesma.</p>
-
-        <h2>2. Cancelamento por Parte do Participante</h2>
-        <p>Compreendemos que imprevistos acontecem. No entanto, assumimos compromissos financeiros com fornecedores que se tornam irrecuperáveis.</p>
-        <ul>
-            <li><strong>Até 30 dias antes:</strong> Reembolso de 100% do valor pago.</li>
-            <li><strong>Com menos de 30 dias:</strong> Não haverá lugar a reembolso (devido aos custos operacionais já comprometidos).</li>
-        </ul>
-        <p><strong>Como comunicar:</strong> Envie um e-mail para <a href="mailto:passeiosdomiguel@gmail.com">passeiosdomiguel@gmail.com</a> ou ligue para <a href="tel:+351965715465">965 715 465</a>. A data de receção é a que conta.</p>
-        <p><em>Nota: Poderá ceder o seu lugar a outra pessoa, desde que nos informe com antecedência antes da partida.</em></p>
-
-        <h2>3. Cancelamento por Parte dos "Passeios do Miguel"</h2>
-        <div class="box-aviso">
-            <strong>Motivos de cancelamento:</strong> Número insuficiente de participantes, imprevistos técnicos, condições climatéricas adversas ou força maior.
+    <main>
+        <div class="banner-legal">
+            <h1>Termos e Condições</h1>
+            <p>A transparência é a base da nossa confiança mútua.</p>
         </div>
-        <p>Nestas situações, terá a opção de remarcar para uma nova data ou passeio, ou solicitar o <strong>reembolso</strong> (deduzido de custos não reembolsáveis por fornecedores externos, devidamente comprovados).</p>
 
-        <h2>4. Alterações no Itinerário</h2>
-        <p>Reservamo-nos o direito de efetuar ajustes necessários por motivos de força maior, trânsito ou melhoria da experiência. Alterações menores que não comprometam o objetivo principal não dão direito a reembolso.</p>
+        <section class="seccao-legal">
+            <div class="container-legal">
+                <p>Para garantir a melhor organização e evitar imprevistos, os <strong>"Passeios do Miguel"</strong> estabelecem as seguintes condições para inscrições, cancelamentos e reembolsos.</p>
 
-        <h2>5. Responsabilidade dos Participantes</h2>
-        <ul>
-            <li><strong>Pontualidade:</strong> Atrasos que impliquem a perda de transporte não são da nossa responsabilidade e não dão direito a reembolso.</li>
-            <li><strong>Conduta:</strong> Respeito pelos guias, participantes e locais visitados é obrigatório.</li>
-            <li><strong>Saúde:</strong> É responsabilidade do participante avaliar a sua condição física para o passeio.</li>
-            <li><strong>Objetos Pessoais:</strong> Não nos responsabilizamos por perdas ou danos.</li>
-        </ul>
+                <h2><i class="fas fa-file-invoice-dollar"></i> 1. Inscrição e Pagamento</h2>
+                <p>A sua inscrição é confirmada <strong>apenas após o pagamento do valor total</strong>. A reserva só é efetivada após esta confirmação, sendo os lugares no autocarro atribuídos por ordem de chegada do pagamento.</p>
 
-        <h2>6. Reclamações e Proteção de Dados</h2>
-        <p>Questões devem ser reportadas preferencialmente durante ou logo após o passeio. Os seus dados são tratados conforme o <strong>RGPD</strong> e usados exclusivamente para a gestão da sua inscrição.</p>
+                <h2><i class="fas fa-user-times"></i> 2. Cancelamento pelo Participante</h2>
+                <p>Assumimos compromissos financeiros com transportadoras e restaurantes que se tornam irrecuperáveis próximo da data.</p>
+                <div class="box-alerta">
+                    <i class="fas fa-calendar-alt"></i> <strong>Prazos de Reembolso:</strong><br>
+                    • Até 30 dias antes do passeio: Reembolso de 100%.<br>
+                    • Menos de 30 dias: Não haverá lugar a reembolso.
+                </div>
+                <p><strong>Dica de Segurança:</strong> Caso não possa comparecer, <span style="color:#1e4d8c; font-weight:bold;">poderá ceder o seu lugar a outra pessoa</span>, desde que nos informe o nome do novo passageiro até 24h antes da partida.</p>
 
-        <a href="passeios.html" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar aos Passeios</a>
+                <h2><i class="fas fa-exclamation-triangle"></i> 3. Cancelamento pelos "Passeios do Miguel"</h2>
+                <p>Reservamo-nos o direito de cancelar a atividade por: número insuficiente de participantes, questões técnicas, condições climatéricas adversas ou força maior.</p>
+                <p>Nestes casos, poderá optar pela <strong>remarcação</strong> para outra data ou pelo <strong>reembolso total</strong> (deduzido apenas de custos externos não reembolsáveis, se aplicável e comprovado).</p>
+
+                <h2><i class="fas fa-clipboard-list"></i> 4. Responsabilidades</h2>
+                <ul class="lista-legal">
+                    <li><strong>Pontualidade:</strong> Atrasos que impliquem a perda do transporte não dão direito a reembolso.</li>
+                    <li><strong>Conduta:</strong> O respeito pelos guias e companheiros de viagem é fundamental.</li>
+                    <li><strong>Objetos Pessoais:</strong> A guarda de pertences é da inteira responsabilidade do passageiro.</li>
+                </ul>
+
+                <a href="passeios.html" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar aos Passeios</a>
+            </div>
+        </section>
+
+        <div class="footer-wave"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg></div>
+        <footer>
+            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <p>&copy; 2026 Passeios do Miguel - São Pedro do Sul</p>
+                <div style="margin-top: 15px;">
+                    <a href="contatos.html" style="color: #ff8c00; text-decoration: none; margin: 0 10px;">Contactos</a> | 
+                    <a href="faq.html" style="color: #fff; text-decoration: none; margin: 0 10px;">Dúvidas</a>
+                </div>
+            </div>
+        </footer>
     </main>
 
-<footer>
-    <div class="footer-container">
-        <div class="footer-col">
-            <h4>Passeios do Miguel</h4>
-            <p>&copy; 2026 - Todos os direitos reservados.</p>
-        </div>
-
-        <div class="footer-col">
-            <h4>Informações</h4>
-            <a href="cancelamento.html">Política de Cancelamento</a>
-            <a href="contatos.html">Contactos</a>
-        </div>
-
-        <div class="footer-col">
-            <h4>Siga-nos</h4>
-            <div class="social-icons-footer">
-                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
+    <script>
+        fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(err => console.warn('Erro ao carregar o menu:', err));
-</script>
-
-<script>
-    document.addEventListener('click', function (e) {
-        // Deteta clique no botão flutuante ou no ícone que está dentro dele
-        if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'block';
-        }
-        
-        // Deteta clique no X ou fora da janela para fechar
-        if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-            var modal = document.getElementById('janelaFaq');
-            if (modal) modal.style.display = 'none';
-        }
-    });
-</script>
-    
+        });
+    </script>
 </body>
 </html>
