@@ -168,5 +168,26 @@
             }
         });
     </script>
+
+   <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.warn('Erro ao carregar o menu:', err));
+
+        document.addEventListener('click', function (e) {
+            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'block';
+            }
+            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
+                var modal = document.getElementById('janelaFaq');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+    </script>
+    
 </body>
 </html>
