@@ -10,7 +10,7 @@
         /* Layout Base */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
         
-        /* Onde o menu vai aparecer */
+        /* Espaço para o menu importado */
         #container-menu { min-width: 250px; }
 
         /* Conteúdo Principal */
@@ -27,6 +27,27 @@
         .foto-miguel { width: 300px; height: 300px; border-radius: 30px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .texto-sobre { max-width: 700px; color: #444; line-height: 1.8; }
         .texto-sobre h2 { color: #1e4d8c; margin-top: 0; }
+
+        /* --- ESTILOS DO MODAL FAQ (IGUAIS AO INDEX) --- */
+        .btn-flutuante-faq {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 65px; height: 65px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            cursor: pointer; z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid white;
+        }
+        .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
+
+        #janelaFaq { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+        .faq-card { background: white; margin: 6% auto; width: 90%; max-width: 480px; border-radius: 25px; overflow: hidden; position: relative; animation: abrirModal 0.4s ease-out; }
+        @keyframes abrirModal { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
+        #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
+        .faq-body { padding: 30px; color: #333; line-height: 1.8; font-size: 15px; max-height: 70vh; overflow-y: auto; }
 
         /* Rodapé */
         .footer-wave-container { background: white; line-height: 0; }
@@ -69,12 +90,48 @@
         </footer>
     </main>
 
+    <div id="botaoDuvidas" class="btn-flutuante-faq">
+        <i class="fas fa-question"></i>
+    </div>
+
+    <div id="janelaFaq">
+        <div class="faq-card">
+            <div class="faq-header">
+                <span id="fecharFaq">&times;</span>
+                <h2 style="margin: 0;">Central de Ajuda</h2>
+            </div>
+            <div class="faq-body">
+                <p><strong>📍 Partidas e Horários:</strong><br>Confirmados via telefone até 48h antes da viagem.</p>
+                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
+                <p><strong>💳 Métodos de Pagamento:</strong><br>Aceitamos MB Way, Transferência ou Numerário.</p>
+                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
+                <p><strong>🚫 Política de Cancelamento:</strong><br>Reembolso 100% até 30 dias antes.</p>
+                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
+                <p><strong>🎒 O que está incluído?</strong><br>Geralmente o transporte e seguro. Refeições variam conforme o passeio.</p>
+                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
+                <p><strong>👶 Crianças e Famílias:</strong><br>Preços especiais para menores de 12 anos em passeios selecionados.</p>
+                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
+                <p><strong>🐾 Animais de Estimação:</strong><br>Não é permitido o transporte de animais (exceto cães-guia).</p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Carrega o menu lateral
         fetch('menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('container-menu').innerHTML = data;
             });
+
+        // Controlo do Modal FAQ
+        const modal = document.getElementById('janelaFaq');
+        const btn = document.getElementById('botaoDuvidas');
+        const span = document.getElementById('fecharFaq');
+
+        btn.onclick = () => modal.style.display = "block";
+        span.onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     </script>
 
 </body>
