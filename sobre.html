@@ -103,35 +103,18 @@
         .valor-card-premium p { font-size: 15px; color: #777; line-height: 1.8; margin: 0; }
 
         /* --- BOTÃO FLUTUANTE & FOOTER --- */
-        /* Botão Flutuante e Modal */
-        .btn-flutuante-faq {
-            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 3px solid white;
+        .btn-flutuante-faq { 
+            position: fixed; bottom: 35px; right: 35px; width: 65px; height: 65px; 
+            background: linear-gradient(135deg, #ff9800, #f57c00); color: white; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 26px; box-shadow: 0 10px 25px rgba(245, 124, 0, 0.4); 
+            cursor: pointer; z-index: 999998; transition: 0.4s; border: 3px solid white; 
         }
-        .btn-flutuante-faq:hover { transform: scale(1.15) rotate(15deg); background: linear-gradient(135deg, #1e4d8c, #2a66ff); }
+        .btn-flutuante-faq:hover { transform: scale(1.1) rotate(10deg); background: #1e4d8c; }
 
-        #janelaFaq { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
-        .faq-card { background: white; margin: 6% auto; width: 90%; max-width: 480px; border-radius: 25px; overflow: hidden; position: relative; animation: abrirModal 0.4s ease-out; }
-        @keyframes abrirModal { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .faq-header { background: #1e4d8c; color: white; padding: 25px; text-align: center; }
-        #fecharFaq { position: absolute; right: 20px; top: 15px; font-size: 35px; cursor: pointer; color: white; }
-        .faq-body { padding: 30px; color: #333; line-height: 1.8; font-size: 15px; }
-
-        /* Rodapé */
-        .footer-wave-container { background: white; line-height: 0; }
-        .footer-wave-container svg { width: 100%; height: 60px; fill: #1e4d8c; margin-bottom: -1px; }
-        footer { background: #1e4d8c; color: white; padding: 50px 30px; text-align: center; }
-
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #menu-lateral { width: 100%; min-height: auto; position: relative; }
-        }
-    </style>
-    
-
+        .footer-wave-container { background: #f0f3f7; line-height: 0; }
+        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; }
+        footer { background: #1e4d8c; color: white; padding: 60px 30px; text-align: center; font-weight: 300; letter-spacing: 1px; }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 1024px) {
@@ -169,7 +152,7 @@
             </div>
 
             <div class="bloco-historia">
-                <img src="https://i.imgur.com/cj1OOwA.png" class="imagem-historia" alt="A Jornada - Contemplação">
+                <img src="https://i.imgur.com/8QO5K6N.png" class="imagem-historia" alt="A Jornada - Contemplação">
                 <div class="texto-historia">
                     <h3>De um Gesto ao Projeto de Vida</h3>
                     <p>Tudo começou com uma iniciativa solidária: dois passeios organizados para angariar fundos. O que era um evento pontual revelou-se uma vocação inesperada, alimentada pelo entusiasmo e pelas palavras de incentivo de quem nos acompanhou desde o primeiro quilómetro.</p>
@@ -220,37 +203,18 @@
         </footer>
     </main>
 
-    <<div id="botaoDuvidas" class="btn-flutuante-faq">
+    <div id="botaoDuvidas" class="btn-flutuante-faq">
         <i class="fas fa-question"></i>
     </div>
 
-    <div id="janelaFaq">
-        <div class="faq-card">
-            <div class="faq-header">
-                <span id="fecharFaq">&times;</span>
-                <h2 style="margin: 0;">Central de Ajuda</h2>
-            </div>
-            <div class="faq-body" style="max-height: 70vh; overflow-y: auto;">
-                <p><strong>📍 Partidas e Horários:</strong><br>Confirmados via telefone ou WhatsApp até 48h antes.</p>
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                <p><strong>💳 Métodos de Pagamento:</strong><br>Aceitamos MB Way, Transferência ou Numerário.</p>
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                <p><strong>🚫 Política de Cancelamento:</strong><br>Reembolso de 100% até 30 dias antes.</p>
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                <p><strong>🎒 O que está incluído?</strong><br>Geralmente o transporte e Guia Acompanhante.</p>
-                <hr style="border:0; border-top:1px dashed #ddd; margin:15px 0;">
-                <p><strong>🐾 Animais de Estimação:</strong><br>Não é permitido o transporte de animais por questões de segurança.</p>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const modal = document.getElementById('janelaFaq');
-        const btn = document.getElementById('botaoDuvidas');
-        const span = document.getElementById('fecharFaq');
-        btn.onclick = () => modal.style.display = "block";
-        span.onclick = () => modal.style.display = "none";
-        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('container-menu').innerHTML = data;
+            });
+
+        // O código do Modal FAQ pode ser adicionado aqui caso queiras manter a janela pop-up
     </script>
 </body>
 </html>
