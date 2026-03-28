@@ -7,136 +7,155 @@
     <style>
         :root {
             --cor-primaria: #d23669; /* Tom Camélia */
-            --cor-texto: #333;
-            --bg-cinza: #f4f4f4;
+            --cor-secundaria: #333;
+            --bg-light: #f9f9f9;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--cor-texto);
-            background-color: #fff;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .cabecalho-testemunhos {
+        /* --- Menu / Nav --- */
+        nav {
+            background: var(--cor-secundaria);
+            color: white;
+            padding: 1rem;
             text-align: center;
-            margin-bottom: 50px;
         }
-
-        .cabecalho-testemunhos h1 {
-            color: var(--cor-primaria);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .destaque-aniversario {
-            background-color: #fff0f5;
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
             font-weight: bold;
-            color: var(--cor-primaria);
-            border: 1px solid var(--cor-primaria);
         }
 
-        .grid-testemunhos {
+        /* --- Mural de Testemunhos --- */
+        .mural-container {
+            flex: 1;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .mural-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .mural-header h1 {
+            color: var(--cor-primaria);
+            font-size: 2rem;
+        }
+
+        .grid-mural {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .card-testemunho {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--cor-primaria);
-            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
         }
 
-        .card-testemunho::before {
-            content: '"';
-            font-size: 80px;
-            color: #f0f0f0;
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            font-family: serif;
-            z-index: 0;
+        .card-testemunho:hover {
+            transform: translateY(-5px);
         }
 
-        .comentario {
-            font-size: 1.1em;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 15px;
+        .card-testemunho p {
+            font-style: italic;
+            color: #555;
+            line-height: 1.5;
         }
 
-        .autor {
+        .info-autor {
+            margin-top: 15px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .nome-autor {
             font-weight: bold;
-            color: var(--cor-primaria);
+            color: var(--cor-secundaria);
         }
 
-        .estrelas {
-            color: #ffcc00;
-            margin-bottom: 10px;
+        .data-passeio {
+            font-size: 0.8rem;
+            color: #888;
         }
 
-        @media (min-width: 768px) {
-            .grid-testemunhos {
-                grid-template-columns: 1fr 1fr;
-            }
-            .card-testemunho:nth-child(3) {
-                grid-column: span 2;
-            }
+        /* --- Rodapé --- */
+        footer {
+            background: var(--cor-secundaria);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            nav a { margin: 0 5px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="cabecalho-testemunhos">
-            <span class="destaque-aniversario">🎉 Edição Especial 1º Aniversário</span>
-            <h1>O que dizem sobre nós</h1>
-            <p>A opinião de quem viajou connosco a Celorico de Basto</p>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="proximos-passeios.html">Próximos Passeios</a>
+        <a href="testemunhos.html">Testemunhos</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <div class="mural-container">
+        <header class="mural-header">
+            <h1>O Que Dizem os Nossos Viajantes</h1>
+            <p>Memórias recentes da Festa das Camélias (1º Aniversário)</p>
         </header>
 
-        <section class="grid-testemunhos">
-            
+        <div class="grid-mural">
             <div class="card-testemunho">
-                <div class="estrelas">★★★★★</div>
-                <p class="comentario">O desfile das camélias estava lindíssimo! A Batalha das Flores encheu as ruas de cor e foi uma animação constante. Adorei celebrar o 1º aniversário convosco.</p>
-                <p class="autor"><strong>— Maria Silva</strong></p>
+                <p>"O almoço estava simplesmente delicioso e muito bem servido. Foi o momento perfeito para celebrar este primeiro ano de passeios!"</p>
+                <div class="info-autor">
+                    <span class="nome-autor">António Ferreira</span>
+                    <span class="data-passeio">Março 2026</span>
+                </div>
             </div>
 
             <div class="card-testemunho">
-                <div class="estrelas">★★★★★</div>
-                <p class="comentario">O almoço foi um dos pontos altos! Estava simplesmente delicioso, tudo muito bem servido e com o convívio espetacular que o Miguel sempre promove.</p>
-                <p class="autor"><strong>— António Ferreira</strong></p>
+                <p>"Adorei o desfile temático e a Batalha das Flores em Celorico de Basto. Organização nota 10, muita cor e alegria!"</p>
+                <div class="info-autor">
+                    <span class="nome-autor">Maria Silva</span>
+                    <span class="data-passeio">Março 2026</span>
+                </div>
             </div>
 
             <div class="card-testemunho">
-                <div class="estrelas">★★★★★</div>
-                <p class="comentario">A subida à Senhora da Graça foi inesquecível, que vista deslumbrante! Organização nota 10, desde a recolha em Castro Daire até ao final do dia. Recomendo a todos!</p>
-                <p class="autor"><strong>— Carla Rodrigues</strong></p>
+                <p>"A vista do Santuário da Senhora da Graça é incrível. Uma forma espetacular de comemorar o aniversário dos Passeios do Miguel."</p>
+                <div class="info-autor">
+                    <span class="nome-autor">Carla Rodrigues</span>
+                    <span class="data-passeio">Março 2026</span>
+                </div>
             </div>
-
-        </section>
-
-        <footer style="text-align: center; margin-top: 50px;">
-            <a href="index.html" style="text-decoration: none; color: #666;">← Voltar à página principal</a>
-        </footer>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Passeios do Miguel - 1º Aniversário ao seu lado.</p>
+        <p><small>Castro Daire | São Pedro do Sul</small></p>
+    </footer>
 
 </body>
 </html>
