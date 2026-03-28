@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Home</title>
+    <title>Passeios do Miguel - Sobre Mim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
+        /* 1. ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        /* Placeholder para o menu lateral de 260px */
+        /* Espaço reservado para o menu lateral de 260px */
         #menu-placeholder { width: 260px; flex-shrink: 0; }
 
         /* CONTEÚDO PRINCIPAL */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* HERO SECTION - BANNER PRINCIPAL */
-        .hero-home {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200');
-            background-size: cover; background-position: center; height: 500px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; border-bottom: 6px solid #ff8c00;
+        .hero-sobre {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
+            background-size: cover; background-position: center; height: 250px; 
+            display: flex; justify-content: center; align-items: center; color: white;
+            border-bottom: 5px solid #ff8c00;
         }
-        .hero-home h1 { font-size: 3.5em; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-home p { font-size: 1.4em; max-width: 700px; font-weight: 300; }
 
-        /* SECÇÃO DE DESTAQUES */
-        .intro-section { padding: 60px 40px; text-align: center; max-width: 1000px; margin: 0 auto; }
-        .intro-section h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 20px; }
-        .intro-section p { color: #555; font-size: 1.1em; line-height: 1.8; }
+        .content-section { padding: 50px 40px; max-width: 1000px; margin: 0 auto; flex-grow: 1; }
+        
+        /* BLOCOS DA HISTÓRIA */
+        .fase { display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; }
+        .fase-icon { 
+            background: #ff8c00; color: white; width: 50px; height: 50px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .fase-content { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); flex-grow: 1; border-left: 5px solid #1e4d8c; }
+        .fase-content h3 { color: #1e4d8c; margin-bottom: 10px; font-size: 1.3em; }
+        .fase-content p { color: #444; line-height: 1.6; font-size: 1.1em; text-align: justify; }
 
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feature-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-card i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 10px; }
-
-        /* 2. RODAPÉ PREMIUM (ESTILO ILHA) */
+        /* 2. RODAPÉ ILHA PREMIUM (COMO NAS FOTOS) */
         .footer-ilha {
             background-color: #1e4d8c; color: white;
             margin: 20px; padding: 40px 50px 20px;
@@ -61,7 +60,6 @@
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
-            .hero-home h1 { font-size: 2.2em; }
             .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -71,43 +69,50 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-home">
-            <h1>Passeios do Miguel</h1>
-            <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-            <a href="passeios.html" style="margin-top: 25px; background: #ff8c00; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.4);">VER PRÓXIMOS PASSEIOS</a>
+        <section class="hero-sobre">
+            <h1 style="font-size: 2.2em; text-align: center; padding: 0 20px;">Bem-vindos aos Passeios do Miguel!</h1>
         </section>
 
-        <section class="intro-section">
-            <h2>Bem-vindo à nossa Comunidade</h2>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
+        <section class="content-section">
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bus"></i>
-                    <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro e ambiente familiar em cada quilómetro.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-camera-retro"></i>
-                    <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo com as melhores sugestões de quem viaja.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-smile-beam"></i>
-                    <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os passageiros principais.</p>
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-rocket"></i></div>
+                <div class="fase-content">
+                    <h3>Como tudo começou</h3>
+                    <p>Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
                 </div>
             </div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-heart"></i></div>
+                <div class="fase-content">
+                    <h3>O Desafio</h3>
+                    <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
+                </div>
+            </div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="fase-content">
+                    <h3>A Nossa Missão</h3>
+                    <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
+                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c; border-top: 1px solid #eee; padding-top: 15px;">
+                        Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta. <br>
+                        De São Pedro do Sul 🗺️🗾 para os cantos mais bonitos de Portugal.
+                    </p>
+                </div>
+            </div>
+
         </section>
 
         <footer class="footer-ilha">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>Transformamos cada passeio numa memória inesquecível. Siga-nos nas redes sociais!</p>
+                    <p>De S. Pedro do Sul para o país, criando memórias que duram uma vida inteira.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Links Úteis</h4>
+                    <h4>Navegação</h4>
                     <div class="footer-nav">
                         <a href="index.html">Início</a>
                         <a href="sobre.html">Sobre</a>
@@ -117,7 +122,7 @@
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Apoio ao Cliente</h4>
+                    <h4>Apoio e Reservas</h4>
                     <a href="tel:965715465" class="footer-btn"><i class="fas fa-phone-alt"></i> 965 715 465</a>
                     <a href="https://wa.me/351965715465" class="footer-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
