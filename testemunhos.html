@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner */
         .banner-feedback {
             background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
                         url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80');
@@ -22,7 +20,7 @@
 
         .seccao-testemunhos { padding: 30px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* Formulário Compacto & Soft */
+        /* Formulário Compacto Soft */
         .form-compacto {
             background: white; padding: 25px 35px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
@@ -34,9 +32,8 @@
         .form-compacto label { display: block; font-size: 12px; font-weight: 600; color: #1e4d8c; margin-bottom: 8px; text-transform: uppercase; opacity: 0.7; }
         .form-compacto input {
             width: 100%; padding: 12px 15px; border: 1px solid #eef2f7; border-radius: 12px; 
-            font-family: inherit; font-size: 14px; box-sizing: border-box; background: #f9fbfe; transition: 0.3s;
+            font-family: inherit; font-size: 14px; box-sizing: border-box; background: #f9fbfe;
         }
-        .form-compacto input:focus { outline: none; border-color: #ff8c00; background: white; box-shadow: 0 0 0 4px rgba(255,140,0,0.1); }
         
         .btn-wa {
             background: #25d366; color: white; border: none; padding: 12px 25px;
@@ -60,50 +57,68 @@
         .data-comentario { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; }
         .texto-comentario { color: #555; line-height: 1.6; font-style: italic; font-size: 14px; margin: 0; }
 
-        /* --- RODAPÉ PREMIUM (O "SOFT") --- */
-        .footer-universal {
-            background: #1e4d8c; position: relative; color: white;
-            padding: 40px 40px 20px; margin-top: auto; overflow: hidden;
+        /* --- RODAPÉ RECRIAÇÃO FIEL (IGUAL À IMAGEM) --- */
+        .footer-real {
+            background-color: #1e4d8c; /* Cor exata da imagem */
+            color: white;
+            padding: 50px 40px 30px;
+            margin-top: auto;
+            position: relative;
         }
-        .footer-universal::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
-            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
+        .footer-line-orange {
+            position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background-color: #ff8c00;
         }
-        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
         
-        .footer-container {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
-            position: relative; z-index: 2;
-        }
-        .footer-col h4 { 
-            color: #ff9800; margin-bottom: 15px; font-size: 14px; text-transform: uppercase; 
-            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
-            display: inline-block; padding-bottom: 4px;
-        }
-        .footer-col p { font-size: 13px; opacity: 0.7; line-height: 1.6; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; font-size: 13px; opacity: 0.8; }
-        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
-        
-        .btn-contacto-pill {
-            background: rgba(255, 255, 255, 0.05); padding: 8px 15px;
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 8px !important;
-        }
-        .footer-bottom { 
-            text-align: center; margin-top: 40px; padding-top: 20px; 
-            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.4;
+        .footer-grid-real {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; /* Três colunas */
+            gap: 40px;
         }
 
-        @media (max-width: 768px) {
+        .col-real h4 {
+            color: #ff8c00; /* Laranja da imagem */
+            text-transform: uppercase; font-size: 14px; font-weight: bold;
+            letter-spacing: 1px; margin-bottom: 20px; margin-top: 0;
+        }
+        .col-real p { font-size: 13px; line-height: 1.6; opacity: 0.8; margin: 0; }
+
+        /* Coluna de Navegação (Duas sub-colunas) */
+        .nav-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .nav-subgrid ul { list-style: none; padding: 0; margin: 0; }
+        .nav-subgrid ul li { margin-bottom: 12px; }
+        .nav-subgrid ul li a { 
+            color: white; text-decoration: none; font-size: 13px; opacity: 0.8; 
+            transition: 0.2s;
+        }
+        .nav-subgrid ul li a:hover { opacity: 1; color: #ff8c00; }
+
+        /* Coluna de Apoio (Botões Pill Transparentes) */
+        .col-real ul.apoio-lista { list-style: none; padding: 0; margin: 0; }
+        .col-real ul.apoio-lista li { margin-bottom: 10px; font-size: 13px; opacity: 0.8; display: flex; align-items: center; gap: 10px; }
+        .col-real ul.apoio-lista li a { color: white; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 10px; width: 100%; }
+        .col-real ul.apoio-lista li a:hover { opacity: 1; color: #ff8c00; }
+        .col-real ul.apoio-lista li i { color: #ff8c00; width: 16px; text-align: center; }
+
+        .btn-pill-real {
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            transition: 0.3s;
+        }
+        .btn-pill-real:hover { background-color: rgba(255,140,0,0.05); border-color: rgba(255,140,0,0.4); }
+
+        .bottom-real { 
+            text-align: center; margin-top: 40px; padding-top: 20px; 
+            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
+
+        @media (max-width: 900px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; min-height: auto; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-col ul li a { justify-content: center; }
+            .footer-grid-real { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .nav-subgrid ul li a { justify-content: center; }
+            .col-real ul.apoio-lista li { justify-content: center; }
             .form-compacto { flex-direction: column; align-items: stretch; }
         }
     </style>
@@ -119,7 +134,6 @@
         </div>
 
         <section class="seccao-testemunhos">
-            
             <div class="form-compacto">
                 <h2>Partilhe a sua viagem</h2>
                 <div class="campo">
@@ -136,7 +150,6 @@
             </div>
 
             <div class="mural-grid">
-                
                 <div class="comentario-card">
                     <div class="user-info">
                         <i class="fas fa-quote-left"></i>
@@ -147,41 +160,50 @@
                     </div>
                     <p class="texto-comentario">"O Passeio a celorico de basto foi incrível... fantástico."</p>
                 </div>
-
-                </div>
+            </div>
         </section>
 
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
+        <footer class="footer-real">
+            <div class="footer-line-orange"></div>
+            
+            <div class="footer-grid-real">
+                
+                <div class="col-real">
                     <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, partindo de S. Pedro do Sul para descobrir os recantos mais autênticos de Portugal.</p>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
 
-                <div class="footer-col">
+                <div class="col-real">
                     <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 10px;"></i> Início</a></li>
-                        <li><a href="sobre.html"><i class="fas fa-chevron-right" style="font-size: 10px;"></i> Sobre</a></li>
-                        <li><a href="passeios.html"><i class="fas fa-chevron-right" style="font-size: 10px;"></i> Passeios</a></li>
-                        <li><a href="contatos.html"><i class="fas fa-chevron-right" style="font-size: 10px;"></i> Contacto</a></li>
-                    </ul>
+                    <div class="nav-subgrid">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="passeios.html">Passeios</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contatos.html">Contacto</a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="footer-col">
+                <div class="col-real">
                     <h4>Apoio e Reservas</h4>
-                    <ul>
-                        <li class="btn-contacto-pill">
+                    <ul class="apoio-lista">
+                        <li class="btn-pill-real">
                             <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
                         </li>
-                        <li class="btn-contacto-pill">
+                        <li class="btn-pill-real">
                             <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         </li>
-                        <li><a href="testemunhos.html"><i class="fas fa-star"></i> Testemunhos</a></li>
+                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
                     </ul>
                 </div>
+
             </div>
-            <div class="footer-bottom">
+            
+            <div class="bottom-real">
                 <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
             </div>
         </footer>
