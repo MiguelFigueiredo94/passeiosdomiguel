@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testemunhos - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        .banner-feedback {
+            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), 
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+        }
+
+        .seccao-testemunhos { padding: 50px 20px; max-width: 1000px; margin: 0 auto; width: 100%; }
+
+        /* Formulário de Envio */
+        .form-feedback {
+            background: white; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 50px;
+        }
+        .form-feedback h2 { color: #1e4d8c; margin-top: 0; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;
+        }
+        .btn-enviar {
+            background: #ff8c00; color: white; border: none; padding: 12px 25px;
+            border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .btn-enviar:hover { background: #e67e22; transform: scale(1.02); }
+
+        /* Mural de Comentários */
+        .mural-comentarios { display: grid; gap: 20px; }
+        .comentario-card {
+            background: white; padding: 25px; border-radius: 15px;
+            border-left: 5px solid #ff8c00; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            animation: fadeIn 0.5s ease;
+        }
+        .comentario-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .nome-user { font-weight: bold; color: #1e4d8c; font-size: 1.1em; }
+        .data-comentario { font-size: 0.85em; color: #999; }
+        .texto-comentario { color: #555; line-height: 1.6; font-style: italic; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Rodapé Dinâmico (igual aos outros) */
+        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+    </style>
+</head>
+<body>
+
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <div class="banner-feedback">
+            <h1>Mural de Experiências</h1>
+            <p>A sua opinião é o combustível das nossas viagens!</p>
+        </div>
+
+        <section class="seccao-testemunhos">
+            <div class="form-feedback">
+                <h2>Deixe o seu comentário</h2>
+                <form id="feedbackForm">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Como quer ser identificado?" required>
+                    </div>
+                    <div class="input-group">
+                        <label>A sua mensagem</label>
+                        <textarea id="mensagem" rows="4" placeholder="Conte-nos como foi a sua viagem..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar">Publicar no Mural</button>
+                </form>
+            </div>
+
+            <div id="mural" class="mural-comentarios">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <span class="nome-user">Maria Silva</span>
+                        <span class="data-comentario">15 Março, 2026</span>
+                    </div>
+                    <p class="texto-comentario">"O passeio à Serra da Estrela foi fantástico! O Miguel é um guia super atencioso. Recomendo vivamente!"</p>
+                </div>
+            </div>
+        </section>
+
+        </main>
+
+    <script>
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
+
+        // Lógica para adicionar comentário na hora (Simulação)
+        const form = document.getElementById('feedbackForm');
+        const mural = document.getElementById('mural');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const mensagem = document.getElementById('mensagem').value;
+            const data = new Date().toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            // Criar o card
+            const novoCard = document.createElement('div');
+            novoCard.className = 'comentario-card';
+            novoCard.innerHTML = `
+                <div class="comentario-header">
+                    <span class="nome-user">${nome}</span>
+                    <span class="data-comentario">${data}</span>
+                </div>
+                <p class="texto-comentario">"${mensagem}"</p>
+            `;
+
+            // Adicionar ao topo do mural
+            mural.prepend(novoCard);
+
+            // Limpar formulário
+            form.reset();
+            alert("Obrigado pelo seu feedback! (Nota: Como este site é estático, o comentário aparece agora, mas desaparecerá se atualizar a página)");
+        });
+    </script>
+</body>
+</html>
