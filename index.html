@@ -6,44 +6,41 @@
     <title>Passeios do Miguel - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
+        /* 1. ESTRUTURA E CORES BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        #menu-placeholder { width: 260px; flex-shrink: 0; }
+        #menu-placeholder { width: 260px; flex-shrink: 0; background-color: #1e4d8c; }
 
-        /* CORREÇÃO LOGO CIRCULAR (FORÇADO) */
+        /* FORÇAR LOGO CIRCULAR PERFEITO */
         #menu-placeholder img { 
             width: 170px !important; height: 170px !important; 
             object-fit: cover !important; border-radius: 50% !important; 
             border: 4px solid white !important; background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-top: 30px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 30px auto !important;
+            display: block !important;
         }
 
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* 2. HERO SECTION COM VÍDEO */
-        .hero-video-container {
+        /* 2. HERO SECTION COM VÍDEO (ALTURA AJUSTADA) */
+        .hero-container {
             position: relative;
-            height: 550px;
+            height: 450px; /* Altura equilibrada */
             width: 100%;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             color: white;
             text-align: center;
         }
 
         #bg-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
             z-index: -1;
             transform: translate(-50%, -50%);
             object-fit: cover;
@@ -52,42 +49,56 @@
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Escurece o vídeo para ler o texto */
+            background: rgba(0, 20, 50, 0.5); /* Overlay azulado para ligar com a marca */
             z-index: 0;
         }
 
         .hero-content { position: relative; z-index: 1; padding: 0 20px; }
-        .hero-content h1 { font-size: 3.5em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-content p { font-size: 1.4em; font-weight: 300; }
+        .hero-content h1 { font-size: 3.2em; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); }
+        .hero-content p { font-size: 1.3em; font-weight: 300; opacity: 0.9; }
 
-        /* SECÇÃO DE DESTAQUES */
-        .intro-section { padding: 60px 40px; text-align: center; max-width: 1000px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feature-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .feature-card i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
+        /* 3. SECÇÃO DE DESTAQUES (RECUPERADA) */
+        .intro-section { padding: 60px 40px; text-align: center; max-width: 1100px; margin: 0 auto; }
+        .intro-section h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 15px; }
+        .intro-section .subtitle { color: #555; font-size: 1.1em; margin-bottom: 40px; }
 
-        /* 3. RODAPÉ PREMIUM RETANGULAR (ESTILO NOVO) */
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .feature-card { 
+            background: white; 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .feature-card:hover { transform: translateY(-10px); border-bottom: 4px solid #ff8c00; }
+        
+        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 20px; }
+        .feature-card h3 { color: #1e4d8c; font-size: 1.4em; margin-bottom: 12px; }
+        .feature-card p { color: #666; line-height: 1.6; font-size: 0.95em; }
+
+        /* 4. RODAPÉ PREMIUM RETANGULAR (TEXTOS CORRIGIDOS) */
         footer {
             background-color: #1e4d8c;
             color: white;
             position: relative;
             padding: 50px 40px 20px;
-            width: 100%;
-            overflow: hidden;
+            margin-top: auto;
         }
 
-        /* Barra Dourada Animada */
         .premium-bar {
             position: absolute;
-            top: 0; left: 0; height: 5px; width: 30%;
+            top: 0; left: 0; height: 4px; width: 35%;
             background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
-            animation: moveBar 3s linear infinite;
+            animation: moveBar 3.5s linear infinite;
         }
 
-        @keyframes moveBar {
-            0% { left: -30%; }
-            100% { left: 100%; }
-        }
+        @keyframes moveBar { 0% { left: -35%; } 100% { left: 100%; } }
 
         .footer-grid {
             display: grid;
@@ -97,27 +108,43 @@
             margin: 0 auto;
         }
 
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 5px; }
-        .footer-nav a { color: white; text-decoration: none; font-size: 14px; display: block; margin-bottom: 8px; }
-        .footer-nav a:hover { color: #ff8c00; }
+        .footer-col h4 { 
+            color: #ff8c00; 
+            text-transform: uppercase; 
+            font-size: 13px; 
+            margin-bottom: 20px; 
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,140,0,0.3);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .footer-nav a { color: white; text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: 0.3s; }
+        .footer-nav a:hover { color: #ff8c00; padding-left: 5px; }
 
         .btn-footer {
-            display: flex; align-items: center; background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 15px;
-            border-radius: 50px; color: white; text-decoration: none; margin-bottom: 10px; font-size: 14px;
+            display: flex; align-items: center; 
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 12px 18px;
+            border-radius: 50px; color: white; text-decoration: none; 
+            margin-bottom: 12px; font-size: 14px; transition: 0.3s;
         }
-        .btn-footer i { color: #ff8c00; margin-right: 12px; }
+        .btn-footer:hover { background: rgba(255, 255, 255, 0.1); border-color: #ffd700; }
+        .btn-footer i { color: #ff8c00; margin-right: 12px; font-size: 16px; }
 
         .footer-bottom {
             text-align: center; margin-top: 40px; padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.8;
         }
 
         @media (max-width: 1024px) {
             body { flex-direction: column; }
-            #menu-placeholder { width: 100%; }
-            .hero-content h1 { font-size: 2.2em; }
-            .footer-grid { grid-template-columns: 1fr; }
+            #menu-placeholder { width: 100%; height: auto; }
+            .hero-content h1 { font-size: 2.5em; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-col h4 { display: block; width: fit-content; margin: 0 auto 20px; }
+            .btn-footer { justify-content: center; }
         }
     </style>
 </head>
@@ -126,38 +153,40 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-video-container">
+        <section class="hero-container">
             <div class="hero-overlay"></div>
             <video autoplay muted loop playsinline id="bg-video">
-                <source src="teu-video-aqui.mp4" type="video/mp4">
+                <source src="video-passeios.mp4" type="video/mp4">
             </video>
             
             <div class="hero-content">
                 <h1>Passeios do Miguel</h1>
                 <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-                <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.4);">VER PRÓXIMOS PASSEIOS</a>
+                <a href="passeios.html" style="display:inline-block; margin-top: 30px; background: #ff8c00; color: white; padding: 16px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 6px 20px rgba(255,140,0,0.4); transition: 0.3s;">
+                    VER PRÓXIMOS PASSEIOS
+                </a>
             </div>
         </section>
 
         <section class="intro-section">
             <h2>Bem-vindo à nossa Comunidade</h2>
-            <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
+            <p class="subtitle">De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós!</p>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <i class="fas fa-bus"></i>
+                    <i class="fas fa-bus-alt"></i>
                     <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro e ambiente familiar em cada quilómetro.</p>
+                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro percorrido.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-camera-retro"></i>
+                    <i class="fas fa-map-marked-alt"></i>
                     <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo com as melhores sugestões.</p>
+                    <p>Locais escolhidos a dedo, fugindo do óbvio para te mostrar o melhor de Portugal.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-smile-beam"></i>
+                    <i class="fas fa-heart"></i>
                     <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os passageiros principais.</p>
+                    <p>O convívio, as novas amizades e a alegria são os nossos passageiros de honra.</p>
                 </div>
             </div>
         </section>
@@ -167,21 +196,21 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p style="line-height: 1.6; font-size: 14px;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Navegação</h4>
+                    <h4>Links Rápidos</h4>
                     <div class="footer-nav">
                         <a href="index.html">Início</a>
-                        <a href="sobre.html">Sobre</a>
+                        <a href="sobre.html">Sobre Mim</a>
                         <a href="passeios.html">Passeios</a>
                         <a href="contactos.html">Contacto</a>
                     </div>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Reservas</h4>
+                    <h4>Apoio e Reservas</h4>
                     <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
                     <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
