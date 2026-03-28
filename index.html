@@ -4,150 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passeios do Miguel - Início</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ESTRUTURA BASE */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
-        
-        /* MENU LATERAL (SIMPLIFICADO SEM SUBMENU) */
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; }
-        .sidebar { padding: 20px; color: white; }
-        .logo-container { text-align: center; margin-bottom: 30px; }
-        .logo-container img { width: 120px; background: white; border-radius: 50%; padding: 10px; }
-        
-        .menu-list { list-style: none; padding: 0; }
-        .menu-list li { margin-bottom: 10px; }
-        .menu-list a { 
-            color: white; text-decoration: none; display: flex; align-items: center; 
-            padding: 12px 15px; border-radius: 10px; transition: 0.3s; font-weight: 500;
-        }
-        .menu-list a i { margin-right: 15px; width: 20px; text-align: center; }
-        .menu-list a:hover, .menu-active { background: #ff8c00; }
-
-        /* CONTEÚDO PRINCIPAL */
+        /* Estrutura Base Mantida */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* BANNER E MURAL (IGUAL À IMAGEM) */
+        /* Banner Principal Mantido */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200');
             background-size: cover; background-position: center;
-            height: 350px; color: white; display: flex; flex-direction: column;
+            height: 400px; color: white; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            position: relative;
+            border-radius: 0 0 50px 0; padding: 0 20px;
         }
-        .hero h1 { font-size: 2.5em; margin: 0; }
-        
-        .mural-destaque {
-            background: white; padding: 15px 30px; border-radius: 50px;
-            display: flex; align-items: center; gap: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: absolute; bottom: -30px; border-left: 5px solid #ff8c00;
-            z-index: 100; width: 80%; max-width: 600px;
-        }
-        .mural-texto { color: #555; font-size: 0.9em; flex-grow: 1; }
-        .btn-mural { 
-            background: #1e4d8c; color: white; text-decoration: none; 
-            padding: 8px 20px; border-radius: 5px; font-weight: bold; font-size: 0.9em;
-        }
+        .hero h1 { font-size: 3em; margin-bottom: 10px; }
 
-        /* VÍDEO E CONTEÚDO */
-        .seccao { padding: 80px 40px 40px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .video-wrapper { width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 50px; }
+        /* Balão do Mural */
+        .chamada-testemunhos {
+            background: white; max-width: 900px; margin: -35px auto 30px;
+            padding: 20px 40px; border-radius: 20px; box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: space-between; gap: 30px;
+            border-left: 8px solid #ff8c00; position: relative; z-index: 10;
+        }
+        .btn-ir-testemunhos { background: #1e4d8c; color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; }
+
+        /* Vídeo e Destaques Mantidos */
+        .seccao { padding: 40px 30px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .video-wrapper { width: 100%; max-width: 850px; margin: 0 auto 50px; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 45px rgba(0,0,0,0.2); }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* RODAPÉ (IGUAL À IMAGEM 9C9F86) */
+        /* RODAPÉ COM A PARTE MÁGICA E ALERTAS (Conforme imagem) */
         .footer-universal {
-            background: #1e4d8c; color: white; padding: 40px; margin-top: auto;
-            border-top: 5px solid #ff8c00; /* A tua linha mágica */
+            background: #1e4d8c; color: white; padding: 40px 40px 20px; margin-top: auto;
+            border-top: 6px solid #ff8c00; /* Linha Mágica */
         }
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; text-transform: uppercase; border-bottom: 1px solid rgba(255,140,0,0.3); padding-bottom: 5px; display: inline-block; }
-        .footer-col p { font-size: 14px; opacity: 0.8; line-height: 1.5; }
-        
-        .footer-links { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .footer-links a { color: white; text-decoration: none; font-size: 14px; opacity: 0.8; transition: 0.3s; }
-        .footer-links a:hover { opacity: 1; color: #ff8c00; }
-
-        .contato-pill {
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
-            padding: 8px 15px; display: flex; align-items: center;
-            margin-bottom: 10px; text-decoration: none; color: white; font-size: 14px;
-        }
-        .contato-pill i { color: #ff8c00; margin-right: 10px; }
-        
-        .alerta-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 14px; margin-top: 10px; }
-        .alerta-link i { color: #ff8c00; margin-right: 10px; }
-
-        .footer-bottom { text-align: center; margin-top: 40px; font-size: 12px; opacity: 0.6; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 15px; text-transform: uppercase; border-bottom: 2px solid rgba(255,152,0,0.2); display: inline-block; }
+        .footer-pill { border: 1px solid rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 30px; background: rgba(255,255,255,0.05); text-decoration: none; color: white; margin-right: 10px; font-size: 13px; }
+        .link-alerta { color: white; text-decoration: none; display: flex; align-items: center; margin-top: 10px; font-size: 14px; }
+        .link-alerta i { color: #ff8c00; margin-right: 10px; }
     </style>
 </head>
 <body>
 
-    <aside id="menu-placeholder">
-        <nav class="sidebar">
-            <div class="logo-container">
-                <img src="logo.png" alt="Passeios do Miguel">
-            </div>
-            <ul class="menu-list">
-                <li><a href="index.html" class="menu-active"><i class="fas fa-home"></i> HOME</a></li>
-                <li><a href="sobre.html"><i class="fas fa-user"></i> SOBRE MIM</a></li>
-                <li><a href="passeios.html"><i class="fas fa-bus"></i> PASSEIOS</a></li>
-                <li><a href="contactos.html"><i class="fas fa-envelope"></i> CONTACTOS</a></li>
-                <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> DICAS ÚTEIS</a></li>
-                <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <div id="menu-placeholder"></div>
 
     <main>
         <section class="hero">
-            <h1>Explora Portugal Connosco</h1>
-            <p>Momentos únicos, memórias para a vida toda.</p>
-            
-            <div class="mural-destaque">
-                <i class="fas fa-comments" style="color: #ff8c00; font-size: 1.5em;"></i>
-                <span class="mural-texto">Veja as experiências de quem já viajou connosco!</span>
-                <a href="testemunhos.html" class="btn-mural">Mural de Memórias</a>
-            </div>
+            <h1>Passeios do Miguel</h1>
+            <p>Viagens organizadas com carinho e alegria.</p>
         </section>
+
+        <div class="chamada-testemunhos">
+            <div class="chamada-texto">
+                <i class="fas fa-heart" style="color: #ff8c00; font-size: 25px; margin-right: 15px;"></i>
+                <span style="color: #1e4d8c; font-weight: 500;">A satisfação de quem viaja connosco é o nosso maior orgulho!</span>
+            </div>
+            <a href="testemunhos.html" class="btn-ir-testemunhos">Ler Testemunhos</a>
+        </div>
 
         <section class="seccao">
             <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" title="Apresentação" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
         <footer class="footer-universal">
-            <div class="footer-grid">
+            <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
                     <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contactos.html">Contacto</a></li>
+                    <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <li><a href="index.html" style="color: white; text-decoration: none;">Início</a></li>
+                        <li><a href="sobre.html" style="color: white; text-decoration: none;">Sobre</a></li>
+                        <li><a href="passeios.html" style="color: white; text-decoration: none;">Passeios</a></li>
+                        <li><a href="contatos.html" style="color: white; text-decoration: none;">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Apoio e Reservas</h4>
-                    <a href="tel:965715465" class="contato-pill"><i class="fas fa-phone"></i> 965 715 465</a>
-                    <a href="https://wa.me/351965715465" class="contato-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    
-                    <a href="cancelamento.html" class="alerta-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
-                    <a href="faq.html" class="alerta-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
+                    <div style="margin-bottom: 15px;">
+                        <a href="tel:965715465" class="footer-pill"><i class="fas fa-phone"></i> 965 715 465</a>
+                        <a href="https://wa.me/351965715465" class="footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                    <a href="cancelamento.html" class="link-alerta"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
+                    <a href="faq.html" class="link-alerta"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 Passeios do Miguel - Todos os direitos reservados.
             </div>
         </footer>
     </main>
+
+    <script>
+        fetch('menu.html').then(res => res.text()).then(data => {
+            // Aqui limpamos o HTML que vem do menu.html antes de inserir
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(data, 'text/html');
+            
+            // Remove a seta e o submenu (ul) de dentro de qualquer item
+            let submenu = doc.querySelector('.submenu, .dropdown-menu, ul ul');
+            if(submenu) submenu.remove();
+            
+            let seta = doc.querySelector('.fa-chevron-down, .fa-angle-right');
+            if(seta) seta.remove();
+
+            document.getElementById('menu-placeholder').innerHTML = doc.body.innerHTML;
+        });
+    </script>
 </body>
 </html>
