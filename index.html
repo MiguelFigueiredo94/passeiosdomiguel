@@ -29,9 +29,10 @@
         /* CONTEÚDO PRINCIPAL */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* CABEÇALHO HERO (IMAGEM TURISMO) */
+        /* CABEÇALHO HERO (NOVA IMAGEM COM OVERLAY ESCURO) */
         .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
+            /* NOVA IMAGEM DE TURISMO E SOMBREAMENTO APLICADO */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1200');
             background-size: cover; background-position: center; height: 380px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center; border-bottom: 5px solid #ff8c00;
@@ -59,7 +60,7 @@
         .question-callout h3 { color: #1e4d8c; font-size: 2em; font-weight: bold; }
         .question-callout h3::after { content: ''; display: block; width: 50px; height: 3px; background: #ff8c00; margin: 8px auto 0; }
 
-        /* GRID DE CARDS 3x1 */
+        /* CARDS 3x1 */
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .feature-card { background: white; padding: 35px 25px; border-radius: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; }
         .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
@@ -96,7 +97,6 @@
 
         .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.7; }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
