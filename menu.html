@@ -9,10 +9,9 @@
         padding: 25px 15px; 
         box-sizing: border-box;
         z-index: 9999;
+        /* Adicionado para empurrar as redes sociais para o fundo */
         display: flex;
         flex-direction: column;
-        /* Apenas esta linha adicionada para resolver o problema do ecrã pequeno */
-        overflow-y: auto; 
     }
     
     .logo { 
@@ -24,7 +23,7 @@
         object-fit: contain; 
     }
 
-    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } /* flex-grow faz a lista ocupar o espaço disponível */
     #menu-lateral li { margin-bottom: 12px; position: relative; }
 
     /* --- Botões do Menu Principal --- */
