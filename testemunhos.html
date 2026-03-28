@@ -3,170 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Testemunhos - Passeios do Miguel</title>
+    <title>Sobre Nós - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estrutura com Barra Lateral para o Menu */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
+        /* Layout Base Profissional */
+        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; }
         
-        /* Placeholder do Menu (Onde o menu.html vai carregar) */
-        #menu-placeholder { 
-            width: 250px; 
-            background-color: #1e4d8c; 
-            min-height: 100vh; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
+        /* Container do Menu Importado */
+        #container-menu { min-width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; }
 
+        /* Conteúdo Principal */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner */
-        .banner-feedback {
-            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
-                        url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80');
+        /* --- HERO BANNER --- */
+        .hero-sobre {
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 80px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .hero-sobre h1 { font-size: 42px; margin: 0 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-sobre p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        .conteudo-central { padding: 40px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        /* --- SECÇÃO DE CONTEÚDO --- */
+        .seccao-premium-sobre { padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
 
-        /* Formulário Compacto */
-        .form-opiniao {
-            background: white; padding: 25px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
-            display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end;
-            border: 1px solid rgba(0,0,0,0.05);
+        .card-introducao {
+            background: white; padding: 60px 50px; border-radius: 40px; text-align: center;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06); width: 100%; max-width: 1000px;
+            margin-bottom: 60px; border: 1px solid #eef1f5;
         }
-        .form-opiniao h2 { width: 100%; color: #1e4d8c; margin: 0 0 10px 0; font-size: 1.3em; border-left: 4px solid #ff8c00; padding-left: 15px; }
-        .campo { flex: 1; min-width: 200px; }
-        .campo label { display: block; font-size: 12px; font-weight: bold; color: #1e4d8c; margin-bottom: 5px; text-transform: uppercase; }
-        .campo input { width: 100%; padding: 12px; border: 1px solid #eef2f7; border-radius: 10px; background: #f9fbfe; box-sizing: border-box; font-family: inherit; }
+        .logo-sobre-premium { width: 100%; max-width: 320px; height: auto; margin-bottom: 25px; object-fit: contain; }
+        .card-introducao h2 { color: #1e4d8c; font-size: 32px; margin: 0 0 15px; font-weight: 800; }
+        .boas-vindas-sobre { font-size: 17px; color: #555; max-width: 750px; margin: 0 auto; line-height: 1.8; }
         
-        .btn-enviar { 
-            background: #25d366; color: white; border: none; padding: 12px 25px; 
-            border-radius: 10px; cursor: pointer; font-weight: bold; height: 43px; 
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        /* Blocos de História */
+        .bloco-historia {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1000px;
+            margin-bottom: 60px; align-items: center;
         }
-        .btn-enviar:hover { background: #128c7e; transform: translateY(-2px); }
-
-        /* Grelha de Comentários */
-        .mural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .card-testemunho {
-            background: white; padding: 25px; border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
-            border-top: 4px solid #ff8c00;
+        .imagem-historia {
+            width: 100%; height: auto; border-radius: 30px; object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 10px solid white;
         }
-        .user-topo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-        .user-topo i { color: #ff8c00; background: rgba(255,140,0,0.1); padding: 10px; border-radius: 12px; }
-        .nome-user { font-weight: bold; color: #1e4d8c; }
-        .data-user { font-size: 11px; color: #aaa; margin-left: auto; }
-        .texto-testemunho { color: #555; line-height: 1.6; font-style: italic; margin: 0; font-size: 14px; }
+        .texto-historia h3 { color: #1e4d8c; font-size: 26px; margin: 0 0 20px; }
+        .texto-historia p { font-size: 16px; color: #444; line-height: 1.9; margin-bottom: 20px; }
+        
+        .destaque-sul {
+            background: rgba(30, 77, 140, 0.08); border-left: 5px solid #ff9800;
+            padding: 20px; border-radius: 0 15px 15px 0; color: #1e4d8c; font-weight: 600; font-style: italic;
+        }
 
-        /* --- RODAPÉ REAL (DAS FOTOS) --- */
-        .footer-real { background-color: #1e4d8c; color: white; padding: 50px 40px 30px; margin-top: auto; position: relative; }
-        .footer-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background-color: #ff8c00; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 40px; }
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; margin-top: 0; }
-        .footer-col p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
-        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .nav-links ul { list-style: none; padding: 0; margin: 0; }
-        .nav-links a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; line-height: 2; }
-        .nav-links a:hover { color: #ff8c00; opacity: 1; }
-        .contatos-footer { list-style: none; padding: 0; margin: 0; }
-        .pill-button { border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 15px; margin-bottom: 10px; }
-        .pill-button a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+        /* Grid de Valores */
+        .grid-valores-premium {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            width: 100%; max-width: 1000px; margin-top: 40px; margin-bottom: 60px;
+        }
+        .valor-card-premium {
+            background: white; padding: 40px; border-radius: 25px; text-align: center;
+            border: 1px solid #eef1f5; transition: all 0.4s ease;
+        }
+        .valor-card-premium:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(30, 77, 140, 0.1); }
+        .valor-icon-premium { font-size: 35px; color: #ff9800; background: rgba(255,152,0,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .valor-card-premium h4 { color: #1e4d8c; font-size: 20px; margin: 0 0 15px; }
+        .valor-card-premium p { font-size: 15px; color: #666; line-height: 1.7; margin: 0; }
+
+        /* --- RODAPÉ REAL (INTEGRADO) --- */
+        .footer-real { background-color: #1e4d8c; color: white; padding: 50px 40px 30px; margin-top: auto; position: relative; overflow: hidden; }
+        .footer-line-orange { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background-color: #ff8c00; }
+        .footer-grid-real { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 40px; }
+        .col-real h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; margin-top: 0; }
+        .col-real p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+        .nav-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .nav-subgrid ul { list-style: none; padding: 0; margin: 0; }
+        .nav-subgrid a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; line-height: 2; }
+        .nav-subgrid a:hover { color: #ff8c00; opacity: 1; }
+        .btn-pill-real { border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 15px; margin-bottom: 10px; transition: 0.3s; list-style: none; }
+        .btn-pill-real a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+        .btn-pill-real:hover { border-color: #ff8c00; background: rgba(255,140,0,0.05); }
         .copy-info { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
 
-        @media (max-width: 900px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .nav-links { justify-items: center; }
-            .form-opiniao { flex-direction: column; align-items: stretch; }
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .bloco-historia { grid-template-columns: 1fr; text-align: center; }
+            .grid-valores-premium { grid-template-columns: 1fr; }
+            .footer-grid-real { grid-template-columns: 1fr; text-align: center; }
+            .nav-subgrid { justify-items: center; }
         }
+        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; min-height: auto; position: relative; } }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <div id="container-menu"></div>
 
     <main>
-        <div class="banner-feedback">
-            <h1>Mural de Experiências</h1>
-            <p>A voz de quem viaja connosco</p>
+        <div class="hero-sobre">
+            <h1>Sobre Nós</h1>
+            <p>A história por trás de cada quilómetro percorrido, onde a alma de Portugal encontra a aventura.</p>
         </div>
 
-        <section class="conteudo-central">
-            <div class="form-opiniao">
-                <h2>Deixe a sua opinião</h2>
-                <div class="campo">
-                    <label>Nome</label>
-                    <input type="text" id="nome-txt" placeholder="O seu nome">
-                </div>
-                <div class="campo" style="flex: 2;">
-                    <label>Mensagem</label>
-                    <input type="text" id="msg-txt" placeholder="Como foi a sua experiência?">
-                </div>
-                <button onclick="enviarMural()" class="btn-enviar">
-                    <i class="fab fa-whatsapp"></i> Enviar
-                </button>
+        <section class="seccao-premium-sobre">
+            
+            <div class="card-introducao">
+                <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre-premium" alt="Passeios do Miguel Logo">
+                <h2>A Nossa Essência</h2>
+                <p class="boas-vindas-sobre">
+                    O projeto <strong>Passeios do Miguel</strong> nasceu de um propósito simples: transformar o ato de viajar numa partilha de afetos e descobertas. 
+                    Mais do que destinos, promovemos encontros que se tornam memórias inesquecíveis.
+                </p>
             </div>
 
-            <div class="mural-grid">
-                <div class="card-testemunho">
-                    <div class="user-topo">
-                        <i class="fas fa-user"></i>
-                        <span class="nome-user">Rosário</span>
-                        <span class="data-user">28/03/2026</span>
-                    </div>
-                    <p class="texto-testemunho">"O Passeio a celorico de basto foi incrível... fantástico."</p>
+            <div class="bloco-historia">
+                <img src="https://i.imgur.com/cj1OOwA.png" class="imagem-historia" alt="Passeio Organizado">
+                <div class="texto-historia">
+                    <h3>De um Gesto ao Projeto de Vida</h3>
+                    <p>Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual transformou-se numa verdadeira paixão, graças ao entusiasmo de quem participou.</p>
+                    <p>Foram essas pessoas que me desafiaram a continuar e a definir novos destinos.</p>
+                </div>
+            </div>
+
+            <div class="bloco-historia" style="direction: rtl;">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" class="imagem-historia" alt="Portugal">
+                <div class="texto-historia" style="direction: ltr;">
+                    <h3>Passeios com Alma</h3>
+                    <p>Esta página é o espaço para divulgar futuros passeios e partilhar momentos únicos. Afinal, são vocês que tornam cada viagem especial!</p>
+                    <p class="destaque-sul">
+                        De São Pedro do Sul 🗺️ para os cantos mais bonitos do país.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-valores-premium">
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-smile"></i></div>
+                    <h4>Boa Disposição</h4>
+                    <p>Garantimos um ambiente descontraído em cada viagem.</p>
+                </div>
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4>Cultura e Natureza</h4>
+                    <p>Mostramos os cantos mais bonitos de Portugal.</p>
+                </div>
+                <div class="valor-card-premium">
+                    <div class="valor-icon-premium"><i class="fas fa-heart"></i></div>
+                    <h4>Comunidade</h4>
+                    <p>Crescemos com as vossas sugestões.</p>
                 </div>
             </div>
         </section>
 
         <footer class="footer-real">
-            <div class="footer-line"></div>
-            <div class="footer-grid">
-                <div class="footer-col">
+            <div class="footer-line-orange"></div>
+            <div class="footer-grid-real">
+                <div class="col-real">
                     <h4>Passeios do Miguel</h4>
                     <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
-                <div class="footer-col">
+                <div class="col-real">
                     <h4>Navegação</h4>
-                    <div class="nav-links">
-                        <ul><li><a href="index.html">Início</a></li><li><a href="passeios.html">Passeios</a></li></ul>
-                        <ul><li><a href="sobre.html">Sobre</a></li><li><a href="contatos.html">Contacto</a></li></ul>
+                    <div class="nav-subgrid">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="passeios.html">Passeios</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contatos.html">Contacto</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Reservas</h4>
-                    <ul class="contatos-footer">
-                        <li class="pill-button"><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
-                        <li class="pill-button"><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                <div class="col-real">
+                    <h4>Apoio e Reservas</h4>
+                    <ul style="padding:0; margin:0;">
+                        <li class="btn-pill-real"><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
+                        <li class="btn-pill-real"><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="faq.html" style="color:white; text-decoration:none; font-size:13px; opacity:0.8; display:block; margin-top:10px;"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="copy-info"><p>&copy; 2026 Passeios do Miguel</p></div>
+            <div class="copy-info">
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+            </div>
         </footer>
     </main>
 
     <script>
-        // CARREGA O MENU EXTERNO
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
-
-        function enviarMural() {
-            const nome = document.getElementById('nome-txt').value;
-            const msg = document.getElementById('msg-txt').value;
-            if(!nome || !msg) { alert("Preencha os campos!"); return; }
-            const texto = `Olá Miguel! Quero deixar um testemunho:%0A*Nome:* ${nome}%0A*Mensagem:* ${msg}`;
-            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
-        }
+        fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
     </script>
 </body>
 </html>
