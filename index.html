@@ -6,19 +6,23 @@
     <title>Passeios do Miguel - Início</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. RESET E BASE */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        /* 1. ESTRUTURA GLOBAL */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         
-        /* 2. MENU LATERAL (image_a7104c.png / image_a77240.png) */
+        /* 2. MENU LATERAL FIXO (INDIVIDUAL) */
         .sidebar { 
             width: 260px; background-color: #1e4d8c; color: white; 
             display: flex; flex-direction: column; height: 100vh; 
             position: fixed; left: 0; top: 0; z-index: 1000;
         }
-        .logo-area { padding: 30px 15px; text-align: center; }
-        .logo-area img { width: 180px; height: auto; border-radius: 50%; background: white; border: 4px solid white; }
+        .logo-area { padding: 25px 15px; text-align: center; }
+        .logo-area img { 
+            width: 160px; height: 160px; object-fit: cover; 
+            border-radius: 50%; background: white; border: 4px solid white; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-        .menu-list { list-style: none; padding: 0 15px; flex-grow: 1; }
+        .menu-list { list-style: none; padding: 0 15px; flex-grow: 1; overflow-y: auto; }
         .menu-list li { margin-bottom: 8px; }
         .menu-list a { 
             color: white; text-decoration: none; display: flex; align-items: center; 
@@ -26,63 +30,90 @@
             font-size: 14px; font-weight: bold; background: rgba(255,255,255,0.05);
         }
         .menu-list a i { margin-right: 15px; width: 20px; text-align: center; }
-        .menu-list a:hover { background: #ff8c00; }
+        .menu-list a:hover { background: #ff8c00; transform: scale(1.02); }
         
-        /* Linha separadora conforme image_a77240.png */
-        .separator { height: 1px; background: rgba(255,255,255,0.3); margin: 15px 10px; }
+        .separator { height: 1px; background: rgba(255,255,255,0.4); margin: 15px 15px; }
 
-        .sidebar-footer { padding: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
-        .social-icons { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-        .social-icons a { color: white; font-size: 18px; }
+        /* Siga-nos que se ajusta ao ecrã */
+        .sidebar-footer { padding: 15px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-footer span { font-size: 10px; letter-spacing: 1px; opacity: 0.8; display: block; margin-bottom: 10px; }
+        .social-icons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .social-icons a { color: white; font-size: 18px; transition: 0.3s; }
+        .social-icons a:hover { color: #ff8c00; }
 
-        /* 3. CONTEÚDO PRINCIPAL */
-        main { flex-grow: 1; margin-left: 260px; min-width: 0; }
+        /* 3. CONTEÚDO PRINCIPAL (COM MARGEM DO MENU) */
+        main { flex-grow: 1; margin-left: 260px; min-width: 0; display: flex; flex-direction: column; }
 
+        /* Hero / Banner */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200');
             background-size: cover; background-position: center; height: 350px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
+            border-radius: 0 0 40px 0;
         }
 
-        /* 4. CARDS DE "PORQUÊ VIAJAR COMIGO" (image_a7dbfb.png) */
-        .section-cards { padding: 60px 40px; background: white; }
-        .grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
-        .card { 
-            text-align: center; padding: 40px 25px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
+        /* Balão do Mural */
+        .chamada-mural {
+            background: white; max-width: 800px; margin: -30px auto 40px;
+            padding: 20px 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex; align-items: center; justify-content: space-between; gap: 20px;
+            border-left: 8px solid #ff8c00; position: relative; z-index: 10;
         }
-        .card h3 { color: #1e4d8c; margin-bottom: 15px; }
-        .card p { color: #666; font-size: 14px; line-height: 1.6; }
+        .btn-mural { background: #1e4d8c; color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; }
 
-        /* 5. RODAPÉ FIEL (image_9c9f86.png / image_a785a2.png) */
+        /* Secção de Vídeo */
+        .video-section { padding: 20px 40px; text-align: center; }
+        .video-container { 
+            max-width: 850px; margin: 0 auto; border-radius: 25px; overflow: hidden; 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15); border: 5px solid white;
+        }
+        .video-aspect { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-aspect iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* CARDS "PORQUÊ VIAJAR COMIGO" */
+        .cards-section { padding: 60px 40px; }
+        .cards-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; max-width: 1100px; margin: 0 auto; 
+        }
+        .card-item { 
+            background: white; padding: 40px 25px; border-radius: 25px; text-align: center; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: 0.3s;
+        }
+        .card-item:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .card-item i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
+        .card-item h3 { color: #1e4d8c; margin-bottom: 15px; }
+        .card-item p { color: #666; font-size: 14px; line-height: 1.6; margin: 0; }
+
+        /* 4. RODAPÉ PREMIUM (TOTALMENTE SEPARADO) */
         .footer-universal {
-            background: #1e4d8c; color: white; padding: 50px 40px 20px;
-            border-top: 5px solid #ff8c00; /* A linha laranja do topo */
+            background: #1e4d8c; color: white; padding: 60px 40px 30px; margin-top: auto;
+            border-top: 6px solid #ff8c00;
         }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 50px; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 50px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { color: #ff8c00; text-transform: uppercase; margin-bottom: 25px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 5px; font-size: 14px; }
         
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; margin-bottom: 25px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 5px; }
+        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; list-style: none; padding: 0; }
+        .footer-nav a { color: white; text-decoration: none; font-size: 14px; opacity: 0.9; }
         
-        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; list-style: none; padding: 0; }
-        .nav-links a { color: white; text-decoration: none; font-size: 14px; }
-
-        .contact-box { 
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 25px; 
+        .contact-pill { 
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; 
             padding: 10px 20px; display: flex; align-items: center; margin-bottom: 15px;
-            background: rgba(255,255,255,0.03); text-decoration: none; color: white;
+            background: rgba(255,255,255,0.05); text-decoration: none; color: white; font-size: 14px;
         }
-        .contact-box i { color: #ff8c00; margin-right: 12px; }
+        .contact-pill i { color: #ff8c00; margin-right: 12px; }
 
-        .footer-alert { display: flex; align-items: center; gap: 10px; margin-top: 15px; font-size: 14px; }
+        .footer-alert { display: flex; align-items: center; gap: 10px; margin-top: 15px; font-size: 14px; text-decoration: none; color: white; }
         .footer-alert i { color: #ff8c00; }
 
-        .footer-copy { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.6; }
+        .footer-copy { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
 
-        @media (max-width: 900px) {
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; }
-            .grid-cards { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .chamada-mural { flex-direction: column; text-align: center; width: 90%; }
         }
     </style>
 </head>
@@ -90,7 +121,7 @@
 
     <aside class="sidebar">
         <div class="logo-area">
-            <img src="https://i.imgur.com/X1xT7Fx.png" alt="Logo">
+            <img src="https://i.imgur.com/X1xT7Fx.png" alt="Passeios do Miguel">
         </div>
         <ul class="menu-list">
             <li><a href="index.html"><i class="fas fa-home"></i> HOME</a></li>
@@ -102,12 +133,12 @@
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
         </ul>
         <div class="sidebar-footer">
-            <span style="font-size: 10px; letter-spacing: 1px; opacity: 0.7;">SIGA-NOS</span>
+            <span>SIGA-NOS</span>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-facebook-messenger"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank"><i class="fas fa-users"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </aside>
@@ -115,22 +146,42 @@
     <main>
         <section class="hero">
             <h1>Passeios do Miguel</h1>
-            <p>Viagens com alma e aventura</p>
+            <p>Viagens com alma e aventura, organizadas com carinho.</p>
         </section>
 
-        <section class="section-cards">
-            <div class="grid-cards">
-                <div class="card">
+        <div class="chamada-mural">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <i class="fas fa-heart" style="color: #ff8c00; font-size: 30px;"></i>
+                <span style="color: #1e4d8c; font-weight: bold; font-size: 1.1em;">A satisfação de quem viaja connosco é o nosso maior orgulho!</span>
+            </div>
+            <a href="testemunhos.html" class="btn-mural">Ler Mural</a>
+        </div>
+
+        <section class="video-section">
+            <div class="video-container">
+                <div class="video-aspect">
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="cards-section">
+            <h2 style="text-align: center; color: #1e4d8c; margin-bottom: 40px; font-size: 2em;">Porquê escolher os meus passeios?</h2>
+            <div class="cards-grid">
+                <div class="card-item">
+                    <i class="fas fa-smile-beam"></i>
                     <h3>Boa Disposição</h3>
-                    <p>Garantimos um ambiente descontraído em cada viagem.</p>
+                    <p>Mais do que uma viagem, garantimos um dia cheio de sorrisos e alegria entre amigos.</p>
                 </div>
-                <div class="card">
-                    <h3>Cultura e Natureza</h3>
-                    <p>Mostramos os cantos mais bonitos de Portugal.</p>
+                <div class="card-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Segurança e Apoio</h3>
+                    <p>Acompanhamento total desde a partida até ao regresso, para que não tenha preocupações.</p>
                 </div>
-                <div class="card">
-                    <h3>Comunidade</h3>
-                    <p>Crescemos com as vossas sugestões e partilhas.</p>
+                <div class="card-item">
+                    <i class="fas fa-star"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Locais escolhidos a dedo, desde gastronomia típica a paisagens de cortar o fôlego.</p>
                 </div>
             </div>
         </section>
@@ -140,34 +191,26 @@
                 <div class="footer-col">
                     <h4>PASSEIOS DO MIGUEL</h4>
                     <p style="font-size: 14px; line-height: 1.6; opacity: 0.9;">
-                        Viagens com alma e aventura, de S. Pedro do Sul para o país.
+                        Viagens com alma e aventura, partindo de S. Pedro do Sul para descobrir o melhor de Portugal.
                     </p>
                 </div>
 
                 <div class="footer-col">
                     <h4>NAVEGAÇÃO FAST</h4>
-                    <ul class="nav-links">
+                    <ul class="footer-nav">
                         <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="sobre.html">Sobre Mim</a></li>
                         <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contactos.html">Contacto</a></li>
+                        <li><a href="contactos.html">Contactos</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>APOIO E RESERVAS</h4>
-                    <a href="tel:965715465" class="contact-box">
-                        <i class="fas fa-phone-alt"></i> 965 715 465
-                    </a>
-                    <a href="https://wa.me/351965715465" class="contact-box">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <div class="footer-alert">
-                        <i class="fas fa-exclamation-triangle"></i> <a href="#" style="color:white; text-decoration:none;">Cancelamento</a>
-                    </div>
-                    <div class="footer-alert">
-                        <i class="fas fa-question-circle"></i> <a href="#" style="color:white; text-decoration:none;">Dúvidas (FAQ)</a>
-                    </div>
+                    <a href="tel:965715465" class="contact-pill"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                    <a href="https://wa.me/351965715465" class="contact-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="cancelamento.html" class="footer-alert"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
+                    <a href="faq.html" class="footer-alert"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                 </div>
             </div>
             <div class="footer-copy">
