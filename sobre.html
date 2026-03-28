@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        /* 2. MENU LATERAL FIXO (Sem rondana, adaptável) */
+        /* 2. MENU LATERAL FIXO (Ligado ao menu.html) */
         .sidebar { 
             width: 260px; background-color: #1e4d8c; color: white; 
             display: flex; flex-direction: column; 
@@ -54,11 +54,18 @@
 
         .content-section { padding: 60px 40px; max-width: 1100px; margin: 0 auto; }
         
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: flex-start; }
-        .sobre-img { width: 100%; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); border: 8px solid white; }
-        
-        .sobre-texto h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 25px; border-left: 6px solid #ff8c00; padding-left: 15px; }
-        .sobre-texto p { color: #444; line-height: 1.8; margin-bottom: 20px; font-size: 1.1em; text-align: justify; }
+        /* ESTRUTURA DA HISTÓRIA EM FASES */
+        .timeline { position: relative; margin-top: 40px; }
+        .fase { display: flex; gap: 30px; margin-bottom: 50px; align-items: flex-start; }
+        .fase-icon { 
+            background: #ff8c00; color: white; width: 60px; height: 60px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 24px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(255,140,0,0.3);
+        }
+        .fase-content { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); flex-grow: 1; }
+        .fase-content h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; display: flex; align-items: center; gap: 10px; }
+        .fase-content p { color: #555; line-height: 1.7; font-size: 1.05em; text-align: justify; }
+        .fase-content strong { color: #1e4d8c; }
 
         /* 4. RODAPÉ PREMIUM (ESTILO ILHA) */
         .footer-premium {
@@ -71,13 +78,12 @@
         .footer-pill i { color: #ff8c00; margin-right: 12px; }
         .footer-link { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; opacity: 0.8; transition: 0.3s; }
         .footer-link:hover { opacity: 1; color: #ff8c00; }
-
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
 
         @media (max-width: 1024px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; }
-            .sobre-grid { grid-template-columns: 1fr; }
+            .fase { flex-direction: column; align-items: center; text-align: center; }
         }
     </style>
 </head>
@@ -98,33 +104,47 @@
         </ul>
         <div class="sidebar-footer">
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fas fa-users"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank"><i class="fas fa-users"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </aside>
 
     <main>
         <section class="hero-sobre">
-            <h1>A Minha História</h1>
-            <p>De um sonho de criança a uma comunidade de viajantes.</p>
+            <h1>A Nossa Jornada</h1>
+            <p>Conheça a história e os valores dos Passeios do Miguel.</p>
         </section>
 
         <section class="content-section">
-            <div class="sobre-grid">
-                <img src="https://i.imgur.com/a7debe.jpg" alt="Miguel" class="sobre-img">
-                <div class="sobre-texto">
-                    <h2>Como tudo começou...</h2>
-                    <p>A paixão pelas viagens nasceu comigo. Lembro-me, como se fosse hoje, de estar na <strong>Escola Primária</strong> e de o <strong>Sr. Alberto</strong> aparecer com o seu autocarro para nos levar em visitas de estudo. Aquele momento de subir os degraus e ver o mundo pela janela era o ponto alto do meu ano.</p>
-                    
-                    <p>Em <strong>2018</strong>, decidi que queria proporcionar essa mesma alegria a outros. Comecei por organizar pequenos passeios para amigos e familiares de <strong>S. Pedro do Sul</strong>. O "bichinho" pegou e o que era um passatempo tornou-se no projeto <strong>Passeios do Miguel</strong>.</p>
-                    
-                    <p>Para mim, o sucesso não se mede pelos quilómetros percorridos, mas pelos sorrisos e pelas amizades que se criam. O meu objetivo é que cada pessoa que entre no autocarro se sinta em casa e regresse com o coração cheio de boas memórias.</p>
-                    
-                    <p>Hoje, levamos pessoas de todo o país a descobrir os recantos mais bonitos de Portugal, sempre com a mesma dedicação e o mesmo brilho nos olhos de quando era criança.</p>
+            <div class="timeline">
+                
+                <div class="fase">
+                    <div class="fase-icon"><i class="fas fa-child"></i></div>
+                    <div class="fase-content">
+                        <h3>Onde tudo nasceu</h3>
+                        <p>A paixão pelas viagens nasceu comigo. Lembro-me, como se fosse hoje, de estar na <strong>Escola Primária</strong> e de o <strong>Sr. Alberto</strong> aparecer com o seu autocarro para nos levar em visitas de estudo. Aquele momento de subir os degraus e ver o mundo pela janela era o ponto alto do meu ano.</p>
+                    </div>
                 </div>
+
+                <div class="fase">
+                    <div class="fase-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="fase-content">
+                        <h3>O Salto em 2018</h3>
+                        <p>Em <strong>2018</strong>, decidi que queria proporcionar essa mesma alegria a outros. Comecei por organizar pequenos passeios para amigos e familiares de <strong>S. Pedro do Sul</strong>. O "bichinho" pegou e o que era um passatempo tornou-se no projeto <strong>Passeios do Miguel</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="fase">
+                    <div class="fase-icon"><i class="fas fa-heart"></i></div>
+                    <div class="fase-content">
+                        <h3>A Nossa Missão</h3>
+                        <p>Para mim, o sucesso não se mede pelos quilómetros percorridos, mas pelos sorrisos e pelas amizades que se criam. O meu objetivo é que cada pessoa que entre no autocarro se sinta em casa e regresse com o coração cheio de boas memórias.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -132,19 +152,19 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p style="font-size: 14px; opacity: 0.9;">Mais do que viagens, criamos momentos de felicidade e partilha.</p>
+                    <p style="font-size: 14px; opacity: 0.9; line-height: 1.6;">De S. Pedro do Sul para todo o país, transformamos cada passeio numa memória inesquecível.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Links Úteis</h4>
+                    <h4>Navegação Fast</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <a href="index.html" class="footer-link">Início</a>
+                        <a href="sobre.html" class="footer-link">Sobre</a>
                         <a href="passeios.html" class="footer-link">Passeios</a>
                         <a href="contactos.html" class="footer-link">Contacto</a>
-                        <a href="faq.html" class="footer-link">FAQ</a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Reservas</h4>
+                    <h4>Apoio e Reservas</h4>
                     <a href="tel:965715465" class="footer-pill"><i class="fas fa-phone"></i> 965 715 465</a>
                     <a href="https://wa.me/351965715465" class="footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
