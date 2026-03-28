@@ -6,80 +6,83 @@
     <title>Passeios do Miguel - Início</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ESTRUTURA E MENU FIXO */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; overflow-x: hidden; }
+        /* ESTRUTURA E MENU LATERAL FIXO */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
         
         .sidebar { 
-            width: 260px; background-color: #1e4d8c; color: white; 
+            width: 280px; background-color: #1e4d8c; color: white; 
             display: flex; flex-direction: column; 
             height: 100vh; position: fixed; left: 0; top: 0; z-index: 1000;
         }
         
-        .logo-area { padding: 40px 20px; text-align: center; }
-        .logo-area img { width: 180px; height: auto; display: block; margin: 0 auto; }
+        /* LOGOTIPO AJUSTADO PARA LEITURA */
+        .logo-area { padding: 30px 15px; text-align: center; }
+        .logo-area img { width: 220px; height: auto; display: block; margin: 0 auto; }
 
         .menu-list { list-style: none; padding: 0 20px; flex-grow: 1; margin: 0; }
-        .menu-list li { margin-bottom: 12px; }
+        .menu-list li { margin-bottom: 10px; }
+        
         .menu-list a { 
             color: white; text-decoration: none; display: flex; align-items: center; 
-            padding: 15px 25px; border-radius: 50px; /* BOTÕES ARREDONDADOS */
-            transition: 0.3s; font-weight: bold; font-size: 14px;
+            padding: 14px 22px; border-radius: 50px; 
+            transition: 0.3s; font-weight: bold; font-size: 15px;
             background: rgba(255,255,255,0.05);
         }
-        .menu-list a i { margin-right: 15px; width: 20px; text-align: center; }
-        .menu-list a:hover { background: #ff8c00; transform: scale(1.05); }
+        .menu-list a i:first-child { margin-right: 15px; width: 20px; text-align: center; }
+        .menu-list a:hover { background: #ff8c00; }
 
-        /* SIGA-NOS AJUSTADO PARA NÃO SAIR DO ECRÃ */
-        .sidebar-footer { padding: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; box-sizing: border-box; }
-        .sidebar-footer span { font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 10px; opacity: 0.7; }
-        .social-icons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .social-icons a { color: white; font-size: 18px; transition: 0.3s; }
-        .social-icons a:hover { color: #ff8c00; }
+        /* ITEM PASSEIOS COM SETA CONFORME A FOTO */
+        .menu-list a.active-page { background: #ff8c00; border: 2px solid white; justify-content: space-between; }
 
-        /* CONTEÚDO (COMPENSANDO O MENU FIXO) */
-        main { flex-grow: 1; margin-left: 260px; display: flex; flex-direction: column; min-width: 0; }
+        /* LINHA SEPARADORA BRANCA */
+        .separator { height: 2px; background-color: rgba(255,255,255,0.8); margin: 15px 10px; list-style: none; }
+
+        /* SIGA-NOS E REDES SOCIAIS */
+        .sidebar-footer { padding: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-footer span { font-size: 12px; letter-spacing: 2px; display: block; margin-bottom: 15px; opacity: 0.9; font-weight: bold; }
+        .social-icons { display: flex; justify-content: center; gap: 18px; }
+        .social-icons a { color: white; font-size: 20px; transition: 0.3s; }
+        .social-icons a:hover { color: #ff8c00; transform: scale(1.2); }
+
+        /* CONTEÚDO PRINCIPAL */
+        main { flex-grow: 1; margin-left: 280px; display: flex; flex-direction: column; min-width: 0; }
 
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200');
-            background-size: cover; background-position: center; height: 400px; 
+            background-size: cover; background-position: center; height: 380px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
             color: white; position: relative; border-radius: 0 0 50px 0;
         }
 
         .chamada-testemunhos {
-            background: white; max-width: 85%; margin: -35px auto 40px;
-            padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white; max-width: 80%; margin: -30px auto 40px;
+            padding: 15px 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: flex; align-items: center; justify-content: space-between; gap: 20px;
             border-left: 8px solid #ff8c00; position: relative; z-index: 10;
         }
 
         .seccao { padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         
-        /* REPOSIÇÃO DOS CARDS: PORQUÊ ESCOLHER-NOS */
-        .grid-destaques { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        /* CARDS DE DESTAQUE */
+        .grid-destaques { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .destaque-item { 
             background: white; padding: 40px 30px; border-radius: 25px; text-align: center; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05); transition: 0.3s; border-bottom: 4px solid transparent;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05); transition: 0.3s;
         }
-        .destaque-item:hover { transform: translateY(-10px); border-bottom: 4px solid #ff8c00; }
+        .destaque-item:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
         .destaque-item i { font-size: 45px; color: #ff8c00; margin-bottom: 20px; }
         .destaque-item h3 { color: #1e4d8c; margin-bottom: 15px; }
-        .destaque-item p { color: #666; font-size: 14px; line-height: 1.6; }
 
         /* RODAPÉ MÁGICO */
-        .footer-universal {
-            background: #1e4d8c; color: white; padding: 60px 40px 30px; margin-top: auto;
-            border-top: 6px solid #ff8c00;
-        }
+        .footer-universal { background: #1e4d8c; color: white; padding: 50px 40px; margin-top: auto; border-top: 6px solid #ff8c00; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; border-bottom: 2px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 5px; }
         .footer-pill { border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px; background: rgba(255,255,255,0.05); text-decoration: none; color: white; display: inline-flex; align-items: center; margin-bottom: 10px; margin-right: 10px; }
         .footer-pill i { color: #ff8c00; margin-right: 10px; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; }
-            .chamada-testemunhos { flex-direction: column; text-align: center; }
+            .hero { border-radius: 0; }
         }
     </style>
 </head>
@@ -87,21 +90,25 @@
 
     <aside class="sidebar">
         <div class="logo-area">
-            <img src="logo.png" alt="Passeios do Miguel"> </div>
+            <img src="https://i.imgur.com/X1xT7Fx.png" alt="Passeios do Miguel">
+        </div>
         <ul class="menu-list">
             <li><a href="index.html"><i class="fas fa-home"></i> HOME</a></li>
             <li><a href="sobre.html"><i class="fas fa-user"></i> SOBRE MIM</a></li>
-            <li><a href="passeios.html"><i class="fas fa-bus"></i> PASSEIOS</a></li>
+            <li><a href="passeios.html" class="active-page"><i class="fas fa-bus"></i> PASSEIOS <i class="fas fa-chevron-right"></i></a></li>
             <li><a href="contactos.html"><i class="fas fa-envelope"></i> CONTACTOS</a></li>
+            
+            <li class="separator"></li> <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> DICAS ÚTEIS</a></li>
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
         </ul>
+        
         <div class="sidebar-footer">
             <span>SIGA-NOS</span>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank"><i class="fas fa-users"></i></a>
+                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </aside>
@@ -117,7 +124,7 @@
                 <i class="fas fa-heart" style="color: #ff8c00; font-size: 28px;"></i>
                 <span style="color: #1e4d8c; font-weight: bold;">A satisfação de quem viaja connosco é o nosso maior orgulho!</span>
             </div>
-            <a href="testemunhos.html" style="background: #1e4d8c; color: white; text-decoration: none; padding: 12px 25px; border-radius: 12px; font-weight: bold;">Ver Mural</a>
+            <a href="testemunhos.html" style="background: #1e4d8c; color: white; text-decoration: none; padding: 10px 20px; border-radius: 10px; font-weight: bold;">Ver Mural</a>
         </div>
 
         <section class="seccao">
@@ -127,22 +134,22 @@
                 </div>
             </div>
 
-            <h2 style="color: #1e4d8c; text-align: center; font-size: 2em; margin-bottom: 40px;">Porquê viajar connosco?</h2>
+            <h2 style="color: #1e4d8c; text-align: center; font-size: 2.2em; margin-bottom: 40px;">Porquê viajar connosco?</h2>
             <div class="grid-destaques">
                 <div class="destaque-item">
                     <i class="fas fa-bus"></i>
                     <h3>Conforto Total</h3>
-                    <p>Viagens em autocarros modernos com paragens planeadas para o seu bem-estar e descanso.</p>
+                    <p>Viagens em autocarros modernos com paragens planeadas para o seu bem-estar.</p>
                 </div>
                 <div class="destaque-item">
                     <i class="fas fa-map-marked-alt"></i>
                     <h3>Roteiros Únicos</h3>
-                    <p>Escolhemos a dedo os melhores destinos, desde festas populares a paraísos naturais escondidos.</p>
+                    <p>Escolhemos a dedo os melhores destinos, desde festas populares a paraísos naturais.</p>
                 </div>
                 <div class="destaque-item">
                     <i class="fas fa-users"></i>
                     <h3>Ambiente Familiar</h3>
-                    <p>Mais do que passageiros, somos um grupo de amigos que partilha momentos e sorrisos inesquecíveis.</p>
+                    <p>Mais do que passageiros, somos um grupo de amigos que partilha momentos inesquecíveis.</p>
                 </div>
             </div>
         </section>
@@ -151,16 +158,13 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>De S. Pedro do Sul para todo o país, criamos memórias que duram uma vida inteira.</p>
+                    <p>De S. Pedro do Sul para todo o país, criamos memórias únicas.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
+                    <h4>Reservas</h4>
                     <a href="tel:965715465" class="footer-pill"><i class="fas fa-phone"></i> 965 715 465</a>
                     <a href="https://wa.me/351965715465" class="footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-                &copy; 2026 Passeios do Miguel - Todos os direitos reservados.
             </div>
         </footer>
     </main>
