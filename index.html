@@ -22,47 +22,52 @@
         }
         .hero h1 { font-size: 3em; margin-bottom: 10px; }
 
-        /* BALÃO DO MURAL (ACRESCENTADO COM ESPAÇO) */
+        /* BALÃO DO MURAL - ESPAÇADO E CORRIGIDO */
         .chamada-testemunhos {
             background: white;
             max-width: 900px;
-            margin: -30px auto 30px;
-            padding: 20px 35px;
+            margin: -35px auto 30px;
+            padding: 20px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 25px;
+            gap: 30px;
             border-left: 8px solid #ff8c00;
             position: relative;
             z-index: 10;
         }
         .chamada-texto { display: flex; align-items: center; gap: 15px; color: #1e4d8c; font-weight: 500; }
-        .chamada-texto i { font-size: 26px; color: #ff8c00; }
+        .chamada-texto i { font-size: 28px; color: #ff8c00; }
         .btn-ir-testemunhos { 
             background: #1e4d8c; color: white; text-decoration: none; 
-            padding: 12px 25px; border-radius: 10px; font-weight: bold; 
+            padding: 12px 25px; border-radius: 12px; font-weight: bold; 
             transition: 0.3s; white-space: nowrap;
         }
-        .btn-ir-testemunhos:hover { background: #ff8c00; }
+        .btn-ir-testemunhos:hover { background: #ff8c00; transform: translateY(-2px); }
 
-        /* Secção do Vídeo e Conteúdo */
+        /* Secção de Vídeo e Destaques */
         .seccao { padding: 40px 30px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .video-container { 
-            width: 100%; max-width: 800px; margin: 0 auto 50px; 
-            border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        
+        .video-wrapper {
+            width: 100%; max-width: 850px; margin: 0 auto 50px;
+            border-radius: 25px; overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+            background: #000;
         }
-        .video-container video { width: 100%; display: block; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        .titulo-seccao { color: #1e4d8c; font-size: 2em; margin-bottom: 30px; border-left: 5px solid #ff8c00; padding-left: 15px; }
+        .titulo-seccao { color: #1e4d8c; font-size: 2.2em; margin-bottom: 40px; border-left: 6px solid #ff8c00; padding-left: 20px; }
 
-        /* Grid de Destaques */
-        .grid-destaques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .destaque-item { background: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .destaque-item i { font-size: 35px; color: #ff8c00; margin-bottom: 15px; }
+        .grid-destaques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .destaque-item { background: white; padding: 30px; border-radius: 25px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; }
+        .destaque-item:hover { transform: translateY(-10px); }
+        .destaque-item i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
+        .destaque-item h3 { color: #1e4d8c; margin-bottom: 15px; }
 
-        /* RODAPÉ ORIGINAL RESTAURADO */
+        /* RODAPÉ ORIGINAL */
         .footer-universal {
             background: #1e4d8c; position: relative; color: white;
             padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
@@ -98,6 +103,14 @@
             text-align: center; margin-top: 25px; padding-top: 15px; 
             border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
         }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .grid-destaques { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2em; }
+            .chamada-testemunhos { flex-direction: column; text-align: center; margin: -20px 15px 30px; padding: 20px; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; }
+        }
     </style>
 </head>
 <body>
@@ -107,23 +120,27 @@
     <main>
         <section class="hero">
             <h1>Passeios do Miguel</h1>
-            <p>Viagens organizadas com carinho e alegria.</p>
+            <p>Viagens organizadas com carinho e alegria de S. Pedro do Sul para o país.</p>
         </section>
 
         <div class="chamada-testemunhos">
             <div class="chamada-texto">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-heart"></i>
                 <span>A satisfação de quem viaja connosco é o nosso maior orgulho!</span>
             </div>
             <a href="testemunhos.html" class="btn-ir-testemunhos">Ler Testemunhos</a>
         </div>
 
         <section class="seccao">
-            <div class="video-container">
-                <video controls poster="thumb-video.jpg">
-                    <source src="video-apresentacao.mp4" type="video/mp4">
-                    O seu navegador não suporta vídeos.
-                </video>
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Apresentação Passeios do Miguel" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
 
             <h2 class="titulo-seccao">Porquê viajar connosco?</h2>
@@ -131,17 +148,17 @@
                 <div class="destaque-item">
                     <i class="fas fa-bus"></i>
                     <h3>Conforto Total</h3>
-                    <p>Autocarros modernos e paragens planeadas para o seu bem-estar.</p>
+                    <p>Viagens em autocarros modernos com paragens planeadas para o seu bem-estar.</p>
                 </div>
                 <div class="destaque-item">
-                    <i class="fas fa-heart"></i>
-                    <h3>Dedicação</h3>
-                    <p>Organizamos cada detalhe como se fosse para a nossa própria família.</p>
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Escolhemos a dedo os melhores destinos, desde festas populares a paraísos naturais.</p>
                 </div>
                 <div class="destaque-item">
-                    <i class="fas fa-smile"></i>
-                    <h3>Alegria</h3>
-                    <p>Momentos de convívio que ficam para sempre na memória.</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Ambiente Familiar</h3>
+                    <p>Mais do que passageiros, somos um grupo de amigos que partilha momentos inesquecíveis.</p>
                 </div>
             </div>
         </section>
