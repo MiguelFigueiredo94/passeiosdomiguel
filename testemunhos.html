@@ -7,58 +7,77 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout unificado com o teu site */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         .banner-feedback {
-            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), 
-                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
+                        url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; padding: 50px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        .seccao-testemunhos { padding: 40px 20px; max-width: 850px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .seccao-testemunhos { padding: 30px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* Caixa de Envio (Estilo igual ao teu print original) */
-        .form-feedback {
-            background: white; padding: 35px; border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 50px;
+        /* Formulário Compacto */
+        .form-compacto {
+            background: white; padding: 20px 30px; border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04); margin-bottom: 40px;
+            display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end;
         }
-        .form-feedback h2 { color: #1e4d8c; margin-top: 0; font-size: 1.6em; }
-        
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #1e4d8c; font-size: 14px; }
-        .input-group input, .input-group textarea {
-            width: 100%; padding: 12px; border: 1px solid #e1e1e1; border-radius: 10px; 
-            font-family: inherit; font-size: 14px; box-sizing: border-box; background: #fafafa;
+        .form-compacto h2 { width: 100%; color: #1e4d8c; margin: 0 0 10px 0; font-size: 1.3em; border-left: 4px solid #ff8c00; padding-left: 10px; }
+        .campo-curto { flex: 1; min-width: 200px; }
+        .campo-longo { flex: 2; min-width: 300px; }
+        .form-compacto label { display: block; font-size: 12px; font-weight: bold; color: #777; margin-bottom: 5px; }
+        .form-compacto input, .form-compacto textarea {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px; box-sizing: border-box;
         }
+        .btn-wa-compacto {
+            background: #25d366; color: white; border: none; padding: 11px 20px;
+            border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px; height: 40px;
+        }
+        .btn-wa-compacto:hover { background: #128c7e; transform: scale(1.02); }
 
-        .btn-enviar-wa {
-            background: #ff8c00; color: white; border: none; padding: 15px 25px;
-            border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 16px;
-            transition: 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+        /* Mural Dinâmico (Grelha) */
+        .mural-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
-        .btn-enviar-wa:hover { background: #e67e22; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
-
-        /* Mural de Comentários (Estilo igual ao que já tinhas) */
-        .mural-comentarios { display: grid; gap: 20px; }
         .comentario-card {
-            background: white; padding: 25px; border-radius: 15px;
-            border-left: 5px solid #ff8c00; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            position: relative;
+            background: white; padding: 20px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid #ff8c00;
+            transition: 0.3s;
+            display: flex; flex-direction: column;
         }
-        .comentario-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-        .nome-user { font-weight: bold; color: #1e4d8c; font-size: 1.1em; }
-        .data-comentario { font-size: 0.85em; color: #999; }
-        .texto-comentario { color: #555; line-height: 1.6; font-style: italic; margin: 0; }
+        .comentario-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+        .card-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .user-info i { color: #1e4d8c; background: #eef2f7; padding: 10px; border-radius: 50%; }
+        .nome-user { font-weight: bold; color: #1e4d8c; display: block; }
+        .data-comentario { font-size: 11px; color: #bbb; }
+        .texto-comentario { color: #555; line-height: 1.5; font-style: italic; font-size: 14px; position: relative; }
+        .texto-comentario::before { content: '"'; font-size: 40px; color: #ff8c00; opacity: 0.2; position: absolute; left: -10px; top: -20px; }
 
-        /* Responsividade */
+        /* Rodapé Universal */
+        .footer-universal { background: #1e4d8c; color: white; padding: 40px 20px 20px; margin-top: auto; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 15px; }
+        .footer-col p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 8px; font-size: 13px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; color: #ff8c00; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; opacity: 0.5; }
+
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; min-height: auto; }
-            .seccao-testemunhos { padding: 20px; }
+            .form-compacto { flex-direction: column; align-items: stretch; }
+            .campo-curto, .campo-longo { width: 100%; }
         }
     </style>
 </head>
@@ -69,72 +88,85 @@
     <main>
         <div class="banner-feedback">
             <h1>Mural de Experiências</h1>
-            <p>A sua opinião é o combustível das nossas viagens!</p>
+            <p>O que dizem os nossos viajantes</p>
         </div>
 
         <section class="seccao-testemunhos">
             
-            <div class="form-feedback">
-                <h2>Deixe o seu comentário</h2>
-                <div class="input-group">
-                    <label>Nome Completo</label>
-                    <input type="text" id="nome-user" placeholder="Como quer ser identificado?" required>
+            <div class="form-compacto">
+                <h2>Conte-nos a sua experiência</h2>
+                <div class="campo-curto">
+                    <label>O seu Nome</label>
+                    <input type="text" id="nome-in" placeholder="Ex: João Pereira">
                 </div>
-                <div class="input-group">
-                    <label>A sua mensagem</label>
-                    <textarea id="msg-user" rows="4" placeholder="Conte-nos como foi a sua viagem..." required></textarea>
+                <div class="campo-longo">
+                    <label>A sua Mensagem</label>
+                    <input type="text" id="msg-in" placeholder="Ex: Adorei o passeio a Celorico!">
                 </div>
-                <button onclick="enviarParaWhatsApp()" class="btn-enviar-wa">
-                    <i class="fab fa-whatsapp"></i> Publicar no Mural (via WhatsApp)
+                <button onclick="enviarWA()" class="btn-wa-compacto">
+                    <i class="fab fa-whatsapp"></i> Enviar
                 </button>
-                <p style="font-size: 12px; color: #888; margin-top: 15px; text-align: center;">
-                    *Para evitar SPAM, os comentários são validados via WhatsApp antes de aparecerem no site.
-                </p>
             </div>
 
-            <div id="mural" class="mural-comentarios">
+            <div class="mural-grid">
                 
                 <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="nome-user">Rosário</span>
-                        <span class="data-comentario">28 de março de 2026</span>
+                    <div class="card-topo">
+                        <div class="user-info">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <span class="nome-user">Rosário</span>
+                                <span class="data-comentario">28 de março de 2026</span>
+                            </div>
+                        </div>
                     </div>
-                    <p class="texto-comentario">"O Passeio a celorico de basto foi incrível... fantástico."</p>
+                    <p class="texto-comentario">O Passeio a celorico de basto foi incrível... fantástico.</p>
                 </div>
 
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="nome-user">Maria Silva</span>
-                        <span class="data-comentario">15 de março de 2026</span>
-                    </div>
-                    <p class="texto-comentario">"O passeio à Serra da Estrela foi fantástico! O Miguel é um guia super atencioso. Recomendo vivamente!"</p>
                 </div>
-
-            </div>
         </section>
+
+        <footer class="footer-universal">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>Criamos memórias através de viagens autênticas por Portugal. Aventura, cultura e proximidade em cada quilómetro.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="index.html">Página Inicial</a></li>
+                        <li><a href="sobre.html">Sobre Mim</a></li>
+                        <li><a href="passeios.html">Próximos Passeios</a></li>
+                        <li><a href="contatos.html">Contactos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contactos</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 965 715 465</li>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp Disponível</li>
+                        <li><i class="fas fa-map-marker-alt"></i> S. Pedro do Sul, Viseu</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+            </div>
+        </footer>
     </main>
 
     <script>
-        // Carrega o teu menu lateral
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        // Função para abrir o WhatsApp com a mensagem pronta
-        function enviarParaWhatsApp() {
-            const nome = document.getElementById('nome-user').value;
-            const mensagem = document.getElementById('msg-user').value;
-            const meuTelefone = "351965715465";
-
-            if (nome === "" || mensagem === "") {
-                alert("Por favor, preencha o nome e a mensagem.");
-                return;
-            }
-
-            const textoFinal = `Olá Miguel! Quero deixar um testemunho para o site:%0A%0A*Nome:* ${nome}%0A*Mensagem:* ${mensagem}`;
-            const linkWhatsApp = `https://wa.me/${meuTelefone}?text=${textoFinal}`;
-            
-            window.open(linkWhatsApp, '_blank');
+        function enviarWA() {
+            const nome = document.getElementById('nome-in').value;
+            const msg = document.getElementById('msg-in').value;
+            if(!nome || !msg) { alert("Preencha os dois campos!"); return; }
+            const texto = `Olá Miguel! Gostaria de publicar este testemunho:%0A%0A*Nome:* ${nome}%0A*Mensagem:* ${msg}`;
+            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
     </script>
 </body>
