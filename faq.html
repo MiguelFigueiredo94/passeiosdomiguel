@@ -23,7 +23,7 @@
         .banner-faq h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .banner-faq p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
 
-        /* Área das Perguntas (Design Refinado) */
+        /* Área das Perguntas */
         .seccao-faq { padding: 60px 20px; flex-grow: 1; }
         .container-faq { max-width: 900px; margin: 0 auto; }
 
@@ -66,7 +66,6 @@
         }
 
         .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; transition: 0.3s; }
-
         .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
 
         /* Resposta */
@@ -78,33 +77,63 @@
         }
 
         .faq-resposta-inner { 
-            padding: 0 30px 30px 95px; /* Alinhado com o texto da pergunta */
+            padding: 0 30px 30px 95px; 
             color: #666; 
             line-height: 1.8; 
             font-size: 1.05em;
         }
 
-        /* Estado Aberto (Ativo) */
+        /* Estado Aberto */
         .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
         .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
         .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
         .faq-item.ativo .faq-resposta { max-height: 400px; }
         .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
 
-        /* Rodapé */
-        .footer-wave-container { background: transparent; line-height: 0; margin-top: auto; }
-        .footer-wave-container svg { width: 100%; height: 70px; fill: #1e4d8c; }
-        footer { background: #1e4d8c; color: white; padding: 60px 30px; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; }
-        .footer-col a { color: #dce4ed; text-decoration: none; display: block; margin: 10px 0; }
-        .footer-col a:hover { color: white; padding-left: 5px; transition: 0.3s; }
+        /* --- NOVO RODAPÉ DINÂMICO --- */
+        .footer-universal {
+            background: #1e4d8c; position: relative; color: white;
+            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
+        }
+        .footer-universal::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
+            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
+        }
+        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+        .footer-container {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
+            position: relative; z-index: 2;
+        }
+        .footer-col h4 { 
+            color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; 
+            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
+            display: inline-block; padding-bottom: 4px;
+        }
+        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
+        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
+        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
+        .btn-contacto-pill {
+            background: rgba(255, 255, 255, 0.05); padding: 6px 12px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 6px !important;
+        }
+        .footer-bottom { 
+            text-align: center; margin-top: 25px; padding-top: 15px; 
+            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; min-height: auto; position: relative; }
             .faq-resposta-inner { padding: 0 25px 25px 25px; }
             .banner-faq h1 { font-size: 2em; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-col ul li a { justify-content: center; }
         }
     </style>
 </head>
@@ -161,7 +190,7 @@
                     </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Podes inscrever-te ligando para o 965 715 476 ou utilizando o formulário na página Inscrever-me.
+                            Podes inscrever-te ligando para o 965 715 476 ou utilizando o formulário na página de contactos.
                         </div>
                     </div>
                 </div>
@@ -214,28 +243,39 @@
             </div>
         </section>
 
-        <div class="footer-wave-container">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-            </svg>
-        </div>
-        <footer>
-            <div class="footer-grid">
+        <footer class="footer-universal">
+            <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>&copy; 2026 - Todos os direitos reservados.</p>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
+
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <a href="index.html">Início</a>
-                    <a href="passeios.html">Passeios</a>
-                    <a href="contatos.html">Contactos</a>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="passeios.html">Passeios</a></li>
+                        <li><a href="contatos.html">Contacto</a></li>
+                    </ul>
                 </div>
+
                 <div class="footer-col">
-                    <h4>Informações</h4>
-                    <a href="cancelamento.html" style="color: #ff8c00;">⚠️ Regras de Cancelamento</a>
-                    <a href="faq.html">Dúvidas Frequentes</a>
+                    <h4>Apoio e Reservas</h4>
+                    <ul>
+                        <li class="btn-contacto-pill">
+                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        </li>
+                        <li class="btn-contacto-pill">
+                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </li>
+                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
+                    </ul>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
