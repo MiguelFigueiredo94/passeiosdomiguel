@@ -3,97 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Testemunhos - Passeios do Miguel</title>
+    <title>Mural - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base Profissional */
-        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; color: #333; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; min-height: 100vh; }
         #container-menu { min-width: 250px; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* --- HERO --- */
         .hero-testemunhos {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 60px 40px; text-align: center; border-radius: 0 0 50px 0;
-        }
-        .hero-testemunhos h1 { font-size: 36px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* --- FORMULÁRIO DISCRETO NO TOPO --- */
-        .barra-envio {
-            background: white; padding: 20px 40px; margin: -30px 40px 0; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; gap: 15px; align-items: flex-end;
-            flex-wrap: wrap; justify-content: center; z-index: 5;
-        }
-        .campo-form { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 200px; }
-        .campo-form label { font-size: 12px; font-weight: 700; color: #1e4d8c; text-transform: uppercase; }
-        .campo-form input, .campo-form select, .campo-form textarea {
-            padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
-        }
-        .btn-verde {
-            background: #28a745; color: white; border: none; padding: 12px 25px; 
-            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; height: 45px;
-        }
-        .btn-verde:hover { background: #218838; transform: translateY(-2px); }
-
-        /* --- MURAL COM PIONESES --- */
-        .seccao-mural { padding: 60px 40px; }
-        .grid-mural {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px; max-width: 1200px; margin: 0 auto;
+            color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 60px 0;
         }
 
+        /* --- BARRA DE ENVIO --- */
+        .barra-feedback {
+            background: white; padding: 12px 20px; margin: -20px 40px 20px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+        }
+        .barra-feedback input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; outline: none; }
+        .input-p { width: 180px; }
+        .input-m { flex-grow: 1; }
+        .btn-v { background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+        /* --- MURAL --- */
+        .seccao-mural { padding: 20px 40px; flex-grow: 1; }
+        .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
         .nota-postit {
-            background: white; padding: 30px; box-shadow: 5px 10px 20px rgba(0,0,0,0.05);
-            position: relative; border-radius: 2px; min-height: 180px;
-            transition: 0.3s; transform: rotate(-1deg);
+            background: white; padding: 20px; border-radius: 2px; box-shadow: 2px 2px 10px rgba(0,0,0,0.03);
+            position: relative; transform: rotate(-1deg); border-bottom: 1px solid #eee;
         }
-        .nota-postit:nth-child(even) { transform: rotate(1.5deg); }
-        .nota-postit:hover { transform: scale(1.03) rotate(0deg); z-index: 2; box-shadow: 10px 15px 30px rgba(0,0,0,0.1); }
+        .nota-postit:nth-child(even) { transform: rotate(1deg); }
+        .pione { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: #ff9800; border-radius: 50%; }
+        .viagem-tag { font-size: 10px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .comentario { font-size: 13px; font-style: italic; color: #555; line-height: 1.5; margin: 5px 0; }
+        .autor { font-weight: 700; color: #1e4d8c; font-size: 12px; text-align: right; display: block; }
 
-        .pione {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            width: 16px; height: 16px; background: #ff9800; border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .tag-viagem { font-size: 11px; font-weight: 800; color: #ff9800; display: block; margin-bottom: 10px; }
-        .texto-testemunho { font-size: 14px; line-height: 1.6; font-style: italic; color: #555; }
-        .autor-postit { font-weight: 700; color: #1e4d8c; font-size: 13px; text-align: right; margin-top: 15px; display: block;}
-
-        /* --- RODAPÉ FIEL À IMAGEM --- */
-        .footer-universal { background: #1e4d8c; color: white; padding: 60px 40px 20px; }
-        .footer-container { 
-            max-width: 1200px; margin: 0 auto; 
-            display: grid; grid-template-columns: 1.5fr 1fr 1.2fr; gap: 60px;
-        }
-        .footer-col h4 { 
-            color: #ff9800; margin-bottom: 20px; font-size: 16px; text-transform: uppercase; 
-            border-bottom: 1px solid rgba(255, 152, 0, 0.3); display: inline-block; padding-bottom: 5px;
-        }
-        .footer-col p { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+        /* --- RODAPÉ COMPACTO --- */
+        .footer-universal { background: #1e4d8c; color: white; padding: 20px 40px 10px; position: relative; border-top: 4px solid #ff9800; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 30px; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; border-bottom: 1px solid rgba(255,152,0,0.2); display: inline-block; }
+        .footer-col p, .footer-col ul li, .footer-col ul li a { font-size: 12px; color: white; text-decoration: none; opacity: 0.9; }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 12px; font-size: 14px; }
-        .footer-col ul li a { color: white; text-decoration: none; transition: 0.3s; }
-        .footer-col ul li a:hover { color: #ff9800; }
+        .footer-col ul li { margin-bottom: 5px; }
         
-        .btn-footer-pill { 
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; 
-            padding: 8px 20px; display: inline-block; margin-bottom: 10px; width: 80%;
-        }
+        /* Navegação em 2 Colunas */
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+        
+        .btn-pill { border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; padding: 4px 12px; display: inline-block; margin-bottom: 5px; width: fit-content; }
+        .footer-bottom { text-align: center; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 10px; opacity: 0.5; }
 
-        .footer-bottom { 
-            text-align: center; margin-top: 50px; padding-top: 20px; 
-            border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.7; 
-        }
-
-        @media (max-width: 900px) { 
-            body { flex-direction: column; } 
-            .barra-envio { margin: 20px; flex-direction: column; align-items: stretch; }
-            .footer-container { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .footer-col h4 { display: block; width: fit-content; margin: 0 auto 20px; }
-        }
+        @media (max-width: 768px) { body { flex-direction: column; } .footer-container { grid-template-columns: 1fr; gap: 20px; text-align: center; } .footer-col h4 { display: block; width: fit-content; margin: 0 auto 10px; } }
     </style>
 </head>
 <body>
@@ -102,53 +65,23 @@
 
     <main>
         <div class="hero-testemunhos">
-            <h1>Mural de Memórias</h1>
+            <h1 style="margin:0; font-size: 28px;">Mural de Memórias</h1>
         </div>
 
-        <div class="barra-envio">
-            <div class="campo-form">
-                <label>Nome</label>
-                <input type="text" id="nome" placeholder="O seu nome">
-            </div>
-            <div class="campo-form">
-                <label>Passeio</label>
-                <select id="passeio">
-                    <option value="Festa das Camélias 2026">Festa das Camélias 2026</option>
-                    <option value="Natal em Vigo 2025">Natal em Vigo 2025</option>
-                    <option value="Festa da Castanha 2025">Festa da Castanha 2025</option>
-                    <option value="Sra da Agonia 2025">Sra da Agonia 2025</option>
-                    <option value="Gerês e Braga 2025">Gerês e Braga 2025</option>
-                    <option value="Amendoeiras em Flor 2025">Amendoeiras em Flor 2025</option>
-                </select>
-            </div>
-            <div class="campo-form" style="flex: 2;">
-                <label>O seu comentário</label>
-                <textarea id="mensagem" rows="1" placeholder="Conte-nos como foi..."></textarea>
-            </div>
-            <button class="btn-verde" onclick="enviar()">Enviar Testemunho</button>
+        <div class="barra-feedback">
+            <input type="text" id="nome" style="width:140px;" placeholder="Seu Nome">
+            <input type="text" id="passeio" class="input-p" placeholder="Passeio visitado">
+            <input type="text" id="msg" class="input-m" placeholder="O seu comentário...">
+            <button class="btn-v" onclick="enviar()">Enviar</button>
         </div>
 
         <section class="seccao-mural">
             <div class="grid-mural">
                 <div class="nota-postit">
                     <div class="pione"></div>
-                    <span class="tag-viagem">Festa das Camélias 2026</span>
-                    <p class="texto-testemunho">"Celebrar o 1º aniversário dos passeios em Celorico de Basto foi maravilhoso. O almoço estava divinal!"</p>
-                    <span class="autor-postit">— Maria Silva</span>
-                </div>
-
-                <div class="nota-postit">
-                    <div class="pione" style="background: #1e4d8c;"></div>
-                    <span class="tag-viagem">Natal em Vigo 2025</span>
-                    <p class="texto-testemunho">"As luzes são lindas, mas a organização e o espírito de grupo do Miguel são o melhor da viagem."</p>
-                    <span class="autor-postit">— António Ferreira</span>
-                </div>
-
-                <div class="nota-postit">
-                    <div class="pione"></div>
-                    <span class="tag-viagem">Gerês e Braga 2025</span>
-                    <p class="texto-testemunho">"Paisagens de cortar o fôlego e um roteiro muito bem pensado. Mal posso esperar pelo próximo!"</p>
-                    <span class="autor-postit">— Carla Rodrigues</span>
+                    <span class="viagem-tag">Festa das Camélias — 28/03</span>
+                    <p class="comentario">"Um dia inesquecível! A organização do Miguel é fantástica."</p>
+                    <span class="autor">— Maria Silva</span>
                 </div>
             </div>
         </section>
@@ -157,22 +90,22 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p style="margin:0;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <ul>
+                    <ul class="nav-grid">
                         <li><a href="index.html">Início</a></li>
                         <li><a href="sobre.html">Sobre</a></li>
                         <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="contatos.html">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Apoio e Reservas</h4>
                     <ul>
-                        <li class="btn-footer-pill"><i class="fas fa-phone-alt"></i> 965 715 465</li>
-                        <li class="btn-footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</li>
+                        <li class="btn-pill"><i class="fas fa-phone-alt"></i> 965 715 465</li>
+                        <li class="btn-pill"><i class="fab fa-whatsapp"></i> WhatsApp</li>
                         <li><i class="fas fa-exclamation-triangle"></i> Cancelamento</li>
                         <li><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</li>
                     </ul>
@@ -188,10 +121,10 @@
         function enviar() {
             const n = document.getElementById('nome').value;
             const p = document.getElementById('passeio').value;
-            const m = document.getElementById('mensagem').value;
-            if(!n || !m) { alert("Preencha o seu nome e comentário!"); return; }
-            const texto = `Olá Miguel! Tenho um novo testemunho para o mural:%0A%0A*Viagem:* ${p}%0A*Nome:* ${n}%0A*Mensagem:* ${m}`;
-            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
+            const m = document.getElementById('msg').value;
+            const d = "28/03";
+            if(!n || !p || !m) { alert("Preencha tudo!"); return; }
+            window.open(`https://wa.me/351965715465?text=Olá Miguel! Testemunho (${d}):%0A*Viagem:* ${p}%0A*Nome:* ${n}%0A*Mensagem:* ${m}`, '_blank');
         }
         fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
     </script>
