@@ -66,11 +66,11 @@
         .destaque-item i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
         .destaque-item h3 { color: #1e4d8c; margin-bottom: 15px; }
 
-        /* --- RODAPÉ COM A PARTE MÁGICA (LINHA LARANJA) --- */
+        /* --- RODAPÉ COM LINHA MÁGICA --- */
         .footer-universal {
             background: #1e4d8c; color: white;
             padding: 40px 40px 20px; margin-top: auto;
-            border-top: 6px solid #ff8c00; /* A tua linha mágica fixa */
+            border-top: 6px solid #ff8c00; /* Linha mágica laranja */
         }
         .footer-container {
             max-width: 1200px; margin: 0 auto;
@@ -86,18 +86,17 @@
         .footer-col ul li { margin-bottom: 12px; }
         .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; font-size: 14px; transition: 0.3s; }
         
-        /* Estilo dos Botões de Contacto no Rodapé (Pills) */
+        /* Pills de contacto no rodapé */
         .footer-pill {
             border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 15px;
+            padding: 8px 15px;
             border-radius: 30px;
             background: rgba(255,255,255,0.05);
             display: inline-flex !important;
-            width: fit-content;
+            margin-right: 10px;
         }
-        .footer-pill i { margin-right: 10px; color: #ff9800; }
+        .footer-pill i { margin-right: 8px; color: #ff9800; }
         
-        /* Links de Alerta/Info */
         .link-alerta { color: white !important; opacity: 0.9; }
         .link-alerta i { margin-right: 10px; color: #ff9800; width: 20px; text-align: center; }
 
@@ -107,6 +106,7 @@
         }
 
         @media (max-width: 900px) {
+            .grid-destaques { grid-template-columns: 1fr; }
             .footer-container { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
@@ -118,13 +118,13 @@
     <main>
         <section class="hero">
             <h1>Passeios do Miguel</h1>
-            <p>Viagens organizadas com carinho e alegria.</p>
+            <p>Viagens organizadas com carinho e alegria de S. Pedro do Sul para o país.</p>
         </section>
 
         <div class="chamada-testemunhos">
             <div class="chamada-texto">
                 <i class="fas fa-heart"></i>
-                <span>A satisfação de quem viaja connosco é o nosso maior orgulho!</span>
+                <span>Veja o que dizem os nossos viajantes e partilhe a sua experiência!</span>
             </div>
             <a href="testemunhos.html" class="btn-ir-testemunhos">Ler Testemunhos</a>
         </div>
@@ -132,14 +132,30 @@
         <section class="seccao">
             <div class="video-wrapper">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" title="Apresentação" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/7uOx4BxH0rk" 
+                        title="Apresentação" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
 
             <div class="grid-destaques">
-                <div class="destaque-item"><i class="fas fa-bus"></i><h3>Conforto Total</h3><p>Autocarros modernos para o seu bem-estar.</p></div>
-                <div class="destaque-item"><i class="fas fa-map-marked-alt"></i><h3>Roteiros Únicos</h3><p>Escolhemos os melhores destinos.</p></div>
-                <div class="destaque-item"><i class="fas fa-users"></i><h3>Família</h3><p>Um grupo de amigos em cada viagem.</p></div>
+                <div class="destaque-item">
+                    <i class="fas fa-bus"></i>
+                    <h3>Conforto Total</h3>
+                    <p>Viagens em autocarros modernos para o seu máximo bem-estar.</p>
+                </div>
+                <div class="destaque-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Escolhemos a dedo os melhores destinos e festas populares.</p>
+                </div>
+                <div class="destaque-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Ambiente Familiar</h3>
+                    <p>Mais do que passageiros, somos um grupo de amigos a criar memórias.</p>
+                </div>
             </div>
         </section>
 
@@ -147,7 +163,7 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h4>PASSEIOS DO MIGUEL</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p>Viagens com alma e aventura, partindo de S. Pedro do Sul para explorar o melhor de Portugal.</p>
                 </div>
 
                 <div class="footer-col">
@@ -157,13 +173,14 @@
                         <li><a href="sobre.html">Sobre</a></li>
                         <li><a href="passeios.html">Passeios</a></li>
                         <li><a href="contatos.html">Contacto</a></li>
+                        <li><a href="testemunhos.html">Mural</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>APOIO E RESERVAS</h4>
                     <ul>
-                        <li style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <li style="margin-bottom: 15px;">
                             <a href="tel:+351965715465" class="footer-pill"><i class="fas fa-phone-alt"></i> 965 715 465</a>
                             <a href="https://wa.me/351965715465" class="footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         </li>
@@ -179,6 +196,7 @@
     </main>
 
     <script>
+        // Carregamento do menu lateral
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
