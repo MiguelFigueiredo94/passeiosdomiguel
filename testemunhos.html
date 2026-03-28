@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estrutura Base */
+        /* --- ESTRUTURA BASE --- */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; min-height: 100vh; }
         #container-menu { min-width: 250px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner Testemunhos */
+        /* --- BANNER TESTEMUNHOS --- */
         .banner-feedback {
             background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
                         url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80');
@@ -22,7 +22,7 @@
 
         .conteudo-central { padding: 40px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* Formulário e Mural */
+        /* --- FORMULÁRIO --- */
         .form-opiniao {
             background: white; padding: 25px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
@@ -35,6 +35,7 @@
         .campo input { width: 100%; padding: 12px; border: 1px solid #eef2f7; border-radius: 10px; background: #f9fbfe; box-sizing: border-box; }
         .btn-enviar { background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; }
 
+        /* --- MURAL --- */
         .mural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .card-testemunho { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.02); border-top: 4px solid #ff8c00; }
         .user-topo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
@@ -42,72 +43,97 @@
         .nome-user { font-weight: bold; color: #1e4d8c; }
         .texto-testemunho { color: #555; line-height: 1.6; font-style: italic; font-size: 14px; }
 
-        /* --- RODAPÉ IGUAL À FOTO (image_8cb37e.png) --- */
+        /* --- RODAPÉ AJUSTADO (FIEL ÀS IMAGENS) --- */
         .footer-site {
             background-color: #1e4d8c;
             color: white;
-            padding: 40px 60px 20px;
+            padding: 50px 60px 30px;
             margin-top: auto;
             position: relative;
-            border-top: 4px solid #ff8c00; /* Linha laranja igual à foto */
+            border-top: 5px solid #ff8c00; /* Linha laranja grossa */
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1.2fr;
-            gap: 20px;
+            grid-template-columns: 1.2fr 1fr 1.2fr;
+            gap: 40px;
             max-width: 1200px;
+            margin: 0 auto;
         }
 
+        /* Títulos com a linha decorativa */
         .footer-col h4 {
             color: #ff8c00;
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: inline-block;
+            border-bottom: 2px solid rgba(255, 140, 0, 0.4); 
+            padding-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
-        .footer-col p { font-size: 13px; opacity: 0.9; line-height: 1.6; max-width: 280px; }
+        .footer-col p { font-size: 13.5px; opacity: 0.9; line-height: 1.6; }
 
-        /* Navegação em 2 colunas curtas */
+        /* Navegação */
         .nav-lista {
             display: grid;
-            grid-template-columns: 80px 80px;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
             list-style: none;
             padding: 0;
+            margin-top: 5px;
         }
-        .nav-lista a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; transition: 0.3s; }
+        .nav-lista a { color: white; text-decoration: none; font-size: 14px; opacity: 0.8; transition: 0.3s; }
         .nav-lista a:hover { opacity: 1; color: #ff8c00; }
 
-        /* Contactos estilo Pill */
-        .contactos-lista { list-style: none; padding: 0; }
+        /* Botões Compridos e Ícones Laranjas */
+        .contactos-lista { list-style: none; padding: 0; margin: 0; }
+        
         .pill-contact {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 8px 15px;
-            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 10px 20px;
+            margin-bottom: 12px;
             display: block;
-            width: fit-content;
+            width: 100%; 
+            max-width: 280px;
+            transition: 0.3s;
         }
-        .pill-contact a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 10px; }
-        
-        .faq-link { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; display: flex; align-items: center; gap: 8px; margin-top: 15px; }
+        .pill-contact:hover { background: rgba(255, 255, 255, 0.1); border-color: #ff8c00; }
+        .pill-contact a { color: white; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 12px; }
+
+        /* Ícones Laranjas Forçados */
+        .footer-col i { color: #ff8c00 !important; font-size: 16px; }
+
+        .faq-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 15px;
+        }
+        .faq-item:hover { opacity: 1; color: #ff8c00; }
 
         .footer-bottom {
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 40px;
             padding-top: 20px;
-            font-size: 11px;
+            font-size: 12px;
             opacity: 0.6;
         }
 
         @media (max-width: 900px) {
             body { flex-direction: column; }
             #container-menu { width: 100%; height: auto; position: relative; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .pill-contact { margin: 0 auto 12px; }
+            .nav-lista, .faq-item { justify-content: center; }
         }
     </style>
 </head>
@@ -118,7 +144,7 @@
     <main>
         <div class="banner-feedback">
             <h1>Mural de Experiências</h1>
-            <p>A voz de quem viaja connosco</p>
+            <p>O que os nossos viajantes dizem sobre nós</p>
         </div>
 
         <section class="conteudo-central">
@@ -175,7 +201,8 @@
                             <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         </li>
                     </ul>
-                    <a href="faq.html" class="faq-link"><i class="far fa-question-circle"></i> Dúvidas (FAQ)</a>
+                    <a href="faq.html#cancelamento" class="faq-item"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
+                    <a href="faq.html" class="faq-item"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -185,13 +212,15 @@
     </main>
 
     <script>
-        fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
+        fetch('menu.html').then(r => r.text()).then(d => { 
+            document.getElementById('container-menu').innerHTML = d; 
+        });
 
         function enviarMural() {
             const nome = document.getElementById('nome-txt').value;
             const msg = document.getElementById('msg-txt').value;
             if(!nome || !msg) return;
-            window.open(`https://wa.me/351965715465?text=Testemunho de ${nome}: ${msg}`, '_blank');
+            window.open(`https://wa.me/351965715465?text=Olá Miguel, deixei um testemunho no site! Nome: ${nome} - Mensagem: ${msg}`, '_blank');
         }
     </script>
 </body>
