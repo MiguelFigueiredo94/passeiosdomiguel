@@ -10,7 +10,7 @@
         /* Layout Base */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
         
-        /* MENU LATERAL - CONFIGURAÇÃO FLEXÍVEL */
+        /* MENU LATERAL - AJUSTADO PARA ECRÃS PEQUENOS */
         #menu-lateral { 
             width: 250px; 
             background-color: #1e4d8c; 
@@ -20,44 +20,45 @@
             padding: 25px 15px; 
             box-sizing: border-box;
             z-index: 9999;
-            /* Flexbox para empurrar redes sociais para o fundo */
+            /* Flexbox */
             display: flex;
             flex-direction: column;
+            overflow-y: auto; /* Permite scroll no menu se o ecrã for mesmo muito baixo */
         }
         
         .logo { 
             width: 100%; 
             max-width: 180px; 
             height: auto;
-            margin: 0 auto 30px; 
+            margin: 0 auto 25px; 
             display: block; 
             object-fit: contain; 
         }
 
         #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-        #menu-lateral li { margin-bottom: 12px; }
+        #menu-lateral li { margin-bottom: 8px; } /* Reduzi ligeiramente o espaço entre botões */
 
         #menu-lateral ul li a { 
             display: flex; align-items: center; color: white; text-decoration: none; 
-            padding: 12px 18px; font-size: 0.95em; font-weight: 600;
+            padding: 10px 18px; font-size: 0.9em; font-weight: 600;
             transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
             border: 2px solid transparent;
         }
 
         #menu-lateral ul li a:hover { 
             background: linear-gradient(135deg, #ff9800, #f57c00);
-            transform: scale(1.05);
+            transform: scale(1.02);
             box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
             border-color: white;
             color: white;
         }
 
-        #menu-lateral i { width: 25px; font-size: 1.1em; margin-right: 10px; }
+        #menu-lateral i { width: 22px; font-size: 1em; margin-right: 10px; }
 
-        /* --- SECÇÃO REDES SOCIAIS NO MENU --- */
+        /* --- SECÇÃO REDES SOCIAIS AJUSTADA --- */
         .redes-sociais-menu {
-            padding-top: 20px;
-            margin-top: 20px;
+            padding-top: 15px;
+            margin-top: auto; /* Empurra para o fundo se houver espaço, mas mantém-se visível */
             border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
         }
@@ -66,16 +67,16 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .icones-redes {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
         .icones-redes a {
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             transition: 0.3s;
             opacity: 0.8;
         }
@@ -139,8 +140,7 @@
             <li><a href="sobre.html"><i class="fas fa-user"></i> Sobre Mim</a></li>
             <li><a href="passeios.html"><i class="fas fa-bus"></i> Passeios</a></li>
             <li><a href="contatos.html"><i class="fas fa-envelope"></i> Contactos</a></li>
-            <br>
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
             <li><a href="dicas.html"><i class="fas fa-lightbulb"></i> Dicas Úteis</a></li>
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
         </ul>
