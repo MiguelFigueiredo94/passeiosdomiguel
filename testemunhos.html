@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Estrutura Base - Sem Menu Lateral */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; min-height: 100vh; display: flex; flex-direction: column; }
+        /* Estrutura com Barra Lateral para o Menu */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
+        
+        /* Placeholder do Menu (Onde o menu.html vai carregar) */
+        #menu-placeholder { 
+            width: 250px; 
+            background-color: #1e4d8c; 
+            min-height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* Banner */
@@ -19,152 +30,141 @@
             color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
 
-        .seccao-testemunhos { padding: 40px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .conteudo-central { padding: 40px 20px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* Formulário Compacto (Ocupa pouco espaço) */
-        .form-compacto {
+        /* Formulário Compacto */
+        .form-opiniao {
             background: white; padding: 25px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
             display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end;
             border: 1px solid rgba(0,0,0,0.05);
         }
-        .form-compacto h2 { width: 100%; color: #1e4d8c; margin: 0 0 10px 0; font-size: 1.3em; }
+        .form-opiniao h2 { width: 100%; color: #1e4d8c; margin: 0 0 10px 0; font-size: 1.3em; border-left: 4px solid #ff8c00; padding-left: 15px; }
         .campo { flex: 1; min-width: 200px; }
         .campo label { display: block; font-size: 12px; font-weight: bold; color: #1e4d8c; margin-bottom: 5px; text-transform: uppercase; }
-        .campo input { width: 100%; padding: 12px; border: 1px solid #eef2f7; border-radius: 10px; background: #f9fbfe; box-sizing: border-box; }
+        .campo input { width: 100%; padding: 12px; border: 1px solid #eef2f7; border-radius: 10px; background: #f9fbfe; box-sizing: border-box; font-family: inherit; }
         
-        .btn-wa { 
+        .btn-enviar { 
             background: #25d366; color: white; border: none; padding: 12px 25px; 
             border-radius: 10px; cursor: pointer; font-weight: bold; height: 43px; 
             display: flex; align-items: center; gap: 8px; transition: 0.3s;
         }
-        .btn-wa:hover { background: #128c7e; transform: translateY(-2px); }
+        .btn-enviar:hover { background: #128c7e; transform: translateY(-2px); }
 
-        /* Mural em Grelha (Grid) */
+        /* Grelha de Comentários */
         .mural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-        .comentario-card {
+        .card-testemunho {
             background: white; padding: 25px; border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.02);
             border-top: 4px solid #ff8c00;
-            display: flex; flex-direction: column;
         }
-        .user-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-        .user-info i { color: #ff8c00; background: rgba(255,140,0,0.1); padding: 10px; border-radius: 12px; }
+        .user-topo { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .user-topo i { color: #ff8c00; background: rgba(255,140,0,0.1); padding: 10px; border-radius: 12px; }
         .nome-user { font-weight: bold; color: #1e4d8c; }
-        .data-comentario { font-size: 11px; color: #aaa; margin-left: auto; }
-        .texto-comentario { color: #555; line-height: 1.6; font-style: italic; margin: 0; font-size: 14px; }
+        .data-user { font-size: 11px; color: #aaa; margin-left: auto; }
+        .texto-testemunho { color: #555; line-height: 1.6; font-style: italic; margin: 0; font-size: 14px; }
 
-        /* --- RODAPÉ REAL (IGUAL ÀS TUAS FOTOS) --- */
+        /* --- RODAPÉ REAL (DAS FOTOS) --- */
         .footer-real { background-color: #1e4d8c; color: white; padding: 50px 40px 30px; margin-top: auto; position: relative; }
-        .footer-line-orange { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background-color: #ff8c00; }
-        
-        .footer-grid-real {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 40px;
-        }
-
-        .col-real h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; margin-top: 0; }
-        .col-real p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
-
-        .nav-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .nav-subgrid ul { list-style: none; padding: 0; margin: 0; }
-        .nav-subgrid a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; }
-        .nav-subgrid a:hover { color: #ff8c00; opacity: 1; }
-
-        .apoio-lista { list-style: none; padding: 0; margin: 0; }
-        .btn-pill-real { 
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; 
-            padding: 8px 15px; margin-bottom: 10px; transition: 0.3s;
-        }
-        .btn-pill-real a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 10px; }
-        .btn-pill-real:hover { border-color: #ff8c00; background: rgba(255,140,0,0.05); }
-
-        .bottom-real { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
+        .footer-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background-color: #ff8c00; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 40px; }
+        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; margin-top: 0; }
+        .footer-col p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .nav-links ul { list-style: none; padding: 0; margin: 0; }
+        .nav-links a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; line-height: 2; }
+        .nav-links a:hover { color: #ff8c00; opacity: 1; }
+        .contatos-footer { list-style: none; padding: 0; margin: 0; }
+        .pill-button { border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 15px; margin-bottom: 10px; }
+        .pill-button a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+        .copy-info { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
 
         @media (max-width: 900px) {
-            .footer-grid-real { grid-template-columns: 1fr; text-align: center; }
-            .nav-subgrid { justify-items: center; }
-            .form-compacto { flex-direction: column; align-items: stretch; }
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .nav-links { justify-items: center; }
+            .form-opiniao { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
 <body>
 
+    <div id="menu-placeholder"></div>
+
     <main>
         <div class="banner-feedback">
             <h1>Mural de Experiências</h1>
-            <p>O que os nossos viajantes dizem sobre nós</p>
+            <p>A voz de quem viaja connosco</p>
         </div>
 
-        <section class="seccao-testemunhos">
-            <div class="form-compacto">
-                <h2>Conte-nos a sua experiência</h2>
+        <section class="conteudo-central">
+            <div class="form-opiniao">
+                <h2>Deixe a sua opinião</h2>
                 <div class="campo">
                     <label>Nome</label>
-                    <input type="text" id="nome-in" placeholder="Ex: João Silva">
+                    <input type="text" id="nome-txt" placeholder="O seu nome">
                 </div>
                 <div class="campo" style="flex: 2;">
                     <label>Mensagem</label>
-                    <input type="text" id="msg-in" placeholder="Ex: Adorei o passeio a Celorico!">
+                    <input type="text" id="msg-txt" placeholder="Como foi a sua experiência?">
                 </div>
-                <button onclick="enviarWA()" class="btn-wa">
+                <button onclick="enviarMural()" class="btn-enviar">
                     <i class="fab fa-whatsapp"></i> Enviar
                 </button>
             </div>
 
             <div class="mural-grid">
-                <div class="comentario-card">
-                    <div class="user-info">
+                <div class="card-testemunho">
+                    <div class="user-topo">
                         <i class="fas fa-user"></i>
                         <span class="nome-user">Rosário</span>
-                        <span class="data-comentario">28/03/2026</span>
+                        <span class="data-user">28/03/2026</span>
                     </div>
-                    <p class="texto-comentario">"O Passeio a celorico de basto foi incrível... fantástico."</p>
+                    <p class="texto-testemunho">"O Passeio a celorico de basto foi incrível... fantástico."</p>
                 </div>
-                </div>
+            </div>
         </section>
 
         <footer class="footer-real">
-            <div class="footer-line-orange"></div>
-            <div class="footer-grid-real">
-                <div class="col-real">
+            <div class="footer-line"></div>
+            <div class="footer-grid">
+                <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
                     <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
-                <div class="col-real">
+                <div class="footer-col">
                     <h4>Navegação</h4>
-                    <div class="nav-subgrid">
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li><a href="passeios.html">Passeios</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="sobre.html">Sobre</a></li>
-                            <li><a href="contatos.html">Contacto</a></li>
-                        </ul>
+                    <div class="nav-links">
+                        <ul><li><a href="index.html">Início</a></li><li><a href="passeios.html">Passeios</a></li></ul>
+                        <ul><li><a href="sobre.html">Sobre</a></li><li><a href="contatos.html">Contacto</a></li></ul>
                     </div>
                 </div>
-                <div class="col-real">
-                    <h4>Apoio e Reservas</h4>
-                    <ul class="apoio-lista">
-                        <li class="btn-pill-real"><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
-                        <li class="btn-pill-real"><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="faq.html" style="color:white; text-decoration:none; font-size:13px; opacity:0.8; margin-top:10px; display:block;"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
+                <div class="footer-col">
+                    <h4>Reservas</h4>
+                    <ul class="contatos-footer">
+                        <li class="pill-button"><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
+                        <li class="pill-button"><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="bottom-real">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
+            <div class="copy-info"><p>&copy; 2026 Passeios do Miguel</p></div>
         </footer>
     </main>
 
     <script>
-        function enviarWA() {
-            const nome = document.getElementById('nome-in').value;
-            const msg = document.getElementById('msg-in').value;
+        // CARREGA O MENU EXTERNO
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            });
+
+        function enviarMural() {
+            const nome = document.getElementById('nome-txt').value;
+            const msg = document.getElementById('msg-txt').value;
             if(!nome || !msg) { alert("Preencha os campos!"); return; }
-            const texto = `Olá Miguel! Gostaria de publicar este testemunho:%0A%0A*Nome:* ${nome}%0A*Mensagem:* ${msg}`;
+            const texto = `Olá Miguel! Quero deixar um testemunho:%0A*Nome:* ${nome}%0A*Mensagem:* ${msg}`;
             window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
     </script>
