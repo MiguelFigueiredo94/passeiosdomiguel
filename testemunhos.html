@@ -3,214 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Testemunhos - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Testemunhos - Passeios do Miguel</title>
     <style>
-        /* Layout Base */
-        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; min-height: 100vh; }
-        #container-menu { min-width: 250px; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* Banner */
-        .banner-feedback {
-            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
-                        url('https://images.unsplash.com/photo-1522199670076-2852f80289c3?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 50px 0;
+        :root {
+            --cor-primaria: #d23669; /* Tom Camélia */
+            --cor-texto: #333;
+            --bg-cinza: #f4f4f4;
         }
 
-        .conteudo-central { padding: 60px 20px 100px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-
-        /* Formulário de Envio */
-        .form-opiniao {
-            background: white; padding: 30px; border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 60px;
-            display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end;
-            border: 2px dashed #1e4d8c33;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--cor-texto);
+            background-color: #fff;
+            margin: 0;
+            padding: 20px;
         }
-        .form-opiniao h2 { width: 100%; color: #1e4d8c; margin: 0 0 15px 0; font-size: 1.5em; }
-        .campo { flex: 1; min-width: 200px; }
-        .campo label { display: block; font-size: 12px; font-weight: bold; color: #1e4d8c; margin-bottom: 5px; }
-        .campo input { width: 100%; padding: 12px; border: 1px solid #eef2f7; border-radius: 12px; background: #f9fbfe; box-sizing: border-box; }
-        .btn-enviar { background: #25d366; color: white; border: none; padding: 12px 30px; border-radius: 12px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .btn-enviar:hover { transform: scale(1.05); background: #128c7e; }
 
-        /* --- MURAL ESTILO PIN-BOARD (Masonry) --- */
-        .mural-container {
-            column-count: 3; /* Divide em colunas tipo jornal */
-            column-gap: 25px;
-            width: 100%;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cabecalho-testemunhos {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cabecalho-testemunhos h1 {
+            color: var(--cor-primaria);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .destaque-aniversario {
+            background-color: #fff0f5;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            color: var(--cor-primaria);
+            border: 1px solid var(--cor-primaria);
+        }
+
+        .grid-testemunhos {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
         .card-testemunho {
-            break-inside: avoid; /* Não deixa o card quebrar entre colunas */
             background: white;
-            padding: 25px;
-            margin-bottom: 25px;
             border-radius: 15px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-            display: inline-block; /* Necessário para o efeito de mural */
-            width: 100%;
-            box-sizing: border-box;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--cor-primaria);
             position: relative;
-            transition: 0.3s;
         }
 
-        /* Cores de borda alternadas e rotações leves para parecer real */
-        .card-testemunho:nth-child(odd) { border-left: 6px solid #ff9800; transform: rotate(-1deg); }
-        .card-testemunho:nth-child(even) { border-left: 6px solid #1e4d8c; transform: rotate(1.2deg); }
-        .card-testemunho:nth-child(3n) { border-left: 6px solid #25d366; transform: rotate(-0.5deg); }
-
-        .card-testemunho:hover { transform: rotate(0deg) scale(1.03); z-index: 10; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
-        /* Ícone de "Pipa" ou "Pin" no topo */
-        .card-testemunho::after {
-            content: "\f08d"; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            position: absolute; top: 10px; right: 15px; color: #ddd; font-size: 14px;
+        .card-testemunho::before {
+            content: '"';
+            font-size: 80px;
+            color: #f0f0f0;
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-family: serif;
+            z-index: 0;
         }
 
-        .user-topo { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .user-topo i { color: #1e4d8c; font-size: 1.2em; }
-        .nome-user { font-weight: 700; color: #1e4d8c; font-size: 15px; }
-        .texto-testemunho { color: #555; line-height: 1.7; font-size: 14.5px; margin: 0; }
-
-        /* --- RODAPÉ PREMIUM (COPIADO DO SOBRE) --- */
-        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; overflow: hidden; }
-        .footer-universal::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
-            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
+        .comentario {
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
         }
-        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
 
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
-        .footer-col h4 { color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; font-size: 13px; transition: 0.3s; opacity: 0.8; }
-        .footer-col ul li a i { margin-right: 10px; color: #ff9800 !important; width: 15px; text-align: center; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
+        .autor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: var(--cor-primaria);
+        }
 
-        .btn-contacto-pill { background: rgba(255, 255, 255, 0.05); padding: 8px 15px; border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 10px !important; width: fit-content; min-width: 200px; }
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
+        .estrelas {
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
 
-        /* Responsividade do Mural */
-        @media (max-width: 1100px) { .mural-container { column-count: 2; } }
-        @media (max-width: 768px) { 
-            body { flex-direction: column; } 
-            .mural-container { column-count: 1; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-col ul li a { justify-content: center; }
-            .btn-contacto-pill { margin: 0 auto 10px; }
+        @media (min-width: 768px) {
+            .grid-testemunhos {
+                grid-template-columns: 1fr 1fr;
+            }
+            .card-testemunho:nth-child(3) {
+                grid-column: span 2;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="container-menu"></div>
+    <div class="container">
+        <header class="cabecalho-testemunhos">
+            <span class="destaque-aniversario">🎉 Edição Especial 1º Aniversário</span>
+            <h1>O que dizem sobre nós</h1>
+            <p>A opinião de quem viajou connosco a Celorico de Basto</p>
+        </header>
 
-    <main>
-        <div class="banner-feedback">
-            <h1>Mural de Experiências</h1>
-            <p>Memórias de quem viaja connosco</p>
-        </div>
-
-        <section class="conteudo-central">
-            <div class="form-opiniao">
-                <h2>Envie a sua mensagem</h2>
-                <div class="campo">
-                    <label>Nome</label>
-                    <input type="text" id="nome-txt" placeholder="Ex: Maria Silva">
-                </div>
-                <div class="campo" style="flex: 2;">
-                    <label>A sua experiência</label>
-                    <input type="text" id="msg-txt" placeholder="Escreva aqui...">
-                </div>
-                <button onclick="enviarMural()" class="btn-enviar">
-                    <i class="fab fa-whatsapp"></i> Partilhar
-                </button>
+        <section class="grid-testemunhos">
+            
+            <div class="card-testemunho">
+                <div class="estrelas">★★★★★</div>
+                <p class="comentario">O desfile das camélias estava lindíssimo! A Batalha das Flores encheu as ruas de cor e foi uma animação constante. Adorei celebrar o 1º aniversário convosco.</p>
+                <p class="autor"><strong>— Maria Silva</strong></p>
             </div>
 
-            <div class="mural-container">
-                <div class="card-testemunho">
-                    <div class="user-topo">
-                        <i class="fas fa-quote-left"></i>
-                        <span class="nome-user">Rosário</span>
-                    </div>
-                    <p class="texto-testemunho">"O Passeio a celorico de basto foi incrível... fantástico. Mal posso esperar pelo próximo!"</p>
-                </div>
-
-                <div class="card-testemunho">
-                    <div class="user-topo">
-                        <i class="fas fa-quote-left"></i>
-                        <span class="nome-user">João Pedro</span>
-                    </div>
-                    <p class="texto-testemunho">"Organização nota 10. O Miguel sabe receber as pessoas como ninguém."</p>
-                </div>
-
-                <div class="card-testemunho">
-                    <div class="user-topo">
-                        <i class="fas fa-quote-left"></i>
-                        <span class="nome-user">Ana Martins</span>
-                    </div>
-                    <p class="texto-testemunho">"Uma experiência cultural riquíssima. Adorei conhecer as aldeias históricas com este grupo maravilhoso."</p>
-                </div>
-
-                <div class="card-testemunho">
-                    <div class="user-topo">
-                        <i class="fas fa-quote-left"></i>
-                        <span class="nome-user">Carlos G.</span>
-                    </div>
-                    <p class="texto-testemunho">"As melhores paisagens de Portugal! Recomendo vivamente."</p>
-                </div>
+            <div class="card-testemunho">
+                <div class="estrelas">★★★★★</div>
+                <p class="comentario">O almoço foi um dos pontos altos! Estava simplesmente delicioso, tudo muito bem servido e com o convívio espetacular que o Miguel sempre promove.</p>
+                <p class="autor"><strong>— António Ferreira</strong></p>
             </div>
+
+            <div class="card-testemunho">
+                <div class="estrelas">★★★★★</div>
+                <p class="comentario">A subida à Senhora da Graça foi inesquecível, que vista deslumbrante! Organização nota 10, desde a recolha em Castro Daire até ao final do dia. Recomendo a todos!</p>
+                <p class="autor"><strong>— Carla Rodrigues</strong></p>
+            </div>
+
         </section>
 
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contatos.html">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
-                    <ul>
-                        <li class="btn-contacto-pill">
-                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        </li>
-                        <li class="btn-contacto-pill">
-                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        </li>
-                        <li><a href="faq.html#cancelamento"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
+        <footer style="text-align: center; margin-top: 50px;">
+            <a href="index.html" style="text-decoration: none; color: #666;">← Voltar à página principal</a>
         </footer>
-    </main>
+    </div>
 
-    <script>
-        fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
-
-        function enviarMural() {
-            const nome = document.getElementById('nome-txt').value;
-            const msg = document.getElementById('msg-txt').value;
-            if(!nome || !msg) return;
-            window.open(`https://wa.me/351965715465?text=Novo Testemunho: ${nome} - ${msg}`, '_blank');
-        }
-    </script>
 </body>
 </html>
