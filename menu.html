@@ -1,18 +1,20 @@
 <style>
     /* --- Layout e Menu Lateral --- */
-    #menu-lateral { 
-        width: 250px; 
-        background-color: #1e4d8c; 
-        min-height: 100vh; 
-        position: sticky; 
-        top: 0; 
-        padding: 25px 15px; 
-        box-sizing: border-box;
-        z-index: 9999;
-        /* Adicionado para empurrar as redes sociais para o fundo */
-        display: flex;
-        flex-direction: column;
-    }
+        /* MENU LATERAL - AJUSTADO PARA ECRÃS PEQUENOS */
+        #menu-lateral { 
+            width: 250px; 
+            background-color: #1e4d8c; 
+            min-height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            padding: 25px 15px; 
+            box-sizing: border-box;
+            z-index: 9999;
+            /* Flexbox */
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Permite scroll no menu se o ecrã for mesmo muito baixo */
+        }
     
     .logo { 
         width: 100%; 
