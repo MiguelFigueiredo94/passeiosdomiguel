@@ -1,128 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testemunhos - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* Layout Base */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* Banner */
-        .banner-testemunhos {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
-                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Contentor do Disqus */
-        .seccao-mural { padding: 40px 20px; flex-grow: 1; }
-        .container-mural { 
-            max-width: 900px; margin: 0 auto; 
-            background: white; padding: 40px; 
-            border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-        }
-
-        /* Rodapé Dinâmico */
-        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; overflow: hidden; }
-        .footer-universal::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c); background-size: 200% 100%; animation: moveGradient 5s linear infinite; }
-        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
-        .footer-col h4 { color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
-        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
-        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
-        .btn-contacto-pill { background: rgba(255, 255, 255, 0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 6px !important; }
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
-
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-col ul li a { justify-content: center; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="menu-placeholder"></div>
-
-    <main>
-        <div class="banner-testemunhos">
-            <h1>Mural de Experiências</h1>
-            <p>Veja o que os nossos viajantes dizem sobre nós!</p>
+<section class="seccao-mural">
+    <div class="container-mural">
+        
+        <div style="background: #fdfdfd; padding: 25px; border: 1px dashed #ff8c00; border-radius: 15px; margin-bottom: 40px;">
+            <h3 style="color: #1e4d8c; margin-top: 0;">Quer deixar a sua opinião?</h3>
+            <p style="font-size: 14px; color: #666;">Escreva abaixo e clique para me enviar via WhatsApp. Eu publico no mural em seguida!</p>
+            
+            <input type="text" id="nome-testemunho" placeholder="O seu nome" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd;">
+            <textarea id="texto-testemunho" placeholder="Conte como foi a sua experiência..." rows="3" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+            
+            <button onclick="enviarTestemunho()" style="background: #25d366; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold;">
+                <i class="fab fa-whatsapp"></i> Enviar para o Miguel
+            </button>
         </div>
 
-        <section class="seccao-mural">
-            <div class="container-mural">
-                
-                <div id="disqus_thread"></div>
+        <h2 style="color: #1e4d8c; border-bottom: 2px solid #ff8c00; padding-bottom: 10px;">Testemunhos Recentes</h2>
 
-                <script>
-                    var disqus_config = function () {
-                        this.page.url = window.location.href;  
-                        this.page.identifier = 'pagina-testemunhos-miguel'; 
-                    };
-
-                    (function() { 
-                        var d = document, s = d.createElement('script');
-                        // LINK CORRETO COM O TEU SHORTNAME
-                        s.src = 'https://passeiosdomiguel.disqus.com/embed.js';
-                        s.setAttribute('data-timestamp', +new Date());
-                        (d.head || d.body).appendChild(s);
-                    })();
-                </script>
-
-                <noscript>
-                    Por favor, ative o JavaScript para visualizar os comentários.
-                </noscript>
+        <div id="mural-lista">
+            
+            <div class="comentario-card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 15px; border-left: 5px solid #ff8c00;">
+                <strong style="color: #1e4d8c;">Rosário</strong> <small style="float: right; color: #999;">28 de Março, 2026</small>
+                <p style="margin: 10px 0 0; font-style: italic; color: #555;">"O Passeio a Celorico de Basto foi incrível... fantástico."</p>
+            </div>
 
             </div>
-        </section>
+    </div>
+</section>
 
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contatos.html">Contacto</a></li>
-                        <li><a href="faq.html">Dúvidas</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Apoio ao Cliente</h4>
-                    <ul>
-                        <li class="btn-contacto-pill"><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
-                        <li class="btn-contacto-pill"><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="testemunhos.html"><i class="fas fa-star"></i> Testemunhos</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
-        </footer>
-    </main>
-
-    <script>
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
-    </script>
-</body>
-</html>
+<script>
+function enviarTestemunho() {
+    const nome = document.getElementById('nome-testemunho').value;
+    const msg = document.getElementById('texto-testemunho').value;
+    const texto = `Olá Miguel! Queria deixar este testemunho para o site:%0A%0A*Nome:* ${nome}%0A*Mensagem:* ${msg}`;
+    window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
+}
+</script>
