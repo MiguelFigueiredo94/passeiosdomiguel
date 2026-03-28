@@ -18,63 +18,89 @@
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; padding: 80px 40px; text-align: center; border-radius: 0 0 80px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .hero-sobre h1 { font-size: 38px; margin: 0 0 10px; font-weight: 700; text-transform: uppercase; }
-        .hero-sobre p { font-size: 17px; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
         /* --- CONTEÚDO --- */
         .seccao-premium-sobre { padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
         .card-introducao {
             background: white; padding: 40px; border-radius: 40px; text-align: center;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.06); width: 100%; max-width: 900px;
-            margin-bottom: 40px; border: 1px solid #eef1f5;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06); width: 100%; max-width: 900px; margin-bottom: 40px;
         }
         .logo-sobre-premium { width: 100%; max-width: 240px; height: auto; margin-bottom: 15px; }
-        
-        .bloco-historia {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 900px;
-            margin-bottom: 40px; align-items: center;
-        }
-        .imagem-historia { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); border: 6px solid white; }
-        .destaque-sul {
-            background: rgba(30, 77, 140, 0.06); border-left: 4px solid #ff9800;
-            padding: 15px; border-radius: 0 12px 12px 0; color: #1e4d8c; font-weight: 600; font-size: 14px;
+
+        /* --- RODAPÉ DINÂMICO & PREMIUM --- */
+        .footer-universal {
+            background: #1e4d8c;
+            position: relative;
+            color: white;
+            padding: 30px 40px 15px;
+            margin-top: auto;
+            overflow: hidden;
         }
 
-        /* --- RODAPÉ UNIVERSAL ULTRA SLIM --- */
-        .footer-universal {
-            background-color: #1e4d8c;
-            color: white;
-            padding: 20px 40px 10px;
-            margin-top: auto;
-            border-top: 4px solid #ff9800;
+        /* Linha decorativa dinâmica no topo do rodapé */
+        .footer-universal::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
+            background-size: 200% 100%;
+            animation: moveGradient 5s linear infinite;
         }
+
+        @keyframes moveGradient {
+            0% { background-position: 100% 0%; }
+            100% { background-position: -100% 0%; }
+        }
+
         .footer-container {
             max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 20px;
+            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
+            position: relative; z-index: 2;
         }
-        .footer-col h4 { color: #ff9800; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; }
-        .footer-col p, .footer-col ul li a { font-size: 12.5px; line-height: 1.4; opacity: 0.9; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 5px; }
-        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
-        .footer-col ul li a:hover { color: #ff9800; transform: translateX(3px); }
 
-        .contacto-direto { display: flex; flex-direction: column; gap: 5px; }
-        .btn-contacto-slim { text-decoration: none; color: white; display: flex; align-items: center; }
+        .footer-col h4 { 
+            color: #ff9800; margin-bottom: 15px; font-size: 14px; 
+            text-transform: uppercase; letter-spacing: 1.5px;
+            display: inline-block; border-bottom: 2px solid rgba(255, 152, 0, 0.3);
+            padding-bottom: 4px;
+        }
+
+        .footer-col p { font-size: 13px; line-height: 1.6; opacity: 0.8; }
+
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 8px; }
+        
+        .footer-col ul li a { 
+            color: white; text-decoration: none; font-size: 13px;
+            display: flex; align-items: center; opacity: 0.8; transition: 0.3s;
+        }
+
+        .footer-col ul li a i { margin-right: 10px; color: #ff9800; font-size: 14px; transition: 0.3s; }
+
+        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
+        .footer-col ul li a:hover i { transform: scale(1.2); }
+
+        /* Links de Contacto com estilo "Pill" discreto */
+        .btn-contacto-dinamico {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 5px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         .footer-bottom { 
-            text-align: center; margin-top: 15px; padding-top: 10px; 
-            border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; opacity: 0.5; 
+            text-align: center; margin-top: 30px; padding-top: 15px; 
+            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; 
+            opacity: 0.5; letter-spacing: 0.5px;
         }
 
         /* Responsividade */
         @media (max-width: 900px) {
-            .bloco-historia { grid-template-columns: 1fr; text-align: center; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .footer-col h4 { border-bottom: 2px solid #ff9800; }
             .footer-col ul li a { justify-content: center; }
-            .contacto-direto { align-items: center; }
         }
         @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } }
     </style>
@@ -92,17 +118,8 @@
         <section class="seccao-premium-sobre">
             <div class="card-introducao">
                 <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre-premium" alt="Passeios do Miguel">
-                <h2>A Nossa Essência</h2>
-                <p>O projeto <strong>Passeios do Miguel</strong> nasceu para partilhar o que Portugal tem de melhor.</p>
-            </div>
-
-            <div class="bloco-historia">
-                <img src="https://i.imgur.com/cj1OOwA.png" class="imagem-historia" alt="História">
-                <div class="texto-historia">
-                    <h3>Paixão por Viajar</h3>
-                    <p>Tudo começou com passeios solidários, tornando-se rapidamente num projeto de vida dedicado a criar memórias.</p>
-                    <p class="destaque-sul">De São Pedro do Sul para todo o país.</p>
-                </div>
+                <h2>Nossa Missão</h2>
+                <p>Criar experiências que ficam na memória, com o conforto e a segurança que merece.</p>
             </div>
         </section>
 
@@ -110,33 +127,47 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p>Mais do que viagens, criamos ligações entre pessoas e lugares inesquecíveis de Portugal.</p>
                 </div>
 
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
                         <li><a href="index.html">Início</a></li>
                         <li><a href="sobre.html">Sobre</a></li>
                         <li><a href="passeios.html">Passeios</a></li>
                         <li><a href="contatos.html">Contacto</a></li>
-                        <li><a href="dicas.html">Dicas</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Reservas</h4>
-                    <ul class="contacto-direto">
-                        <li><a href="tel:+351965715465" class="btn-contacto-slim"><i class="fas fa-phone-alt" style="margin-right: 8px; color: #ff9800; font-size: 11px;"></i> 965 715 465</a></li>
-                        <li><a href="https://wa.me/351965715465" class="btn-contacto-slim"><i class="fab fa-whatsapp" style="margin-right: 8px; color: #25d366; font-size: 11px;"></i> WhatsApp</a></li>
-                        <li><a href="faq.html#cancelamento"><i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #ff9800; font-size: 10px;"></i> Cancelamento</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle" style="margin-right: 8px; color: #ff9800; font-size: 10px;"></i> Dúvidas (FAQ)</a></li>
+                    <h4>Reservas & Apoio</h4>
+                    <ul>
+                        <li class="btn-contacto-dinamico">
+                            <a href="tel:+351965715465">
+                                <i class="fas fa-phone-alt"></i> 965 715 465
+                            </a>
+                        </li>
+                        <li class="btn-contacto-dinamico">
+                            <a href="https://wa.me/351965715465">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html#cancelamento">
+                                <i class="fas fa-exclamation-circle"></i> Cancelamento
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html">
+                                <i class="fas fa-question-circle"></i> Dúvidas (FAQ)
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+                <p>&copy; 2026 Passeios do Miguel - São Pedro do Sul para o país.</p>
             </div>
         </footer>
     </main>
