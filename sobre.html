@@ -6,20 +6,27 @@
     <title>Passeios do Miguel - Sobre Mim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. ESTRUTURA GLOBAL */
+        /* 1. RESET E ESTRUTURA GLOBAL (Limpo) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        /* Espaço reservado para o menu lateral */
+        /* Espaço para o menu lateral de 260px */
         #menu-placeholder { width: 260px; flex-shrink: 0; }
 
-        /* 2. ESTILO DO LOGO REDONDO (Aplica-se ao que vem do menu.html) */
+        /* --- CORREÇÃO DO LOGO CIRCULAR (image_6.png) --- */
+        /* Aplicamos o estilo ao placeholder que receberá o menu.html */
         #menu-placeholder img { 
-            width: 170px; height: 170px; object-fit: cover; 
-            border-radius: 50% !important; 
-            border: 4px solid white !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            background: white;
+            width: 170px !important;    /* Largura fixa */
+            height: 170px !important;   /* Altura IGUAL à largura garante o círculo */
+            object-fit: cover !important; /* Corta a imagem sem distorcer */
+            border-radius: 50% !important; /* Faz o círculo perfeito */
+            border: 4px solid white !important; /* Borda branca grossa */
+            background-color: white !important; /* Fundo branco */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important; /* Sombra suave */
+            margin-top: 30px !important; /* Margem superior */
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         /* CONTEÚDO PRINCIPAL */
@@ -38,26 +45,28 @@
         .fase-icon { 
             background: #ff8c00; color: white; width: 50px; height: 50px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 20px; flex-shrink: 0;
+            font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .fase-content { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); flex-grow: 1; border-left: 5px solid #1e4d8c; }
+        .fase-content h3 { color: #1e4d8c; margin-bottom: 10px; font-size: 1.3em; }
         .fase-content p { color: #444; line-height: 1.6; font-size: 1.1em; text-align: justify; }
 
-        /* 3. RODAPÉ ILHA (CONFORME AS FOTOS) */
+        /* 3. RODAPÉ ILHA (CONFORME FOTOS) */
         .footer-premium {
             background-color: #1e4d8c; color: white;
             margin: 20px; padding: 40px 50px 20px;
             border-radius: 25px; border-top: 5px solid #ff8c00;
         }
+
         .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
         .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 5px; }
         
         .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .footer-nav a { color: white; text-decoration: none; font-size: 14px; }
-        .footer-nav a:hover { color: #ff8c00; padding-left: 5px; transition: 0.3s; }
+        .footer-nav a { color: white; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer-nav a:hover { color: #ff8c00; padding-left: 5px; }
 
-        .btn-footer { display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
-        .btn-footer i { color: #ff8c00; margin-right: 15px; }
+        .footer-btn { display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-btn i { color: #ff8c00; margin-right: 15px; }
 
         .alert-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 13px; margin-top: 15px; opacity: 0.9; }
         .alert-link i { margin-right: 10px; color: #ff8c00; }
@@ -82,25 +91,26 @@
 
         <section class="content-section">
             <div class="fase">
-                <div class="fase-icon"><i class="fas fa-rocket"></i></div>
+                <div class="fase-icon"><i class="fas fa-history"></i></div>
                 <div class="fase-content">
                     <p>Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
                 </div>
             </div>
 
             <div class="fase">
-                <div class="fase-icon"><i class="fas fa-users"></i></div>
+                <div class="fase-icon"><i class="fas fa-comments"></i></div>
                 <div class="fase-content">
                     <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
                 </div>
             </div>
 
             <div class="fase">
-                <div class="fase-icon"><i class="fas fa-map-signs"></i></div>
+                <div class="fase-icon"><i class="fas fa-map-marked-alt"></i></div>
                 <div class="fase-content">
                     <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
-                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c;">
-                        Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta. De São Pedro do Sul 🗺️ para os cantos mais bonitos de Portugal.
+                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c; border-top: 1px solid #eee; padding-top: 15px;">
+                        Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta. <br>
+                        De São Pedro do Sul 🗺️🗾 para os cantos mais bonitos de Portugal.
                     </p>
                 </div>
             </div>
@@ -110,7 +120,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>De S. Pedro do Sul para o país, criando memórias que duram uma vida inteira.</p>
+                    <p>Mais do que viagens, criamos momentos únicos e amizades para a vida.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Navegação</h4>
@@ -124,8 +134,8 @@
                 </div>
                 <div class="footer-col">
                     <h4>Apoio e Reservas</h4>
-                    <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                    <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:965715465" class="footer-btn"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                    <a href="https://wa.me/351965715465" class="footer-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
                     <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                 </div>
