@@ -6,100 +6,103 @@
     <title>Passeios do Miguel - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 1. ESTRUTURA GLOBAL */
+        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        #menu-placeholder { width: 260px; flex-shrink: 0; }
+        /* Menu Lateral (menu.html) */
+        #menu-placeholder { width: 260px; flex-shrink: 0; background-color: #1e4d8c; }
 
-        /* LOGO REDONDO (image_6.png) */
+        /* --- LOGO: CIRCULAR E NÍTIDO --- */
         #menu-placeholder img { 
-            width: 170px !important; height: 170px !important; 
-            border-radius: 50% !important; border: 4px solid white !important;
-            object-fit: cover !important; margin: 30px auto !important; display: block !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 170px !important;      
+            height: 170px !important;     
+            object-fit: contain !important; 
+            border-radius: 50% !important;  
+            border: 4px solid white !important; 
+            background-color: white !important; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 30px auto !important;   
+            display: block !important;
         }
 
+        /* CONTEÚDO PRINCIPAL */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* 2. CABEÇALHO COM IMAGEM (TURISMO) */
+        /* CABEÇALHO HERO (IMAGEM TURISMO) */
         .hero-section {
             background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
-            background-size: cover; background-position: center; height: 400px;
+            background-size: cover; background-position: center; height: 380px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center; border-bottom: 5px solid #ff8c00;
         }
-        .hero-section h1 { font-size: 3.5em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.4em; max-width: 700px; font-weight: 300; }
+        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
 
-        /* 3. CONTEÚDO CENTRALIZADO */
-        .content-container { padding: 40px; max-width: 1200px; margin: 0 auto; flex-grow: 1; }
+        /* CONTENT CONTAINER */
+        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; }
 
-        .intro-text { text-align: center; margin-bottom: 50px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.5em; margin-bottom: 15px; }
-        .intro-text p { color: #555; font-size: 1.2em; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+        .intro-text { text-align: center; margin-bottom: 40px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
+        .intro-text p { color: #555; font-size: 1.1em; line-height: 1.7; max-width: 800px; margin: 0 auto; }
 
         /* VÍDEO YOUTUBE */
         .video-section {
-            background-color: white; padding: 20px; border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 60px;
+            background-color: white; padding: 15px; border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-bottom: 50px;
         }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .question-callout { text-align: center; margin-bottom: 40px; }
-        .question-callout h3 { color: #1e4d8c; font-size: 2.2em; font-weight: bold; position: relative; display: inline-block; }
-        .question-callout h3::after { content: ''; display: block; width: 60%; height: 4px; background: #ff8c00; margin: 10px auto 0; border-radius: 2px; }
+        /* PERGUNTA INTERMÉDIA */
+        .question-callout { text-align: center; margin-bottom: 35px; }
+        .question-callout h3 { color: #1e4d8c; font-size: 2em; font-weight: bold; }
+        .question-callout h3::after { content: ''; display: block; width: 50px; height: 3px; background: #ff8c00; margin: 8px auto 0; }
 
-        /* GRID DE CARDS 3x1 */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .feature-card { background: white; padding: 45px 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-bottom: 5px solid #ff8c00; text-align: center; transition: 0.3s; }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-card i { font-size: 50px; color: #ff8c00; margin-bottom: 20px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
-        .feature-card p { color: #666; font-size: 1em; line-height: 1.6; }
+        /* CARDS 3x1 */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .feature-card { background: white; padding: 35px 25px; border-radius: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; }
+        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
+        .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
+        .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
 
-        /* 4. RODAPÉ PREMIUM (RECUPERADO) */
-        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
-        
+        /* RODAPÉ PREMIUM COMPACTO E COMPLETO */
         footer {
             background-color: #1e4d8c; color: white; position: relative;
-            padding: 50px 50px 25px; border-radius: 25px; overflow: hidden;
+            padding: 30px 40px 15px; width: 100%; margin-top: auto; overflow: hidden;
         }
 
         .premium-bar {
-            position: absolute; top: 0; left: 0; height: 5px; width: 35%;
+            position: absolute; top: 0; left: 0; height: 4px; width: 30%;
             background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
             animation: moveBar 3.5s linear infinite;
         }
+        @keyframes moveBar { 0% { left: -30%; } 100% { left: 100%; } }
 
-        @keyframes moveBar { 0% { left: -35%; } 100% { left: 100%; } }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 3px; }
+        .footer-col p { font-size: 13px; opacity: 0.9; line-height: 1.5; }
 
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 50px; max-width: 1100px; margin: 0 auto; }
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 13px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 5px; letter-spacing: 1px; }
+        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .footer-nav a { color: white; text-decoration: none; font-size: 13px; transition: 0.2s; }
+        .footer-nav a:hover { color: #ff8c00; padding-left: 3px; }
+
+        .btn-footer { display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 8px; font-size: 13px; }
+        .btn-footer i { color: #ff8c00; margin-right: 10px; }
         
-        /* Navegação em 2 colunas no rodapé */
-        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .footer-nav a { color: white; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        .footer-nav a:hover { color: #ff8c00; padding-left: 5px; }
+        .alert-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 12px; margin-top: 10px; opacity: 0.8; }
+        .alert-link i { margin-right: 8px; color: #ff8c00; }
 
-        .btn-footer { display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 15px; font-size: 14px; transition: 0.3s; }
-        .btn-footer i { color: #ff8c00; margin-right: 15px; font-size: 18px; }
-
-        .alert-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 13px; margin-top: 15px; opacity: 0.9; transition: 0.3s; }
-        .alert-link:hover { color: #ff8c00; }
-        .alert-link i { margin-right: 10px; color: #ff8c00; }
-
-        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; opacity: 0.8; }
+        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.7; }
 
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
             .features-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-col h4 { display: block; width: fit-content; margin: 0 auto 20px; }
-            .btn-footer, .alert-link { justify-content: center; }
             .footer-nav { justify-items: center; }
+            .btn-footer, .alert-link { justify-content: center; }
+            .footer-col h4 { margin: 0 auto 15px; display: block; width: fit-content; }
         }
     </style>
 </head>
@@ -111,7 +114,7 @@
         <section class="hero-section">
             <h1>Passeios do Miguel</h1>
             <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-            <a href="passeios.html" style="display:inline-block; margin-top: 30px; background: #ff8c00; color: white; padding: 16px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 6px 20px rgba(255,140,0,0.4);">VER PRÓXIMOS PASSEIOS</a>
+            <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.3);">VER PRÓXIMOS PASSEIOS</a>
         </section>
 
         <div class="content-container">
@@ -122,7 +125,7 @@
 
             <section class="video-section">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk?rel=0&controls=1" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
                 </div>
             </section>
 
@@ -134,63 +137,54 @@
                 <div class="feature-card">
                     <i class="fas fa-bus-alt"></i>
                     <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro, moderno e um ambiente familiar garantido em cada quilómetro.</p>
+                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-map-marked-alt"></i>
                     <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal, além do óbvio.</p>
+                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-heart"></i>
                     <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os nossos passageiros de honra em todos os passeios.</p>
+                    <p>O convívio e a alegria são os nossos passageiros de honra.</p>
                 </div>
             </div>
         </div>
 
-        <div class="footer-wrapper">
-            <footer>
-                <div class="premium-bar"></div>
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>Passeios do Miguel</h4>
-                        <p style="line-height: 1.6;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Navegação</h4>
-                        <div class="footer-nav">
-                            <a href="index.html">Início</a>
-                            <a href="sobre.html">Sobre</a>
-                            <a href="passeios.html">Passeios</a>
-                            <a href="mural.html">Mural</a>
-                            <a href="contactos.html">Contacto</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-col">
-                        <h4>Apoio e Reservas</h4>
-                        <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        
-                        <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
-                        <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
+        <footer>
+            <div class="premium-bar"></div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <div class="footer-nav">
+                        <a href="index.html">Início</a>
+                        <a href="sobre.html">Sobre</a>
+                        <a href="passeios.html">Passeios</a>
+                        <a href="mural.html">Mural</a>
+                        <a href="contactos.html">Contacto</a>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    &copy; 2026 Passeios do Miguel - Todos os direitos reservados.
+                <div class="footer-col">
+                    <h4>Apoio e Reservas</h4>
+                    <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                    <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
+                    <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                 </div>
-            </footer>
-        </div>
+            </div>
+            <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
+        </footer>
     </main>
 
     <script>
         fetch('menu.html')
             .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
+            .then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
     </script>
 </body>
 </html>
