@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural - Passeios do Miguel</title>
+    <title>Mural de Memórias - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,68 +12,71 @@
         #container-menu { min-width: 250px; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* --- HERO (Igual ao original) --- */
+        /* --- HERO --- */
         .hero-testemunhos {
             background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 60px 0;
+            color: white; padding: 50px 20px; text-align: center; border-radius: 0 0 60px 0;
         }
 
         /* --- BARRA DE ENVIO --- */
         .barra-feedback {
-            background: white; padding: 12px 20px; margin: -20px 40px 20px; border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+            background: white; padding: 15px 25px; margin: -25px 40px 30px; border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+            z-index: 10; border: 1px solid #eef0f2;
         }
-        .barra-feedback input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; outline: none; }
-        .input-p { width: 180px; }
-        .input-m { flex-grow: 1; }
-        .btn-v { background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .barra-feedback input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
+        .input-m { flex-grow: 1; min-width: 200px; }
+        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-v:hover { background: #218838; transform: translateY(-2px); }
 
-        /* --- MURAL (Fundo Limpo) --- */
-        .seccao-mural { padding: 20px 40px; flex-grow: 1; }
-        .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        /* --- MURAL --- */
+        .seccao-mural { padding: 10px 40px 60px; flex-grow: 1; }
+        .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
 
-        /* --- ESTILOS DE PAPEL --- */
-        .nota {
-            padding: 25px; min-height: 180px; position: relative;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.05); transition: 0.3s;
-        }
+        /* OS 3 PAPÉIS */
+        .nota { padding: 30px 25px; min-height: 200px; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.07); transition: 0.3s; }
+        .nota:hover { transform: scale(1.03) rotate(0deg) !important; z-index: 5; }
 
-        /* 1. Amarelo Suave */
-        .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1deg); border-bottom-right-radius: 40px 4px; }
-        
-        /* 2. Branco Linhado */
-        .nota:nth-child(3n+2) { 
-            background: #ffffff; transform: rotate(1deg); 
-            background-image: linear-gradient(#f0f0f0 1px, transparent 1px); background-size: 100% 24px;
-            border-left: 3px solid #ffcfcf;
-        }
+        /* 1. Post-it Amarelo */
+        .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1.5deg); border-bottom-right-radius: 50px 5px; }
+        /* 2. Folha de Caderno */
+        .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1.2deg); background-image: linear-gradient(#f0f2f5 1px, transparent 1px); background-size: 100% 28px; border-left: 4px solid #ffadad; }
+        /* 3. Azul Suave */
+        .nota:nth-child(3n+3) { background: #e3f2fd; transform: rotate(-0.8deg); border-radius: 5px; }
 
-        /* 3. Kraft Suave (Mais claro para combinar) */
-        .nota:nth-child(3n+3) { background: #f3e5f5; transform: rotate(-0.5deg); color: #4a148c; border-radius: 4px; }
-
-        .pione { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; border-radius: 50%; }
+        .pione { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .nota:nth-child(3n+1) .pione { background: #ff5252; }
         .nota:nth-child(3n+2) .pione { background: #1e4d8c; }
-        .nota:nth-child(3n+3) .pione { background: #9c27b0; }
+        .nota:nth-child(3n+3) .pione { background: #ffa000; }
 
-        .viagem-tag { font-size: 10px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .comentario { font-family: 'Kalam', cursive; font-size: 15px; color: #444; line-height: 1.4; margin: 5px 0; }
-        .autor { font-weight: 700; color: #1e4d8c; font-size: 12px; text-align: right; display: block; }
+        .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 5px; }
+        .comentario { font-family: 'Kalam', cursive; font-size: 17px; color: #333; line-height: 1.5; margin: 10px 0; }
+        .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 20px; }
 
-        /* --- RODAPÉ ORIGINAL (Restaurado) --- */
-        .footer-universal { background: #1e4d8c; color: white; padding: 20px 40px 10px; position: relative; border-top: 4px solid #ff9800; }
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 30px; }
-        .footer-col h4 { color: #ff9800; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; border-bottom: 1px solid rgba(255,152,0,0.2); display: inline-block; }
-        .footer-col p, .footer-col ul li, .footer-col ul li a { font-size: 12px; color: white; text-decoration: none; opacity: 0.9; }
+        /* --- RODAPÉ FIEL À IMAGEM --- */
+        .footer-universal { background-color: #1e4d8c; color: white; padding: 45px 40px 25px; position: relative; border-top: 6px solid #ff9800; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 40px; }
+        .footer-col h4 { color: #ff9800; font-size: 14px; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; letter-spacing: 0.5px; }
+        .footer-col p { font-size: 13px; line-height: 1.6; opacity: 0.9; margin: 0; }
+        
+        .nav-wrapper { display: flex; gap: 50px; }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 5px; }
-        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-        .btn-pill { border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; padding: 4px 12px; display: inline-block; margin-bottom: 5px; width: fit-content; }
-        .footer-bottom { text-align: center; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 10px; opacity: 0.5; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: white; text-decoration: none; font-size: 13px; opacity: 0.9; transition: 0.2s; }
+        .footer-col ul li a:hover { opacity: 1; color: #ff9800; }
 
-        @media (max-width: 768px) { body { flex-direction: column; } .footer-container { grid-template-columns: 1fr; gap: 20px; text-align: center; } }
+        .row-btns { display: flex; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
+        .btn-pill-footer { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 25px; padding: 8px 20px; font-size: 13px; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); }
+        .btn-pill-footer i { color: #ff9800; }
+        
+        .extra-info li { font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
+        .extra-info li i { color: #ff9800; width: 15px; }
+
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 11px; opacity: 0.6; }
+
+        @media (max-width: 900px) { .footer-container { grid-template-columns: 1fr; gap: 30px; text-align: center; } .nav-wrapper { justify-content: center; } .row-btns { justify-content: center; } .extra-info li { justify-content: center; } }
     </style>
 </head>
 <body>
@@ -82,35 +85,36 @@
 
     <main>
         <div class="hero-testemunhos">
-            <h1 style="margin:0; font-size: 28px;">Mural de Memórias</h1>
+            <h1 style="margin:0; font-size: 35px; font-weight: 600;">Mural de Memórias</h1>
+            <p style="margin-top:8px; font-size: 16px; opacity: 0.9;">A sua aventura faz parte da nossa história.</p>
         </div>
 
         <div class="barra-feedback">
-            <input type="text" id="nome" style="width:140px;" placeholder="Seu Nome">
-            <input type="text" id="passeio" class="input-p" placeholder="Passeio visitado">
-            <input type="text" id="msg" class="input-m" placeholder="O seu comentário...">
-            <button class="btn-v" onclick="enviarWhatsApp()"><i class="fab fa-whatsapp"></i> Enviar</button>
+            <input type="text" id="nome" style="width:160px;" placeholder="O seu nome">
+            <input type="text" id="passeio" style="width:220px;" placeholder="Nome do Passeio">
+            <input type="text" id="msg" class="input-m" placeholder="Conte-nos como foi a sua experiência...">
+            <button class="btn-v" onclick="enviarWhatsApp()"><i class="fab fa-whatsapp"></i> Enviar Nota</button>
         </div>
 
         <section class="seccao-mural">
             <div class="grid-mural">
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias</span>
-                    <p class="comentario">"Um dia inesquecível! A organização do Miguel é fantástica."</p>
+                    <span class="viagem-tag">Festa das Camélias — 2026</span>
+                    <p class="comentario">"Um dia inesquecível! A organização do Miguel é fantástica e as flores eram divinais."</p>
                     <span class="autor">— Maria Silva</span>
                 </div>
                 <div class="nota">
                     <div class="pione"></div>
                     <span class="viagem-tag">Serra da Estrela</span>
-                    <p class="comentario">"Adorei as paisagens e a companhia. Correu tudo lindamente!"</p>
+                    <p class="comentario">"Adorei as paisagens e o convívio. Tudo correu da melhor forma!"</p>
                     <span class="autor">— José Santos</span>
                 </div>
                 <div class="nota">
                     <div class="pione"></div>
                     <span class="viagem-tag">Gerês Mágico</span>
-                    <p class="comentario">"As cascatas são lindas. O Miguel é um guia nota 10."</p>
-                    <span class="autor">— Ana Rita</span>
+                    <p class="comentario">"As cascatas escondidas foram o ponto alto. Miguel, parabéns pelo roteiro!"</p>
+                    <span class="autor">— Família Ferreira</span>
                 </div>
             </div>
         </section>
@@ -119,28 +123,37 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p style="margin:0;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                 </div>
+
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <ul class="nav-grid">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="contatos.html">Contacto</a></li>
-                    </ul>
+                    <div class="nav-wrapper">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="passeios.html">Passeios</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="contatos.html">Contacto</a></li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="footer-col">
                     <h4>Apoio e Reservas</h4>
-                    <ul>
-                        <li class="btn-pill"><i class="fas fa-phone-alt"></i> 965 715 465</li>
-                        <li class="btn-pill"><i class="fab fa-whatsapp"></i> WhatsApp</li>
+                    <div class="row-btns">
+                        <a href="tel:965715465" class="btn-pill-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        <a href="https://wa.me/351965715465" class="btn-pill-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                    <ul class="extra-info">
                         <li><i class="fas fa-exclamation-triangle"></i> Cancelamento</li>
+                        <li><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+                <p>© 2026 Passeios do Miguel - Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
@@ -150,8 +163,9 @@
             const n = document.getElementById('nome').value;
             const p = document.getElementById('passeio').value;
             const m = document.getElementById('msg').value;
-            if(!n || !p || !m) { alert("Preencha tudo!"); return; }
-            window.open(`https://wa.me/351965715465?text=Olá Miguel! Testemunho para o Mural:%0A*Nome:* ${n}%0A*Viagem:* ${p}%0A*Mensagem:* ${m}`, '_blank');
+            if(!n || !p || !m) { alert("Por favor, preencha todos os campos!"); return; }
+            const texto = `Olá Miguel! Gostaria de deixar uma nota para o Mural:%0A%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Mensagem:* ${m}`;
+            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
         fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
     </script>
