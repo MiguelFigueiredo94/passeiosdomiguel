@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; min-height: 100vh; }
         #container-menu { min-width: 250px; }
@@ -17,10 +18,12 @@
             background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 50px 20px; text-align: center; border-radius: 0 0 60px 0;
+            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 80px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .hero-testemunhos h1 { font-size: 38px; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- BARRA DE ENVIO --- */
+        /* --- BARRA DE ENVIO (MANTIDA PARA O MURAL) --- */
         .barra-feedback {
             background: white; padding: 15px 25px; margin: -25px 40px 30px; border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.06); display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
@@ -28,22 +31,16 @@
         }
         .barra-feedback input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
         .input-m { flex-grow: 1; min-width: 200px; }
-        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .btn-v:hover { background: #218838; transform: translateY(-2px); }
+        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        /* --- MURAL --- */
+        /* --- SECÇÃO DO MURAL --- */
         .seccao-mural { padding: 10px 40px 60px; flex-grow: 1; }
         .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
 
-        /* OS 3 PAPÉIS */
+        /* ESTILOS DOS PAPÉIS */
         .nota { padding: 30px 25px; min-height: 200px; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.07); transition: 0.3s; }
-        .nota:hover { transform: scale(1.03) rotate(0deg) !important; z-index: 5; }
-
-        /* 1. Post-it Amarelo */
         .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1.5deg); border-bottom-right-radius: 50px 5px; }
-        /* 2. Folha de Caderno */
         .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1.2deg); background-image: linear-gradient(#f0f2f5 1px, transparent 1px); background-size: 100% 28px; border-left: 4px solid #ffadad; }
-        /* 3. Azul Suave */
         .nota:nth-child(3n+3) { background: #e3f2fd; transform: rotate(-0.8deg); border-radius: 5px; }
 
         .pione { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -55,28 +52,52 @@
         .comentario { font-family: 'Kalam', cursive; font-size: 17px; color: #333; line-height: 1.5; margin: 10px 0; }
         .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 20px; }
 
-        /* --- RODAPÉ FIEL À IMAGEM --- */
-        .footer-universal { background-color: #1e4d8c; color: white; padding: 45px 40px 25px; position: relative; border-top: 6px solid #ff9800; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 40px; }
-        .footer-col h4 { color: #ff9800; font-size: 14px; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; letter-spacing: 0.5px; }
-        .footer-col p { font-size: 13px; line-height: 1.6; opacity: 0.9; margin: 0; }
-        
-        .nav-wrapper { display: flex; gap: 50px; }
+        /* --- RODAPÉ DINÂMICO PREMIUM (DO SOBRE NÓS) --- */
+        .footer-universal {
+            background: #1e4d8c; position: relative; color: white;
+            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
+        }
+
+        .footer-universal::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
+            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
+        }
+        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+
+        .footer-container {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
+            position: relative; z-index: 2;
+        }
+        .footer-col h4 { 
+            color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; 
+            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
+            display: inline-block; padding-bottom: 4px;
+        }
+        .footer-col p, .footer-col ul li a { font-size: 13px; line-height: 1.5; opacity: 0.8; }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: white; text-decoration: none; font-size: 13px; opacity: 0.9; transition: 0.2s; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
+        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
+        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
 
-        .row-btns { display: flex; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
-        .btn-pill-footer { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 25px; padding: 8px 20px; font-size: 13px; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); }
-        .btn-pill-footer i { color: #ff9800; }
-        
-        .extra-info li { font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
-        .extra-info li i { color: #ff9800; width: 15px; }
+        .btn-contacto-pill {
+            background: rgba(255, 255, 255, 0.05); padding: 6px 12px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 6px !important;
+        }
 
-        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 11px; opacity: 0.6; }
+        .footer-bottom { 
+            text-align: center; margin-top: 25px; padding-top: 15px; 
+            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
 
-        @media (max-width: 900px) { .footer-container { grid-template-columns: 1fr; gap: 30px; text-align: center; } .nav-wrapper { justify-content: center; } .row-btns { justify-content: center; } .extra-info li { justify-content: center; } }
+        @media (max-width: 1024px) {
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-col ul li a { justify-content: center; }
+        }
+        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } }
     </style>
 </head>
 <body>
@@ -85,8 +106,7 @@
 
     <main>
         <div class="hero-testemunhos">
-            <h1 style="margin:0; font-size: 35px; font-weight: 600;">Mural de Memórias</h1>
-            <p style="margin-top:8px; font-size: 16px; opacity: 0.9;">A sua aventura faz parte da nossa história.</p>
+            <h1>Mural de Memórias</h1>
         </div>
 
         <div class="barra-feedback">
@@ -128,32 +148,30 @@
 
                 <div class="footer-col">
                     <h4>Navegação</h4>
-                    <div class="nav-wrapper">
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li><a href="passeios.html">Passeios</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="sobre.html">Sobre</a></li>
-                            <li><a href="contatos.html">Contacto</a></li>
-                        </ul>
-                    </div>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="passeios.html">Passeios</a></li>
+                        <li><a href="contatos.html">Contacto</a></li>
+                    </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Apoio e Reservas</h4>
-                    <div class="row-btns">
-                        <a href="tel:965715465" class="btn-pill-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        <a href="https://wa.me/351965715465" class="btn-pill-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                    <ul class="extra-info">
-                        <li><i class="fas fa-exclamation-triangle"></i> Cancelamento</li>
-                        <li><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</li>
+                    <ul>
+                        <li class="btn-contacto-pill">
+                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        </li>
+                        <li class="btn-contacto-pill">
+                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </li>
+                        <li><a href="faq.html#cancelamento"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
