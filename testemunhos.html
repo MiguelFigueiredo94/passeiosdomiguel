@@ -7,53 +7,75 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f4f7f9; }
+        /* Layout Base */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        .banner-feedback {
-            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), 
+        /* Banner de Feedback */
+        .banner-testemunhos {
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.85), rgba(255, 140, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .banner-testemunhos h1 { font-size: 2.8em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .banner-testemunhos p { font-size: 1.1em; opacity: 0.9; margin-top: 10px; }
+
+        /* Contentor do Disqus */
+        .seccao-mural { padding: 50px 20px; flex-grow: 1; }
+        .container-mural { 
+            max-width: 900px; margin: 0 auto; 
+            background: white; padding: 40px; 
+            border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.03);
         }
 
-        .seccao-testemunhos { padding: 50px 20px; max-width: 1000px; margin: 0 auto; width: 100%; }
-
-        /* Formulário de Envio */
-        .form-feedback {
-            background: white; padding: 30px; border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 50px;
+        /* --- RODAPÉ DINÂMICO --- */
+        .footer-universal {
+            background: #1e4d8c; position: relative; color: white;
+            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
         }
-        .form-feedback h2 { color: #1e4d8c; margin-top: 0; }
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        .input-group input, .input-group textarea {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;
+        .footer-universal::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
+            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
         }
-        .btn-enviar {
-            background: #ff8c00; color: white; border: none; padding: 12px 25px;
-            border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+        .footer-container {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
+            position: relative; z-index: 2;
         }
-        .btn-enviar:hover { background: #e67e22; transform: scale(1.02); }
-
-        /* Mural de Comentários */
-        .mural-comentarios { display: grid; gap: 20px; }
-        .comentario-card {
-            background: white; padding: 25px; border-radius: 15px;
-            border-left: 5px solid #ff8c00; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            animation: fadeIn 0.5s ease;
+        .footer-col h4 { 
+            color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; 
+            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
+            display: inline-block; padding-bottom: 4px;
         }
-        .comentario-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .nome-user { font-weight: bold; color: #1e4d8c; font-size: 1.1em; }
-        .data-comentario { font-size: 0.85em; color: #999; }
-        .texto-comentario { color: #555; line-height: 1.6; font-style: italic; }
+        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
+        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
+        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
+        .btn-contacto-pill {
+            background: rgba(255, 255, 255, 0.05); padding: 6px 12px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 6px !important;
+        }
+        .footer-bottom { 
+            text-align: center; margin-top: 25px; padding-top: 15px; 
+            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Rodapé Dinâmico (igual aos outros) */
-        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; }
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
+            .container-mural { padding: 20px; }
+            .banner-testemunhos h1 { font-size: 2em; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-col ul li a { justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -61,73 +83,77 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-feedback">
+        <div class="banner-testemunhos">
             <h1>Mural de Experiências</h1>
-            <p>A sua opinião é o combustível das nossas viagens!</p>
+            <p>A sua opinião é o combustível das nossas próximas viagens!</p>
         </div>
 
-        <section class="seccao-testemunhos">
-            <div class="form-feedback">
-                <h2>Deixe o seu comentário</h2>
-                <form id="feedbackForm">
-                    <div class="input-group">
-                        <label>Nome Completo</label>
-                        <input type="text" id="nome" placeholder="Como quer ser identificado?" required>
-                    </div>
-                    <div class="input-group">
-                        <label>A sua mensagem</label>
-                        <textarea id="mensagem" rows="4" placeholder="Conte-nos como foi a sua viagem..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-enviar">Publicar no Mural</button>
-                </form>
-            </div>
+        <section class="seccao-mural">
+            <div class="container-mural">
+                <div id="disqus_thread"></div>
 
-            <div id="mural" class="mural-comentarios">
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="nome-user">Maria Silva</span>
-                        <span class="data-comentario">15 Março, 2026</span>
-                    </div>
-                    <p class="texto-comentario">"O passeio à Serra da Estrela foi fantástico! O Miguel é um guia super atencioso. Recomendo vivamente!"</p>
-                </div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = window.location.href;  
+                        this.page.identifier = 'pagina-testemunhos-miguel'; 
+                    };
+
+                    (function() { 
+                        var d = document, s = d.createElement('script');
+                        // Usando o teu Shortname oficial:
+                        s.src = 'https://passeiosdomiguel.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+
+                <noscript>
+                    Por favor, ative o JavaScript para visualizar os comentários.
+                </noscript>
             </div>
         </section>
 
-        </main>
+        <footer class="footer-universal">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="passeios.html">Passeios</a></li>
+                        <li><a href="contatos.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Apoio e Reservas</h4>
+                    <ul>
+                        <li class="btn-contacto-pill">
+                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        </li>
+                        <li class="btn-contacto-pill">
+                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </li>
+                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
+                        <li><a href="testemunhos.html"><i class="fas fa-star"></i> Testemunhos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </main>
 
     <script>
+        // Carregar Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
-        });
-
-        // Lógica para adicionar comentário na hora (Simulação)
-        const form = document.getElementById('feedbackForm');
-        const mural = document.getElementById('mural');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const nome = document.getElementById('nome').value;
-            const mensagem = document.getElementById('mensagem').value;
-            const data = new Date().toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
-
-            // Criar o card
-            const novoCard = document.createElement('div');
-            novoCard.className = 'comentario-card';
-            novoCard.innerHTML = `
-                <div class="comentario-header">
-                    <span class="nome-user">${nome}</span>
-                    <span class="data-comentario">${data}</span>
-                </div>
-                <p class="texto-comentario">"${mensagem}"</p>
-            `;
-
-            // Adicionar ao topo do mural
-            mural.prepend(novoCard);
-
-            // Limpar formulário
-            form.reset();
-            alert("Obrigado pelo seu feedback! (Nota: Como este site é estático, o comentário aparece agora, mas desaparecerá se atualizar a página)");
         });
     </script>
 </body>
