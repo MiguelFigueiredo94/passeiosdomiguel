@@ -3,85 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Memórias - Passeios do Miguel</title>
+    <title>Testemunhos - Passeios do Miguel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Layout Base Profissional */
+        /* Layout Base Profissional (Igual às tuas imagens) */
         body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; }
         #container-menu { min-width: 250px; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* --- HERO BANNER --- */
         .hero-testemunhos {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1597334311915-374ec970172e?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1539635278303-d4002c07dee3?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            color: white; padding: 80px 40px; text-align: center; border-radius: 0 0 80px 0;
+            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 80px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .hero-testemunhos h1 { font-size: 42px; margin: 0 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- O MURAL (ESTILO CORTIÇA) --- */
-        .seccao-mural { padding: 60px 40px; background: #e6dfd1; border-top: 5px solid #d2b48c; }
-        
+        /* --- MURAL DE TESTEMUNHOS PREMIUM --- */
+        .seccao-testemunhos { padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
+
         .grid-mural {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
         }
 
-        .nota-postit {
-            background: #fff9c4; 
-            padding: 30px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-            transform: rotate(-1.5deg);
-            border-radius: 2px;
-            min-height: 220px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .card-testemunho {
+            background: white; padding: 35px; border-radius: 25px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06); border: 1px solid #eef1f5;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
         }
-        .nota-postit:nth-child(even) { transform: rotate(2deg); background: #fce4ec; }
-        .nota-postit:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
+        .card-testemunho:hover { transform: translateY(-5px); border-color: #ff9800; }
 
-        .pione {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            width: 18px; height: 18px; background: #d32f2f; border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        .tag-viagem {
+            background: rgba(30, 77, 140, 0.08); color: #1e4d8c;
+            font-size: 11px; font-weight: 700; padding: 5px 12px;
+            border-radius: 15px; display: inline-block; margin-bottom: 15px;
         }
 
-        .tag-passeio {
-            font-size: 11px; text-transform: uppercase; font-weight: 700;
-            color: #1e4d8c; opacity: 0.7; margin-bottom: 10px; display: block;
-        }
-        .texto-testemunho { font-size: 15px; line-height: 1.6; font-style: italic; color: #444; }
-        .autor-postit { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; margin-top: 15px; }
+        .texto-testemunho { font-size: 15px; color: #555; line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+        .autor-testemunho { font-weight: 800; color: #1e4d8c; font-size: 15px; display: block; text-align: right; }
 
-        /* --- FORMULÁRIO DE ENVIO --- */
-        .container-envio {
-            max-width: 650px; margin: 60px auto; background: white; padding: 40px;
-            border-radius: 30px; box-shadow: 0 15px 45px rgba(0,0,0,0.06); text-align: center;
+        /* --- FORMULÁRIO --- */
+        .container-feedback {
+            max-width: 700px; width: 100%; margin: 60px auto; background: white;
+            padding: 50px; border-radius: 40px; box-shadow: 0 15px 45px rgba(0,0,0,0.06);
         }
-        .container-envio h2 { color: #1e4d8c; margin-bottom: 20px; font-weight: 800; }
-        .container-envio input, .container-envio textarea, .container-envio select {
-            width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #dee2e6;
-            border-radius: 12px; font-family: inherit; font-size: 15px; box-sizing: border-box;
+        .container-feedback h2 { color: #1e4d8c; text-align: center; margin-bottom: 30px; font-weight: 800; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #1e4d8c; font-size: 14px; }
+        
+        select, input, textarea {
+            width: 100%; padding: 15px; border: 1px solid #eef1f5; border-radius: 15px;
+            background: #fcfdfe; font-family: inherit; font-size: 15px; box-sizing: border-box;
         }
-        .btn-whatsapp {
-            background: #25d366; color: white; border: none; padding: 16px 35px; border-radius: 50px;
-            font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 12px;
-            margin-top: 15px; transition: 0.3s; font-size: 16px;
-        }
-        .btn-whatsapp:hover { background: #128c7e; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
 
-        /* Rodapé Original */
-        .footer-universal { background: #1e4d8c; color: white; padding: 30px 40px 15px; margin-top: auto; }
-        .footer-bottom { text-align: center; font-size: 11px; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 25px; }
+        .btn-enviar-premium {
+            background: #ff9800; color: white; border: none; padding: 18px;
+            border-radius: 15px; width: 100%; font-weight: 700; font-size: 16px;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-enviar-premium:hover { background: #e68a00; transform: scale(1.02); }
 
-        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } }
+        /* --- RODAPÉ (REPOSTO CONFORME IMAGEM) --- */
+        .footer-universal { background: #1e4d8c; color: white; padding: 40px 40px 20px; margin-top: auto; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 15px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+        .footer-col p, .footer-col ul li { font-size: 13px; opacity: 0.9; line-height: 1.6; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: white; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: #ff9800; }
+        
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.6; }
+
+        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } .footer-container { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
@@ -90,81 +92,110 @@
 
     <main>
         <div class="hero-testemunhos">
-            <h1>Mural de Memórias</h1>
-            <p>Reviva os melhores momentos das nossas viagens através das palavras de quem nos acompanha.</p>
+            <h1>Testemunhos</h1>
+            <p>O carinho de quem viaja connosco é o que nos faz continuar a definir novos destinos.</p>
         </div>
 
-        <section class="seccao-mural">
+        <section class="seccao-testemunhos">
+            
             <div class="grid-mural">
-                <div class="nota-postit">
-                    <div class="pione"></div>
-                    <div>
-                        <span class="tag-passeio"><i class="fas fa-map-marker-alt"></i> Celorico de Basto</span>
-                        <p class="texto-testemunho">"O almoço de aniversário estava maravilhoso! Adorei o convívio em Celorico de Basto e a beleza das camélias."</p>
-                    </div>
-                    <span class="autor-postit">— António Ferreira</span>
+                <div class="card-testemunho">
+                    <span class="tag-viagem">Festa das Camélias (Março 2026)</span>
+                    <p class="texto-testemunho">"Que dia espetacular! O desfile estava lindíssimo e o almoço de aniversário estava delicioso. Organização impecável!"</p>
+                    <span class="autor-testemunho">— Maria Silva</span>
                 </div>
 
-                <div class="nota-postit">
-                    <div class="pione" style="background: #1e4d8c;"></div>
-                    <div>
-                        <span class="tag-passeio"><i class="fas fa-map-marker-alt"></i> Celorico de Basto</span>
-                        <p class="texto-testemunho">"A batalha das flores é um espetáculo único. Parabéns ao Miguel pela organização excelente!"</p>
-                    </div>
-                    <span class="autor-postit">— Maria Silva</span>
+                <div class="card-testemunho">
+                    <span class="tag-viagem">Especial Natal Vigo (Dez 2025)</span>
+                    <p class="texto-testemunho">"As luzes de Vigo são mágicas, mas a companhia e a animação no autocarro foram ainda melhores. Recomendo muito!"</p>
+                    <span class="autor-testemunho">— António Ferreira</span>
                 </div>
 
-                <div class="nota-postit">
-                    <div class="pione" style="background: #ff9800;"></div>
-                    <div>
-                        <span class="tag-passeio"><i class="fas fa-map-marker-alt"></i> Celorico de Basto</span>
-                        <p class="texto-testemunho">"Subir à Senhora da Graça foi inesquecível. Uma forma brilhante de celebrar este 1º ano de passeios."</p>
-                    </div>
-                    <span class="autor-postit">— Carla Rodrigues</span>
+                <div class="card-testemunho">
+                    <span class="tag-viagem">Amendoeiras em Flor (Março 2025)</span>
+                    <p class="texto-testemunho">"Um passeio com paisagens deslumbrantes. O Miguel sabe sempre escolher os melhores recantos de Portugal."</p>
+                    <span class="autor-testemunho">— Carla Rodrigues</span>
                 </div>
             </div>
 
-            <div class="container-envio">
-                <h2>Envie o seu Testemunho</h2>
-                <p>O seu feedback ajuda-nos a ir mais longe. Partilhe a sua opinião!</p>
+            <div class="container-feedback">
+                <h2>Conte-nos a sua experiência</h2>
                 
-                <input type="text" id="nome-cliente" placeholder="O seu nome completo" required>
-                
-                <select id="passeio-visitado">
-                    <option value="" disabled selected>Qual o passeio que visitou?</option>
-                    <option value="Celorico de Basto (Festa das Camélias)">Celorico de Basto (Festa das Camélias)</option>
-                    <option value="Outro Passeio">Outro Passeio</option>
-                </select>
+                <div class="form-group">
+                    <label>O seu nome</label>
+                    <input type="text" id="nome" placeholder="Ex: João Silva">
+                </div>
 
-                <textarea id="mensagem-cliente" rows="4" placeholder="Escreva aqui o seu comentário sobre a experiência..." required></textarea>
-                
-                <button class="btn-whatsapp" onclick="enviarWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                <div class="form-group">
+                    <label>Em que passeio esteve connosco?</label>
+                    <select id="passeio">
+                        <option value="" disabled selected>Selecione uma viagem...</option>
+                        <optgroup label="Programação 2026">
+                            <option value="Festa das Camélias">Festa das Camélias (15 Mar)</option>
+                            <option value="Magia Animal Gaia">Magia Animal - Gaia (15 Fev)</option>
+                        </optgroup>
+                        <optgroup label="Histórico 2025">
+                            <option value="Natal Vigo">Especial Natal Vigo</option>
+                            <option value="Festa da Castanha">Festa da Castanha</option>
+                            <option value="Sra da Agonia">Sra. d'Agonia</option>
+                            <option value="Gerês e Braga">Gerês & Braga</option>
+                            <option value="Santuário de Fátima">Santuário de Fátima</option>
+                            <option value="Amendoeiras em Flor">Amendoeiras em Flor</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>O seu comentário</label>
+                    <textarea id="mensagem" rows="4" placeholder="O que mais gostou na viagem?"></textarea>
+                </div>
+
+                <button class="btn-enviar-premium" onclick="enviar()">
+                    Enviar Testemunho
                 </button>
             </div>
         </section>
 
         <footer class="footer-universal">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="passeios.html">Passeios</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Apoio e Reservas</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 965 715 465</li>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp</li>
+                        <li><i class="fas fa-exclamation-circle"></i> Cancelamento</li>
+                        <li><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Do coração de São Pedro do Sul para Portugal.</p>
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
 
     <script>
-        function enviarWhatsApp() {
-            const nome = document.getElementById('nome-cliente').value;
-            const passeio = document.getElementById('passeio-visitado').value;
-            const mensagem = document.getElementById('mensagem-cliente').value;
-            const telefone = "351965715465";
-
-            if (!nome || !mensagem || !passeio) {
-                alert("Por favor, preencha todos os campos antes de enviar.");
-                return;
-            }
-
-            const textoFinal = `Olá Miguel! Gostava de deixar um testemunho para o site:%0A%0A📌 *Passeio:* ${passeio}%0A👤 *Nome:* ${nome}%0A📝 *Comentário:* ${mensagem}`;
-            window.open(`https://wa.me/${telefone}?text=${textoFinal}`, '_blank');
+        function enviar() {
+            const n = document.getElementById('nome').value;
+            const p = document.getElementById('passeio').value;
+            const m = document.getElementById('mensagem').value;
+            if(!n || !p || !m) { alert("Por favor, preencha todos os campos."); return; }
+            
+            const texto = `Olá Miguel! Tenho um novo testemunho para o site:%0A%0A*Viagem:* ${p}%0A*Nome:* ${n}%0A*Comentário:* ${m}`;
+            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
 
         fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
