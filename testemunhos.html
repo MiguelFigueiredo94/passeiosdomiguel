@@ -4,158 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testemunhos - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --cor-primaria: #d23669; /* Tom Camélia */
-            --cor-secundaria: #333;
-            --bg-light: #f9f9f9;
-        }
+        /* Layout Base Profissional (Igual ao que enviaste) */
+        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; }
+        
+        #container-menu { min-width: 250px; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        /* --- HERO BANNER --- */
+        .hero-testemunhos {
+            background: linear-gradient(135deg, rgba(210, 54, 105, 0.9), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1597334311915-374ec970172e?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 80px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .hero-testemunhos h1 { font-size: 42px; margin: 0 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-testemunhos p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        /* --- Menu / Nav --- */
-        nav {
-            background: var(--cor-secundaria);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        /* --- Mural de Testemunhos --- */
-        .mural-container {
-            flex: 1;
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .mural-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .mural-header h1 {
-            color: var(--cor-primaria);
-            font-size: 2rem;
-        }
+        /* --- MURAL DE TESTEMUNHOS (Adaptado ao Estilo Premium) --- */
+        .seccao-testemunhos { padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
 
         .grid-mural {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
         }
 
         .card-testemunho {
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+            border: 1px solid #eef1f5;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .card-testemunho:hover { transform: translateY(-10px); border-color: #d23669; }
+
+        .icon-quote {
+            font-size: 30px;
+            color: rgba(210, 54, 105, 0.2);
+            margin-bottom: 15px;
         }
 
-        .card-testemunho:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-testemunho p {
-            font-style: italic;
+        .texto-testemunho {
+            font-size: 16px;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 25px;
         }
 
-        .info-autor {
-            margin-top: 15px;
+        .autor-testemunho {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
+            justify-content: space-between;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
         }
 
-        .nome-autor {
-            font-weight: bold;
-            color: var(--cor-secundaria);
-        }
+        .autor-nome { font-weight: 800; color: #1e4d8c; }
+        .stars { color: #ff9800; font-size: 14px; }
 
-        .data-passeio {
-            font-size: 0.8rem;
-            color: #888;
+        /* --- RODAPÉ DINÂMICO PREMIUM (Igual ao Original) --- */
+        .footer-universal {
+            background: #1e4d8c; position: relative; color: white;
+            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
         }
+        .footer-universal::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
+            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
+        }
+        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
+        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; color: white; text-decoration: none; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
+        .btn-contacto-pill { background: rgba(255, 255, 255, 0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 6px !important; }
+        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
 
-        /* --- Rodapé --- */
-        footer {
-            background: var(--cor-secundaria);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            nav a { margin: 0 5px; font-size: 0.9rem; }
-        }
+        /* Responsividade */
+        @media (max-width: 1024px) { .footer-container { grid-template-columns: 1fr; text-align: center; } }
+        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="proximos-passeios.html">Próximos Passeios</a>
-        <a href="testemunhos.html">Testemunhos</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+    <div id="container-menu"></div>
 
-    <div class="mural-container">
-        <header class="mural-header">
-            <h1>O Que Dizem os Nossos Viajantes</h1>
-            <p>Memórias recentes da Festa das Camélias (1º Aniversário)</p>
-        </header>
-
-        <div class="grid-mural">
-            <div class="card-testemunho">
-                <p>"O almoço estava simplesmente delicioso e muito bem servido. Foi o momento perfeito para celebrar este primeiro ano de passeios!"</p>
-                <div class="info-autor">
-                    <span class="nome-autor">António Ferreira</span>
-                    <span class="data-passeio">Março 2026</span>
-                </div>
-            </div>
-
-            <div class="card-testemunho">
-                <p>"Adorei o desfile temático e a Batalha das Flores em Celorico de Basto. Organização nota 10, muita cor e alegria!"</p>
-                <div class="info-autor">
-                    <span class="nome-autor">Maria Silva</span>
-                    <span class="data-passeio">Março 2026</span>
-                </div>
-            </div>
-
-            <div class="card-testemunho">
-                <p>"A vista do Santuário da Senhora da Graça é incrível. Uma forma espetacular de comemorar o aniversário dos Passeios do Miguel."</p>
-                <div class="info-autor">
-                    <span class="nome-autor">Carla Rodrigues</span>
-                    <span class="data-passeio">Março 2026</span>
-                </div>
-            </div>
+    <main>
+        <div class="hero-testemunhos">
+            <h1>Testemunhos</h1>
+            <p>A voz de quem viaja connosco. Partilhas reais do nosso 1º aniversário na Capital das Camélias.</p>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Passeios do Miguel - 1º Aniversário ao seu lado.</p>
-        <p><small>Castro Daire | São Pedro do Sul</small></p>
-    </footer>
+        <section class="seccao-testemunhos">
+            
+            <div class="grid-mural">
+                <div class="card-testemunho">
+                    <i class="fas fa-quote-left icon-quote"></i>
+                    <p class="texto-testemunho">"Que dia maravilhoso! O desfile temático estava lindíssimo e a Batalha das Flores foi super divertida. Foi a melhor forma de celebrar o 1º aniversário dos Passeios do Miguel!"</p>
+                    <div class="autor-testemunho">
+                        <span class="autor-nome">Maria Silva</span>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
 
+                <div class="card-testemunho">
+                    <i class="fas fa-quote-left icon-quote"></i>
+                    <p class="texto-testemunho">"O almoço estava simplesmente delicioso, muito bem servido e num ambiente fantástico. Celorico de Basto superou as expetativas, valeu muito a pena!"</p>
+                    <div class="autor-testemunho">
+                        <span class="autor-nome">António Ferreira</span>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+
+                <div class="card-testemunho">
+                    <i class="fas fa-quote-left icon-quote"></i>
+                    <p class="texto-testemunho">"A subida à Senhora da Graça tem uma vista de tirar o fôlego. Organização impecável, desde a saída em Castro Daire. Venham mais muitos anos de passeios!"</p>
+                    <div class="autor-testemunho">
+                        <span class="autor-nome">Carla Rodrigues</span>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="footer-universal">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Passeios do Miguel</h4>
+                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="passeios.html">Passeios</a></li>
+                        <li><a href="testemunhos.html">Testemunhos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Apoio e Reservas</h4>
+                    <ul>
+                        <li class="btn-contacto-pill">
+                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        </li>
+                        <li class="btn-contacto-pill">
+                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Carrega o menu lateral automaticamente
+        fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
+    </script>
 </body>
 </html>
