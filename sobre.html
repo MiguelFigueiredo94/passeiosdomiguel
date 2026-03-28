@@ -1,220 +1,64 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* Layout Base Profissional */
-        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; }
-        
-        /* Container do Menu Importado */
-        #container-menu { min-width: 250px; }
+<style>
+    .footer-universal {
+        background-color: #1e4d8c;
+        color: white;
+        padding: 30px 40px 15px; /* Reduzido de 60px para 30px */
+        margin-top: auto;
+        border-top: 4px solid #ff9800;
+    }
+    .footer-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px; /* Reduzido para aproximar as colunas */
+    }
+    .footer-col h4 { 
+        color: #ff9800; 
+        margin-bottom: 12px; /* Reduzido de 20px */
+        font-size: 16px; /* Letra ligeiramente menor */
+        text-transform: uppercase; 
+    }
+    .footer-col p, .footer-col ul li a { 
+        font-size: 13px; /* Letra mais fina e discreta */
+        line-height: 1.4; 
+    }
+    .footer-col ul li { margin-bottom: 6px; } /* Menos espaço entre links */
+    
+    .footer-bottom { 
+        text-align: center; 
+        margin-top: 25px; /* Reduzido de 50px */
+        padding-top: 15px; 
+        border-top: 1px solid rgba(255,255,255,0.1); 
+        font-size: 12px; 
+        opacity: 0.6; 
+    }
+</style>
 
-        /* Conteúdo Principal */
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* --- HERO BANNER PREMIUM --- */
-        .hero-sobre {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 100px 40px; text-align: center; border-radius: 0 0 80px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .hero-sobre h1 { font-size: 42px; margin: 0 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        .hero-sobre p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-
-        /* --- SECÇÃO DE CONTEÚDO PRINCIPAL --- */
-        .seccao-premium-sobre { padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
-
-        /* Card do Título e Logotipo */
-        .card-introducao {
-            background: white; padding: 60px 50px; border-radius: 40px; text-align: center;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.06); width: 100%; max-width: 1000px;
-            margin-bottom: 60px; border: 1px solid #eef1f5;
-        }
-        .logo-sobre-premium { 
-            width: 100%; 
-            max-width: 320px; 
-            height: auto; 
-            margin-bottom: 25px; 
-            object-fit: contain; 
-        }
-        .card-introducao h2 { color: #1e4d8c; font-size: 32px; margin: 0 0 15px; font-weight: 800; }
-        .boas-vindas-sobre { font-size: 17px; color: #555; max-width: 750px; margin: 0 auto 30px; line-height: 1.8; }
-        
-        /* --- SECÇÃO HISTÓRIA --- */
-        .bloco-historia {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; max-width: 1000px;
-            margin-bottom: 60px; align-items: center;
-        }
-        .imagem-historia {
-            width: 100%; height: auto; border-radius: 30px; object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 10px solid white;
-        }
-        .texto-historia h3 { color: #1e4d8c; font-size: 26px; margin: 0 0 20px; }
-        .texto-historia p { font-size: 16px; color: #444; line-height: 1.9; margin-bottom: 20px; }
-        
-        .destaque-sul {
-            background: rgba(30, 77, 140, 0.08); border-left: 5px solid #ff9800;
-            padding: 20px; border-radius: 0 15px 15px 0; color: #1e4d8c; font-weight: 600; font-style: italic;
-        }
-
-        /* --- SECÇÃO MISSÃO E VALORES --- */
-        .grid-valores-premium {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
-            width: 100%; max-width: 1000px; margin-top: 40px; margin-bottom: 40px;
-        }
-        .valor-card-premium {
-            background: white; padding: 40px; border-radius: 25px; text-align: center;
-            border: 1px solid #eef1f5; transition: all 0.4s ease;
-        }
-        .valor-card-premium:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(30, 77, 140, 0.1); }
-        .valor-icon-premium { font-size: 35px; color: #ff9800; background: rgba(255,152,0,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
-        .valor-card-premium h4 { color: #1e4d8c; font-size: 20px; margin: 0 0 15px; }
-        .valor-card-premium p { font-size: 15px; color: #666; line-height: 1.7; margin: 0; }
-
-        /* --- ESTILOS DO RODAPÉ UNIVERSAL --- */
-        .footer-universal {
-            background-color: #1e4d8c;
-            color: white;
-            padding: 60px 40px 20px;
-            margin-top: auto;
-            border-top: 5px solid #ff9800;
-        }
-        .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-        .footer-col h4 { color: #ff9800; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
-        .footer-col p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: white; text-decoration: none; font-size: 14px; transition: 0.3s; display: flex; align-items: center; }
-        .footer-col ul li a:hover { color: #ff9800; transform: translateX(5px); }
-        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.7; }
-
-        /* Responsividade */
-        @media (max-width: 1024px) {
-            .seccao-premium-sobre { padding: 60px 30px; }
-            .bloco-historia { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .grid-valores-premium { grid-template-columns: 1fr; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-col ul li a { justify-content: center; }
-        }
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #container-menu { min-width: 100%; }
-            .hero-sobre h1 { font-size: 30px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="container-menu"></div>
-
-    <main>
-        <div class="hero-sobre">
-            <h1>Sobre Nós</h1>
-            <p>A história por trás de cada quilómetro percorrido, onde a alma de Portugal encontra a aventura.</p>
+<footer class="footer-universal">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Passeios do Miguel</h4>
+            <p>Viagens com alma e aventura, de São Pedro do Sul para todo o país.</p>
         </div>
-
-        <section class="seccao-premium-sobre">
-            
-            <div class="card-introducao">
-                <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-sobre-premium" alt="Passeios do Miguel Logo">
-                <h2>A Nossa Essência</h2>
-                <p class="boas-vindas-sobre">
-                    O projeto <strong>Passeios do Miguel</strong> nasceu de um propósito simples: transformar o ato de viajar numa partilha de afetos e descobertas. 
-                    Mais do que destinos, promovemos encontros que se tornam memórias inesquecíveis, sempre guiados pela paixão de mostrar o melhor de Portugal.
-                </p>
-            </div>
-
-            <div class="bloco-historia">
-                <img src="https://i.imgur.com/cj1OOwA.png" class="imagem-historia" alt="Passeio Organizado">
-                <div class="texto-historia">
-                    <h3>De um Gesto ao Projeto de Vida</h3>
-                    <p><strong>Passeios do Miguel:</strong> Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
-                    <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos.</p>
-                </div>
-            </div>
-
-            <div class="bloco-historia" style="direction: rtl;">
-                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" class="imagem-historia" alt="Exploração de Portugal">
-                <div class="texto-historia" style="direction: ltr;">
-                    <h3>Passeios com Alma e Aventura</h3>
-                    <p>Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
-                    <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
-                    
-                    <p class="destaque-sul">
-                        Venha explorar Portugal com boa disposição e espírito de descoberta.<br>
-                        De São Pedro do Sul 🗺️ para os cantos mais bonitos do país.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid-valores-premium">
-                <div class="valor-card-premium">
-                    <div class="valor-icon-premium"><i class="fas fa-smile"></i></div>
-                    <h4>Boa Disposição</h4>
-                    <p>Garantimos um ambiente descontraído e alegre em cada viagem.</p>
-                </div>
-                <div class="valor-card-premium">
-                    <div class="valor-icon-premium"><i class="fas fa-map-marked-alt"></i></div>
-                    <h4>Cultura e Natureza</h4>
-                    <p>Mostramos os cantos mais bonitos e históricos de Portugal.</p>
-                </div>
-                <div class="valor-card-premium">
-                    <div class="valor-icon-premium"><i class="fas fa-heart"></i></div>
-                    <h4>Espírito de Comunidade</h4>
-                    <p>Crescemos com as vossas sugestões. Vocês são parte da jornada.</p>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>Transformamos cada viagem numa memória inesquecível. De São Pedro do Sul para todo o país, com alma e aventura.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul>
-                        <li><a href="index.html">Página Inicial</a></li>
-                        <li><a href="sobre.html">Sobre Mim</a></li>
-                        <li><a href="passeios.html">Próximos Passeios</a></li>
-                        <li><a href="contatos.html">Contactos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Apoio ao Cliente</h4>
-                    <ul>
-                        <li><a href="faq.html#cancelamento"><i class="fas fa-exclamation-triangle" style="color: #ff9800; margin-right: 8px;"></i> Política de Cancelamento</a></li>
-                        <li><a href="faq.html">Dúvidas Frequentes (FAQ)</a></li>
-                        <li><a href="dicas.html">Dicas de Viagem</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
-        </footer>
-    </main>
-
-    <script>
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('container-menu').innerHTML = data;
-            });
-    </script>
-
-</body>
-</html>
+        <div class="footer-col">
+            <h4>Links</h4>
+            <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="passeios.html">Passeios</a></li>
+                <li><a href="contatos.html">Contactos</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Apoio</h4>
+            <ul>
+                <li><a href="faq.html#cancelamento"><i class="fas fa-exclamation-triangle" style="color: #ff9800; margin-right: 5px;"></i> Cancelamento</a></li>
+                <li><a href="faq.html">Dúvidas (FAQ)</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
+    </div>
+</footer>
