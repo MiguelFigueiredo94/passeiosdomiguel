@@ -13,7 +13,6 @@
         #container-menu { min-width: 250px; }
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* --- HERO --- */
         .hero-testemunhos {
             background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
@@ -23,7 +22,6 @@
         }
         .hero-testemunhos h1 { font-size: 38px; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- BARRA DE ENVIO (MANTIDA PARA O MURAL) --- */
         .barra-feedback {
             background: white; padding: 15px 25px; margin: -25px 40px 30px; border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.06); display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
@@ -33,11 +31,9 @@
         .input-m { flex-grow: 1; min-width: 200px; }
         .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        /* --- SECÇÃO DO MURAL --- */
         .seccao-mural { padding: 10px 40px 60px; flex-grow: 1; }
         .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
 
-        /* ESTILOS DOS PAPÉIS */
         .nota { padding: 30px 25px; min-height: 200px; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.07); transition: 0.3s; }
         .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1.5deg); border-bottom-right-radius: 50px 5px; }
         .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1.2deg); background-image: linear-gradient(#f0f2f5 1px, transparent 1px); background-size: 100% 28px; border-left: 4px solid #ffadad; }
@@ -52,52 +48,23 @@
         .comentario { font-family: 'Kalam', cursive; font-size: 17px; color: #333; line-height: 1.5; margin: 10px 0; }
         .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 20px; }
 
-        /* --- RODAPÉ DINÂMICO PREMIUM (DO SOBRE NÓS) --- */
-        .footer-universal {
-            background: #1e4d8c; position: relative; color: white;
-            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
-        }
-
-        .footer-universal::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
-            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
-        }
+        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; overflow: hidden; }
+        .footer-universal::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c); background-size: 200% 100%; animation: moveGradient 5s linear infinite; }
         @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
 
-        .footer-container {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
-            position: relative; z-index: 2;
-        }
-        .footer-col h4 { 
-            color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; 
-            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
-            display: inline-block; padding-bottom: 4px;
-        }
-        .footer-col p, .footer-col ul li a { font-size: 13px; line-height: 1.5; opacity: 0.8; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
+        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-col ul li { margin-bottom: 8px; }
         .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
         .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
+        .footer-col ul li a:hover { color: #ff9800; transform: translateX(5px); }
 
-        .btn-contacto-pill {
-            background: rgba(255, 255, 255, 0.05); padding: 6px 12px;
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 6px !important;
-        }
+        .btn-contacto-pill { background: rgba(255, 255, 255, 0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 6px !important; }
+        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
 
-        .footer-bottom { 
-            text-align: center; margin-top: 25px; padding-top: 15px; 
-            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
-        }
-
-        @media (max-width: 1024px) {
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-col ul li a { justify-content: center; }
-        }
-        @media (max-width: 768px) { body { flex-direction: column; } #container-menu { min-width: 100%; } }
+        @media (max-width: 1024px) { .footer-container { grid-template-columns: 1fr; text-align: center; } .footer-col ul li a { justify-content: center; } }
     </style>
 </head>
 <body>
@@ -120,21 +87,21 @@
             <div class="grid-mural">
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias — 2026</span>
-                    <p class="comentario">"Um dia inesquecível! A organização do Miguel é fantástica e as flores eram divinais."</p>
+                    <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
+                    <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado!"</p>
                     <span class="autor">— Maria Silva</span>
                 </div>
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Serra da Estrela</span>
-                    <p class="comentario">"Adorei as paisagens e o convívio. Tudo correu da melhor forma!"</p>
-                    <span class="autor">— José Santos</span>
+                    <span class="viagem-tag">Festa das Camélias</span>
+                    <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade!"</p>
+                    <span class="autor">— Carlos Pires</span>
                 </div>
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Gerês Mágico</span>
-                    <p class="comentario">"As cascatas escondidas foram o ponto alto. Miguel, parabéns pelo roteiro!"</p>
-                    <span class="autor">— Família Ferreira</span>
+                    <span class="viagem-tag">Santuário da Senhora da Graça</span>
+                    <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível lá de cima do Santuário!"</p>
+                    <span class="autor">— Ana Rita</span>
                 </div>
             </div>
         </section>
