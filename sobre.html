@@ -55,35 +55,33 @@
         .content-section { padding: 60px 40px; max-width: 1100px; margin: 0 auto; }
         
         /* ESTRUTURA DA HISTÓRIA EM FASES */
-        .timeline { position: relative; margin-top: 40px; }
-        .fase { display: flex; gap: 30px; margin-bottom: 50px; align-items: flex-start; }
+        .fase { display: flex; gap: 30px; margin-bottom: 40px; align-items: flex-start; }
         .fase-icon { 
-            background: #ff8c00; color: white; width: 60px; height: 60px; 
+            background: #ff8c00; color: white; width: 55px; height: 55px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 24px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(255,140,0,0.3);
+            font-size: 22px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(255,140,0,0.3);
         }
-        .fase-content { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); flex-grow: 1; }
-        .fase-content h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; display: flex; align-items: center; gap: 10px; }
-        .fase-content p { color: #555; line-height: 1.7; font-size: 1.05em; text-align: justify; }
-        .fase-content strong { color: #1e4d8c; }
+        .fase-content { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); flex-grow: 1; border-left: 5px solid #1e4d8c; }
+        .fase-content h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
+        .fase-content p { color: #555; line-height: 1.7; font-size: 1.05em; }
 
         /* 4. RODAPÉ PREMIUM (ESTILO ILHA) */
         .footer-premium {
-            background: #1e4d8c; color: white; padding: 60px 40px 30px; 
+            background: #1e4d8c; color: white; padding: 50px 40px 30px; 
             margin: 40px 20px 20px 20px; border-radius: 30px; border-top: 6px solid #ff8c00;
         }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer-col h4 { color: #ff8c00; margin-bottom: 25px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 5px; text-transform: uppercase; font-size: 14px; }
+        .footer-col h4 { color: #ff8c00; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 5px; text-transform: uppercase; font-size: 14px; }
         .footer-pill { border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px; background: rgba(255,255,255,0.05); text-decoration: none; color: white; display: inline-flex; align-items: center; margin-bottom: 12px; font-size: 14px; }
         .footer-pill i { color: #ff8c00; margin-right: 12px; }
         .footer-link { color: white; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; opacity: 0.8; transition: 0.3s; }
         .footer-link:hover { opacity: 1; color: #ff8c00; }
-        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
 
         @media (max-width: 1024px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; }
-            .fase { flex-direction: column; align-items: center; text-align: center; }
+            .fase { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -114,63 +112,60 @@
 
     <main>
         <section class="hero-sobre">
-            <h1>A Nossa Jornada</h1>
-            <p>Conheça a história e os valores dos Passeios do Miguel.</p>
+            <h1 style="font-size: 2.5em; text-align: center;">Bem-vindos aos Passeios do Miguel!</h1>
         </section>
 
         <section class="content-section">
-            <div class="timeline">
-                
-                <div class="fase">
-                    <div class="fase-icon"><i class="fas fa-child"></i></div>
-                    <div class="fase-content">
-                        <h3>Onde tudo nasceu</h3>
-                        <p>A paixão pelas viagens nasceu comigo. Lembro-me, como se fosse hoje, de estar na <strong>Escola Primária</strong> e de o <strong>Sr. Alberto</strong> aparecer com o seu autocarro para nos levar em visitas de estudo. Aquele momento de subir os degraus e ver o mundo pela janela era o ponto alto do meu ano.</p>
-                    </div>
+            
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-seedling"></i></div>
+                <div class="fase-content">
+                    <h3>Como tudo começou</h3>
+                    <p>Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
                 </div>
-
-                <div class="fase">
-                    <div class="fase-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="fase-content">
-                        <h3>O Salto em 2018</h3>
-                        <p>Em <strong>2018</strong>, decidi que queria proporcionar essa mesma alegria a outros. Comecei por organizar pequenos passeios para amigos e familiares de <strong>S. Pedro do Sul</strong>. O "bichinho" pegou e o que era um passatempo tornou-se no projeto <strong>Passeios do Miguel</strong>.</p>
-                    </div>
-                </div>
-
-                <div class="fase">
-                    <div class="fase-icon"><i class="fas fa-heart"></i></div>
-                    <div class="fase-content">
-                        <h3>A Nossa Missão</h3>
-                        <p>Para mim, o sucesso não se mede pelos quilómetros percorridos, mas pelos sorrisos e pelas amizades que se criam. O meu objetivo é que cada pessoa que entre no autocarro se sinta em casa e regresse com o coração cheio de boas memórias.</p>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-users"></i></div>
+                <div class="fase-content">
+                    <h3>O Desafio e a Evolução</h3>
+                    <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
+                </div>
+            </div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="fase-content">
+                    <h3>Passeios com Alma e Aventura</h3>
+                    <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial! Venha explorar Portugal com boa disposição e espírito de descoberta.</p>
+                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c;">
+                        De São Pedro do Sul 🗺️🗾 para os cantos mais bonitos de Portugal. Junte-se a nós e venha viver momentos incríveis!
+                    </p>
+                </div>
+            </div>
+
         </section>
 
         <footer class="footer-premium">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p style="font-size: 14px; opacity: 0.9; line-height: 1.6;">De S. Pedro do Sul para todo o país, transformamos cada passeio numa memória inesquecível.</p>
+                    <p style="font-size: 14px; opacity: 0.9;">Criamos momentos que se tornam histórias para contar.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Navegação Fast</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <a href="index.html" class="footer-link">Início</a>
-                        <a href="sobre.html" class="footer-link">Sobre</a>
-                        <a href="passeios.html" class="footer-link">Passeios</a>
-                        <a href="contactos.html" class="footer-link">Contacto</a>
-                    </div>
+                    <h4>Navegação</h4>
+                    <a href="index.html" class="footer-link">Início</a>
+                    <a href="passeios.html" class="footer-link">Passeios</a>
+                    <a href="contactos.html" class="footer-link">Contacto</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
+                    <h4>Reservas</h4>
                     <a href="tel:965715465" class="footer-pill"><i class="fas fa-phone"></i> 965 715 465</a>
                     <a href="https://wa.me/351965715465" class="footer-pill"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Passeios do Miguel - História construída com carinho.
+                &copy; 2026 Passeios do Miguel - Todos os direitos reservados.
             </div>
         </footer>
     </main>
