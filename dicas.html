@@ -233,6 +233,11 @@
         </footer>
     </main>
 
+<script>
+        // Carrega o Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
     
     </script>
 
