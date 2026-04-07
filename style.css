@@ -1,24 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* --- 1. RESET E ESTRUTURA GRID (A tua base estável) --- */
+/* --- 1. RESET E ESTRUTURA GLOBAL --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     margin: 0;
     min-height: 100vh;
     display: grid;
-    /* Coluna 1: 280px (Menu) | Coluna 2: resto do ecrã */
+    /* Desktop: Menu 280px | Conteúdo 1fr */
     grid-template-columns: 280px 1fr;
-    /* Linha 1: Conteúdo | Linha 2: Rodapé */
     grid-template-rows: 1fr auto; 
     font-family: 'Poppins', sans-serif;
     background: #f4f7f9;
 }
 
-/* --- 2. MENU LATERAL (Z-INDEX CORRIGIDO) --- */
+/* --- 2. MENU LATERAL --- */
 nav { 
     grid-column: 1; 
-    grid-row: 1 / 3; /* Estica-se da linha 1 até ao fim do ecrã */
+    grid-row: 1 / 3; 
     background: #1e4d8c; 
     padding: 30px 15px; 
     color: white; 
@@ -26,21 +25,28 @@ nav {
     position: sticky;
     top: 0;
     height: 100vh;
-    z-index: 1000; /* Garante que fica acima do conteúdo */
+    z-index: 1000;
 }
 
-.logo { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #ffffff; margin-bottom: 25px; object-fit: cover; }
+.logo { 
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%; 
+    border: 4px solid #ffffff; 
+    margin-bottom: 25px; 
+    object-fit: cover; 
+}
 
 nav ul { list-style: none; padding: 0; }
 nav ul li { position: relative; margin-bottom: 8px; }
 nav ul li a { 
-    color: #ffffff; text-decoration: none; display: block; padding: 10px 15px; 
+    color: #ffffff; text-decoration: none; display: block; padding: 12px 15px; 
     border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px; 
-    font-size: 0.8em; text-transform: uppercase; transition: 0.3s; font-weight: 600;
+    font-size: 0.85em; text-transform: uppercase; transition: 0.3s; font-weight: 600;
 }
 nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
 
-/* CASCATA DO MENU (DROPDOWNS) */
+/* DROPDOWNS */
 .dropdown-content, .nested-content {
     display: none; position: absolute; left: 100%; top: 0;
     background: #ffffff; min-width: 220px; border-radius: 0 12px 12px 12px;
@@ -52,11 +58,11 @@ nav ul li a:hover { background: #2a66ff; border-color: #2a66ff; }
     padding: 10px 20px !important; text-transform: none !important; font-size: 13px !important;
 }
 
-/* --- 3. CONTEÚDO (ESTICA-SE PARA OCUPAR O ESPAÇO) --- */
+/* --- 3. CONTEÚDO PRINCIPAL --- */
 main { 
     grid-column: 2; 
     padding: 40px; 
-    width: 100%; /* Garante que ocupa a largura toda da coluna 2 */
+    width: 100%;
 }
 
 section { 
@@ -64,7 +70,6 @@ section {
     margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
 }
 
-/* GRELHA DE PASSEIOS (REESTABELECIDA) */
 .container-passeios { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -79,21 +84,17 @@ section {
 
 .btn-detalhes { margin-top: auto; background: #2a66ff; color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; }
 
-/* --- 4. RODAPÉ (SEMPRE NO FUNDO) --- */
+/* --- 4. RODAPÉ --- */
 footer { 
-    grid-column: 2; /* Fica na coluna da direita */
+    grid-column: 2;
     background: #ffffff; 
     padding: 40px; 
     border-top: 1px solid #eee; 
 }
 
 .footer-container { 
-    display: flex; 
-    justify-content: space-between; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    flex-wrap: wrap; 
-    gap: 20px;
+    display: flex; justify-content: space-between; max-width: 1200px; 
+    margin: 0 auto; flex-wrap: wrap; gap: 20px;
 }
 
 /* --- 5. NEWSLETTER --- */
@@ -103,56 +104,63 @@ footer {
 .newsletter-form input { flex-grow: 1; padding: 12px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
 .btn-newsletter { background: #1e4d8c; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; }
 
-
 /* --- 6. AJUSTES PARA O MODAL FAQ --- */
+body.modal-open { overflow: hidden; }
+#janelaFaq a { color: #2a66ff; text-decoration: underline; font-weight: 600; }
+#janelaFaq div::-webkit-scrollbar { width: 8px; }
+#janelaFaq div::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
 
-/* Garante que o fundo da página não se mexa quando o modal está aberto */
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Estilo para links dentro do modal (caso queiras personalizar o link de inscrição) */
-#janelaFaq a {
-    color: #2a66ff;
-    text-decoration: underline;
-    font-weight: 600;
-}
-
-#janelaFaq a:hover {
-    color: #1e4d8c;
-}
-
-/* Ajuste para o scrollbar dentro do modal em ecrãs pequenos */
-#janelaFaq div::-webkit-scrollbar {
-    width: 8px;
-}
-
-#janelaFaq div::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-
-
-
-
-/* Copia isto para o final do teu ficheiro style.css 
-   Sim, dentro do CSS podes usar este truque se o teu sistema permitir, 
-   MAS o ideal é colocar isto num ficheiro chamado 'script.js' 
-   que já tenhas a carregar em todo o lado.
-*/
-
-// Se não tiveres um ficheiro .js comum, cola este script APENAS na index.html 
-// antes do </body> para testares agora:
-
-<script>
-document.addEventListener('click', function (e) {
-    // Se clicar no botão de dúvidas
-    if (e.target && e.target.id === 'botaoDuvidas') {
-        document.getElementById('janelaFaq').style.display = 'block';
+/* --- 7. AJUSTE RESPONSIVO (TELEMÓVEIS) --- */
+@media (max-width: 1024px) {
+    body {
+        display: block !important; /* Desativa o Grid */
     }
-    // Se clicar no X ou fora da caixa
-    if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-        document.getElementById('janelaFaq').style.display = 'none';
+
+    nav {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 20px 10px !important;
     }
-});
-</script>
+
+    .logo {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto 15px !important;
+    }
+
+    main {
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
+
+    footer {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+
+    /* Submenus no Mobile: Abrem abaixo do link */
+    .dropdown-content, .nested-content {
+        position: static !important;
+        width: 100% !important;
+        display: none;
+        background: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: none !important;
+    }
+    
+    .dropdown:hover > .dropdown-content { display: block !important; }
+
+    .dropdown-content a {
+        color: white !important;
+        text-align: center !important;
+    }
+
+    .container-passeios {
+        grid-template-columns: 1fr !important; /* Um cartão por linha */
+    }
+
+    .newsletter-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
