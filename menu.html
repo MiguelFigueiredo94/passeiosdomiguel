@@ -13,21 +13,29 @@
         flex-direction: column;
     }
     
-    /* --- AJUSTE DO LOGO (Círculo Perfeito) --- */
+/* --- AJUSTE DO LOGO (Reforçado para não ficar oval) --- */
     .logo-container {
-        width: 130px;           /* Largura fixa */
-        height: 130px;          /* Altura igual à largura */
-        margin: 0 auto 20px;
-        background: white;
-        border-radius: 50%;     /* Torna a caixa circular */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 4px solid #ff9800; /* Borda laranja para destaque */
-        overflow: hidden;       /* Garante que nada sai do círculo */
-        padding: 8px;           /* Espaço para as letras não serem cortadas */
+        width: 130px !important;  /* Força a largura */
+        height: 130px !important; /* Força a altura igual */
+        min-width: 130px !important;
+        min-height: 130px !important;
+        margin: 10px auto 20px !important;
+        background: white !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 4px solid #ff9800 !important;
+        overflow: hidden !important;
+        padding: 8px !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+    }
+
+    .logo-img { 
+        width: 90% !important; /* Diminuí um pouco para as letras não tocarem na borda */
+        height: auto !important;
+        object-fit: contain !important;
     }
 
     .logo-img { 
