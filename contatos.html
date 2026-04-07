@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,10 @@
     <style>
         /* Layout Base */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        
+        /* ALTERAÇÃO 1: Removi o width fixo para não esmagar no mobile */
+        #menu-placeholder { width: 280px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* Banner */
@@ -42,7 +44,7 @@
             margin-bottom: 60px; 
         }
 
-        /* Responsividade */
+        /* Responsividade Original */
         @media (max-width: 900px) { .grid-contatos { grid-template-columns: 1fr; } } 
         
         .card-contato { 
@@ -140,6 +142,22 @@
         .footer-bottom { 
             text-align: center; margin-top: 25px; padding-top: 15px; 
             border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
+
+        /* --- ALTERAÇÃO 2: ESTA É A PARTE NOVA QUE CORRIGE O MOBILE --- */
+        @media (max-width: 1024px) {
+            body { display: block; } /* Faz o menu ir para cima e conteúdo para baixo */
+            #menu-placeholder { 
+                width: 100% !important; 
+                min-height: auto !important; 
+                position: relative !important; 
+            }
+            .footer-container { 
+                grid-template-columns: 1fr !important; 
+                text-align: center; 
+            }
+            .banner-contatos h1 { font-size: 2em; }
+            .form-container { padding: 25px; }
         }
     </style>
 </head>
@@ -240,19 +258,16 @@
     </div>
 
     <script>
-        // Menu dinâmico
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        // Funções para a Janela Modal funcionar
         function abrirFaq() {
             document.getElementById('janelaFaq').style.display = 'block';
         }
         function fecharFaq() {
             document.getElementById('janelaFaq').style.display = 'none';
         }
-        // Fechar ao clicar fora da caixa branca
         window.onclick = function(event) {
             let modal = document.getElementById('janelaFaq');
             if (event.target == modal) { modal.style.display = "none"; }
