@@ -1,12 +1,12 @@
 <style>
-    /* --- Layout e Menu Lateral --- */
+    /* --- Layout e Menu Lateral (Desktop) --- */
     #menu-lateral { 
         width: 250px; 
         background-color: #1e4d8c; 
         min-height: 100vh; 
         position: sticky; 
         top: 0; 
-        padding: 15px 12px; /* Reduzido de 25px para ganhar altura */
+        padding: 15px 12px;
         box-sizing: border-box;
         z-index: 9999;
         display: flex;
@@ -15,20 +15,19 @@
     
     .logo { 
         width: 100%; 
-        max-width: 160px; /* Reduzido levemente de 180px */
+        max-width: 160px;
         height: auto;
-        margin: 0 auto 15px; /* Reduzido de 30px */
+        margin: 0 auto 15px;
         display: block; 
         object-fit: contain; 
     }
 
     #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } 
-    #menu-lateral li { margin-bottom: 6px; position: relative; } /* Reduzido de 12px para subir tudo */
+    #menu-lateral li { margin-bottom: 6px; position: relative; }
 
-    /* --- Botões do Menu Principal --- */
     #menu-lateral ul li a { 
         display: flex; align-items: center; color: white; text-decoration: none; 
-        padding: 8px 15px; font-size: 14px; font-weight: 600; /* Botões mais baixos (8px) e letra 14px */
+        padding: 8px 15px; font-size: 14px; font-weight: 600; 
         transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
         border: 2px solid transparent;
     }
@@ -40,7 +39,7 @@
         color: white;
     }
 
-    /* --- DROPDOWN (Passeios) - Mantido Intacto para abrir de lado --- */
+    /* --- DROPDOWN (Desktop) --- */
     .dropdown-content {
         display: none;
         position: absolute;
@@ -109,15 +108,52 @@
         gap: 12px;
     }
     .icones-redes a {
-        color: white;
-        font-size: 18px;
-        transition: 0.3s;
-        opacity: 0.8;
+        color: white; font-size: 18px; transition: 0.3s; opacity: 0.8;
     }
-    .icones-redes a:hover {
-        transform: translateY(-3px);
-        opacity: 1;
-        color: #ff9800;
+
+    /* ============================================================
+       AJUSTES MOBILE (MÁGICA PARA O TELEMÓVEL)
+       ============================================================ */
+    @media (max-width: 1024px) {
+        #menu-lateral {
+            width: 100% !important;
+            min-height: auto !important;
+            position: relative !important;
+            padding: 10px !important;
+        }
+
+        .logo {
+            max-width: 120px !important;
+            margin-bottom: 10px !important;
+        }
+
+        /* No mobile, os dropdowns abrem para BAIXO e não para o lado */
+        .dropdown-content, .nested-content {
+            position: static !important;
+            display: none;
+            width: 100% !important;
+            min-width: 100% !important;
+            box-shadow: none !important;
+            border: none !important;
+            background: rgba(255,255,255,0.05) !important;
+            border-radius: 10px !important;
+            margin-top: 5px;
+        }
+
+        /* Se o usuário clicar (ou tocar), o menu aparece */
+        .dropdown:hover > .dropdown-content, 
+        .nested-dropdown:hover > .nested-content {
+            display: block !important;
+        }
+
+        .dropdown-content a {
+            color: white !important; /* Texto branco no mobile para ler melhor no fundo azul */
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+        }
+
+        .fa-chevron-right {
+            transform: rotate(90deg); /* Aponta para baixo no mobile */
+        }
     }
 </style>
 
