@@ -13,15 +13,30 @@
         flex-direction: column;
     }
     
-    .logo { 
-        width: 100%; 
-        max-width: 160px;
-        height: auto;
-        margin: 0 auto 15px;
-        display: block; 
-        object-fit: contain; 
+    /* --- AJUSTE DO LOGO (Círculo Perfeito) --- */
+    .logo-container {
+        width: 130px;           /* Largura fixa */
+        height: 130px;          /* Altura igual à largura */
+        margin: 0 auto 20px;
+        background: white;
+        border-radius: 50%;     /* Torna a caixa circular */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid #ff9800; /* Borda laranja para destaque */
+        overflow: hidden;       /* Garante que nada sai do círculo */
+        padding: 8px;           /* Espaço para as letras não serem cortadas */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-sizing: border-box;
     }
 
+    .logo-img { 
+        width: 100%; 
+        height: 100%;
+        object-fit: contain;    /* Mantém a proporção da imagem lá dentro */
+    }
+
+    /* --- RESTO DO MENU --- */
     #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } 
     #menu-lateral li { margin-bottom: 6px; position: relative; }
 
@@ -111,9 +126,7 @@
         color: white; font-size: 18px; transition: 0.3s; opacity: 0.8;
     }
 
-    /* ============================================================
-       AJUSTES MOBILE (MÁGICA PARA O TELEMÓVEL)
-       ============================================================ */
+    /* --- AJUSTES MOBILE --- */
     @media (max-width: 1024px) {
         #menu-lateral {
             width: 100% !important;
@@ -122,12 +135,12 @@
             padding: 10px !important;
         }
 
-        .logo {
-            max-width: 120px !important;
+        .logo-container {
+            width: 100px;  /* Um pouco menor no telemóvel */
+            height: 100px;
             margin-bottom: 10px !important;
         }
 
-        /* No mobile, os dropdowns abrem para BAIXO e não para o lado */
         .dropdown-content, .nested-content {
             position: static !important;
             display: none;
@@ -140,26 +153,25 @@
             margin-top: 5px;
         }
 
-        /* Se o usuário clicar (ou tocar), o menu aparece */
         .dropdown:hover > .dropdown-content, 
         .nested-dropdown:hover > .nested-content {
             display: block !important;
         }
 
         .dropdown-content a {
-            color: white !important; /* Texto branco no mobile para ler melhor no fundo azul */
+            color: white !important;
             border-bottom: 1px solid rgba(255,255,255,0.1) !important;
         }
 
         .fa-chevron-right {
-            transform: rotate(90deg); /* Aponta para baixo no mobile */
+            transform: rotate(90deg);
         }
     }
 </style>
 
 <nav id="menu-lateral">
-    <a href="index.html">
-        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+    <a href="index.html" class="logo-container">
+        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo-img" alt="Passeios do Miguel">
     </a>
 
     <ul>
