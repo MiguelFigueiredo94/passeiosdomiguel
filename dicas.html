@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,16 @@
     <style>
         /* Base e Layout Lateral */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        
+        #menu-placeholder { 
+            width: 250px; 
+            background-color: #1e4d8c; 
+            min-height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* BANNER PREMIUM */
@@ -81,14 +90,7 @@
         .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; transition: 0.3s; }
         .card-dica a:hover { color: #ff8c00; }
 
-
-
-
-
-
-            
-
-        /* --- NOVO RODAPÉ DINÂMICO --- */
+        /* --- RODAPÉ --- */
         .footer-universal {
             background: #1e4d8c; position: relative; color: white;
             padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
@@ -99,6 +101,7 @@
             background-size: 200% 100%; animation: moveGradient 5s linear infinite;
         }
         @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+        
         .footer-container {
             max-width: 1100px; margin: 0 auto;
             display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
@@ -123,6 +126,15 @@
         .footer-bottom { 
             text-align: center; margin-top: 25px; padding-top: 15px; 
             border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
+
+        /* AJUSTES RESPONSIVOS (MOBILE) */
+        @media (max-width: 1024px) {
+            body { display: block; }
+            #menu-placeholder { width: 100% !important; min-height: auto !important; position: relative !important; }
+            .banner-dicas h1 { font-size: 2.2em; }
+            .footer-container { grid-template-columns: 1fr !important; text-align: center; }
+            .footer-col ul li a { justify-content: center; }
         }
     </style>
 </head>
@@ -234,12 +246,11 @@
         </footer>
     </main>
 
-<script>
+    <script>
         // Carrega o Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
-    
     </script>
 
 </body>
