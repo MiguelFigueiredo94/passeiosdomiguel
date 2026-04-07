@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,10 @@
     <style>
         /* Base e Layout Lateral */
         body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        
+        /* CORREÇÃO MOBILE: Removido width fixo e adicionado flex-basis */
+        #menu-placeholder { width: 280px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
+        
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
         /* Banner */
@@ -67,7 +70,10 @@
 
         /* Responsividade */
         @media (max-width: 1100px) { .grid-passeios { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .grid-passeios { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .grid-passeios { grid-template-columns: 1fr; } 
+            .chamada-testemunhos { flex-direction: column; text-align: center; margin: 20px; }
+        }
 
         .card-passeio { border-radius: 20px; border: 1px solid #eee; overflow: hidden; background: #fff; transition: 0.3s; display: flex; flex-direction: column; position: relative; }
         .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
@@ -96,7 +102,7 @@
 
         .faq-float { position: fixed; bottom: 30px; right: 30px; background: #ff8c00; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; border: none; box-shadow: 0 5px 25px rgba(0,0,0,0.4); z-index: 9999; }
 
-        /* --- TEU RODAPÉ ORIGINAL --- */
+        /* --- RODAPÉ --- */
         .footer-universal {
             background: #1e4d8c; position: relative; color: white;
             padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
@@ -131,6 +137,21 @@
         .footer-bottom { 
             text-align: center; margin-top: 25px; padding-top: 15px; 
             border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
+        }
+
+        /* --- CORREÇÃO DE LAYOUT PARA MOBILE --- */
+        @media (max-width: 1024px) {
+            body { display: block; } /* Empilha o menu e o conteúdo */
+            #menu-placeholder { 
+                width: 100% !important; 
+                min-height: auto !important; 
+                position: relative !important; 
+            }
+            .footer-container { 
+                grid-template-columns: 1fr !important; 
+                text-align: center; 
+            }
+            .footer-col ul li a { justify-content: center; }
         }
     </style>
 </head>
