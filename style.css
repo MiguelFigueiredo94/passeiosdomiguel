@@ -113,39 +113,45 @@ body.modal-open { overflow: hidden; }
 /* --- 7. AJUSTE RESPONSIVO (TELEMÓVEIS) --- */
 @media (max-width: 1024px) {
     body {
-        display: block !important; /* Desativa o Grid */
+        display: block !important; /* Desativa o Grid para evitar sobreposição */
+        overflow-x: hidden;
     }
 
     nav {
         width: 100% !important;
         height: auto !important;
-        position: relative !important;
+        position: relative !important; /* IMPORTANTE: Faz o menu "empurrar" o conteúdo */
         padding: 20px 10px !important;
+        top: 0;
     }
 
     .logo {
-        width: 100px !important;
-        height: 100px !important;
+        width: 90px !important;
+        height: 90px !important;
         margin: 0 auto 15px !important;
     }
 
     main {
         width: 100% !important;
         padding: 20px 15px !important;
+        display: block !important;
+        position: relative !important;
     }
 
     footer {
         width: 100% !important;
         padding: 20px !important;
+        display: block !important;
     }
 
-    /* Submenus no Mobile: Abrem abaixo do link */
+    /* Submenus no Mobile: Abrem abaixo do link e não por cima */
     .dropdown-content, .nested-content {
         position: static !important;
         width: 100% !important;
         display: none;
         background: rgba(255, 255, 255, 0.1) !important;
         box-shadow: none !important;
+        padding: 5px 0 !important;
     }
     
     .dropdown:hover > .dropdown-content { display: block !important; }
@@ -153,10 +159,11 @@ body.modal-open { overflow: hidden; }
     .dropdown-content a {
         color: white !important;
         text-align: center !important;
+        padding: 10px !important;
     }
 
     .container-passeios {
-        grid-template-columns: 1fr !important; /* Um cartão por linha */
+        grid-template-columns: 1fr !important;
     }
 
     .newsletter-container {
