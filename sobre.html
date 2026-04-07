@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
-        /* O menu-placeholder agora apenas reserva o espaço, o estilo vem do menu.html */
+        /* Placeholder do Menu - Apenas reserva o espaço lateral */
         #menu-placeholder { width: 250px; flex-shrink: 0; background-color: #1e4d8c; }
 
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
@@ -42,7 +42,7 @@
         .fase-content h3 { color: #1e4d8c; margin-bottom: 10px; font-size: 1.3em; }
         .fase-content p { color: #444; line-height: 1.6; font-size: 1.1em; text-align: justify; }
 
-        /* RODAPÉ UNIFICADO */
+        /* RODAPÉ PREMIUM */
         .footer-premium {
             background-color: #1e4d8c; color: white;
             margin: 20px; padding: 40px 50px 20px;
@@ -62,7 +62,7 @@
 
         @media (max-width: 1024px) {
             body { flex-direction: column; }
-            #menu-placeholder { width: 100%; }
+            #menu-placeholder { width: 100%; min-height: auto; }
             .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -132,7 +132,8 @@
     </main>
 
     <script>
-        fetch('menu.html')
+        // Adicionamos ?v=1.1 para garantir que o telemóvel não use o menu antigo oval
+        fetch('menu.html?v=1.1')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
