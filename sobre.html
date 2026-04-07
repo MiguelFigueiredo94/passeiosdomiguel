@@ -12,75 +12,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Mim - Passeios do Miguel</title>
+    
+    <link rel="stylesheet" href="style.css?v=2.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* RESET E ESTRUTURA BASE (Igual aos Contactos) */
+        /* RESET E AJUSTES DE LAYOUT ESPECÍFICOS DA PÁGINA */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
-
-        /* Ajuste do Menu Lateral */
-        #menu-placeholder { 
-            width: 280px; /* Largura ideal para o logo circular de 130px */
-            background-color: #1e4d8c; 
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            display: grid; 
+            grid-template-columns: 280px 1fr; /* Mantém o padrão do style.css */
+            background-color: #f4f7f9; 
             min-height: 100vh; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            flex-shrink: 0;
         }
 
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        #menu-placeholder {
+            grid-column: 1;
+            background-color: #1e4d8c;
+            min-height: 100vh;
+        }
+
+        main { 
+            grid-column: 2;
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+        }
 
         /* Hero / Banner */
         .hero-sobre {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
-            background-size: cover; background-position: center; height: 250px; 
-            display: flex; justify-content: center; align-items: center; color: white;
+            background-size: cover; 
+            background-position: center; 
+            height: 280px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: white;
             border-bottom: 5px solid #ff8c00;
-            border-radius: 0 0 50px 0; /* Estilo arredondado como nos contactos */
+            border-radius: 0 0 50px 0;
         }
 
         .content-section { padding: 50px 40px; max-width: 1000px; margin: 0 auto; flex-grow: 1; }
         
-        /* Estilo das Fases / Texto */
+        /* Estilo das Fases */
         .fase { display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; }
         .fase-icon { 
-            background: #ff8c00; color: white; width: 50px; height: 50px; 
+            background: #ff8c00; color: white; width: 55px; height: 55px; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .fase-content { 
-            background: white; padding: 25px; border-radius: 15px; 
+            background: white; padding: 30px; border-radius: 20px; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.05); flex-grow: 1; 
-            border-left: 5px solid #1e4d8c; 
+            border-left: 6px solid #1e4d8c; 
         }
-        .fase-content p { color: #444; line-height: 1.6; font-size: 1.1em; text-align: justify; }
+        .fase-content p { color: #444; line-height: 1.7; font-size: 1.05em; text-align: justify; }
 
-        /* RODAPÉ (Igual ao padrão Contactos) */
+        /* RODAPÉ UNIVERSAL */
         .footer-universal {
-            background: #1e4d8c; position: relative; color: white;
-            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
+            background: #1e4d8c; color: white;
+            padding: 40px 40px 20px; margin-top: auto;
             border-top: 5px solid #ff8c00;
         }
         .footer-container {
             max-width: 1100px; margin: 0 auto;
             display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
         }
-        .footer-col h4 { color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
-        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; color: white; text-decoration: none; }
+        .footer-col h4 { color: #ff9800; margin-bottom: 15px; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid rgba(255, 152, 0, 0.2); display: inline-block; padding-bottom: 4px; }
+        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.9; color: white; text-decoration: none; }
         .footer-col ul { list-style: none; padding: 0; }
-        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a i { margin-right: 10px; color: #ff9800; }
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; opacity: 0.6; }
 
-        /* --- CORREÇÃO MOBILE CRÍTICA --- */
+        /* RESPONSIVIDADE MOBILE */
         @media (max-width: 1024px) {
-            body { display: block; } /* Impede o esmagamento lateral do menu */
-            #menu-placeholder { 
-                width: 100% !important; 
-                min-height: auto !important; 
-                position: relative !important; 
-            }
+            body { display: block; }
+            #menu-placeholder { width: 100% !important; min-height: auto !important; }
+            main { width: 100%; }
             .content-section { padding: 30px 20px; }
             .fase { flex-direction: column; gap: 15px; }
             .footer-container { grid-template-columns: 1fr !important; text-align: center; }
@@ -93,7 +105,7 @@
 
     <main>
         <section class="hero-sobre">
-            <h1 style="font-size: 2.2em; text-align: center; padding: 0 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Bem-vindos aos Passeios do Miguel!</h1>
+            <h1 style="font-size: 2.5em; text-align: center; padding: 0 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Sobre Mim</h1>
         </section>
 
         <section class="content-section">
@@ -115,9 +127,8 @@
                 <div class="fase-icon"><i class="fas fa-map-marked-alt"></i></div>
                 <div class="fase-content">
                     <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
-                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c; border-top: 1px solid #eee; padding-top: 15px;">
-                        Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta. <br>
-                        De São Pedro do Sul 🗺️ para os cantos mais bonitos de Portugal.
+                    <p style="margin-top: 20px; font-weight: 600; color: #1e4d8c; border-top: 1px solid #eee; padding-top: 20px; font-style: italic;">
+                        "Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta."
                     </p>
                 </div>
             </div>
@@ -127,11 +138,11 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                    <p>Viagens organizadas com carinho, partindo de São Pedro do Sul para os recantos mais belos de Portugal e Espanha.</p>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Navegação</h4>
+                    <h4>Links Rápidos</h4>
                     <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
                         <li><a href="index.html">Início</a></li>
                         <li><a href="sobre.html">Sobre</a></li>
@@ -142,12 +153,11 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
+                    <h4>Informações</h4>
                     <ul>
-                        <li><a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a></li>
-                        <li><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
+                        <li><a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> 965 715 465</a></li>
+                        <li><a href="cancelamento.html"><i class="fas fa-info-circle"></i> Política de Cancelamento</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a></li>
                     </ul>
                 </div>
             </div>
@@ -156,12 +166,16 @@
     </main>
 
     <script>
-        // Carrega o menu com cache busting para forçar a atualização do logo circular
-        fetch('menu.html?v=1.3')
-            .then(response => response.text())
+        // Carrega o menu externo. v=2.0 força a atualização da cache.
+        fetch('menu.html?v=2.0')
+            .then(response => {
+                if (!response.ok) throw new Error('Erro ao carregar menu');
+                return response.text();
+            })
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
-            });
+            })
+            .catch(err => console.error(err));
     </script>
 </body>
 </html>
