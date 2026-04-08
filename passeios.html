@@ -22,26 +22,34 @@
         #menu-placeholder { width: 260px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; flex-shrink: 0; }
         #menu-placeholder img { width: 160px !important; height: 160px !important; border-radius: 50% !important; border: 4px solid white !important; object-fit: cover !important; margin: 30px auto !important; display: block !important; background-color: white; }
 
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* BANNER MURAL TOPO (ESTILO INDEX) */
-        .banner-mural-topo { background: white; padding: 15px; display: flex; justify-content: center; align-items: center; gap: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 800px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #ff8c00; }
-        .banner-mural-topo p { font-size: 14px; color: #1e4d8c; font-weight: 500; }
-        .btn-mural-topo { background: #1e4d8c; color: white; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px; transition: 0.3s; }
-        .btn-mural-topo:hover { background: #ff8c00; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
 
         /* BANNER PRINCIPAL */
-        .banner-passeios { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); background-size: cover; background-position: center; color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid #ff8c00; }
-        .banner-passeios h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .banner-passeios { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
+            background-size: cover; background-position: center; color: white; 
+            padding: 80px 20px; text-align: center; border-bottom: 5px solid #ff8c00; 
+        }
 
-        /* GRELHA DE CONTEÚDO */
-        .seccao-branca { padding: 30px; flex-grow: 1; }
+        /* BANNER MURAL (FLUTUANTE ENTRE AS SECÇÕES) */
+        .banner-mural-float { 
+            background: white; padding: 20px; display: flex; justify-content: center; align-items: center; gap: 25px; 
+            border-radius: 20px; margin: -45px auto 0; /* O segredo para ficar metade/metade */
+            width: 85%; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            border: 2px solid #ff8c00; position: relative; z-index: 10;
+        }
+        .banner-mural-float p { font-size: 15px; color: #1e4d8c; font-weight: 600; }
+        .btn-mural-topo { background: #1e4d8c; color: white; padding: 10px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-mural-topo:hover { background: #ff8c00; transform: scale(1.05); }
+
+        /* SECÇÃO DE CONTEÚDO */
+        .seccao-branca { padding: 60px 30px 30px; flex-grow: 1; }
         .container-cards { max-width: 1200px; margin: 0 auto; }
         .titulo-ano { color: #1e4d8c; font-size: 2.2em; margin: 40px 0 25px; border-left: 6px solid #ff8c00; padding-left: 15px; font-weight: bold; }
         
         .grid-passeios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; }
         
-        /* CARD */
+        /* CARD DESIGN */
         .card-passeio { border-radius: 20px; border: 1px solid #eee; overflow: hidden; background: #fff; transition: 0.3s; display: flex; flex-direction: column; position: relative; }
         .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
@@ -54,7 +62,7 @@
 
         .card-info { padding: 25px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
         
-        /* CALENDÁRIO CIRCULAR/QUADRADO */
+        /* CALENDÁRIO AZUL */
         .cal-pope { width: 65px; border: 1.5px solid #1e4d8c; border-radius: 12px; margin: -55px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .cal-mes { background: #1e4d8c; color: white; font-size: 0.85em; padding: 4px; font-weight: bold; text-transform: uppercase; }
         .cal-dia { font-size: 1.4em; font-weight: bold; padding: 6px; color: #1e4d8c; }
@@ -63,7 +71,7 @@
         .card-info h3 { color: #1e4d8c; margin-bottom: 5px; font-size: 1.4em; font-weight: bold; }
         .card-info p { color: #1e4d8c; font-size: 1em; opacity: 0.9; margin-bottom: 5px; }
 
-        /* BOTÕES DOS CARDS */
+        /* BOTÕES COMPLETOS */
         .card-footer { padding: 20px; background: #fcfcfc; border-top: 1px solid #eee; }
         .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #eef2f7; color: #1e4d8c; text-decoration: none; border-radius: 10px; font-weight: bold; text-align: center; margin-bottom: 12px; transition: 0.3s; }
         .btn-v-detalhes:hover { background: #dce4ee; }
@@ -74,26 +82,17 @@
         .btn-wts { background: #2ecc71; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-size: 1.3em; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
         .btn-wts:hover { background: #27ae60; }
 
-        /* RODAPÉ NORMALIZADO (IGUAL AO INDEX) */
+        /* RODAPÉ PREMIUM COMPACTO */
         .footer-wrapper { padding: 20px; width: 100%; margin-top: auto; }
         .footer-premium { background-color: #1e4d8c; color: white; position: relative; padding: 30px 40px 15px; border-radius: 25px; overflow: hidden; }
         .premium-line { position: absolute; top: 0; left: -100%; height: 4px; width: 100%; background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent); animation: goldRun 4s linear infinite; }
         @keyframes goldRun { 0% { left: -100%; } 100% { left: 100%; } }
-
         .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
         .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 5px; }
-
         .nav-2-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .nav-2-cols a { color: white; text-decoration: none; font-size: 14px; margin-bottom: 10px; opacity: 0.8; display: block; }
-        .nav-2-cols a:hover { opacity: 1; color: #ff8c00; }
-
-        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
-        .footer-contact-item:hover { background: rgba(255,255,255,0.15); }
+        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
         .footer-contact-item i { color: #ff8c00 !important; margin-right: 15px; }
-        
-        .footer-extra-links a { color: white; text-decoration: none; font-size: 13px; display: flex; align-items: center; margin-bottom: 8px; opacity: 0.8; }
-        .footer-extra-links i { color: #ff8c00 !important; margin-right: 10px; }
-
         .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
 
         @media (max-width: 1024px) { body { display: block; } #menu-placeholder { width: 100%; min-height: auto; } .footer-grid { grid-template-columns: 1fr; } }
@@ -104,15 +103,15 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-mural-topo">
-            <i class="fas fa-comments" style="color: #ff8c00; font-size: 24px;"></i>
-            <p>Veja o que dizem os nossos viajantes no Mural de Memórias!</p>
-            <a href="mural.html" class="btn-mural-topo">Ver Mural</a>
-        </div>
-
         <div class="banner-passeios">
             <h1>Agenda de Passeios</h1>
-            <p>Os melhores destinos, a melhor companhia.</p>
+            <p>Descubra Portugal connosco em 2026.</p>
+        </div>
+
+        <div class="banner-mural-float">
+            <i class="fas fa-heart" style="color: #ff8c00; font-size: 28px;"></i>
+            <p>Veja os testemunhos e fotos de quem já viajou com os Passeios do Miguel!</p>
+            <a href="testemunhos.html" class="btn-mural-topo">Mural de Memórias</a>
         </div>
 
         <section class="seccao-branca">
@@ -155,55 +154,14 @@
 
                 <h2 class="titulo-ano">2025</h2>
                 <div class="grid-passeios">
-                    
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Vigo & Valença</h3><p>Especial Natal</p></div>
-                        <div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p>Marvão</p></div>
-                        <div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Sra. d'Ajuda</h3><p>Espinho</p></div>
-                        <div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Sra. d'Agonia</h3><p>Viana do Castelo</p></div>
-                        <div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p>Gerês</p></div>
-                        <div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário Fátima</h3><p>Fátima</p></div>
-                        <div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival Chocolate</h3><p>Óbidos</p></div>
-                        <div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
-                    <article class="card-passeio">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p>Foz Côa</p></div>
-                        <div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Memórias</a></div>
-                    </article>
-
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Vigo & Valença</h3><p>Especial Natal</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p>Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Sra. d'Ajuda</h3><p>Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Sra. d'Agonia</h3><p>Viana do Castelo</p></div><div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p>Gerês</p></div><div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário Fátima</h3><p>Fátima</p></div><div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival Chocolate</h3><p>Óbidos</p></div><div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p>Foz Côa</p></div><div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
                 </div>
             </div>
         </section>
@@ -214,21 +172,13 @@
                 <div class="footer-grid">
                     <div class="footer-col">
                         <h4>Passeios do Miguel</h4>
-                        <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                        <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">Viagens com alma e aventura de S. Pedro do Sul para o país.</p>
                     </div>
                     <div class="footer-col">
                         <h4>Navegação</h4>
                         <div class="nav-2-cols">
-                            <div>
-                                <a href="index.html">Início</a>
-                                <a href="passeios.html">Passeios</a>
-                                <a href="contacto.html">Contacto</a>
-                            </div>
-                            <div>
-                                <a href="sobre.html">Sobre</a>
-                                <a href="mural.html">Mural</a>
-                                <a href="galeria.html">Galeria</a>
-                            </div>
+                            <div><a href="index.html">Início</a><a href="passeios.html">Passeios</a><a href="contacto.html">Contacto</a></div>
+                            <div><a href="sobre.html">Sobre</a><a href="testemunhos.html">Mural</a><a href="galeria.html">Galeria</a></div>
                         </div>
                     </div>
                     <div class="footer-col">
