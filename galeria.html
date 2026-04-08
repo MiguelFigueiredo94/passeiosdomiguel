@@ -3,112 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria - Passeios do Miguel</title>
+    <title>Galeria Premium - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <style>
-        /* --- ESTILOS ESPECÍFICOS DA GALERIA (Mantendo o teu Design) --- */
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* --- DESIGN DIFERENCIADO: BENTO GRID & EFFECTS --- */
         
-        .gallery-container {
+        .gallery-wrapper {
+            padding: 20px;
+            perspective: 1000px;
+        }
+
+        /* Estrutura Bento Grid: Algumas fotos maiores que outras */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 15px;
             margin-top: 30px;
         }
 
-        .gallery-item {
+        .gallery-card {
             position: relative;
-            background: #ffffff;
-            border-radius: 20px; /* Igual aos teus cards */
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            height: 280px;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
+        /* Variações de tamanho para o aspeto "Espetacular" */
+        .card-tall { grid-row: span 2; }
+        .card-wide { grid-column: span 2; }
+        .card-large { grid-column: span 2; grid-row: span 2; }
 
-        .gallery-item img {
+        .gallery-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.08);
+        .gallery-card:hover {
+            transform: scale(1.02) rotateX(2deg);
+            box-shadow: 0 20px 40px rgba(30, 77, 140, 0.2);
+            z-index: 10;
         }
 
-        /* Overlay com o Azul do teu Menu (#1e4d8c) */
-        .gallery-info {
+        .gallery-card:hover img {
+            transform: scale(1.15);
+        }
+
+        /* Overlay Glassmorphism */
+        .card-content {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(30, 77, 140, 0.9));
-            color: white;
             padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: rgba(30, 77, 140, 0.4);
+            backdrop-filter: blur(8px); /* Efeito de Vidro */
+            -webkit-backdrop-filter: blur(8px);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .gallery-card:hover .card-content {
+            transform: translateY(0);
+        }
+
+        .card-content h4 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+        .card-content p { margin: 5px 0 0; font-size: 0.8rem; opacity: 0.9; }
+
+        /* Estilo da pergunta intermédia adaptado */
+        .gallery-intro {
             text-align: center;
+            padding: 40px 0;
         }
-
-        .gallery-item:hover .gallery-info {
-            opacity: 1;
+        .gallery-intro h2 { 
+            color: #1e4d8c; 
+            font-size: 2.5rem; 
+            letter-spacing: -1px;
         }
-
-        .gallery-info h4 {
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .gallery-info p {
-            font-size: 0.85em;
-            opacity: 0.9;
-        }
-
-        /* --- LIGHTBOX (MODAL PARA AMPLIAR FOTO) --- */
-        #lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        #lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 10px;
-            border: 3px solid #ff8c00; /* O teu Laranja */
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        .close-lightbox {
-            position: absolute;
-            top: 30px;
-            right: 40px;
+        .gallery-intro .badge {
+            background: #ff8c00;
             color: white;
-            font-size: 40px;
-            cursor: pointer;
-            transition: 0.3s;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
-        .close-lightbox:hover { color: #ff8c00; }
+        /* Lightbox diferenciado */
+        #fancy-lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 47, 0.98);
+            display: none; justify-content: center; align-items: center;
+            z-index: 3000;
+            backdrop-filter: blur(15px);
+        }
+        #fancy-lightbox img {
+            max-width: 85%; max-height: 80vh;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
 
-        /* Ajuste para mobile dentro da galeria */
+        /* RESPONSIVIDADE TOTAL */
         @media (max-width: 1024px) {
-            .gallery-container { grid-template-columns: 1fr 1fr; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-large, .card-wide { grid-column: span 2; }
         }
         @media (max-width: 600px) {
-            .gallery-container { grid-template-columns: 1fr; }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+            .card-tall, .card-wide, .card-large { grid-column: auto; grid-row: auto; }
         }
     </style>
 </head>
@@ -117,43 +130,61 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-section" style="height: 250px;">
-            <h1>Galeria de Memórias</h1>
-            <p>Reveja os melhores momentos das nossas aventuras por Portugal!</p>
+        <section class="hero-section" style="height: 300px; background-image: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), url('SUA_FOTO_CAPA.jpg');">
+            <span class="badge" style="background:#ff8c00; padding: 5px 15px; border-radius: 20px; font-size: 0.7em;">Álbum de Memórias</span>
+            <h1 style="margin-top: 10px;">Momentos Miguel</h1>
+            <p>Mais do que viagens, criamos histórias partilhadas.</p>
         </section>
 
         <div class="content-container">
-            <div class="question-callout">
-                <h3>Momentos Inesquecíveis</h3>
+            <div class="gallery-intro">
+                <h2>Onde a Alegria Acontece</h2>
+                <div style="width: 50px; height: 3px; background: #ff8c00; margin: 15px auto;"></div>
             </div>
 
-            <div class="gallery-container">
-                
-                <div class="gallery-item" onclick="openFullImg('URL_DA_FOTO_1.jpg')">
-                    <img src="URL_DA_FOTO_1.jpg" alt="Barcelos">
-                    <div class="gallery-info">
-                        <h4>Festa das Cruzes</h4>
-                        <p>Barcelos, Maio 2026</p>
+            <div class="gallery-wrapper">
+                <div class="bento-grid">
+                    <div class="gallery-card card-large" onclick="openP(this)">
+                        <img src="FOTO_1.jpg" alt="Barcelos">
+                        <div class="card-content">
+                            <h4>Festa das Cruzes</h4>
+                            <p>O brilho de Barcelos em 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card card-tall" onclick="openP(this)">
+                        <img src="FOTO_2.jpg" alt="Pessoas">
+                        <div class="card-content">
+                            <h4>Boa Disposição</h4>
+                            <p>A alma dos nossos passeios</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" onclick="openP(this)">
+                        <img src="FOTO_3.jpg" alt="Paisagem">
+                        <div class="card-content">
+                            <h4>Rota da Cereja</h4>
+                            <p>Fundão</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card card-wide" onclick="openP(this)">
+                        <img src="FOTO_4.jpg" alt="Autocarro">
+                        <div class="card-content">
+                            <h4>Conforto na Estrada</h4>
+                            <p>Viagens Premium</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card" onclick="openP(this)">
+                        <img src="FOTO_5.jpg" alt="Comida">
+                        <div class="card-content">
+                            <h4>Gastronomia</h4>
+                            <p>Sabores de Portugal</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="gallery-item" onclick="openFullImg('URL_DA_FOTO_2.jpg')">
-                    <img src="URL_DA_FOTO_2.jpg" alt="Campo Maior">
-                    <div class="gallery-info">
-                        <h4>Festas do Povo</h4>
-                        <p>Campo Maior, 2026</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" onclick="openFullImg('URL_DA_FOTO_3.jpg')">
-                    <img src="URL_DA_FOTO_3.jpg" alt="Viseu">
-                    <div class="gallery-info">
-                        <h4>Feira de São Mateus</h4>
-                        <p>Viseu, 2025</p>
-                    </div>
-                </div>
-
-                </div>
+            </div>
         </div>
 
         <div class="footer-wrapper">
@@ -174,8 +205,9 @@
                         </div>
                     </div>
                     <div class="footer-col">
-                        <h4>Reservas</h4>
-                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <h4>Apoio</h4>
+                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> Reservas</a>
+                        <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Ajuda</a>
                     </div>
                 </div>
                 <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
@@ -183,34 +215,22 @@
         </div>
     </main>
 
-    <div id="lightbox">
-        <span class="close-lightbox" onclick="closeFullImg()">&times;</span>
-        <img id="lightbox-img" src="" alt="Imagem Ampliada">
+    <div id="fancy-lightbox" onclick="this.style.display='none'">
+        <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <img id="f-img" src="">
     </div>
 
     <script>
-        /* Carregar o Menu Lateral */
+        // Carrega o teu menu
         fetch('menu.html')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
 
-        /* Funções da Galeria */
-        function openFullImg(url) {
-            document.getElementById('lightbox-img').src = url;
-            document.getElementById('lightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Impede scroll ao ver a foto
-        }
-
-        function closeFullImg() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Reativa scroll
-        }
-
-        // Fechar ao clicar fora da imagem
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('lightbox')) {
-                closeFullImg();
-            }
+        // Função para abrir imagem
+        function openP(element) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('f-img').src = imgSrc;
+            document.getElementById('fancy-lightbox').style.display = 'flex';
         }
     </script>
 </body>
