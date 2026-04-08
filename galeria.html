@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Memórias - Passeios do Miguel</title>
+    
+    <style>
+        /* Reutilizando a tua identidade visual */
+        :root {
+            --azul-escuro: #003366;
+            --laranja: #ff8c00;
+            --branco: #ffffff;
+            --cinza-claro: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--cinza-claro);
+            color: #333;
+        }
+
+        /* --- Estilo da Galeria Moderna --- */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: var(--azul-escuro);
+            margin-bottom: 40px;
+        }
+
+        .gallery-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-title .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--laranja);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Grelha de Fotos (Masonry-style ou Grid) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px; /* Igual aos teus cards de passeio */
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            height: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay com nome do destino */
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 51, 102, 0.8));
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* --- Lightbox (O efeito de clicar para ampliar) --- */
+        #lightbox {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid white;
+            border-radius: 5px;
+        }
+
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gallery-container">
+        <div class="gallery-title">
+            <h1>Galeria de Memórias</h1>
+            <p>Os nossos momentos mais felizes pela estrada.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('IMAGEM_BARCELOS_GRANDE.jpg')">
+                <img src="IMAGEM_BARCELOS_PEQUENA.jpg" alt="Festa das Cruzes">
+                <div class="gallery-overlay">
+                    <span>Festa das Cruzes</span>
+                    <small>Barcelos, 2026</small>
+                </div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('IMAGEM_VISEU_GRANDE.jpg')">
+                <img src="IMAGEM_VISEU_PEQUENA.jpg" alt="Passeio Viseu">
+                <div class="gallery-overlay">
+                    <span>Feira de São Mateus</span>
+                    <small>Viseu, 2025</small>
+                </div>
+            </div>
+
+            <div class="gallery-item" onclick="openLightbox('IMAGEM_CEREJA_GRANDE.jpg')">
+                <img src="IMAGEM_CEREJA_PEQUENA.jpg" alt="Rota da Cereja">
+                <div class="gallery-overlay">
+                    <span>Rota da Cereja</span>
+                    <small>Fundão</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Ampliada">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Fechar se clicar fora da imagem
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target !== document.getElementById('lightbox-img')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
