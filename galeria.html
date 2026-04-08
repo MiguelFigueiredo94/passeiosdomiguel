@@ -1,33 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Aventuras - Passeios do Miguel</title>
+    <title>Galeria - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* --- ESTRUTURA GLOBAL (IGUAL AO TEU CSS) --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            grid-template-rows: 1fr auto; 
-            font-family: 'Poppins', sans-serif;
-            background: #f4f7f9;
-            min-height: 100vh;
+        /* 1. RESET E ESTRUTURA GLOBAL (Fiel ao teu CSS original) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            background-color: #f4f7f9; 
+            min-height: 100vh; 
         }
 
-        #menu-placeholder { grid-column: 1; grid-row: 1 / 3; background: #1e4d8c; }
-        main { grid-column: 2; width: 100%; display: flex; flex-direction: column; }
+        /* MENU LATERAL - Fixado em 260px para consistência total */
+        #menu-placeholder { 
+            width: 260px; 
+            flex-shrink: 0; 
+            background-color: #1e4d8c; 
+        }
 
-        /* --- DESIGN DA GALERIA BENTO --- */
-        .content-container { padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
-        
-        .gallery-intro { text-align: center; margin-bottom: 40px; }
-        .gallery-intro h2 { color: #1e4d8c; font-size: 2.5rem; margin-bottom: 10px; }
-        .gallery-intro .line { width: 60px; height: 4px; background: #ff8c00; margin: 0 auto; border-radius: 2px; }
+        /* LOGOTIPO: CIRCULAR E NÍTIDO */
+        #menu-placeholder img { 
+            width: 170px !important;      
+            height: 170px !important;     
+            object-fit: contain !important; 
+            border-radius: 50% !important;  
+            border: 4px solid white !important; 
+            background-color: white !important; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 30px auto !important;   
+            display: block !important;
+        }
 
+        /* CONTEÚDO PRINCIPAL */
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* CABEÇALHO HERO */
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+            background-size: cover; background-position: center; height: 380px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
+        }
+        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
+
+        /* CONTAINER DE CONTEÚDO */
+        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; width: 100%; }
+
+        .intro-text { text-align: center; margin-bottom: 40px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
+
+        /* --- DESIGN DIFERENCIADO DA GALERIA (BENTO GRID) --- */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -37,21 +73,21 @@
 
         .album-card {
             position: relative;
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
         }
 
-        /* Tamanhos Diferenciados */
-        .large { grid-column: span 2; grid-row: span 2; }
-        .wide { grid-column: span 2; }
+        .album-card.large { grid-column: span 2; grid-row: span 2; }
+        .album-card.wide { grid-column: span 2; }
 
         .album-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .album-card:hover { transform: translateY(-5px); }
         .album-card:hover img { transform: scale(1.1); }
 
-        .album-info {
+        .album-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(to top, rgba(30, 77, 140, 0.9), transparent 70%);
@@ -60,50 +96,59 @@
             justify-content: flex-end;
             padding: 25px;
             color: white;
-            transition: 0.3s;
+        }
+        .album-overlay h3 { font-size: 1.4rem; margin-bottom: 5px; }
+        .album-overlay span { font-size: 0.85rem; background: #ff8c00; padding: 4px 12px; border-radius: 50px; align-self: flex-start; font-weight: bold; }
+
+        /* --- RODAPÉ OFICIAL (CONFORME AS TUAS IMAGENS) --- */
+        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
+        
+        footer {
+            background-color: #1e4d8c; color: white; position: relative;
+            padding: 35px 40px 15px; border-radius: 20px; overflow: hidden;
         }
 
-        .album-info h3 { font-size: 1.4rem; margin-bottom: 5px; }
-        .album-info span { font-size: 0.9rem; background: #ff8c00; padding: 3px 12px; border-radius: 50px; align-self: flex-start; }
+        .premium-bar {
+            position: absolute; top: 0; left: 0; height: 4px; width: 30%;
+            background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+            animation: moveBar 3.5s linear infinite;
+        }
+        @keyframes moveBar { 0% { left: -30%; } 100% { left: 100%; } }
 
-        /* --- LIGHTBOX (O VISUALIZADOR DE FOTOS) --- */
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 3px; }
+        
+        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .footer-nav a { color: white; text-decoration: none; font-size: 13px; transition: 0.2s; }
+        .footer-nav a:hover { color: #ff8c00; }
+
+        .btn-footer { display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 8px; font-size: 13px; }
+        .btn-footer i { color: #ff8c00; margin-right: 12px; }
+        
+        .alert-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 12px; margin-top: 10px; opacity: 0.8; }
+        .alert-link i { margin-right: 8px; color: #ff8c00; }
+
+        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.7; }
+
+        /* LIGHTBOX (VISUALIZADOR) */
         #gallery-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 25, 47, 0.98);
             display: none; justify-content: center; align-items: center;
-            z-index: 9999; backdrop-filter: blur(10px);
+            z-index: 9999; backdrop-filter: blur(15px);
         }
+        .lightbox-content { position: relative; width: 90%; max-width: 900px; text-align: center; }
+        .lightbox-content img { max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 40px; cursor: pointer; }
 
-        .lightbox-content { position: relative; width: 90%; max-width: 1000px; text-align: center; }
-        .lightbox-content img { max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid rgba(255,255,255,0.1); }
-        
-        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 35px; cursor: pointer; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; background: rgba(255,140,0,0.8); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .nav-btn:hover { background: #ff8c00; }
-        .prev { left: -80px; }
-        .next { right: -80px; }
-
-        /* --- RODAPÉ OFICIAL --- */
-        .footer-wrapper { grid-column: 2; padding: 40px 20px 20px; }
-        footer { background-color: #1e4d8c; color: white; position: relative; padding: 35px 40px 15px; border-radius: 20px; overflow: hidden; }
-        .premium-bar { position: absolute; top: 0; left: 0; height: 4px; width: 30%; background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent); animation: moveBar 3.5s linear infinite; }
-        @keyframes moveBar { 0% { left: -30%; } 100% { left: 100%; } }
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; }
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 3px; }
-        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .footer-nav a { color: white; text-decoration: none; font-size: 13px; transition: 0.2s; }
-        .footer-nav a:hover { color: #ff8c00; }
-        .btn-footer { display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 8px; font-size: 13px; }
-        .btn-footer i { color: #ff8c00; margin-right: 12px; }
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.7; }
-
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            body { display: block; }
+            body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
             .bento-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .nav-btn { width: 45px; height: 45px; font-size: 25px; }
-            .prev { left: 0; } .next { right: 0; }
+            .footer-nav { justify-items: center; }
+            .btn-footer, .alert-link { justify-content: center; }
         }
     </style>
 </head>
@@ -112,49 +157,51 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200'); background-size: cover; height: 320px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; border-bottom: 5px solid #ff8c00;">
-            <h1 style="font-size: 3.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">Álbuns de Viagem</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Cada quilómetro uma história, cada foto um sorriso.</p>
+        <section class="hero-section">
+            <h1>Álbuns de Viagem</h1>
+            <p>Reveja os melhores momentos das nossas aventuras!</p>
         </section>
 
         <div class="content-container">
-            <div class="gallery-intro">
-                <h2>Explore as nossas memórias</h2>
-                <div class="line"></div>
-            </div>
+            <section class="intro-text">
+                <h2>O Nosso Álbum de Memórias</h2>
+                <p>Clique num dos álbuns abaixo para ver as fotografias de cada passeio.</p>
+            </section>
 
             <div class="bento-grid">
-                <div class="album-card large" onclick="openAlbum('Barcelos 2026', ['foto1_barcelos.jpg', 'foto2_barcelos.jpg', 'foto3_barcelos.jpg'])">
-                    <img src="capa_barcelos.jpg" alt="Festa das Cruzes">
-                    <div class="album-info">
+                
+                <div class="album-card large" onclick="openAlbum('Festa das Cruzes', 'LINK_DA_FOTO_CAPA.jpg')">
+                    <img src="LINK_DA_FOTO_CAPA.jpg" alt="Barcelos">
+                    <div class="album-overlay">
                         <span>32 Fotos</span>
                         <h3>Festa das Cruzes</h3>
                     </div>
                 </div>
 
-                <div class="album-card" onclick="openAlbum('Festas do Povo', ['foto1_campo.jpg', 'foto2_campo.jpg'])">
-                    <img src="capa_campo_maior.jpg" alt="Festas do Povo">
-                    <div class="album-info">
+                <div class="album-card" onclick="openAlbum('Festas do Povo', 'LINK_OUTRA_FOTO.jpg')">
+                    <img src="LINK_OUTRA_FOTO.jpg" alt="Campo Maior">
+                    <div class="album-overlay">
                         <span>45 Fotos</span>
                         <h3>Festas do Povo</h3>
                     </div>
                 </div>
 
-                <div class="album-card tall" onclick="openAlbum('Serra da Estrela', ['foto1_serra.jpg', 'foto2_serra.jpg'])">
-                    <img src="capa_serra.jpg" alt="Serra da Estrela">
-                    <div class="album-info">
-                        <span>20 Fotos</span>
+                <div class="album-card wide" onclick="openAlbum('São Mateus', 'LINK_OUTRA_FOTO.jpg')">
+                    <img src="LINK_OUTRA_FOTO.jpg" alt="Viseu">
+                    <div class="album-overlay">
+                        <span>28 Fotos</span>
+                        <h3>Feira de São Mateus</h3>
+                    </div>
+                </div>
+
+                <div class="album-card" onclick="openAlbum('Serra da Estrela', 'LINK_OUTRA_FOTO.jpg')">
+                    <img src="LINK_OUTRA_FOTO.jpg" alt="Neve">
+                    <div class="album-overlay">
+                        <span>15 Fotos</span>
                         <h3>Serra da Estrela</h3>
                     </div>
                 </div>
 
-                <div class="album-card wide" onclick="openAlbum('Viseu', ['foto1_viseu.jpg', 'foto2_viseu.jpg'])">
-                    <img src="capa_viseu.jpg" alt="Viseu">
-                    <div class="album-info">
-                        <span>18 Fotos</span>
-                        <h3>São Mateus Viseu</h3>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -162,26 +209,33 @@
             <footer>
                 <div class="premium-bar"></div>
                 <div class="footer-grid">
+                    
                     <div class="footer-col">
                         <h4>Passeios do Miguel</h4>
-                        <p style="font-size: 13px; opacity: 0.8;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                        <p style="font-size: 13px; line-height: 1.6; opacity: 0.8;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
                     </div>
+
                     <div class="footer-col">
                         <h4>Navegação</h4>
                         <div class="footer-nav">
                             <a href="index.html">Início</a>
+                            <a href="sobre.html">Sobre</a>
                             <a href="passeios.html">Passeios</a>
-                            <a href="galeria.html">Galeria</a>
+                            <a href="testemunhos.html">Mural</a>
                             <a href="contactos.html">Contacto</a>
                         </div>
                     </div>
+
                     <div class="footer-col">
-                        <h4>Reservas</h4>
-                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <h4>Apoio e Reservas</h4>
                         <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
+                        <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
                     </div>
+
                 </div>
-                <div class="footer-bottom">&copy; 2026 Passeios do Miguel</div>
+                <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
             </footer>
         </div>
     </main>
@@ -189,26 +243,21 @@
     <div id="gallery-overlay">
         <div class="lightbox-content">
             <span class="close-btn" onclick="closeAlbum()">&times;</span>
-            <div class="nav-btn prev" onclick="changePhoto(-1)">&#10094;</div>
-            <img id="current-img" src="" alt="Galeria">
-            <div class="nav-btn next" onclick="changePhoto(1)">&#10095;</div>
-            <h3 id="album-name" style="color: white; margin-top: 20px;"></h3>
+            <img id="current-img" src="">
+            <h2 id="album-title" style="color: white; margin-top: 15px;"></h2>
         </div>
     </div>
 
     <script>
-        // Carrega o Menu
-        fetch('menu.html').then(res => res.text()).then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
+        // Carregar o menu lateral (menu.html)
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
 
-        // Lógica da Galeria
-        let currentPhotos = [];
-        let currentIndex = 0;
-
-        function openAlbum(name, photos) {
-            currentPhotos = photos;
-            currentIndex = 0;
-            document.getElementById('album-name').innerText = name;
-            updatePhoto();
+        // Lógica simples para abrir a galeria
+        function openAlbum(title, imgSrc) {
+            document.getElementById('current-img').src = imgSrc;
+            document.getElementById('album-title').innerText = title;
             document.getElementById('gallery-overlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -217,24 +266,6 @@
             document.getElementById('gallery-overlay').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        function changePhoto(step) {
-            currentIndex += step;
-            if (currentIndex >= currentPhotos.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = currentPhotos.length - 1;
-            updatePhoto();
-        }
-
-        function updatePhoto() {
-            document.getElementById('current-img').src = currentPhotos[currentIndex];
-        }
-
-        // Fechar no ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") closeAlbum();
-            if (e.key === "ArrowRight") changePhoto(1);
-            if (e.key === "ArrowLeft") changePhoto(-1);
-        });
     </script>
 </body>
 </html>
