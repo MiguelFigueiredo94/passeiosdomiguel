@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL (Fiel ao teu CSS original) */
+        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', sans-serif; 
@@ -24,11 +24,15 @@
             min-height: 100vh; 
         }
 
-        /* MENU LATERAL - Fixado em 260px para consistência total */
+        /* MENU LATERAL - CORREÇÃO DE Z-INDEX PARA SOBREPOSIÇÃO */
         #menu-placeholder { 
             width: 260px; 
             flex-shrink: 0; 
             background-color: #1e4d8c; 
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 1000; /* Garante que o menu e acórdão fiquem por cima de tudo */
         }
 
         /* LOGOTIPO: CIRCULAR E NÍTIDO */
@@ -44,8 +48,15 @@
             display: block !important;
         }
 
-        /* CONTEÚDO PRINCIPAL */
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        /* CONTEÚDO PRINCIPAL - CAMADA INFERIOR AO MENU */
+        main { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+            position: relative;
+            z-index: 1; /* Fica abaixo do menu 1000 */
+        }
 
         /* CABEÇALHO HERO */
         .hero-section {
@@ -100,7 +111,7 @@
         .album-overlay h3 { font-size: 1.4rem; margin-bottom: 5px; }
         .album-overlay span { font-size: 0.85rem; background: #ff8c00; padding: 4px 12px; border-radius: 50px; align-self: flex-start; font-weight: bold; }
 
-        /* --- RODAPÉ OFICIAL (CONFORME AS TUAS IMAGENS) --- */
+        /* --- RODAPÉ OFICIAL --- */
         .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
         
         footer {
@@ -144,7 +155,7 @@
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
-            #menu-placeholder { width: 100%; }
+            #menu-placeholder { width: 100%; height: auto; position: relative; }
             .bento-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-nav { justify-items: center; }
