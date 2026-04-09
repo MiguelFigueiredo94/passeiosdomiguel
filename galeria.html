@@ -1,165 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria - Passeios do Miguel</title>
+    <title>Galeria de Memórias - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            background-color: #f4f7f9; 
-            min-height: 100vh; 
-        }
-
-        /* MENU LATERAL - CORREÇÃO DE Z-INDEX PARA SOBREPOSIÇÃO PRIORITÁRIA */
-        #menu-placeholder { 
-            width: 260px; 
-            flex-shrink: 0; 
-            background-color: #1e4d8c; 
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            z-index: 1000; /* Garante que o menu e acórdão fiquem por cima de tudo */
-        }
-
-        /* LOGOTIPO: CIRCULAR E NÍTIDO */
-        #menu-placeholder img { 
-            width: 170px !important;      
-            height: 170px !important;     
-            object-fit: contain !important; 
-            border-radius: 50% !important;  
-            border: 4px solid white !important; 
-            background-color: white !important; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin: 30px auto !important;   
-            display: block !important;
-        }
-
-        /* CONTEÚDO PRINCIPAL - CAMADA INFERIOR AO MENU */
-        main { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-            position: relative;
-            z-index: 1; /* Fica abaixo do menu 1000 */
-        }
-
-        /* CABEÇALHO HERO */
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
-            background-size: cover; background-position: center; height: 380px; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
-        }
-        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
-
-        /* CONTAINER DE CONTEÚDO */
-        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; width: 100%; }
-
-        .intro-text { text-align: center; margin-bottom: 40px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
-
-        /* --- DESIGN DA GALERIA (BENTO GRID) --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 240px;
-            gap: 20px;
-        }
-
-        .album-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-        }
-
-        .album-card.large { grid-column: span 2; grid-row: span 2; }
-        .album-card.wide { grid-column: span 2; }
-
-        .album-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .album-card:hover { transform: translateY(-5px); }
-        .album-card:hover img { transform: scale(1.1); }
-
-        .album-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(30, 77, 140, 0.9), transparent 70%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 25px;
-            color: white;
-        }
-        .album-overlay h3 { font-size: 1.4rem; margin-bottom: 5px; }
-        .album-overlay span { font-size: 0.85rem; background: #ff8c00; padding: 4px 12px; border-radius: 50px; align-self: flex-start; font-weight: bold; }
-
-        /* --- RODAPÉ --- */
-        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         
-        footer {
-            background-color: #1e4d8c; color: white; position: relative;
-            padding: 35px 40px 15px; border-radius: 20px; overflow: hidden;
+        /* MENU LATERAL */
+        #menu-placeholder { width: 260px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; flex-shrink: 0; z-index: 9999; }
+
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        /* HEADER GALERIA */
+        .gallery-header { 
+            background: linear-gradient(rgba(30, 77, 140, 0.9), rgba(30, 77, 140, 0.9)), url('https://images.unsplash.com/photo-1500622388414-8314ceb1a0af?q=80&w=1200');
+            background-size: cover; background-position: center;
+            padding: 60px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+        }
+        .gallery-header h1 { font-size: 2.8em; margin-bottom: 10px; }
+
+        /* FILTROS */
+        .filter-container { 
+            padding: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; 
+            background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .filter-btn { 
+            padding: 10px 20px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c;
+            border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: #1e4d8c; color: white; }
+
+        /* GRID DE FOTOS */
+        .gallery-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; padding: 40px; max-width: 1400px; margin: 0 auto; 
         }
 
-        .premium-bar {
-            position: absolute; top: 0; left: 0; height: 4px; width: 30%;
-            background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
-            animation: moveBar 3.5s linear infinite;
+        .gallery-item { 
+            position: relative; border-radius: 15px; overflow: hidden; height: 250px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        @keyframes moveBar { 0% { left: -30%; } 100% { left: 100%; } }
+        .gallery-item:hover { transform: scale(1.03); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .footer-col h4 { color: #ff8c00; text-transform: uppercase; font-size: 12px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,140,0,0.2); display: inline-block; padding-bottom: 3px; }
-        
-        .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .footer-nav a { color: white; text-decoration: none; font-size: 13px; transition: 0.2s; }
-        .footer-nav a:hover { color: #ff8c00; }
-
-        .btn-footer { display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 8px; font-size: 13px; }
-        .btn-footer i { color: #ff8c00; margin-right: 12px; }
-        
-        .alert-link { display: flex; align-items: center; color: white; text-decoration: none; font-size: 12px; margin-top: 10px; opacity: 0.8; }
-        .alert-link i { margin-right: 8px; color: #ff8c00; }
-
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.7; }
-
-        /* LIGHTBOX (VISUALIZADOR) */
-        #gallery-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 25, 47, 0.98);
-            display: none; justify-content: center; align-items: center;
-            z-index: 9999; backdrop-filter: blur(15px);
+        /* OVERLAY COM NOME DO PASSEIO */
+        .item-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px; color: white; opacity: 0; transition: 0.3s;
         }
-        .lightbox-content { position: relative; width: 90%; max-width: 900px; text-align: center; }
-        .lightbox-content img { max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+        .gallery-item:hover .item-overlay { opacity: 1; }
+        .item-overlay span { font-size: 0.8em; color: #ff8c00; font-weight: bold; text-transform: uppercase; }
+        .item-overlay h4 { font-size: 1.1em; }
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; position: relative; }
-            .bento-grid { grid-template-columns: 1fr 1fr; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-nav { justify-items: center; }
-            .btn-footer, .alert-link { justify-content: center; }
+        /* RODAPÉ IGUAL ÀS OUTRAS PÁGINAS */
+        .footer-wrapper { padding: 20px; margin-top: auto; }
+        .footer-premium { background-color: #1e4d8c; color: white; padding: 30px 40px 15px; border-radius: 25px; position: relative; overflow: hidden; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+        .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; }
+        .nav-2-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .nav-2-cols a { color: white; text-decoration: none; font-size: 14px; opacity: 0.8; display: block; margin-bottom: 8px; }
+        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
+        .footer-contact-item i { color: #ff8c00; margin-right: 15px; }
+
+        @media (max-width: 1024px) { 
+            body { display: block; } 
+            #menu-placeholder { width: 100%; height: auto; position: relative; } 
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -168,115 +81,114 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-section">
-            <h1>Álbuns de Viagem</h1>
-            <p>Reveja os melhores momentos das nossas aventuras!</p>
-        </section>
+        <header class="gallery-header">
+            <h1>Galeria de Memórias</h1>
+            <p>Os melhores momentos dos nossos passeios, eternizados em fotografias.</p>
+        </header>
 
-        <div class="content-container">
-            <section class="intro-text">
-                <h2>O Nosso Álbum de Memórias</h2>
-                <p>Clique num dos álbuns abaixo para ver as fotografias de cada passeio.</p>
-            </section>
-
-            <div class="bento-grid">
-                
-                <div class="album-card large" onclick="openAlbum('Festa das Cruzes', 'https://i.imgur.com/uC6VTVp.png')">
-                    <img src="https://i.imgur.com/uC6VTVp.png" alt="Barcelos">
-                    <div class="album-overlay">
-                        <span>32 Fotos</span>
-                        <h3>Festa das Cruzes</h3>
-                    </div>
-                </div>
-
-                <div class="album-card" onclick="openAlbum('Festas do Povo', 'https://i.imgur.com/L58QRQc.png')">
-                    <img src="https://i.imgur.com/L58QRQc.png" alt="Campo Maior">
-                    <div class="album-overlay">
-                        <span>45 Fotos</span>
-                        <h3>Festas do Povo</h3>
-                    </div>
-                </div>
-
-                <div class="album-card wide" onclick="openAlbum('Magia Animal', 'https://i.imgur.com/TBLxBlw.png')">
-                    <img src="https://i.imgur.com/TBLxBlw.png" alt="Gaia">
-                    <div class="album-overlay">
-                        <span>28 Fotos</span>
-                        <h3>Magia Animal em Gaia</h3>
-                    </div>
-                </div>
-
-                <div class="album-card" onclick="openAlbum('Festa das Camélias', 'https://i.imgur.com/PmjIQux.png')">
-                    <img src="https://i.imgur.com/PmjIQux.png" alt="Celorico de Basto">
-                    <div class="album-overlay">
-                        <span>15 Fotos</span>
-                        <h3>Festa das Camélias</h3>
-                    </div>
-                </div>
-
-            </div>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
+            <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
+            <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
+            <button class="filter-btn" onclick="filterGallery('natal')">Especial Natal</button>
+            <button class="filter-btn" onclick="filterGallery('natureza')">Natureza</button>
         </div>
 
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="2025 natal">
+                <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
+                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
+                    <div class="item-overlay">
+                        <span>2025 - Natal</span>
+                        <h4>Vigo & Valença</h4>
+                    </div>
+                </a>
+            </div>
+
+            <div class="gallery-item" data-category="2025">
+                <a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="viana">
+                    <img src="https://i.imgur.com/NmjlEsz.png" alt="Viana">
+                    <div class="item-overlay">
+                        <span>2025 - Romaria</span>
+                        <h4>Viana do Castelo</h4>
+                    </div>
+                </a>
+            </div>
+
+            <div class="gallery-item" data-category="2025 natureza">
+                <a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres">
+                    <img src="https://i.imgur.com/NqapppF.png" alt="Gerês">
+                    <div class="item-overlay">
+                        <span>2025 - Natureza</span>
+                        <h4>Gerês & Braga</h4>
+                    </div>
+                </a>
+            </div>
+
+            <div class="gallery-item" data-category="2025">
+                <a href="https://i.imgur.com/dZF0utN.png" class="glightbox" data-gallery="fatima">
+                    <img src="https://i.imgur.com/dZF0utN.png" alt="Fátima">
+                    <div class="item-overlay">
+                        <span>2025 - Fé</span>
+                        <h4>Santuário de Fátima</h4>
+                    </div>
+                </a>
+            </div>
+
+            </div>
+
         <div class="footer-wrapper">
-            <footer>
-                <div class="premium-bar"></div>
+            <footer class="footer-premium">
                 <div class="footer-grid">
-                    
                     <div class="footer-col">
                         <h4>Passeios do Miguel</h4>
-                        <p style="font-size: 13px; line-height: 1.6; opacity: 0.8;">Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
+                        <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">Viagens com alma e aventura de S. Pedro do Sul para o país.</p>
                     </div>
-
                     <div class="footer-col">
                         <h4>Navegação</h4>
-                        <div class="footer-nav">
-                            <a href="index.html">Início</a>
-                            <a href="sobre.html">Sobre</a>
-                            <a href="passeios.html">Passeios</a>
-                            <a href="testemunhos.html">Mural</a>
-                            <a href="contactos.html">Contacto</a>
+                        <div class="nav-2-cols">
+                            <div><a href="index.html">Início</a><a href="passeios.html">Passeios</a><a href="contacto.html">Contacto</a></div>
+                            <div><a href="sobre.html">Sobre</a><a href="testemunhos.html">Mural</a><a href="galeria.html">Galeria</a></div>
                         </div>
                     </div>
-
                     <div class="footer-col">
                         <h4>Apoio e Reservas</h4>
-                        <a href="tel:965715465" class="btn-footer"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        <a href="https://wa.me/351965715465" class="btn-footer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="cancelamento.html" class="alert-link"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a>
-                        <a href="faq.html" class="alert-link"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a>
+                        <a href="tel:965715465" class="footer-contact-item"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        <a href="https://wa.me/351965715465" class="footer-contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     </div>
-
                 </div>
-                <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
+                <div style="text-align: center; margin-top: 25px; opacity: 0.5; font-size: 12px;">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
             </footer>
         </div>
     </main>
 
-    <div id="gallery-overlay">
-        <div class="lightbox-content">
-            <span class="close-btn" onclick="closeAlbum()">&times;</span>
-            <img id="current-img" src="">
-            <h2 id="album-title" style="color: white; margin-top: 15px;"></h2>
-        </div>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // Carregar o menu lateral (menu.html)
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
+        // Inicializa o visualizador de fotos
+        const lightbox = GLightbox({ selector: '.glightbox' });
 
-        // Lógica para abrir a galeria
-        function openAlbum(title, imgSrc) {
-            document.getElementById('current-img').src = imgSrc;
-            document.getElementById('album-title').innerText = title;
-            document.getElementById('gallery-overlay').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        // Função de Filtro
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                const categories = item.getAttribute('data-category');
+                if (category === 'all' || categories.includes(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
 
-        function closeAlbum() {
-            document.getElementById('gallery-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        // Carrega o Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
     </script>
 </body>
 </html>
