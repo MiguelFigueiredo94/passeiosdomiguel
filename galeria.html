@@ -11,68 +11,55 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         
-        /* MENU LATERAL */
         #menu-placeholder { width: 260px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; flex-shrink: 0; z-index: 9999; }
-
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* HEADER GALERIA */
         .gallery-header { 
-            background: linear-gradient(rgba(30, 77, 140, 0.9), rgba(30, 77, 140, 0.9)), url('https://images.unsplash.com/photo-1500622388414-8314ceb1a0af?q=80&w=1200');
-            background-size: cover; background-position: center;
-            padding: 60px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+            background: linear-gradient(rgba(30, 77, 140, 0.8), rgba(30, 77, 140, 0.8)), url('https://i.imgur.com/aUixZ0Y.png');
+            background-size: cover; background-position: center; padding: 60px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
         }
-        .gallery-header h1 { font-size: 2.8em; margin-bottom: 10px; }
 
-        /* FILTROS */
         .filter-container { 
-            padding: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; 
+            padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; 
             background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .filter-btn { 
-            padding: 10px 20px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c;
-            border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
-        }
-        .filter-btn.active, .filter-btn:hover { background: #1e4d8c; color: white; }
+        .filter-btn { padding: 8px 18px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .filter-btn.active { background: #1e4d8c; color: white; }
 
-        /* GRID DE FOTOS */
+        /* GRID DE 4 COLUNAS */
         .gallery-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 20px; padding: 40px; max-width: 1400px; margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); /* 4 Colunas */
+            gap: 15px; padding: 30px; max-width: 1400px; margin: 0 auto; 
         }
 
         .gallery-item { 
-            position: relative; border-radius: 15px; overflow: hidden; height: 250px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;
-            transition: transform 0.3s ease;
+            position: relative; border-radius: 12px; overflow: hidden; height: 220px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s;
         }
-        .gallery-item:hover { transform: scale(1.03); }
+        .gallery-item:hover { transform: translateY(-5px); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* OVERLAY COM NOME DO PASSEIO */
         .item-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 20px; color: white; opacity: 0; transition: 0.3s;
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;
         }
-        .gallery-item:hover .item-overlay { opacity: 1; }
-        .item-overlay span { font-size: 0.8em; color: #ff8c00; font-weight: bold; text-transform: uppercase; }
-        .item-overlay h4 { font-size: 1.1em; }
+        .item-overlay h4 { font-size: 0.9em; margin-top: 3px; }
+        .photo-count { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; }
 
-        /* RODAPÉ IGUAL ÀS OUTRAS PÁGINAS */
+        /* Esconder fotos extras (elas só aparecem no slide do Lightbox) */
+        .hidden-photos { display: none; }
+
+        /* RODAPÉ */
         .footer-wrapper { padding: 20px; margin-top: auto; }
-        .footer-premium { background-color: #1e4d8c; color: white; padding: 30px 40px 15px; border-radius: 25px; position: relative; overflow: hidden; }
+        .footer-premium { background-color: #1e4d8c; color: white; padding: 30px 40px 15px; border-radius: 25px; }
         .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
-        .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; }
-        .nav-2-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .nav-2-cols a { color: white; text-decoration: none; font-size: 14px; opacity: 0.8; display: block; margin-bottom: 8px; }
-        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
-        .footer-contact-item i { color: #ff8c00; margin-right: 15px; }
-
-        @media (max-width: 1024px) { 
-            body { display: block; } 
-            #menu-placeholder { width: 100%; height: auto; position: relative; } 
-            .footer-grid { grid-template-columns: 1fr; }
+        
+        @media (max-width: 1200px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { 
+            body { display: block; } #menu-placeholder { width: 100%; height: auto; }
+            .gallery-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -83,55 +70,51 @@
     <main>
         <header class="gallery-header">
             <h1>Galeria de Memórias</h1>
-            <p>Os melhores momentos dos nossos passeios, eternizados em fotografias.</p>
+            <p>Clique numa foto para ver o álbum completo de cada passeio.</p>
         </header>
 
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
             <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
             <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
-            <button class="filter-btn" onclick="filterGallery('natal')">Especial Natal</button>
-            <button class="filter-btn" onclick="filterGallery('natureza')">Natureza</button>
         </div>
 
         <div class="gallery-grid">
-            <div class="gallery-item" data-category="2025 natal">
+            
+            <div class="gallery-item" data-category="2026">
+                <a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campomaior">
+                    <div class="photo-count"><i class="fas fa-image"></i> +15</div>
+                    <img src="https://i.imgur.com/L58QRQc.png">
+                    <div class="item-overlay"><h4>Festas do Povo</h4></div>
+                </a>
+                <div class="hidden-photos">
+                    <a href="URL_DA_FOTO_2" class="glightbox" data-gallery="campomaior"></a>
+                    <a href="URL_DA_FOTO_3" class="glightbox" data-gallery="campomaior"></a>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="2025">
                 <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
-                    <div class="item-overlay">
-                        <span>2025 - Natal</span>
-                        <h4>Vigo & Valença</h4>
-                    </div>
+                    <div class="photo-count"><i class="fas fa-image"></i> +20</div>
+                    <img src="https://i.imgur.com/aUixZ0Y.png">
+                    <div class="item-overlay"><h4>Vigo & Valença</h4></div>
+                </a>
+                <div class="hidden-photos">
+                    <a href="URL_OUTRA_FOTO_VIGO" class="glightbox" data-gallery="vigo"></a>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="2026">
+                <a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="cereja">
+                    <img src="https://i.imgur.com/kX8ScBU.png">
+                    <div class="item-overlay"><h4>Rota da Cereja</h4></div>
                 </a>
             </div>
 
             <div class="gallery-item" data-category="2025">
                 <a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="viana">
-                    <img src="https://i.imgur.com/NmjlEsz.png" alt="Viana">
-                    <div class="item-overlay">
-                        <span>2025 - Romaria</span>
-                        <h4>Viana do Castelo</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="gallery-item" data-category="2025 natureza">
-                <a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres">
-                    <img src="https://i.imgur.com/NqapppF.png" alt="Gerês">
-                    <div class="item-overlay">
-                        <span>2025 - Natureza</span>
-                        <h4>Gerês & Braga</h4>
-                    </div>
-                </a>
-            </div>
-
-            <div class="gallery-item" data-category="2025">
-                <a href="https://i.imgur.com/dZF0utN.png" class="glightbox" data-gallery="fatima">
-                    <img src="https://i.imgur.com/dZF0utN.png" alt="Fátima">
-                    <div class="item-overlay">
-                        <span>2025 - Fé</span>
-                        <h4>Santuário de Fátima</h4>
-                    </div>
+                    <img src="https://i.imgur.com/NmjlEsz.png">
+                    <div class="item-overlay"><h4>Romaria d'Agonia</h4></div>
                 </a>
             </div>
 
@@ -142,42 +125,36 @@
                 <div class="footer-grid">
                     <div class="footer-col">
                         <h4>Passeios do Miguel</h4>
-                        <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">Viagens com alma e aventura de S. Pedro do Sul para o país.</p>
+                        <p style="font-size: 14px; opacity: 0.8;">Viagens com alma de S. Pedro do Sul para o país.</p>
                     </div>
                     <div class="footer-col">
                         <h4>Navegação</h4>
                         <div class="nav-2-cols">
-                            <div><a href="index.html">Início</a><a href="passeios.html">Passeios</a><a href="contacto.html">Contacto</a></div>
-                            <div><a href="sobre.html">Sobre</a><a href="testemunhos.html">Mural</a><a href="galeria.html">Galeria</a></div>
+                            <div><a href="index.html">Início</a><a href="passeios.html">Passeios</a></div>
+                            <div><a href="testemunhos.html">Mural</a><a href="galeria.html">Galeria</a></div>
                         </div>
                     </div>
                     <div class="footer-col">
-                        <h4>Apoio e Reservas</h4>
+                        <h4>Apoio</h4>
                         <a href="tel:965715465" class="footer-contact-item"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        <a href="https://wa.me/351965715465" class="footer-contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 25px; opacity: 0.5; font-size: 12px;">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
             </footer>
         </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // Inicializa o visualizador de fotos
         const lightbox = GLightbox({ selector: '.glightbox' });
 
-        // Função de Filtro
         function filterGallery(category) {
             const items = document.querySelectorAll('.gallery-item');
             const btns = document.querySelectorAll('.filter-btn');
-
             btns.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
             items.forEach(item => {
-                const categories = item.getAttribute('data-category');
-                if (category === 'all' || categories.includes(category)) {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
@@ -185,7 +162,6 @@
             });
         }
 
-        // Carrega o Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
