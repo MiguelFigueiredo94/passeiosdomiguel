@@ -16,70 +16,93 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* 1. ESTRUTURA E MENU */
+        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; overflow-x: hidden; }
 
-        #menu-placeholder { width: 260px; background-color: #1e4d8c; position: fixed; top: 0; left: 0; height: 100vh; z-index: 1000; }
+        /* MENU LATERAL FIXO */
+        #menu-placeholder { 
+            width: 260px; 
+            background-color: #1e4d8c; 
+            position: fixed; 
+            top: 0; left: 0; height: 100vh; 
+            z-index: 1000;
+        }
+
         #menu-placeholder img { 
-            width: 170px !important; height: 170px !important; 
-            border-radius: 50% !important; border: 4px solid white !important; 
-            background-color: white !important; margin: 30px auto !important; 
-            display: block !important; object-fit: cover !important;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 170px !important;      
+            height: 170px !important;     
+            object-fit: cover !important; 
+            border-radius: 50% !important;  
+            border: 4px solid white !important; 
+            background-color: white !important; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 30px auto !important;   
+            display: block !important;
         }
 
         main { margin-left: 260px; width: calc(100% - 260px); display: flex; flex-direction: column; }
 
-        /* 2. HEADER E FILTROS */
+        /* CABEÇALHO */
         .gallery-header { 
             background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), url('https://i.imgur.com/L58QRQc.png');
-            background-size: cover; background-position: center; padding: 60px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+            background-size: cover; background-position: center; padding: 80px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
         }
+        .gallery-header h1 { font-size: 3.2em; font-weight: 800; }
 
-        .filter-container { padding: 20px; display: flex; justify-content: center; gap: 10px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .filter-btn { padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        /* FILTROS */
+        .filter-container { 
+            padding: 20px; display: flex; justify-content: center; gap: 10px; 
+            background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .filter-btn { 
+            padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; 
+            border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
         .filter-btn.active { background: #1e4d8c; color: white; }
 
-        /* 3. GRELHA DE ÁLBUNS */
+        /* GRID */
         .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px; max-width: 1600px; margin: 0 auto; flex-grow: 1; }
-        .grid-year-title { grid-column: 1 / -1; color: #1e4d8c; font-size: 2em; margin: 20px 0; border-left: 6px solid #ff8c00; padding-left: 15px; font-weight: bold; }
+        .grid-year-title { grid-column: 1 / -1; color: #1e4d8c; font-size: 2.2em; margin-top: 30px; border-left: 6px solid #ff8c00; padding-left: 18px; font-weight: 800; }
 
-        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer; transition: 0.4s ease; background: #eee; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s ease; }
         .gallery-item:hover { transform: translateY(-8px); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .gallery-item:hover img { transform: scale(1.1); }
-
+        
         .item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
         .photo-count { position: absolute; top: 15px; left: 15px; background: rgba(255,140,0,0.95); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; }
 
         .hidden-photos { display: none; }
 
-        /* 4. BOTÃO FACEBOOK DINÂMICO (PREMIUM) */
+        /* BOTÃO FACEBOOK (PREMIUM) */
         .fb-dynamic-btn {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            z-index: 1000; background: #1877f2; color: white !important;
+            z-index: 9999; background: #1877f2; color: white !important;
             padding: 12px 25px; border-radius: 50px; text-decoration: none !important;
             font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             display: none; transition: 0.3s ease; font-size: 14px; border: 2px solid rgba(255,255,255,0.2);
         }
-        .fb-dynamic-btn:hover { background: #145dbf; transform: translateX(-50%) translateY(-3px); }
 
-        /* CORREÇÃO DO LIGHTBOX (X e Setas) */
+        /* COMANDOS DO LIGHTBOX */
         .gclose, .gnext, .gprev { z-index: 10000 !important; }
 
-        /* 5. RODAPÉ */
-        .footer-wrapper { padding: 40px 20px 20px; }
+        /* RODAPÉ ORIGINAL RECUPERADO */
+        .footer-wrapper { padding: 40px 20px 20px; background-color: #f4f7f9; }
         .footer-premium { background-color: #1e4d8c; color: white; padding: 35px 40px 15px; border-radius: 25px; position: relative; overflow: hidden; }
         .premium-line { position: absolute; top: 0; left: -100%; height: 4px; width: 100%; background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent); animation: goldRun 4s linear infinite; }
         @keyframes goldRun { 0% { left: -100%; } 100% { left: 100%; } }
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
-        .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 13px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 3px; }
-        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 10px; font-size: 13px; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 13px; margin-bottom: 18px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 4px; font-weight: 700; }
+        .footer-nav-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .footer-nav-cols a { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; transition: 0.3s; display: block; margin-bottom: 6px; }
+        .footer-nav-cols a:hover { color: #ff8c00; opacity: 1; }
+        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 12px 18px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 13px; transition: 0.3s; }
         .footer-contact-item i { color: #ff8c00; margin-right: 12px; }
+        .footer-sub-links { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
+        .footer-sub-links a { color: white; text-decoration: none; font-size: 12px; opacity: 0.6; display: flex; align-items: center; gap: 8px; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5; }
 
-        @media (max-width: 1024px) { body { display: block; } #menu-placeholder { width: 100%; height: auto; position: relative; } main { margin-left: 0; width: 100%; } .footer-grid { grid-template-columns: 1fr; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) { body { display: block; } #menu-placeholder { width: 100%; height: auto; position: relative; } main { margin-left: 0; width: 100%; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
@@ -89,20 +112,21 @@
     <main>
         <header class="gallery-header">
             <h1>Galeria de Memórias</h1>
-            <p>Reviva os melhores momentos de cada viagem.</p>
+            <p>Reviva os momentos mais felizes das nossas aventuras.</p>
         </header>
 
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
+            <button class="filter-btn active" onclick="filterGallery('all')">Todos os Anos</button>
             <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
             <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
         </div>
 
-        <div class="gallery-grid" id="main-grid">
+        <div class="gallery-grid">
             <h2 class="grid-year-title" data-year="2026">2026</h2>
             
             <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3">
+                <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia" 
+                   data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3">
                     <div class="photo-count"><i class="fas fa-camera"></i> +12</div>
                     <img src="https://i.imgur.com/EOkoi7x.png">
                     <div class="item-overlay"><h4>Festa das Camélias (Celorico)</h4></div>
@@ -123,10 +147,10 @@
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campo"><div class="photo-count">+0</div><img src="https://i.imgur.com/L58QRQc.png"> <div class="item-overlay"><h4>Campo Maior</h4></div></a></div>
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="fundao"><div class="photo-count">+0</div><img src="https://i.imgur.com/kX8ScBU.png"> <div class="item-overlay"><h4>Fundão</h4></div></a></div>
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/uC6VTVp.png" class="glightbox" data-gallery="barcelos"><div class="photo-count">+0</div><img src="https://i.imgur.com/uC6VTVp.png"> <div class="item-overlay"><h4>Barcelos</h4></div></a></div>
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/TBLxBlw.png" class="glightbox" data-gallery="gaia"><div class="photo-count">+0</div><img src="https://i.imgur.com/TBLxBlw.png"> <div class="item-overlay"><h4>V.N. Gaia</h4></div></a></div>
+            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campo"><div class="photo-count">+0</div><img src="https://i.imgur.com/L58QRQc.png"><div class="item-overlay"><h4>Campo Maior</h4></div></a></div>
+            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="fundao"><div class="photo-count">+0</div><img src="https://i.imgur.com/kX8ScBU.png"><div class="item-overlay"><h4>Fundão</h4></div></a></div>
+            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/uC6VTVp.png" class="glightbox" data-gallery="barcelos"><div class="photo-count">+0</div><img src="https://i.imgur.com/uC6VTVp.png"><div class="item-overlay"><h4>Barcelos</h4></div></a></div>
+            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/TBLxBlw.png" class="glightbox" data-gallery="gaia"><div class="photo-count">+0</div><img src="https://i.imgur.com/TBLxBlw.png"><div class="item-overlay"><h4>V.N. Gaia</h4></div></a></div>
 
             <h2 class="grid-year-title" data-year="2025">2025</h2>
             <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo"><img src="https://i.imgur.com/aUixZ0Y.png"><div class="item-overlay"><h4>Vigo Natal</h4></div></a></div>
@@ -143,10 +167,28 @@
             <footer class="footer-premium">
                 <div class="premium-line"></div>
                 <div class="footer-grid">
-                    <div class="footer-col"><h4>Passeios do Miguel</h4><p style="font-size: 13px; opacity: 0.8;">S. Pedro do Sul para o país.</p></div>
-                    <div class="footer-col"><h4>Navegação</h4><div class="footer-nav-cols"><div><a href="index.html">Início</a></div><div><a href="galeria.html">Galeria</a></div></div></div>
-                    <div class="footer-col"><h4>Contacto</h4><a href="tel:965715465" class="footer-contact-item"><i class="fas fa-phone-alt"></i> 965 715 465</a></div>
+                    <div class="footer-col">
+                        <h4>Passeios do Miguel</h4>
+                        <p style="font-size: 13px; opacity: 0.8; line-height: 1.6;">Viagens com alma e aventura de S. Pedro do Sul para o país.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Navegação</h4>
+                        <div class="footer-nav-cols">
+                            <div><a href="index.html">Início</a><a href="sobre.html">Sobre</a><a href="passeios.html">Passeios</a></div>
+                            <div><a href="testemunhos.html">Mural</a><a href="galeria.html">Galeria</a><a href="contacto.html">Contacto</a></div>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Apoio e Reservas</h4>
+                        <a href="tel:965715465" class="footer-contact-item"><i class="fas fa-phone-alt"></i> 965 715 465</a>
+                        <a href="https://wa.me/351965715465" class="footer-contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <div class="footer-sub-links">
+                            <a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Política de Cancelamento</a>
+                            <a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas Frequentes (FAQ)</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="footer-bottom">&copy; 2026 Passeios do Miguel.</div>
             </footer>
         </div>
     </main>
@@ -157,23 +199,17 @@
         const fbBtn = document.createElement('a');
         fbBtn.className = 'fb-dynamic-btn';
         fbBtn.target = '_blank';
-        fbBtn.innerHTML = '<i class="fab fa-facebook"></i> Ver Álbum no Facebook';
+        fbBtn.innerHTML = '<i class="fab fa-facebook"></i> Ver Álbum Completo (+150 fotos)';
         document.body.appendChild(fbBtn);
 
         // 2. Inicializar Lightbox
-        const lightbox = GLightbox({ 
-            selector: '.glightbox', 
-            loop: true,
-            openEffect: 'zoom',
-            closeEffect: 'zoom'
-        });
+        const lightbox = GLightbox({ selector: '.glightbox', loop: true });
 
-        // 3. Lógica do Botão (Aparece após carregar a foto)
+        // 3. Lógica do Botão (Aparece mal a foto abre)
         lightbox.on('slide_after_load', (data) => {
-            const trigger = data.slideTrigger;
-            const fbLink = trigger ? trigger.getAttribute('data-fb') : null;
-            if (fbLink) {
-                fbBtn.href = fbLink;
+            const link = data.slideTrigger ? data.slideTrigger.getAttribute('data-fb') : null;
+            if (link) {
+                fbBtn.href = link;
                 fbBtn.style.display = 'block';
             } else {
                 fbBtn.style.display = 'none';
@@ -182,7 +218,6 @@
 
         lightbox.on('close', () => { fbBtn.style.display = 'none'; });
 
-        // 4. Filtros
         function filterGallery(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
@@ -193,10 +228,7 @@
             lightbox.reload();
         }
 
-        // 5. Menu
-        fetch('menu.html').then(res => res.text()).then(data => { 
-            document.getElementById('menu-placeholder').innerHTML = data; 
-        });
+        fetch('menu.html').then(res => res.text()).then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
     </script>
 </body>
 </html>
