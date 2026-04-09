@@ -18,9 +18,27 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
         
-        /* MENU LATERAL */
-        #menu-placeholder { width: 260px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; flex-shrink: 0; }
-        #menu-placeholder img { width: 160px !important; height: 160px !important; border-radius: 50% !important; border: 4px solid white !important; object-fit: cover !important; margin: 30px auto !important; display: block !important; background-color: white; }
+        /* MENU LATERAL - CORRIGIDO PARA FICAR POR CIMA (Z-INDEX) */
+        #menu-placeholder { 
+            width: 260px; 
+            background-color: #1e4d8c; 
+            min-height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            flex-shrink: 0; 
+            z-index: 9999; /* Garante que fica por cima de tudo */
+        }
+        
+        #menu-placeholder img { 
+            width: 160px !important; 
+            height: 160px !important; 
+            border-radius: 50% !important; 
+            border: 4px solid white !important; 
+            object-fit: cover !important; 
+            margin: 30px auto !important; 
+            display: block !important; 
+            background-color: white; 
+        }
 
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
 
@@ -85,11 +103,24 @@
         .footer-premium h4 { color: #ff8c00; text-transform: uppercase; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,140,0,0.3); display: inline-block; padding-bottom: 5px; }
         .nav-2-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .nav-2-cols a { color: white; text-decoration: none; font-size: 14px; margin-bottom: 10px; opacity: 0.8; display: block; }
-        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
-        .footer-contact-item i { color: #ff8c00 !important; margin-right: 15px; }
+        .footer-contact-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 50px; color: white; text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-contact-item:hover { background: rgba(255,255,255,0.15); }
+        .footer-contact-item i { color: #ff8c00 !important; margin-right: 15px; width: 20px; text-align: center; }
+        
+        /* ESTILO PARA LINKS DE APOIO */
+        .footer-extra-links { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .footer-link-sub { color: white; text-decoration: none; font-size: 13px; opacity: 0.7; transition: 0.3s; display: flex; align-items: center; }
+        .footer-link-sub:hover { opacity: 1; color: #ff8c00; }
+        .footer-link-sub i { margin-right: 8px; font-size: 11px; }
+
         .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 12px; opacity: 0.5; }
 
-        @media (max-width: 1024px) { body { display: block; } #menu-placeholder { width: 100%; min-height: auto; } .footer-grid { grid-template-columns: 1fr; } .banner-mural-float { flex-direction: column; text-align: center; width: 90%; } }
+        @media (max-width: 1024px) { 
+            body { display: block; } 
+            #menu-placeholder { width: 100%; min-height: auto; position: relative; } 
+            .footer-grid { grid-template-columns: 1fr; } 
+            .banner-mural-float { flex-direction: column; text-align: center; width: 90%; } 
+        }
     </style>
 </head>
 <body>
@@ -188,6 +219,11 @@
                         <h4>Apoio e Reservas</h4>
                         <a href="tel:965715465" class="footer-contact-item"><i class="fas fa-phone-alt"></i> 965 715 465</a>
                         <a href="https://wa.me/351965715465" class="footer-contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        
+                        <div class="footer-extra-links">
+                            <a href="cancelamento.html" class="footer-link-sub"><i class="fas fa-exclamation-circle"></i> Política de Cancelamento</a>
+                            <a href="faq.html" class="footer-link-sub"><i class="fas fa-question-circle"></i> Dúvidas Frequentes</a>
+                        </div>
                     </div>
                 </div>
                 <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
