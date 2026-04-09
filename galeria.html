@@ -16,49 +16,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
+        /* RESET E ESTRUTURA */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; overflow-x: hidden; }
 
-        /* MENU LATERAL FIXO */
-        #menu-placeholder { 
-            width: 260px; 
-            background-color: #1e4d8c; 
-            position: fixed; 
-            top: 0; left: 0; height: 100vh; 
-            z-index: 1000;
-        }
-
+        /* MENU LATERAL */
+        #menu-placeholder { width: 260px; background-color: #1e4d8c; position: fixed; top: 0; left: 0; height: 100vh; z-index: 1000; }
         #menu-placeholder img { 
-            width: 170px !important;      
-            height: 170px !important;     
-            object-fit: cover !important; 
-            border-radius: 50% !important;  
-            border: 4px solid white !important; 
-            background-color: white !important; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin: 30px auto !important;   
-            display: block !important;
+            width: 170px !important; height: 170px !important; border-radius: 50% !important; 
+            border: 4px solid white !important; background-color: white !important; 
+            margin: 30px auto !important; display: block !important; object-fit: cover !important;
         }
 
         main { margin-left: 260px; width: calc(100% - 260px); display: flex; flex-direction: column; }
 
-        /* CABEÇALHO */
+        /* HEADER COM NOVA IMAGEM TEMÁTICA */
         .gallery-header { 
-            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), url('https://i.imgur.com/L58QRQc.png');
-            background-size: cover; background-position: center; padding: 80px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
+                        url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop');
+            background-size: cover; background-position: center; padding: 100px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
         }
-        .gallery-header h1 { font-size: 3.2em; font-weight: 800; }
+        .gallery-header h1 { font-size: 3.5em; font-weight: 800; text-shadow: 2px 2px 15px rgba(0,0,0,0.4); }
 
         /* FILTROS */
-        .filter-container { 
-            padding: 20px; display: flex; justify-content: center; gap: 10px; 
-            background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .filter-btn { 
-            padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; 
-            border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
-        }
+        .filter-container { padding: 20px; display: flex; justify-content: center; gap: 10px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .filter-btn { padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .filter-btn.active { background: #1e4d8c; color: white; }
 
         /* GRID */
@@ -74,19 +56,22 @@
 
         .hidden-photos { display: none; }
 
-        /* BOTÃO FACEBOOK (PREMIUM) */
+        /* BOTÃO FACEBOOK - VISIBILIDADE REFORÇADA */
         .fb-dynamic-btn {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            z-index: 9999; background: #1877f2; color: white !important;
-            padding: 12px 25px; border-radius: 50px; text-decoration: none !important;
-            font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            display: none; transition: 0.3s ease; font-size: 14px; border: 2px solid rgba(255,255,255,0.2);
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+            z-index: 10000; background: #1877f2; color: white !important;
+            padding: 15px 30px; border-radius: 50px; text-decoration: none !important;
+            font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            font-size: 16px; border: 2px solid white;
         }
+        .fb-dynamic-btn:hover { background: #145dbf; transform: translateX(-50%) translateY(-5px); }
+        .fb-dynamic-btn i { margin-right: 10px; }
 
-        /* COMANDOS DO LIGHTBOX */
-        .gclose, .gnext, .gprev { z-index: 10000 !important; }
+        /* COMANDOS LIGHTBOX */
+        .gclose, .gnext, .gprev { z-index: 10001 !important; }
 
-        /* RODAPÉ ORIGINAL RECUPERADO */
+        /* RODAPÉ ORIGINAL */
         .footer-wrapper { padding: 40px 20px 20px; background-color: #f4f7f9; }
         .footer-premium { background-color: #1e4d8c; color: white; padding: 35px 40px 15px; border-radius: 25px; position: relative; overflow: hidden; }
         .premium-line { position: absolute; top: 0; left: -100%; height: 4px; width: 100%; background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent); animation: goldRun 4s linear infinite; }
@@ -112,7 +97,7 @@
     <main>
         <header class="gallery-header">
             <h1>Galeria de Memórias</h1>
-            <p>Reviva os momentos mais felizes das nossas aventuras.</p>
+            <p>Os sorrisos e as paisagens que marcam as nossas viagens.</p>
         </header>
 
         <div class="filter-container">
@@ -149,18 +134,10 @@
 
             <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campo"><div class="photo-count">+0</div><img src="https://i.imgur.com/L58QRQc.png"><div class="item-overlay"><h4>Campo Maior</h4></div></a></div>
             <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="fundao"><div class="photo-count">+0</div><img src="https://i.imgur.com/kX8ScBU.png"><div class="item-overlay"><h4>Fundão</h4></div></a></div>
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/uC6VTVp.png" class="glightbox" data-gallery="barcelos"><div class="photo-count">+0</div><img src="https://i.imgur.com/uC6VTVp.png"><div class="item-overlay"><h4>Barcelos</h4></div></a></div>
-            <div class="gallery-item" data-category="2026"><a href="https://i.imgur.com/TBLxBlw.png" class="glightbox" data-gallery="gaia"><div class="photo-count">+0</div><img src="https://i.imgur.com/TBLxBlw.png"><div class="item-overlay"><h4>V.N. Gaia</h4></div></a></div>
-
+            
             <h2 class="grid-year-title" data-year="2025">2025</h2>
             <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo"><img src="https://i.imgur.com/aUixZ0Y.png"><div class="item-overlay"><h4>Vigo Natal</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/oDpPY1r.png" class="glightbox" data-gallery="marvao"><img src="https://i.imgur.com/oDpPY1r.png"><div class="item-overlay"><h4>Marvão</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/1OhlRDd.png" class="glightbox" data-gallery="espinho"><img src="https://i.imgur.com/1OhlRDd.png"><div class="item-overlay"><h4>Espinho</h4></div></a></div>
             <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="viana"><img src="https://i.imgur.com/NmjlEsz.png"><div class="item-overlay"><h4>Viana</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres"><img src="https://i.imgur.com/NqapppF.png"><div class="item-overlay"><h4>Gerês</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/dZF0utN.png" class="glightbox" data-gallery="fatima"><img src="https://i.imgur.com/dZF0utN.png"><div class="item-overlay"><h4>Fátima</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/dJqHQFF.png" class="glightbox" data-gallery="obidos"><img src="https://i.imgur.com/dJqHQFF.png"><div class="item-overlay"><h4>Óbidos</h4></div></a></div>
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/VJkJt5h.png" class="glightbox" data-gallery="fozco"><img src="https://i.imgur.com/VJkJt5h.png"><div class="item-overlay"><h4>Foz Côa</h4></div></a></div>
         </div>
 
         <div class="footer-wrapper">
@@ -195,26 +172,34 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // 1. Criar Botão Facebook
+        // Criar o Botão FB
         const fbBtn = document.createElement('a');
         fbBtn.className = 'fb-dynamic-btn';
         fbBtn.target = '_blank';
-        fbBtn.innerHTML = '<i class="fab fa-facebook"></i> Ver Álbum Completo (+150 fotos)';
+        fbBtn.innerHTML = '<i class="fab fa-facebook"></i> Ver Álbum Completo no Facebook';
         document.body.appendChild(fbBtn);
 
-        // 2. Inicializar Lightbox
-        const lightbox = GLightbox({ selector: '.glightbox', loop: true });
+        // Iniciar Lightbox
+        const lightbox = GLightbox({ 
+            selector: '.glightbox', 
+            loop: true,
+            zoomable: false // Melhora a estabilidade em mobile
+        });
 
-        // 3. Lógica do Botão (Aparece mal a foto abre)
-        lightbox.on('slide_after_load', (data) => {
-            const link = data.slideTrigger ? data.slideTrigger.getAttribute('data-fb') : null;
+        // Lógica Infalível do Botão: Dispara ANTES e DEPOIS do slide carregar
+        const updateFBButton = (data) => {
+            const trigger = data.slideTrigger;
+            const link = trigger ? trigger.getAttribute('data-fb') : null;
             if (link) {
                 fbBtn.href = link;
                 fbBtn.style.display = 'block';
             } else {
                 fbBtn.style.display = 'none';
             }
-        });
+        };
+
+        lightbox.on('slide_before_load', updateFBButton);
+        lightbox.on('slide_after_load', updateFBButton);
 
         lightbox.on('close', () => { fbBtn.style.display = 'none'; });
 
