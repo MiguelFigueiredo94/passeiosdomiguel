@@ -15,36 +15,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
             background-color: #f4f7f9; 
-            min-height: 100vh; 
+            min-height: 100vh;
+            display: block; /* Alterado de flex para block para evitar conflitos */
         }
 
-        /* 2. MENU LATERAL (Apenas reserva o espaço) */
-        #menu-placeholder { 
-            width: 250px; 
-            flex-shrink: 0; 
-        }
-
-        /* 3. CONTEÚDO PRINCIPAL */
+        /* 2. CONTEÚDO PRINCIPAL */
         main { 
-            flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            /* IMPORTANTE: Esta margem tem de ser igual à largura do menu (250px) */
+            /* Esta margem compensa o menu fixo de 250px */
             margin-left: 250px; 
-            background-color: #f4f7f9; /* Garante que o fundo branco/cinza ocupa o resto */
-        }
-        
-        /* No telemóvel, o menu não é lateral, por isso tiramos a margem */
-        @media (max-width: 1024px) {
-            main { margin-left: 0; }
         }
 
         /* CABEÇALHO HERO */
@@ -65,7 +51,7 @@
         .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; padding: 0 20px; }
 
         /* CONTENT CONTAINER */
-        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; width: 100%; }
+        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
         .intro-text { text-align: center; margin-bottom: 40px; }
         .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
@@ -79,15 +65,11 @@
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* CARDS DE DESTAQUE */
+        /* CARDS */
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .feature-card { 
-            background: white; 
-            padding: 35px 25px; 
-            border-radius: 18px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); 
-            border-bottom: 4px solid #ff8c00; 
-            text-align: center; 
+            background: white; padding: 35px 25px; border-radius: 18px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; 
         }
         .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
         .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
@@ -95,10 +77,9 @@
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; }
             main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -143,25 +124,16 @@
                 </div>
             </div>
         </div>
-
         <div id="rodape-placeholder"></div>
     </main>
 
     <script>
-        // Função para carregar os ficheiros externos
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
-                .then(response => {
-                    if (!response.ok) throw new Error('Erro ao carregar ' + ficheiro);
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById(id).innerHTML = data;
-                })
-                .catch(error => console.error(error));
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro:', error));
         }
-
-        // Executa as chamadas
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
     </script>
