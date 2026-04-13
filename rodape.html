@@ -1,175 +1,125 @@
 <style>
     .footer-wrapper {
-        padding: 60px 20px 30px;
+        padding: 30px 20px; /* Reduzi o respiro externo */
         background-color: #f4f7f9;
-        font-family: 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
     .footer-premium {
-        /* Azul Profundo com um toque de Vinho/Roxo no canto para profundidade */
-        background: linear-gradient(135deg, #163a6d 0%, #1e4d8c 50%, #1a2a44 100%);
+        background: linear-gradient(135deg, #163a6d 0%, #1e4d8c 100%);
         color: white;
-        padding: 60px 50px 30px;
-        border-radius: 40px;
+        padding: 35px 50px 15px; /* Altura significativamente reduzida */
+        border-radius: 30px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    /* O "Pulo do Gato": Um padrão de ondas/mapa sutil no fundo */
+    /* Linha decorativa fina no topo para dar brilho sem ocupar espaço */
     .footer-premium::before {
         content: "";
         position: absolute;
-        inset: 0;
-        opacity: 0.05;
-        background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 40c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40zm100 100c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
-        mask-image: linear-gradient(to bottom, black, transparent);
-    }
-
-    /* Círculos de luz suaves para tirar o aspeto "plano" */
-    .light-blob {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, transparent 70%);
-        top: -150px;
-        right: -100px;
-        pointer-events: none;
+        top: 0; left: 0; width: 100%; height: 2px;
+        background: linear-gradient(90deg, transparent, #ff8c00, transparent);
     }
 
     .footer-grid {
         display: grid;
-        grid-template-columns: 1.5fr 1fr 1.2fr;
-        gap: 50px;
-        position: relative;
-        z-index: 5;
+        grid-template-columns: 1.2fr 0.8fr 1fr;
+        gap: 30px;
+        align-items: center; /* Alinha tudo ao centro verticalmente */
     }
 
-    /* Coluna 1: Tipografia Elegante */
-    .brand-side h2 { 
-        font-size: 32px; 
-        font-weight: 800; 
-        margin-bottom: 15px;
-        background: linear-gradient(to bottom, #fff 50%, #ccc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    /* Branding - Mais compacto */
+    .brand-side h2 { font-size: 22px; margin-bottom: 8px; color: #fff; }
+    .brand-side p { font-size: 13px; opacity: 0.7; margin: 0; line-height: 1.4; }
     
-    .brand-side p { 
-        font-size: 15px; 
-        line-height: 1.8; 
-        color: rgba(255,255,255,0.7);
-        border-left: 3px solid #ff8c00;
-        padding-left: 20px;
+    .hobby-tag {
+        display: inline-flex;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 11px;
+        color: #ff8c00;
+        font-weight: bold;
     }
 
-    /* Coluna 2: Menu com Micro-Animação */
+    /* Navegação - Em 2 colunas para poupar altura */
     .nav-side h4 {
-        font-size: 12px;
+        color: #ff8c00;
+        font-size: 10px;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        color: #ff8c00;
-        margin-bottom: 25px;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
     }
-
-    .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    
-    .links-grid a {
+    .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .nav-links a {
         color: white;
         text-decoration: none;
-        font-size: 14px;
+        font-size: 13px;
         opacity: 0.6;
-        transition: 0.4s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        transition: 0.3s;
     }
+    .nav-links a:hover { opacity: 1; color: #ff8c00; }
 
-    .links-grid a:hover {
-        opacity: 1;
-        color: #ff8c00;
-        padding-left: 8px;
-    }
-
-    /* Coluna 3: Contactos com Efeito Vidro (Glassmorphism) */
-    .contact-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
+    /* Contactos - Estilo Cápsula (Poupam muita altura) */
+    .contact-side { display: flex; flex-direction: column; gap: 8px; }
+    
+    .contact-pill {
+        background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px;
-        border-radius: 25px;
-        margin-bottom: 15px;
+        padding: 8px 15px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
-        gap: 15px;
-        transition: 0.4s;
+        gap: 12px;
         text-decoration: none;
         color: white;
+        transition: 0.3s;
     }
+    .contact-pill:hover { background: rgba(255, 255, 255, 0.1); border-color: #ff8c00; }
+    
+    .contact-pill i { color: #ff8c00; font-size: 16px; }
+    .pill-info span { display: block; font-size: 9px; opacity: 0.5; text-transform: uppercase; }
+    .pill-info strong { font-size: 13px; }
 
-    .contact-card:hover {
-        background: rgba(255, 140, 0, 0.1);
-        border-color: #ff8c00;
-        transform: translateY(-5px);
-    }
-
-    .icon-box {
-        width: 50px;
-        height: 50px;
-        background: #ff8c00;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        box-shadow: 0 10px 20px rgba(255,140,0,0.3);
-    }
-
-    .contact-card strong { display: block; font-size: 16px; margin-top: 2px; }
-    .contact-card span { font-size: 11px; opacity: 0.5; text-transform: uppercase; }
-
-    /* Footer Base */
+    /* Rodapé Inferior */
     .footer-base {
-        margin-top: 50px;
-        padding-top: 25px;
+        margin-top: 25px;
+        padding-top: 15px;
         border-top: 1px solid rgba(255,255,255,0.05);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 12px;
-        color: rgba(255,255,255,0.4);
+        font-size: 11px;
+        opacity: 0.4;
     }
 
-    .legal-links a { color: white; text-decoration: none; margin-left: 20px; transition: 0.3s; }
-    .legal-links a:hover { color: #ff8c00; }
+    .base-links a { color: white; text-decoration: none; margin-left: 15px; }
 
-    @media (max-width: 1024px) {
-        .footer-grid { grid-template-columns: 1fr; text-align: center; }
-        .brand-side p { border-left: none; border-top: 3px solid #ff8c00; padding: 20px 0 0; }
-        .links-grid { justify-items: center; }
-        .contact-card { justify-content: center; }
-        .footer-base { flex-direction: column; gap: 20px; }
+    @media (max-width: 900px) {
+        .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+        .nav-links { justify-items: center; }
+        .contact-side { align-items: center; }
+        .footer-base { flex-direction: column; gap: 10px; }
     }
 </style>
 
 <div class="footer-wrapper">
     <footer class="footer-premium">
-        <div class="light-blob"></div>
-        
         <div class="footer-grid">
             
             <div class="brand-side">
                 <h2>Passeios do Miguel</h2>
-                <p>O que começou como um hobby tornou-se uma missão: mostrar o Portugal autêntico com a proximidade de um amigo. Junte-se à nossa família de viajantes.</p>
-                <div style="margin-top: 25px; display: flex; gap: 15px;">
-                    <span style="font-size: 13px; color: #ff8c00; font-weight: bold;"><i class="fas fa-check-circle"></i> 100% Hobby</span>
-                    <span style="font-size: 13px; color: #ff8c00; font-weight: bold;"><i class="fas fa-heart"></i> 100% Paixão</span>
+                <p>Mostrando o Portugal autêntico com a proximidade de um amigo.</p>
+                <div class="hobby-tag">
+                    <span><i class="fas fa-check"></i> 100% Hobby</span>
+                    <span><i class="fas fa-heart"></i> 100% Paixão</span>
                 </div>
             </div>
 
             <div class="nav-side">
-                <h4>Menu de Bordo</h4>
-                <div class="links-grid">
+                <h4>Explorar</h4>
+                <div class="nav-links">
                     <a href="index.html">Início</a>
                     <a href="testemunhos.html">Mural</a>
                     <a href="sobre.html">Sobre</a>
@@ -180,18 +130,18 @@
             </div>
 
             <div class="contact-side">
-                <a href="tel:+351965715465" class="contact-card">
-                    <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
-                    <div>
-                        <span>Chamada Gratuita*</span>
+                <a href="tel:+351965715465" class="contact-pill">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="pill-info">
+                        <span>Ligar para o Miguel</span>
                         <strong>965 715 465</strong>
                     </div>
                 </a>
-                <a href="https://wa.me/351965715465" class="contact-card">
-                    <div class="icon-box" style="background: #25D366; box-shadow: 0 10px 20px rgba(37,211,102,0.2);"><i class="fab fa-whatsapp"></i></div>
-                    <div>
+                <a href="https://wa.me/351965715465" class="contact-pill">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="pill-info">
                         <span>WhatsApp Direto</span>
-                        <strong>Falar com Miguel</strong>
+                        <strong>Conversar agora</strong>
                     </div>
                 </a>
             </div>
@@ -199,8 +149,8 @@
         </div>
 
         <div class="footer-base">
-            <div>&copy; 2026 Passeios do Miguel. A vida é feita de encontros.</div>
-            <div class="legal-links">
+            <div>&copy; 2026 Passeios do Miguel.</div>
+            <div class="base-links">
                 <a href="cancelamento.html">Cancelamento</a>
                 <a href="faq.html">Dúvidas</a>
             </div>
