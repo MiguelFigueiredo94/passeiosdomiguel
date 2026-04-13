@@ -62,6 +62,19 @@
         }
         .btn-voltar:hover { background: #ff8c00; transform: translateX(-5px); }
 
+        /* Força os títulos dentro do rodapé a serem brancos, ignorando o azul da página */
+            #footer-placeholder h2, 
+            .footer-universal h2 {
+                color: #ffffff !important; 
+                border-bottom: none !important;
+                margin-top: 0 !important;
+            }
+            
+            /* Garante que o texto de descrição também seja legível */
+            .footer-universal p {
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+
     </style>
 </head>
 <body>
