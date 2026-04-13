@@ -90,43 +90,6 @@
         .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; transition: 0.3s; }
         .card-dica a:hover { color: #ff8c00; }
 
-        /* --- RODAPÉ --- */
-        .footer-universal {
-            background: #1e4d8c; position: relative; color: white;
-            padding: 30px 40px 15px; margin-top: auto; overflow: hidden;
-        }
-        .footer-universal::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c);
-            background-size: 200% 100%; animation: moveGradient 5s linear infinite;
-        }
-        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
-        
-        .footer-container {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px;
-            position: relative; z-index: 2;
-        }
-        .footer-col h4 { 
-            color: #ff9800; margin-bottom: 12px; font-size: 14px; text-transform: uppercase; 
-            letter-spacing: 1px; border-bottom: 2px solid rgba(255, 152, 0, 0.2); 
-            display: inline-block; padding-bottom: 4px;
-        }
-        .footer-col p, .footer-col ul li a { font-size: 13px; opacity: 0.8; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: white; text-decoration: none; display: flex; align-items: center; transition: 0.3s; }
-        .footer-col ul li a i { margin-right: 10px; color: #ff9800; width: 15px; text-align: center; }
-        .footer-col ul li a:hover { opacity: 1; color: #ff9800; transform: translateX(5px); }
-        .btn-contacto-pill {
-            background: rgba(255, 255, 255, 0.05); padding: 6px 12px;
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 6px !important;
-        }
-        .footer-bottom { 
-            text-align: center; margin-top: 25px; padding-top: 15px; 
-            border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; opacity: 0.5;
-        }
 
         /* AJUSTES RESPONSIVOS (MOBILE) */
         @media (max-width: 1024px) {
@@ -208,50 +171,26 @@
             </div>
         </section>
 
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
-                </div>
+ <div id="footer-placeholder"></div> 
 
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="testemunhos.html">Mural</a></li>
-                        <li><a href="contatos.html">Contacto</a></li>
-                        <li><a href="galeria.html">Galeria</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
-                    <ul>
-                        <li class="btn-contacto-pill">
-                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        </li>
-                        <li class="btn-contacto-pill">
-                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        </li>
-                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
-        </footer>
     </main>
 
     <script>
-        // Carrega o Menu
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
+        // Carregar o Menu lateral
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error('Erro ao carregar menu:', err));
+
+        // Carregar o Rodapé Premium
+        fetch('rodape.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error('Erro ao carregar rodapé:', err));
     </script>
 
 </body>
