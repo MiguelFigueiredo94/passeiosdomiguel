@@ -12,7 +12,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passeios do Miguel - Home</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -20,25 +19,25 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Segoe UI', sans-serif; 
             display: flex; 
             background-color: #f4f7f9; 
             min-height: 100vh; 
         }
 
-        /* 2. ESPAÇO PARA O MENU LATERAL */
+        /* 2. MENU LATERAL (Apenas reserva o espaço) */
         #menu-placeholder { 
             width: 250px; 
             flex-shrink: 0; 
         }
 
-        /* 3. CONTEÚDO PRINCIPAL (Ajustado para não ser tapado) */
+        /* 3. CONTEÚDO PRINCIPAL */
         main { 
             flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
-            min-width: 0;
-            /* Esta margem garante que o menu fixo não tape o texto */
+            min-width: 0; 
+            /* Margem para não ser tapado pelo menu fixo em computadores */
             margin-left: 250px; 
         }
 
@@ -83,9 +82,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.05); 
             border-bottom: 4px solid #ff8c00; 
             text-align: center; 
-            transition: 0.3s;
         }
-        .feature-card:hover { transform: translateY(-5px); }
         .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
         .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
         .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
@@ -94,9 +91,8 @@
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
-            main { margin-left: 0; } /* Remove a margem no telemóvel */
+            main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -146,6 +142,7 @@
     </main>
 
     <script>
+        // Função para carregar os ficheiros externos
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => {
@@ -158,6 +155,7 @@
                 .catch(error => console.error(error));
         }
 
+        // Executa as chamadas
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
     </script>
