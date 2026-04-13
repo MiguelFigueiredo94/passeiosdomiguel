@@ -1,175 +1,228 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
+<style>
+    /* 1. RESET E ESTRUTURA LATERAL */
+    #menu-lateral ul, #menu-lateral li { margin: 0; padding: 0; list-style: none; }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Home</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    #menu-lateral { 
+        width: 250px; 
+        background-color: #1e4d8c; 
+        min-height: 100vh; 
+        position: sticky; 
+        top: 0; 
+        padding: 30px 12px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        z-index: 9999;
+    }
+
+    /* ============================================================
+       NOVO ESTILO DO LOGÓTIPO - SUPER ZOOM E APROXIMAÇÃO
+       ============================================================ */
+    .logo-container {
+        width: 170px; /* Círculo ligeiramente maior para acomodar o zoom */
+        height: 170px;
+        margin: 0 auto 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Corta a imagem que sai para fora */
+        border-radius: 50%; /* Mantém o formato redondo */
+        border: 4px solid white; /* Borda branca elegante */
+        background-color: white; /* Fundo branco para legibilidade */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Sombra mais visível para destaque */
+        transition: 0.3s ease;
+        text-decoration: none;
+        position: relative;
+    }
+
+    .logo-container:hover { 
+        transform: translateY(-5px) scale(1.02); 
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+
+    /* O SEGREDO DO ZOOM ESTÁ AQUI */
+    .logo-container .logo { 
+        width: 100%; /* Ocupa a largura total do container */
+        height: 100%; /* Ocupa a altura total do container */
+        object-fit: cover; /* Faz a imagem preencher o círculo, cortando as bordas brancas excessivas */
+        display: block;
         
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            background-color: #f4f7f9; 
-            min-height: 100vh; 
+        /* APLICA O ZOOM PROPRIAMENTE DITO */
+        transform: scale(1.6); /* Aumenta a imagem em 60% dentro do círculo */
+        
+        /* AJUSTE FINO DE POSIÇÃO (se necessário, move um pouco para cima/baixo) */
+        transform-origin: center center;
+    }
+
+    /* ============================================================
+       ESTILO DOS LINKS E DROPDOWNS (Preservado)
+       ============================================================ */
+    #menu-lateral ul { flex-grow: 1; } 
+    #menu-lateral li { margin-bottom: 8px; position: relative; }
+
+    #menu-lateral ul li a { 
+        display: flex; align-items: center; color: white; text-decoration: none; 
+        padding: 12px 18px; font-size: 14px; font-weight: 600; 
+        transition: 0.3s ease; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
+    }
+
+    #menu-lateral ul li a:hover { 
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        border-color: white;
+        color: white;
+        transform: translateX(5px);
+    }
+
+    .main-icon { margin-right: 12px; width: 20px; text-align: center; font-size: 16px; }
+    .fa-chevron-right { margin-left: auto; font-size: 10px; opacity: 0.7; transition: 0.3s; }
+    
+    #menu-lateral ul li a:hover .fa-chevron-right { transform: rotate(90deg); opacity: 1; }
+
+    /* SISTEMA DE DROPDOWNS (Desktop) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 100%; top: 0;
+        background: #ffffff !important; 
+        min-width: 260px;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+        border-radius: 15px;
+        padding: 12px 0;
+        z-index: 10000;
+        border: 1px solid #ddd;
+        margin-left: 10px; /* Pequeno espaço para não colar */
+    }
+
+    .dropdown:hover > .dropdown-content { display: block; animation: fadeIn 0.3s; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .dropdown-content a {
+        color: #1e4d8c !important;
+        background: none !important;
+        padding: 12px 20px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        display: block !important;
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 0 !important;
+        transition: 0.3s;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f8f9fa !important;
+        color: #ff9800 !important;
+        padding-left: 28px !important;
+    }
+
+    .nested-dropdown { position: relative; }
+    .nested-content {
+        display: none;
+        position: absolute;
+        left: 100%; top: 0;
+        background: #ffffff !important;
+        min-width: 260px;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+        border-radius: 0 15px 15px 15px;
+        border: 1px solid #ddd;
+        margin-left: 5px;
+    }
+    .nested-dropdown:hover > .nested-content { display: block; animation: fadeIn 0.3s; }
+
+    /* REDES SOCIAIS */
+    .redes-sociais-menu {
+        padding-top: 20px;
+        margin-top: 25px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+    }
+    .redes-sociais-menu p { color: rgba(255,255,255,0.5); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .icones-redes { display: flex; justify-content: center; gap: 18px; }
+    .icones-redes a { color: white; font-size: 20px; transition: 0.3s ease; opacity: 0.8; text-decoration: none; }
+    .icones-redes a:hover { color: #ff9800; transform: scale(1.2) translateY(-3px); opacity: 1; }
+
+    /* ============================================================
+       RESPONSIVIDADE MOBILE
+       ============================================================ */
+    @media (max-width: 1024px) {
+        #menu-lateral { width: 100% !important; min-height: auto !important; position: relative !important; padding: 15px !important; }
+        
+        .logo-container { width: 120px !important; height: 120px !important; margin-bottom: 15px !important; border-width: 3px !important; }
+        
+        /* Mantém o zoom no mobile também */
+        .logo-container .logo { transform: scale(1.6) !important; }
+
+        #menu-lateral ul li a { padding: 10px 15px !important; }
+
+        .dropdown-content, .nested-content { 
+            position: static !important; display: none; width: 100% !important; 
+            box-shadow: none !important; border: none !important;
+            background: rgba(255,255,255,0.05) !important; margin-left: 0 !important;
+            border-radius: 10px !important; margin-top: 5px;
         }
+        .dropdown:hover > .dropdown-content, .nested-dropdown:hover > .nested-content { display: block !important; animation: none; }
+        .dropdown-content a { color: white !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+        .dropdown-content a:hover { padding-left: 20px !important; background: none !important; color: #ff9800 !important; }
+    }
+</style>
 
-        /* 2. ESTRUTURA DO MENU (Sincronizado com menu.html) */
-        #menu-placeholder { 
-            width: 250px; /* Largura idêntica à do menu.html */
-            flex-shrink: 0; 
-            background-color: #1e4d8c; 
-            min-height: 100vh;
-        }
+<nav id="menu-lateral">
+    <a href="index.html" class="logo-container">
+        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+    </a>
 
-        /* 3. CONTEÚDO PRINCIPAL */
-        main { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-        }
-
-        /* CABEÇALHO HERO */
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
-            background-size: cover; 
-            background-position: center; 
-            height: 380px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            color: white; 
-            text-align: center; 
-            border-bottom: 5px solid #ff8c00;
-        }
-        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; padding: 0 20px; }
-
-        /* CONTENT CONTAINER */
-        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; width: 100%; }
-
-        .intro-text { text-align: center; margin-bottom: 40px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
-        .intro-text p { color: #555; font-size: 1.1em; line-height: 1.7; }
-
-        /* VÍDEO YOUTUBE */
-        .video-section {
-            background-color: white; padding: 15px; border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-bottom: 50px;
-        }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* PERGUNTA INTERMÉDIA */
-        .question-callout { text-align: center; margin-bottom: 35px; }
-        .question-callout h3 { color: #1e4d8c; font-size: 2.2em; font-weight: bold; }
-        .question-callout h3::after { content: ''; display: block; width: 60px; height: 4px; background: #ff8c00; margin: 10px auto 0; }
-
-        /* CARDS 3x1 */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .feature-card { 
-            background: white; 
-            padding: 35px 25px; 
-            border-radius: 18px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); 
-            border-bottom: 4px solid #ff8c00; 
-            text-align: center; 
-            transition: 0.3s;
-        }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
-        .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
-
-        /* RESPONSIVIDADE */
-        @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; min-height: auto; }
-            .features-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2em; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="menu-placeholder"></div>
-
-    <main>
-        <section class="hero-section">
-            <h1>Passeios do Miguel</h1>
-            <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-            <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.3);">VER PRÓXIMOS PASSEIOS</a>
-        </section>
-
-        <div class="content-container">
-            <section class="intro-text">
-                <h2>Bem-vindo à nossa Comunidade</h2>
-                <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
-            </section>
-
-            <section class="video-section">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home main-icon"></i> Home</a></li>
+        <li><a href="sobre.html"><i class="fas fa-user main-icon"></i> Sobre Mim</a></li>
+        
+        <li class="dropdown">
+            <a href="passeios.html">
+                <i class="fas fa-bus main-icon"></i> Passeios 
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            <div class="dropdown-content">
+                <div class="nested-dropdown">
+                    <a href="#">Programação 2026 <i class="fas fa-chevron-right"></i></a>
+                    <div class="nested-content">
+                        <a href="campomaior.html">Festas do Povo (08 Ago)</a>
+                        <a href="cereja.html">Rota da Cereja (14 Jun)</a>
+                        <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
+                        <a href="camelias.html">Festa das Camélias (15 Mar)</a>
+                        <a href="gaia.html">Magia Animal - Gaia (15 Fev)</a>
+                    </div>
                 </div>
-            </section>
-
-            <section class="question-callout">
-                <h3>Porquê nos escolher?</h3>
-            </section>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bus-alt"></i>
-                    <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro.</p>
+                <div class="nested-dropdown">
+                    <a href="#">Programação 2025 <i class="fas fa-chevron-right"></i></a>
+                    <div class="nested-content">
+                        <a href="vigo.html">Especial Natal Vigo (07 Dez)</a>
+                        <a href="marvao.html">Festa da Castanha (09 Nov)</a>
+                        <a href="espinho.html">Sra. da Ajuda - Espinho (12 Set)</a>
+                        <a href="viana.html">Sra. d'Agonia (16 Ago)</a>
+                        <a href="geres.html">Gerês & Braga (20 Jul)</a>
+                        <a href="fatima.html">Santuário de Fátima (15 Jun)</a>
+                        <a href="obidos.html">Festa do Chocolate (06 Abr)</a>
+                        <a href="amendoeiras.html">Amendoeiras em Flor (02 Mar)</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os nossos passageiros de honra.</p>
-                </div>
+                <a href="galeria.html">Galeria de Fotos</a>
             </div>
+        </li>
+
+        <li><a href="contatos.html"><i class="fas fa-envelope main-icon"></i> Contactos</a></li>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+        <li><a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i> Dicas Úteis</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle main-icon"></i> FAQ</a></li>
+    </ul>
+
+    <div class="redes-sociais-menu">
+        <p>Siga-nos</p>
+        <div class="icones-redes">
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" title="Página Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" title="Grupo Facebook"><i class="fas fa-users"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" title="Grupo WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
-
-        <div id="rodape-placeholder"></div>
-    </main>
-
-    <script>
-        // Função para carregar componentes externos
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => {
-                    if (!response.ok) throw new Error('Erro ao carregar ' + ficheiro);
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById(id).innerHTML = data;
-                })
-                .catch(error => console.error(error));
-        }
-
-        // Executar cargas
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('rodape-placeholder', 'rodape.html');
-    </script>
-</body>
-</html>
+    </div>
+</nav>
