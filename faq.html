@@ -252,34 +252,28 @@
             </div>
         </section>
 
-        <div id="footer-placeholder"></div> 
+<div id="footer-placeholder"></div> 
     </main>
 
-
     <script>
-        // Carregar Menu
+        // 1. Carregar Menu
         fetch('menu.html').then(res => res.text()).then(data => {
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
-        // Carregar o Rodapé Premium
-                fetch('rodape.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('footer-placeholder').innerHTML = data;
-                    })
-                    .catch(err => console.error('Erro ao carregar rodapé:', err));
-            
-        // Lógica do Acordeão
+        // 2. Carregar o NOVO Rodapé (ESTA PARTE É A QUE FALTA NO TEU)
+        fetch('rodape.html').then(res => res.text()).then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        });
+       
+        // 3. Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
             botao.addEventListener('click', () => {
                 const item = botao.parentElement;
                 const estaAtivo = item.classList.contains('ativo');
                 
-                // Fecha outros
                 document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
                 
-                // Abre o atual
                 if (!estaAtivo) item.classList.add('ativo');
             });
         });
