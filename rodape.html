@@ -6,62 +6,80 @@
     }
 
     .footer-container {
-        /* Azul escuro mas com um toque de brilho */
-        background: linear-gradient(135deg, #1e4d8c 0%, #163a6d 100%);
+        background: linear-gradient(135deg, #1e4d8c 0%, #153561 100%);
         color: white;
-        padding: 35px 45px 20px;
-        border-radius: 35px;
-        box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
+        padding: 30px 40px 15px;
+        border-radius: 30px;
         max-width: 1200px;
         margin: 0 auto;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
     }
 
     .footer-grid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1.2fr;
         gap: 30px;
+        align-items: center;
     }
 
-    /* Coluna Branding */
-    .f-info { flex: 1.2; }
-    .f-info h2 { font-size: 24px; margin-bottom: 8px; font-weight: 800; color: #fff; }
-    .f-info p { font-size: 14px; opacity: 0.8; line-height: 1.5; margin-bottom: 12px; }
+    /* Info do Miguel */
+    .f-info h2 { font-size: 24px; margin-bottom: 8px; font-weight: 800; }
+    .f-info p { font-size: 14px; opacity: 0.8; margin-bottom: 12px; line-height: 1.5; }
     
-    .f-badges { display: flex; gap: 10px; }
+    .f-tags { display: flex; gap: 10px; }
     .f-tag {
-        background: rgba(255, 140, 0, 0.15);
-        color: #ff8c00;
-        padding: 4px 12px;
-        border-radius: 50px;
         font-size: 11px;
         font-weight: bold;
-        border: 1px solid rgba(255, 140, 0, 0.3);
+        color: #ff8c00;
+        background: rgba(255, 140, 0, 0.1);
+        padding: 4px 12px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 140, 0, 0.2);
     }
 
-    /* Coluna Links - Compacta em 2 colunas */
-    .f-links { 
-        flex: 1; 
-        display: grid; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 10px;
-        border-left: 1px solid rgba(255,255,255,0.1);
-        padding-left: 30px;
+    /* MENU COM ANIMAÇÃO (O que pediste) */
+    .f-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
     }
+
     .f-links a {
         color: white;
         text-decoration: none;
         font-size: 14px;
         opacity: 0.7;
-        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease; /* Transição suave */
     }
-    .f-links a:hover { opacity: 1; color: #ff8c00; padding-left: 5px; }
 
-    /* Coluna Contactos - Botões Elegantes */
-    .f-actions { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    /* Quando pousas o rato nas palavras */
+    .f-links a:hover {
+        opacity: 1;
+        color: #ff8c00;
+        transform: translateX(8px); /* A palavra mexe-se para a direita */
+    }
+
+    /* O detalhe que aparece (uma setinha ou ponto) */
+    .f-links a::before {
+        content: '→';
+        margin-right: -10px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        font-size: 12px;
+    }
+
+    .f-links a:hover::before {
+        margin-right: 8px;
+        opacity: 1;
+    }
+
+    /* BOTÕES DE CONTACTO COM MOVIMENTO */
+    .f-actions { display: flex; flex-direction: column; gap: 10px; }
     
-    .f-contact-btn {
+    .f-btn {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.15);
         padding: 10px 18px;
@@ -71,20 +89,25 @@
         gap: 12px;
         color: white !important;
         text-decoration: none;
-        transition: 0.4s;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .f-contact-btn:hover { 
-        background: white; 
-        color: #1e4d8c !important; 
-        transform: translateY(-3px);
+
+    .f-btn:hover {
+        background: #ff8c00; /* Muda para laranja no hover */
+        border-color: #ff8c00;
+        transform: scale(1.05) translateY(-3px); /* Cresce e sobe um pouco */
+        box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
     }
-    .f-contact-btn i { color: #ff8c00; font-size: 18px; }
-    .f-contact-btn div span { display: block; font-size: 9px; opacity: 0.5; text-transform: uppercase; }
-    .f-contact-btn div strong { font-size: 14px; }
+
+    .f-btn i { font-size: 18px; transition: 0.3s; }
+    .f-btn:hover i { color: white; transform: rotate(15deg); } /* Ícone inclina-se */
+
+    .f-btn div span { display: block; font-size: 9px; opacity: 0.6; text-transform: uppercase; }
+    .f-btn div strong { font-size: 14px; }
 
     /* Rodapé Final */
-    .f-footer {
-        margin-top: 30px;
+    .f-bottom {
+        margin-top: 25px;
         padding-top: 15px;
         border-top: 1px solid rgba(255,255,255,0.05);
         display: flex;
@@ -95,10 +118,10 @@
     .f-legal a { color: white; text-decoration: none; margin-left: 15px; }
 
     @media (max-width: 900px) {
-        .footer-grid { flex-direction: column; text-align: center; }
-        .f-links { border-left: none; padding-left: 0; justify-items: center; }
+        .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        .f-links { justify-items: center; border: none; }
         .f-actions { align-items: center; }
-        .f-footer { flex-direction: column; gap: 10px; text-align: center; }
+        .f-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
 </style>
 
@@ -108,10 +131,9 @@
             
             <div class="f-info">
                 <h2>Passeios do Miguel</h2>
-                <p>O prazer de descobrir Portugal com a proximidade de um amigo. Um hobby feito com paixão.</p>
-                <div class="f-badges">
-                    <span class="f-tag"><i class="fas fa-check"></i> 100% Hobby</span>
-                    <span class="f-tag"><i class="fas fa-heart"></i> 100% Paixão</span>
+                <p>O prazer de descobrir Portugal com a proximidade de um amigo.</p>
+                <div class="f-tags">
+                    <span class="f-tag"><i class="fas fa-heart"></i> Hobby & Paixão</span>
                 </div>
             </div>
 
@@ -125,11 +147,11 @@
             </div>
 
             <div class="f-actions">
-                <a href="tel:+351965715465" class="f-contact-btn">
+                <a href="tel:+351965715465" class="f-btn">
                     <i class="fas fa-phone-alt"></i>
                     <div><span>Ligar para o Miguel</span><strong>965 715 465</strong></div>
                 </a>
-                <a href="https://wa.me/351965715465" class="f-contact-btn">
+                <a href="https://wa.me/351965715465" class="f-btn">
                     <i class="fab fa-whatsapp"></i>
                     <div><span>WhatsApp Direto</span><strong>Conversar agora</strong></div>
                 </a>
@@ -137,7 +159,7 @@
 
         </div>
 
-        <div class="f-footer">
+        <div class="f-bottom">
             <div>&copy; 2026 Passeios do Miguel</div>
             <div class="f-legal">
                 <a href="cancelamento.html">Cancelamento</a>
