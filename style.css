@@ -113,16 +113,19 @@ body.modal-open { overflow: hidden; }
 /* --- 7. AJUSTE RESPONSIVO (TELEMÓVEIS) --- */
 @media (max-width: 1024px) {
     body {
-        display: block !important; /* Desativa o Grid para evitar sobreposição */
+        display: block !important; /* Desativa o Grid Desktop */
         overflow-x: hidden;
+        width: 100vw;
     }
 
     nav {
         width: 100% !important;
         height: auto !important;
-        position: relative !important; /* IMPORTANTE: Faz o menu "empurrar" o conteúdo */
+        position: relative !important; /* Menu fica no topo e empurra o resto para baixo */
         padding: 20px 10px !important;
         top: 0;
+        grid-column: auto !important; /* Anula o grid anterior */
+        grid-row: auto !important;
     }
 
     .logo {
@@ -133,25 +136,36 @@ body.modal-open { overflow: hidden; }
 
     main {
         width: 100% !important;
+        margin-left: 0 !important; /* REMOVE A MARGEM QUE ESTAVA A TAPAR O CONTEÚDO */
         padding: 20px 15px !important;
         display: block !important;
         position: relative !important;
+        grid-column: auto !important;
+    }
+
+    /* Ajuste para os Banners (Hero) nas outras páginas */
+    .hero-section, .hero-sobre, .banner-inscricao {
+        height: 300px !important; /* Reduz altura no telemóvel para não ocupar o ecrã todo */
+        width: 100% !important;
     }
 
     footer {
         width: 100% !important;
+        margin-left: 0 !important;
         padding: 20px !important;
         display: block !important;
+        grid-column: auto !important;
     }
 
-    /* Submenus no Mobile: Abrem abaixo do link e não por cima */
+    /* Submenus no Mobile: Abrem abaixo do link de forma clara */
     .dropdown-content, .nested-content {
         position: static !important;
-        width: 100% !important;
+        width: 90% !important;
+        margin: 5px auto !important;
         display: none;
         background: rgba(255, 255, 255, 0.1) !important;
         box-shadow: none !important;
-        padding: 5px 0 !important;
+        border-radius: 15px !important;
     }
     
     .dropdown:hover > .dropdown-content { display: block !important; }
@@ -159,15 +173,11 @@ body.modal-open { overflow: hidden; }
     .dropdown-content a {
         color: white !important;
         text-align: center !important;
-        padding: 10px !important;
+        padding: 12px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     }
 
     .container-passeios {
         grid-template-columns: 1fr !important;
-    }
-
-    .newsletter-container {
-        flex-direction: column;
-        text-align: center;
     }
 }
