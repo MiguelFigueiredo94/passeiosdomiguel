@@ -11,11 +11,11 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos - Passeios do Miguel</title>
+    <title>Dicas de Viagem - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL (Igual ao Index) */
+        /* 1. RESET E ESTRUTURA GLOBAL (Padrão Index) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -31,7 +31,7 @@
             flex-shrink: 0; 
         }
 
-        /* 3. CONTEÚDO PRINCIPAL (Com a margem correta) */
+        /* 3. CONTEÚDO PRINCIPAL */
         main { 
             display: flex; 
             flex-direction: column; 
@@ -39,79 +39,74 @@
             margin-left: 250px; 
         }
 
-        /* 4. BANNER HERO (Medidas do Index) */
-        .banner-contatos {
+        /* 4. BANNER PREMIUM (Altura 380px para consistência) */
+        .banner-dicas {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; 
-            background-position: center; 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
             height: 380px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
             border-bottom: 5px solid #ff8c00;
         }
-        .banner-contatos h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
 
-        /* SECCÃO DE CONTEÚDO */
-        .seccao-branca { padding: 60px 20px; flex-grow: 1; }
-        .container-contatos { max-width: 1100px; margin: 0 auto; width: 100%; }
+        .banner-dicas h1 { font-size: 3.2em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .banner-dicas p { font-size: 1.3em; opacity: 0.9; font-weight: 300; }
 
-        /* GRID DE CONTACTOS */
-        .grid-contatos { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px; 
-            margin-bottom: 60px; 
+        /* CONTENTOR DE DICAS */
+        .seccao-dicas { padding: 60px 30px; background: #f4f7f9; flex-grow: 1; }
+        .container-dicas {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .card-contato { 
-            background: #fff; 
-            padding: 45px 20px; 
-            border-radius: 20px; 
-            text-align: center; 
+        /* ESTILO DOS CARDS */
+        .card-dica {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 1px solid #eee;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 5px solid #1e4d8c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .card-contato:hover { transform: translateY(-7px); border-color: #1e4d8c; }
-        
-        .card-contato i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
-        .card-contato strong { color: #1e4d8c; font-size: 1.2em; display: block; margin-bottom: 10px; }
-        .card-contato p, .card-contato a { color: #444; font-size: 1.05em; text-decoration: none; }
-        .card-contato a { font-weight: bold; color: #1e4d8c; transition: 0.3s; }
-        .card-contato a:hover { color: #ff8c00; }
 
-        /* FORMULÁRIO */
-        .form-container { 
-            background: #fff; 
-            padding: 45px; 
-            border-radius: 25px; 
-            max-width: 700px; 
-            margin: 0 auto 60px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #eef0f2;
+        .card-dica:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #ff8c00;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
-        .form-container h2 { text-align: center; color: #1e4d8c; margin-bottom: 30px; }
-        .grupo-input { margin-bottom: 20px; }
-        .form-container input, .form-container textarea { 
-            width: 100%; padding: 18px; border: 2px solid #e1e5e9; border-radius: 12px; font-size: 1em; outline: none;
+
+        .icon-dica {
+            font-size: 50px;
+            color: #ff8c00;
+            margin-bottom: 25px;
+            height: 60px;
+            display: flex;
+            align-items: center;
         }
-        .form-container input:focus, .form-container textarea:focus { border-color: #ff8c00; }
-        .form-container button { 
-            background: #1e4d8c; color: white; padding: 18px; border: none; border-radius: 12px; 
-            width: 100%; font-weight: bold; font-size: 1.2em; cursor: pointer; transition: 0.3s;
-        }
-        .form-container button:hover { background: #ff8c00; }
+
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.4em; }
+        .card-dica p { color: #555; font-size: 1em; line-height: 1.7; margin: 0; }
+        .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
-            .grid-contatos { grid-template-columns: 1fr; }
-            .banner-contatos h1 { font-size: 2.2em; }
-            .banner-contatos { height: 300px; }
+            .banner-dicas { height: 300px; }
+            .banner-dicas h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -120,43 +115,73 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-contatos">
-            <h1>Entre em Contacto</h1>
+        <div class="banner-dicas">
+            <h1>💡 Dicas do Miguel</h1>
+            <p>Tudo o que precisa de saber para que o seu passeio seja inesquecível.</p>
         </div>
 
-        <section class="seccao-branca">
-            <div class="container-contatos">
-                <div class="grid-contatos">
-                    <div class="card-contato">
-                        <i class="fas fa-user-tie"></i>
-                        <strong>Organizador</strong>
-                        <p>Miguel Figueiredo</p>
-                    </div>
-                    <div class="card-contato">
-                        <i class="fab fa-whatsapp"></i>
-                        <strong>WhatsApp</strong>
-                        <p><a href="https://wa.me/351965715465" target="_blank">+351 965 715 465</a></p>
-                    </div>
-                    <div class="card-contato">
-                        <i class="fas fa-envelope-open-text"></i>
-                        <strong>E-mail</strong>
-                        <p><a href="mailto:geral@passeiosdomiguel.com">geral@passeiosdomiguel.com</a></p>
-                    </div>
+        <section class="seccao-dicas">
+            <div class="container-dicas">
+                
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
+                    <h3>O Calçado Ideal</h3>
+                    <p>Privilegie sapatilhas confortáveis e já habituadas ao pé. Evite estrear sapatos novos em dias de passeio.</p>
                 </div>
 
-                <div class="form-container">
-                    <h2>Envie-nos uma mensagem</h2>
-                    <form action="https://formspree.io/f/mdawddar" method="POST">
-                        <div class="grupo-input"><input type="text" name="nome" placeholder="O seu nome completo" required></div>
-                        <div class="grupo-input"><input type="email" name="email" placeholder="O seu endereço de e-mail" required></div>
-                        <div class="grupo-input"><textarea name="mensagem" rows="6" placeholder="Como podemos ajudar no seu próximo passeio?" required></textarea></div>
-                        <button type="submit">Enviar Mensagem Agora</button>
-                    </form>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
+                    <h3>Roupa Prática</h3>
+                    <p>Escolha vestuário que lhe dê liberdade. Vestir em camadas ("à cebola") é a melhor opção para as variações de temperatura.</p>
                 </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
+                    <h3>Registe os Momentos</h3>
+                    <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio de paisagens incríveis!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
+                    <h3>Água e Lanches</h3>
+                    <p>Tenha sempre consigo uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante o trajeto.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-chair"></i></div>
+                    <h3>Marcação de Lugares</h3>
+                    <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus lugares preferidos!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-clock"></i></div>
+                    <h3>Seja Pontual</h3>
+                    <p>Tente chegar 10 a 15 minutos antes da partida. A pontualidade de todos garante que aproveitamos o dia ao máximo!</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-wallet"></i></div>
+                    <h3>Numerário (Dinheiro)</h3>
+                    <p>Em feiras ou aldeias isoladas, nem sempre há multibanco. Traga alguns euros para pequenas compras ou café.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-pills"></i></div>
+                    <h3>Saúde e Bem-estar</h3>
+                    <p>Não esqueça os seus medicamentos diários. Um pequeno kit com algo para o enjoo pode ser um grande aliado.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
+                    <h3>Partilha de Fotos</h3>
+                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
+                </div>
+
             </div>
         </section>
-        
+
         <div id="footer-placeholder"></div> 
+
     </main>
 
     <script>
@@ -170,5 +195,6 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
     </script>
+
 </body>
 </html>
