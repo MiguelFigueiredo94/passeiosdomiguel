@@ -12,31 +12,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactos - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* Layout Base */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        /* 1. RESET E ESTRUTURA GLOBAL (Igual ao Index) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* ALTERAÇÃO 1: Removi o width fixo para não esmagar no mobile */
-        #menu-placeholder { width: 280px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
-        
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f4f7f9; 
+            min-height: 100vh;
+            display: block; 
+        }
 
-        /* Banner */
+        /* 2. ESPAÇO PARA O MENU */
+        #menu-placeholder { 
+            width: 250px; 
+            flex-shrink: 0; 
+        }
+
+        /* 3. CONTEÚDO PRINCIPAL (Com a margem correta) */
+        main { 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+            margin-left: 250px; 
+        }
+
+        /* 4. BANNER HERO (Medidas do Index) */
         .banner-contatos {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            background-size: cover; 
+            background-position: center; 
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            border-bottom: 5px solid #ff8c00;
         }
-        .banner-contatos h1 { font-size: 2.8em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
+        .banner-contatos h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
 
-        /* Secção Branca */
-        .seccao-branca { background: white; padding: 60px 20px; flex-grow: 1; }
-        .container-contatos { max-width: 1100px; margin: 0 auto; }
+        /* SECCÃO DE CONTEÚDO */
+        .seccao-branca { padding: 60px 20px; flex-grow: 1; }
+        .container-contatos { max-width: 1100px; margin: 0 auto; width: 100%; }
 
-        /* GRID COM 3 CAIXAS */
+        /* GRID DE CONTACTOS */
         .grid-contatos { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -44,9 +67,6 @@
             margin-bottom: 60px; 
         }
 
-        /* Responsividade Original */
-        @media (max-width: 900px) { .grid-contatos { grid-template-columns: 1fr; } } 
-        
         .card-contato { 
             background: #fff; 
             padding: 45px 20px; 
@@ -54,74 +74,44 @@
             text-align: center; 
             border: 1px solid #eee;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .card-contato:hover { transform: translateY(-7px); border-color: #1e4d8c; box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .card-contato:hover { transform: translateY(-7px); border-color: #1e4d8c; }
         
         .card-contato i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
         .card-contato strong { color: #1e4d8c; font-size: 1.2em; display: block; margin-bottom: 10px; }
-        .card-contato p, .card-contato a { 
-            margin: 0; color: #444; font-size: 1.05em; text-decoration: none; 
-        }
+        .card-contato p, .card-contato a { color: #444; font-size: 1.05em; text-decoration: none; }
         .card-contato a { font-weight: bold; color: #1e4d8c; transition: 0.3s; }
         .card-contato a:hover { color: #ff8c00; }
 
-        /* Formulário */
+        /* FORMULÁRIO */
         .form-container { 
-            background: #f8f9fa; padding: 45px; border-radius: 25px; 
-            max-width: 700px; margin: 0 auto 60px; border: 1px solid #eef0f2;
+            background: #fff; 
+            padding: 45px; 
+            border-radius: 25px; 
+            max-width: 700px; 
+            margin: 0 auto 60px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eef0f2;
         }
         .form-container h2 { text-align: center; color: #1e4d8c; margin-bottom: 30px; }
         .grupo-input { margin-bottom: 20px; }
         .form-container input, .form-container textarea { 
-            width: 100%; padding: 18px; border: 2px solid #e1e5e9; border-radius: 12px; box-sizing: border-box; font-size: 1em;
+            width: 100%; padding: 18px; border: 2px solid #e1e5e9; border-radius: 12px; font-size: 1em; outline: none;
         }
+        .form-container input:focus, .form-container textarea:focus { border-color: #ff8c00; }
         .form-container button { 
             background: #1e4d8c; color: white; padding: 18px; border: none; border-radius: 12px; 
             width: 100%; font-weight: bold; font-size: 1.2em; cursor: pointer; transition: 0.3s;
         }
-        .form-container button:hover { background: #ff8c00; transform: scale(1.02); }
+        .form-container button:hover { background: #ff8c00; }
 
-        /* --- BOTÃO FLUTUANTE --- */
-        .faq-float { 
-            position: fixed; bottom: 30px; right: 30px; 
-            background: #ff8c00; color: white; 
-            width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 28px; cursor: pointer; border: none;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.4); 
-            z-index: 9999; 
-            transition: 0.3s;
-        }
-        .faq-float:hover { transform: scale(1.1); background: #e67e22; }
-
-        /* --- JANELA MODAL DE AJUDA --- */
-        .modal-faq {
-            display: none; position: fixed; z-index: 10001; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
-        }
-        .modal-faq-content {
-            background-color: white; margin: 10% auto; padding: 30px;
-            width: 85%; max-width: 500px; border-radius: 20px; position: relative;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-        }
-        .fechar-modal { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #666; }
-
-       
-        /* --- ALTERAÇÃO 2: ESTA É A PARTE NOVA QUE CORRIGE O MOBILE --- */
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            body { display: block; } /* Faz o menu ir para cima e conteúdo para baixo */
-            #menu-placeholder { 
-                width: 100% !important; 
-                min-height: auto !important; 
-                position: relative !important; 
-            }
-            .footer-container { 
-                grid-template-columns: 1fr !important; 
-                text-align: center; 
-            }
-            .banner-contatos h1 { font-size: 2em; }
-            .form-container { padding: 25px; }
+            main { margin-left: 0; }
+            .grid-contatos { grid-template-columns: 1fr; }
+            .banner-contatos h1 { font-size: 2.2em; }
+            .banner-contatos { height: 300px; }
         }
     </style>
 </head>
@@ -136,7 +126,6 @@
 
         <section class="seccao-branca">
             <div class="container-contatos">
-                
                 <div class="grid-contatos">
                     <div class="card-contato">
                         <i class="fas fa-user-tie"></i>
@@ -168,39 +157,18 @@
         </section>
         
         <div id="footer-placeholder"></div> 
-            </main>
+    </main>
 
     <script>
-        // Carrega o Menu
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            });
-    
-        // Carrega o NOVO Rodapé
-        fetch('rodape.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro:', error));
+        }
 
-    <script>
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
-
-        function abrirFaq() {
-            document.getElementById('janelaFaq').style.display = 'block';
-        }
-        function fecharFaq() {
-            document.getElementById('janelaFaq').style.display = 'none';
-        }
-        window.onclick = function(event) {
-            let modal = document.getElementById('janelaFaq');
-            if (event.target == modal) { modal.style.display = "none"; }
-        }
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
     </script>
 </body>
 </html>
