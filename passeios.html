@@ -86,6 +86,18 @@
             gap: 30px; 
             margin-bottom: 50px; 
         }
+
+        .badge-ultimas {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }    
+
+
         
         /* CARDS */
         .card-passeio { 
@@ -103,6 +115,7 @@
         .badge-esgotado { background: #e74c3c; } /* Vermelho */
         .badge-ultimas { background: #f39c12; }  /* Laranja/Amarelo */
         .badge-confirmado { background: #3498db; } /* Azul */
+        .badge-cancelado { background: #2c3e50; } /* Azul Escuro / Cinza Petróleo */
 
         .card-info { padding: 25px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
         
