@@ -11,75 +11,82 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Home</title>
+    <title>Passeios do Miguel - Sobre Mim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        /* 1. RESET E ESTRUTURA GLOBAL (Igual ao Index) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background-color: #f4f7f9; 
             min-height: 100vh;
-            display: block; /* Alterado de flex para block para evitar conflitos */
+            display: block; 
         }
 
-        /* 2. CONTEÚDO PRINCIPAL */
+        /* 2. ESPAÇO PARA O MENU */
+        #menu-placeholder { 
+            width: 250px; 
+            flex-shrink: 0; 
+        }
+
+        /* 3. CONTEÚDO PRINCIPAL (Com a margem correta) */
         main { 
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            /* Esta margem compensa o menu fixo de 250px */
-            margin-left: 250px; 
+            margin-left: 250px; /* Alinhado com o menu fixo */
         }
 
-        /* CABEÇALHO HERO */
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+        /* CABEÇALHO HERO (Medidas do Index) */
+        .hero-sobre {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
             background-size: cover; 
             background-position: center; 
-            height: 380px; 
+            height: 380px; /* Mesma altura do index para consistência */
             display: flex; 
-            flex-direction: column; 
             justify-content: center; 
-            align-items: center;
-            color: white; 
-            text-align: center; 
+            align-items: center; 
+            color: white;
+            text-align: center;
             border-bottom: 5px solid #ff8c00;
         }
-        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; padding: 0 20px; }
+        .hero-sobre h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-        /* CONTENT CONTAINER */
-        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
-
-        .intro-text { text-align: center; margin-bottom: 40px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
-        .intro-text p { color: #555; font-size: 1.1em; line-height: 1.7; }
-
-        /* VÍDEO YOUTUBE */
-        .video-section {
-            background-color: white; padding: 15px; border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-bottom: 50px;
+        /* SEÇÃO DE CONTEÚDO */
+        .content-section { 
+            padding: 50px 40px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            flex-grow: 1; 
+            width: 100%;
         }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* CARDS */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .feature-card { 
-            background: white; padding: 35px 25px; border-radius: 18px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; 
+        
+        .fase { display: flex; gap: 25px; margin-bottom: 35px; align-items: flex-start; }
+        
+        .fase-icon { 
+            background: #ff8c00; color: white; width: 50px; height: 50px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
-        .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
 
-        /* RESPONSIVIDADE */
+        .fase-content { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            flex-grow: 1; 
+            border-left: 5px solid #1e4d8c; 
+        }
+        .fase-content p { color: #444; line-height: 1.7; font-size: 1.1em; }
+
+        /* RESPONSIVIDADE (Igual ao Index) */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
-            .features-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2em; }
+            .hero-sobre { height: 300px; }
+            .hero-sobre h1 { font-size: 2.2em; }
+            .fase { flex-direction: column; align-items: center; text-align: center; }
         }
     </style>
 </head>
@@ -88,43 +95,38 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-section">
-            <h1>Passeios do Miguel</h1>
-            <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-            <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.3);">VER PRÓXIMOS PASSEIOS</a>
+        <section class="hero-sobre">
+            <h1>Sobre Mim</h1>
         </section>
 
-        <div class="content-container">
-            <section class="intro-text">
-                <h2>Bem-vindo à nossa Comunidade</h2>
-                <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
-            </section>
-
-            <section class="video-section">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </section>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bus-alt"></i>
-                    <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os nossos passageiros de honra.</p>
+        <section class="content-section">
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-history"></i></div>
+                <div class="fase-content">
+                    <p>Tudo começou com dois passeios organizados para angariar fundos. O que era apenas um evento pontual acabou por se transformar numa verdadeira paixão, graças ao entusiasmo e apoio de quem participou.</p>
                 </div>
             </div>
-        </div>
-        <div id="rodape-placeholder"></div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-comments"></i></div>
+                <div class="fase-content">
+                    <p>Foram essas pessoas que me desafiaram a continuar e, com as suas sugestões, ajudaram a definir novos destinos. Esta página nasceu desse desejo de proporcionar passeios acessíveis, descontraídos e cheios de boas memórias.</p>
+                </div>
+            </div>
+
+            <div class="fase">
+                <div class="fase-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="fase-content">
+                    <p>Aqui encontrarás a divulgação de futuros passeios, partilhas de momentos e um espaço aberto às tuas sugestões. Afinal, são vocês que tornam cada viagem verdadeiramente especial!</p>
+                    <p style="margin-top: 15px; font-weight: bold; color: #1e4d8c; border-top: 1px solid #eee; padding-top: 15px;">
+                        Passeios com Alma e Aventura! Venha explorar Portugal com boa disposição e espírito de descoberta. <br>
+                        De São Pedro do Sul para os cantos mais bonitos de Portugal.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div id="footer-placeholder"></div>
     </main>
 
     <script>
@@ -134,8 +136,9 @@
                 .then(data => { document.getElementById(id).innerHTML = data; })
                 .catch(error => console.error('Erro:', error));
         }
+
         carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('rodape-placeholder', 'rodape.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
     </script>
 </body>
 </html>
