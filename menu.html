@@ -1,23 +1,25 @@
 <style>
-    /* --- ESTRUTURA LATERAL --- */
+    /* 1. ESTRUTURA LATERAL CORRIGIDA */
     #menu-lateral { 
         width: 250px; 
         background-color: #1e4d8c; 
         min-height: 100vh; 
-        position: sticky; 
-        top: 0; 
-        padding: 30px 12px;
+        position: fixed; /* Fixado à esquerda */
+        left: 0;
+        top: 0;
+        padding: 30px 15px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         z-index: 9999;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
     }
 
-    /* --- LOGÓTIPO REDONDO E PROFISSIONAL --- */
+    /* 2. LOGÓTIPO - AJUSTE DE VISIBILIDADE */
     .logo-container {
-        width: 160px;
-        height: 160px;
+        width: 180px;
+        height: 180px;
         margin: 0 auto 30px;
         display: flex;
         justify-content: center;
@@ -27,107 +29,76 @@
         border: 4px solid white; 
         background-color: white; 
         box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        transition: 0.3s;
         text-decoration: none;
     }
 
-    .logo-container:hover { transform: scale(1.05); }
-
     .logo-container .logo { 
-        width: 85%; 
+        width: 115%; /* Zoom moderado para não cortar o texto */
         height: auto;
         object-fit: contain;
         display: block;
+        transform: translateY(5px); /* Ajuste para centrar o texto no círculo */
     }
 
-    /* --- ESTILO DOS LINKS --- */
+    /* 3. LINKS DO MENU - NOMES ORIGINAIS RECUPERADOS */
     #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } 
-    #menu-lateral li { margin-bottom: 8px; position: relative; }
+    #menu-lateral li { margin-bottom: 10px; position: relative; }
 
     #menu-lateral ul li a { 
         display: flex; align-items: center; color: white; text-decoration: none; 
-        padding: 10px 15px; font-size: 14px; font-weight: 600; 
-        transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.05);
-        border: 2px solid transparent;
+        padding: 12px 20px; font-size: 15px; font-weight: 600; 
+        transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.08);
     }
 
     #menu-lateral ul li a:hover { 
-        background: linear-gradient(135deg, #ff9800, #f57c00);
-        border-color: white;
+        background: linear-gradient(135deg, #ff8c00, #e67e00);
         color: white;
+        transform: translateX(5px);
     }
 
-    .main-icon { margin-right: 12px; width: 20px; text-align: center; }
-    .fa-chevron-right { margin-left: auto; font-size: 10px; opacity: 0.7; }
+    .main-icon { margin-right: 12px; width: 20px; text-align: center; font-size: 18px; }
+    .fa-chevron-right { margin-left: auto; font-size: 11px; opacity: 0.7; }
 
-    /* --- SISTEMA DE DROPDOWNS (Desktop) --- */
+    /* 4. DROPDOWNS */
     .dropdown-content {
         display: none;
         position: absolute;
         left: 100%; top: 0;
-        background: #ffffff !important; 
+        background: white; 
         min-width: 260px;
-        box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
-        border-radius: 15px;
-        padding: 12px 0;
-        z-index: 10000;
-        border: 1px solid #ddd;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+        border-radius: 12px;
+        padding: 10px 0;
+        z-index: 10001;
+        margin-left: 10px;
     }
-
     .dropdown:hover > .dropdown-content { display: block; }
-
     .dropdown-content a {
         color: #1e4d8c !important;
-        background: none !important;
-        padding: 10px 20px !important;
-        font-size: 13px !important;
-        font-weight: 500 !important;
+        padding: 12px 20px !important;
         display: block !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
         border-bottom: 1px solid #f0f0f0;
-        border-radius: 0 !important;
     }
+    .dropdown-content a:hover { background: #f8f9fa !important; color: #ff8c00 !important; }
 
-    .dropdown-content a:hover {
-        background-color: #f8f9fa !important;
-        color: #ff9800 !important;
-        padding-left: 25px !important;
-    }
-
-    .nested-dropdown { position: relative; }
-    .nested-content {
-        display: none;
-        position: absolute;
-        left: 100%; top: 0;
-        background: #ffffff !important;
-        min-width: 260px;
-        box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
-        border-radius: 0 15px 15px 15px;
-        border: 1px solid #ddd;
-    }
-    .nested-dropdown:hover > .nested-content { display: block; }
-
-    /* --- REDES SOCIAIS --- */
+    /* 5. REDES SOCIAIS */
     .redes-sociais-menu {
-        padding-top: 15px;
-        margin-top: 20px;
+        padding-top: 20px;
         border-top: 1px solid rgba(255,255,255,0.1);
         text-align: center;
     }
-    .redes-sociais-menu p { color: rgba(255,255,255,0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 10px; }
+    .redes-sociais-menu p { color: rgba(255,255,255,0.5); font-size: 11px; margin-bottom: 15px; text-transform: uppercase; }
     .icones-redes { display: flex; justify-content: center; gap: 15px; }
-    .icones-redes a { color: white; font-size: 18px; transition: 0.3s; opacity: 0.8; }
-    .icones-redes a:hover { color: #ff9800; transform: scale(1.1); opacity: 1; }
+    .icones-redes a { color: white; font-size: 20px; transition: 0.3s; opacity: 0.8; }
+    .icones-redes a:hover { color: #ff8c00; transform: scale(1.2); opacity: 1; }
 
-    /* --- MOBILE --- */
+    /* MOBILE */
     @media (max-width: 1024px) {
-        #menu-lateral { width: 100% !important; min-height: auto !important; position: relative !important; padding: 15px !important; }
-        .logo-container { width: 110px !important; height: 110px !important; margin-bottom: 15px !important; }
-        .dropdown-content, .nested-content { 
-            position: static !important; display: none; width: 100% !important; 
-            box-shadow: none !important; background: rgba(255,255,255,0.05) !important; 
-        }
-        .dropdown:hover > .dropdown-content, .nested-dropdown:hover > .nested-content { display: block !important; }
-        .dropdown-content a { color: white !important; }
+        #menu-lateral { width: 100%; min-height: auto; position: relative; padding: 15px; }
+        .logo-container { width: 120px; height: 120px; }
+        .dropdown-content { position: static; width: 100%; box-shadow: none; background: rgba(0,0,0,0.1); }
     }
 </style>
 
@@ -146,35 +117,15 @@
                 <i class="fas fa-chevron-right"></i>
             </a>
             <div class="dropdown-content">
-                <div class="nested-dropdown">
-                    <a href="#">Programação 2026 <i class="fas fa-chevron-right"></i></a>
-                    <div class="nested-content">
-                        <a href="campomaior.html">Festas do Povo (08 Ago)</a>
-                        <a href="cereja.html">Rota da Cereja (14 Jun)</a>
-                        <a href="cruzes.html">Festa das Cruzes (01 Mai)</a>
-                        <a href="camelias.html">Festa das Camélias (15 Mar)</a>
-                        <a href="gaia.html">Magia Animal - Gaia (15 Fev)</a>
-                    </div>
-                </div>
-                <div class="nested-dropdown">
-                    <a href="#">Programação 2025 <i class="fas fa-chevron-right"></i></a>
-                    <div class="nested-content">
-                        <a href="vigo.html">Especial Natal Vigo (07 Dez)</a>
-                        <a href="marvao.html">Festa da Castanha (09 Nov)</a>
-                        <a href="espinho.html">Sra. da Ajuda - Espinho (12 Set)</a>
-                        <a href="viana.html">Sra. d'Agonia (16 Ago)</a>
-                        <a href="geres.html">Gerês & Braga (20 Jul)</a>
-                        <a href="fatima.html">Santuário de Fátima (15 Jun)</a>
-                        <a href="obidos.html">Festa do Chocolate (06 Abr)</a>
-                        <a href="amendoeiras.html">Amendoeiras em Flor (02 Mar)</a>
-                    </div>
-                </div>
+                <a href="passeios.html"><strong>Ver Todos os Passeios</strong></a>
+                <a href="#">Programação 2026</a>
+                <a href="#">Programação 2025</a>
                 <a href="galeria.html">Galeria de Fotos</a>
             </div>
         </li>
 
         <li><a href="contatos.html"><i class="fas fa-envelope main-icon"></i> Contactos</a></li>
-        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 12px 0;">
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
         <li><a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i> Dicas Úteis</a></li>
         <li><a href="faq.html"><i class="fas fa-question-circle main-icon"></i> FAQ</a></li>
     </ul>
@@ -182,10 +133,9 @@
     <div class="redes-sociais-menu">
         <p>Siga-nos</p>
         <div class="icones-redes">
-            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" title="Página Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" title="Grupo Facebook"><i class="fas fa-users"></i></a>
-            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" title="Grupo WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
     </div>
 </nav>
