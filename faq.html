@@ -252,44 +252,9 @@
             </div>
         </section>
 
-        <footer class="footer-universal">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>Viagens com alma e aventura, de S. Pedro do Sul para o país.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="passeios.html">Passeios</a></li>
-                        <li><a href="testemunhos.html">Mural</a></li>
-                        <li><a href="contatos.html">Contacto</a></li>
-                        <li><a href="galeria.html">galeria</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Apoio e Reservas</h4>
-                    <ul>
-                        <li class="btn-contacto-pill">
-                            <a href="tel:+351965715465"><i class="fas fa-phone-alt"></i> 965 715 465</a>
-                        </li>
-                        <li class="btn-contacto-pill">
-                            <a href="https://wa.me/351965715465"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        </li>
-                        <li><a href="cancelamento.html"><i class="fas fa-exclamation-triangle"></i> Cancelamento</a></li>
-                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas (FAQ)</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</p>
-            </div>
-        </footer>
+        <div id="footer-placeholder"></div> 
     </main>
+
 
     <script>
         // Carregar Menu
@@ -297,6 +262,14 @@
             document.getElementById('menu-placeholder').innerHTML = data;
         });
 
+        // Carregar o Rodapé Premium
+                fetch('rodape.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('footer-placeholder').innerHTML = data;
+                    })
+                    .catch(err => console.error('Erro ao carregar rodapé:', err));
+            
         // Lógica do Acordeão
         document.querySelectorAll('.faq-pergunta').forEach(botao => {
             botao.addEventListener('click', () => {
