@@ -1,186 +1,147 @@
 <style>
     .footer-wrapper {
-        padding: 50px 20px 30px;
+        padding: 40px 20px;
         background-color: #f4f7f9;
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .footer-premium {
-        /* Degradê que remete ao mar profundo e horizonte */
-        background: linear-gradient(135deg, #0f2d5c 0%, #1e4d8c 50%, #2a5fb1 100%);
+    .footer-card {
+        background: #1e4d8c;
         color: white;
-        padding: 50px 60px 20px;
-        border-radius: 50px; /* Cantos muito arredondados para um ar moderno */
+        padding: 40px;
+        border-radius: 30px;
         position: relative;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(15, 45, 92, 0.2);
+        box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    /* Brilho sutil no topo para dar tridimensionalidade */
-    .footer-premium::after {
+    /* Detalhe decorativo: uma linha curva que lembra uma estrada/viagem */
+    .footer-card::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        top: 0; right: 0;
+        width: 150px; height: 150px;
+        background: radial-gradient(circle at top right, rgba(255,140,0,0.2), transparent 70%);
+        pointer-events: none;
     }
 
-    .footer-grid {
+    .footer-main {
         display: grid;
-        grid-template-columns: 1.4fr 1fr 1.2fr;
-        gap: 60px;
-        align-items: start;
+        grid-template-columns: 1.2fr 1fr 1.2fr;
+        gap: 30px;
+        align-items: center;
     }
 
-    /* Estilo da Marca */
-    .brand-box h2 {
-        font-size: 28px;
-        font-weight: 800;
-        margin-bottom: 15px;
-        letter-spacing: -1px;
-        color: #fff;
-    }
-
-    .brand-box p {
-        font-size: 14px;
-        line-height: 1.8;
-        color: rgba(255, 255, 255, 0.7);
-        max-width: 320px;
-    }
-
-    /* Navegação Minimalista */
-    .nav-box h4 {
+    /* Coluna 1: O Hobby com Paixão */
+    .hobby-info h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
         color: #ff8c00;
+    }
+
+    .hobby-info p {
+        font-size: 14px;
+        line-height: 1.6;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    /* Coluna 2: Navegação Direta */
+    .nav-simple h4 {
         text-transform: uppercase;
         font-size: 11px;
-        letter-spacing: 2px;
-        margin-bottom: 25px;
+        letter-spacing: 1.5px;
+        margin-bottom: 15px;
+        opacity: 0.7;
     }
 
-    .nav-links-grid {
+    .nav-links {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .nav-links-grid a {
+    .nav-links a {
         color: white;
         text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        opacity: 0.6;
-        transition: all 0.3s ease;
+        font-size: 13px;
+        transition: 0.3s;
     }
 
-    .nav-links-grid a:hover {
-        opacity: 1;
-        color: #ff8c00;
-        transform: translateY(-2px);
-    }
+    .nav-links a:hover { color: #ff8c00; }
 
-    /* Contact Cards (Efeito Glassmorphism) */
-    .action-box {
+    /* Coluna 3: Contactos Amigáveis */
+    .contact-pills {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
     }
 
-    .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 18px 25px;
-        border-radius: 20px;
+    .pill {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 12px 20px;
+        border-radius: 15px;
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
         text-decoration: none;
         color: white;
-        transition: all 0.4s ease;
+        transition: 0.3s;
     }
 
-    .glass-card:hover {
-        background: rgba(255, 255, 255, 0.12);
+    .pill:hover {
+        background: #ff8c00;
         border-color: #ff8c00;
-        transform: scale(1.03);
+        transform: translateY(-3px);
     }
 
-    .icon-circle {
-        width: 45px;
-        height: 45px;
-        background: rgba(255, 140, 0, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ff8c00;
-        font-size: 18px;
-    }
+    .pill i { font-size: 18px; width: 20px; text-align: center; }
+    .pill span { font-size: 14px; font-weight: 600; }
 
-    .card-text span {
-        display: block;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: 0.5;
-        margin-bottom: 2px;
-    }
-
-    .card-text strong {
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    /* Rodapé Inferior */
-    .footer-lower {
-        margin-top: 60px;
+    /* Barra Inferior */
+    .footer-credits {
+        margin-top: 30px;
         padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255,255,255,0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 11px;
+        opacity: 0.6;
     }
 
-    .copyright { font-size: 12px; opacity: 0.4; }
-
-    .legal-nav { display: flex; gap: 25px; }
-    .legal-nav a { 
-        color: white; 
-        text-decoration: none; 
-        font-size: 12px; 
-        opacity: 0.5; 
-        transition: 0.3s;
+    .extra-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
     }
-    .legal-nav a:hover { opacity: 1; color: #ff8c00; }
 
-    @media (max-width: 1024px) {
-        .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-        .brand-box p, .nav-links-grid { margin: 0 auto; }
-        .glass-card { justify-content: center; }
-        .footer-lower { flex-direction: column; gap: 20px; }
+    @media (max-width: 900px) {
+        .footer-main { grid-template-columns: 1fr; text-align: center; }
+        .nav-links { justify-content: center; }
+        .pill { justify-content: center; }
+        .footer-credits { flex-direction: column; gap: 15px; }
     }
 </style>
 
 <div class="footer-wrapper">
-    <footer class="footer-premium">
-        <div class="footer-grid">
+    <div class="footer-card">
+        <div class="footer-main">
             
-            <div class="brand-box">
+            <div class="hobby-info">
                 <h2>Passeios do Miguel</h2>
-                <p>Especialistas em criar roteiros autênticos. Descubra a essência de Portugal com o conforto e a dedicação que merece.</p>
-                <div style="margin-top: 25px; font-size: 13px; color: #ff8c00;">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <span style="color: white; opacity: 0.6; margin-left: 10px;">Excelência em Turismo</span>
+                <p>"Não é o meu trabalho, é a minha paixão. Partilho Portugal com quem gosta de viajar com calma e alegria."</p>
+                <div style="margin-top: 15px;">
+                    <i class="fas fa-heart" style="color: #ff8c00;"></i>
+                    <span style="font-size: 12px; margin-left: 8px; opacity: 0.8;">Feito com dedicação</span>
                 </div>
             </div>
 
-            <div class="nav-box">
-                <h4>Descobrir</h4>
-                <div class="nav-links-grid">
+            <div class="nav-simple">
+                <h4>Menu</h4>
+                <div class="nav-links">
                     <a href="index.html">Início</a>
                     <a href="testemunhos.html">Mural</a>
                     <a href="sobre.html">Sobre</a>
@@ -190,31 +151,25 @@
                 </div>
             </div>
 
-            <div class="action-box">
-                <a href="tel:+351965715465" class="glass-card">
-                    <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
-                    <div class="card-text">
-                        <span>Atendimento Direto</span>
-                        <strong>965 715 465</strong>
-                    </div>
+            <div class="contact-pills">
+                <a href="tel:+351965715465" class="pill">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>965 715 465</span>
                 </a>
-                <a href="https://wa.me/351965715465" class="glass-card">
-                    <div class="icon-circle"><i class="fab fa-whatsapp"></i></div>
-                    <div class="card-text">
-                        <span>WhatsApp</span>
-                        <strong>Reservar Agora</strong>
-                    </div>
+                <a href="https://wa.me/351965715465" class="pill">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Conversar no WhatsApp</span>
                 </a>
             </div>
 
         </div>
 
-        <div class="footer-lower">
-            <div class="copyright">&copy; 2026 Passeios do Miguel. Paixão por viajar.</div>
-            <div class="legal-nav">
-                <a href="cancelamento.html">Política de Cancelamento</a>
-                <a href="faq.html">Centro de Ajuda</a>
+        <div class="footer-credits">
+            <div>&copy; 2026 Passeios do Miguel - Hobby & Paixão.</div>
+            <div class="extra-links">
+                <a href="cancelamento.html">Cancelamento</a>
+                <a href="faq.html">Dúvidas</a>
             </div>
         </div>
-    </footer>
+    </div>
 </div>
