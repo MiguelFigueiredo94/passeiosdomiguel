@@ -551,12 +551,20 @@
         </div>
         </div>
                    
-            <div id="footer-placeholder"></div> 
+       <div id="footer-placeholder"></div> 
     </main>
 
    
     
     <script>
+        // Carregar o Menu lateral
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error('Erro ao carregar menu:', err));
+
         // Carregar o Rodapé Premium
         fetch('rodape.html')
             .then(response => response.text())
@@ -565,6 +573,7 @@
             })
             .catch(err => console.error('Erro ao carregar rodapé:', err));
     </script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
