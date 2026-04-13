@@ -136,14 +136,14 @@
   
     
 <script>
-        // Carregar Menu
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
-
-        // Carregar Rodapé Dinâmico
+    // Carregar Rodapé Dinâmico
         fetch('rodape.html').then(res => res.text()).then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
+        });    
+    
+    // Carregar Menu
+        fetch('menu.html').then(res => res.text()).then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
         });
     </script>
 
