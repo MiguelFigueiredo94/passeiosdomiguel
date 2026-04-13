@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Ajuda - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* Layout Base */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: #f4f7f9; min-height: 100vh; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; min-height: 100vh; position: sticky; top: 0; z-index: 1000; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        /* 1. RESET E ESTRUTURA GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f4f7f9; 
+            min-height: 100vh;
+            display: block; 
+        }
 
-        /* Banner Moderno */
+        /* 2. ESPAÇO PARA O MENU */
+        #menu-placeholder { 
+            width: 250px; 
+            flex-shrink: 0; 
+        }
+
+        /* 3. CONTEÚDO PRINCIPAL */
+        main { 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+            margin-left: 250px; 
+        }
+
+        /* 4. BANNER PREMIUM (380px) */
         .banner-faq {
             background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 100px 20px; text-align: center; border-radius: 0 0 60px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-size: cover; 
+            background-position: center;
+            color: white; 
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 5px solid #ff8c00;
         }
-        .banner-faq h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .banner-faq p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
+        .banner-faq h1 { font-size: 3.2em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .banner-faq p { font-size: 1.3em; opacity: 0.9; margin-top: 10px; }
 
-        /* Área das Perguntas */
+        /* ÁREA DAS PERGUNTAS */
         .seccao-faq { padding: 60px 20px; flex-grow: 1; }
-        .container-faq { max-width: 900px; margin: 0 auto; }
+        .container-faq { max-width: 900px; margin: 0 auto; width: 100%; }
 
         .faq-item {
             background: white; 
@@ -74,10 +99,9 @@
             color: #1e4d8c; font-size: 1.2em; transition: 0.3s;
         }
 
-        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; transition: 0.3s; }
+        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; }
         .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
 
-        /* Resposta */
         .faq-resposta {
             max-height: 0; 
             overflow: hidden; 
@@ -96,10 +120,15 @@
         .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
         .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
         .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
-        .faq-item.ativo .faq-resposta { max-height: 400px; }
+        .faq-item.ativo .faq-resposta { max-height: 500px; }
         .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
 
-
+        @media (max-width: 1024px) {
+            main { margin-left: 0; }
+            .banner-faq { height: 300px; }
+            .banner-faq h1 { font-size: 2.2em; }
+            .faq-resposta-inner { padding: 0 20px 20px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -155,7 +184,7 @@
                     </button>
                     <div class="faq-resposta">
                         <div class="faq-resposta-inner">
-                            Podes inscrever-te ligando para o 965 715 476 ou preenchendo o <a href="inscricao.html">formulário de inscrição</a>.
+                            Podes inscrever-te ligando para o 965 715 476 ou preenchendo o <a href="inscricao.html" style="color: #1e4d8c; font-weight: bold;">formulário de inscrição</a>.
                         </div>
                     </div>
                 </div>
@@ -208,30 +237,30 @@
             </div>
         </section>
 
-        <div id="footer-placeholder" style="width: 100%;"></div>
+        <div id="footer-placeholder"></div>
     </main>
 
     <script>
-        // 1. Carregar Menu
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro:', error));
+        }
 
-        // 2. Carregar o NOVO Rodapé (ESTA PARTE É A QUE FALTA NO TEU)
-        fetch('rodape.html').then(res => res.text()).then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
-       
-        // 3. Lógica do Acordeão
-        document.querySelectorAll('.faq-pergunta').forEach(botao => {
-            botao.addEventListener('click', () => {
-                const item = botao.parentElement;
-                const estaAtivo = item.classList.contains('ativo');
-                
-                document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
-                
-                if (!estaAtivo) item.classList.add('ativo');
-            });
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
+
+        // Lógica do Acordeão
+        document.addEventListener('click', function (e) {
+            const botao = e.target.closest('.faq-pergunta');
+            if (!botao) return;
+
+            const item = botao.parentElement;
+            const estaAtivo = item.classList.contains('ativo');
+            
+            document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
+            if (!estaAtivo) item.classList.add('ativo');
         });
     </script>
 </body>
