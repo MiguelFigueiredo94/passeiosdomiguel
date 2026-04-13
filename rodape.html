@@ -8,12 +8,31 @@
     .footer-container {
         background: linear-gradient(135deg, #1e4d8c 0%, #153561 100%);
         color: white;
-        padding: 30px 40px 15px;
+        padding: 35px 45px 20px;
         border-radius: 30px;
         max-width: 1200px;
         margin: 0 auto;
         position: relative;
+        overflow: hidden; /* Necessário para a linha não sair fora do arco */
         box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
+    }
+
+    /* A LINHA DOURADA QUE PERCORRE O TOPO */
+    .footer-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent);
+        background-size: 200% 100%;
+        animation: goldLineMove 4s linear infinite;
+    }
+
+    @keyframes goldLineMove {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
     }
 
     .footer-grid {
@@ -23,62 +42,68 @@
         align-items: center;
     }
 
-    /* Info do Miguel */
-    .f-info h2 { font-size: 24px; margin-bottom: 8px; font-weight: 800; }
-    .f-info p { font-size: 14px; opacity: 0.8; margin-bottom: 12px; line-height: 1.5; }
+    /* Nome com Linha por Baixo */
+    .f-brand h2 { 
+        font-size: 24px; 
+        margin-bottom: 5px; 
+        font-weight: 800; 
+        display: inline-block;
+        position: relative;
+    }
     
-    .f-tags { display: flex; gap: 10px; }
+    /* A linha por baixo do nome */
+    .f-brand h2::after {
+        content: "";
+        display: block;
+        width: 60%;
+        height: 2px;
+        background: #ff8c00;
+        margin-top: 4px;
+        border-radius: 2px;
+    }
+
+    .f-brand p { font-size: 13px; opacity: 0.8; margin-top: 10px; line-height: 1.5; }
+    
     .f-tag {
+        display: inline-block;
+        margin-top: 10px;
         font-size: 11px;
-        font-weight: bold;
         color: #ff8c00;
-        background: rgba(255, 140, 0, 0.1);
-        padding: 4px 12px;
+        font-weight: bold;
+        background: rgba(255,140,0,0.1);
+        padding: 3px 10px;
         border-radius: 50px;
-        border: 1px solid rgba(255, 140, 0, 0.2);
     }
 
-    /* MENU COM ANIMAÇÃO (O que pediste) */
-    .f-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px 20px;
-    }
-
+    /* Menu com Movimento */
+    .f-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .f-links a {
         color: white;
         text-decoration: none;
         font-size: 14px;
         opacity: 0.7;
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        transition: all 0.3s ease; /* Transição suave */
     }
-
-    /* Quando pousas o rato nas palavras */
     .f-links a:hover {
         opacity: 1;
         color: #ff8c00;
-        transform: translateX(8px); /* A palavra mexe-se para a direita */
+        transform: translateX(8px);
     }
-
-    /* O detalhe que aparece (uma setinha ou ponto) */
     .f-links a::before {
         content: '→';
         margin-right: -10px;
         opacity: 0;
-        transition: all 0.3s ease;
-        font-size: 12px;
+        transition: 0.3s;
     }
-
     .f-links a:hover::before {
         margin-right: 8px;
         opacity: 1;
     }
 
-    /* BOTÕES DE CONTACTO COM MOVIMENTO */
+    /* Botões de Contacto */
     .f-actions { display: flex; flex-direction: column; gap: 10px; }
-    
     .f-btn {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.15);
@@ -89,23 +114,18 @@
         gap: 12px;
         color: white !important;
         text-decoration: none;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: 0.3s;
     }
-
     .f-btn:hover {
-        background: #ff8c00; /* Muda para laranja no hover */
+        background: rgba(255, 255, 255, 0.1);
         border-color: #ff8c00;
-        transform: scale(1.05) translateY(-3px); /* Cresce e sobe um pouco */
-        box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
+        transform: translateY(-3px);
     }
+    .f-btn i { color: #ff8c00; font-size: 18px; }
+    .f-btn div strong { font-size: 14px; display: block; }
+    .f-btn div span { font-size: 9px; opacity: 0.5; text-transform: uppercase; }
 
-    .f-btn i { font-size: 18px; transition: 0.3s; }
-    .f-btn:hover i { color: white; transform: rotate(15deg); } /* Ícone inclina-se */
-
-    .f-btn div span { display: block; font-size: 9px; opacity: 0.6; text-transform: uppercase; }
-    .f-btn div strong { font-size: 14px; }
-
-    /* Rodapé Final */
+    /* Bottom */
     .f-bottom {
         margin-top: 25px;
         padding-top: 15px;
@@ -115,13 +135,14 @@
         font-size: 11px;
         opacity: 0.5;
     }
-    .f-legal a { color: white; text-decoration: none; margin-left: 15px; }
+    .f-bottom a { color: white; text-decoration: none; margin-left: 15px; }
 
     @media (max-width: 900px) {
         .footer-grid { grid-template-columns: 1fr; text-align: center; }
-        .f-links { justify-items: center; border: none; }
+        .f-links { justify-items: center; }
         .f-actions { align-items: center; }
         .f-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        .f-brand h2::after { margin: 4px auto 0; }
     }
 </style>
 
@@ -129,12 +150,10 @@
     <footer class="footer-container">
         <div class="footer-grid">
             
-            <div class="f-info">
+            <div class="f-brand">
                 <h2>Passeios do Miguel</h2>
                 <p>O prazer de descobrir Portugal com a proximidade de um amigo.</p>
-                <div class="f-tags">
-                    <span class="f-tag"><i class="fas fa-heart"></i> Hobby & Paixão</span>
-                </div>
+                <div class="f-tag"><i class="fas fa-heart"></i> Hobby feito com Paixão</div>
             </div>
 
             <div class="f-links">
@@ -153,7 +172,7 @@
                 </a>
                 <a href="https://wa.me/351965715465" class="f-btn">
                     <i class="fab fa-whatsapp"></i>
-                    <div><span>WhatsApp Direto</span><strong>Conversar agora</strong></div>
+                    <div><span>WhatsApp</span><strong>Conversar agora</strong></div>
                 </a>
             </div>
 
