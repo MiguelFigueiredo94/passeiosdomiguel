@@ -37,8 +37,14 @@
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            /* Margem para não ser tapado pelo menu fixo em computadores */
+            /* IMPORTANTE: Esta margem tem de ser igual à largura do menu (250px) */
             margin-left: 250px; 
+            background-color: #f4f7f9; /* Garante que o fundo branco/cinza ocupa o resto */
+        }
+        
+        /* No telemóvel, o menu não é lateral, por isso tiramos a margem */
+        @media (max-width: 1024px) {
+            main { margin-left: 0; }
         }
 
         /* CABEÇALHO HERO */
