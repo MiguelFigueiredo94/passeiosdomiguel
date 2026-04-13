@@ -8,36 +8,43 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - A Nossa História</title>
+    <title>Inscrição - Passeios do Miguel</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        /* 1. RESET E ESTRUTURA */
+        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
             background-color: #f8fafc; 
-            color: #334155;
-            min-height: 100vh;
+            min-height: 100vh; 
+            display: flex; 
         }
 
-        #menu-placeholder { width: 250px; flex-shrink: 0; }
+        #menu-placeholder { 
+            width: 250px; 
+            background-color: #1e4d8c; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            flex-shrink: 0; 
+        }
 
         main { 
+            flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-left: 250px; 
-            min-height: 100vh;
+            min-width: 0; 
         }
 
-        /* 2. HERO SECTION REINVENTADA */
-        .hero-sobre {
+        /* 2. BANNER COM EFEITO ZOOM (Igual ao Sobre) */
+        .hero-inscricao {
             position: relative;
-            height: 450px;
+            height: 380px;
             overflow: hidden;
             display: flex; 
             justify-content: center; 
@@ -50,7 +57,7 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
-                              url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
+                              url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             animation: slowZoom 20s infinite alternate;
@@ -62,137 +69,101 @@
             to { transform: scale(1.1); }
         }
 
-        .hero-content h1 { 
-            font-size: 4em; 
+        .hero-inscricao h1 { 
+            font-size: 3.5em; 
             font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin: 0;
+            color: white !important;
         }
-        .hero-content p {
-            font-size: 1.4em;
-            opacity: 0.9;
-            font-style: italic;
-            font-weight: 300;
-        }
+        .hero-inscricao p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
 
-        /* 3. TIMELINE NARRATIVA */
-        .content-section { 
-            padding: 80px 40px; 
-            max-width: 900px; 
+        /* 3. FORMULÁRIO */
+        .seccao-form { padding: 60px 20px; flex-grow: 1; }
+        .container-form { 
+            max-width: 850px; 
             margin: 0 auto; 
-            position: relative;
-        }
-
-        /* A linha central da timeline */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            left: 65px;
-            top: 80px;
-            bottom: 80px;
-            width: 2px;
-            background: linear-gradient(to bottom, #ff8c00, #1e4d8c);
-            opacity: 0.3;
-        }
-
-        .fase { 
-            display: flex; 
-            gap: 40px; 
-            margin-bottom: 60px; 
-            position: relative; 
-            z-index: 1;
-        }
-
-        .fase-icon { 
             background: white; 
-            color: #ff8c00; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 20px; 
-            flex-shrink: 0; 
-            box-shadow: 0 0 0 5px #f8fafc, 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid #ff8c00;
-            transition: 0.3s;
-        }
-
-        .fase:hover .fase-icon {
-            background: #ff8c00;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .fase-content { 
-            background: white; 
-            padding: 35px; 
-            border-radius: 24px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
-            transition: 0.4s;
+            padding: 45px; 
+            border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .fase:hover .fase-content {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        h2 { 
+            color: #1e4d8c; 
+            font-size: 1.6em; 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+        h2 i { color: #ff8c00; }
+
+        .campo-grupo { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; font-weight: 600; color: #334155; font-size: 0.95em; }
+        
+        input, select {
+            width: 100%; padding: 16px; border: 2px solid #e2e8f0; border-radius: 14px;
+            box-sizing: border-box; font-size: 1em; transition: 0.3s; background: #fcfdfe;
+        }
+        input:focus, select:focus { 
+            border-color: #1e4d8c; 
+            outline: none; 
+            background: #fff; 
+            box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.08); 
         }
 
-        .fase-content p { 
-            color: #475569; 
-            line-height: 1.8; 
-            font-size: 1.15em; 
-        }
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-        /* 4. ASSINATURA E RODAPÉ */
-        .quote-especial {
-            margin-top: 40px;
-            padding: 30px;
+        /* Cartões de Acompanhantes */
+        .card-extra {
+            background: #f8fafc; 
+            padding: 30px; 
+            border-radius: 20px; 
+            margin-top: 25px; 
+            border: 1px dashed #cbd5e1;
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .btn-enviar {
             background: linear-gradient(135deg, #1e4d8c 0%, #0f172a 100%);
-            color: white;
-            border-radius: 24px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            color: white; padding: 22px; border: none; border-radius: 18px;
+            width: 100%; font-weight: bold; font-size: 1.25em; cursor: pointer; margin-top: 40px;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 12px;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+        }
+        .btn-enviar:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.3);
+            filter: brightness(1.1);
         }
 
-        .quote-especial::after {
-            content: '"';
-            position: absolute;
-            font-size: 150px;
-            top: -20px;
-            right: 20px;
-            opacity: 0.1;
-            font-family: serif;
+        /* 4. RODAPÉ EXTERNO */
+        #footer-placeholder { width: 100%; }
+        #footer-placeholder footer, 
+        #footer-placeholder p, 
+        #footer-placeholder h1, 
+        #footer-placeholder h2, 
+        #footer-placeholder h3, 
+        #footer-placeholder h4, 
+        #footer-placeholder a,
+        #footer-placeholder span { 
+            color: #ffffff !important; 
+            text-decoration: none;
         }
-
-        .quote-especial p { font-size: 1.3em; line-height: 1.6; }
-        .quote-especial span { 
-            display: block; 
-            margin-top: 15px; 
-            color: #ff8c00; 
-            font-weight: bold; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9em;
-        }
-
-        #footer-placeholder footer { color: white !important; }
 
         /* 5. RESPONSIVIDADE */
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; }
-            .content-section::before { left: 45px; }
-            .hero-content h1 { font-size: 2.8em; }
-        }
-
-        @media (max-width: 600px) {
-            .content-section::before { display: none; }
-            .fase { flex-direction: column; gap: 15px; align-items: center; text-align: center; }
-            .content-section { padding: 40px 20px; }
-            .fase-icon { width: 60px; height: 60px; }
+            .hero-inscricao h1 { font-size: 2.5em; }
+            .grid-inputs { grid-template-columns: 1fr; }
+            .container-form { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -201,39 +172,75 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-sobre">
+        <section class="hero-inscricao">
             <div class="hero-bg"></div>
             <div class="hero-content">
-                <h1>A Nossa História</h1>
-                <p>Onde cada quilómetro conta uma memória.</p>
+                <h1>Reserva de Lugar</h1>
+                <p>Garanta a sua presença na nossa próxima aventura.</p>
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="fase">
-                <div class="fase-icon"><i class="fas fa-seedling"></i></div>
-                <div class="fase-content">
-                    <p>Tudo começou de forma genuína: dois passeios organizados para ajudar uma causa. O que nasceu como um gesto solidário, rapidamente revelou uma paixão adormecida pelo convívio e pela descoberta do nosso Portugal.</p>
-                </div>
-            </div>
+        <section class="seccao-form">
+            <div class="container-form">
+                <form action="https://formspree.io/f/manjdnbw" method="POST">
+                    
+                    <h2><i class="fas fa-user-circle"></i> Dados do Responsável</h2>
+                    
+                    <div class="campo-grupo">
+                        <label>Nome Completo</label>
+                        <input type="text" name="nomeResponsavel" placeholder="Como no documento de identificação" required>
+                    </div>
 
-            <div class="fase">
-                <div class="fase-icon"><i class="fas fa-heart"></i></div>
-                <div class="fase-content">
-                    <p>Foi o vosso sorriso e o incentivo constante que me fizeram olhar mais longe. "Miguel, quando é o próximo?" tornou-se a frase que deu vida a este projeto. Deixámos de ser apenas um grupo e passámos a ser uma família de estrada.</p>
-                </div>
-            </div>
+                    <div class="grid-inputs">
+                        <div class="campo-grupo">
+                            <label>Telemóvel de Contacto</label>
+                            <input type="tel" name="contactoResponsavel" placeholder="9xx xxx xxx" required>
+                        </div>
+                        <div class="campo-grupo">
+                            <label>Data de Nascimento</label>
+                            <input type="date" name="nascimentoResponsavel" required>
+                        </div>
+                    </div>
 
-            <div class="fase">
-                <div class="fase-icon"><i class="fas fa-compass"></i></div>
-                <div class="fase-content">
-                    <p>Hoje, este espaço é o ponto de encontro para quem procura viagens descontraídas, repletas de alma e acessíveis a todos. Do coração de São Pedro do Sul para os recantos mais mágicos do país, cada destino é escolhido a pensar na vossa alegria.</p>
-                </div>
-            </div>
+                    <div class="campo-grupo">
+                        <label>Localidade</label>
+                        <input type="text" name="localidadeResponsavel" placeholder="Ex: São Pedro do Sul" required>
+                    </div>
 
-            <div class="quote-especial">
-                <p>Criamos caminhos, partilhamos destinos e guardamos amizades para a vida.</p>
-                <span>Passeios do Miguel</span>
+                    <div style="margin: 40px 0; height: 1px; background: #e2e8f0;"></div>
+
+                    <h2><i class="fas fa-bus"></i> Detalhes da Viagem</h2>
+
+                    <div class="campo-grupo">
+                        <label>Escolha o Passeio</label>
+                        <select id="passeioEscolhido" name="Passeio" required>
+                            <option value="">Selecione um destino...</option>
+                            <option value="Festa das Camélias">Festa das Camélias</option>
+                            <option value="Magia Animal Gaia">Magia Animal em Gaia</option>
+                            <option value="Rota da Cereja">Rota da Cereja</option>
+                            <option value="Festa das Cruzes">Festa das Cruzes</option>
+                            <option value="Festas do Povo de Campo Maior">Festas do Povo de Campo Maior</option>
+                        </select>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label>Número de Acompanhantes</label>
+                        <select id="numPessoas" onchange="gerarCampos()">
+                            <option value="0">Vou sozinho(a)</option>
+                            <option value="1">1 Acompanhante</option>
+                            <option value="2">2 Acompanhantes</option>
+                            <option value="3">3 Acompanhantes</option>
+                            <option value="4">4 Acompanhantes</option>
+                            <option value="5">5 Acompanhantes</option>
+                        </select>
+                    </div>
+
+                    <div id="camposDinamicos"></div>
+
+                    <button type="submit" class="btn-enviar">
+                        Confirmar Inscrição <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </section>
 
@@ -243,13 +250,41 @@
     <script>
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+                .then(res => res.text())
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(err => console.error("Erro ao carregar:", ficheiro));
         }
 
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
+
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const passeio = params.get('passeio');
+            if(passeio) document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
+        };
+
+        function gerarCampos() {
+            const qtd = document.getElementById('numPessoas').value;
+            const container = document.getElementById('camposDinamicos');
+            container.innerHTML = '';
+            
+            for(let i=1; i<=qtd; i++) {
+                container.innerHTML += `
+                <div class="card-extra">
+                    <h3 style="color:#1e4d8c; margin-bottom:20px; font-size:1.1em; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-user-plus" style="color:#ff8c00"></i> Acompanhante ${i}
+                    </h3>
+                    <div class="campo-grupo">
+                        <input type="text" name="nomeExtra${i}" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="grid-inputs">
+                        <input type="date" name="nascExtra${i}" required>
+                        <input type="tel" name="telExtra${i}" placeholder="Telemóvel (Opcional)">
+                    </div>
+                </div>`;
+            }
+        }
     </script>
 </body>
 </html>
