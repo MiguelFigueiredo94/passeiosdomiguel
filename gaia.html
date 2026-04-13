@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magia Animal em Gaia - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* Estrutura Base */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; flex-direction: row; }
-        #menu-placeholder { width: 250px; background-color: #1e4d8c; position: sticky; top: 0; height: 100vh; }
+        /* 1. RESET E ESTRUTURA GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        
+        /* 2. MENU LATERAL FIXO */
+        #menu-placeholder { 
+            width: 250px; 
+            flex-shrink: 0; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            background-color: #1e4d8c; 
+        }
+        
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* Banner */
+        /* 3. BANNER PADRONIZADO (380px) */
         .banner-passeio {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('https://i.imgur.com/k6szPlt.jpg');
             background-size: cover; background-position: center;
-            color: white; padding: 80px 40px; text-align: center; border-radius: 0 0 50px 0;
+            color: white; height: 380px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
         }
+        .banner-passeio h1 { font-size: 3em; margin-bottom: 10px; }
+        .banner-passeio p { font-size: 1.2em; }
 
-        /* Grid de Conteúdo */
+        /* 4. GRID DE CONTEÚDO */
         .seccao-detalhes { padding: 40px 30px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
         .cartao { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h3 { color: #1e4d8c; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+        
+        h3 { color: #1e4d8c; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
         
         .info-lista { list-style: none; padding: 0; }
         .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; color: #444; }
         .info-lista i { color: #2d6a4f; margin-top: 4px; } /* Verde Natureza */
 
-        /* Bloco de Preço Azul */
-        .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
+        /* 5. BLOCO DE INSCRIÇÃO */
+        .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; position: sticky; top: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
         .caixa-inscricao table { width: 100%; border-collapse: collapse; color: white; margin-bottom: 15px; }
         .caixa-inscricao td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .preco-valor { text-align: right; font-weight: bold; font-size: 1.3em; }
@@ -50,25 +64,23 @@
         }
         .btn-reservar:hover { background: #e67e00; transform: translateY(-3px); }
 
-        /* Secção Álbum */
-        .galeria-container { 
-            margin: 40px 30px 60px 30px; 
-            padding: 40px; 
-            background: white; 
-            border-radius: 30px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
+        /* 6. GALERIA */
+        .galeria-container { margin: 0 30px 60px; padding: 40px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1200px; align-self: center; width: calc(100% - 60px); }
         .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
         .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; cursor: pointer; transition: 0.3s; }
         .galeria-grid img:hover { transform: scale(1.03); }
 
-        /* Modal Galeria */
-        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        /* 7. MODAL GALERIA */
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 3px solid white; }
 
-        footer { background: #1e4d8c; color: white; padding: 40px; margin-top: auto; }
-
-        @media (max-width: 900px) { .seccao-detalhes { grid-template-columns: 1fr; } #menu-placeholder { display: none; } }
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; position: relative; }
+            .seccao-detalhes { grid-template-columns: 1fr; }
+            .galeria-container { width: calc(100% - 40px); margin: 20px; }
+            .banner-passeio h1 { font-size: 2.2em; }
+        }
     </style>
 </head>
 <body>
@@ -97,9 +109,9 @@
                     <h3 style="margin-top:30px;"><i class="fas fa-route"></i> Itinerário</h3>
                     <ul class="info-lista">
                         <li><i class="fas fa-check"></i> Saída de São Pedro do Sul rumo a Gaia.</li>
-                        <li><i class="fas fa-check"></i> Visita guiada ao Parque Biológico.</li>
+                        <li><i class="fas fa-check"></i> Visita guiada ao Parque Biológico de Gaia.</li>
                         <li><i class="fas fa-utensils"></i> Almoço em restaurante local (incluído).</li>
-                        <li><i class="fas fa-paw"></i> Tarde livre no Zoo Santo Inácio.</li>
+                        <li><i class="fas fa-paw"></i> Tarde livre para explorar o Zoo Santo Inácio.</li>
                         <li><i class="fas fa-home"></i> Regresso confortável ao final do dia.</li>
                     </ul>
                 </div>
@@ -129,26 +141,14 @@
         <div class="galeria-container">
             <h3><i class="fas fa-camera"></i> O que vamos ver</h3>
             <div class="galeria-grid">
-                <img src="https://imgur.com/mSapdKf.jpg" onclick="abrirModal(this.src)">
-                <img src="https://imgur.com/JB7dyrj.jpg" onclick="abrirModal(this.src)">
-                <img src="https://imgur.com/cZPOT6X.jpg" onclick="abrirModal(this.src)">
-                <img src="https://imgur.com/XgVeDZI.jpg" onclick="abrirModal(this.src)">
+                <img src="https://imgur.com/mSapdKf.jpg" onclick="abrirModal(this.src)" alt="Animal 1">
+                <img src="https://imgur.com/JB7dyrj.jpg" onclick="abrirModal(this.src)" alt="Parque Biológico">
+                <img src="https://imgur.com/cZPOT6X.jpg" onclick="abrirModal(this.src)" alt="Natureza Gaia">
+                <img src="https://imgur.com/XgVeDZI.jpg" onclick="abrirModal(this.src)" alt="Zoo Santo Inácio">
             </div>
         </div>
 
-        <footer>
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
-                <div class="footer-col">
-                    <h4>Passeios do Miguel</h4>
-                    <p>© 2026 - Todos os direitos reservados.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Informações</h4>
-                    <a href="cancelamento.html" style="color:#ddd; text-decoration:none;">Política de Cancelamento</a><br><br>
-                    <a href="contatos.html" style="color:#ddd; text-decoration:none;">Contactos</a>
-                </div>
-            </div>
-        </footer>
+        <div id="footer-placeholder"></div>
 
         <div id="janelaModal" class="modal" onclick="this.style.display='none'">
             <img id="imgModal">
@@ -156,15 +156,24 @@
     </main>
 
     <script>
-        fetch('menu.html').then(res => res.text()).then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        });
+        // Função para carregar componentes dinâmicos (Menu e Rodapé)
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(res => res.text())
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(err => console.error("Erro ao carregar:", ficheiro));
+        }
 
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
+
+        // Modal da Galeria
         function abrirModal(src) {
             document.getElementById('janelaModal').style.display = 'flex';
             document.getElementById('imgModal').src = src;
         }
 
+        // Suporte para as FAQs do menu carregado dinamicamente
         document.addEventListener('click', function (e) {
             if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
                 document.getElementById('janelaFaq').style.display = 'block';
