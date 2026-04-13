@@ -11,11 +11,11 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas de Viagem - Passeios do Miguel</title>
+    <title>Central de Ajuda - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL (Padrão Index) */
+        /* 1. RESET E ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -36,16 +36,16 @@
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            margin-left: 250px; 
+            margin-left: 250px; /* Alinhado com o menu lateral */
         }
 
-        /* 4. BANNER PREMIUM (Altura 380px para consistência) */
-        .banner-dicas {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
+        /* 4. BANNER (Altura 380px para consistência) */
+        .banner-faq {
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; 
             background-position: center;
-            color: white;
+            color: white; 
             height: 380px;
             display: flex;
             flex-direction: column;
@@ -53,60 +53,84 @@
             align-items: center;
             text-align: center;
             border-bottom: 5px solid #ff8c00;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .banner-faq h1 { font-size: 3.2em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .banner-faq p { font-size: 1.3em; opacity: 0.9; margin-top: 10px; }
+
+        /* ÁREA DAS PERGUNTAS */
+        .seccao-faq { padding: 60px 20px; flex-grow: 1; }
+        .container-faq { max-width: 900px; margin: 0 auto; width: 100%; }
+
+        .faq-item {
+            background: white; 
+            margin-bottom: 20px; 
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f6;
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .banner-dicas h1 { font-size: 3.2em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .banner-dicas p { font-size: 1.3em; opacity: 0.9; font-weight: 300; }
-
-        /* CONTENTOR DE DICAS */
-        .seccao-dicas { padding: 60px 30px; background: #f4f7f9; flex-grow: 1; }
-        .container-dicas {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #ff8c00;
         }
 
-        /* ESTILO DOS CARDS */
-        .card-dica {
-            background: #fff;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid #eee;
-            border-bottom: 5px solid #1e4d8c;
-            display: flex;
-            flex-direction: column;
+        .faq-pergunta {
+            padding: 25px 30px; 
+            width: 100%; 
+            display: flex; 
             align-items: center;
+            justify-content: space-between;
+            cursor: pointer; 
+            background: none; 
+            border: none;
+            text-align: left;
+            outline: none;
         }
 
-        .card-dica:hover {
-            transform: translateY(-10px);
-            border-bottom-color: #ff8c00;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .faq-titulo-wrapper { display: flex; align-items: center; gap: 20px; }
+        .faq-icon-circulo {
+            width: 45px; height: 45px; 
+            background: #f0f4f8; 
+            border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center;
+            color: #1e4d8c; font-size: 1.2em; transition: 0.3s;
         }
 
-        .icon-dica {
-            font-size: 50px;
-            color: #ff8c00;
-            margin-bottom: 25px;
-            height: 60px;
-            display: flex;
-            align-items: center;
+        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; }
+        .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
+
+        /* Resposta */
+        .faq-resposta {
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fdfdfd;
         }
 
-        .card-dica h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.4em; }
-        .card-dica p { color: #555; font-size: 1em; line-height: 1.7; margin: 0; }
-        .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; }
+        .faq-resposta-inner { 
+            padding: 0 30px 30px 95px; 
+            color: #666; 
+            line-height: 1.8; 
+            font-size: 1.05em;
+        }
+
+        /* Estado Aberto */
+        .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
+        .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
+        .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
+        .faq-item.ativo .faq-resposta { max-height: 500px; }
+        .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
-            .banner-dicas { height: 300px; }
-            .banner-dicas h1 { font-size: 2.2em; }
+            .banner-faq { height: 300px; }
+            .banner-faq h1 { font-size: 2.2em; }
+            .faq-resposta-inner { padding: 0 20px 20px 20px; }
         }
     </style>
 </head>
@@ -115,86 +139,107 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-dicas">
-            <h1>💡 Dicas do Miguel</h1>
-            <p>Tudo o que precisa de saber para que o seu passeio seja inesquecível.</p>
+        <div class="banner-faq">
+            <h1>Central de Ajuda</h1>
+            <p>Tudo o que precisas de saber sobre as tuas viagens</p>
         </div>
 
-        <section class="seccao-dicas">
-            <div class="container-dicas">
+        <section class="seccao-faq">
+            <div class="container-faq">
                 
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
-                    <h3>O Calçado Ideal</h3>
-                    <p>Privilegie sapatilhas confortáveis e já habituadas ao pé. Evite estrear sapatos novos em dias de passeio.</p>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-map-marker-alt"></i></div>
+                            <span class="faq-texto-pergunta">Partidas e Horários</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Os horários e pontos exatos de partida são confirmados via telefone até 48h antes da viagem. Normalmente temos pontos fixos em Lisboa (Marquês de Pombal e Gare do Oriente) e Almada.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
-                    <h3>Roupa Prática</h3>
-                    <p>Escolha vestuário que lhe dê liberdade. Vestir em camadas ("à cebola") é a melhor opção para as variações de temperatura.</p>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-credit-card"></i></div>
+                            <span class="faq-texto-pergunta">Métodos de Pagamento</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Aceitamos pagamentos via MB Way, Transferência Bancária ou em Numerário no ato da reserva presencial. O comprovativo deve ser enviado para o nosso WhatsApp.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
-                    <h3>Registe os Momentos</h3>
-                    <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio de paisagens incríveis!</p>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-edit"></i></div>
+                            <span class="faq-texto-pergunta">Como se inscrever</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Podes inscrever-te ligando para o <strong>965 715 476</strong> ou enviando mensagem. Em breve teremos formulários diretos em cada página de passeio.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
-                    <h3>Água e Lanches</h3>
-                    <p>Tenha sempre consigo uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante o trajeto.</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-chair"></i></div>
-                    <h3>Marcação de Lugares</h3>
-                    <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus lugares preferidos!</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-clock"></i></div>
-                    <h3>Seja Pontual</h3>
-                    <p>Tente chegar 10 a 15 minutos antes da partida. A pontualidade de todos garante que aproveitamos o dia ao máximo!</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-wallet"></i></div>
-                    <h3>Numerário (Dinheiro)</h3>
-                    <p>Em feiras ou aldeias isoladas, nem sempre há multibanco. Traga alguns euros para pequenas compras ou café.</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-pills"></i></div>
-                    <h3>Saúde e Bem-estar</h3>
-                    <p>Não esqueça os seus medicamentos diários. Um pequeno kit com algo para o enjoo pode ser um grande aliado.</p>
-                </div>
-
-                <div class="card-dica">
-                    <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
-                    <h3>Partilha de Fotos</h3>
-                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-ban"></i></div>
+                            <span class="faq-texto-pergunta">Política de Cancelamento</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">
+                            Garantimos o reembolso de 100% se o cancelamento for feito até 30 dias antes da viagem. Após este prazo, não se efetuam reembolsos devido aos custos logísticos já assumidos.
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <div id="footer-placeholder"></div> 
-
+        <div id="footer-placeholder"></div>
     </main>
 
     <script>
+        // Função de carregamento padrão
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
                 .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+                .catch(error => console.error('Erro ao carregar ' + ficheiro, error));
         }
 
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
-    </script>
 
+        // Lógica do Acordeão (usando delegação de eventos para funcionar após o fetch)
+        document.addEventListener('click', function (e) {
+            const botao = e.target.closest('.faq-pergunta');
+            if (!botao) return;
+
+            const item = botao.parentElement;
+            const estaAtivo = item.classList.contains('ativo');
+            
+            // Opcional: Fecha os outros itens ao abrir um novo
+            document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
+            
+            if (!estaAtivo) {
+                item.classList.add('ativo');
+            }
+        });
+    </script>
 </body>
 </html>
