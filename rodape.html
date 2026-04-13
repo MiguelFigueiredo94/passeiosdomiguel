@@ -1,7 +1,7 @@
 <style>
-    /* RODAPÉ COMPACTO */
+    /* RODAPÉ ULTRA COMPACTO */
     .footer-wrapper { 
-        padding: 20px 15px 15px; /* Reduzido de 40px */
+        padding: 10px 15px; /* Reduzido ao mínimo */
         background-color: #f4f7f9; 
         width: 100%; 
         font-family: 'Segoe UI', sans-serif;
@@ -10,102 +10,73 @@
     .footer-premium { 
         background-color: #1e4d8c; 
         color: white; 
-        padding: 25px 30px 10px; /* Reduzido de 35px/40px */
-        border-radius: 20px; 
+        padding: 12px 25px; /* Super fino */
+        border-radius: 15px; 
         position: relative; 
         overflow: hidden; 
     }
 
-    /* Linha Dourada */
     .premium-line { 
-        position: absolute; top: 0; left: -100%; height: 3px; width: 100%; 
+        position: absolute; top: 0; left: -100%; height: 2px; width: 100%; 
         background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent); 
         animation: goldRun 4s linear infinite; 
     }
     @keyframes goldRun { 0% { left: -100%; } 100% { left: 100%; } }
 
     .footer-grid { 
-        display: grid; 
-        grid-template-columns: 1.2fr 1fr 1fr; 
-        gap: 25px; /* Reduzido de 40px */
-        max-width: 1100px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; /* Alinha tudo numa linha só */
+        gap: 20px;
+        max-width: 1200px; 
         margin: 0 auto; 
     }
 
-    .footer-premium h4 { 
-        color: #ff8c00; 
-        text-transform: uppercase; 
-        font-size: 11px; /* Reduzido de 13px */
-        margin-bottom: 12px; 
-        border-bottom: 1px solid rgba(255,140,0,0.3); 
-        display: inline-block; 
-        padding-bottom: 2px; 
-        font-weight: 700; 
+    .footer-col-info p {
+        font-size: 11px;
+        font-weight: bold;
+        color: #ff8c00;
+        margin: 0;
     }
 
-    .footer-col p {
-        font-size: 12px; /* Reduzido de 13px */
-        opacity: 0.8;
-        line-height: 1.4;
-    }
-
-    /* Navegação */
-    .footer-nav-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-    .footer-nav-cols a { 
+    /* Navegação em linha */
+    .footer-nav-simple { display: flex; gap: 12px; }
+    .footer-nav-simple a { 
         color: white; 
         text-decoration: none; 
-        font-size: 12px; 
+        font-size: 11px; 
         opacity: 0.8; 
-        transition: 0.3s; 
-        display: block; 
-        margin-bottom: 4px; 
+        transition: 0.2s;
     }
-    .footer-nav-cols a:hover { opacity: 1; color: #ff8c00; }
+    .footer-nav-simple a:hover { opacity: 1; color: #ff8c00; }
 
-    /* Apoio e Reservas */
-    .footer-col-support { display: flex; flex-direction: column; gap: 8px; }
+    /* Apoio em linha */
+    .footer-col-support { display: flex; align-items: center; gap: 10px; }
     
-    .btn-footer { 
+    .btn-footer-mini { 
         display: inline-flex; 
         align-items: center; 
-        gap: 8px;
-        background: rgba(255,255,255,0.06); 
-        border: 1px solid rgba(255,255,255,0.15);
-        padding: 6px 15px; /* Botões mais baixos */
-        border-radius: 50px; 
+        gap: 5px;
+        background: rgba(255,255,255,0.08); 
+        padding: 4px 10px; 
+        border-radius: 4px; 
         color: white !important; 
         text-decoration: none; 
-        font-size: 12px; 
-        transition: 0.3s; 
-        width: fit-content;
-    }
-    .btn-footer i { color: #ff8c00; font-size: 12px; }
-
-    .alert-link { 
-        display: flex; 
-        align-items: center; 
-        gap: 8px; 
-        color: white !important;
-        text-decoration: none; 
         font-size: 11px; 
-        opacity: 0.7; 
-        margin-top: 2px;
+        border: 1px solid rgba(255,255,255,0.1);
     }
-    .alert-link i { color: #ff8c00; }
+    .btn-footer-mini i { color: #ff8c00; }
 
-    .footer-bottom { 
-        text-align: center; 
-        margin-top: 20px; 
-        font-size: 10px; 
+    .footer-bottom-mini { 
+        font-size: 9px; 
         opacity: 0.4; 
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding-top: 10px;
+        white-space: nowrap;
     }
 
+    /* Ajuste para Telemóvel */
     @media (max-width: 1024px) { 
-        .footer-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; } 
-        .footer-premium h4 { margin: 0 auto 10px; }
-        .btn-footer, .alert-link { justify-content: center; margin: 0 auto; }
+        .footer-grid { flex-direction: column; text-align: center; gap: 10px; padding: 10px 0; }
+        .footer-nav-simple { flex-wrap: wrap; justify-content: center; }
     }
 </style>
 
@@ -113,43 +84,35 @@
     <footer class="footer-premium">
         <div class="premium-line"></div>
         <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Passeios do Miguel</h4>
-                <p>Viagens com alma e aventura de S. Pedro do Sul para o país.</p>
+            
+            <div class="footer-col-info">
+                <p>Passeios do Miguel</p>
             </div>
             
-            <div class="footer-col">
-                <h4>Navegação</h4>
-                <div class="footer-nav-cols">
-                    <div>
-                        <a href="index.html">Início</a>
-                        <a href="sobre.html">Sobre</a>
-                        <a href="passeios.html">Passeios</a>
-                    </div>
-                    <div>
-                        <a href="testemunhos.html">Mural</a>
-                        <a href="galeria.html">Galeria</a>
-                        <a href="contacto.html">Contacto</a>
-                    </div>
-                </div>
+            <div class="footer-nav-simple">
+                <a href="index.html">Início</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="passeios.html">Passeios</a>
+                <a href="testemunhos.html">Mural</a>
+                <a href="galeria.html">Galeria</a>
+                <a href="contacto.html">Contacto</a>
             </div>
 
-            <div class="footer-col footer-col-support">
-                <h4>Apoio e Reservas</h4>
-                <a href="tel:+351965715465" class="btn-footer">
+            <div class="footer-col-support">
+                <a href="tel:+351965715465" class="btn-footer-mini">
                     <i class="fas fa-phone-alt"></i> 965 715 465
                 </a>
-                <a href="https://wa.me/351965715465" class="btn-footer">
+                <a href="https://wa.me/351965715465" class="btn-footer-mini">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
-                <a href="cancelamento.html" class="alert-link">
-                    <i class="fas fa-exclamation-triangle"></i> Cancelamento
-                </a>
-                <a href="faq.html" class="alert-link">
-                    <i class="fas fa-question-circle"></i> Dúvidas (FAQ)
+                <a href="faq.html" class="btn-footer-mini" style="background:transparent; border:none; opacity:0.7;">
+                    <i class="fas fa-question-circle"></i> FAQ
                 </a>
             </div>
+
+            <div class="footer-bottom-mini">
+                &copy; 2026
+            </div>
         </div>
-        <div class="footer-bottom">&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
     </footer>
 </div>
