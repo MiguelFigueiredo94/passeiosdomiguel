@@ -15,119 +15,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
+        /* 1. ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f4f7f9; 
-            min-height: 100vh;
-            display: block; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; min-height: 100vh; display: flex; }
 
-        /* 2. ESPAÇO PARA O MENU */
-        #menu-placeholder { 
-            width: 250px; 
-            flex-shrink: 0; 
-        }
+        /* 2. MENU LATERAL */
+        #menu-placeholder { width: 250px; flex-shrink: 0; }
 
         /* 3. CONTEÚDO PRINCIPAL */
-        main { 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-            margin-left: 250px; 
-        }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        /* 4. BANNER PREMIUM (380px) */
+        /* 4. BANNER (380px) */
         .banner-faq {
             background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; 
-            background-position: center;
-            color: white; 
-            height: 380px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 5px solid #ff8c00;
+            background-size: cover; background-position: center;
+            color: white; height: 380px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid #ff8c00;
         }
         .banner-faq h1 { font-size: 3.2em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
         .banner-faq p { font-size: 1.3em; opacity: 0.9; margin-top: 10px; }
 
-        /* ÁREA DAS PERGUNTAS */
-        .seccao-faq { padding: 60px 20px; flex-grow: 1; }
-        .container-faq { max-width: 900px; margin: 0 auto; width: 100%; }
+        /* 5. SECÇÃO FAQ */
+        .seccao-faq { padding: 60px 20px; }
+        .container-faq { max-width: 900px; margin: 0 auto; }
 
         .faq-item {
-            background: white; 
-            margin-bottom: 20px; 
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #eef2f6;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            background: white; margin-bottom: 15px; border-radius: 12px;
+            border: 1px solid #eef2f6; transition: all 0.3s ease; overflow: hidden;
         }
-
-        .faq-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: #ff8c00;
-        }
+        .faq-item:hover { transform: translateY(-2px); border-color: #ff8c00; }
 
         .faq-pergunta {
-            padding: 25px 30px; 
-            width: 100%; 
-            display: flex; 
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer; 
-            background: none; 
-            border: none;
-            text-align: left;
-            outline: none;
+            padding: 20px 25px; width: 100%; display: flex; align-items: center;
+            justify-content: space-between; cursor: pointer; background: none; border: none; text-align: left;
         }
-
-        .faq-titulo-wrapper { display: flex; align-items: center; gap: 20px; }
+        .faq-titulo-wrapper { display: flex; align-items: center; gap: 15px; }
         .faq-icon-circulo {
-            width: 45px; height: 45px; 
-            background: #f0f4f8; 
-            border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center;
-            color: #1e4d8c; font-size: 1.2em; transition: 0.3s;
+            width: 40px; height: 40px; background: #f0f4f8; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; color: #1e4d8c;
         }
+        .faq-texto-pergunta { font-size: 1.1em; font-weight: 600; color: #333; }
+        .faq-seta { color: #ccc; transition: 0.4s; }
 
-        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; }
-        .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
+        .faq-resposta { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fafafa; }
+        .faq-resposta-inner { padding: 0 25px 25px 80px; color: #666; line-height: 1.7; }
 
-        .faq-resposta {
-            max-height: 0; 
-            overflow: hidden; 
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #fdfdfd;
-        }
-
-        .faq-resposta-inner { 
-            padding: 0 30px 30px 95px; 
-            color: #666; 
-            line-height: 1.8; 
-            font-size: 1.05em;
-        }
-
-        /* Estado Aberto */
-        .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
+        .faq-item.ativo { border-left: 6px solid #ff8c00; }
         .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
-        .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
-        .faq-item.ativo .faq-resposta { max-height: 500px; }
-        .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
+        .faq-item.ativo .faq-resposta { max-height: 300px; }
+        .faq-item.ativo .faq-seta { transform: rotate(180deg); }
+
+        /* 6. SECÇÃO DICAS (As informações que faltavam) */
+        .seccao-dicas { background: #fff; padding: 60px 20px; border-top: 1px solid #eee; }
+        .container-dicas { max-width: 900px; margin: 0 auto; }
+        .titulo-dicas { text-align: center; color: #1e4d8c; margin-bottom: 40px; font-size: 2em; }
+        
+        .grid-dicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card-dica { padding: 25px; border-radius: 15px; background: #f8fbff; border-top: 4px solid #ff8c00; }
+        .card-dica i { font-size: 2em; color: #ff8c00; margin-bottom: 15px; }
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 10px; }
+        .card-dica p { color: #555; font-size: 0.95em; line-height: 1.6; }
 
         @media (max-width: 1024px) {
             main { margin-left: 0; }
-            .banner-faq { height: 300px; }
-            .banner-faq h1 { font-size: 2.2em; }
-            .faq-resposta-inner { padding: 0 20px 20px 20px; }
+            #menu-placeholder { display: none; }
         }
     </style>
 </head>
@@ -138,7 +90,7 @@
     <main>
         <div class="banner-faq">
             <h1>Central de Ajuda</h1>
-            <p>Tudo o que precisas de saber sobre as tuas viagens</p>
+            <p>Tudo o que precisas de saber para viajar com tranquilidade</p>
         </div>
 
         <section class="seccao-faq">
@@ -147,75 +99,39 @@
                 <div class="faq-item">
                     <button class="faq-pergunta">
                         <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="faq-icon-circulo"><i class="fas fa-clock"></i></div>
                             <span class="faq-texto-pergunta">Partidas e Horários</span>
                         </div>
                         <i class="fas fa-chevron-down faq-seta"></i>
                     </button>
                     <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Os horários e pontos exatos de partida são confirmados via telefone até 48h antes da viagem.
-                        </div>
+                        <div class="faq-resposta-inner">Os horários e pontos exatos de partida são confirmados via telefone até 48h antes da viagem.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-pergunta">
                         <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-credit-card"></i></div>
+                            <div class="faq-icon-circulo"><i class="fas fa-wallet"></i></div>
                             <span class="faq-texto-pergunta">Métodos de Pagamento</span>
                         </div>
                         <i class="fas fa-chevron-down faq-seta"></i>
                     </button>
                     <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Aceitamos pagamentos via MB Way, Transferência Bancária ou em Numerário no ato da reserva.
-                        </div>
+                        <div class="faq-resposta-inner">Aceitamos pagamentos via MB Way, Transferência Bancária ou em Numerário no ato da reserva.</div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-pergunta">
                         <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-edit"></i></div>
+                            <div class="faq-icon-circulo"><i class="fas fa-user-plus"></i></div>
                             <span class="faq-texto-pergunta">Como se inscrever</span>
                         </div>
                         <i class="fas fa-chevron-down faq-seta"></i>
                     </button>
                     <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Podes inscrever-te ligando para o 965 715 476 ou preenchendo o <a href="inscricao.html" style="color: #1e4d8c; font-weight: bold;">formulário de inscrição</a>.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-file-alt"></i></div>
-                            <span class="faq-texto-pergunta">Dados Necessários</span>
-                        </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Para formalizar a reserva, solicitamos o nome, o contacto telefónico, a data de nascimento e a localidade.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-ban"></i></div>
-                            <span class="faq-texto-pergunta">Política de Cancelamento</span>
-                        </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Garantimos o reembolso de 100% se o cancelamento for feito até 30 dias antes da viagem. Após este prazo, não se efetuam reembolsos.
-                        </div>
+                        <div class="faq-resposta-inner">Podes inscrever-te ligando para o 965 715 476 ou preenchendo o formulário de inscrição disponível no site.</div>
                     </div>
                 </div>
 
@@ -223,17 +139,64 @@
                     <button class="faq-pergunta">
                         <div class="faq-titulo-wrapper">
                             <div class="faq-icon-circulo"><i class="fas fa-id-card"></i></div>
+                            <span class="faq-texto-pergunta">Dados Necessários</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">Para formalizar a reserva, solicitamos o nome, contacto telefónico, data de nascimento e localidade.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-undo"></i></div>
+                            <span class="faq-texto-pergunta">Política de Cancelamento</span>
+                        </div>
+                        <i class="fas fa-chevron-down faq-seta"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        <div class="faq-resposta-inner">Garantimos reembolso de 100% até 30 dias antes da viagem. Após esse prazo, não se efetuam reembolsos.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        <div class="faq-titulo-wrapper">
+                            <div class="faq-icon-circulo"><i class="fas fa-passport"></i></div>
                             <span class="faq-texto-pergunta">Documentação</span>
                         </div>
                         <i class="fas fa-chevron-down faq-seta"></i>
                     </button>
                     <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            A validade dos documentos é responsabilidade do passageiro. São dispensáveis para a reserva interna, mas obrigatórios para a viagem.
-                        </div>
+                        <div class="faq-resposta-inner">A validade dos documentos é responsabilidade do passageiro. Obrigatório para embarque.</div>
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <section class="seccao-dicas">
+            <div class="container-dicas">
+                <h2 class="titulo-dicas">Dicas de Ouro</h2>
+                <div class="grid-dicas">
+                    <div class="card-dica">
+                        <i class="fas fa-suitcase-rolling"></i>
+                        <h3>Preparação</h3>
+                        <p>Leva roupa confortável e calçado adequado para caminhar. Verifica sempre a previsão do tempo no dia anterior.</p>
+                    </div>
+                    <div class="card-dica">
+                        <i class="fas fa-battery-full"></i>
+                        <h3>Conforto</h3>
+                        <p>Não esqueças o carregador do telemóvel e uma garrafa de água. Pequenos snacks são sempre bem-vindos durante o trajeto.</p>
+                    </div>
+                    <div class="card-dica">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Pontualidade</h3>
+                        <p>Recomendamos chegar 15 minutos antes ao ponto de encontro para garantirmos a partida no horário previsto.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -241,26 +204,19 @@
     </main>
 
     <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+        function carregar(id, url) {
+            fetch(url).then(res => res.text()).then(data => document.getElementById(id).innerHTML = data);
         }
+        carregar('menu-placeholder', 'menu.html');
+        carregar('footer-placeholder', 'rodape.html');
 
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
-
-        // Lógica do Acordeão
-        document.addEventListener('click', function (e) {
-            const botao = e.target.closest('.faq-pergunta');
-            if (!botao) return;
-
-            const item = botao.parentElement;
-            const estaAtivo = item.classList.contains('ativo');
-            
-            document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
-            if (!estaAtivo) item.classList.add('ativo');
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.faq-pergunta');
+            if (!btn) return;
+            const item = btn.parentElement;
+            const isAtivo = item.classList.contains('ativo');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('ativo'));
+            if (!isAtivo) item.classList.add('ativo');
         });
     </script>
 </body>
