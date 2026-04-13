@@ -1,147 +1,138 @@
 <style>
     .footer-wrapper {
-        padding: 40px 20px;
+        padding: 50px 20px;
         background-color: #f4f7f9;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', sans-serif;
     }
 
-    .footer-card {
-        background: #1e4d8c;
+    .footer-premium {
+        /* Degradê vibrante que remete ao céu/mar de Portugal */
+        background: linear-gradient(135deg, #1e4d8c 0%, #2980b9 100%);
         color: white;
-        padding: 40px;
-        border-radius: 30px;
+        padding: 45px 50px 20px;
+        border-radius: 40px;
         position: relative;
-        box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
-        max-width: 1200px;
-        margin: 0 auto;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(30, 77, 140, 0.3);
     }
 
-    /* Detalhe decorativo: uma linha curva que lembra uma estrada/viagem */
-    .footer-card::before {
+    /* Linha de "Horizonte Animada" no topo */
+    .footer-premium::before {
         content: "";
         position: absolute;
-        top: 0; right: 0;
-        width: 150px; height: 150px;
-        background: radial-gradient(circle at top right, rgba(255,140,0,0.2), transparent 70%);
-        pointer-events: none;
+        top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, transparent, #ff8c00, #ffd700, #ff8c00, transparent);
+        animation: roadLine 3s linear infinite;
     }
+    @keyframes roadLine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-    .footer-main {
+    .footer-grid {
         display: grid;
-        grid-template-columns: 1.2fr 1fr 1.2fr;
-        gap: 30px;
-        align-items: center;
+        grid-template-columns: 1.3fr 1fr 1.3fr;
+        gap: 40px;
+        position: relative;
+        z-index: 2;
     }
 
-    /* Coluna 1: O Hobby com Paixão */
-    .hobby-info h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
+    /* Títulos com Estilo */
+    .footer-grid h4 {
         color: #ff8c00;
-    }
-
-    .hobby-info p {
-        font-size: 14px;
-        line-height: 1.6;
-        opacity: 0.9;
-        font-style: italic;
-    }
-
-    /* Coluna 2: Navegação Direta */
-    .nav-simple h4 {
-        text-transform: uppercase;
         font-size: 11px;
-        letter-spacing: 1.5px;
-        margin-bottom: 15px;
-        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        font-weight: 800;
     }
 
-    .nav-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+    /* Coluna 1: O Hobby */
+    .brand-side h2 { font-size: 28px; margin-bottom: 12px; font-weight: 800; }
+    .brand-side p { font-size: 14px; opacity: 0.8; line-height: 1.6; }
+    .hobby-badge {
+        display: inline-block;
+        margin-top: 15px;
+        background: rgba(255, 140, 0, 0.2);
+        color: #ff8c00;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: bold;
+        border: 1px solid rgba(255, 140, 0, 0.3);
     }
 
-    .nav-links a {
+    /* Coluna 2: Navegação Dinâmica */
+    .nav-side .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .nav-side a {
         color: white;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 14px;
+        opacity: 0.7;
         transition: 0.3s;
-    }
-
-    .nav-links a:hover { color: #ff8c00; }
-
-    /* Coluna 3: Contactos Amigáveis */
-    .contact-pills {
         display: flex;
-        flex-direction: column;
-        gap: 12px;
+        align-items: center;
     }
+    .nav-side a:hover { opacity: 1; color: #ff8c00; transform: translateX(5px); }
+    .nav-side a::before { content: '•'; margin-right: 8px; color: #ff8c00; }
 
-    .pill {
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.2);
+    /* Coluna 3: Contactos Estilo "Action Cards" */
+    .contact-side { display: flex; flex-direction: column; gap: 12px; }
+    .contact-item {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 12px 20px;
-        border-radius: 15px;
+        border-radius: 18px;
         display: flex;
         align-items: center;
         gap: 15px;
         text-decoration: none;
         color: white;
-        transition: 0.3s;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-
-    .pill:hover {
-        background: #ff8c00;
-        border-color: #ff8c00;
-        transform: translateY(-3px);
+    .contact-item:hover {
+        background: white;
+        color: #1e4d8c !important;
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
+    .contact-item i { font-size: 18px; color: #ff8c00; }
+    .contact-item .label { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; }
+    .contact-item .val { font-weight: 700; font-size: 15px; }
 
-    .pill i { font-size: 18px; width: 20px; text-align: center; }
-    .pill span { font-size: 14px; font-weight: 600; }
-
-    /* Barra Inferior */
-    .footer-credits {
-        margin-top: 30px;
+    /* Footer Bottom */
+    .footer-base {
+        margin-top: 40px;
         padding-top: 20px;
         border-top: 1px solid rgba(255,255,255,0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 11px;
-        opacity: 0.6;
+        font-size: 12px;
+        opacity: 0.5;
     }
 
-    .extra-links a {
-        color: white;
-        text-decoration: none;
-        margin-left: 15px;
-    }
+    .legal-nav a { color: white; text-decoration: none; margin-left: 20px; }
+    .legal-nav a:hover { color: #ff8c00; }
 
-    @media (max-width: 900px) {
-        .footer-main { grid-template-columns: 1fr; text-align: center; }
-        .nav-links { justify-content: center; }
-        .pill { justify-content: center; }
-        .footer-credits { flex-direction: column; gap: 15px; }
+    @media (max-width: 1024px) {
+        .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        .nav-side .links { justify-items: center; }
+        .contact-side { align-items: center; }
+        .footer-base { flex-direction: column; gap: 15px; }
     }
 </style>
 
 <div class="footer-wrapper">
-    <div class="footer-card">
-        <div class="footer-main">
+    <footer class="footer-premium">
+        <div class="footer-grid">
             
-            <div class="hobby-info">
+            <div class="brand-side">
                 <h2>Passeios do Miguel</h2>
-                <p>"Não é o meu trabalho, é a minha paixão. Partilho Portugal com quem gosta de viajar com calma e alegria."</p>
-                <div style="margin-top: 15px;">
-                    <i class="fas fa-heart" style="color: #ff8c00;"></i>
-                    <span style="font-size: 12px; margin-left: 8px; opacity: 0.8;">Feito com dedicação</span>
-                </div>
+                <p>Viajar é colecionar momentos. Partilho este meu hobby consigo para que cada passeio seja uma história para contar.</p>
+                <div class="hobby-badge"><i class="fas fa-heart"></i> PAIXÃO POR VIAJAR</div>
             </div>
 
-            <div class="nav-simple">
-                <h4>Menu</h4>
-                <div class="nav-links">
+            <div class="nav-side">
+                <h4>Explorar</h4>
+                <div class="links">
                     <a href="index.html">Início</a>
                     <a href="testemunhos.html">Mural</a>
                     <a href="sobre.html">Sobre</a>
@@ -151,25 +142,32 @@
                 </div>
             </div>
 
-            <div class="contact-pills">
-                <a href="tel:+351965715465" class="pill">
+            <div class="contact-side">
+                <h4>Reservas & Apoio</h4>
+                <a href="tel:+351965715465" class="contact-item">
                     <i class="fas fa-phone-alt"></i>
-                    <span>965 715 465</span>
+                    <div>
+                        <span class="label">Chamada Direta</span>
+                        <span class="val">965 715 465</span>
+                    </div>
                 </a>
-                <a href="https://wa.me/351965715465" class="pill">
+                <a href="https://wa.me/351965715465" class="contact-item">
                     <i class="fab fa-whatsapp"></i>
-                    <span>Conversar no WhatsApp</span>
+                    <div>
+                        <span class="label">Dúvidas rápidas</span>
+                        <span class="val">WhatsApp</span>
+                    </div>
                 </a>
             </div>
 
         </div>
 
-        <div class="footer-credits">
-            <div>&copy; 2026 Passeios do Miguel - Hobby & Paixão.</div>
-            <div class="extra-links">
-                <a href="cancelamento.html">Cancelamento</a>
-                <a href="faq.html">Dúvidas</a>
+        <div class="footer-base">
+            <div>&copy; 2026 Passeios do Miguel - Todos os direitos reservados.</div>
+            <div class="legal-nav">
+                <a href="cancelamento.html"><i class="fas fa-ban"></i> Cancelamento</a>
+                <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
             </div>
         </div>
-    </div>
+    </footer>
 </div>
