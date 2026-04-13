@@ -11,7 +11,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central de Ajuda - Passeios do Miguel</title>
+    <title>Passeios - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -22,115 +22,108 @@
             font-family: 'Segoe UI', sans-serif; 
             background-color: #f4f7f9; 
             min-height: 100vh;
-            display: block; 
+            display: flex; /* Alinhamento para o menu lateral */
         }
 
-        /* 2. ESPAÇO PARA O MENU */
+        /* 2. MENU LATERAL */
         #menu-placeholder { 
             width: 250px; 
             flex-shrink: 0; 
+            background-color: #1e4d8c;
+            min-height: 100vh;
         }
 
         /* 3. CONTEÚDO PRINCIPAL */
         main { 
+            flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            margin-left: 250px; /* Alinhado com o menu lateral */
+            /* O conteúdo principal começa após o menu de 250px */
         }
 
-        /* 4. BANNER (Altura 380px para consistência) */
-        .banner-faq {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.8)), 
-                        url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');
+        /* 4. BANNER PRINCIPAL (Padronizado com 380px) */
+        .banner-passeios { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
             background-size: cover; 
-            background-position: center;
+            background-position: center; 
             color: white; 
             height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            border-bottom: 5px solid #ff8c00;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center; 
+            border-bottom: 5px solid #ff8c00; 
         }
-        .banner-faq h1 { font-size: 3.2em; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .banner-faq p { font-size: 1.3em; opacity: 0.9; margin-top: 10px; }
+        .banner-passeios h1 { font-size: 3.2em; margin-bottom: 10px; }
+        .banner-passeios p { font-size: 1.3em; opacity: 0.9; }
 
-        /* ÁREA DAS PERGUNTAS */
-        .seccao-faq { padding: 60px 20px; flex-grow: 1; }
-        .container-faq { max-width: 900px; margin: 0 auto; width: 100%; }
-
-        .faq-item {
-            background: white; 
-            margin-bottom: 20px; 
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #eef2f6;
-            transition: all 0.3s ease;
-            overflow: hidden;
+        /* BANNER MURAL (FLUTUANTE) */
+        .banner-mural-float { 
+            background: white; padding: 20px; display: flex; justify-content: center; align-items: center; gap: 25px; 
+            border-radius: 20px; margin: -45px auto 0; 
+            width: 85%; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            border: 2px solid #ff8c00; position: relative; z-index: 10;
         }
+        .banner-mural-float p { font-size: 15px; color: #1e4d8c; font-weight: 600; }
+        .btn-mural-topo { background: #1e4d8c; color: white; padding: 10px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-mural-topo:hover { background: #ff8c00; transform: scale(1.05); }
 
-        .faq-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-color: #ff8c00;
+        /* SECÇÃO DE CONTEÚDO */
+        .seccao-branca { padding: 80px 30px 60px; flex-grow: 1; }
+        .container-cards { max-width: 1200px; margin: 0 auto; }
+        
+        .titulo-ano { 
+            color: #1e4d8c; font-size: 2.2em; margin: 40px 0 25px; 
+            border-left: 6px solid #ff8c00; padding-left: 15px; font-weight: bold; 
         }
-
-        .faq-pergunta {
-            padding: 25px 30px; 
-            width: 100%; 
-            display: flex; 
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer; 
-            background: none; 
-            border: none;
-            text-align: left;
-            outline: none;
+        
+        .grid-passeios { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 50px; 
         }
-
-        .faq-titulo-wrapper { display: flex; align-items: center; gap: 20px; }
-        .faq-icon-circulo {
-            width: 45px; height: 45px; 
-            background: #f0f4f8; 
-            border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center;
-            color: #1e4d8c; font-size: 1.2em; transition: 0.3s;
+        
+        /* CARDS */
+        .card-passeio { 
+            border-radius: 20px; border: 1px solid #eee; overflow: hidden; 
+            background: #fff; transition: 0.3s; display: flex; flex-direction: column; position: relative; 
         }
+        .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        
+        .img-box { height: 210px; position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; }
+        .badge-aberto { background: #2ecc71; }
+        .badge-realizado { background: #95a5a6; }
 
-        .faq-texto-pergunta { font-size: 1.15em; font-weight: 600; color: #333; }
-        .faq-seta { color: #ccc; transition: 0.4s; font-size: 1.2em; }
+        .card-info { padding: 25px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
+        
+        .cal-pope { width: 65px; border: 1.5px solid #1e4d8c; border-radius: 12px; margin: -55px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .cal-mes { background: #1e4d8c; color: white; font-size: 0.85em; padding: 4px; font-weight: bold; text-transform: uppercase; }
+        .cal-dia { font-size: 1.4em; font-weight: bold; padding: 6px; color: #1e4d8c; }
 
-        /* Resposta */
-        .faq-resposta {
-            max-height: 0; 
-            overflow: hidden; 
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #fdfdfd;
-        }
+        .card-info h3 { color: #1e4d8c; margin-bottom: 5px; font-size: 1.4em; font-weight: bold; }
+        .card-info p { color: #1e4d8c; font-size: 1em; opacity: 0.9; margin-bottom: 5px; }
 
-        .faq-resposta-inner { 
-            padding: 0 30px 30px 95px; 
-            color: #666; 
-            line-height: 1.8; 
-            font-size: 1.05em;
-        }
-
-        /* Estado Aberto */
-        .faq-item.ativo { border-left: 8px solid #ff8c00; background: #fff; }
-        .faq-item.ativo .faq-icon-circulo { background: #ff8c00; color: white; }
-        .faq-item.ativo .faq-texto-pergunta { color: #1e4d8c; }
-        .faq-item.ativo .faq-resposta { max-height: 500px; }
-        .faq-item.ativo .faq-seta { transform: rotate(180deg); color: #ff8c00; }
+        .card-footer { padding: 20px; background: #fcfcfc; border-top: 1px solid #eee; }
+        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #eef2f7; color: #1e4d8c; text-decoration: none; border-radius: 10px; font-weight: bold; text-align: center; transition: 0.3s; }
+        .btn-v-detalhes:hover { background: #dce4ee; }
+        
+        .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .btn-ins { background: #1e4d8c; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
+        .btn-wts { background: #2ecc71; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-size: 1.3em; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
+            body { display: block; }
+            #menu-placeholder { width: 100%; min-height: auto; position: relative; }
             main { margin-left: 0; }
-            .banner-faq { height: 300px; }
-            .banner-faq h1 { font-size: 2.2em; }
-            .faq-resposta-inner { padding: 0 20px 20px 20px; }
+            .banner-mural-float { width: 90%; flex-direction: column; text-align: center; gap: 15px; }
         }
     </style>
 </head>
@@ -139,107 +132,95 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-faq">
-            <h1>Central de Ajuda</h1>
-            <p>Tudo o que precisas de saber sobre as tuas viagens</p>
+        <div class="banner-passeios">
+            <h1>Os Nossos Passeios</h1>
+            <p>Experiências Únicas e em Boa Companhia.</p>
         </div>
 
-        <section class="seccao-faq">
-            <div class="container-faq">
+        <div class="banner-mural-float">
+            <i class="fas fa-heart" style="color: #ff8c00; font-size: 28px;"></i>
+            <p>O que dizem os nossos viajantes? Clique e descubra!</p>
+            <a href="testemunhos.html" class="btn-mural-topo">Mural de Memórias</a>
+        </div>
+
+        <section class="seccao-branca">
+            <div class="container-cards">
                 
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-map-marker-alt"></i></div>
-                            <span class="faq-texto-pergunta">Partidas e Horários</span>
+                <h2 class="titulo-ano">2026</h2>
+                <div class="grid-passeios">
+                    
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/L58QRQc.png"></div>
+                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div><h3>Festas do Povo</h3><p>Campo Maior</p></div>
+                        <div class="card-footer">
+                            <a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            <div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div>
                         </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Os horários e pontos exatos de partida são confirmados via telefone até 48h antes da viagem. Normalmente temos pontos fixos em Lisboa (Marquês de Pombal e Gare do Oriente) e Almada.
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
+                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div><h3>Rota da Cereja</h3><p>Fundão</p></div>
+                        <div class="card-footer">
+                            <a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            <div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
+                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div><h3>Festa das Cruzes</h3><p>Barcelos</p></div>
+                        <div class="card-footer">
+                            <a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            <div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div>
+                        </div>
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
+                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div><h3>Festa das Camélias</h3><p>Celorico de Basto</p></div>
+                        <div class="card-footer"><a href="celorico.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                    </article>
+
+                    <article class="card-passeio">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
+                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div><h3>Magia Animal</h3><p>Vila Nova de Gaia</p></div>
+                        <div class="card-footer"><a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                    </article>
+
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-credit-card"></i></div>
-                            <span class="faq-texto-pergunta">Métodos de Pagamento</span>
-                        </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Aceitamos pagamentos via MB Way, Transferência Bancária ou em Numerário no ato da reserva presencial. O comprovativo deve ser enviado para o nosso WhatsApp.
-                        </div>
-                    </div>
+                <h2 class="titulo-ano">2025</h2>
+                <div class="grid-passeios">
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Vigo & Valença</h3><p>Especial Natal</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p>Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Sra. d'Ajuda</h3><p>Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Sra. d'Agonia</h3><p>Viana do Castelo</p></div><div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p>Gerês</p></div><div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário Fátima</h3><p>Fátima</p></div><div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival Chocolate</h3><p>Óbidos</p></div><div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p>Foz Côa</p></div><div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-edit"></i></div>
-                            <span class="faq-texto-pergunta">Como se inscrever</span>
-                        </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Podes inscrever-te ligando para o <strong>965 715 476</strong> ou enviando mensagem. Em breve teremos formulários diretos em cada página de passeio.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-pergunta">
-                        <div class="faq-titulo-wrapper">
-                            <div class="faq-icon-circulo"><i class="fas fa-ban"></i></div>
-                            <span class="faq-texto-pergunta">Política de Cancelamento</span>
-                        </div>
-                        <i class="fas fa-chevron-down faq-seta"></i>
-                    </button>
-                    <div class="faq-resposta">
-                        <div class="faq-resposta-inner">
-                            Garantimos o reembolso de 100% se o cancelamento for feito até 30 dias antes da viagem. Após este prazo, não se efetuam reembolsos devido aos custos logísticos já assumidos.
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
-
+        
         <div id="footer-placeholder"></div>
+    
     </main>
 
     <script>
-        // Função de carregamento padrão
+        // Função unificada para carregar componentes
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
                 .catch(error => console.error('Erro ao carregar ' + ficheiro, error));
         }
 
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
-
-        // Lógica do Acordeão (usando delegação de eventos para funcionar após o fetch)
-        document.addEventListener('click', function (e) {
-            const botao = e.target.closest('.faq-pergunta');
-            if (!botao) return;
-
-            const item = botao.parentElement;
-            const estaAtivo = item.classList.contains('ativo');
-            
-            // Opcional: Fecha os outros itens ao abrir um novo
-            document.querySelectorAll('.faq-item').forEach(outro => outro.classList.remove('ativo'));
-            
-            if (!estaAtivo) {
-                item.classList.add('ativo');
-            }
-        });
     </script>
 </body>
 </html>
