@@ -8,95 +8,99 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Passeios do Miguel - Home</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* Layout Base */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
+        /* 1. RESET E ESTRUTURA GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        #menu-placeholder { 
-            width: 280px; 
-            background-color: #1e4d8c; 
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #f4f7f9; 
             min-height: 100vh; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* Banner */
-        .banner-contatos {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
-        }
-        .banner-contatos h1 { font-size: 2.8em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
-
-        /* Secção Branca */
-        .seccao-branca { background: white; padding: 60px 20px; flex-grow: 1; }
-        .container-contatos { max-width: 1100px; margin: 0 auto; }
-
-        /* GRID COM 3 CAIXAS */
-        .grid-contatos { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px; 
-            margin-bottom: 60px; 
         }
 
-        .card-contato { 
-            background: #fff; 
-            padding: 45px 20px; 
-            border-radius: 20px; 
+        /* 2. ESTRUTURA DO MENU (Sincronizado com menu.html) */
+        #menu-placeholder { 
+            width: 250px; /* Largura idêntica à do menu.html */
+            flex-shrink: 0; 
+            background-color: #1e4d8c; 
+            min-height: 100vh;
+        }
+
+        /* 3. CONTEÚDO PRINCIPAL */
+        main { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+        }
+
+        /* CABEÇALHO HERO */
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+            background-size: cover; 
+            background-position: center; 
+            height: 380px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            color: white; 
             text-align: center; 
-            border: 1px solid #eee;
+            border-bottom: 5px solid #ff8c00;
+        }
+        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; padding: 0 20px; }
+
+        /* CONTENT CONTAINER */
+        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; flex-grow: 1; width: 100%; }
+
+        .intro-text { text-align: center; margin-bottom: 40px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
+        .intro-text p { color: #555; font-size: 1.1em; line-height: 1.7; }
+
+        /* VÍDEO YOUTUBE */
+        .video-section {
+            background-color: white; padding: 15px; border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-bottom: 50px;
+        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* PERGUNTA INTERMÉDIA */
+        .question-callout { text-align: center; margin-bottom: 35px; }
+        .question-callout h3 { color: #1e4d8c; font-size: 2.2em; font-weight: bold; }
+        .question-callout h3::after { content: ''; display: block; width: 60px; height: 4px; background: #ff8c00; margin: 10px auto 0; }
+
+        /* CARDS 3x1 */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .feature-card { 
+            background: white; 
+            padding: 35px 25px; 
+            border-radius: 18px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); 
+            border-bottom: 4px solid #ff8c00; 
+            text-align: center; 
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
-        .card-contato:hover { transform: translateY(-7px); border-color: #1e4d8c; box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-        
-        .card-contato i { font-size: 40px; color: #ff8c00; margin-bottom: 20px; }
-        .card-contato strong { color: #1e4d8c; font-size: 1.2em; display: block; margin-bottom: 10px; }
-        .card-contato p, .card-contato a { 
-            margin: 0; color: #444; font-size: 1.05em; text-decoration: none; 
-        }
-        .card-contato a { font-weight: bold; color: #1e4d8c; transition: 0.3s; }
-        .card-contato a:hover { color: #ff8c00; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
+        .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
+        .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
 
-        /* Formulário */
-        .form-container { 
-            background: #f8f9fa; padding: 45px; border-radius: 25px; 
-            max-width: 700px; margin: 0 auto 60px; border: 1px solid #eef0f2;
-        }
-        .form-container h2 { text-align: center; color: #1e4d8c; margin-bottom: 30px; }
-        .grupo-input { margin-bottom: 20px; }
-        .form-container input, .form-container textarea { 
-            width: 100%; padding: 18px; border: 2px solid #e1e5e9; border-radius: 12px; box-sizing: border-box; font-size: 1em;
-        }
-        .form-container button { 
-            background: #1e4d8c; color: white; padding: 18px; border: none; border-radius: 12px; 
-            width: 100%; font-weight: bold; font-size: 1.2em; cursor: pointer; transition: 0.3s;
-        }
-        .form-container button:hover { background: #ff8c00; transform: scale(1.02); }
-
-        /* Ajustes Mobile */
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            body { display: block; }
-            #menu-placeholder { 
-                width: 100% !important; 
-                min-height: auto !important; 
-                position: relative !important; 
-            }
-            .banner-contatos h1 { font-size: 2em; }
-            .grid-contatos { grid-template-columns: 1fr; }
-            .form-container { padding: 25px; }
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; min-height: auto; }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -105,65 +109,67 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-contatos">
-            <h1>Entre em Contacto</h1>
-        </div>
+        <section class="hero-section">
+            <h1>Passeios do Miguel</h1>
+            <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
+            <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.3);">VER PRÓXIMOS PASSEIOS</a>
+        </section>
 
-        <section class="seccao-branca">
-            <div class="container-contatos">
-                
-                <div class="grid-contatos">
-                    <div class="card-contato">
-                        <i class="fas fa-user-tie"></i>
-                        <strong>Organizador</strong>
-                        <p>Miguel Figueiredo</p>
-                    </div>
-                    <div class="card-contato">
-                        <i class="fab fa-whatsapp"></i>
-                        <strong>WhatsApp</strong>
-                        <p><a href="https://wa.me/351965715465" target="_blank">+351 965 715 465</a></p>
-                    </div>
-                    <div class="card-contato">
-                        <i class="fas fa-envelope-open-text"></i>
-                        <strong>E-mail</strong>
-                        <p><a href="mailto:geral@passeiosdomiguel.com">geral@passeiosdomiguel.com</a></p>
-                    </div>
+        <div class="content-container">
+            <section class="intro-text">
+                <h2>Bem-vindo à nossa Comunidade</h2>
+                <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
+            </section>
+
+            <section class="video-section">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
                 </div>
+            </section>
 
-                <div class="form-container">
-                    <h2>Envie-nos uma mensagem</h2>
-                    <form action="https://formspree.io/f/mdawddar" method="POST">
-                        <div class="grupo-input"><input type="text" name="nome" placeholder="O seu nome completo" required></div>
-                        <div class="grupo-input"><input type="email" name="email" placeholder="O seu endereço de e-mail" required></div>
-                        <div class="grupo-input"><textarea name="mensagem" rows="6" placeholder="Como podemos ajudar no seu próximo passeio?" required></textarea></div>
-                        <button type="submit">Enviar Mensagem Agora</button>
-                    </form>
+            <section class="question-callout">
+                <h3>Porquê nos escolher?</h3>
+            </section>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bus-alt"></i>
+                    <h3>Viagens Confortáveis</h3>
+                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Destinos Únicos</h3>
+                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Boa Disposição</h3>
+                    <p>O convívio e a alegria são os nossos passageiros de honra.</p>
                 </div>
             </div>
-        </section>
-      
-        <div id="footer-placeholder"></div> 
+        </div>
+
+        <div id="rodape-placeholder"></div>
     </main>
 
-   
-    
     <script>
-        // Carregar o Menu lateral
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar menu:', err));
+        // Função para carregar componentes externos
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => {
+                    if (!response.ok) throw new Error('Erro ao carregar ' + ficheiro);
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(error => console.error(error));
+        }
 
-        // Carregar o Rodapé Premium
-        fetch('rodape.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar rodapé:', err));
+        // Executar cargas
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('rodape-placeholder', 'rodape.html');
     </script>
-
 </body>
 </html>
