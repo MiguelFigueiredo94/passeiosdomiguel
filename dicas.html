@@ -104,9 +104,19 @@
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            main { margin-left: 0; }
-            .banner-dicas { height: 300px; }
-            .banner-dicas h1 { font-size: 2.2em; }
+        
+        #menu-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            z-index: 1000;
+        }
+        
+            main {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
