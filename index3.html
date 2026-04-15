@@ -57,14 +57,13 @@
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        /* DICAS */
         .tips-section { background: #fffcf0; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f7e7a4; }
         .tips-section h4 { color: #856404; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
         .tip-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.95em; color: #5d4e1f; }
         .tip-item i { color: #b91d27; margin-top: 4px; }
 
         .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
-        .info-item { list-style: none; font-size: 0.9em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; }
+        .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
 
         .booking-card { 
             background: var(--primary-red); color: white; padding: 40px; border-radius: 35px; 
@@ -86,12 +85,11 @@
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
             font-size: 1.2em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
-        .btn-main:hover { background: var(--text-dark); color: white; transform: scale(1.02); }
 
         .seat-info { background: rgba(0,0,0,0.1); padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 0.85em; line-height: 1.4; border-left: 4px solid var(--accent-yellow); }
 
         .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
-        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.8em; }
@@ -144,20 +142,20 @@
                 <h4><i class="fas fa-lightbulb"></i> Dicas do Miguel:</h4>
                 <div class="tip-item"><i class="fas fa-shoe-prints"></i> <span><strong>Calçado:</strong> Use sapatos confortáveis, a cidade estará em festa e o melhor é explorá-la a caminhar.</span></div>
                 <div class="tip-item"><i class="fas fa-camera-retro"></i> <span><strong>Fotos:</strong> Os tapetes de flores e a Batalha das Flores são momentos imperdíveis para fotografar.</span></div>
-                <div class="tip-item"><i class="fas fa-utensils"></i> <span><strong>Gastronomia:</strong> Barcelos tem petiscos ótimos; aproveite o tempo livre para provar os sabores locais!</span></div>
             </div>
 
             <div class="info-lists">
                 <div>
                     <h4 style="margin-bottom: 12px; color: #2ecc71; font-size: 0.95em;"><i class="fas fa-check"></i> O QUE INCLUI:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Autocarro de Turismo</li>
+                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro de Turismo</li>
                     <li class="info-item"><i class="fas fa-user-check"></i> Guia acompanhante</li>
-                    <li class="info-item"><i class="fas fa-shield-alt"></i> Seguro de Viagem</li>
+                    <li class="info-item"><i class="fas fa-map-marked-alt"></i> Visita aos locais indicados no programa</li>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 12px; color: #e74c3c; font-size: 0.95em;"><i class="fas fa-times"></i> NÃO INCLUI:</h4>
-                    <li class="info-item"><i class="fas fa-utensils"></i> Almoço (Tempo livre)</li>
-                    <li class="info-item"><i class="fas fa-minus"></i> Entradas em Museus</li>
+                    <li class="info-item"><i class="fas fa-utensils"></i> Refeições não mencionadas</li>
+                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entradas em monumentos/museus</li>
+                    <li class="info-item"><i class="fas fa-wallet"></i> Despesas de carácter pessoal</li>
                 </div>
             </div>
 
@@ -187,7 +185,7 @@
 
             <div style="font-size: 0.85em; line-height: 1.8;">
                 <p><i class="fas fa-map-marker-alt" style="margin-right:8px; width: 15px;"></i> <strong>Recolhas:</strong> Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
-                <p><i class="fas fa-info-circle" style="margin-right:8px; width: 15px;"></i> Mínimo de 35 participantes.</p>
+                <p style="color: var(--accent-yellow); font-weight: 600;"><i class="fas fa-exclamation-triangle" style="margin-right:8px; width: 15px;"></i> Mínimo de 35 participantes.</p>
             </div>
 
             <div class="seat-info">
