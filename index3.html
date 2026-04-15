@@ -18,7 +18,7 @@
     
     <style>
         :root {
-            --primary-pink: #d63384;   /* Rosa Camélia */
+            --primary-pink: #d63384;   
             --bg-light: #fff9fb;
             --text-dark: #2d3436;
             --accent-gold: #d4af37;
@@ -57,10 +57,9 @@
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        .anniversary-section { background: #fffcf0; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f7e7a4; }
-        .anniversary-section h4 { color: #856404; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
-        .anniversary-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.95em; color: #5d4e1f; }
-        .anniversary-item i { color: var(--primary-pink); margin-top: 4px; }
+        .menu-card { background: #fdf2f7; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f9dbe9; text-align: center; }
+        .menu-card h4 { color: var(--primary-pink); margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 1.5em; }
+        .menu-items { font-style: italic; color: #444; line-height: 2; font-size: 1.05em; }
 
         .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
@@ -84,14 +83,9 @@
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
             font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
-        .btn-main:hover { transform: scale(1.02); filter: brightness(1.1); }
-
-        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
-        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.3s; filter: grayscale(20%); }
-        .photo-grid img:hover { filter: grayscale(0%); }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 2.8em; }
+            .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
             .info-lists { grid-template-columns: 1fr; }
         }
@@ -99,7 +93,7 @@
 </head>
 <body>
 
-    <a href="passeios.html" class="btn-voltar"><i class="fas fa-arrow-left"></i></a>
+    <a href="index.html" class="btn-voltar"><i class="fas fa-arrow-left"></i></a>
 
     <header class="hero">
         <h1>Festa das Camélias</h1>
@@ -108,98 +102,78 @@
 
     <div class="wrapper">
         <main class="main-card">
-            <h2 class="title-sec">Celorico de Basto & Srª da Graça</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Este foi um passeio inesquecível que marcou o <strong>1º Aniversário dos Passeios do Miguel</strong>. Uma jornada pela "Capital das Camélias" combinada com a espiritualidade do Monte Farinha.</p>
-
-            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-pink); padding-left: 15px;">Memórias do Programa:</h3>
+            <h2 class="title-sec">1º Aniversário dos Passeios do Miguel</h2>
+            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Celebramos o nosso primeiro ano de estrada em <strong>Celorico de Basto</strong>, terra de jardins luxuriantes e tradições ligadas à camélia, que encheu a região de cor, perfume e elegância.</p>
 
             <div class="feature-box">
-                <i class="fas fa-mountain"></i>
+                <i class="fas fa-church"></i>
                 <div>
                     <h4>Santuário da Senhora da Graça</h4>
-                    <p>Subida ao icónico Monte Farinha para contemplar uma das vistas mais deslumbrantes do Norte de Portugal.</p>
+                    <p>Subida ao topo do Monte Farinha para desfrutar de um dos miradouros mais impressionantes do Norte e paisagens de cortar a respiração.</p>
                 </div>
             </div>
 
             <div class="feature-box">
                 <i class="fas fa-seedling"></i>
                 <div>
-                    <h4>Exposição das Camélias</h4>
-                    <p>Visita guiada à mostra internacional de camélias, onde a cor e a perfeição destas flores foram as protagonistas.</p>
+                    <h4>Festa Internacional das Camélias</h4>
+                    <p>Visita à prestigiada exposição onde a arte e a natureza se fundem num evento único em Portugal.</p>
                 </div>
             </div>
 
             <div class="feature-box">
-                <i class="fas fa-music"></i>
+                <i class="fas fa-mask"></i>
                 <div>
                     <h4>Desfile e Batalha das Flores</h4>
-                    <p>Assistência ao animado cortejo temático pelas ruas da vila, repleto de música e criatividade popular.</p>
+                    <p>Um espetáculo cheio de cor, tradição e criatividade que encheu as ruas de Celorico de Basto de vida e alegria.</p>
                 </div>
             </div>
 
-            <div class="anniversary-section">
-                <h4><i class="fas fa-birthday-cake"></i> Marco Especial:</h4>
-                <div class="anniversary-item"><i class="fas fa-star"></i> <span><strong>Celebração:</strong> Este evento assinalou o primeiro ano de viagens e sorrisos com o Miguel. Obrigado a todos os que participaram!</span></div>
+            <div class="menu-card">
+                <h4><i class="fas fa-utensils"></i> Menu de Aniversário</h4>
+                <div class="menu-items">
+                    Entrada • Vitela Assada • Bebidas • Sobremesa • Café
+                </div>
             </div>
 
             <div class="info-lists">
                 <div>
                     <h4 style="margin-bottom: 12px; color: var(--primary-pink); font-size: 0.95em;"><i class="fas fa-check"></i> O QUE INCLUIU:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Especial</li>
-                    <li class="info-item"><i class="fas fa-utensils"></i> Almoço Festivo de Aniversário (opcional)</li>
-                    <li class="info-item"><i class="fas fa-camera-retro"></i> Cobertura fotográfica do evento</li>
-                    <li class="info-item"><i class="fas fa-shield-alt"></i> Seguro de Viagem e Guia</li>
+                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro de Turismo</li>
+                    <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
+                    <li class="info-item"><i class="fas fa-birthday-cake"></i> Almoço Completo (Opcional)</li>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 12px; color: #555; font-size: 0.95em;"><i class="fas fa-map-marker-alt"></i> RECOLHAS:</h4>
-                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> São Pedro do Sul</li>
+                    <li class="info-item"><i class="fas fa-map-pin"></i> Castro Daire</li>
+                    <li class="info-item"><i class="fas fa-map-pin"></i> São Pedro do Sul</li>
                 </div>
-            </div>
-
-            <h2 class="title-sec" style="margin-top: 40px;">Registos Fotográficos</h2>
-            <div class="photo-grid">
-                <img src="https://imgur.com/2xHh2FD.jpg" onclick="abrirM(this.src)">
-                <img src="https://imgur.com/dzzrNS1.jpg" onclick="abrirM(this.src)">
-                <img src="https://imgur.com/bZxvkhs.jpg" onclick="abrirM(this.src)">
-                <img src="https://imgur.com/EGIfRzL.jpg" onclick="abrirM(this.src)">
             </div>
         </main>
 
         <aside class="booking-card">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 5px;">Passeio Realizado</h3>
-            <p style="font-size: 0.9em; font-weight: 400; color: #ccc; margin-bottom: 20px;">
-                Este evento já terminou, mas temos novos destinos à sua espera!
-            </p>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin-bottom: 10px;">Resumo do Evento</h3>
             
             <div class="status-banner">
                 <i class="fas fa-calendar-check"></i> Evento Concluído
             </div>
 
             <div class="price-row">
-                <div class="price-label">Valor Base</div>
+                <div class="price-label">Passeio</div>
                 <span class="price-amount">30,00€</span>
             </div>
 
             <div class="price-row" style="margin-bottom: 25px;">
                 <div class="price-label">Com Almoço</div>
-                <span class="price-amount" style="font-size: 1.5em; color: white;">57,50€</span>
+                <span class="price-amount" style="color: white; font-size: 1.6em;">57,50€</span>
             </div>
 
-            <div style="font-size: 0.85em; line-height: 1.8; opacity: 0.8;">
-                <p><i class="fas fa-history" style="margin-right:8px;"></i> Fique atento às nossas redes sociais para ver o resumo deste dia fantástico.</p>
+            <div style="font-size: 0.85em; line-height: 1.6; opacity: 0.8; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;">
+                <p><i class="fas fa-users"></i> Esta viagem realizou-se com um grupo mínimo de 40 viajantes.</p>
             </div>
 
             <a href="index.html" class="btn-main">Ver Próximos Passeios</a>
         </aside>
     </div>
-
-    <div id="modalG" style="display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center;" onclick="this.style.display='none'">
-        <img id="modalImg" style="max-width: 90%; max-height: 80%; border-radius: 15px; border: 3px solid white;">
-    </div>
-
-    <script>
-        function abrirM(s){ document.getElementById('modalG').style.display='flex'; document.getElementById('modalImg').src=s; }
-    </script>
 </body>
 </html>
