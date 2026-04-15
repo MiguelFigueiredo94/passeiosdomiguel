@@ -21,7 +21,7 @@
             --primary-red: #b91d27;   
             --bg-light: #f8f9fa;
             --text-dark: #2d3436;
-            --accent-gold: #d4af37;
+            --accent-yellow: #ffeb3b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,31 +57,41 @@
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; }
+        /* DICAS */
+        .tips-section { background: #fffcf0; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f7e7a4; }
+        .tips-section h4 { color: #856404; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
+        .tip-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.95em; color: #5d4e1f; }
+        .tip-item i { color: #b91d27; margin-top: 4px; }
+
+        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.9em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; }
 
         .booking-card { 
             background: var(--primary-red); color: white; padding: 40px; border-radius: 35px; 
             position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(185, 29, 39, 0.2);
         }
-        .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; }
         .price-label { font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .price-label span { display: block; font-size: 0.75em; font-weight: 300; opacity: 0.8; text-transform: none; letter-spacing: 0; }
-        .price-amount { font-size: 2.2em; font-weight: 800; }
+        .price-amount { font-size: 2.5em; font-weight: 800; }
 
-        .feriado-tag { background: #ffeb3b; color: #000; display: inline-block; padding: 4px 12px; border-radius: 5px; font-weight: 800; font-size: 0.75em; margin-top: 15px; text-transform: uppercase; }
+        .feriado-banner { 
+            background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center; padding: 10px; border-radius: 15px; font-weight: 700; 
+            font-size: 0.9em; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px;
+        }
 
         .btn-main {
             display: block; background: white; color: var(--primary-red); text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.2em; transition: 0.3s; margin-top: 30px; text-transform: uppercase;
+            font-size: 1.2em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
         .btn-main:hover { background: var(--text-dark); color: white; transform: scale(1.02); }
 
-        .seat-info { background: rgba(0,0,0,0.1); padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 0.85em; line-height: 1.4; border-left: 4px solid #fff; }
+        .seat-info { background: rgba(0,0,0,0.1); padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 0.85em; line-height: 1.4; border-left: 4px solid var(--accent-yellow); }
 
         .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
-        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; }
+        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.3s; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.8em; }
@@ -109,8 +119,8 @@
             <div class="feature-box">
                 <i class="fas fa-drum"></i>
                 <div>
-                    <h4>Manhã Tradicional</h4>
-                    <p>Arruadas de Zés P’reiras, concertos de Bandas Filarmónicas e o Folclore a animar o Campo 5 de Outubro.</p>
+                    <h4>Animação de Rua</h4>
+                    <p>Arruadas de Zés P’reiras, Bandas Filarmónicas e Folclore a animar todos os cantos da cidade.</p>
                 </div>
             </div>
 
@@ -118,7 +128,7 @@
                 <i class="fas fa-leaf"></i>
                 <div>
                     <h4>Tapetes de Pétalas</h4>
-                    <p>Visita aos deslumbrantes tapetes de flores naturais, uma obra de arte e fé que cobre o chão da cidade.</p>
+                    <p>Visita aos magníficos tapetes de flores naturais, uma tradição de beleza incomparável.</p>
                 </div>
             </div>
 
@@ -126,33 +136,32 @@
                 <i class="fas fa-certificate"></i>
                 <div>
                     <h4>Batalha das Flores</h4>
-                    <p>O momento mais esperado! Um desfile grandioso e colorido que é a alma desta celebração.</p>
+                    <p>O grande desfile alegórico onde a cor e a festa transbordam pelas avenidas.</p>
                 </div>
             </div>
 
-            <div class="feature-box">
-                <i class="fas fa-tv"></i>
-                <div>
-                    <h4>Especial RTP</h4>
-                    <p>Viva o ambiente do programa em direto a partir do Largo da Porta Nova, com toda a animação nacional.</p>
-                </div>
+            <div class="tips-section">
+                <h4><i class="fas fa-lightbulb"></i> Dicas do Miguel:</h4>
+                <div class="tip-item"><i class="fas fa-shoe-prints"></i> <span><strong>Calçado:</strong> Use sapatos confortáveis, a cidade estará em festa e o melhor é explorá-la a caminhar.</span></div>
+                <div class="tip-item"><i class="fas fa-camera-retro"></i> <span><strong>Fotos:</strong> Os tapetes de flores e a Batalha das Flores são momentos imperdíveis para fotografar.</span></div>
+                <div class="tip-item"><i class="fas fa-utensils"></i> <span><strong>Gastronomia:</strong> Barcelos tem petiscos ótimos; aproveite o tempo livre para provar os sabores locais!</span></div>
             </div>
 
             <div class="info-lists">
                 <div>
-                    <h4 style="margin-bottom: 15px; color: #2ecc71; font-size: 1em;"><i class="fas fa-check"></i> Inclui:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Viagem em Autocarro de Turismo</li>
+                    <h4 style="margin-bottom: 12px; color: #2ecc71; font-size: 0.95em;"><i class="fas fa-check"></i> O QUE INCLUI:</h4>
+                    <li class="info-item"><i class="fas fa-bus"></i> Autocarro de Turismo</li>
                     <li class="info-item"><i class="fas fa-user-check"></i> Guia acompanhante</li>
                     <li class="info-item"><i class="fas fa-shield-alt"></i> Seguro de Viagem</li>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 15px; color: #e74c3c; font-size: 1em;"><i class="fas fa-times"></i> Não Inclui:</h4>
-                    <li class="info-item"><i class="fas fa-utensils"></i> Almoço (Tempo livre na cidade)</li>
-                    <li class="info-item"><i class="fas fa-minus"></i> Entradas em monumentos/museus</li>
+                    <h4 style="margin-bottom: 12px; color: #e74c3c; font-size: 0.95em;"><i class="fas fa-times"></i> NÃO INCLUI:</h4>
+                    <li class="info-item"><i class="fas fa-utensils"></i> Almoço (Tempo livre)</li>
+                    <li class="info-item"><i class="fas fa-minus"></i> Entradas em Museus</li>
                 </div>
             </div>
 
-            <h2 class="title-sec" style="margin-top: 40px;">Galeria</h2>
+            <h2 class="title-sec" style="margin-top: 40px;">O que vamos ver?</h2>
             <div class="photo-grid">
                 <img src="https://i.imgur.com/6B2EkQL.jpg" onclick="abrirM(this.src)">
                 <img src="https://i.imgur.com/4EpVA7m.jpg" onclick="abrirM(this.src)">
@@ -163,18 +172,22 @@
 
         <aside class="booking-card">
             <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 5px;">Inscrição</h3>
-            <p style="opacity: 0.9; font-size: 0.9em; font-weight: 600;">LUGARES LIMITADOS!</p>
+            <p style="font-size: 0.9em; font-weight: 700; color: var(--accent-yellow); margin-bottom: 20px;">
+                <i class="fas fa-fire"></i> LUGARES LIMITADOS!
+            </p>
             
-            <div class="feriado-tag">Feriado Nacional</div>
-            
-            <div class="price-row" style="margin-top: 20px;">
+            <div class="price-row">
                 <div class="price-label">Preço Único<span>Transporte + Guia</span></div>
                 <span class="price-amount">30€</span>
             </div>
 
-            <div style="margin-top: 25px; font-size: 0.85em; line-height: 1.8;">
-                <p><i class="fas fa-map-marker-alt" style="margin-right:8px;"></i> <strong>Recolhas:</strong> Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
-                <p><i class="fas fa-info-circle" style="margin-right:8px;"></i> Mínimo de 35 participantes.</p>
+            <div class="feriado-banner">
+                <i class="fas fa-flag"></i> Feriado Nacional
+            </div>
+
+            <div style="font-size: 0.85em; line-height: 1.8;">
+                <p><i class="fas fa-map-marker-alt" style="margin-right:8px; width: 15px;"></i> <strong>Recolhas:</strong> Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
+                <p><i class="fas fa-info-circle" style="margin-right:8px; width: 15px;"></i> Mínimo de 35 participantes.</p>
             </div>
 
             <div class="seat-info">
