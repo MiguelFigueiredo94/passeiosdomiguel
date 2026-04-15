@@ -19,7 +19,7 @@
     <style>
         :root {
             --primary-blue: #1e4d8c;
-            --accent-chestnut: #d97706;
+            --accent-chestnut: #d97706; /* Castanha */
             --bg-light: #f4f7f9;
             --text-dark: #2d3436;
         }
@@ -39,8 +39,8 @@
 
         .hero {
             height: 60vh; min-height: 450px;
-            /* Foto de Marvão fornecida pelo Miguel */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.imgur.com/9FzF6rf.png');
+            /* NOVA IMAGEM: Castanhas a assar no assador tradicional */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.imgur.com/Un9C4Bq.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
@@ -57,6 +57,14 @@
         .feature-box i { color: var(--accent-chestnut); font-size: 1.4em; min-width: 25px; }
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
+
+        .btn-galeria {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #f0f4f8; color: var(--primary-blue); padding: 15px 30px;
+            border-radius: 15px; text-decoration: none; font-weight: 700;
+            margin-top: 30px; border: 2px solid var(--primary-blue); transition: 0.3s;
+        }
+        .btn-galeria:hover { background: var(--primary-blue); color: white; }
 
         .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
@@ -126,24 +134,24 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="galeria.html" style="text-decoration:none; color: var(--primary-blue); font-weight:700;">
-                    <i class="fas fa-images"></i> VER FOTOS DO PASSEIO
+            <div style="text-align: center;">
+                <a href="galeria.html" class="btn-galeria">
+                    <i class="fas fa-images"></i> VER FOTOS NA GALERIA
                 </a>
             </div>
 
             <div class="info-lists">
                 <div>
-                    <h4 style="margin-bottom: 12px; color: var(--primary-blue); font-size: 0.95em;"><i class="fas fa-check"></i> INCLUÍDO NO DIA:</h4>
+                    <h4 style="margin-bottom: 12px; color: var(--primary-blue); font-size: 0.95em;"><i class="fas fa-check"></i> INCLUÍDO:</h4>
                     <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Turismo</li>
-                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entrada na Feira da Castanha</li>
+                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entrada na Feira</li>
                     <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 12px; color: #555; font-size: 0.95em;"><i class="fas fa-map-marker-alt"></i> RECOLHAS:</h4>
-                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire e S. Pedro do Sul</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> Viseu e Mangualde</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> Celorico da Beira</li>
+                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire</li>
+                    <li class="info-item"><i class="fas fa-circle"></i> S. Pedro do Sul</li>
+                    <li class="info-item"><i class="fas fa-circle"></i> Viseu</li>
                 </div>
             </div>
         </main>
@@ -161,7 +169,7 @@
 
             <div style="font-size: 0.85em; line-height: 1.8; opacity: 0.8; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px;">
                 <p><i class="fas fa-calendar-check" style="color:var(--accent-chestnut); margin-right:8px;"></i> Concluído a 09/11/2025</p>
-                <p><i class="fas fa-euro-sign" style="color:var(--accent-chestnut); margin-right:8px;"></i> Valor da Inscrição: 40,00€</p>
+                <p><i class="fas fa-euro-sign" style="color:var(--accent-chestnut); margin-right:8px;"></i> Inscrição: 40,00€</p>
             </div>
 
             <a href="passeios.html" class="btn-main">
