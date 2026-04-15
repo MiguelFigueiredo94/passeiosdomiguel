@@ -21,7 +21,6 @@
             --primary-pink: #d63384;   
             --bg-light: #fff9fb;
             --text-dark: #2d3436;
-            --accent-gold: #d4af37;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,10 +67,6 @@
             background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
             position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px; }
-        .price-label { font-size: 1em; font-weight: 600; text-transform: uppercase; }
-        .price-amount { font-size: 2em; font-weight: 800; color: var(--primary-pink); }
-
         .status-banner { 
             background: rgba(214, 51, 132, 0.2); border: 1px solid var(--primary-pink);
             text-align: center; padding: 12px; border-radius: 15px; font-weight: 700; 
@@ -83,6 +78,15 @@
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
             font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
+        .btn-main:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        .btn-galeria {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fdf2f7; color: var(--primary-pink); padding: 15px 30px;
+            border-radius: 15px; text-decoration: none; font-weight: 700;
+            margin-top: 30px; border: 2px solid var(--primary-pink); transition: 0.3s;
+        }
+        .btn-galeria:hover { background: var(--primary-pink); color: white; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
@@ -103,21 +107,23 @@
     <div class="wrapper">
         <main class="main-card">
             <h2 class="title-sec">1º Aniversário dos Passeios do Miguel</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Celebramos o nosso primeiro ano de estrada em <strong>Celorico de Basto</strong>, terra de jardins luxuriantes e tradições ligadas à camélia, que encheu a região de cor, perfume e elegância.</p>
+            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Celebramos o nosso primeiro ano de estrada em <strong>Celorico de Basto</strong> com um grupo fantástico de 55 pessoas! Foi um dia inesquecível rodeado de jardins luxuriantes e a elegância das camélias.</p>
+
+            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-pink); padding-left: 15px;">Momentos que Vivemos:</h3>
 
             <div class="feature-box">
                 <i class="fas fa-church"></i>
                 <div>
                     <h4>Santuário da Senhora da Graça</h4>
-                    <p>Subida ao topo do Monte Farinha para desfrutar de um dos miradouros mais impressionantes do Norte e paisagens de cortar a respiração.</p>
+                    <p>Subida ao topo do Monte Farinha para contemplar o miradouro mais impressionante do Norte.</p>
                 </div>
             </div>
 
             <div class="feature-box">
                 <i class="fas fa-seedling"></i>
                 <div>
-                    <h4>Festa Internacional das Camélias</h4>
-                    <p>Visita à prestigiada exposição onde a arte e a natureza se fundem num evento único em Portugal.</p>
+                    <h4>Exposição das Camélias</h4>
+                    <p>Visita à prestigiada Festa Internacional, onde a arte e a natureza se fundem.</p>
                 </div>
             </div>
 
@@ -125,54 +131,42 @@
                 <i class="fas fa-mask"></i>
                 <div>
                     <h4>Desfile e Batalha das Flores</h4>
-                    <p>Um espetáculo cheio de cor, tradição e criatividade que encheu as ruas de Celorico de Basto de vida e alegria.</p>
+                    <p>Um espetáculo cheio de cor e criatividade popular que animou as ruas da vila.</p>
                 </div>
             </div>
 
             <div class="menu-card">
-                <h4><i class="fas fa-utensils"></i> Menu de Aniversário</h4>
+                <h4><i class="fas fa-utensils"></i> O Nosso Almoço</h4>
                 <div class="menu-items">
                     Entrada • Vitela Assada • Bebidas • Sobremesa • Café
                 </div>
             </div>
 
-            <div class="info-lists">
-                <div>
-                    <h4 style="margin-bottom: 12px; color: var(--primary-pink); font-size: 0.95em;"><i class="fas fa-check"></i> O QUE INCLUIU:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro de Turismo</li>
-                    <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
-                    <li class="info-item"><i class="fas fa-birthday-cake"></i> Almoço Completo (Opcional)</li>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 12px; color: #555; font-size: 0.95em;"><i class="fas fa-map-marker-alt"></i> RECOLHAS:</h4>
-                    <li class="info-item"><i class="fas fa-map-pin"></i> Castro Daire</li>
-                    <li class="info-item"><i class="fas fa-map-pin"></i> São Pedro do Sul</li>
-                </div>
+            <div style="text-align: center;">
+                <a href="galeria.html" class="btn-galeria">
+                    <i class="fas fa-camera-retro"></i> VER FOTOS DESTE PASSEIO
+                </a>
             </div>
         </main>
 
         <aside class="booking-card">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin-bottom: 10px;">Resumo do Evento</h3>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin-bottom: 10px;">Sucesso Total!</h3>
             
             <div class="status-banner">
-                <i class="fas fa-calendar-check"></i> Evento Concluído
+                <i class="fas fa-users"></i> 55 Participantes
             </div>
 
-            <div class="price-row">
-                <div class="price-label">Passeio</div>
-                <span class="price-amount">30,00€</span>
+            <p style="font-size: 0.95em; color: #ccc; line-height: 1.6; margin-bottom: 25px;">
+                Obrigado a todos os que tornaram o nosso 1º Aniversário um evento tão especial e concorrido!
+            </p>
+
+            <div style="font-size: 0.85em; line-height: 1.8; opacity: 0.8; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px;">
+                <p><i class="fas fa-check-circle" style="color:var(--primary-pink); margin-right:8px;"></i> Transporte em Autocarro Turismo</p>
+                <p><i class="fas fa-check-circle" style="color:var(--primary-pink); margin-right:8px;"></i> Guia Acompanhante</p>
+                <p><i class="fas fa-check-circle" style="color:var(--primary-pink); margin-right:8px;"></i> Seguro de Viagem</p>
             </div>
 
-            <div class="price-row" style="margin-bottom: 25px;">
-                <div class="price-label">Com Almoço</div>
-                <span class="price-amount" style="color: white; font-size: 1.6em;">57,50€</span>
-            </div>
-
-            <div style="font-size: 0.85em; line-height: 1.6; opacity: 0.8; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;">
-                <p><i class="fas fa-users"></i> Esta viagem realizou-se com um grupo mínimo de 40 viajantes.</p>
-            </div>
-
-            <a href="index.html" class="btn-main">Ver Próximos Passeios</a>
+            <a href="index.html" class="btn-main">Ver Novos Destinos</a>
         </aside>
     </div>
 </body>
