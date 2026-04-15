@@ -19,7 +19,7 @@
     <style>
         :root {
             --primary-blue: #1e4d8c;
-            --accent-chestnut: #d97706; /* Cor da Castanha */
+            --accent-chestnut: #d97706;
             --bg-light: #f4f7f9;
             --text-dark: #2d3436;
         }
@@ -39,7 +39,6 @@
 
         .hero {
             height: 60vh; min-height: 450px;
-            /* Foto de Marvão fornecida pelo Miguel como capa */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.imgur.com/DRUKOJL.png');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -66,7 +65,6 @@
         }
         .btn-galeria:hover { background: var(--primary-blue); color: white; }
 
-        /* Card Lateral - Estilo Padronizado */
         .booking-card { 
             background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
             position: sticky; top: 30px; height: fit-content; text-align: center;
@@ -80,21 +78,20 @@
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: var(--primary-blue); color: white; text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+            font-size: 1.1em; transition: 0.3s; margin-bottom: 25px; text-transform: uppercase;
         }
-        .btn-proximos:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-        /* Lista mini no card - CORREÇÃO DO PONTO EXTRA */
-        .info-list-mini { list-style: none; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; text-align: left; }
-        .info-item-mini { font-size: 0.9em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #eee; }
-        /* CORREÇÃO DO ÍCONE: Usando laranja uniforme */
-        .info-item-mini i { color: var(--accent-chestnut); font-size: 1.1em; }
+        /* Secção de Detalhes abaixo do botão */
+        .post-details { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; }
+        .detail-group { margin-bottom: 15px; }
+        .detail-group:last-child { margin-bottom: 0; }
+        .detail-title { font-size: 0.75em; font-weight: 800; color: var(--accent-chestnut); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .detail-item { font-size: 0.85em; color: #eee; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .detail-item i { font-size: 10px; color: #888; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
-            .main-card { padding: 30px; }
-            .hero { border-radius: 0 0 30px 30px; height: 50vh; }
         }
     </style>
 </head>
@@ -104,15 +101,13 @@
 
     <header class="hero">
         <h1>Festa da Castanha</h1>
-        <div class="data-badge">Realizado a 09 de Novembro 2025</div>
+        <div class="data-badge">09 de Novembro 2025</div>
     </header>
 
     <div class="wrapper">
         <main class="main-card">
             <h2 class="title-sec">Nisa e Marvão: Tradição Alentejana</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Um dia Memorável no Coração do Alentejo com um grupo fantástico de <strong>53 participantes</strong>. Entre as muralhas de Nisa e o castelo de Marvão, celebrámos o melhor da nossa cultura e gastronomia num ambiente de grande convívio.</p>
-
-            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--accent-chestnut); padding-left: 15px;">Destaques do Dia:</h3>
+            <p style="margin-bottom: 30px; color: #555; line-height: 1.7;">Um dia memorável no coração do Alentejo. Entre as muralhas de Nisa e o castelo de Marvão, celebrámos o melhor da nossa cultura e gastronomia num ambiente de grande convívio.</p>
 
             <div class="feature-box">
                 <i class="fas fa-university"></i>
@@ -130,27 +125,10 @@
                 </div>
             </div>
 
-            <div class="feature-box">
-                <i class="fas fa-camera-retro"></i>
-                <div>
-                    <h4>Vila Medieval</h4>
-                    <p>Passeio pelas ruas de Marvão até ao castelo, desfrutando de vistas panorâmicas sobre a planície alentejana.</p>
-                </div>
-            </div>
-
             <div style="text-align: center;">
                 <a href="galeria.html" class="btn-galeria">
                     <i class="fas fa-images"></i> VER FOTOS NA GALERIA
                 </a>
-            </div>
-
-            <div style="margin-top: 20px; border-top: 1px dashed #ddd; padding-top: 30px;">
-                <h4 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 0.9em; letter-spacing: 1px; text-transform: uppercase;">RECOLHAS EFETUADAS:</h4>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Castro Daire</span>
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">S. Pedro do Sul</span>
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Viseu</span>
-                </div>
             </div>
         </main>
 
@@ -161,18 +139,24 @@
                 <i class="fas fa-users"></i> 53 Participantes
             </div>
 
-            <p style="font-size: 0.95em; color: #ccc; line-height: 1.6; margin-bottom: 25px;">
-                Obrigado a todos os que tornaram este passeio um evento tão especial e concorrido!
-            </p>
-
-            <ul class="info-list-mini">
-                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Transporte em Autocarro</li>
-                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Guia Acompanhante</li>
-            </ul>
-
             <a href="passeios.html" class="btn-proximos">
-                Ver Novos Destinos <i class="fas fa-arrow-right"></i>
+                Próximos Destinos <i class="fas fa-arrow-right"></i>
             </a>
+
+            <div class="post-details">
+                <div class="detail-group">
+                    <span class="detail-title">Incluído no Passeio:</span>
+                    <div class="detail-item"><i class="fas fa-circle"></i> Transporte em Autocarro</div>
+                    <div class="detail-item"><i class="fas fa-circle"></i> Entrada na Feira</div>
+                    <div class="detail-item"><i class="fas fa-circle"></i> Guia Acompanhante</div>
+                </div>
+
+                <div class="detail-group">
+                    <span class="detail-title">Recolhas Efetuadas:</span>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Castro Daire e S. Pedro Sul</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Viseu, Mangualde e Celorico</div>
+                </div>
+            </div>
         </aside>
     </div>
 </body>
