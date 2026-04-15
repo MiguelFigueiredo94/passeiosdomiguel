@@ -26,7 +26,7 @@
 
         /* Banner Padronizado */
         .banner-passeio {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
                         url('https://i.imgur.com/et5nOkL.jpg');
             background-size: cover; background-position: center;
             color: white; height: 380px; display: flex; flex-direction: column;
@@ -42,7 +42,7 @@
         
         .info-lista { list-style: none; padding: 0; }
         .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; color: #444; }
-        .info-lista i { color: #1e4d8c; margin-top: 4px; }
+        .info-lista i { color: #b91d27; margin-top: 4px; }
 
         /* Bloco de Preço Especial (Tabela) */
         .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; position: sticky; top: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
@@ -80,25 +80,31 @@
 
     <main>
         <div class="banner-passeio">
-            <h1>Rota da Cereja</h1>
-            <p><i class="fas fa-calendar-alt"></i> 14 de Junho de 2026</p>
+            <h1>Rota da Cereja - Fundão</h1>
+            <p><i class="fas fa-calendar-alt"></i> Domingo, 14 de Junho de 2026</p>
         </div>
 
         <section class="seccao-detalhes">
             <div class="coluna-texto">
                 <div class="cartao">
-                    <h3><i class="fas fa-info-circle"></i> Descrição</h3>
-                    <p>Venha desfrutar de um dia de descoberta, tradição e contacto com a natureza na região do Fundão, famosa pela sua excelência na produção de cerejas. Um passeio delicioso para toda a família!</p>
-                    
-                    <h3 style="margin-top:30px;"><i class="fas fa-map-signs"></i> Itinerário</h3>
+                    <h3><i class="fas fa-leaf"></i> Quinta das Rasas</h3>
                     <ul class="info-lista">
-                        <li><i class="fas fa-check-circle"></i> <div><strong>Quinta das Rasas:</strong> Participação na apanha e degustação direta na árvore (inclui 1kg de oferta para levar).</div></li>
-                        <li><i class="fas fa-check-circle"></i> <div><strong>Casa da Cereja:</strong> Visita guiada em Alcongosta para conhecer a história e importância deste fruto na região.</div></li>
-                        <li><i class="fas fa-check-circle"></i> <div><strong>Castelo Novo:</strong> Passeio guiado por uma das mais belas Aldeias Históricas de Portugal.</div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>Apanha da Cereja:</strong> Viva a experiência de colher o fruto diretamente da árvore.</div></li>
+                        <li><i class="fas fa-check"></i> <div><strong>Degustação:</strong> Prova de cerejas, doces e licores artesanais da quinta.</div></li>
+                        <li><i class="fas fa-gift"></i> <div><strong>Oferta:</strong> Cada participante recebe 1kg de cereja para levar para casa.</div></li>
                     </ul>
 
-                    <h3 style="margin-top:30px;"><i class="fas fa-bus"></i> Recolhas</h3>
-                    <p style="font-size: 0.95em; color: #555; line-height: 1.6;">Castro Daire, São Pedro do Sul e Viseu.</p>
+                    <h3 style="margin-top:30px;"><i class="fas fa-landmark"></i> Cultura e História</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-university"></i> <div><strong>Casa da Cereja (Alcongosta):</strong> Conheça a história e a profunda tradição deste fruto no Fundão.</div></li>
+                        <li><i class="fas fa-chess-rook"></i> <div><strong>Castelo Novo:</strong> Visita guiada à Aldeia Histórica e ao seu imponente castelo.</div></li>
+                    </ul>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-bus"></i> Recolhas e Notas</h3>
+                    <p style="font-size: 0.95em; color: #555; line-height: 1.6;">
+                        <strong>Locais:</strong> Castro Daire, São Pedro do Sul e Viseu (outros pontos em rota sob consulta).<br>
+                        <strong>Mínimo:</strong> Viagem sujeita ao mínimo de 35 participantes.
+                    </p>
                 </div>
             </div>
 
@@ -108,28 +114,26 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="text-align: left;">Tipo</th>
-                                <th>S/ Almoço</th>
-                                <th>C/ Almoço</th>
+                                <th style="text-align: left;">Participante</th>
+                                <th>Valor Pack</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="text-align: left; font-size: 0.9em;">Crianças (6-10)</td>
-                                <td>35€</td>
-                                <td>44€</td>
+                                <td style="text-align: left; font-size: 0.9em;">Adultos</td>
+                                <td>35,00€</td>
                             </tr>
                             <tr>
-                                <td style="text-align: left; font-size: 0.9em;">Adultos</td>
-                                <td>40€</td>
-                                <td>58€</td>
+                                <td style="text-align: left; font-size: 0.9em;">Crianças (até 10 anos)</td>
+                                <td>30,00€</td>
                             </tr>
                         </tbody>
                     </table>
                     <div style="font-size: 0.85em; opacity: 0.9; margin-bottom: 20px;">
-                        <p><strong>Inclui:</strong> Autocarro, Visitas guiadas, Atividade na Quinta e 1kg de Cerejas.</p>
+                        <p><i class="fas fa-utensils"></i> <strong>Almoço Opcional:</strong> Disponível mediante consulta prévia.</p>
+                        <p><i class="fas fa-info-circle"></i> Inscrição e reserva de lugar mediante pagamento no ato da inscrição.</p>
                     </div>
-                    <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">INSCREVER-ME AGORA</a>
+                    <a href="inscricao.html?passeio=RotaCerejaFundao" class="btn-reservar">RESERVAR AGORA</a>
                 </div>
             </div>
         </section>
@@ -137,10 +141,10 @@
         <div class="galeria-container">
             <h3><i class="fas fa-camera"></i> O que vamos ver</h3>
             <div class="galeria-grid">
-                <img src="https://i.imgur.com/AFUqUpt.jpg" onclick="abrirModal(this.src)" alt="Cerejas 1">
-                <img src="https://i.imgur.com/nOBqp4R.jpg" onclick="abrirModal(this.src)" alt="Cerejas 2">
-                <img src="https://i.imgur.com/TpfS7cy.jpg" onclick="abrirModal(this.src)" alt="Fundão 1">
-                <img src="https://i.imgur.com/QiSried.jpg" onclick="abrirModal(this.src)" alt="Fundão 2">
+                <img src="https://i.imgur.com/AFUqUpt.jpg" onclick="abrirModal(this.src)" alt="Apanha da Cereja">
+                <img src="https://i.imgur.com/nOBqp4R.jpg" onclick="abrirModal(this.src)" alt="Cerejas do Fundão">
+                <img src="https://i.imgur.com/TpfS7cy.jpg" onclick="abrirModal(this.src)" alt="Aldeia de Castelo Novo">
+                <img src="https://i.imgur.com/QiSried.jpg" onclick="abrirModal(this.src)" alt="Paisagem Fundão">
             </div>
         </div>
 
