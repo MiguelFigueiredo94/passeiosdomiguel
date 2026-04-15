@@ -11,7 +11,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Natal em Vigo e Valença - Passeios do Miguel</title>
+    <title>Magia do Natal (Vigo & Valença) - Passeios do Miguel</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -65,7 +65,6 @@
         }
         .btn-galeria:hover { background: var(--primary-blue); color: white; }
 
-        /* Card Lateral - Estilo Padronizado (Igual ao de Nisa/Marvão e Camélias) */
         .booking-card { 
             background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
             position: sticky; top: 30px; height: fit-content; text-align: center;
@@ -79,19 +78,19 @@
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: var(--primary-blue); color: white; text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+            font-size: 1.1em; transition: 0.3s; margin-bottom: 25px; text-transform: uppercase;
         }
-        .btn-proximos:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-        .info-list-mini { list-style: none; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; text-align: left; }
-        .info-item-mini { font-size: 0.9em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #eee; }
-        .info-item-mini i { color: var(--accent-gold); font-size: 1.1em; }
+        .post-details { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; }
+        .detail-group { margin-bottom: 15px; }
+        .detail-group:last-child { margin-bottom: 0; }
+        .detail-title { font-size: 0.75em; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .detail-item { font-size: 0.85em; color: #eee; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .detail-item i { font-size: 10px; color: #888; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
-            .main-card { padding: 30px; }
-            .hero { border-radius: 0 0 30px 30px; height: 50vh; }
         }
     </style>
 </head>
@@ -101,29 +100,19 @@
 
     <header class="hero">
         <h1>Magia do Natal</h1>
-        <div class="data-badge">Realizado a 07 de Dezembro 2025</div>
+        <div class="data-badge">07 de Dezembro 2025</div>
     </header>
 
     <div class="wrapper">
         <main class="main-card">
             <h2 class="title-sec">Valença e Vigo: As Luzes da Europa</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Um dia inesquecível mergulhado no verdadeiro espírito de Natal. Com um grupo espetacular de <strong>57 participantes</strong>, explorámos a tradição de Valença e o brilho inigualável de Vigo num ambiente de pura alegria.</p>
-
-            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Destaques do Dia:</h3>
+            <p style="margin-bottom: 30px; color: #555; line-height: 1.7;">Um dia inesquecível mergulhado no verdadeiro espírito de Natal. Com um grupo espetacular de <strong>57 participantes</strong>, explorámos a tradição de Valença e o brilho inigualável de Vigo.</p>
 
             <div class="feature-box">
                 <i class="fas fa-cookie-bite"></i>
                 <div>
                     <h4>Fortaleza de Chocolate</h4>
                     <p>Um passeio doce pelas ruas de Valença do Minho, com waffles, trufas artesanais e fondues irresistíveis.</p>
-                </div>
-            </div>
-
-            <div class="feature-box">
-                <i class="fas fa-holly-berry"></i>
-                <div>
-                    <h4>Duendelândia</h4>
-                    <p>Magia para toda a família com trampolins, insufláveis, comboio encantado e a visita à Casa do Pai Natal.</p>
                 </div>
             </div>
 
@@ -140,15 +129,6 @@
                     <i class="fas fa-images"></i> VER FOTOS NA GALERIA
                 </a>
             </div>
-
-            <div style="margin-top: 20px; border-top: 1px dashed #ddd; padding-top: 30px;">
-                <h4 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 0.9em; letter-spacing: 1px; text-transform: uppercase;">RECOLHAS EFETUADAS:</h4>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Castro Daire</span>
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">S. Pedro do Sul</span>
-                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Vouzela e Ol. Frades</span>
-                </div>
-            </div>
         </main>
 
         <aside class="booking-card">
@@ -158,18 +138,23 @@
                 <i class="fas fa-users"></i> 57 Participantes
             </div>
 
-            <p style="font-size: 0.95em; color: #ccc; line-height: 1.6; margin-bottom: 25px;">
-                Obrigado a todos os que tornaram este passeio um evento tão especial e concorrido!
-            </p>
-
-            <ul class="info-list-mini">
-                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Transporte em Autocarro</li>
-                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Guia Acompanhante</li>
-            </ul>
-
             <a href="passeios.html" class="btn-proximos">
-                Ver Novos Destinos <i class="fas fa-arrow-right"></i>
+                Próximos Destinos <i class="fas fa-arrow-right"></i>
             </a>
+
+            <div class="post-details">
+                <div class="detail-group">
+                    <span class="detail-title">Incluído no Passeio:</span>
+                    <div class="detail-item"><i class="fas fa-circle"></i> Transporte em Autocarro</div>
+                    <div class="detail-item"><i class="fas fa-circle"></i> Guia Acompanhante</div>
+                </div>
+
+                <div class="detail-group">
+                    <span class="detail-title">Recolhas Efetuadas:</span>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Castro Daire e S. Pedro Sul</div>
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Vouzela e Oliveira de Frades</div>
+                </div>
+            </div>
         </aside>
     </div>
 </body>
