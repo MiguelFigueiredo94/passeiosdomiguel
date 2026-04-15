@@ -21,11 +21,14 @@
         body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; overflow-x: hidden; }
 
         /* MENU LATERAL */
-        #menu-placeholder { width: 260px; background-color: #1e4d8c; position: fixed; top: 0; left: 0; height: 100vh; z-index: 1000; }
-        #menu-placeholder img { 
-            width: 170px !important; height: 170px !important; border-radius: 50% !important; 
-            border: 4px solid white !important; background-color: white !important; 
-            margin: 30px auto !important; display: block !important; object-fit: cover !important;
+        #menu-placeholder { 
+            position: fixed; /* Garante que o menu não foge ao fazer scroll */
+            top: 0; 
+            left: 0; 
+            width: 250px; /* Estava 260px, mudei para 250px conforme o teu novo código */
+            height: 100vh; 
+            z-index: 1000; 
+            background-color: #1e4d8c; /* Mantive a cor que já tinhas */
         }
 
         main { margin-left: 260px; width: calc(100% - 260px); display: flex; flex-direction: column; }
