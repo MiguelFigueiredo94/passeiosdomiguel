@@ -11,133 +11,98 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rota da Cereja - Passeios do Miguel - Experiência Premium</title>
+    <title>Rota da Cereja - Fundão - Passeios do Miguel</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* CORE STYLES */
         :root {
-            --primary: #1e4d8c; /* Azul Institucional */
-            --accent: #ff8c00;  /* Laranja Destaque */
-            --cherry: #bc1a3c;  /* Vermelho Cereja */
-            --bg-light: #fefdfa; /* Branco Creme */
-            --text-dark: #2c3e50;
+            --primary-blue: #1e4d8c; 
+            --brand-orange: #ff8c00; 
+            --bg-body: #f4f7f9;
+            --text-gray: #555;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
-        
-        /* BOTÃO VOLTAR (Minimalista) */
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-body); color: #333; line-height: 1.6; }
+
+        /* BOTÃO VOLTAR */
         .btn-voltar {
-            position: fixed; top: 30px; left: 30px; z-index: 1001;
-            background: rgba(255, 255, 255, 0.8); color: var(--primary);
-            width: 55px; height: 55px; border-radius: 50%;
+            position: fixed; top: 20px; left: 20px; z-index: 1001;
+            background: white; color: var(--primary-blue);
+            width: 45px; height: 45px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease; backdrop-filter: blur(5px);
+            text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: 0.3s;
         }
-        .btn-voltar:hover { background: var(--primary); color: white; transform: scale(1.1) rotate(-15deg); }
+        .btn-voltar:hover { background: var(--brand-orange); color: white; transform: scale(1.1); }
 
-        /* HERO SECTION (Alto Impacto) */
+        /* HERO - ALTO IMPACTO */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://i.imgur.com/et5nOkL.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            height: 55vh; min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://i.imgur.com/et5nOkL.jpg');
+            background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; padding: 40px;
+            text-align: center; color: white; border-radius: 0 0 50px 50px; padding: 20px;
         }
-        .hero-tagline { font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9em; margin-bottom: 20px; opacity: 0.9; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5em; font-weight: 800; margin-bottom: 20px; text-shadow: 0 5px 20px rgba(0,0,0,0.4); line-height: 1.1; }
-        .hero-date { font-size: 1.3em; background: rgba(255,255,255,0.15); padding: 10px 30px; border-radius: 50px; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 10px; }
+        .hero h1 { font-size: 3.5em; font-weight: 800; text-shadow: 2px 2px 15px rgba(0,0,0,0.5); line-height: 1.1; }
+        .hero p { font-size: 1.3em; background: var(--brand-orange); padding: 8px 30px; border-radius: 50px; margin-top: 20px; font-weight: 600; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        /* LAYOUT ASYNCHRONOUS */
-        .content-container { max-width: 1300px; margin: -100px auto 60px; padding: 0 30px; display: grid; grid-template-columns: 2fr 1.2fr; gap: 50px; }
+        /* ESTRUTURA PRINCIPAL */
+        .main-container { max-width: 1200px; margin: -60px auto 50px; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
+
+        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.06); }
         
-        .main-col { position: relative; }
-        .cartao-principal { background: white; padding: 50px; border-radius: 30px; box-shadow: 0 30px 80px rgba(0,0,0,0.06); }
-        
-        h2.sec-title { font-family: 'Playfair Display', serif; font-size: 2.8em; color: var(--primary); margin-bottom: 40px; position: relative; }
-        h2.sec-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 4px; background: var(--cherry); border-radius: 2px; }
+        .section-title { color: var(--primary-blue); font-size: 1.8em; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-weight: 700; }
+        .section-title i { color: var(--brand-orange); }
 
-        h3.sub-title { font-size: 1.5em; color: var(--primary); margin: 40px 0 20px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #f2f5f7; padding-bottom: 15px; font-weight: 700; }
-        h3.sub-title i { color: var(--cherry); font-size: 0.9em; }
+        /* BLOCOS DE INFORMAÇÃO */
+        .info-block { margin-bottom: 35px; }
+        .info-item { display: flex; gap: 18px; margin-bottom: 20px; padding: 20px; background: #fafbfc; border-radius: 20px; transition: 0.3s; }
+        .info-item:hover { background: #f0f4f8; }
+        .info-item i { color: var(--primary-blue); font-size: 1.4em; margin-top: 3px; }
+        .info-item strong { color: #bc1a3c; display: block; font-size: 1.15em; margin-bottom: 5px; }
+        .info-item p { color: var(--text-gray); font-size: 0.95em; }
 
-        .desc-text { font-size: 1.1em; line-height: 1.8; color: #555; font-weight: 300; }
+        /* LISTA INCLUI / NÃO INCLUI */
+        .lista-check { list-style: none; margin-top: 10px; }
+        .lista-check li { margin-bottom: 8px; font-size: 0.9em; display: flex; align-items: center; gap: 10px; color: var(--text-gray); }
+        .lista-check i.fa-check { color: #27ae60; }
+        .lista-check i.fa-times { color: #e74c3c; }
 
-        .info-lista { list-style: none; }
-        .info-lista li { margin-bottom: 20px; display: flex; gap: 15px; font-size: 1.05em; line-height: 1.7; color: #444; }
-        .info-lista i { color: var(--primary); margin-top: 5px; }
-
-        /* GALERIA MODERNA (SOBREPOSTA) */
-        .galeria-sec { margin-top: 50px; display: flex; gap: 20px; }
-        .galeria-img { width: 32%; height: 220px; overflow: hidden; border-radius: 20px; cursor: pointer; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.5s ease; }
-        .galeria-img img { width: 100%; height: 100%; object-fit: cover; transition: all 0.5s ease; }
-        .galeria-img:hover { transform: translateY(-10px) scale(1.02); }
-        .galeria-img:hover img { transform: scale(1.1); }
-        .img-overlay-tag { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; font-size: 0.85em; font-weight: 600; text-align: center; }
-
-        /* INSCRIÇÃO STICKY */
-        .side-col { position: relative; }
-        .caixa-inscricao {
-            background: white; border-top: 6px solid var(--cherry); padding: 40px;
-            border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            position: sticky; top: 40px; z-index: 99;
+        /* TABELA DE PREÇOS NO CARD LATERAL */
+        .side-card { 
+            background: var(--primary-blue); color: white; padding: 35px; border-radius: 30px; 
+            position: sticky; top: 20px; height: fit-content; box-shadow: 0 20px 40px rgba(30,77,140,0.3);
         }
-        .ins-header { text-align: center; margin-bottom: 30px; }
-        .ins-header h3 { font-size: 1.6em; color: var(--primary); font-weight: 800; }
-        
-        .tabela-precos { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-        .tabela-precos th { text-align: left; font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; color: #888; padding: 10px; border-bottom: 1px solid #f2f5f7; }
-        .tabela-precos td { padding: 18px 10px; border-bottom: 1px solid #f2f5f7; font-size: 0.95em; }
-        .td-preco { text-align: center; font-weight: 700; color: var(--primary); }
-        .preco-main { color: var(--cherry); font-size: 1.5em; font-weight: 800; }
+        .price-table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        .price-table th { text-align: left; font-size: 0.8em; opacity: 0.7; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-transform: uppercase; letter-spacing: 1px; }
+        .price-table td { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; }
+        .price-val { text-align: right; color: var(--brand-orange); font-size: 1.2em; font-weight: 800; }
+        .highlight-cell { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 5px 10px; display: inline-block; }
 
-        .ins-nota { font-size: 0.85em; color: #777; line-height: 1.6; margin-bottom: 25px; text-align: center; padding: 0 10px; }
-
-        .btn-reservar {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: linear-gradient(45deg, var(--cherry), #e22d56); color: white;
-            text-decoration: none; padding: 20px; border-radius: 15px;
-            font-weight: 700; font-size: 1.2em; text-align: center;
-            transition: all 0.4s ease; box-shadow: 0 10px 25px rgba(188, 26, 60, 0.2);
-            border: none; cursor: pointer; width: 100%;
+        .btn-reserve {
+            display: block; background: var(--brand-orange); color: white; text-align: center;
+            padding: 20px; border-radius: 15px; text-decoration: none; font-weight: 800;
+            font-size: 1.2em; transition: 0.3s; box-shadow: 0 10px 20px rgba(255,140,0,0.3);
+            margin-top: 10px;
         }
-        .btn-reservar:hover { background: linear-gradient(45deg, #a31735, var(--cherry)); transform: translateY(-3px); box-shadow: 0 15px 35px rgba(188, 26, 60, 0.3); }
+        .btn-reserve:hover { background: #e67e00; transform: translateY(-3px); }
 
-        /* MOBILE FIX FOR RESERVATION */
-        .mobile-cta-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px 20px 25px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); border-radius: 20px 20px 0 0; }
+        /* GALERIA REPOSTA */
+        .galeria-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.4s; }
+        .galeria-grid img:hover { transform: translateY(-5px); filter: brightness(1.1); }
 
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
-        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 4px solid white; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .modal img { max-width: 90%; max-height: 85%; border: 4px solid white; border-radius: 15px; }
 
-        /* RESPONSIVIDADE (FINE-TUNING) */
-        @media (max-width: 1100px) {
-            .hero h1 { font-size: 3.8em; }
-            .content-container { grid-template-columns: 1fr; margin-top: -50px; }
-            .side-col { margin-top: 30px; }
-            .caixa-inscricao { position: relative; top: 0; }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8em; }
-            .hero-date { font-size: 1.1em; padding: 10px 20px; }
-            .cartao-principal { padding: 30px; }
-            h2.sec-title { font-size: 2em; }
-            .galeria-sec { flex-wrap: wrap; }
-            .galeria-img { width: 48%; }
-            .btn-voltar { top: 20px; left: 20px; width: 45px; height: 45px; }
-            
-            /* SHOW MOBILE CTA */
-            body { padding-bottom: 80px; } /* Space for the bar */
-            .main-col-reserve { display: none; } /* Hide sticky on small screen */
-            .mobile-cta-bar { display: block; }
-        }
-
-        @media (max-width: 480px) {
-            .galeria-img { width: 100%; height: 180px; }
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; margin-top: -30px; }
+            .hero h1 { font-size: 2.6em; }
+            .side-card { position: relative; top: 0; }
         }
     </style>
 </head>
@@ -147,124 +112,129 @@
         <i class="fas fa-arrow-left"></i>
     </a>
 
-    <section class="hero">
-        <p class="hero-tagline">Uma Experiência para os Sentidos</p>
+    <header class="hero">
         <h1>Rota da Cereja<br>Fundão</h1>
-        <div class="hero-date">
-            <i class="fas fa-calendar-alt"></i> Domingo, 14 de Junho de 2026
-        </div>
-    </section>
+        <p><i class="fas fa-calendar-alt"></i> Domingo, 14 de Junho de 2026</p>
+    </header>
 
-    <main>
-        <div class="content-container">
-            <div class="main-col">
-                <div class="cartao-principal">
-                    <h2 class="sec-title">A Magia da Cereja</h2>
-                    <p class="desc-text">Prepara-te para uma jornada inesquecível ao coração do Fundão, onde a doçura das cerejas recém-colhidas se mistura com a história milenar das Aldeias Históricas. Já imaginou apanhar cerejas diretamente da árvore?</p>
-                    
-                    <h3 class="sub-title"><i class="fas fa-certificate"></i> Destaques do Dia</h3>
-                    <ul class="info-lista">
-                        <li><i class="fas fa-leaf"></i> <div><strong>Quinta das Rasas:</strong> Participação ativa na apanha da cereja. Prova o fruto diretamente da árvore, degusta licores artesanais e doces tradicionais, e leva para casa 1kg de cerejas de oferta!</div></li>
-                        <li><i class="fas fa-university"></i> <div><strong>Casa da Cereja (Alcongosta):</strong> Visita guiada onde vais conhecer a história e a tradição secular deste fruto que é o orgulho da região do Fundão.</div></li>
-                        <li><i class="fas fa-landmark"></i> <div><strong>Castelo Novo:</strong> Viagem ao passado com uma visita guiada por uma das mais autênticas Aldeias Históricas de Portugal.</div></li>
-                    </ul>
+    <div class="main-container">
+        <main class="card">
+            <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> O Programa</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em; color: var(--text-gray);">Já imaginou apanhar cerejas diretamente da árvore? Um dia de descoberta, tradição e contacto com a natureza no Fundão.</p>
 
-                    <h3 class="sub-title"><i class="fas fa-bus"></i> Transporte & Logística</h3>
-                    <ul class="info-lista">
-                        <li><i class="fas fa-map-marker-alt"></i> <div>Castro Daire, São Pedro do Sul e Viseu (locais de recolha).</div></li>
-                        <li><i class="fas fa-check-circle"></i> <div><strong>Inclui:</strong> Autocarro de turismo, guia acompanhante e visita a todos os locais.</div></li>
-                        <li><i class="fas fa-times-circle"></i> <div><strong>Não Inclui:</strong> Almoço, despesas pessoais e entradas em monumentos (se aplicável).</div></li>
-                    </ul>
+            <div class="info-block">
+                <div class="info-item">
+                    <i class="fas fa-cherry"></i>
+                    <div>
+                        <strong>Quinta das Rasas</strong>
+                        <p>Apanha da cereja e prova direta na árvore. Degustação de doces e licores regionais. Oferta de 1kg de cereja por participante para levar para casa!</p>
+                    </div>
+                </div>
 
-                    <div class="galeria-sec">
-                        <div class="galeria-img" onclick="abrirModal(this.querySelector('img').src)">
-                            <img src="https://i.imgur.com/et5nOkL.jpg" alt="Apanha da Cereja no Fundão">
-                            <div class="img-overlay-tag">Quinta das Rasas</div>
-                        </div>
-                        <div class="galeria-img" onclick="abrirModal(this.querySelector('img').src)">
-                            <img src="https://i.imgur.com/L4RkG8S.png" alt="Cerejas em Cesta">
-                            <div class="img-overlay-tag">Colheita Fresca</div>
-                        </div>
-                        <div class="galeria-img" onclick="abrirModal(this.querySelector('img').src)">
-                            <img src="https://i.imgur.com/u7q7T6u.png" alt="Castelo Novo Aldeia Histórica">
-                            <div class="img-overlay-tag">Castelo Novo</div>
-                        </div>
+                <div class="info-item">
+                    <i class="fas fa-university"></i>
+                    <div>
+                        <strong>Cultura e Tradição</strong>
+                        <p>Visita guiada à Casa da Cereja em Alcongosta e passeio encantador pela Aldeia Histórica de Castelo Novo.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-bus"></i>
+                    <div>
+                        <strong>Locais de Recolha</strong>
+                        <p>Castro Daire, São Pedro do Sul, Vouzela, Oliveira de Frades e Viseu.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="side-col">
-                <div class="caixa-inscricao">
-                    <div class="ins-header">
-                        <h3>Inscrição Premium</h3>
-                    </div>
-                    <table class="tabela-precos">
-                        <thead>
-                            <tr>
-                                <th>Categoria</th>
-                                <th style="text-align: center;">Preço Base</th>
-                                <th style="text-align: center;">C/ Almoço</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Adultos</td>
-                                <td class="td-preco">35,00€</td>
-                                <td class="td-preco preco-main">58,00€</td>
-                            </tr>
-                            <tr>
-                                <td>Crianças (6-10 anos)</td>
-                                <td class="td-preco">30,00€</td>
-                                <td class="td-preco preco-main">44,00€</td>
-                            </tr>
-                            <tr style="color: #666; font-size: 0.85em;">
-                                <td colspan="3" style="text-align: center; border-bottom: none; opacity: 0.8;">Crianças até 5 anos: consultar.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="ins-nota">
-                        <p><i class="fas fa-exclamation-triangle"></i> Viagem sujeita ao mínimo de 35 participantes. Inscrição confirmada mediante pagamento.</p>
-                    </div>
-                    
-                    <div class="main-col-reserve">
-                        <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">
-                            <i class="fas fa-calendar-check"></i> Reservar Agora
-                        </a>
-                    </div>
+            <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Detalhes Importantes</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
+                <div>
+                    <span style="font-weight: 700; color: var(--primary-blue);">O Preço Inclui:</span>
+                    <ul class="lista-check">
+                        <li><i class="fas fa-check"></i> Autocarro de Turismo</li>
+                        <li><i class="fas fa-check"></i> Guia Acompanhante</li>
+                        <li><i class="fas fa-check"></i> Visitas aos locais indicados</li>
+                        <li><i class="fas fa-check"></i> 1Kg de Cereja de Oferta</li>
+                    </ul>
+                </div>
+                <div>
+                    <span style="font-weight: 700; color: var(--primary-blue);">O Preço Não Inclui:</span>
+                    <ul class="lista-check">
+                        <li><i class="fas fa-times"></i> Almoço (exceto se selecionado)</li>
+                        <li><i class="fas fa-times"></i> Entradas em monumentos</li>
+                        <li><i class="fas fa-times"></i> Despesas de caráter pessoal</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        
-        <div id="footer-placeholder"></div>
 
-        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
-            <img id="imgModal">
-        </div>
-    </main>
+            <h2 class="section-title"><i class="fas fa-camera"></i> O que vamos ver</h2>
+            <div class="galeria-grid">
+                <img src="https://i.imgur.com/AFUqUpt.jpg" onclick="abrirModal(this.src)" alt="Cerejas Fundão">
+                <img src="https://i.imgur.com/nOBqp4R.jpg" onclick="abrirModal(this.src)" alt="Quinta das Rasas">
+                <img src="https://i.imgur.com/TpfS7cy.jpg" onclick="abrirModal(this.src)" alt="Casa da Cereja">
+                <img src="https://i.imgur.com/QiSried.jpg" onclick="abrirModal(this.src)" alt="Castelo Novo">
+            </div>
+        </main>
 
-    <div class="mobile-cta-bar">
-        <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">
-            <i class="fas fa-calendar-check"></i> Reservar Agora
-        </a>
+        <aside class="side-card">
+            <h3 style="font-size: 1.6em; margin-bottom: 10px;">Inscrição</h3>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">Selecione a opção com ou sem almoço regional incluído.</p>
+            
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Passageiro</th>
+                        <th style="text-align:right;">S/ Almoço</th>
+                        <th style="text-align:right;">C/ Almoço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-size: 0.9em;">Adultos</td>
+                        <td class="price-val">35,00€</td>
+                        <td class="price-val"><span class="highlight-cell" style="color:white;">58,00€</span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 0.9em;">Crianças (até 10 anos)</td>
+                        <td class="price-val">30,00€</td>
+                        <td class="price-val"><span class="highlight-cell" style="color:white;">44,00€</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 15px; font-size: 0.85em; margin-bottom: 25px;">
+                <p style="margin-bottom: 10px;"><i class="fas fa-info-circle"></i> <strong>Informações Adicionais:</strong></p>
+                <ul style="list-style: none; opacity: 0.9;">
+                    <li style="margin-bottom: 5px;">• Viagem sujeita a mín. 35 participantes.</li>
+                    <li>• Reserva mediante pagamento no ato da inscrição.</li>
+                </ul>
+            </div>
+
+            <a href="inscricao.html?passeio=CerejaFundao" class="btn-reserve">
+                <i class="fas fa-pen-nib"></i> INSCREVER-ME AGORA
+            </a>
+        </aside>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <div id="modalGaleria" class="modal" onclick="this.style.display='none'">
+        <img id="imgExpandida">
     </div>
 
     <script>
-        // Carrega o Rodapé Dinâmico (Sempre o mesmo em todo o site)
+        // Carrega o Rodapé
         fetch('rodape.html')
             .then(res => res.text())
             .then(data => document.getElementById('footer-placeholder').innerHTML = data);
 
-        // Lógica da Galeria (Modal)
+        // Lógica da Galeria
         function abrirModal(src) {
-            document.getElementById('janelaModal').style.display = 'flex';
-            document.getElementById('imgModal').src = src;
+            document.getElementById('modalGaleria').style.display = 'flex';
+            document.getElementById('imgExpandida').src = src;
         }
-
-        // Adicionar um efeito parallax suave no scroll
-        window.addEventListener('scroll', function() {
-            let offset = window.pageYOffset;
-            document.querySelector('.hero').style.backgroundPositionY = (offset * 0.7) + 'px';
-        });
     </script>
 </body>
 </html>
