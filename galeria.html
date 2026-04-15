@@ -16,71 +16,103 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* ESTRUTURA GLOBAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; overflow-x: hidden; }
+       <style>
+    /* 1. ESTRUTURA GLOBAL */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; overflow-x: hidden; }
 
-        /* MENU LATERAL */
-        #menu-placeholder { 
-            position: fixed; /* Garante que o menu não foge ao fazer scroll */
-            top: 0; 
-            left: 0; 
-            width: 250px; /* Estava 260px, mudei para 250px conforme o teu novo código */
-            height: 100vh; 
-            z-index: 1000; 
-            background-color: #1e4d8c; /* Mantive a cor que já tinhas */
+    /* 2. MENU LATERAL (Configuração Desktop) */
+    #menu-placeholder { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 250px; 
+        height: 100vh; 
+        z-index: 1000; 
+        background-color: #1e4d8c; 
+    }
+
+    /* 3. CONTEÚDO PRINCIPAL (Configuração Desktop) */
+    main { 
+        margin-left: 250px; 
+        width: calc(100% - 250px); 
+        display: flex; 
+        flex-direction: column; 
+    }
+
+    /* HEADER TEMÁTICO */
+    .gallery-header { 
+        background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
+                    url('https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover; background-position: center; padding: 90px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+    }
+    .gallery-header h1 { font-size: 3.5em; font-weight: 800; }
+
+    /* FILTROS */
+    .filter-container { padding: 20px; display: flex; justify-content: center; gap: 10px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-wrap: wrap; }
+    .filter-btn { padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    .filter-btn.active { background: #1e4d8c; color: white; }
+
+    /* GRID DA GALERIA */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px; max-width: 1600px; margin: 0 auto; flex-grow: 1; width: 100%; }
+    .grid-year-title { grid-column: 1 / -1; color: #1e4d8c; font-size: 2.2em; margin-top: 30px; border-left: 6px solid #ff8c00; padding-left: 18px; font-weight: 800; }
+
+    .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s ease; background: #ddd; }
+    .gallery-item:hover { transform: translateY(-8px); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+    
+    .item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
+    .photo-count { position: absolute; top: 15px; left: 15px; background: rgba(255,140,0,0.95); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; }
+
+    .hidden-photos { display: none; }
+
+    /* BOTÃO FACEBOOK */
+    .fb-dynamic-btn {
+        position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+        z-index: 10000; background: #1877f2; color: white !important;
+        padding: 15px 30px; border-radius: 50px; text-decoration: none !important;
+        font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        display: none; transition: 0.3s ease; font-size: 16px; border: 2px solid white;
+    }
+
+    /* ============================================================
+       REGRAS PARA MOBILE E TABLET (Aqui é onde a mágica acontece)
+       ============================================================ */
+    @media (max-width: 1024px) {
+        body { display: block; } /* Muda de flex para bloco para o menu ficar em cima */
+
+        #menu-placeholder {
+            position: relative; /* O menu deixa de estar preso à esquerda */
+            width: 100%;
+            height: auto;
+            min-height: 60px;
         }
 
-        main { margin-left: 260px; width: calc(100% - 260px); display: flex; flex-direction: column; }
-
-        /* HEADER TEMÁTICO */
-        .gallery-header { 
-            background: linear-gradient(rgba(30, 77, 140, 0.7), rgba(30, 77, 140, 0.7)), 
-                        url('https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; padding: 90px 20px; text-align: center; color: white; border-bottom: 5px solid #ff8c00;
+        main {
+            margin-left: 0; /* Remove o espaço da esquerda */
+            width: 100%;   /* Ocupa a largura total do telemóvel */
         }
-        .gallery-header h1 { font-size: 3.5em; font-weight: 800; }
 
-        /* FILTROS */
-        .filter-container { padding: 20px; display: flex; justify-content: center; gap: 10px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .filter-btn { padding: 10px 22px; border: 2px solid #1e4d8c; background: transparent; color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .filter-btn.active { background: #1e4d8c; color: white; }
+        .gallery-header { padding: 50px 20px; }
+        .gallery-header h1 { font-size: 2.2em; }
 
-        /* GRID 4 COLUNAS */
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px; max-width: 1600px; margin: 0 auto; flex-grow: 1; }
-        .grid-year-title { grid-column: 1 / -1; color: #1e4d8c; font-size: 2.2em; margin-top: 30px; border-left: 6px solid #ff8c00; padding-left: 18px; font-weight: 800; }
+        .gallery-grid { 
+            grid-template-columns: repeat(2, 1fr); /* Em vez de 4 colunas, passa a 2 */
+            padding: 20px;
+            gap: 15px;
+        }
 
-        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s ease; background: #ddd; }
-        .gallery-item:hover { transform: translateY(-8px); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .gallery-item { height: 180px; } /* Itens ligeiramente menores no mobile */
         
-        .item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
-        .photo-count { position: absolute; top: 15px; left: 15px; background: rgba(255,140,0,0.95); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; }
+        .grid-year-title { font-size: 1.8em; }
+    }
 
-        .hidden-photos { display: none; }
-
-        /* BOTÃO FACEBOOK FIXO NO TOQUE */
-        .fb-dynamic-btn {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            z-index: 10000; background: #1877f2; color: white !important;
-            padding: 15px 30px; border-radius: 50px; text-decoration: none !important;
-            font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: none; transition: 0.3s ease; font-size: 16px; border: 2px solid white;
-        }
-
-                @media (max-width: 1024px) {
-            #menu-placeholder {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-        
-            main {
-                margin-left: 0;
-            }
-        }
-
-                           
+    /* Para telemóveis muito pequenos */
+    @media (max-width: 480px) {
+        .gallery-grid { grid-template-columns: 1fr; } /* Apenas 1 coluna */
+        .filter-btn { padding: 8px 15px; font-size: 14px; }
+    }
+</style>
     </style>
 </head>
 <body>
