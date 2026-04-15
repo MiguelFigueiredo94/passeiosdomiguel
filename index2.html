@@ -10,199 +10,175 @@
     </script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Memórias - Passeios do Miguel</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rota da Cereja - Fundão - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* Base e Layout Lateral (Igual às outras páginas) */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        /* ESTRUTURA BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; min-height: 100vh; overflow-x: hidden; width: 100%; }
         
-        #menu-placeholder {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            z-index: 1000;
+        /* BOTÃO VOLTAR FLUTUANTE */
+        .btn-voltar {
+            position: fixed; top: 25px; left: 25px; z-index: 1001;
+            background: white; color: #1e4d8c; width: 50px; height: 50px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s ease; border: none;
         }
+        .btn-voltar:hover { background: #1e4d8c; color: white; transform: scale(1.1); }
+
+        /* BANNER PRINCIPAL */
+        .banner-passeio {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://i.imgur.com/et5nOkL.jpg');
+            background-size: cover; background-position: center;
+            color: white; height: 450px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            border-radius: 0 0 60px 60px; padding: 20px;
+        }
+        .banner-passeio h1 { font-size: 3.5em; font-weight: 800; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .banner-passeio p { font-size: 1.2em; background: rgba(0,0,0,0.3); padding: 8px 20px; border-radius: 50px; }
+
+        /* GRID DE CONTEÚDO */
+        .seccao-detalhes { 
+            display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; 
+            max-width: 1200px; margin: -60px auto 40px; padding: 0 20px;
+        }
+
+        .cartao { background: white; padding: 35px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.07); }
         
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
-
-        /* BANNER (Estilo Premium da Política) */
-        .gallery-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
-        }
-        .gallery-header h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 800; }
-
-        /* FILTROS */
-        .filter-container { 
-            padding: 25px; display: flex; justify-content: center; gap: 12px; 
-            background: white; position: sticky; top: 0; z-index: 100; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-wrap: wrap;
-        }
-        .filter-btn { 
-            padding: 10px 25px; border: 2px solid #1e4d8c; background: transparent; 
-            color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; 
-        }
-        .filter-btn.active { background: #1e4d8c; color: white; }
-
-        /* GRID DA GALERIA */
-        .gallery-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; padding: 40px 20px; max-width: 1400px; margin: 0 auto; width: 100%;
-        }
-        .grid-year-title { 
-            grid-column: 1 / -1; color: #1e4d8c; font-size: 2.2em; 
-            margin-top: 30px; border-left: 6px solid #ff8c00; padding-left: 18px; font-weight: 800; 
-        }
-
-        .gallery-item { 
-            position: relative; border-radius: 15px; overflow: hidden; height: 260px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s ease; background: #ddd; 
-        }
-        .gallery-item:hover { transform: translateY(-8px); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        h3 { color: #1e4d8c; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #f0f2f5; padding-bottom: 12px; }
         
-        .item-overlay { 
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; 
+        .info-lista { list-style: none; padding: 0; }
+        .info-lista li { margin-bottom: 18px; display: flex; gap: 12px; line-height: 1.6; color: #444; }
+        .info-lista i { color: #1e4d8c; margin-top: 4px; font-size: 1.1em; }
+
+        /* COLUNA LATERAL / INSCRIÇÃO */
+        .caixa-inscricao { 
+            background: #1e4d8c; color: white; padding: 30px; border-radius: 25px; 
+            position: sticky; top: 20px; box-shadow: 0 12px 25px rgba(30, 77, 140, 0.2); 
         }
-        .photo-count { 
-            position: absolute; top: 15px; left: 15px; background: rgba(255,140,0,0.95); 
-            color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; 
+        .caixa-inscricao h3 { color: white; border-color: rgba(255,255,255,0.1); }
+        
+        .tabela-precos { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+        .tabela-precos th { text-align: left; font-size: 0.8em; text-transform: uppercase; opacity: 0.8; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .tabela-precos td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; }
+        .preco-destaque { color: #ff8c00; font-size: 1.2em; text-align: right; }
+
+        .btn-reservar { 
+            display: block; background: #ff8c00; color: white; text-decoration: none; 
+            padding: 18px; border-radius: 15px; font-weight: bold; text-align: center; 
+            transition: 0.3s; font-size: 1.1em; box-shadow: 0 4px 15px rgba(230, 126, 0, 0.3);
         }
+        .btn-reservar:hover { background: #e67e00; transform: translateY(-3px); }
 
-        .hidden-photos { display: none; }
+        /* GALERIA INTERNA */
+        .galeria-container { margin-top: 35px; }
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .galeria-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 15px; cursor: pointer; transition: 0.4s; }
+        .galeria-grid img:hover { transform: scale(1.03); }
 
-        /* Ajustes do Rodapé (Para manter o padrão branco nos títulos) */
-        #footer-placeholder h2 { color: #ffffff !important; border-bottom: none !important; margin-top: 0 !important; }
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 3px solid white; }
 
-        /* RESPONSIVIDADE (MOBILE) */
-        @media (max-width: 1024px) {
-            body { 
-                display: block; 
-                overflow-x: hidden; /* Impede a barra horizontal no corpo da página */
-                width: 100%;
-            }
-
-            #menu-placeholder { 
-                position: relative; 
-                width: 100%; 
-                height: auto; 
-                overflow: hidden; /* Garante que o menu não estique a página */
-            }
-
-            main { 
-                margin-left: 0 !important; 
-                width: 100% !important; 
-                max-width: 100vw; /* Garante que nunca ultrapassa a largura da janela */
-                overflow-x: hidden; 
-                display: block;
-            }
-
-            .gallery-header { 
-                padding: 60px 20px; 
-                border-radius: 0; /* Remove o arredondado que às vezes causa bugs no mobile */
-                width: 100%;
-            }
-
-            .gallery-header h1 { font-size: 2em; }
-
-            .gallery-grid { 
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-                padding: 15px; 
-                gap: 15px;
-                width: 100%;
-                margin: 0; /* Garante que o grid não tenha margens externas que empurrem a página */
-            }
-
-            .gallery-item { height: 180px; }
+        /* RESPONSIVIDADE MOBILE */
+        @media (max-width: 900px) {
+            .seccao-detalhes { grid-template-columns: 1fr; margin-top: -30px; }
+            .banner-passeio { height: 350px; border-radius: 0 0 40px 40px; }
+            .banner-passeio h1 { font-size: 2.2em; }
+            .btn-voltar { top: 15px; left: 15px; width: 40px; height: 40px; }
+            .cartao { padding: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <a href="passeios.html" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i>
+    </a>
 
     <main>
-        <header class="gallery-header">
-            <h1>Galeria de Memórias</h1>
-            <p>Reviva os melhores momentos dos nossos passeios.</p>
-        </header>
-
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
-            <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
-            <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
+        <div class="banner-passeio">
+            <h1>Rota da Cereja</h1>
+            <p><i class="fas fa-calendar-alt"></i> 14 de Junho de 2026</p>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid">
-            <h2 class="grid-year-title" data-year="2026">2026</h2>
-            
-            <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
-                    <div class="photo-count"><i class="fas fa-camera"></i> +20</div>
-                    <img src="https://i.imgur.com/PmjIQux.png">
-                    <div class="item-overlay"><h4>Festa das Camélias</h4></div>
-                </a>
-                <div class="hidden-photos">
-                    <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
+        <section class="seccao-detalhes">
+            <div class="coluna-texto">
+                <div class="cartao">
+                    <h3><i class="fas fa-info-circle"></i> Descrição do Passeio</h3>
+                    <p>Venha desfrutar de um dia de descoberta, tradição e contacto com a natureza na região do Fundão, famosa pela sua excelência na produção de cerejas. Um passeio delicioso para toda a família!</p>
+                    
+                    <h3 style="margin-top:35px;"><i class="fas fa-map-signs"></i> Itinerário Previsto</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-certificate"></i> <div><strong>Quinta das Rasas:</strong> Participação na apanha e degustação direta na árvore (inclui 1kg de oferta para levar).</div></li>
+                        <li><i class="fas fa-university"></i> <div><strong>Casa da Cereja:</strong> Visita guiada em Alcongosta para conhecer a história deste fruto.</div></li>
+                        <li><i class="fas fa-landmark"></i> <div><strong>Castelo Novo:</strong> Passeio guiado por uma das mais belas Aldeias Históricas.</div></li>
+                    </ul>
+
+                    <h3 style="margin-top:35px;"><i class="fas fa-bus"></i> Locais de Recolha</h3>
+                    <p style="color: #666;"><i class="fas fa-map-marker-alt"></i> Castro Daire, São Pedro do Sul e Viseu.</p>
+
+                    <div class="galeria-container">
+                        <h3><i class="fas fa-camera"></i> Paisagens do Passeio</h3>
+                        <div class="galeria-grid">
+                            <img src="https://i.imgur.com/AFUqUpt.jpg" onclick="abrirModal(this.src)">
+                            <img src="https://i.imgur.com/nOBqp4R.jpg" onclick="abrirModal(this.src)">
+                            <img src="https://i.imgur.com/TpfS7cy.jpg" onclick="abrirModal(this.src)">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <h2 class="grid-year-title" data-year="2025">2025</h2>
-            
-            <div class="gallery-item" data-category="2025">
-                <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <div class="photo-count"><i class="fas fa-camera"></i> +56</div>
-                    <img src="https://i.imgur.com/aUixZ0Y.png">
-                    <div class="item-overlay"><h4>Valência & Vigo</h4></div>
-                </a>
+            <div class="coluna-aside">
+                <div class="caixa-inscricao">
+                    <h3><i class="fas fa-ticket-alt"></i> Inscrição</h3>
+                    <table class="tabela-precos">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Bilhete</th>
+                                <th style="text-align: right;">C/ Almoço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Adultos</td>
+                                <td class="preco-destaque">58,00€</td>
+                            </tr>
+                            <tr>
+                                <td>Crianças (6-10)</td>
+                                <td class="preco-destaque">44,00€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="font-size: 0.85em; opacity: 0.9; margin-bottom: 25px; line-height: 1.5;">
+                        <p><strong>Inclui:</strong> Transporte em Autocarro de Turismo, Almoço Regional, Visitas Guiadas e 1kg de Cerejas.</p>
+                    </div>
+                    <a href="inscricao.html?passeio=Rota+da+Cereja" class="btn-reservar">INSCREVER-ME AGORA</a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div id="footer-placeholder"></div> 
+        <div id="footer-placeholder"></div>
+
+        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
+            <img id="imgModal">
+        </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // 1. CARREGAR MENU E RODAPÉ (Padrão das tuas páginas)
-        fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
-        fetch('rodape.html').then(r => r.text()).then(d => document.getElementById('footer-placeholder').innerHTML = d);
+        // Carregar o Rodapé
+        fetch('rodape.html')
+            .then(res => res.text())
+            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
 
-        // 2. INICIALIZAR GLIGHTBOX
-        const lightbox = GLightbox({ selector: '.glightbox' });
-
-        // 3. FILTRO DA GALERIA
-        function filterGallery(year) {
-            const items = document.querySelectorAll('.gallery-item');
-            const titles = document.querySelectorAll('.grid-year-title');
-            const btns = document.querySelectorAll('.filter-btn');
-
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            items.forEach(item => {
-                if (year === 'all' || item.getAttribute('data-category') === year) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            titles.forEach(title => {
-                if (year === 'all' || title.getAttribute('data-year') === year) {
-                    title.style.display = 'block';
-                } else {
-                    title.style.display = 'none';
-                }
-            });
+        // Lógica da Galeria
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'flex';
+            document.getElementById('imgModal').src = src;
         }
     </script>
 </body>
