@@ -39,7 +39,6 @@
 
         .hero {
             height: 60vh; min-height: 450px;
-            /* Foto fornecida pelo Miguel aplicada como capa */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.imgur.com/HwHpYFW.png');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -58,27 +57,6 @@
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
-        .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
-
-        .booking-card { 
-            background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
-            position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        .status-banner { 
-            background: rgba(30, 77, 140, 0.3); border: 1px solid var(--primary-blue);
-            text-align: center; padding: 12px; border-radius: 15px; font-weight: 700; 
-            font-size: 0.9em; margin-bottom: 25px; text-transform: uppercase; color: #74b9ff;
-        }
-
-        .btn-main {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--primary-blue); color: white; text-align: center;
-            padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
-        }
-        .btn-main:hover { transform: scale(1.02); filter: brightness(1.1); }
-
         .btn-galeria {
             display: inline-flex; align-items: center; gap: 10px;
             background: #f0f4f8; color: var(--primary-blue); padding: 15px 30px;
@@ -87,10 +65,33 @@
         }
         .btn-galeria:hover { background: var(--primary-blue); color: white; }
 
+        /* Card Lateral - Estilo Padronizado (Igual ao de Nisa/Marvão e Camélias) */
+        .booking-card { 
+            background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
+            position: sticky; top: 30px; height: fit-content; text-align: center;
+        }
+        .success-badge {
+            background: rgba(245, 158, 11, 0.2); border: 1px solid var(--accent-gold);
+            padding: 12px; border-radius: 15px; font-weight: 700; color: #fcd34d;
+            margin-bottom: 25px; text-transform: uppercase; font-size: 0.9em;
+        }
+        .btn-proximos {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--primary-blue); color: white; text-align: center;
+            padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
+            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+        }
+        .btn-proximos:hover { filter: brightness(1.2); transform: scale(1.02); }
+
+        .info-list-mini { list-style: none; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; text-align: left; }
+        .info-item-mini { font-size: 0.9em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #eee; }
+        .info-item-mini i { color: var(--accent-gold); font-size: 1.1em; }
+
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
-            .info-lists { grid-template-columns: 1fr; }
+            .main-card { padding: 30px; }
+            .hero { border-radius: 0 0 30px 30px; height: 50vh; }
         }
     </style>
 </head>
@@ -106,7 +107,7 @@
     <div class="wrapper">
         <main class="main-card">
             <h2 class="title-sec">Valença e Vigo: As Luzes da Europa</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Um dia inesquecível mergulhado no verdadeiro espírito de Natal. Com um grupo espetacular de <strong>57 participantes</strong>, explorámos a tradição de Valença e o brilho inigualável de Vigo.</p>
+            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Um dia inesquecível mergulhado no verdadeiro espírito de Natal. Com um grupo espetacular de <strong>57 participantes</strong>, explorámos a tradição de Valença e o brilho inigualável de Vigo num ambiente de pura alegria.</p>
 
             <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Destaques do Dia:</h3>
 
@@ -122,7 +123,7 @@
                 <i class="fas fa-holly-berry"></i>
                 <div>
                     <h4>Duendelândia</h4>
-                    <p>Magia para toda a família com trampolins, insufláveis, comboio encantado e a Casa do Pai Natal.</p>
+                    <p>Magia para toda a família com trampolins, insufláveis, comboio encantado e a visita à Casa do Pai Natal.</p>
                 </div>
             </div>
 
@@ -140,38 +141,34 @@
                 </a>
             </div>
 
-            <div class="info-lists">
-                <div>
-                    <h4 style="margin-bottom: 12px; color: var(--primary-blue); font-size: 0.95em;"><i class="fas fa-check"></i> INCLUÍDO NO PASSEIO:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Turismo</li>
-                    <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 12px; color: #555; font-size: 0.95em;"><i class="fas fa-map-marker-alt"></i> RECOLHAS EFETUADAS:</h4>
-                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire, S. Pedro do Sul</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> Vouzela e Ol. Frades</li>
+            <div style="margin-top: 20px; border-top: 1px dashed #ddd; padding-top: 30px;">
+                <h4 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 0.9em; letter-spacing: 1px; text-transform: uppercase;">RECOLHAS EFETUADAS:</h4>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Castro Daire</span>
+                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">S. Pedro do Sul</span>
+                    <span style="background: #f0f4f8; color: var(--primary-blue); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Vouzela e Ol. Frades</span>
                 </div>
             </div>
         </main>
 
         <aside class="booking-card">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin-bottom: 10px;">Lotação Esgotada</h3>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 10px;">Sucesso Total!</h3>
             
-            <div class="status-banner">
+            <div class="success-badge">
                 <i class="fas fa-users"></i> 57 Participantes
             </div>
 
             <p style="font-size: 0.95em; color: #ccc; line-height: 1.6; margin-bottom: 25px;">
-                Esta viagem foi um sucesso de grupo e alegria. Marcada por memórias fotográficas fantásticas sob o brilho natalício!
+                Obrigado a todos os que tornaram este passeio um evento tão especial e concorrido!
             </p>
 
-            <div style="font-size: 0.85em; line-height: 1.8; opacity: 0.8; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px;">
-                <p><i class="fas fa-euro-sign" style="color:var(--accent-gold); margin-right:8px;"></i> Valor da Inscrição: 45,00€</p>
-                <p><i class="fas fa-calendar-check" style="color:var(--accent-gold); margin-right:8px;"></i> Concluído com Sucesso</p>
-            </div>
+            <ul class="info-list-mini">
+                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Transporte em Autocarro</li>
+                <li class="info-item-mini"><i class="fas fa-check-circle"></i> Guia Acompanhante</li>
+            </ul>
 
-            <a href="passeios.html" class="btn-main">
-                Próximos Destinos <i class="fas fa-arrow-right"></i>
+            <a href="passeios.html" class="btn-proximos">
+                Ver Novos Destinos <i class="fas fa-arrow-right"></i>
             </a>
         </aside>
     </div>
