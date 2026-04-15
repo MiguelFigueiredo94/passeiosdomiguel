@@ -61,9 +61,13 @@
             display: inline-flex; align-items: center; gap: 10px;
             background: #f0f4f8; color: var(--primary-blue); padding: 15px 30px;
             border-radius: 15px; text-decoration: none; font-weight: 700;
-            margin-top: 30px; border: 2px solid var(--primary-blue); transition: 0.3s;
+            margin: 30px 0; border: 2px solid var(--primary-blue); transition: 0.3s;
         }
         .btn-galeria:hover { background: var(--primary-blue); color: white; }
+
+        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 10px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
+        .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
+        .info-item i { color: var(--accent-chestnut); margin-top: 3px; }
 
         .booking-card { 
             background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
@@ -72,26 +76,19 @@
         .success-badge {
             background: rgba(217, 119, 6, 0.2); border: 1px solid var(--accent-chestnut);
             padding: 12px; border-radius: 15px; font-weight: 700; color: #fbbf24;
-            margin-bottom: 25px; text-transform: uppercase; font-size: 0.9em;
+            margin-bottom: 20px; text-transform: uppercase; font-size: 0.9em;
         }
         .btn-proximos {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: var(--primary-blue); color: white; text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-bottom: 25px; text-transform: uppercase;
+            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
-
-        /* Secção de Detalhes abaixo do botão */
-        .post-details { text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; }
-        .detail-group { margin-bottom: 15px; }
-        .detail-group:last-child { margin-bottom: 0; }
-        .detail-title { font-size: 0.75em; font-weight: 800; color: var(--accent-chestnut); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
-        .detail-item { font-size: 0.85em; color: #eee; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-        .detail-item i { font-size: 10px; color: #888; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
+            .info-lists { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -125,10 +122,32 @@
                 </div>
             </div>
 
+            <div class="feature-box">
+                <i class="fas fa-camera-retro"></i>
+                <div>
+                    <h4>Vila Medieval</h4>
+                    <p>Passeio pelas ruas de Marvão até ao castelo, desfrutando de vistas panorâmicas sobre a planície alentejana.</p>
+                </div>
+            </div>
+
             <div style="text-align: center;">
                 <a href="galeria.html" class="btn-galeria">
                     <i class="fas fa-images"></i> VER FOTOS NA GALERIA
                 </a>
+            </div>
+
+            <div class="info-lists">
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary-blue); font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-check"></i> Incluído no Passeio:</h4>
+                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Turismo</li>
+                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entrada na Feira</li>
+                    <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #555; font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-map-marker-alt"></i> Recolhas Efetuadas:</h4>
+                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire e S. Pedro do Sul</li>
+                    <li class="info-item"><i class="fas fa-circle"></i> Viseu, Mangualde e Celorico</li>
+                </div>
             </div>
         </main>
 
@@ -139,24 +158,13 @@
                 <i class="fas fa-users"></i> 53 Participantes
             </div>
 
+            <p style="font-size: 0.95em; color: #eee; line-height: 1.6; font-style: italic; opacity: 0.9;">
+                "Obrigado a todos pela excelente companhia e por tornarem este passeio tão especial. Até à próxima aventura!"
+            </p>
+
             <a href="passeios.html" class="btn-proximos">
-                Próximos Destinos <i class="fas fa-arrow-right"></i>
+                Ver Próximos Destinos <i class="fas fa-arrow-right" style="margin-left:10px;"></i>
             </a>
-
-            <div class="post-details">
-                <div class="detail-group">
-                    <span class="detail-title">Incluído no Passeio:</span>
-                    <div class="detail-item"><i class="fas fa-circle"></i> Transporte em Autocarro</div>
-                    <div class="detail-item"><i class="fas fa-circle"></i> Entrada na Feira</div>
-                    <div class="detail-item"><i class="fas fa-circle"></i> Guia Acompanhante</div>
-                </div>
-
-                <div class="detail-group">
-                    <span class="detail-title">Recolhas Efetuadas:</span>
-                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Castro Daire e S. Pedro Sul</div>
-                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Viseu, Mangualde e Celorico</div>
-                </div>
-            </div>
         </aside>
     </div>
 </body>
