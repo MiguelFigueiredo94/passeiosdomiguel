@@ -20,7 +20,14 @@
         body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; min-height: 100vh; display: flex; }
 
         /* 2. MENU LATERAL */
-        #menu-placeholder { width: 250px; flex-shrink: 0; }
+        #menu-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            z-index: 1000;
+        }
 
         /* 3. CONTEÚDO PRINCIPAL */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
@@ -78,8 +85,15 @@
         .card-dica p { color: #555; font-size: 0.95em; line-height: 1.6; }
 
         @media (max-width: 1024px) {
-            main { margin-left: 0; }
-            #menu-placeholder { display: none; }
+            #menu-placeholder {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+        
+            main {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
