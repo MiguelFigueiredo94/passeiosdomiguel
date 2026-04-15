@@ -10,178 +10,163 @@
     </script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Magia Animal em Gaia - Passeios do Miguel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL */
+        :root {
+            --primary-green: #2d6a4f;   /* Verde Natureza */
+            --bg-light: #f8faf9;
+            --text-dark: #2d3436;
+            --cancel-red: #d63031;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f8f9fa; min-height: 100vh; }
-        
-        /* 2. MENU LATERAL FIXO */
-        #menu-placeholder { 
-            width: 250px; 
-            flex-shrink: 0; 
-            position: sticky; 
-            top: 0; 
-            height: 100vh; 
-            background-color: #1e4d8c; 
-        }
-        
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; padding-bottom: 60px; }
 
-        /* 3. BANNER PADRONIZADO (380px) */
-        .banner-passeio {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://i.imgur.com/k6szPlt.jpg');
+        .btn-voltar {
+            position: fixed; top: 25px; left: 25px; z-index: 1001;
+            background: white; color: var(--primary-green);
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+        .btn-voltar:hover { background: var(--primary-green); color: white; transform: translateX(-5px); }
+
+        .hero {
+            height: 55vh; min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.imgur.com/k6szPlt.jpg');
             background-size: cover; background-position: center;
-            color: white; height: 380px; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white; border-radius: 0 0 50px 50px; padding: 20px;
         }
-        .banner-passeio h1 { font-size: 3em; margin-bottom: 10px; }
-        .banner-passeio p { font-size: 1.2em; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
+        .hero .data-badge { font-size: 1.2em; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; padding: 8px 30px; border: 1px solid white; border-radius: 50px; }
 
-        /* 4. GRID DE CONTEÚDO */
-        .seccao-detalhes { padding: 40px 30px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .cartao { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        
-        h3 { color: #1e4d8c; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
-        
-        .info-lista { list-style: none; padding: 0; }
-        .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; color: #444; }
-        .info-lista i { color: #2d6a4f; margin-top: 4px; } /* Verde Natureza */
+        .wrapper { max-width: 1200px; margin: -50px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
 
-        /* 5. BLOCO DE INSCRIÇÃO */
-        .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; position: sticky; top: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
-        .caixa-inscricao table { width: 100%; border-collapse: collapse; color: white; margin-bottom: 15px; }
-        .caixa-inscricao td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .preco-valor { text-align: right; font-weight: bold; font-size: 1.3em; }
+        .main-card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+        .title-sec { font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 2em; margin-bottom: 20px; }
         
-        .btn-reservar { 
-            display: block; background: #ff8c00; color: white; text-decoration: none; 
-            padding: 15px; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s;
+        .status-tag { 
+            display: inline-block; background: var(--cancel-red); color: white; 
+            padding: 5px 15px; border-radius: 8px; font-weight: 700; 
+            text-transform: uppercase; font-size: 0.8em; margin-bottom: 15px; 
         }
-        .btn-reservar:hover { background: #e67e00; transform: translateY(-3px); }
 
-        /* 6. GALERIA */
-        .galeria-container { margin: 0 30px 60px; padding: 40px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1200px; align-self: center; width: calc(100% - 60px); }
-        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; cursor: pointer; transition: 0.3s; }
-        .galeria-grid img:hover { transform: scale(1.03); }
+        .feature-box { display: flex; gap: 15px; margin-bottom: 20px; padding: 20px; border-radius: 15px; background: #f1f8f5; }
+        .feature-box i { color: var(--primary-green); font-size: 1.3em; }
+        .feature-box h4 { font-weight: 700; margin-bottom: 5px; }
+        .feature-box p { font-size: 0.9em; color: #555; }
 
-        /* 7. MODAL GALERIA */
-        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 3px solid white; }
+        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
+        .info-item { list-style: none; font-size: 0.9em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #666; }
 
-        @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; position: relative; }
-            .seccao-detalhes { grid-template-columns: 1fr; }
-            .galeria-container { width: calc(100% - 40px); margin: 20px; }
-            .banner-passeio h1 { font-size: 2.2em; }
+        .aside-card { 
+            background: #2d3436; color: white; padding: 35px; border-radius: 30px; 
+            position: sticky; top: 30px; height: fit-content; text-align: center;
+        }
+        .aside-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8em; margin-bottom: 15px; }
+        .aside-card p { font-size: 0.95em; color: #ccc; line-height: 1.6; margin-bottom: 25px; }
+
+        .btn-redirect {
+            display: block; background: var(--primary-green); color: white; text-align: center;
+            padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 700;
+            transition: 0.3s; text-transform: uppercase;
+        }
+        .btn-redirect:hover { filter: brightness(1.2); transform: translateY(-3px); }
+
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 25px; }
+        .photo-grid img { width: 100%; height: 140px; object-fit: cover; border-radius: 15px; opacity: 0.7; filter: grayscale(50%); transition: 0.3s; }
+        .photo-grid img:hover { opacity: 1; filter: grayscale(0%); }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.5em; }
+            .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
+            .info-lists { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <a href="passeios.html" class="btn-voltar"><i class="fas fa-arrow-left"></i></a>
 
-    <main>
-        <div class="banner-passeio">
-            <h1>Magia Animal em Gaia</h1>
-            <p><i class="fas fa-leaf"></i> Natureza e vida selvagem para toda a família</p>
-        </div>
+    <header class="hero">
+        <div class="status-tag" style="background: rgba(255,255,255,0.2); border: 1px solid white;">Informação Histórica</div>
+        <h1>Magia Animal em Gaia</h1>
+        <div class="data-badge">Previsto para 08 de Fevereiro 2026</div>
+    </header>
 
-        <section class="seccao-detalhes">
-            <div class="coluna-texto">
-                <div class="cartao">
-                    <h3><i class="fas fa-info-circle"></i> Sobre o Passeio</h3>
-                    <p>Venha descobrir o lado mais selvagem e mágico de Gaia. Um dia inesquecível a explorar a fauna e flora, ideal para criar memórias com os mais novos.</p>
-                    
-                    <h3 style="margin-top:30px;"><i class="fas fa-calendar-alt"></i> Informações</h3>
-                    <ul class="info-lista">
-                        <li><i class="fas fa-calendar-check"></i> <div><strong>Data:</strong> 15 de Fevereiro de 2026</div></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <div><strong>Locais:</strong> Parque Biológico de Gaia e Zoo Santo Inácio</div></li>
-                        <li><i class="fas fa-bus"></i> <div><strong>Ponto de Encontro:</strong> São Pedro do Sul</div></li>
-                    </ul>
+    <div class="wrapper">
+        <main class="main-card">
+            <div class="status-tag">Passeio Cancelado</div>
+            <h2 class="title-sec">Parque Biológico e Zoo Santo Inácio</h2>
+            <p style="margin-bottom: 25px; color: #555; line-height: 1.7;">
+                Este passeio, que prometia um dia mágico de contacto com a natureza e exposição noturna "Luzes Selvagens", acabou por não se realizar na data prevista. Mantemos o registo do itinerário para consulta de futuros interessados.
+            </p>
 
-                    <h3 style="margin-top:30px;"><i class="fas fa-route"></i> Itinerário</h3>
-                    <ul class="info-lista">
-                        <li><i class="fas fa-check"></i> Saída de São Pedro do Sul rumo a Gaia.</li>
-                        <li><i class="fas fa-check"></i> Visita guiada ao Parque Biológico de Gaia.</li>
-                        <li><i class="fas fa-utensils"></i> Almoço em restaurante local (incluído).</li>
-                        <li><i class="fas fa-paw"></i> Tarde livre para explorar o Zoo Santo Inácio.</li>
-                        <li><i class="fas fa-home"></i> Regresso confortável ao final do dia.</li>
-                    </ul>
+            <div class="feature-box">
+                <i class="fas fa-leaf"></i>
+                <div>
+                    <h4>Parque Biológico de Gaia</h4>
+                    <p>Um percurso tranquilo focado na biodiversidade regional e na fauna portuguesa.</p>
                 </div>
             </div>
 
-            <div class="coluna-aside">
-                <div class="caixa-inscricao">
-                    <h3 style="color: white; border-color: rgba(255,255,255,0.2);"><i class="fas fa-ticket-alt"></i> Inscrição</h3>
-                    <table>
-                        <tr>
-                            <td>Adultos</td>
-                            <td class="preco-valor">45,00€</td>
-                        </tr>
-                        <tr>
-                            <td>Crianças (até 12 anos)</td>
-                            <td class="preco-valor">35,00€</td>
-                        </tr>
-                    </table>
-                    <div style="font-size: 0.85em; opacity: 0.9; margin-bottom: 20px;">
-                        <p><i class="fas fa-plus-circle"></i> Inclui: Transporte, entradas e almoço completo.</p>
-                    </div>
-                    <a href="inscricao.html?passeio=Magia+Animal+Gaia" class="btn-reservar">INSCREVER AGORA</a>
+            <div class="feature-box">
+                <i class="fas fa-paw"></i>
+                <div>
+                    <h4>Zoo de Santo Inácio</h4>
+                    <p>Visita ao maior e mais verde jardim zoológico do Norte, com mais de 800 animais.</p>
                 </div>
             </div>
-        </section>
 
-        <div class="galeria-container">
-            <h3><i class="fas fa-camera"></i> O que vamos ver</h3>
-            <div class="galeria-grid">
-                <img src="https://imgur.com/mSapdKf.jpg" onclick="abrirModal(this.src)" alt="Animal 1">
-                <img src="https://imgur.com/JB7dyrj.jpg" onclick="abrirModal(this.src)" alt="Parque Biológico">
-                <img src="https://imgur.com/cZPOT6X.jpg" onclick="abrirModal(this.src)" alt="Natureza Gaia">
-                <img src="https://imgur.com/XgVeDZI.jpg" onclick="abrirModal(this.src)" alt="Zoo Santo Inácio">
+            <div class="feature-box">
+                <i class="fas fa-moon"></i>
+                <div>
+                    <h4>Exposição Noturna</h4>
+                    <p>Cenários imersivos com figuras iluminadas de animais e plantas em percursos deslumbrantes.</p>
+                </div>
             </div>
-        </div>
 
-        <div id="footer-placeholder"></div>
+            <div class="info-lists">
+                <div>
+                    <h4 style="margin-bottom: 12px; font-size: 0.9em; color: var(--primary-green);">PREÇOS PREVISTOS:</h4>
+                    <li class="info-item"><i class="fas fa-check"></i> +13 Anos: 45,00€</li>
+                    <li class="info-item"><i class="fas fa-check"></i> Até 12 Anos: 40,00€</li>
+                    <li class="info-item"><i class="fas fa-check"></i> Até 2 Anos: 25,00€</li>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 12px; font-size: 0.9em; color: #888;">PONTOS DE RECOLHA:</h4>
+                    <li class="info-item"><i class="fas fa-map-pin"></i> Castro Daire / São Pedro do Sul</li>
+                    <li class="info-item"><i class="fas fa-map-pin"></i> Vouzela / Oliveira de Frades</li>
+                </div>
+            </div>
+        </main>
 
-        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
-            <img id="imgModal">
-        </div>
-    </main>
+        <aside class="aside-card">
+            <i class="fas fa-calendar-times" style="font-size: 3em; color: var(--cancel-red); margin-bottom: 20px;"></i>
+            <h3>Evento Cancelado</h3>
+            <p>Infelizmente, por motivos alheios à organização, esta viagem não se realizou. Pedimos desculpa pelo incómodo.</p>
+            
+            <p style="font-size: 0.85em; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                Não perca a oportunidade de participar nos nossos próximos destinos confirmados!
+            </p>
+            
+            <a href="passeios.html" class="btn-redirect">Ver Agenda Atualizada</a>
 
-    <script>
-        // Função para carregar componentes dinâmicos (Menu e Rodapé)
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(res => res.text())
-                .then(data => document.getElementById(id).innerHTML = data)
-                .catch(err => console.error("Erro ao carregar:", ficheiro));
-        }
+            <div class="photo-grid">
+                <img src="https://imgur.com/mSapdKf.jpg">
+                <img src="https://imgur.com/JB7dyrj.jpg">
+                <img src="https://imgur.com/cZPOT6X.jpg">
+                <img src="https://imgur.com/XgVeDZI.jpg">
+            </div>
+        </aside>
+    </div>
 
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
-
-        // Modal da Galeria
-        function abrirModal(src) {
-            document.getElementById('janelaModal').style.display = 'flex';
-            document.getElementById('imgModal').src = src;
-        }
-
-        // Suporte para as FAQs do menu carregado dinamicamente
-        document.addEventListener('click', function (e) {
-            if (e.target && (e.target.id === 'botaoDuvidas' || e.target.closest('#botaoDuvidas'))) {
-                document.getElementById('janelaFaq').style.display = 'block';
-            }
-            if (e.target && (e.target.id === 'fecharFaq' || e.target.id === 'janelaFaq')) {
-                document.getElementById('janelaFaq').style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
