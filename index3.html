@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa das Cruzes - Barcelos - Passeios do Miguel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Estrutura Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        
+        /* Menu Lateral fixo */
+        #menu-placeholder { width: 250px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; background-color: #1e4d8c; }
+        
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
+        /* Banner Padronizado */
+        .banner-passeio {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://i.imgur.com/6uhc4J1.png');
+            background-size: cover; background-position: center;
+            color: white; height: 380px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .banner-passeio h1 { font-size: 3em; margin-bottom: 10px; }
+
+        /* Grid de Conteúdo */
+        .seccao-detalhes { padding: 40px 30px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .cartao { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        h3 { color: #1e4d8c; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+        
+        .info-lista { list-style: none; padding: 0; }
+        .info-lista li { margin-bottom: 15px; display: flex; gap: 10px; line-height: 1.6; color: #444; }
+        .info-lista i { color: #e63946; margin-top: 4px; }
+
+        /* Bloco de Preço */
+        .caixa-inscricao { background: #1e4d8c; color: white; padding: 25px; border-radius: 20px; position: sticky; top: 20px; box-shadow: 0 10px 20px rgba(30, 77, 140, 0.2); }
+        .caixa-inscricao table { width: 100%; border-collapse: collapse; color: white; margin-bottom: 20px; }
+        .caixa-inscricao td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .preco-valor { text-align: right; font-weight: bold; font-size: 1.4em; }
+        
+        .btn-reservar { 
+            display: block; background: #ff8c00; color: white; text-decoration: none; 
+            padding: 15px; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s;
+        }
+        .btn-reservar:hover { background: #e67e00; transform: translateY(-3px); }
+
+        /* Galeria */
+        .galeria-container { margin: 0 30px 60px; padding: 40px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 1200px; align-self: center; width: calc(100% - 60px); }
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .galeria-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; cursor: pointer; transition: 0.3s; }
+        .galeria-grid img:hover { transform: scale(1.03); }
+
+        /* Modal Galeria */
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 3px solid white; }
+
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; position: relative; }
+            .seccao-detalhes { grid-template-columns: 1fr; }
+            .galeria-container { width: calc(100% - 40px); margin: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-placeholder"></div>
+
+    <main>
+        <div class="banner-passeio">
+            <h1>Festa das Cruzes - Barcelos</h1>
+            <p><i class="fas fa-bullhorn"></i> Sabias que... uma das festas mais coloridas de Portugal acontece em Barcelos?</p>
+        </div>
+
+        <section class="seccao-detalhes">
+            <div class="coluna-texto">
+                <div class="cartao">
+                    <h3><i class="fas fa-info-circle"></i> Sobre a Viagem</h3>
+                    <p>Rumamos a Barcelos para viver uma das festas mais tradicionais e emblemáticas de Portugal. Um dia repleto de cor, tradição minhota e alegria contagiante.</p>
+                    
+                    <h3 style="margin-top:30px;"><i class="fas fa-calendar-alt"></i> Detalhes</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-calendar-day"></i> <div><strong>Data:</strong> Sexta-Feira, 01 de Maio de 2026</div></li>
+                        <li><i class="fas fa-bus"></i> <div><strong>Recolhas:</strong> São Pedro do Sul e Viseu</div></li>
+                    </ul>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-map-marked-alt"></i> Programa</h3>
+                    <ul class="info-lista">
+                        <li><i class="fas fa-check"></i> <strong>Barcelos:</strong> Tempo livre para desfrutar da cidade, do centro histórico e da feira tradicional.</li>
+                        <li><i class="fas fa-check"></i> Exploração do artesanato local e das barraquinhas.</li>
+                        <li><i class="fas fa-star"></i> <strong>Batalha das Flores:</strong> Assistência ao desfile de carros alegóricos único em Portugal, com muita cor e música.</li>
+                        <li><i class="fas fa-heart"></i> <strong>Viver a Tradição:</strong> Um ambiente perfeito para criar boas memórias da cultura popular de Barcelos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="coluna-aside">
+                <div class="caixa-inscricao">
+                    <h3 style="color: white; border-color: rgba(255,255,255,0.2);"><i class="fas fa-ticket-alt"></i> Inscrição</h3>
+                    <table>
+                        <tr>
+                            <td>Pack Experiência Completa</td>
+                            <td class="preco-valor">30,00€</td>
+                        </tr>
+                    </table>
+                    <div style="font-size: 0.85em; opacity: 0.9; margin-bottom: 20px;">
+                        <p><i class="fas fa-check-circle"></i> O Preço Inclui: Transporte em autocarro turismo, guia acompanhante e visita aos locais indicados.</p>
+                        <p><i class="fas fa-times-circle"></i> O Preço Não Inclui: Refeições, despesas de caráter pessoal e entradas em monumentos.</p>
+                        <p style="margin-top:10px;"><i class="fas fa-info-circle"></i> Inscrição mediante pagamento no ato da inscrição (sujeito a mín. 35 participantes).</p>
+                    </div>
+                    <a href="inscricao.html?passeio=Festa+das+Cruzes" class="btn-reservar">RESERVAR AGORA</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="galeria-container">
+            <h3><i class="fas fa-camera"></i> O que vamos ver</h3>
+            <div class="galeria-grid">
+                <img src="https://i.imgur.com/6B2EkQL.jpg" onclick="abrirModal(this.src)" alt="Barcelos 1">
+                <img src="https://i.imgur.com/4EpVA7m.jpg" onclick="abrirModal(this.src)" alt="Barcelos 2">
+                <img src="https://i.imgur.com/Y1X07Lx.jpg" onclick="abrirModal(this.src)" alt="Batalha das Flores">
+                <img src="https://i.imgur.com/x1dYBrH.jpg" onclick="abrirModal(this.src)" alt="Galo de Barcelos">
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+
+        <div id="janelaModal" class="modal" onclick="this.style.display='none'">
+            <img id="imgModal">
+        </div>
+    </main>
+
+    <script>
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(res => res.text())
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(err => console.error("Erro ao carregar componente:", err));
+        }
+
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
+
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'flex';
+            document.getElementById('imgModal').src = src;
+        }
+    </script>
+</body>
+</html>
