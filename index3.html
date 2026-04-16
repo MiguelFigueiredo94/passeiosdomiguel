@@ -10,262 +10,247 @@
     
     <style>
         :root {
-            --bg-wall: #e8e8e8;
-            --frame-dark: #121212;
-            --plate-silver: linear-gradient(145deg, #d1d1d1, #ffffff);
-            --gold: #b08d57;
+            --bg-wall: #f2f2f2;
+            --frame-dark: #1a1a1a;
+            --accent: #ff8c00;
+            --plate-silver: linear-gradient(145deg, #e6e6e6, #ffffff);
         }
 
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); color: #222; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); scroll-behavior: smooth; }
 
-        /* HEADER NEUTRO (ESTILO MUSEU) */
+        /* HEADER */
         .museum-header {
-            height: 350px; display: flex; flex-direction: column; justify-content: center;
+            height: 380px; display: flex; flex-direction: column; justify-content: center;
             align-items: center; color: white; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1554941426-e9604e34bc94?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center;
+                        url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center; border-bottom: 8px solid var(--frame-dark);
         }
-        .museum-header h1 { font-size: 2.8rem; font-weight: 100; text-transform: uppercase; letter-spacing: 15px; margin: 0; }
+        .museum-header h1 { font-size: 3.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 12px; margin: 0; }
 
-        /* FILTROS (CHAPAS MODERNAS) */
+        /* CHAPAS DE FILTRO (VOLTAR AO ESTILO ANTERIOR) */
         .filter-nav { 
-            display: flex; justify-content: center; gap: 15px; padding: 30px; 
-            background: #ddd; position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: center; gap: 20px; 
+            padding: 40px 0; background: #e0e0e0; position: sticky; top: 0; z-index: 100;
         }
         .filter-btn {
-            background: #fff; border: 1px solid #999; padding: 10px 20px;
-            text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px;
-            cursor: pointer; transition: 0.3s;
+            background: #f0f0f0; border: 1px solid #aaa; padding: 12px 28px;
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
+            cursor: pointer; transition: 0.3s; color: #444; font-weight: bold;
+            box-shadow: 4px 4px 0px #999;
         }
-        .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; border-color: var(--frame-dark); }
+        .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--accent); }
 
-        /* GRELHA DE QUADROS */
-        .gallery-room { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); 
-            gap: 60px; padding: 60px 8%; 
-        }
+        /* GRELHA */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 60px; padding: 60px 8%; }
 
         /* O QUADRO */
         .museum-frame {
-            background: white; padding: 25px; border: 15px solid var(--frame-dark);
-            box-shadow: 15px 15px 40px rgba(0,0,0,0.1); transition: 0.4s;
+            background: #fff; padding: 30px; border: 12px solid var(--frame-dark);
+            box-shadow: 15px 15px 45px rgba(0,0,0,0.1); transition: 0.4s;
             position: relative;
         }
-        .museum-frame:hover { transform: translateY(-10px); }
+        .museum-frame img { width: 100%; height: 280px; object-fit: cover; border: 1px solid #ddd; cursor: pointer; }
 
-        .img-box { width: 100%; height: 280px; overflow: hidden; border: 1px solid #eee; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
-
-        /* CHAPA DE IDENTIFICAÇÃO */
+        /* CHAPA IDENTIFICAÇÃO */
         .id-plate {
-            margin-top: 20px; padding: 15px; background: var(--plate-silver);
-            border: 1px solid #bbb; text-align: center; box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+            margin-top: 25px; padding: 15px; border: 1px solid #ccc;
+            background: var(--plate-silver); text-align: center;
         }
-        .id-plate h3 { margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .id-plate p { font-size: 0.6rem; color: #666; margin: 5px 0 0; text-transform: uppercase; }
-
-        .status-badge {
-            position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7);
-            color: white; padding: 5px 10px; font-size: 0.6rem; letter-spacing: 1px;
-        }
-
-        .hidden { display: none; }
+        .id-plate h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #111; }
+        .id-plate span { font-size: 0.65rem; color: #777; display: block; margin-top: 5px; text-transform: uppercase; }
 
         /* BOTÕES FIXOS */
-        .fixed-nav { position: fixed; bottom: 25px; z-index: 1000; }
-        .btn-style { 
-            background: var(--frame-dark); color: white; padding: 12px 25px; 
-            text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+        .fixed-nav { position: fixed; bottom: 30px; z-index: 1000; }
+        .nav-btn {
+            background: rgba(26, 26, 26, 0.9); color: white; text-decoration: none;
+            padding: 14px 25px; font-size: 0.75rem; letter-spacing: 2px;
+            text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px); cursor: pointer; transition: 0.3s;
         }
+        .nav-btn:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* MODAL CONTACTOS */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .contact-card { background: white; padding: 40px; width: 320px; text-align: center; border-top: 10px solid var(--accent); }
+
+        .status-tag { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 10px; font-size: 0.6rem; font-weight: bold; z-index: 10; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <header class="museum-header">
         <h1>MURAL DE MEMÓRIAS</h1>
-        <p>RELAÇÃO CRONOLÓGICA DE PASSEIOS</p>
+        <p>DO FUTURO AO PASSADO: A NOSSA HISTÓRIA</p>
     </header>
 
     <nav class="filter-nav">
-        <button class="filter-btn active" onclick="filterYear('all')">Tudo</button>
-        <button class="filter-btn" onclick="filterYear('2025')">2025</button>
-        <button class="filter-btn" onclick="filterYear('2026')">2026</button>
+        <button class="filter-btn active" onclick="filterYear('all')">Ver Toda a Exposição</button>
+        <button class="filter-btn" onclick="filterYear('2026')">Coleção 2026</button>
+        <button class="filter-btn" onclick="filterYear('2025')">Coleção 2025</button>
     </nav>
 
-    <div class="gallery-room">
+    <div class="gallery-grid">
         
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-amendoeiras.jpg" class="glightbox" data-gallery="amendoeiras">
-                    <img src="https://i.imgur.com/link-amendoeiras.jpg" alt="Amendoeiras">
-                </a>
-            </div>
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=500" style="opacity: 0.4;">
             <div class="id-plate">
-                <h3>Amendoeiras em Flor</h3>
-                <p>Vila Nova de Foz Côa &bull; Março 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-obidos.jpg" class="glightbox" data-gallery="obidos">
-                    <img src="https://i.imgur.com/link-obidos.jpg" alt="Óbidos">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Festival do Chocolate</h3>
-                <p>Óbidos &bull; Abril 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-fatima.jpg" class="glightbox" data-gallery="fatima">
-                    <img src="https://i.imgur.com/link-fatima.jpg" alt="Fátima">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Santuário de Fátima</h3>
-                <p>Fátima &bull; Maio 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-geres.jpg" class="glightbox" data-gallery="geres">
-                    <img src="https://i.imgur.com/link-geres.jpg" alt="Gerês">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Gerês e Braga</h3>
-                <p>Minho &bull; Junho 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-viana.jpg" class="glightbox" data-gallery="viana">
-                    <img src="https://i.imgur.com/link-viana.jpg" alt="Viana">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Sra. d'Agonia</h3>
-                <p>Viana do Castelo &bull; Agosto 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-espinho.jpg" class="glightbox" data-gallery="espinho">
-                    <img src="https://i.imgur.com/link-espinho.jpg" alt="Espinho">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Sra. d'Ajuda</h3>
-                <p>Espinho &bull; Setembro 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/link-marvao.jpg" class="glightbox" data-gallery="marvao">
-                    <img src="https://i.imgur.com/link-marvao.jpg" alt="Marvão">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Festa da Castanha</h3>
-                <p>Nisa e Marvão &bull; Outubro 2025</p>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="img-box">
-                <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
-                </a>
-            </div>
-            <div class="id-plate">
-                <h3>Especial Natal</h3>
-                <p>Vigo e Valença &bull; Dezembro 2025</p>
+                <h3>Festas do Povo</h3>
+                <span>Campo Maior &bull; Agosto 2026</span>
             </div>
         </div>
 
         <div class="museum-frame" data-year="2026">
-            <div class="status-badge">20 FOTOS</div>
-            <div class="img-box">
-                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
-                    <img src="https://i.imgur.com/PmjIQux.png" alt="Camélias">
-                </a>
-                <div class="hidden">
-                    <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
-                </div>
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://images.unsplash.com/photo-1528821128474-27fcaecc357e?q=80&w=500" style="opacity: 0.4;">
+            <div class="id-plate">
+                <h3>Rota da Cereja</h3>
+                <span>Fundão &bull; Junho 2026</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=500" style="opacity: 0.4;">
+            <div class="id-plate">
+                <h3>Festa das Cruzes</h3>
+                <span>Barcelos &bull; Maio 2026</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">20 FOTOS</div>
+            <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
+                <img src="https://i.imgur.com/PmjIQux.png" alt="Camélias">
+            </a>
+            <div class="hidden">
+                <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
             </div>
             <div class="id-plate">
                 <h3>Festa das Camélias</h3>
-                <p>Celorico de Basto &bull; Março 2026</p>
+                <span>Celorico de Basto &bull; Março 2026</span>
             </div>
         </div>
 
-        <div class="museum-frame" data-year="2026">
-            <div class="status-badge">EM BREVE</div>
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=500" style="filter: sepia(1) opacity(0.3);">
-            </div>
+        <div class="museum-frame" data-year="2025">
+            <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
+                <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
+            </a>
             <div class="id-plate">
-                <h3>Festa das Cruzes</h3>
-                <p>Barcelos &bull; Maio 2026</p>
+                <h3>Especial de Natal</h3>
+                <span>Vigo e Valença &bull; Dezembro 2025</span>
             </div>
         </div>
 
-        <div class="museum-frame" data-year="2026">
-            <div class="status-badge">EM BREVE</div>
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1528821128474-27fcaecc357e?q=80&w=500" style="filter: sepia(1) opacity(0.3);">
-            </div>
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-marvao.jpg">
             <div class="id-plate">
-                <h3>Rota da Cereja</h3>
-                <p>Fundão &bull; Junho 2026</p>
+                <h3>Festa da Castanha</h3>
+                <span>Nisa e Marvão &bull; Outubro 2025</span>
             </div>
         </div>
 
-        <div class="museum-frame" data-year="2026">
-            <div class="status-badge">EM BREVE</div>
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=500" style="filter: sepia(1) opacity(0.3);">
-            </div>
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-espinho.jpg">
             <div class="id-plate">
-                <h3>Festas do Povo</h3>
-                <p>Campo Maior &bull; Agosto 2026</p>
+                <h3>Nossa Senhora d'Ajuda</h3>
+                <span>Espinho &bull; Setembro 2025</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-viana.jpg">
+            <div class="id-plate">
+                <h3>Nossa Senhora d' Agonia</h3>
+                <span>Viana do Castelo &bull; Agosto 2025</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-geres.jpg">
+            <div class="id-plate">
+                <h3>Gerês e Braga</h3>
+                <span>Minho &bull; Junho 2025</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-fatima.jpg">
+            <div class="id-plate">
+                <h3>Santuário de Fátima</h3>
+                <span>Fátima &bull; Maio 2025</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-obidos.jpg">
+            <div class="id-plate">
+                <h3>Festival do Chocolate</h3>
+                <span>Óbidos &bull; Abril 2025</span>
+            </div>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <img src="https://i.imgur.com/link-amendoeiras.jpg">
+            <div class="id-plate">
+                <h3>Amendoeiras em Flor</h3>
+                <span>Foz Côa &bull; Março 2025</span>
             </div>
         </div>
 
     </div>
 
-    <div class="fixed-nav" style="left: 20px;"><a href="index.html" class="btn-style">Sair</a></div>
+    <div class="fixed-nav" style="left: 30px;">
+        <a href="index.html" class="nav-btn"><i class="fas fa-door-open"></i> Sair da Exposição</a>
+    </div>
+    <div class="fixed-nav" style="right: 30px;">
+        <button class="nav-btn" onclick="toggleModal()"><i class="fas fa-address-book"></i> Contactos</button>
+    </div>
+
+    <div class="modal-overlay" id="contactModal">
+        <div class="contact-card">
+            <h2 style="letter-spacing:2px;">CONTACTOS</h2>
+            <hr>
+            <p><strong>Passeios do Miguel</strong></p>
+            <p>+351 965 715 465</p>
+            <p style="font-size:0.8rem;">geral@passeiosdomiguel.com</p>
+            <br>
+            <button onclick="toggleModal()" class="filter-btn">Fechar</button>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
         const lightbox = GLightbox({ selector: '.glightbox', loop: true });
+
+        function toggleModal() {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
 
         function filterYear(year) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
