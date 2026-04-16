@@ -19,7 +19,7 @@
     <style>
         :root {
             --primary-blue: #1e4d8c;
-            --light-blue-badge: #4a90e2; /* Azul mais claro para o badge de participantes */
+            --light-blue-badge: #4a90e2; 
             --bg-light: #f4f7fa;
             --text-dark: #2d3436;
         }
@@ -37,17 +37,17 @@
         }
 
         .hero {
-            height: 60vh; min-height: 450px;
-            /* NOVA FOTO DE CAPA */
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.imgur.com/6CXG6Vr.png');
-            background-size: cover; background-position: center;
+            height: 65vh; min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://i.imgur.com/6CXG6Vr.png');
+            background-size: cover; 
+            background-position: top; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .hero .data-badge { font-size: 1.2em; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); padding: 8px 30px; border: 1px solid white; border-radius: 50px; font-weight: 600; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
+        .hero .data-badge { font-size: 1.2em; background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); padding: 8px 30px; border: 1px solid white; border-radius: 50px; font-weight: 600; }
 
-        .wrapper { max-width: 1200px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
+        .wrapper { max-width: 1200px; margin: -80px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
 
         .main-card { background: white; padding: 40px; border-radius: 35px; box-shadow: 0 15px 50px rgba(0,0,0,0.05); }
         .title-sec { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2.2em; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
@@ -74,7 +74,6 @@
         .success-title { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 15px; }
         
         .participants-badge {
-            /* AZUL CLARO PARA O BADGE */
             background: rgba(74, 144, 226, 0.15); border: 1px solid var(--light-blue-badge);
             padding: 12px; border-radius: 15px; font-weight: 700; color: #7db3f2;
             margin-bottom: 25px; text-transform: uppercase; font-size: 0.9em;
@@ -82,16 +81,16 @@
         }
 
         .btn-proximos {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
             background: var(--primary-blue); color: white; text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+            font-size: 1.1em; transition: 0.3s; margin-top: 10px; text-transform: uppercase;
         }
-        .btn-proximos:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn-proximos:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); background: #153e75; }
 
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.5em; }
-            .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
+            .wrapper { grid-template-columns: 1fr; margin-top: -40px; }
             .info-lists { grid-template-columns: 1fr; }
         }
     </style>
@@ -161,16 +160,11 @@
                 <i class="fas fa-users"></i> 53 PARTICIPANTES
             </div>
 
-            <p style="font-size: 0.95em; color: #ddd; line-height: 1.6; font-style: italic; margin-bottom: 20px;">
+            <p style="font-size: 0.95em; color: #ddd; line-height: 1.6; font-style: italic; margin-bottom: 25px;">
                 "Mais um destino esgotado e vivido com grande espírito de convívio entre todos os viajantes!"
             </p>
 
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: left; font-size: 0.9em;">
-                <p style="margin-bottom: 8px;"><i class="fas fa-calendar-check" style="color: var(--light-blue-badge); margin-right: 10px;"></i> Realizado em 21/09/2025</p>
-                <p><i class="fas fa-euro-sign" style="color: var(--light-blue-badge); margin-right: 12px;"></i> Inscrição: 30,00€</p>
-            </div>
-
-            <a href="passeios.html" class="btn-proximos">
+            <a href="index.html" class="btn-proximos">
                 VER NOVOS DESTINOS <i class="fas fa-arrow-right"></i>
             </a>
         </aside>
