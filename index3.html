@@ -40,7 +40,7 @@
             height: 65vh; min-height: 500px;
             background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://i.imgur.com/6CXG6Vr.png');
             background-size: cover; 
-            background-position: top; 
+            background-position: bottom; /* AJUSTE: Alinha pela base para a cara aparecer em cima */
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
         }
@@ -92,6 +92,7 @@
             .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -40px; }
             .info-lists { grid-template-columns: 1fr; }
+            .hero { background-position: center; } /* Mobile alinhamento automático */
         }
     </style>
 </head>
