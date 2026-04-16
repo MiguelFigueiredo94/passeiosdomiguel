@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museu de Memórias - Passeios do Miguel</title>
@@ -20,293 +12,212 @@
         :root {
             --primary-blue: #1e4d8c;
             --accent-orange: #ff8c00;
-            --wall-bg: #e0e0e0; /* Cor da parede do museu */
-            --frame-color: #1a1a1a; /* Cor da moldura */
-            --glass-shine: rgba(255, 255, 255, 0.15);
+            --wall-bg: #f4f4f4; /* Parede clara e limpa */
+            --frame-color: #1a1a1a;
         }
 
         body { 
-            font-family: 'Georgia', serif; /* Fonte mais clássica de museu */
+            font-family: 'Georgia', serif; 
             margin: 0; 
-            display: flex; 
             background-color: var(--wall-bg); 
             min-height: 100vh; 
-            color: #333;
+            overflow-x: hidden;
         }
-        
-        /* Placeholder para o Menu Lateral (Mantido) */
-        #menu-placeholder {
-            position: fixed; top: 0; left: 0; width: 250px; height: 100vh; z-index: 1000;
-            background: #fff; box-shadow: 3px 0 15px rgba(0,0,0,0.1);
-        }
-        
-        main { flex-grow: 1; margin-left: 250px; transition: 0.3s; width: calc(100% - 250px); display: flex; flex-direction: column; }
 
-        /* BANNER DE ENTRADA DO MUSEU */
+        /* BOTÃO VOLTAR (INDEX.HTML) */
+        .back-nav {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1001;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            font-family: sans-serif;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .back-btn:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5)px;
+        }
+
+        /* BANNER SEM MENU LATERAL */
         .gallery-header {
             position: relative;
-            height: 300px;
+            height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2070&auto=format&fit=crop'); /* Fundo tipo Galeria de Arte */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .gallery-header h1 { 
-            font-size: 3.5em; margin: 0; font-weight: 400; font-family: 'Georgia', serif;
-            text-transform: uppercase; letter-spacing: 4px;
+            font-size: 4em; margin: 0; font-weight: 400; 
+            text-transform: uppercase; letter-spacing: 6px;
         }
-        .gallery-header p { font-size: 1.2em; font-weight: 300; opacity: 0.8; font-style: italic; }
 
-        /* Navegação de Filtros (Estilo Placa de Latão) */
+        /* FILTROS ESTILO MUSEU */
         .filter-container { 
-            padding: 15px; display: flex; justify-content: center; gap: 10px; 
-            background: #333; /* Fundo escuro para destacar */
-            position: sticky; top: 0; z-index: 99; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            background: #222; 
+            position: sticky; top: 0; z-index: 100;
         }
 
         .filter-btn { 
-            padding: 8px 25px; border: 1px solid #999; background: transparent; 
-            color: #ccc; border-radius: 4px; cursor: pointer; 
-            font-weight: 400; font-family: 'Georgia', serif; transition: 0.3s; 
-            text-transform: uppercase; font-size: 0.9em;
+            padding: 8px 25px; border: 1px solid #666; background: transparent; 
+            color: #999; cursor: pointer; text-transform: uppercase; 
+            font-size: 0.8em; transition: 0.3s; letter-spacing: 1px;
         }
 
-        .filter-btn:hover { background: rgba(255,255,255,0.1); color: white; }
-        .filter-btn.active { background: #fff; color: #333; border-color: #fff; font-weight: bold; }
+        .filter-btn.active { background: white; color: black; border-color: white; }
 
-        /* A "SALA DE EXPOSIÇÃO" (GRID) */
+        /* SALA DE EXPOSIÇÃO */
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Molduras maiores */
-            gap: 50px; /* Mais espaço entre os quadros */
-            padding: 60px 5%; 
-            flex-grow: 1;
-            perspective: 1000px; /* Necessário para o efeito 3D */
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 60px; 
+            padding: 80px 10%; 
+            perspective: 1200px;
         }
 
         .grid-year-title { 
-            grid-column: 1 / -1; color: #222; font-size: 2.8em; font-family: 'Georgia', serif;
-            margin: 40px 0 20px 0; text-align: center; position: relative;
-            font-weight: 400;
+            grid-column: 1 / -1; color: #333; font-size: 3em; 
+            text-align: center; margin-bottom: 20px; opacity: 0.8;
         }
-        .grid-year-title::after { content: ''; display: block; width: 100px; height: 2px; background: #999; margin: 10px auto; }
 
-        /* A MOLDURA DO PASSEIO (THE FRAME) */
+        /* MOLDURA INTERATIVA */
         .gallery-item { 
             position: relative; 
-            background: var(--frame-color); /* Cor da moldura física */
-            padding: 15px; /* Espessura da moldura */
-            border-radius: 4px; 
-            height: 320px; 
-            box-shadow: 10px 15px 25px rgba(0,0,0,0.3); /* Sombra projetada na parede */
-            transition: transform 0.1s ease-out, box-shadow 0.3s; /* Transição suave para o tilt */
+            background: var(--frame-color); 
+            padding: 18px; 
+            border-radius: 2px; 
+            height: 350px; 
+            box-shadow: 15px 25px 35px rgba(0,0,0,0.25);
+            transition: transform 0.1s ease-out;
             cursor: pointer;
-            transform-style: preserve-3d; /* Mantém os filhos em 3D */
-            overflow: visible; /* Para a placa de identificação sair */
-        }
-
-        /* Efeito de Vidro por cima da foto */
-        .gallery-item::before {
-            content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px;
-            background: linear-gradient(135deg, var(--glass-shine) 0%, transparent 40%, var(--glass-shine) 100%);
-            z-index: 2; border-radius: 2px; pointer-events: none; /* Não atrapalha o clique */
+            transform-style: preserve-3d;
         }
 
         .gallery-item img { 
             width: 100%; height: 100%; object-fit: cover; 
-            border: 2px solid #000; /* Borda interna entre foto e moldura */
-            border-radius: 2px;
+            border: 1px solid #000;
         }
         
-        /* PLACA DE IDENTIFICAÇÃO (Estilo Museu) */
         .item-details { 
-            position: absolute; 
-            bottom: -30px; /* Sai ligeiramente para fora da moldura */
-            left: 50%; 
-            transform: translateX(-50%) translateZ(20px); /* Flutua em 3D */
-            background: #fdfdfd; 
-            color: #222; 
-            padding: 10px 20px; 
-            border-radius: 2px; 
-            box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-            border: 1px solid #ccc;
-            width: 80%;
-            text-align: center;
-            z-index: 5;
+            position: absolute; bottom: -35px; left: 50%; 
+            transform: translateX(-50%) translateZ(30px);
+            background: #fff; color: #222; 
+            padding: 12px 25px; border-radius: 2px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 1px solid #ddd; width: 85%; text-align: center;
         }
 
-        .item-details h3 { margin: 0; font-size: 1.1em; font-weight: 400; font-family: 'Georgia', serif; text-transform: uppercase; }
-        .item-details p { margin: 2px 0 0; font-size: 0.8em; color: #666; font-style: italic; }
+        .item-details h3 { margin: 0; font-size: 1.1em; text-transform: uppercase; }
 
         .photo-count { 
-            position: absolute; top: 25px; left: 25px; 
+            position: absolute; top: 30px; left: 30px; 
             background: var(--accent-orange); color: white; 
-            padding: 5px 12px; border-radius: 2px; font-size: 12px; font-weight: bold; 
-            z-index: 3; font-family: sans-serif;
-            transform: translateZ(10px); /* Flutua ligeiramente */
+            padding: 5px 12px; font-size: 12px; font-weight: bold; 
+            z-index: 10; transform: translateZ(15px);
         }
 
-        /* Placeholder do Rodapé */
-        #rodape-placeholder { width: 100%; }
-
-        @media (max-width: 1024px) {
-            body { display: block; }
-            #menu-placeholder { position: relative; width: 100%; height: auto; }
-            main { margin-left: 0; width: 100%; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-            .gallery-item { height: 260px; }
-            .item-details { width: 90%; padding: 8px; bottom: -25px; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-header h1 { font-size: 2.2em; }
+            .gallery-grid { padding: 40px 5%; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <nav class="back-nav">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> VOLTAR
+        </a>
+    </nav>
 
     <main>
         <header class="gallery-header">
-            <h1>O Museu de Memórias</h1>
-            <p>"Cada passeio, uma obra de arte assinada pelo tempo"</p>
+            <h1>Museu de Memórias</h1>
+            <p>O prazer de descobrir Portugal com a proximidade de um amigo</p>
         </header>
 
         <nav class="filter-container">
-            <button class="filter-btn" data-filter="all" onclick="filterGallery('all')">Coleção Completa</button>
-            <button class="filter-btn" data-filter="2026" onclick="filterGallery('2026')">Exposição 2026</button>
-            <button class="filter-btn" data-filter="2025" onclick="filterGallery('2025')">Exposição 2025</button>
+            <button class="filter-btn" data-filter="all" onclick="filterGallery('all')">COLEÇÃO</button>
+            <button class="filter-btn" data-filter="2026" onclick="filterGallery('2026')">2026</button>
+            <button class="filter-btn" data-filter="2025" onclick="filterGallery('2025')">2025</button>
         </nav>
 
         <div class="gallery-grid">
-            <h2 class="grid-year-title" data-year="2026">Coleção 2026</h2>
+            <h2 class="grid-year-title" data-year="2026">2026</h2>
             
             <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3">
-                    <div class="photo-count"><i class="fas fa-camera"></i> +20 Fotos</div>
-                    <img src="https://i.imgur.com/PmjIQux.png" alt="Festa das Camélias">
+                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
+                    <div class="photo-count"><i class="fas fa-images"></i> +20</div>
+                    <img src="https://i.imgur.com/PmjIQux.png">
                     <div class="item-details">
                         <h3>Festa das Camélias</h3>
-                        <p>Celorico da Beira, Portugal</p>
+                        <p>Celorico da Beira</p>
                     </div>
                 </a>
-                <div style="display:none">
-                    <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
-                    </div>
             </div>
-
-            <h2 class="grid-year-title" data-year="2025">Coleção 2025</h2>
             
-            <div class="gallery-item" data-category="2025">
-                <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <div class="photo-count"><i class="fas fa-camera"></i> +56 Fotos</div>
-                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Valência & Vigo">
-                    <div class="item-details">
-                        <h3>Valência & Vigo</h3>
-                        <p>Espanha, Viagem de Grupo</p>
-                    </div>
-                </a>
-                <div style="display:none">
-                    </div>
             </div>
-
-            </div>
-
-        <div id="rodape-placeholder"></div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // Inicializar Galeria
         const lightbox = GLightbox({ selector: '.glightbox', loop: true });
 
-        // FUNÇÃO PARA CARREGAR MENU E RODAPÉ EXTERNOS (MANTIDO)
-        async function loadExternalContent() {
-            try {
-                const menuRes = await fetch('menu.html');
-                if (menuRes.ok) document.getElementById('menu-placeholder').innerHTML = await menuRes.text();
-
-                const rodapeRes = await fetch('rodape.html');
-                if (rodapeRes.ok) document.getElementById('rodape-placeholder').innerHTML = await rodapeRes.text();
-            } catch (err) {
-                console.error("Erro ao carregar componentes:", err);
-            }
-        }
-
-        // FILTRO COM MEMÓRIA (MANTIDO E MELHORADO)
+        // MEMÓRIA DE FILTRO
         function filterGallery(year, save = true) {
-            if(save) localStorage.setItem('galeria_miguel_museu_ano', year);
-
+            if(save) localStorage.setItem('filtro_museu', year);
             const items = document.querySelectorAll('.gallery-item');
             const titles = document.querySelectorAll('.grid-year-title');
             const btns = document.querySelectorAll('.filter-btn');
 
-            btns.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-filter') === year);
-            });
-
-            // Usamos display flex no grid, por isso mudamos para 'block' ou 'none'
-            items.forEach(item => {
-                const itemYear = item.getAttribute('data-category');
-                item.style.display = (year === 'all' || itemYear === year) ? 'block' : 'none';
-            });
-
-            titles.forEach(title => {
-                const titleYear = title.getAttribute('data-year');
-                title.style.display = (year === 'all' || titleYear === year) ? 'block' : 'none';
-            });
+            btns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-filter') === year));
+            items.forEach(item => item.style.display = (year === 'all' || item.getAttribute('data-category') === year) ? 'block' : 'none');
+            titles.forEach(title => title.style.display = (year === 'all' || title.getAttribute('data-year') === year) ? 'block' : 'none');
         }
 
-        // --- SCRIPT DE INTERATIVIDADE 3D (O EFEITO "SUPER") ---
-        function init3DTilt() {
-            const items = document.querySelectorAll('.gallery-item');
-
-            items.forEach(item => {
-                item.addEventListener('mousemove', (e) => {
-                    const itemRect = item.getBoundingClientRect();
-                    const itemWidth = itemRect.width;
-                    const itemHeight = itemRect.height;
-                    
-                    // Calcular a posição do rato em relação ao centro do quadro (-0.5 a 0.5)
-                    const mouseX = (e.clientX - itemRect.left) / itemWidth - 0.5;
-                    const mouseY = (e.clientY - itemRect.top) / itemHeight - 0.5;
-
-                    // Definir a intensidade da inclinação (quanto maior o multiplicador, maior a inclinação)
-                    const tiltX = mouseY * -15; // Inclinação vertical (invertida)
-                    const tiltY = mouseX * 15;  // Inclinação horizontal
-
-                    // Aplicar a transformação 3D
-                    item.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.03)`;
-                    
-                    // Mudar a sombra para simular a luz a mover-se
-                    const shadowX = mouseX * 20;
-                    const shadowY = mouseY * 20;
-                    item.style.boxShadow = `${shadowY}px ${-shadowX}px 40px rgba(0,0,0,0.5)`;
-                });
-
-                // Resetar a posição quando o rato sai
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-                    item.style.boxShadow = '10px 15px 25px rgba(0,0,0,0.3)'; // Sombra original
-                });
+        // EFEITO 3D TILT
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                item.style.transform = `rotateX(${y * -20}deg) rotateY(${x * 20}deg) scale(1.05)`;
             });
-        }
-
-        // INICIALIZAÇÃO
-        document.addEventListener('DOMContentLoaded', () => {
-            loadExternalContent(); // Carrega menu.html e rodape.html
-            
-            const savedYear = localStorage.getItem('galeria_miguel_museu_ano') || 'all';
-            filterGallery(savedYear, false);
-            
-            init3DTilt(); // Ativa o efeito 3D nas molduras
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            });
         });
+
+        window.onload = () => {
+            filterGallery(localStorage.getItem('filtro_museu') || 'all', false);
+        };
     </script>
 </body>
 </html>
