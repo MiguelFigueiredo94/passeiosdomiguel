@@ -641,13 +641,34 @@
     </div>
 
     <div class="modal-overlay" id="contactModal">
-        <div class="contact-card">
-            <h2>CONTACTOS</h2>
-            <hr>
-            <p><strong>Passeios do Miguel</strong></p>
-            <p>+351 965 715 465</p>
-            <button onclick="toggleModal()" class="filter-btn" style="margin-top:20px">Fechar</button>
+    <div class="contact-card" style="border-radius: 8px;">
+        <i class="fas fa-id-card" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+        <h2 style="letter-spacing: 4px; margin-bottom: 5px;">CONTACTOS</h2>
+        <p style="font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">Atendimento Personalizado</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        
+        <p style="margin: 15px 0;">
+            <strong style="display: block; font-size: 0.9rem; margin-bottom: 5px;">Passeios do Miguel</strong>
+            <a href="tel:+351965715465" style="text-decoration: none; color: #111; font-size: 1.1rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-phone-alt" style="color: var(--accent);"></i> +351 965 715 465
+            </a>
+        </p>
+        
+        <p style="margin: 15px 0;">
+            <a href="mailto:geral@passeiosdomiguel.com" style="text-decoration: none; color: #555; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-envelope-open-text" style="color: var(--accent);"></i> geral@passeiosdomiguel.com
+            </a>
+        </p>
+
+        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee;">
+             <p style="font-size: 0.65rem; color: #aaa; text-transform: uppercase;">📍 Portugal &bull; Porto &bull; Viseu</p>
         </div>
+        
+        <button onclick="toggleModal()" class="filter-btn" style="margin-top:20px; width: 100%; box-shadow: 4px 4px 0px #ddd;">
+            <i class="fas fa-times"></i> Fechar
+        </button>
+    </div>
+</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
