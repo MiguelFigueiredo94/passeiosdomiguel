@@ -10,115 +10,96 @@
     
     <style>
         :root {
-            --museum-wall: #efefef;
-            --frame-color: #1a1a1a;
-            --plate-bg: linear-gradient(145deg, #e6e6e6, #ffffff);
-            --accent: #d4af37;
+            --bg-wall: #e0e0e0;
+            --frame-dark: #1a1a1a;
+            --plate-gold: #c5a059;
+            --accent: #1a1a1a;
         }
 
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--museum-wall); color: #333; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); overflow-x: hidden; }
 
-        /* NAVEGAÇÃO FIXA */
-        .exit-gallery { position: fixed; bottom: 30px; left: 30px; z-index: 1000; }
-        .contact-trigger { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
-        .nav-btn {
-            background: #1a1a1a; color: white; text-decoration: none;
-            padding: 12px 25px; font-size: 0.7rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1);
-            cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .nav-btn:hover { background: var(--accent); color: #000; }
-
-        /* HEADER */
+        /* HEADER NEUTRO */
         .gallery-header {
-            height: 450px; display: flex; flex-direction: column; justify-content: center;
+            height: 400px; display: flex; flex-direction: column; justify-content: center;
             align-items: center; color: white; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://i.imgur.com/PmjIQux.png');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            border-bottom: 10px solid #1a1a1a;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?q=80&w=2115&auto=format&fit=crop'); /* Imagem de Museu/Arte */
+            background-size: cover; background-position: center; border-bottom: 5px solid var(--frame-dark);
         }
-        .gallery-header h1 { font-size: 3.5rem; margin: 0; font-weight: 200; text-transform: uppercase; letter-spacing: 15px; }
-        .gallery-header p { font-size: 0.9rem; letter-spacing: 5px; text-transform: uppercase; opacity: 0.8; margin-top: 10px; }
+        .gallery-header h1 { font-size: 3rem; font-weight: 200; text-transform: uppercase; letter-spacing: 12px; margin: 0; }
 
-        /* GRELHA DE EXPOSIÇÃO */
-        .gallery-room { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 80px; padding: 100px 10%; }
-        .year-label { grid-column: 1 / -1; font-size: 3rem; color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; margin: 60px 0 20px 0; font-weight: 100; letter-spacing: 12px; text-transform: uppercase; text-align: center;}
+        /* CHAPAS DE FILTRO (MENU) */
+        .filter-nav { 
+            display: flex; justify-content: center; gap: 20px; 
+            padding: 40px 0; background: #d6d6d6; box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+        .filter-btn {
+            background: #f0f0f0; border: 1px solid #aaa; padding: 10px 25px;
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
+            cursor: pointer; transition: 0.3s; color: #444; font-weight: bold;
+            box-shadow: 3px 3px 0px #999;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; transform: translate(-2px, -2px); box-shadow: 5px 5px 0px var(--plate-gold); }
 
-        /* --- O QUADRO DE MUSEU --- */
+        /* GRELHA */
+        .gallery-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); 
+            gap: 60px; padding: 60px 8%; 
+        }
+
+        /* QUADRO DE EXPOSIÇÃO */
         .museum-frame {
-            background: #fff; /* Passepartout */
-            padding: 40px 40px 60px 40px;
-            box-shadow: 
-                inset 0 0 15px rgba(0,0,0,0.1),
-                0 30px 60px rgba(0,0,0,0.15);
-            border: 15px solid var(--frame-color);
-            position: relative;
-            transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            background: #fff; padding: 30px; border: 12px solid var(--frame-dark);
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.15); transition: 0.4s;
+            position: relative; display: block;
         }
-        .museum-frame:hover { transform: translateY(-10px) scale(1.02); }
+        .museum-frame:hover { transform: scale(1.02); }
 
-        .museum-frame img { 
-            width: 100%; height: 300px; object-fit: cover; 
-            border: 1px solid #ddd; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        .image-container { position: relative; width: 100%; height: 280px; overflow: hidden; border: 1px solid #000; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
 
         /* CHAPA DE IDENTIFICAÇÃO FORMAL */
-        .museum-plate {
-            margin-top: 30px;
-            background: var(--plate-bg);
-            border: 1px solid #ccc;
-            padding: 15px;
-            text-align: center;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-            position: relative;
+        .item-plate {
+            margin-top: 25px; padding: 15px; border: 1px solid #ccc;
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            text-align: center; position: relative;
         }
-        .museum-plate::before, .museum-plate::after { /* Parafusos da chapa */
-            content: ''; position: absolute; top: 50%; width: 4px; height: 4px; 
-            background: #999; border-radius: 50%; transform: translateY(-50%);
+        .item-plate h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #111; }
+        .item-plate span { font-size: 0.65rem; color: #777; display: block; margin-top: 5px; text-transform: uppercase; }
+
+        /* BOTÕES FLUTUANTES */
+        .nav-fixed { position: fixed; bottom: 30px; z-index: 1000; }
+        .btn-action { 
+            background: var(--frame-dark); color: white; border: none; padding: 12px 20px;
+            font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+            text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .museum-plate::before { left: 8px; } .museum-plate::after { right: 8px; }
+        .btn-action:hover { background: var(--plate-gold); color: black; }
 
-        .museum-plate h3 { margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #111; }
-        .museum-plate .photo-info { font-size: 0.6rem; color: #777; margin-top: 5px; letter-spacing: 1px; }
-
-        .explore-btn {
-            display: inline-block; margin-top: 10px; font-size: 0.65rem;
-            color: var(--accent); text-decoration: none; font-weight: bold;
-            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid transparent;
-            transition: 0.3s;
-        }
-        .explore-btn:hover { border-bottom: 1px solid var(--accent); }
-
-        .hidden-photos { display: none; }
-
-        @media (max-width: 768px) {
-            .gallery-header h1 { font-size: 2rem; letter-spacing: 8px; }
-            .gallery-room { padding: 40px 5%; }
-            .museum-frame { padding: 20px 20px 40px 20px; }
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="exit-gallery"><a href="index.html" class="nav-btn">Sair</a></div>
-    <div class="contact-trigger"><button class="nav-btn" onclick="toggleModal()">Contactos</button></div>
+    <header class="gallery-header">
+        <h1>MURAL DE MEMÓRIAS</h1>
+        <p>Portugal através da lente do Miguel</p>
+    </header>
 
-    <main>
-        <header class="gallery-header">
-            <h1>MURAL DE MEMÓRIAS</h1>
-            <p>Arquivos Oficiais</p>
-        </header>
+    <nav class="filter-nav">
+        <button class="filter-btn active" onclick="filterGallery('all')">Todos os Anos</button>
+        <button class="filter-btn" onclick="filterGallery('2026')">Coleção 2026</button>
+        <button class="filter-btn" onclick="filterGallery('2025')">Coleção 2025</button>
+    </nav>
 
-        <div class="gallery-room">
-            
-            <h2 class="year-label">2026</h2>
-
-            <div class="museum-frame">
+    <div class="gallery-grid">
+        
+        <div class="museum-frame" data-year="2026">
+            <div class="image-container">
                 <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
-                    <img src="https://i.imgur.com/PmjIQux.png" alt="Festa das Camélias">
+                    <img src="https://i.imgur.com/PmjIQux.png" alt="Camélias">
                 </a>
-                <div class="hidden-photos">
+                <div class="hidden">
                     <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
                     <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
                     <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
@@ -129,78 +110,93 @@
                     <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
                     <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
                     <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
-                    <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
-                </div>
-                <div class="museum-plate">
-                    <h3>Festa das Camélias</h3>
-                    <div class="photo-info">Celorico de Basto &bull; 20 Fotogramas</div>
-                    <a href="camelias.html" target="_blank" class="explore-btn">Explorar Roteiro</a>
                 </div>
             </div>
+            <div class="item-plate">
+                <h3>Festa das Camélias</h3>
+                <span>Celorico de Basto &bull; Março 2026</span>
+            </div>
+        </div>
 
-            <div class="museum-frame">
+        <div class="museum-frame" data-year="2026">
+            <div class="image-container">
                 <a href="https://i.imgur.com/link-cereja.png" class="glightbox" data-gallery="cereja">
-                    <img src="https://i.imgur.com/link-cereja.png" alt="Rota da Cereja">
+                    <img src="https://i.imgur.com/link-cereja.png" alt="Cereja">
                 </a>
-                <div class="museum-plate">
-                    <h3>Rota da Cereja</h3>
-                    <div class="photo-info">Fundão &bull; Arquivo Digital</div>
-                    <a href="cereja.html" target="_blank" class="explore-btn">Explorar Roteiro</a>
-                </div>
             </div>
+            <div class="item-plate">
+                <h3>Rota da Cereja</h3>
+                <span>Fundão &bull; Junho 2026</span>
+            </div>
+        </div>
 
-            <h2 class="year-label">2025</h2>
-
-            <div class="museum-frame">
+        <div class="museum-frame" data-year="2025">
+            <div class="image-container">
                 <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo Natal">
+                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
                 </a>
-                <div class="museum-plate">
-                    <h3>Especial Natal Vigo</h3>
-                    <div class="photo-info">Vigo & Valença &bull; Álbum Completo</div>
-                    <a href="vigo.html" target="_blank" class="explore-btn">Explorar Roteiro</a>
-                </div>
             </div>
+            <div class="item-plate">
+                <h3>Especial Natal Vigo</h3>
+                <span>Vigo & Valença &bull; Dezembro 2025</span>
+            </div>
+        </div>
 
-            <div class="museum-frame">
+        <div class="museum-frame" data-year="2025">
+            <div class="image-container">
                 <a href="https://i.imgur.com/link-viana.png" class="glightbox" data-gallery="viana">
-                    <img src="https://i.imgur.com/link-viana.png" alt="Sra da Agonia">
+                    <img src="https://i.imgur.com/link-viana.png" alt="Viana">
                 </a>
-                <div class="museum-plate">
-                    <h3>Sra. da Agonia</h3>
-                    <div class="photo-info">Viana do Castelo &bull; Coleção de Verão</div>
-                    <a href="viana.html" target="_blank" class="explore-btn">Explorar Roteiro</a>
-                </div>
             </div>
+            <div class="item-plate">
+                <h3>Senhora da Agonia</h3>
+                <span>Viana do Castelo &bull; Agosto 2025</span>
+            </div>
+        </div>
 
-            <div class="museum-frame">
+        <div class="museum-frame" data-year="2025">
+            <div class="image-container">
                 <a href="https://i.imgur.com/link-amendoeiras.png" class="glightbox" data-gallery="amendoeiras">
                     <img src="https://i.imgur.com/link-amendoeiras.png" alt="Amendoeiras">
                 </a>
-                <div class="museum-plate">
-                    <h3>Amendoeiras em Flor</h3>
-                    <div class="photo-info">Douro Superior &bull; Primavera 2025</div>
-                    <a href="amendoeiras.html" target="_blank" class="explore-btn">Explorar Roteiro</a>
-                </div>
             </div>
-
+            <div class="item-plate">
+                <h3>Amendoeiras em Flor</h3>
+                <span>Foz Côa &bull; Março 2025</span>
+            </div>
         </div>
-    </main>
+
+    </div>
+
+    <div class="nav-fixed" style="left: 30px;"><a href="index.html" class="btn-action">Sair</a></div>
+    <div class="nav-fixed" style="right: 30px;"><button class="btn-action" onclick="alert('Contacto: 965 715 465')">Contactos</button></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        const lightbox = GLightbox({ selector: '.glightbox', loop: true });
+        // Inicializar Lightbox com setas
+        const lightbox = GLightbox({ 
+            selector: '.glightbox',
+            loop: true,
+            openEffect: 'zoom',
+            closeEffect: 'zoom'
+        });
 
-        function toggleModal() { /* Lógica do modal de contactos */ }
+        // Função de Filtro
+        function filterGallery(year) {
+            // Atualizar botões
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrar Quadros
+            const frames = document.querySelectorAll('.museum-frame');
+            frames.forEach(frame => {
+                if (year === 'all' || frame.getAttribute('data-year') === year) {
+                    frame.style.display = 'block';
+                } else {
+                    frame.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
