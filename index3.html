@@ -20,105 +20,94 @@
         :root {
             --primary-blue: #1e4d8c;
             --accent-orange: #ff8c00;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
+            --glass-bg: rgba(255, 255, 255, 0.9);
         }
 
-        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; background-color: #f0f2f5; min-height: 100vh; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
         
-        #menu-placeholder { position: fixed; top: 0; left: 0; width: 250px; height: 100vh; z-index: 1000; background: #fff; box-shadow: 2px 0 10px rgba(0,0,0,0.05); }
+        /* Estrutura Lateral Mantida */
+        #menu-placeholder {
+            position: fixed; top: 0; left: 0; width: 250px; height: 100vh; z-index: 1000;
+        }
         
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; transition: all 0.3s; }
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; transition: 0.3s; }
 
-        /* HEADER BRILHANTE */
+        /* Banner Estilo Premium */
         .gallery-header {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.9), rgba(255, 140, 0, 0.7)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?q=80&w=2070&auto=format&fit=crop');
             background-size: cover; background-position: center; color: white;
-            padding: 100px 40px; text-align: center; position: relative;
-            clip-path: ellipse(150% 100% at 50% 0%); /* Curva elegante */
+            padding: 90px 20px; text-align: center; border-radius: 0 0 50px 0;
         }
-        .gallery-header h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 900; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .gallery-header p { font-size: 1.2em; opacity: 0.9; font-weight: 300; }
+        .gallery-header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 800; }
 
-        /* FILTROS GLASSMORPHISM */
+        /* Filtros com Efeito Sticky e Glass */
         .filter-container { 
-            padding: 20px; display: flex; justify-content: center; gap: 15px; 
-            background: var(--glass-bg); backdrop-filter: blur(10px);
+            padding: 20px; display: flex; justify-content: center; gap: 12px; 
+            background: var(--glass-bg); backdrop-filter: blur(8px);
             position: sticky; top: 0; z-index: 100; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08); flex-wrap: wrap; margin-top: -30px;
-            width: fit-content; margin-left: auto; margin-right: auto; border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); flex-wrap: wrap;
         }
         .filter-btn { 
-            padding: 12px 30px; border: none; background: #fff; 
-            color: var(--primary-blue); border-radius: 50px; cursor: pointer; 
-            font-weight: 700; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 10px 28px; border: 2px solid var(--primary-blue); background: transparent; 
+            color: var(--primary-blue); border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; 
         }
-        .filter-btn:hover { transform: scale(1.1); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .filter-btn.active { background: var(--primary-blue); color: white; box-shadow: 0 8px 15px rgba(30, 77, 140, 0.3); }
+        .filter-btn.active { background: var(--primary-blue); color: white; box-shadow: 0 4px 12px rgba(30, 77, 140, 0.3); }
 
-        /* GRID E CARDS MAGNÍFICOS */
+        /* Grid e Itens */
         .gallery-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 30px; padding: 60px 40px; max-width: 1600px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; padding: 40px 20px; max-width: 1400px; margin: 0 auto; width: 100%;
         }
         .grid-year-title { 
-            grid-column: 1 / -1; color: var(--primary-blue); font-size: 2.8em; 
-            margin-top: 40px; position: relative; display: inline-block; font-weight: 900;
-        }
-        .grid-year-title::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 60px; height: 5px; background: var(--accent-orange); border-radius: 5px;
+            grid-column: 1 / -1; color: var(--primary-blue); font-size: 2.5em; 
+            margin-top: 30px; border-left: 8px solid var(--accent-orange); padding-left: 20px; font-weight: 800; 
         }
 
         .gallery-item { 
-            position: relative; border-radius: 20px; overflow: hidden; height: 320px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); cursor: pointer; transition: 0.5s ease; background: #fff;
+            position: relative; border-radius: 20px; overflow: hidden; height: 280px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .gallery-item:hover { transform: translateY(-15px) rotate(1deg); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .gallery-item:hover img { transform: scale(1.15); }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .gallery-item:hover img { transform: scale(1.1); }
         
         .item-overlay { 
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 20px; 
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 25px; 
             background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; 
-            transform: translateY(20px); transition: 0.4s;
         }
-        .gallery-item:hover .item-overlay { transform: translateY(0); }
-        .item-overlay h4 { margin: 0; font-size: 1.4em; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-
         .photo-count { 
-            position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.9); 
-            color: var(--primary-blue); padding: 8px 16px; border-radius: 12px; font-size: 14px; 
-            font-weight: 800; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
+            position: absolute; top: 15px; left: 15px; background: var(--accent-orange); 
+            color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; 
         }
 
         .hidden-photos { display: none; }
+        #footer-placeholder { background: #333; color: white; padding: 40px 20px; }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            #menu-placeholder { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0 !important; width: 100% !important; }
-            .gallery-header h1 { font-size: 2.2em; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); padding: 20px; }
-            .gallery-item { height: 240px; }
+            body { display: block; }
+            #menu-placeholder { position: relative; width: 100%; height: auto; }
+            main { margin-left: 0 !important; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); padding: 15px; }
+            .gallery-item { height: 200px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <div id="menu-placeholder">
+        </div>
 
     <main>
         <header class="gallery-header">
             <h1>Galeria de Memórias</h1>
-            <p><i class="fas fa-camera-retro"></i> Explore os melhores momentos das viagens do Miguel</p>
+            <p>Clique num álbum para explorar as fotos.</p>
         </header>
 
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">Tudo</button>
-            <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
-            <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
+            <button class="filter-btn" data-filter="all" onclick="filterGallery('all')">Todos</button>
+            <button class="filter-btn" data-filter="2026" onclick="filterGallery('2026')">2026</button>
+            <button class="filter-btn" data-filter="2025" onclick="filterGallery('2025')">2025</button>
         </div>
 
         <div class="gallery-grid">
@@ -126,20 +115,52 @@
             
             <div class="gallery-item" data-category="2026">
                 <a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campo">
-                    <img src="https://i.imgur.com/L58QRQc.png" alt="Campo Maior">
+                    <img src="https://i.imgur.com/L58QRQc.png">
                     <div class="item-overlay"><h4>Campo Maior</h4></div>
                 </a>
             </div>
 
             <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
-                    <div class="photo-count"><i class="fas fa-images"></i> +20</div>
-                    <img src="https://i.imgur.com/PmjIQux.png" alt="Festa das Camélias">
-                    <div class="item-overlay"><h4>Festa das Camélias</h4></div>
+                <a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="fundao">
+                    <img src="https://i.imgur.com/kX8ScBU.png">
+                    <div class="item-overlay"><h4>Fundão</h4></div>
+                </a>
+            </div>
+
+            <div class="gallery-item" data-category="2026">
+                <a href="https://i.imgur.com/uC6VTVp.png" class="glightbox" data-gallery="barcelos">
+                    <img src="https://i.imgur.com/uC6VTVp.png">
+                    <div class="item-overlay"><h4>Barcelos</h4></div>
+                </a>
+            </div>
+
+            <div class="gallery-item" data-category="2026">
+                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3">
+                    <div class="photo-count"><i class="fas fa-camera"></i> +20</div>
+                    <img src="https://i.imgur.com/PmjIQux.png">
+                    <div class="item-overlay"><h4>Festa das Camélias (Celorico)</h4></div>
                 </a>
                 <div class="hidden-photos">
                     <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
                     <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
+                    <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
                 </div>
             </div>
 
@@ -147,54 +168,78 @@
             
             <div class="gallery-item" data-category="2025">
                 <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                    <div class="photo-count"><i class="fas fa-images"></i> +56</div>
-                    <img src="https://i.imgur.com/aUixZ0Y.png" alt="Valência & Vigo">
+                    <div class="photo-count"><i class="fas fa-camera"></i> +56</div>
+                    <img src="https://i.imgur.com/aUixZ0Y.png">
                     <div class="item-overlay"><h4>Valência & Vigo</h4></div>
                 </a>
                 <div class="hidden-photos">
-                     <a href="https://i.imgur.com/cb5VM8v.jpg" class="glightbox" data-gallery="vigo"></a>
-                     </div>
+                    <a href="https://i.imgur.com/cb5VM8v.jpg" class="glightbox" data-gallery="vigo"></a>
+                    <a href="https://i.imgur.com/QpXyqwY.jpg" class="glightbox" data-gallery="vigo"></a>
+                    </div>
+            </div>
+
+            <div class="gallery-item" data-category="2025">
+                <a href="https://i.imgur.com/oDpPY1r.png" class="glightbox" data-gallery="marvao">
+                    <div class="photo-count"><i class="fas fa-camera"></i> +33</div>
+                    <img src="https://i.imgur.com/oDpPY1r.png">
+                    <div class="item-overlay"><h4>Nisa & Marvão</h4></div>
+                </a>
+                <div class="hidden-photos">
+                    <a href="https://i.imgur.com/MeVNYnF.png" class="glightbox" data-gallery="marvao"></a>
+                    </div>
+            </div>
+
+            <div class="gallery-item" data-category="2025">
+                <a href="https://i.imgur.com/1OhlRDd.png" class="glightbox" data-gallery="espinho">
+                    <div class="photo-count"><i class="fas fa-camera"></i> +38</div>
+                    <img src="https://i.imgur.com/1OhlRDd.png">
+                    <div class="item-overlay"><h4>Espinho</h4></div>
+                </a>
+                <div class="hidden-photos">
+                    <a href="https://i.imgur.com/FtgTFEt.jpg" class="glightbox" data-gallery="espinho"></a>
+                    </div>
             </div>
         </div>
+
+        <div id="footer-placeholder">
+            </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // Inicializar GLightbox
-        const lightbox = GLightbox({
-            selector: '.glightbox',
-            touchNavigation: true,
-            loop: true
-        });
+        const lightbox = GLightbox({ selector: '.glightbox', loop: true });
 
-        // Função de Filtro Melhorada
-        function filterGallery(year) {
+        // FUNÇÃO DE MEMÓRIA DO FILTRO
+        function filterGallery(year, save = true) {
+            if(save) localStorage.setItem('selectedYear', year);
+
             const items = document.querySelectorAll('.gallery-item');
             const titles = document.querySelectorAll('.grid-year-title');
             const btns = document.querySelectorAll('.filter-btn');
 
-            // Atualizar Botões
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            btns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-filter') === year);
+            });
 
             items.forEach(item => {
-                if (year === 'all' || item.getAttribute('data-category') === year) {
-                    item.style.display = 'block';
-                    setTimeout(() => item.style.opacity = '1', 10);
-                } else {
-                    item.style.opacity = '0';
-                    setTimeout(() => item.style.display = 'none', 300);
-                }
+                const itemYear = item.getAttribute('data-category');
+                item.style.display = (year === 'all' || itemYear === year) ? 'block' : 'none';
             });
 
             titles.forEach(title => {
-                if (year === 'all' || title.getAttribute('data-year') === year) {
-                    title.style.display = 'block';
-                } else {
-                    title.style.display = 'none';
-                }
+                const titleYear = title.getAttribute('data-year');
+                title.style.display = (year === 'all' || titleYear === year) ? 'block' : 'none';
             });
         }
+
+        // Ao carregar a página, verifica se há um filtro guardado
+        window.onload = () => {
+            const savedYear = localStorage.getItem('selectedYear') || 'all';
+            filterGallery(savedYear, false);
+            
+            // Aqui carregas o teu menu/footer se usares fetch
+            // fetch('menu.html').then(r => r.text()).then(d => document.getElementById('menu-placeholder').innerHTML = d);
+        };
     </script>
 </body>
 </html>
