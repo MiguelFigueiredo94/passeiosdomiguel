@@ -16,7 +16,7 @@
             --plate-silver: linear-gradient(145deg, #e6e6e6, #ffffff);
         }
 
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); scroll-behavior: smooth; padding-bottom: 100px; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); scroll-behavior: smooth; padding-bottom: 120px; }
 
         /* HEADER */
         .museum-header {
@@ -28,7 +28,7 @@
         }
         .museum-header h1 { font-size: 3.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 12px; margin: 0; }
 
-        /* NAVEGAÇÃO DE FILTROS */
+        /* FILTROS COM MEMÓRIA */
         .filter-nav { 
             display: flex; justify-content: center; gap: 20px; 
             padding: 40px 0; background: #e0e0e0; position: sticky; top: 0; z-index: 100;
@@ -42,22 +42,8 @@
         }
         .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--accent); }
 
-        /* SEPARADORES DE ANO */
-        .year-separator {
-            grid-column: 1 / -1;
-            padding: 40px 0 20px 0;
-            margin-top: 40px;
-            border-bottom: 2px solid #ccc;
-            font-size: 2.5rem;
-            font-weight: 100;
-            letter-spacing: 15px;
-            color: #888;
-            text-transform: uppercase;
-            text-align: left;
-        }
-
         /* GRELHA */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 80px; padding: 0 8% 100px 8%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 60px; padding: 60px 8% 100px 8%; }
 
         /* O QUADRO */
         .museum-frame {
@@ -75,7 +61,15 @@
         .id-plate h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #111; }
         .id-plate span { font-size: 0.65rem; color: #777; display: block; margin-top: 5px; text-transform: uppercase; }
 
-        /* BARRA DE BOTÕES INFERIOR (MAIS DISCRETA) */
+        /* LINK PARA O PASSEIO */
+        .tour-link {
+            display: inline-block; margin-top: 12px; font-size: 0.7rem; color: var(--accent);
+            text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+            border-bottom: 1px solid transparent; transition: 0.3s;
+        }
+        .tour-link:hover { border-bottom: 1px solid var(--accent); }
+
+        /* BARRA INFERIOR */
         .footer-controls {
             position: fixed; bottom: 0; left: 0; width: 100%; 
             background: rgba(26, 26, 26, 0.95); 
@@ -105,7 +99,7 @@
 
     <header class="museum-header">
         <h1>MURAL DE MEMÓRIAS</h1>
-        <p>DO FUTURO AO PASSADO: A NOSSA HISTÓRIA</p>
+        <p>A NOSSA HISTÓRIA EM CADA QUADRO</p>
     </header>
 
     <nav class="filter-nav">
@@ -116,14 +110,13 @@
 
     <div class="gallery-grid">
         
-        <h2 class="year-separator" id="title-2026">Coleção 2026</h2>
-
         <div class="museum-frame" data-year="2026">
             <div class="status-tag">AGENDADO</div>
             <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=500" style="opacity: 0.4;">
             <div class="id-plate">
                 <h3>Festas do Povo</h3>
                 <span>Campo Maior &bull; Agosto 2026</span>
+                <a href="campomaior.html" target="_blank" class="tour-link">Ver Passeio</a>
             </div>
         </div>
 
@@ -133,6 +126,7 @@
             <div class="id-plate">
                 <h3>Rota da Cereja</h3>
                 <span>Fundão &bull; Junho 2026</span>
+                <a href="cereja.html" target="_blank" class="tour-link">Ver Passeio</a>
             </div>
         </div>
 
@@ -142,6 +136,7 @@
             <div class="id-plate">
                 <h3>Festa das Cruzes</h3>
                 <span>Barcelos &bull; Maio 2026</span>
+                <a href="cruzes.html" target="_blank" class="tour-link">Ver Passeio</a>
             </div>
         </div>
 
@@ -175,10 +170,9 @@
             <div class="id-plate">
                 <h3>Festa das Camélias</h3>
                 <span>Celorico de Basto &bull; Março 2026</span>
+                <a href="camelias.html" target="_blank" class="tour-link">Ver Passeio</a>
             </div>
         </div>
-
-        <h2 class="year-separator" id="title-2025">Coleção 2025</h2>
 
         <div class="museum-frame" data-year="2025">
             <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
@@ -187,30 +181,7 @@
             <div class="id-plate">
                 <h3>Especial de Natal</h3>
                 <span>Vigo e Valença &bull; Dezembro 2025</span>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <img src="https://i.imgur.com/link-marvao.jpg">
-            <div class="id-plate">
-                <h3>Festa da Castanha</h3>
-                <span>Nisa e Marvão &bull; Outubro 2025</span>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <img src="https://i.imgur.com/link-espinho.jpg">
-            <div class="id-plate">
-                <h3>Nossa Senhora d'Ajuda</h3>
-                <span>Espinho &bull; Setembro 2025</span>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <img src="https://i.imgur.com/link-viana.jpg">
-            <div class="id-plate">
-                <h3>Nossa Senhora d' Agonia</h3>
-                <span>Viana do Castelo &bull; Agosto 2025</span>
+                <a href="vigo.html" target="_blank" class="tour-link">Ver Passeio</a>
             </div>
         </div>
 
@@ -240,42 +211,21 @@
             modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // FUNÇÃO DE FILTRO COM MEMÓRIA (LOCALSTORAGE)
+        // FILTRO COM MEMÓRIA (localStorage)
         function filterYear(year) {
-            // Salvar a escolha no navegador
-            localStorage.setItem('selectedYear', year);
-
-            // Atualizar as classes dos botões
+            localStorage.setItem('muralFilter', year);
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             if(year === 'all') document.getElementById('btn-all').classList.add('active');
             else document.getElementById(`btn-${year}`).classList.add('active');
             
-            // Mostrar/Esconder Quadros e Títulos
             document.querySelectorAll('.museum-frame').forEach(frame => {
-                if(year === 'all' || frame.getAttribute('data-year') === year) {
-                    frame.style.display = 'block';
-                } else {
-                    frame.style.display = 'none';
-                }
+                frame.style.display = (year === 'all' || frame.getAttribute('data-year') === year) ? 'block' : 'none';
             });
-
-            // Lógica dos títulos separadores
-            if(year === '2026') {
-                document.getElementById('title-2026').style.display = 'block';
-                document.getElementById('title-2025').style.display = 'none';
-            } else if(year === '2025') {
-                document.getElementById('title-2026').style.display = 'none';
-                document.getElementById('title-2025').style.display = 'block';
-            } else {
-                document.getElementById('title-2026').style.display = 'block';
-                document.getElementById('title-2025').style.display = 'block';
-            }
         }
 
-        // EXECUTAR AO CARREGAR A PÁGINA (O F5 que pediste)
         window.onload = function() {
-            const savedYear = localStorage.getItem('selectedYear') || 'all';
-            filterYear(savedYear);
+            const savedFilter = localStorage.getItem('muralFilter') || 'all';
+            filterYear(savedFilter);
         };
     </script>
 </body>
