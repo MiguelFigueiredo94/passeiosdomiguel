@@ -83,6 +83,50 @@
 
         .status-tag { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 10px; font-size: 0.6rem; font-weight: bold; z-index: 10; }
         .hidden { display: none; }
+
+        /* --- ADAPTAÇÃO PARA MOBILE (TELEMÓVEIS) --- */
+        @media (max-width: 768px) {
+            /* Ajusta o cabeçalho para não ocupar o ecrã todo */
+            .museum-header { height: 250px; }
+            .museum-header h1 { font-size: 1.8rem; letter-spacing: 5px; padding: 0 20px; }
+        
+            /* Botões de filtro em coluna ou menores para caberem lado a lado */
+            .filter-nav { 
+                flex-wrap: wrap; 
+                gap: 10px; 
+                padding: 20px 10px; 
+            }
+            .filter-btn { 
+                padding: 8px 15px; 
+                font-size: 0.6rem; 
+                flex: 1 1 auto; /* Faz os botões dividirem o espaço */
+            }
+        
+            /* Uma coluna única de fotos no telemóvel */
+            .gallery-grid { 
+                grid-template-columns: 1fr; 
+                padding: 20px 5%; 
+                gap: 30px; 
+            }
+        
+            /* Reduz as molduras para a foto ser a protagonista */
+            .museum-frame { padding: 15px; border-width: 8px; }
+            .museum-frame img { height: 220px; }
+        
+            /* Barra inferior ajustada para ecrãs pequenos */
+            .footer-controls { 
+                padding: 10px 15px; 
+            }
+            .nav-btn { 
+                font-size: 0.6rem; 
+                padding: 8px 12px; 
+            }
+        
+            /* Modal de contacto mais estreito */
+            .contact-card { width: 85%; padding: 25px; }
+        }
+
+        
     </style>
 </head>
 <body>
