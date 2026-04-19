@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7f9; min-height: 100vh; display: block; }
 
@@ -39,17 +40,16 @@
         }
         
         .form-top { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-        .form-top input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 200px; }
+        .form-top input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 200px; font-family: 'Poppins', sans-serif; }
 
         .form-bottom { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .input-m { flex: 2; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 250px; }
+        .input-m { flex: 2; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 250px; font-family: 'Poppins', sans-serif; }
 
-        /* Seletor de Estrelas Interativo */
         .star-rating { display: flex; gap: 5px; background: #f8f9fa; padding: 8px 15px; border-radius: 50px; border: 1px solid #eee; }
         .star-rating i { color: #ddd; cursor: pointer; font-size: 20px; transition: 0.2s; }
         .star-rating i.active { color: #ffc107; }
 
-        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-family: 'Poppins', sans-serif; }
         .btn-v:hover { background: #218838; transform: scale(1.05); }
 
         /* MURAL DE NOTAS */
@@ -67,10 +67,7 @@
         .nota:nth-child(3n+3) .pione { background: #ffa000; }
 
         .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        
-        /* Estrelas nas Notas */
         .stars-nota { color: #ffc107; font-size: 14px; margin-bottom: 10px; display: block; }
-
         .comentario { font-family: 'Kalam', cursive; font-size: 18px; color: #333; line-height: 1.5; margin: 10px 0; }
         .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 15px; }
 
@@ -122,18 +119,28 @@
                     <div class="stars-nota">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="comentario">"O desfile temático estava lindíssimo. Um dia muito bem passado!"</p>
+                    <p class="comentario">"O desfile temático estava lindíssimo. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
                     <span class="autor">— Maria Silva</span>
                 </div>
 
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Senhora da Graça</span>
+                    <span class="viagem-tag">Festa das Camélias</span>
                     <div class="stars-nota">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="comentario">"Que vista incrível lá de cima do Santuário! O Miguel é um guia fantástico."</p>
+                    <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins, excelente organizador!"</p>
                     <span class="autor">— Carlos Pires</span>
+                </div>
+
+                <div class="nota">
+                    <div class="pione"></div>
+                    <span class="viagem-tag">Santuário da Senhora da Graça</span>
+                    <div class="stars-nota">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel é um excelente organizador, recomendo vivamente."</p>
+                    <span class="autor">— Ana Rita</span>
                 </div>
             </div>
         </section>
@@ -144,7 +151,6 @@
     </main>
 
     <script>
-        // LÓGICA DAS ESTRELAS INTERATIVAS
         let selectedStars = 0;
         const stars = document.querySelectorAll('#starSelector i');
 
@@ -153,7 +159,6 @@
                 selectedStars = star.getAttribute('data-value');
                 updateStars();
             });
-            
             star.addEventListener('mouseover', () => {
                 highlightStars(star.getAttribute('data-value'));
             });
@@ -175,14 +180,12 @@
             });
         }
 
-        // CARREGAR COMPONENTES
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
         }
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // ENVIO WHATSAPP COM ESTRELAS
         function enviarWhatsApp() {
             const n = document.getElementById('nome').value;
             const p = document.getElementById('passeio').value;
