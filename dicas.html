@@ -15,114 +15,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. RESET E ESTRUTURA GLOBAL (Padrão Index) */
+        /* 1. ESTRUTURA GLOBAL (IGUAL À INDEX) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body { 
             font-family: 'Segoe UI', sans-serif; 
+            display: flex; /* Mantém menu e conteúdo lado a lado */
             background-color: #f4f7f9; 
-            min-height: 100vh;
-            display: block; 
+            min-height: 100vh; 
         }
 
-        /* 2. ESPAÇO PARA O MENU */
+        /* 2. MENU LATERAL */
         #menu-placeholder { 
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            z-index: 1000;
+            width: 260px; 
+            flex-shrink: 0; 
+            background-color: #1e4d8c; 
+        }
+
+        /* Ajuste do Logo para ser circular e nítido nesta página também */
+        #menu-placeholder img { 
+            width: 170px !important;      
+            height: 170px !important;     
+            object-fit: contain !important; 
+            border-radius: 50% !important;  
+            border: 4px solid white !important; 
+            background-color: white !important; 
+            margin: 30px auto !important;   
+            display: block !important;
         }
 
         /* 3. CONTEÚDO PRINCIPAL */
         main { 
+            flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            margin-left: 250px; 
         }
 
-        /* 4. BANNER PREMIUM (Altura 380px para consistência) */
+        /* 4. BANNER (BANNER IGUAL À INDEX) */
         .banner-dicas {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
             height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: white;
             text-align: center;
             border-bottom: 5px solid #ff8c00;
         }
 
-        .banner-dicas h1 { font-size: 3.2em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .banner-dicas p { font-size: 1.3em; opacity: 0.9; font-weight: 300; }
+        .banner-dicas h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .banner-dicas p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
 
-        /* CONTENTOR DE DICAS */
-        .seccao-dicas { padding: 60px 30px; background: #f4f7f9; flex-grow: 1; }
+        /* 5. SECCÃO DE CONTEÚDO */
+        .seccao-dicas { padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; flex-grow: 1; }
+        
         .container-dicas {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         /* ESTILO DOS CARDS */
         .card-dica {
             background: #fff;
-            border-radius: 20px;
-            padding: 40px 30px;
+            border-radius: 18px;
+            padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid #eee;
-            border-bottom: 5px solid #1e4d8c;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-bottom: 4px solid #1e4d8c;
+            transition: 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .card-dica:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-bottom-color: #ff8c00;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .icon-dica {
-            font-size: 50px;
+            font-size: 45px;
             color: #ff8c00;
-            margin-bottom: 25px;
-            height: 60px;
-            display: flex;
-            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .card-dica h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.4em; }
-        .card-dica p { color: #555; font-size: 1em; line-height: 1.7; margin: 0; }
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
+        .card-dica p { color: #666; font-size: 0.95em; line-height: 1.6; }
         .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; }
+
+        /* 6. RODAPÉ COM RESPIRO (IGUAL À INDEX) */
+        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-        
-            #menu-placeholder {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-        
-            main {
-                margin-left: 0;
-            }
-        }
-        
-            main {
-                margin-left: 0;
-            }
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; }
+            main { margin-left: 0; }
+            .container-dicas { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -138,7 +132,6 @@
 
         <section class="seccao-dicas">
             <div class="container-dicas">
-                
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
                     <h3>O Calçado Ideal</h3>
@@ -148,55 +141,56 @@
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
                     <h3>Roupa Prática</h3>
-                    <p>Escolha vestuário que lhe dê liberdade. Vestir em camadas ("à cebola") é a melhor opção para as variações de temperatura.</p>
+                    <p>Escolha vestuário que lhe dê liberdade. Vestir em camadas ("à cebola") é a melhor opção.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
                     <h3>Registe os Momentos</h3>
-                    <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio de paisagens incríveis!</p>
+                    <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria nas paisagens!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
                     <h3>Água e Lanches</h3>
-                    <p>Tenha sempre consigo uma pequena garrafa de água e um snack leve (bolachas ou fruta) para petiscar durante o trajeto.</p>
+                    <p>Tenha sempre consigo uma garrafa de água e um snack leve para petiscar durante o trajeto.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-chair"></i></div>
                     <h3>Marcação de Lugares</h3>
-                    <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus lugares preferidos!</p>
+                    <p>Os lugares são por ordem de inscrição. Reserve cedo para assegurar os seus preferidos!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-clock"></i></div>
                     <h3>Seja Pontual</h3>
-                    <p>Tente chegar 10 a 15 minutos antes da partida. A pontualidade de todos garante que aproveitamos o dia ao máximo!</p>
+                    <p>Tente chegar 10 a 15 minutos antes. A pontualidade garante que aproveitamos o dia ao máximo!</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-wallet"></i></div>
                     <h3>Numerário (Dinheiro)</h3>
-                    <p>Em feiras ou aldeias isoladas, nem sempre há multibanco. Traga alguns euros para pequenas compras ou café.</p>
+                    <p>Em aldeias isoladas, nem sempre há multibanco. Traga alguns euros para pequenas compras.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fas fa-pills"></i></div>
                     <h3>Saúde e Bem-estar</h3>
-                    <p>Não esqueça os seus medicamentos diários. Um pequeno kit com algo para o enjoo pode ser um grande aliado.</p>
+                    <p>Não esqueça os seus medicamentos diários e algo para o enjoo, se necessário.</p>
                 </div>
 
                 <div class="card-dica">
                     <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
                     <h3>Partilha de Fotos</h3>
-                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
+                    <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a>!</p>
                 </div>
-
             </div>
         </section>
 
-        <div id="footer-placeholder"></div> 
+        <div class="footer-wrapper">
+            <div id="footer-placeholder"></div>
+        </div>
 
     </main>
 
