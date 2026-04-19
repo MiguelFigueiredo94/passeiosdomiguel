@@ -1,210 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Memórias - Passeios do Miguel</title>
+    <title>Mural de Memórias - Passeios do Miguel</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        /* Base e Layout Lateral (Igual às outras páginas) */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; min-height: 100vh; }
+        :root {
+            --bg-wall: #f2f2f2;
+            --frame-dark: #1a1a1a;
+            --accent: #ff8c00;
+            --plate-silver: linear-gradient(145deg, #e6e6e6, #ffffff);
+        }
+
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); scroll-behavior: smooth; padding-bottom: 120px; }
+
+        .museum-header {
+            height: 380px; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; color: white; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center; border-bottom: 8px solid var(--frame-dark);
+        }
+        .museum-header h1 { font-size: 3.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 12px; margin: 0; }
+
+        .filter-nav { 
+            display: flex; justify-content: center; gap: 20px; 
+            padding: 40px 0; background: #e0e0e0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .filter-btn {
+            background: #f0f0f0; border: 1px solid #aaa; padding: 12px 28px;
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
+            cursor: pointer; transition: 0.3s; color: #444; font-weight: bold;
+            box-shadow: 4px 4px 0px #999;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--accent); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 60px; padding: 60px 8%; }
+
+        .museum-frame {
+            background: #fff; padding: 30px; border: 12px solid var(--frame-dark);
+            box-shadow: 15px 15px 45px rgba(0,0,0,0.1); transition: 0.4s;
+            position: relative;
+        }
+        .museum-frame img { width: 100%; height: 280px; object-fit: cover; border: 1px solid #ddd; cursor: pointer; }
+
+        .id-plate {
+            margin-top: 25px; padding: 15px; border: 1px solid #ccc;
+            background: var(--plate-silver); text-align: center;
+        }
+        .id-plate h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #111; }
+        .id-plate span { font-size: 0.65rem; color: #777; display: block; margin-top: 5px; text-transform: uppercase; }
+
+        .tour-link {
+            display: inline-block; margin-top: 12px; font-size: 0.7rem; color: var(--accent);
+            text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .footer-controls {
+            position: fixed; bottom: 0; left: 0; width: 100%; 
+            background: rgba(26, 26, 26, 0.95); 
+            display: flex; justify-content: space-between; padding: 15px 40px;
+            box-sizing: border-box; z-index: 1000; border-top: 2px solid var(--accent);
+        }
+        .nav-btn {
+            background: transparent; color: white; text-decoration: none;
+            padding: 10px 20px; font-size: 0.75rem; letter-spacing: 2px;
+            text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer; transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .contact-card { background: white; padding: 40px; width: 320px; text-align: center; border-top: 10px solid var(--accent); }
+
+        .status-tag { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 10px; font-size: 0.6rem; font-weight: bold; z-index: 10; }
+        .hidden { display: none; }
+
+        /* --- ADAPTAÇÃO PARA MOBILE (TELEMÓVEIS) --- */
+        @media (max-width: 768px) {
+            /* Ajusta o cabeçalho para não ocupar o ecrã todo */
+            .museum-header { height: 250px; }
+            .museum-header h1 { font-size: 1.8rem; letter-spacing: 5px; padding: 0 20px; }
         
-        #menu-placeholder {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            z-index: 1000;
-        }
+            /* Botões de filtro em coluna ou menores para caberem lado a lado */
+            .filter-nav { 
+                flex-wrap: wrap; 
+                gap: 10px; 
+                padding: 20px 10px; 
+            }
+            .filter-btn { 
+                padding: 8px 15px; 
+                font-size: 0.6rem; 
+                flex: 1 1 auto; /* Faz os botões dividirem o espaço */
+            }
         
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
-
-        /* BANNER (Estilo Premium da Política) */
-        .gallery-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
-        }
-        .gallery-header h1 { font-size: 2.8em; margin-bottom: 10px; font-weight: 800; }
-
-        /* FILTROS */
-        .filter-container { 
-            padding: 25px; display: flex; justify-content: center; gap: 12px; 
-            background: white; position: sticky; top: 0; z-index: 100; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-wrap: wrap;
-        }
-        .filter-btn { 
-            padding: 10px 25px; border: 2px solid #1e4d8c; background: transparent; 
-            color: #1e4d8c; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; 
-        }
-        .filter-btn.active { background: #1e4d8c; color: white; }
-
-        /* GRID DA GALERIA */
-        .gallery-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; padding: 40px 20px; max-width: 1400px; margin: 0 auto; width: 100%;
-        }
-        .grid-year-title { 
-            grid-column: 1 / -1; color: #1e4d8c; font-size: 2.2em; 
-            margin-top: 30px; border-left: 6px solid #ff8c00; padding-left: 18px; font-weight: 800; 
-        }
-
-        .gallery-item { 
-            position: relative; border-radius: 15px; overflow: hidden; height: 260px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s ease; background: #ddd; 
-        }
-        .gallery-item:hover { transform: translateY(-8px); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        
-        .item-overlay { 
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; 
-        }
-        .photo-count { 
-            position: absolute; top: 15px; left: 15px; background: rgba(255,140,0,0.95); 
-            color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 3; 
-        }
-
-        .hidden-photos { display: none; }
-
-        /* Ajustes do Rodapé (Para manter o padrão branco nos títulos) */
-        #footer-placeholder h2 { color: #ffffff !important; border-bottom: none !important; margin-top: 0 !important; }
-
-        /* RESPONSIVIDADE (MOBILE) */
-        @media (max-width: 1024px) {
-            body { 
-                display: block; 
-                overflow-x: hidden; /* Impede a barra horizontal no corpo da página */
-                width: 100%;
-            }
-
-            #menu-placeholder { 
-                position: relative; 
-                width: 100%; 
-                height: auto; 
-                overflow: hidden; /* Garante que o menu não estique a página */
-            }
-
-            main { 
-                margin-left: 0 !important; 
-                width: 100% !important; 
-                max-width: 100vw; /* Garante que nunca ultrapassa a largura da janela */
-                overflow-x: hidden; 
-                display: block;
-            }
-
-            .gallery-header { 
-                padding: 60px 20px; 
-                border-radius: 0; /* Remove o arredondado que às vezes causa bugs no mobile */
-                width: 100%;
-            }
-
-            .gallery-header h1 { font-size: 2em; }
-
+            /* Uma coluna única de fotos no telemóvel */
             .gallery-grid { 
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-                padding: 15px; 
-                gap: 15px;
-                width: 100%;
-                margin: 0; /* Garante que o grid não tenha margens externas que empurrem a página */
+                grid-template-columns: 1fr; 
+                padding: 20px 5%; 
+                gap: 30px; 
             }
-
-            .gallery-item { height: 180px; }
+        
+            /* Reduz as molduras para a foto ser a protagonista */
+            .museum-frame { padding: 15px; border-width: 8px; }
+            .museum-frame img { height: 220px; }
+        
+            /* Barra inferior ajustada para ecrãs pequenos */
+            .footer-controls { 
+                padding: 10px 15px; 
+            }
+            .nav-btn { 
+                font-size: 0.6rem; 
+                padding: 8px 12px; 
+            }
+        
+            /* Modal de contacto mais estreito */
+            .contact-card { width: 85%; padding: 25px; }
         }
+
+        
     </style>
 </head>
 <body>
 
-    <div id="menu-placeholder"></div>
+    <header class="museum-header">
+        <h1>MURAL DE MEMÓRIAS</h1>
+        <p>A NOSSA HISTÓRIA EM CADA QUADRO</p>
+    </header>
 
-    <main>
-        <header class="gallery-header">
-            <h1>Galeria de Memórias</h1>
-            <p>Clique num álbum para ver as fotos e aceder ao Facebook.</p>
-        </header>
+    <nav class="filter-nav">
+        <button class="filter-btn" id="btn-all" onclick="filterYear('all')">Ver Toda a Exposição</button>
+        <button class="filter-btn" id="btn-2026" onclick="filterYear('2026')">Coleção 2026</button>
+        <button class="filter-btn" id="btn-2025" onclick="filterYear('2025')">Coleção 2025</button>
+    </nav>
 
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
-            <button class="filter-btn" onclick="filterGallery('2026')">2026</button>
-            <button class="filter-btn" onclick="filterGallery('2025')">2025</button>
+    <div class="gallery-grid">
+        
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://i.imgur.com/L58QRQc.png" style="opacity: 0.4;">
+            <div class="id-plate">
+                <h3>Festas do Povo</h3>
+                <span>Campo Maior &bull; Agosto 2026</span>
+                <a href="campomaior.html" target="_blank" class="tour-link">Explorar Roteiro</a>
+            </div>
         </div>
 
-        <div class="gallery-grid">
-            <h2 class="grid-year-title" data-year="2026">2026</h2>
-            
-           <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/L58QRQc.png" class="glightbox" data-gallery="campo" data-fb="">
-                    <!--<div class="photo-count"> +0</div>-->
-                    <img src="https://i.imgur.com/L58QRQc.png">
-                    <div class="item-overlay"><h4>Campo Maior</h4></div>
-                </a>
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://i.imgur.com/kX8ScBU.png" style="opacity: 0.4;">
+            <div class="id-plate">
+                <h3>Rota da Cereja</h3>
+                <span>Fundão &bull; Junho 2026</span>
+                <a href="cereja.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
+        </div>
 
-            <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/kX8ScBU.png" class="glightbox" data-gallery="fundao" data-fb="">
-                    <!--<div class="photo-count"> +0</div>-->
-                    <img src="https://i.imgur.com/kX8ScBU.png">
-                    <div class="item-overlay"><h4>Fundão</h4></div>
-                </a>
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">AGENDADO</div>
+            <img src="https://i.imgur.com/uC6VTVp.png" style="opacity: 0.4;">
+            <div class="id-plate">
+                <h3>Festa das Cruzes</h3>
+                <span>Barcelos &bull; Maio 2026</span>
+                <a href="cruzes.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
+        </div>
 
-            <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/uC6VTVp.png" class="glightbox" data-gallery="barcelos" data-fb="">
-                    <!--<div class="photo-count"> +0</div>-->
-                    <img src="https://i.imgur.com/uC6VTVp.png">
-                    <div class="item-overlay"><h4>Barcelos</h4></div>
-                </a>
+        <div class="museum-frame" data-year="2026">
+            <div class="status-tag">20 FOTOS</div>
+            <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
+                <img src="https://i.imgur.com/PmjIQux.png" alt="Camélias">
+            </a>
+            <div class="hidden">
+                <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
+                <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
             </div>
-
-             <div class="gallery-item" data-category="2026">
-                <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3">
-                    <div class="photo-count"><i class="fas fa-camera"></i> +20</div>
-                    <img src="https://i.imgur.com/PmjIQux.png">
-                    <div class="item-overlay"><h4>Festa das Camélias (Celorico)</h4></div>
-                </a>
-                <div class="hidden-photos">
-                    <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                    <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                 </div>
+            <div class="id-plate">
+                <h3>Festa das Camélias</h3>
+                <span>Celorico de Basto &bull; Março 2026</span>
+                <a href="camelias.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
+        </div>
 
-
-            <h2 class="grid-year-title" data-year="2025">2025</h2>
-            
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                <div class="photo-count"><i class="fas fa-camera"></i> +56</div>
-                <img src="https://i.imgur.com/aUixZ0Y.png"><div class="item-overlay"><h4>Valência & Vigo</h4></div></a>
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">56 FOTOS</div>
+            <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
+                <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
+            </a>
             <div class="hidden-photos">
                 <a href="https://i.imgur.com/cb5VM8v.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/QpXyqwY.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
@@ -262,13 +270,20 @@
                 <a href="https://i.imgur.com/P81PiuQ.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/rtm2N3Z.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/qZlk9Wj.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                </div>          
+                </div>
+            <div class="id-plate">
+                <h3>Especial de Natal</h3>
+                
+                <span>Vigo e Valença &bull; Dezembro 2025</span>
+                <a href="vigo.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
-            
-            
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/oDpPY1r.png" class="glightbox" data-gallery="marvao">
-                <div class="photo-count"><i class="fas fa-camera"></i> +33</div>
-                <img src="https://i.imgur.com/oDpPY1r.png"><div class="item-overlay"><h4>Nisa & Marvão</h4></div></a>
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">56 FOTOS</div>
+            <a href="https://i.imgur.com/oDpPY1r.png" class="glightbox" data-gallery="marvao">
+                <img src="https://i.imgur.com/oDpPY1r.png" alt="Marvão">
+            </a>
             <div class="hidden-photos">
                 <a href="https://i.imgur.com/MeVNYnF.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/Nl134cK.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
@@ -304,12 +319,21 @@
                 <a href="https://i.imgur.com/FT87P9r.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/zVO3tOf.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                  </div>
+            <div class="id-plate">
+                <h3>Festa da Castanha</h3>
+                <span>Nisa e Marvão &bull; Outubro 2025</span>
+                <a href="marvao.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
-                                    
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/1OhlRDd.png" class="glightbox" data-gallery="espinho">
-                <div class="photo-count"><i class="fas fa-camera"></i> +38</div>
-                <img src="https://i.imgur.com/1OhlRDd.png"><div class="item-overlay"><h4>Espinho</h4></div></a>
-            <div class="hidden-photos">
+        </div>
+
+
+        
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">38 FOTOS</div>
+            <a href="https://i.imgur.com/1OhlRDd.png" class="glightbox" data-gallery="espinho">
+                <img src="https://i.imgur.com/1OhlRDd.png" alt="Espinho">
+            </a>
+             <div class="hidden-photos">
                 <a href="https://i.imgur.com/FtgTFEt.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/dGjJMhY.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/9ARDQSj.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
@@ -349,11 +373,20 @@
                 <a href="https://i.imgur.com/6ksItyh.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
                 <a href="https://i.imgur.com/BX7BdUF.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
             </div>
-            </div>        
-            
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="agonia">
-                <div class="photo-count"><i class="fas fa-camera"></i> +40</div>
-                <img src="https://i.imgur.com/NmjlEsz.png"><div class="item-overlay"><h4>Viana do Castelo</h4></div></a>
+            <div class="id-plate">
+                <h3>Nossa Senhora d'Ajuda</h3>
+                <span>Espinho &bull; Setembro 2025</span>
+                <a href="espinho.html" target="_blank" class="tour-link">Explorar Roteiro</a>
+            </div>
+        </div>
+
+
+        
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">40 FOTOS</div>
+        <a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="agonia">
+                <img src="https://i.imgur.com/NmjlEsz.png" alt="Agonia">
+            </a>
             <div class="hidden-photos">
                 <a href="https://i.imgur.com/5ALPQlS.png" class="glightbox" data-gallery="agonia"></a>
                 <a href="https://i.imgur.com/fTGGkPt.png" class="glightbox" data-gallery="agonia"></a>
@@ -396,11 +429,20 @@
                 <a href="https://i.imgur.com/6cW9ihz.png" class="glightbox" data-gallery="agonia"></a>
                 <a href="https://i.imgur.com/ghG3Zvc.png" class="glightbox" data-gallery="agonia"></a>
                 </div>
+            <div class="id-plate">
+                <h3>Nossa Senhora d' Agonia</h3>
+                <span>Viana do Castelo &bull; Agosto 2025</span>
+                <a href="viana.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
+        </div>
+
+
         
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres"><img src="https://i.imgur.com/NqapppF.png">
-                <div class="photo-count"><i class="fas fa-camera"></i> +38</div>
-                <div class="item-overlay"><h4>Gerês & Braga</h4></div></a>
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">38 FOTOS</div>
+            <a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres">
+                <img src="https://i.imgur.com/NqapppF.png" alt="Gerês">
+            </a>
             <div class="hidden-photos">
                 <a href="https://i.imgur.com/OKR9Vce.png" class="glightbox" data-gallery="geres"></a>
                 <a href="https://i.imgur.com/41YJNam.png" class="glightbox" data-gallery="geres"></a>
@@ -441,14 +483,21 @@
                 <a href="https://i.imgur.com/kyT9bgC.png" class="glightbox" data-gallery="geres"></a>
                 <a href="https://i.imgur.com/lvsUC7h.png" class="glightbox" data-gallery="geres"></a>
                 </div>
+            <div class="id-plate">
+                <h3>Gerês e Braga</h3>
+                <span>Minho &bull; Julho 2025</span>
+                <a href="geres.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
-            
-            
-            
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/dZF0utN.png" class="glightbox" data-gallery="fatima">
-                <div class="photo-count"><i class="fas fa-camera"></i> +18</div>
-                <img src="https://i.imgur.com/dZF0utN.png"><div class="item-overlay"><h4>Fátima</h4></div></a>
-            <div class="hidden-photos">
+        </div>
+
+
+        
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">18 FOTOS</div>
+            <a href="https://i.imgur.com/dZF0utN.png.jpg" class="glightbox" data-gallery="fatima">
+                <img src="https://i.imgur.com/dZF0utN.png" alt="Fátima">
+            </a>
+             <div class="hidden-photos">
                 <a href="https://i.imgur.com/kmX2G5F.png" class="glightbox" data-gallery="fatima"></a>
                 <a href="https://i.imgur.com/ZGjLV5I.png" class="glightbox" data-gallery="fatima"></a>
                 <a href="https://i.imgur.com/15BMkL5.png" class="glightbox" data-gallery="fatima"></a>
@@ -468,13 +517,19 @@
                 <a href="https://i.imgur.com/JPtNEFq.png" class="glightbox" data-gallery="fatima"></a>
                 <a href="https://i.imgur.com/5D6hMUE.png" class="glightbox" data-gallery="fatima"></a>
                 </div>
+            <div class="id-plate">
+                <h3>Santuário de Fátima</h3>
+                <span>Fátima &bull; Junho 2025</span>
+                <a href="fatima.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
-            
-            
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/dJqHQFF.png" class="glightbox" data-gallery="obidos">
-                <div class="photo-count"><i class="fas fa-camera"></i> +56</div>
-                <img src="https://i.imgur.com/dJqHQFF.png"><div class="item-overlay"><h4>Caldas da Rainha & Óbidos</h4></div></a>
-            <div class="hidden-photos">
+        </div>
+
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">56 FOTOS</div>
+            <a href="https://i.imgur.com/dJqHQFF.png" class="glightbox" data-gallery="obidos">
+                <img src="https://i.imgur.com/PmjIQux.png" alt="Óbidos">
+            </a>
+                <div class="hidden-photos">
                 <a href="https://i.imgur.com/DBDIE7f.png" class="glightbox" data-gallery="obidos"></a>
                 <a href="https://i.imgur.com/MJNaloC.png" class="glightbox" data-gallery="obidos"></a>
                 <a href="https://i.imgur.com/9MVVmjJ.png" class="glightbox" data-gallery="obidos"></a>
@@ -532,11 +587,21 @@
                 <a href="https://i.imgur.com/391ej95.png" class="glightbox" data-gallery="obidos"></a>
                 <a href="https://i.imgur.com/LHNFD3C.png" class="glightbox" data-gallery="obidos"></a>
                 </div>
+            
+            <div class="id-plate">
+                <h3>Festival do Chocolate</h3>
+                <span>Óbidos &bull; Abril 2025</span>
+                <a href="obidos.html" target="_blank" class="tour-link">Explorar Roteiro</a>
             </div>
+        </div>
 
-            <div class="gallery-item" data-category="2025"><a href="https://i.imgur.com/VJkJt5h.png" class="glightbox" data-gallery="amendoeiras">
-                <div class="photo-count"><i class="fas fa-camera"></i> +68</div>
-                <img src="https://i.imgur.com/VJkJt5h.png"><div class="item-overlay"><h4>Vila Nova de Foz Côa</h4></div></a>  
+
+        
+        <div class="museum-frame" data-year="2025">
+            <div class="status-tag">68 FOTOS</div>
+            <a href="https://i.imgur.com/VJkJt5h.png" class="glightbox" data-gallery="amendoeiras">
+                <img src="https://i.imgur.com/VJkJt5h.png" alt="Amendoeiras">
+            </a>
             <div class="hidden-photos">
                 <a href="https://i.imgur.com/2UgSqIu.png" class="glightbox" data-gallery="amendoeiras"></a>
                 <a href="https://i.imgur.com/FBtNtvB.png" class="glightbox" data-gallery="amendoeiras"></a>
@@ -607,65 +672,75 @@
                 <a href="https://i.imgur.com/0VXRBRS.png" class="glightbox" data-gallery="amendoeiras"></a>
                 <a href="https://i.imgur.com/8IYz2fZ.png" class="glightbox" data-gallery="amendoeiras"></a>
         </div>
+            <div class="id-plate">
+                <h3>Amendoeiras em Flor</h3>
+                <span>Foz Côa &bull; Março 2025</span>
+                <a href="amendoeiras.html" target="_blank" class="tour-link">Explorar Roteiro</a>
+                </div>
         </div>
+
+    </div>
+
+    <div class="footer-controls">
+        <a href="index.html" class="nav-btn"><i class="fas fa-door-open"></i> Sair da Exposição</a>
+        <button class="nav-btn" onclick="toggleModal()"><i class="fas fa-address-book"></i> Contactos</button>
+    </div>
+
+    <div class="modal-overlay" id="contactModal">
+    <div class="contact-card" style="border-radius: 8px;">
+        <i class="fas fa-id-card" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+        <h2 style="letter-spacing: 4px; margin-bottom: 5px;">CONTACTOS</h2>
+        <p style="font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">Atendimento Personalizado</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        
+        <p style="margin: 15px 0;">
+            <strong style="display: block; font-size: 0.9rem; margin-bottom: 5px;">Passeios do Miguel</strong><br>
+            <a href="tel:+351965715465" style="text-decoration: none; color: #111; font-size: 1.1rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-phone-alt" style="color: var(--accent);"></i> +351 965 715 465
+            </a>
+        </p>
+        
+        <p style="margin: 15px 0;">
+            <a href="mailto:geral@passeiosdomiguel.com" style="text-decoration: none; color: #555; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-envelope-open-text" style="color: var(--accent);"></i> geral@passeiosdomiguel.com
+            </a>
+        </p>
+
+        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee;">
+             <p style="font-size: 0.65rem; color: #aaa; text-transform: uppercase;">📍 São Pedro do Sul &bull; Viseu &bull; Castro Daire &bull; Vouzela &bull; Oliveira de Frades</p>
         </div>
-                   
-       <div id="footer-placeholder"></div> 
-    </main>
-
-   
-    
-    <script>
-        // Carregar o Menu lateral
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar menu:', err));
-
-        // Carregar o Rodapé Premium
-        fetch('rodape.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar rodapé:', err));
-    </script>
-
+        
+        <button onclick="toggleModal()" class="filter-btn" style="margin-top:20px; width: 100%; box-shadow: 4px 4px 0px #ddd;">
+            <i class="fas fa-times"></i> Fechar
+        </button>
+    </div>
+</div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        // Iniciar Lightbox
         const lightbox = GLightbox({ selector: '.glightbox', loop: true });
 
-        // SOLUÇÃO PARA O BOTÃO: Ouve o evento de slide ativo
-        lightbox.on('slide_after_load', (data) => {
-            // Pegamos o elemento que disparou a imagem atual
-            const trigger = data.slideTrigger;
-            const fbLink = trigger ? trigger.getAttribute('data-fb') : null;
-
-            if (fbLink && fbLink.trim() !== "") {
-                fbBtn.href = fbLink;
-                fbBtn.style.display = 'block';
-            } else {
-                fbBtn.style.display = 'none';
-            }
-        });
-
-        lightbox.on('close', () => { fbBtn.style.display = 'none'; });
-
-        function filterGallery(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.gallery-item, .grid-year-title').forEach(el => {
-                const cat = el.getAttribute('data-category') || el.getAttribute('data-year');
-                el.style.display = (category === 'all' || cat === category) ? 'block' : 'none';
-            });
-            lightbox.reload();
+        function toggleModal() {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        fetch('menu.html').then(res => res.text()).then(data => { document.getElementById('menu-placeholder').innerHTML = data; });
+        function filterYear(year) {
+            localStorage.setItem('muralFilter', year);
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if(year === 'all') document.getElementById('btn-all').classList.add('active');
+            else document.getElementById(`btn-${year}`).classList.add('active');
+            
+            document.querySelectorAll('.museum-frame').forEach(frame => {
+                frame.style.display = (year === 'all' || frame.getAttribute('data-year') === year) ? 'block' : 'none';
+            });
+        }
+
+        window.onload = function() {
+            const savedFilter = localStorage.getItem('muralFilter') || 'all';
+            filterYear(savedFilter);
+        };
     </script>
 </body>
 </html>
