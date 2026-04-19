@@ -21,7 +21,7 @@
 
         main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        /* HERO DINÂMICO */
+        /* HERO */
         .hero-section {
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                             url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
@@ -31,55 +31,53 @@
         }
         .hero-section h1 { font-size: 3.5em; text-shadow: 3px 3px 15px rgba(0,0,0,0.5); font-family: 'Kalam', cursive; }
 
-        /* FORMULÁRIO FLUTUANTE */
+        /* FORMULÁRIO */
         .barra-feedback {
             background: white; padding: 25px; margin: -40px auto 40px; 
             border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
             max-width: 950px; width: calc(100% - 40px); z-index: 100; border: 1px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
         }
-        
         .form-top { display: flex; gap: 15px; margin-bottom: 15px; }
-        .form-top input, .input-m { padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; font-family: 'Poppins', sans-serif; transition: 0.3s; }
-        .form-top input:focus, .input-m:focus { border-color: #ff8c00; background: #fffdfa; }
-
+        .form-top input, .input-m { padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; font-family: 'Poppins', sans-serif; }
         .form-bottom { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
         .input-m { flex: 1; min-width: 300px; }
 
-        /* ESTRELAS INTERATIVAS */
         .star-rating { display: flex; gap: 4px; background: #fdf2e9; padding: 10px 18px; border-radius: 50px; }
         .star-rating i { color: #ccc; cursor: pointer; font-size: 22px; transition: 0.2s; }
-        .star-rating i.active { color: #ff8c00; transform: scale(1.2); }
+        .star-rating i.active { color: #ff8c00; transform: scale(1.1); }
 
-        .btn-v { background: #28a745; color: white; border: none; padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.4s; box-shadow: 0 4px 15px rgba(40,167,69,0.3); }
-        .btn-v:hover { background: #218838; transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(40,167,69,0.4); }
+        .btn-v { background: #28a745; color: white; border: none; padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.4s; }
+        .btn-v:hover { background: #218838; transform: translateY(-3px); }
 
-        /* MURAL ESTILO MASONRY DINÂMICO */
+        /* MURAL MASONRY */
         .seccao-mural { padding: 0 40px 80px; width: 100%; column-count: 3; column-gap: 30px; max-width: 1300px; margin: 0 auto; }
 
         .nota { 
             break-inside: avoid; margin-bottom: 30px; padding: 30px;
             position: relative; box-shadow: 8px 8px 25px rgba(0,0,0,0.08); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-radius: 2px; cursor: default;
+            border-radius: 2px;
         }
-        
-        /* Efeito de Levantar a Nota */
-        .nota:hover { 
-            transform: scale(1.08) rotate(0deg) !important; 
-            z-index: 50; 
-            box-shadow: 15px 20px 35px rgba(0,0,0,0.15); 
-        }
+        .nota:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 50; box-shadow: 15px 20px 35px rgba(0,0,0,0.15); }
 
-        /* Cores e Rotações Aleatórias para parecer real */
+        /* Cores e Rotações */
         .nota:nth-child(4n+1) { background: #fff9c4; transform: rotate(-2deg); }
-        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1.5deg); border-top: 30px solid #ffadad; padding-top: 10px; }
-        .nota:nth-child(4n+3) { background: #e3f2fd; transform: rotate(-1deg); }
+        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1.5deg); border-top: 25px solid #ffadad; padding-top: 15px; }
+        .nota:nth-child(4n+3) { background: #e3f2fd; transform: rotate(-1.2deg); }
         .nota:nth-child(4n+4) { background: #f1f8e9; transform: rotate(2deg); }
+
+        /* Estilo para Cartões Vazios (Convite) */
+        .nota-vazia { 
+            border: 3px dashed rgba(30, 77, 140, 0.2); 
+            background: rgba(255,255,255,0.5) !important;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; min-height: 180px;
+        }
+        .nota-vazia i { font-size: 30px; color: #1e4d8c; margin-bottom: 15px; opacity: 0.5; }
+        .nota-vazia p { font-family: 'Poppins', sans-serif !important; font-weight: 600; color: #1e4d8c; opacity: 0.6; font-size: 16px !important; }
 
         .pione { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.3); }
         .nota:nth-child(1) .pione { background: #ff5252; }
-        .nota:nth-child(2) .pione { display: none; } /* A nota com borda rosa não precisa de pione */
         .nota:nth-child(3) .pione { background: #1e4d8c; }
         .nota:nth-child(4) .pione { background: #ffa000; }
 
@@ -92,7 +90,7 @@
 
         @media (max-width: 1100px) { .seccao-mural { column-count: 2; } }
         @media (max-width: 1024px) { main { margin-left: 0; } }
-        @media (max-width: 768px) { .seccao-mural { column-count: 1; } .form-top { flex-direction: column; } }
+        @media (max-width: 768px) { .seccao-mural { column-count: 1; } }
     </style>
 </head>
 <body>
@@ -102,62 +100,54 @@
     <main>
         <section class="hero-section">
             <h1>Mural de Memórias</h1>
-            <p style="font-weight: 300; opacity: 0.9;">O que dizem os nossos viajantes</p>
         </section>
 
         <div class="barra-feedback">
             <div class="form-top">
                 <input type="text" id="nome" placeholder="O seu nome">
-                <input type="text" id="passeio" placeholder="Qual foi o passeio?">
+                <input type="text" id="passeio" placeholder="Nome do Passeio">
             </div>
             <div class="form-bottom">
-                <input type="text" id="msg" class="input-m" placeholder="Escreva aqui a sua mensagem...">
-                
+                <input type="text" id="msg" class="input-m" placeholder="Conte-nos a sua experiência...">
                 <div class="star-rating" id="starSelector">
-                    <i class="fas fa-star" data-value="1"></i>
-                    <i class="fas fa-star" data-value="2"></i>
-                    <i class="fas fa-star" data-value="3"></i>
-                    <i class="fas fa-star" data-value="4"></i>
-                    <i class="fas fa-star" data-value="5"></i>
+                    <i class="fas fa-star" data-value="1"></i><i class="fas fa-star" data-value="2"></i><i class="fas fa-star" data-value="3"></i><i class="fas fa-star" data-value="4"></i><i class="fas fa-star" data-value="5"></i>
                 </div>
-
-                <button class="btn-v" onclick="enviarWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Publicar
-                </button>
+                <button class="btn-v" onclick="enviarWhatsApp()"><i class="fab fa-whatsapp"></i> Publicar</button>
             </div>
         </div>
 
         <section class="seccao-mural">
             <div class="nota">
                 <div class="pione"></div>
-                <span class="viagem-tag">Celorico de Basto</span>
+                <span class="viagem-tag">Festa das Camélias — Celorico</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"O desfile das camélias estava incrível. O Miguel organiza tudo muito bem, não falha nada!"</p>
+                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
                 <span class="autor">— Maria Silva</span>
             </div>
 
+            <div class="nota nota-vazia">
+                <i class="fas fa-edit"></i>
+                <p>Este espaço pode ser teu!<br>Deixa o teu testemunho acima.</p>
+            </div>
+
             <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Gerês Inesquecível</span>
+                <span class="viagem-tag">Festa das Camélias</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Excelente organizador. O almoço estava divinal e as vistas... sem palavras!"</p>
-                <span class="autor">— Joaquim Rodrigues</span>
+                <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade, excelente organizador!"</p>
+                <span class="autor">— Carlos Pires</span>
             </div>
 
             <div class="nota">
                 <div class="pione"></div>
                 <span class="viagem-tag">Senhora da Graça</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Recomendo vivamente. O Miguel é muito atencioso e a viagem correu às mil maravilhas."</p>
+                <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel organiza tudo de forma fantástica."</p>
                 <span class="autor">— Ana Rita</span>
             </div>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feira de S. Mateus</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Organização top! Chegámos a horas, divertimo-nos imenso e voltámos em segurança. Nota 10!"</p>
-                <span class="autor">— Carlos Pires</span>
+            <div class="nota nota-vazia" style="transform: rotate(-1.5deg);">
+                <i class="fas fa-heart"></i>
+                <p>Adoramos saber a sua opinião!<br>Escreva-nos pelo WhatsApp.</p>
             </div>
         </section>
 
@@ -167,7 +157,6 @@
     </main>
 
     <script>
-        // LÓGICA ESTRELAS
         let selectedStars = 0;
         const stars = document.querySelectorAll('#starSelector i');
         stars.forEach(star => {
@@ -175,11 +164,9 @@
             star.addEventListener('mouseover', () => highlightStars(star.getAttribute('data-value')));
         });
         document.getElementById('starSelector').addEventListener('mouseleave', updateStars);
-
         function highlightStars(val) { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val)); }
         function updateStars() { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars)); }
 
-        // COMPONENTES
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
         }
@@ -190,8 +177,8 @@
             const n = document.getElementById('nome').value;
             const p = document.getElementById('passeio').value;
             const m = document.getElementById('msg').value;
-            if(!n || !p || !m || selectedStars == 0) { alert("Preencha tudo e deixe a sua avaliação!"); return; }
-            const texto = `Olá Miguel! Novo testemunho:%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Avaliação:* ${"⭐".repeat(selectedStars)}%0A*Mensagem:* ${m}`;
+            if(!n || !p || !m || selectedStars == 0) { alert("Por favor, preencha tudo!"); return; }
+            const texto = `Olá Miguel! Novo testemunho para o Mural:%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Avaliação:* ${"⭐".repeat(selectedStars)}%0A*Mensagem:* ${m}`;
             window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
     </script>
