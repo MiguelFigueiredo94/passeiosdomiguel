@@ -16,71 +16,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. ESTRUTURA GLOBAL (PADRÃO INDEX) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #f4f7f9; 
-            min-height: 100vh;
-            display: block; 
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7f9; min-height: 100vh; display: block; }
 
-        /* 2. CONTEÚDO PRINCIPAL COM MARGEM PARA O MENU */
-        main { 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-            margin-left: 250px; /* Alinhado com o menu fixo */
-        }
+        main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        /* 3. CABEÇALHO HERO (IGUAL AO INDEX) */
+        /* HERO SECCAO */
         .hero-section {
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                             url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; 
-            background-position: center; 
-            height: 380px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            color: white; 
-            text-align: center; 
-            border-bottom: 5px solid #ff8c00;
+            background-size: cover; background-position: center; height: 380px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
         }
-        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; text-transform: uppercase; }
+        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-transform: uppercase; }
 
-        /* 4. BARRA DE FEEDBACK (O FORMULÁRIO) */
+        /* FORMULÁRIO COM ESTRELAS */
         .barra-feedback {
-            background: white; 
-            padding: 20px 25px; 
-            margin: -35px auto 30px; /* Faz o efeito de sobrepor o banner */
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
-            display: flex; 
-            gap: 12px; 
-            align-items: center; 
-            flex-wrap: wrap;
-            max-width: 1000px;
-            width: calc(100% - 80px);
-            z-index: 10;
-            border: 1px solid #eef0f2;
+            background: white; padding: 25px; margin: -50px auto 30px; 
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            max-width: 1000px; width: calc(100% - 40px); z-index: 10; border: 1px solid #eef0f2;
         }
-        .barra-feedback input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif; }
-        .input-m { flex-grow: 1; min-width: 200px; }
-        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .btn-v:hover { background: #218838; transform: scale(1.02); }
+        
+        .form-top { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+        .form-top input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 200px; }
 
-        /* 5. MURAL DE NOTAS */
-        .seccao-mural { padding: 10px 40px 60px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .form-bottom { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .input-m { flex: 2; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; min-width: 250px; }
+
+        /* Seletor de Estrelas Interativo */
+        .star-rating { display: flex; gap: 5px; background: #f8f9fa; padding: 8px 15px; border-radius: 50px; border: 1px solid #eee; }
+        .star-rating i { color: #ddd; cursor: pointer; font-size: 20px; transition: 0.2s; }
+        .star-rating i.active { color: #ffc107; }
+
+        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-v:hover { background: #218838; transform: scale(1.05); }
+
+        /* MURAL DE NOTAS */
+        .seccao-mural { padding: 20px 40px 60px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .nota { padding: 35px 25px; min-height: 220px; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.05); transition: 0.3s; border-radius: 4px; }
-        
-        /* Estilos Variados das Notas (Post-its) */
         .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1deg); border-bottom-right-radius: 40px 5px; }
-        .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1deg); background-image: linear-gradient(#f9f9f9 1px, transparent 1px); background-size: 100% 28px; border-left: 5px solid #ffadad; }
+        .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1deg); border-left: 5px solid #ffadad; }
         .nota:nth-child(3n+3) { background: #e3f2fd; transform: rotate(-0.5deg); }
 
         .pione { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -88,18 +66,20 @@
         .nota:nth-child(3n+2) .pione { background: #1e4d8c; }
         .nota:nth-child(3n+3) .pione { background: #ffa000; }
 
-        .viagem-tag { font-size: 12px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 5px; }
+        .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        
+        /* Estrelas nas Notas */
+        .stars-nota { color: #ffc107; font-size: 14px; margin-bottom: 10px; display: block; }
+
         .comentario { font-family: 'Kalam', cursive; font-size: 18px; color: #333; line-height: 1.5; margin: 10px 0; }
         .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 15px; }
 
-        /* 6. RODAPÉ COM RESPIRO */
         .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
             .hero-section h1 { font-size: 2.2em; }
-            .barra-feedback { margin: -20px 20px 30px; width: calc(100% - 40px); }
+            .barra-feedback { width: calc(100% - 30px); margin-top: -30px; }
         }
     </style>
 </head>
@@ -113,31 +93,47 @@
         </section>
 
         <div class="barra-feedback">
-            <input type="text" id="nome" style="width:180px;" placeholder="O seu nome">
-            <input type="text" id="passeio" style="width:240px;" placeholder="Nome do Passeio">
-            <input type="text" id="msg" class="input-m" placeholder="Conte-nos como foi a sua experiência...">
-            <button class="btn-v" onclick="enviarWhatsApp()"><i class="fab fa-whatsapp"></i> Enviar Nota</button>
+            <div class="form-top">
+                <input type="text" id="nome" placeholder="O seu nome">
+                <input type="text" id="passeio" placeholder="Nome do Passeio (ex: Serra da Estrela)">
+            </div>
+            <div class="form-bottom">
+                <input type="text" id="msg" class="input-m" placeholder="Como foi a sua experiência?">
+                
+                <div class="star-rating" id="starSelector">
+                    <i class="fas fa-star" data-value="1"></i>
+                    <i class="fas fa-star" data-value="2"></i>
+                    <i class="fas fa-star" data-value="3"></i>
+                    <i class="fas fa-star" data-value="4"></i>
+                    <i class="fas fa-star" data-value="5"></i>
+                </div>
+
+                <button class="btn-v" onclick="enviarWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Enviar Nota
+                </button>
+            </div>
         </div>
 
         <section class="seccao-mural">
             <div class="grid-mural">
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
-                    <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado!"</p>
+                    <span class="viagem-tag">Festa das Camélias — Celorico</span>
+                    <div class="stars-nota">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="comentario">"O desfile temático estava lindíssimo. Um dia muito bem passado!"</p>
                     <span class="autor">— Maria Silva</span>
                 </div>
+
                 <div class="nota">
                     <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias</span>
-                    <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade!"</p>
+                    <span class="viagem-tag">Senhora da Graça</span>
+                    <div class="stars-nota">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <p class="comentario">"Que vista incrível lá de cima do Santuário! O Miguel é um guia fantástico."</p>
                     <span class="autor">— Carlos Pires</span>
-                </div>
-                <div class="nota">
-                    <div class="pione"></div>
-                    <span class="viagem-tag">Santuário da Senhora da Graça</span>
-                    <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível lá de cima do Santuário!"</p>
-                    <span class="autor">— Ana Rita</span>
                 </div>
             </div>
         </section>
@@ -148,22 +144,59 @@
     </main>
 
     <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+        // LÓGICA DAS ESTRELAS INTERATIVAS
+        let selectedStars = 0;
+        const stars = document.querySelectorAll('#starSelector i');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedStars = star.getAttribute('data-value');
+                updateStars();
+            });
+            
+            star.addEventListener('mouseover', () => {
+                highlightStars(star.getAttribute('data-value'));
+            });
+        });
+
+        document.getElementById('starSelector').addEventListener('mouseleave', () => {
+            updateStars();
+        });
+
+        function highlightStars(val) {
+            stars.forEach(s => {
+                s.classList.toggle('active', s.getAttribute('data-value') <= val);
+            });
         }
 
+        function updateStars() {
+            stars.forEach(s => {
+                s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars);
+            });
+        }
+
+        // CARREGAR COMPONENTES
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
+        }
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
+        // ENVIO WHATSAPP COM ESTRELAS
         function enviarWhatsApp() {
             const n = document.getElementById('nome').value;
             const p = document.getElementById('passeio').value;
             const m = document.getElementById('msg').value;
-            if(!n || !p || !m) { alert("Por favor, preencha todos os campos!"); return; }
-            const texto = `Olá Miguel! Gostaria de deixar uma nota para o Mural:%0A%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Mensagem:* ${m}`;
+            const s = selectedStars;
+
+            if(!n || !p || !m || s == 0) { 
+                alert("Por favor, preencha tudo e escolha a sua avaliação (estrelas)!"); 
+                return; 
+            }
+
+            let estrelasTexto = "⭐".repeat(s);
+            const texto = `Olá Miguel! Gostaria de deixar uma nota para o Mural:%0A%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Avaliação:* ${estrelasTexto}%0A*Mensagem:* ${m}`;
+            
             window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
         }
     </script>
