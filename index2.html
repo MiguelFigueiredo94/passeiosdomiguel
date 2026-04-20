@@ -11,70 +11,80 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Memórias - Passeios do Miguel</title>
+    <title>Passeios do Miguel - Descubra Portugal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: #e9eff3; min-height: 100vh; display: block; }
-        main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f9; 
+            min-height: 100vh;
+            display: block;
+            color: #333;
+        }
 
+        /* CONTEÚDO PRINCIPAL */
+        main { 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+            margin-left: 250px; 
+        }
+
+        /* CABEÇALHO HERO */
         .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                            url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; height: 320px; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+            background-size: cover; 
+            background-position: center; 
+            height: 450px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            color: white; 
+            text-align: center; 
+            border-bottom: 5px solid #ff8c00;
         }
-        .hero-section h1 { font-size: 3.5em; text-shadow: 3px 3px 15px rgba(0,0,0,0.5); font-family: 'Kalam', cursive; }
+        .hero-section h1 { font-size: 3.5em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .hero-section p { font-size: 1.4em; max-width: 700px; font-weight: 300; padding: 0 20px; }
 
-        /* FORMULÁRIO FORMSPREE */
-        .barra-feedback {
-            background: white; padding: 25px; margin: -40px auto 40px; 
-            border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-            max-width: 950px; width: calc(100% - 40px); z-index: 100; border: 1px solid rgba(255,255,255,0.3);
+        /* CONTENT CONTAINER */
+        .content-container { padding: 60px 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
+
+        .intro-text { text-align: center; margin-bottom: 50px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.5em; margin-bottom: 15px; }
+        .intro-text p { color: #555; font-size: 1.2em; line-height: 1.7; max-width: 800px; margin: 0 auto; }
+
+        /* CARDS */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 60px; }
+        .feature-card { 
+            background: white; padding: 40px 25px; border-radius: 18px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; 
+            transition: transform 0.3s ease;
         }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 20px; }
+        .feature-card h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
+        .feature-card p { color: #666; font-size: 1em; line-height: 1.6; }
 
-        #status-mensagem { text-align: center; display: none; padding: 20px; }
-        #status-mensagem i { color: #28a745; font-size: 40px; margin-bottom: 10px; }
-        #status-mensagem p { font-weight: 600; color: #1e4d8c; }
+        /* VÍDEO YOUTUBE */
+        .video-section {
+            background-color: white; padding: 20px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 50px;
+        }
+        .video-header { text-align: center; margin-bottom: 20px; color: #1e4d8c; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .form-top { display: flex; gap: 15px; margin-bottom: 15px; }
-        .form-top input, .input-m { padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; font-family: 'Poppins', sans-serif; }
-        .form-top input:focus, .input-m:focus { border-color: #ff8c00; }
-
-        .form-bottom { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .input-m { flex: 1; min-width: 300px; }
-
-        .star-rating { display: flex; gap: 4px; background: #fdf2e9; padding: 10px 18px; border-radius: 50px; }
-        .star-rating i { color: #ccc; cursor: pointer; font-size: 22px; transition: 0.2s; }
-        .star-rating i.active { color: #ff8c00; transform: scale(1.1); }
-
-        .btn-v { background: #1e4d8c; color: white; border: none; padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.4s; font-family: 'Poppins', sans-serif;}
-        .btn-v:hover { background: #ff8c00; transform: translateY(-3px); }
-
-        /* MURAL */
-        .seccao-mural { padding: 0 40px 80px; width: 100%; column-count: 3; column-gap: 30px; max-width: 1300px; margin: 0 auto; }
-        .nota { break-inside: avoid; margin-bottom: 30px; padding: 30px; position: relative; box-shadow: 8px 8px 25px rgba(0,0,0,0.08); transition: 0.4s; border-radius: 2px; }
-        .nota:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 50; box-shadow: 15px 20px 35px rgba(0,0,0,0.15); }
-
-        .nota:nth-child(4n+1) { background: #fff9c4; transform: rotate(-2deg); }
-        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1.5deg); border-top: 25px solid #ffadad; padding-top: 15px; }
-        .nota:nth-child(4n+3) { background: #e3f2fd; transform: rotate(-1.2deg); }
-        .nota:nth-child(4n+4) { background: #f1f8e9; transform: rotate(2deg); }
-
-        .pione { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.3); }
-        .nota:nth-child(1) .pione { background: #ff5252; }
-        .nota:nth-child(3) .pione { background: #1e4d8c; }
-
-        .viagem-tag { font-size: 10px; font-weight: 900; color: #1e4d8c; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; opacity: 0.7; }
-        .stars-nota { color: #ff8c00; font-size: 13px; margin-bottom: 12px; }
-        .comentario { font-family: 'Kalam', cursive; font-size: 19px; color: #222; line-height: 1.4; margin-bottom: 15px; }
-        .autor { font-weight: 700; color: #1e4d8c; font-size: 15px; text-align: right; display: block; }
-
-        @media (max-width: 1024px) { main { margin-left: 0; } }
-        @media (max-width: 768px) { .seccao-mural { column-count: 1; } }
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            main { margin-left: 0; }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2.5em; }
+            .hero-section { height: 350px; }
+        }
     </style>
 </head>
 <body>
@@ -83,103 +93,54 @@
 
     <main>
         <section class="hero-section">
-            <h1>Mural de Memórias</h1>
+            <h1>Passeios do Miguel</h1>
+            <p>Viagens autênticas, destinos incríveis e a melhor companhia.</p>
+            <a href="passeios.html" style="display:inline-block; margin-top: 30px; background: #ff8c00; color: white; padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.4); transition: 0.3s;">VER PRÓXIMOS PASSEIOS</a>
         </section>
 
-        <div class="barra-feedback">
-            <div id="status-mensagem" data-fs-success>
-                <i class="fas fa-check-circle"></i>
-                <p>Obrigado pelo seu testemunho, Miguel! <br> Vamos colocar no mural em breve.</p>
+        <div class="content-container">
+            <section class="intro-text">
+                <h2>Explore Portugal Connosco</h2>
+                <p>Parta de São Pedro do Sul à descoberta dos recantos mais fascinantes do país. Criamos roteiros pensados para quem valoriza o conforto, a cultura e o prazer de viajar em boa companhia.</p>
+            </section>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bus-alt"></i>
+                    <h3>Conforto Total</h3>
+                    <p>Transporte moderno e seguro, para que a sua única preocupação seja apreciar a paisagem.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Locais selecionados com cuidado para oferecer uma visão autêntica e especial de cada destino.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Ambiente Familiar</h3>
+                    <p>Aqui ninguém viaja sozinho. Promovemos o convívio e a alegria em cada momento do dia.</p>
+                </div>
             </div>
 
-            <form id="mural-form">
-                <div class="form-top">
-                    <input type="text" name="nome" placeholder="O seu nome" required data-fs-field>
-                    <input type="text" name="passeio" placeholder="Qual foi o passeio?" required data-fs-field>
+            <section class="video-section">
+                <div class="video-header">
+                    <h3>Veja como são as nossas aventuras</h3>
                 </div>
-                <div class="form-bottom">
-                    <input type="text" name="mensagem" class="input-m" placeholder="Escreva a sua experiência..." required data-fs-field>
-                    
-                    <input type="hidden" name="estrelas" id="estrelas-valor" value="5">
-
-                    <div class="star-rating" id="starSelector">
-                        <i class="fas fa-star active" data-value="1"></i>
-                        <i class="fas fa-star active" data-value="2"></i>
-                        <i class="fas fa-star active" data-value="3"></i>
-                        <i class="fas fa-star active" data-value="4"></i>
-                        <i class="fas fa-star active" data-value="5"></i>
-                    </div>
-
-                    <button type="submit" class="btn-v" data-fs-submit-btn>
-                        Publicar no Mural
-                    </button>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div style="color: red; font-size: 12px; margin-top: 10px;" data-fs-error></div>
-            </form>
+            </section>
         </div>
-
-        <section class="seccao-mural">
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festa das Camélias — Celorico</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
-                <span class="autor">— Maria Silva</span>
-            </div>
-
-            <div class="nota">
-                <span class="viagem-tag">Festa das Camélias</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade, excelente organizador!"</p>
-                <span class="autor">— Carlos Pires</span>
-            </div>
-
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Senhora da Graça</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel organiza tudo de forma fantástica."</p>
-                <span class="autor">— Ana Rita</span>
-            </div>
-        </section>
 
         <div id="rodape-placeholder"></div>
     </main>
 
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
-        // Inicializar Formspree
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { 
-            formElement: '#mural-form', 
-            formId: 'mnjlzngy',
-            onSuccess: function() {
-                document.getElementById('mural-form').style.display = 'none';
-                document.getElementById('status-mensagem').style.display = 'block';
-            }
-        });
-
-        // LÓGICA ESTRELAS
-        let selectedStars = 5;
-        const stars = document.querySelectorAll('#starSelector i');
-        const inputEstrelas = document.getElementById('estrelas-valor');
-
-        stars.forEach(star => {
-            star.addEventListener('click', () => { 
-                selectedStars = star.getAttribute('data-value');
-                inputEstrelas.value = selectedStars; // Atualiza o valor que vai no e-mail
-                updateStars(); 
-            });
-            star.addEventListener('mouseover', () => highlightStars(star.getAttribute('data-value')));
-        });
-        document.getElementById('starSelector').addEventListener('mouseleave', updateStars);
-
-        function highlightStars(val) { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val)); }
-        function updateStars() { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars)); }
-
-        // COMPONENTES
         function carregarComponente(id, ficheiro) {
-            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro ao carregar ' + ficheiro + ':', error));
         }
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
