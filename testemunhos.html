@@ -1,133 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-    
-          gtag('config', 'G-G0BKTCRNV9');
-        </script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mural de Memórias - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Poppins', sans-serif; margin: 0; display: flex; background-color: #f0f3f7; color: #333; min-height: 100vh; }
-        #container-menu { min-width: 250px; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #e9eff3; min-height: 100vh; display: block; }
+        main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        .hero-testemunhos {
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 60px 20px; text-align: center; border-radius: 0 0 80px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                            url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; height: 320px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
         }
-        .hero-testemunhos h1 { font-size: 38px; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-section h1 { font-size: 3.5em; text-shadow: 3px 3px 15px rgba(0,0,0,0.5); font-family: 'Kalam', cursive; }
 
+        /* FORMULÁRIO FORMSPREE */
         .barra-feedback {
-            background: white; padding: 15px 25px; margin: -25px 40px 30px; border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-            z-index: 10; border: 1px solid #eef0f2;
+            background: white; padding: 25px; margin: -40px auto 40px; 
+            border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            max-width: 950px; width: calc(100% - 40px); z-index: 100; border: 1px solid rgba(255,255,255,0.3);
         }
-        .barra-feedback input { padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
-        .input-m { flex-grow: 1; min-width: 200px; }
-        .btn-v { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        .seccao-mural { padding: 10px 40px 60px; flex-grow: 1; }
-        .grid-mural { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
+        #status-mensagem { text-align: center; display: none; padding: 20px; }
+        #status-mensagem i { color: #28a745; font-size: 40px; margin-bottom: 10px; }
+        #status-mensagem p { font-weight: 600; color: #1e4d8c; }
 
-        .nota { padding: 30px 25px; min-height: 200px; position: relative; box-shadow: 5px 10px 20px rgba(0,0,0,0.07); transition: 0.3s; }
-        .nota:nth-child(3n+1) { background: #fff9c4; transform: rotate(-1.5deg); border-bottom-right-radius: 50px 5px; }
-        .nota:nth-child(3n+2) { background: #ffffff; transform: rotate(1.2deg); background-image: linear-gradient(#f0f2f5 1px, transparent 1px); background-size: 100% 28px; border-left: 4px solid #ffadad; }
-        .nota:nth-child(3n+3) { background: #e3f2fd; transform: rotate(-0.8deg); border-radius: 5px; }
+        .form-top { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-top input, .input-m { padding: 14px; border: 2px solid #f0f0f0; border-radius: 12px; outline: none; font-family: 'Poppins', sans-serif; }
+        .form-top input:focus, .input-m:focus { border-color: #ff8c00; }
 
-        .pione { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .nota:nth-child(3n+1) .pione { background: #ff5252; }
-        .nota:nth-child(3n+2) .pione { background: #1e4d8c; }
-        .nota:nth-child(3n+3) .pione { background: #ffa000; }
+        .form-bottom { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .input-m { flex: 1; min-width: 300px; }
 
-        .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; display: block; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 5px; }
-        .comentario { font-family: 'Kalam', cursive; font-size: 17px; color: #333; line-height: 1.5; margin: 10px 0; }
-        .autor { font-weight: 700; color: #1e4d8c; font-size: 14px; text-align: right; display: block; margin-top: 20px; }
+        .star-rating { display: flex; gap: 4px; background: #fdf2e9; padding: 10px 18px; border-radius: 50px; }
+        .star-rating i { color: #ccc; cursor: pointer; font-size: 22px; transition: 0.2s; }
+        .star-rating i.active { color: #ff8c00; transform: scale(1.1); }
 
-        .footer-universal { background: #1e4d8c; position: relative; color: white; padding: 30px 40px 15px; margin-top: auto; overflow: hidden; }
-        .footer-universal::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #1e4d8c, #ff9800, #1e4d8c); background-size: 200% 100%; animation: moveGradient 5s linear infinite; }
-        @keyframes moveGradient { 0% { background-position: 100% 0%; } 100% { background-position: -100% 0%; } }
+        .btn-v { background: #1e4d8c; color: white; border: none; padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.4s; font-family: 'Poppins', sans-serif;}
+        .btn-v:hover { background: #ff8c00; transform: translateY(-3px); }
 
-   </style>
+        /* MURAL */
+        .seccao-mural { padding: 0 40px 80px; width: 100%; column-count: 3; column-gap: 30px; max-width: 1300px; margin: 0 auto; }
+        .nota { break-inside: avoid; margin-bottom: 30px; padding: 30px; position: relative; box-shadow: 8px 8px 25px rgba(0,0,0,0.08); transition: 0.4s; border-radius: 2px; }
+        .nota:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 50; box-shadow: 15px 20px 35px rgba(0,0,0,0.15); }
+
+        .nota:nth-child(4n+1) { background: #fff9c4; transform: rotate(-2deg); }
+        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1.5deg); border-top: 25px solid #ffadad; padding-top: 15px; }
+        .nota:nth-child(4n+3) { background: #e3f2fd; transform: rotate(-1.2deg); }
+        .nota:nth-child(4n+4) { background: #f1f8e9; transform: rotate(2deg); }
+
+        .pione { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.3); }
+        .nota:nth-child(1) .pione { background: #ff5252; }
+        .nota:nth-child(3) .pione { background: #1e4d8c; }
+
+        .viagem-tag { font-size: 10px; font-weight: 900; color: #1e4d8c; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; opacity: 0.7; }
+        .stars-nota { color: #ff8c00; font-size: 13px; margin-bottom: 12px; }
+        .comentario { font-family: 'Kalam', cursive; font-size: 19px; color: #222; line-height: 1.4; margin-bottom: 15px; }
+        .autor { font-weight: 700; color: #1e4d8c; font-size: 15px; text-align: right; display: block; }
+
+        @media (max-width: 1024px) { main { margin-left: 0; } }
+        @media (max-width: 768px) { .seccao-mural { column-count: 1; } }
+    </style>
 </head>
 <body>
 
-    <div id="container-menu"></div>
+    <div id="menu-placeholder"></div>
 
     <main>
-        <div class="hero-testemunhos">
+        <section class="hero-section">
             <h1>Mural de Memórias</h1>
-        </div>
+        </section>
 
         <div class="barra-feedback">
-            <input type="text" id="nome" style="width:160px;" placeholder="O seu nome">
-            <input type="text" id="passeio" style="width:220px;" placeholder="Nome do Passeio">
-            <input type="text" id="msg" class="input-m" placeholder="Conte-nos como foi a sua experiência...">
-            <button class="btn-v" onclick="enviarWhatsApp()"><i class="fab fa-whatsapp"></i> Enviar Nota</button>
+            <div id="status-mensagem" data-fs-success>
+                <i class="fas fa-check-circle"></i>
+                <p>Obrigado pelo seu testemunho, Miguel! <br> Vamos colocar no mural em breve.</p>
+            </div>
+
+            <form id="mural-form">
+                <div class="form-top">
+                    <input type="text" name="nome" placeholder="O seu nome" required data-fs-field>
+                    <input type="text" name="passeio" placeholder="Qual foi o passeio?" required data-fs-field>
+                </div>
+                <div class="form-bottom">
+                    <input type="text" name="mensagem" class="input-m" placeholder="Escreva a sua experiência..." required data-fs-field>
+                    
+                    <input type="hidden" name="estrelas" id="estrelas-valor" value="5">
+
+                    <div class="star-rating" id="starSelector">
+                        <i class="fas fa-star active" data-value="1"></i>
+                        <i class="fas fa-star active" data-value="2"></i>
+                        <i class="fas fa-star active" data-value="3"></i>
+                        <i class="fas fa-star active" data-value="4"></i>
+                        <i class="fas fa-star active" data-value="5"></i>
+                    </div>
+
+                    <button type="submit" class="btn-v" data-fs-submit-btn>
+                        Publicar no Mural
+                    </button>
+                </div>
+                <div style="color: red; font-size: 12px; margin-top: 10px;" data-fs-error></div>
+            </form>
         </div>
 
         <section class="seccao-mural">
-            <div class="grid-mural">
-                <div class="nota">
-                    <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
-                    <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado!"</p>
-                    <span class="autor">— Maria Silva</span>
-                </div>
-                <div class="nota">
-                    <div class="pione"></div>
-                    <span class="viagem-tag">Festa das Camélias</span>
-                    <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade!"</p>
-                    <span class="autor">— Carlos Pires</span>
-                </div>
-                <div class="nota">
-                    <div class="pione"></div>
-                    <span class="viagem-tag">Santuário da Senhora da Graça</span>
-                    <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível lá de cima do Santuário!"</p>
-                    <span class="autor">— Ana Rita</span>
-                </div>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festa das Camélias — Celorico</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
+                <span class="autor">— Maria Silva</span>
+            </div>
+
+            <div class="nota">
+                <span class="viagem-tag">Festa das Camélias</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade, excelente organizador!"</p>
+                <span class="autor">— Carlos Pires</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Senhora da Graça</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel organiza tudo de forma fantástica."</p>
+                <span class="autor">— Ana Rita</span>
             </div>
         </section>
 
-
- <div id="footer-placeholder"></div> 
+        <div id="rodape-placeholder"></div>
     </main>
 
-   
-    
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
-        // Carregar o Rodapé Premium
-        fetch('rodape.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar rodapé:', err));
-    </script>
+        // Inicializar Formspree
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { 
+            formElement: '#mural-form', 
+            formId: 'mnjlzngy',
+            onSuccess: function() {
+                document.getElementById('mural-form').style.display = 'none';
+                document.getElementById('status-mensagem').style.display = 'block';
+            }
+        });
 
-    <script>
-        function enviarWhatsApp() {
-            const n = document.getElementById('nome').value;
-            const p = document.getElementById('passeio').value;
-            const m = document.getElementById('msg').value;
-            if(!n || !p || !m) { alert("Por favor, preencha todos os campos!"); return; }
-            const texto = `Olá Miguel! Gostaria de deixar uma nota para o Mural:%0A%0A*Nome:* ${n}%0A*Passeio:* ${p}%0A*Mensagem:* ${m}`;
-            window.open(`https://wa.me/351965715465?text=${texto}`, '_blank');
+        // LÓGICA ESTRELAS
+        let selectedStars = 5;
+        const stars = document.querySelectorAll('#starSelector i');
+        const inputEstrelas = document.getElementById('estrelas-valor');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => { 
+                selectedStars = star.getAttribute('data-value');
+                inputEstrelas.value = selectedStars; // Atualiza o valor que vai no e-mail
+                updateStars(); 
+            });
+            star.addEventListener('mouseover', () => highlightStars(star.getAttribute('data-value')));
+        });
+        document.getElementById('starSelector').addEventListener('mouseleave', updateStars);
+
+        function highlightStars(val) { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val)); }
+        function updateStars() { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars)); }
+
+        // COMPONENTES
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
         }
-        fetch('menu.html').then(r => r.text()).then(d => { document.getElementById('container-menu').innerHTML = d; });
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('rodape-placeholder', 'rodape.html');
     </script>
 </body>
 </html>
