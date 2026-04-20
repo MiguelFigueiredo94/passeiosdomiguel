@@ -20,10 +20,11 @@
         
         body { 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #f8fafc; /* Um cinza mais suave e moderno */
+            background-color: #f8fafc; 
             min-height: 100vh;
             display: block;
             color: #334155;
+            overflow-x: hidden;
         }
 
         #menu-placeholder { width: 250px; flex-shrink: 0; }
@@ -35,13 +36,13 @@
             margin-left: 250px; 
         }
 
-        /* 2. CABEÇALHO HERO - TEXTO MAIS NÍTIDO */
+        /* 2. CABEÇALHO HERO */
         .hero-section {
-            background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), 
+            background-image: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)), 
                               url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
             background-size: cover; 
             background-position: center; 
-            height: 420px; /* Um pouco mais alto para dar imponência */
+            height: 420px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -50,39 +51,40 @@
             text-align: center; 
             border-bottom: 5px solid #ff8c00;
         }
-        .hero-section h1 { 
-            font-size: 3.8em; 
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-            margin-bottom: 15px;
-            color: white !important;
-            font-weight: 800;
-        }
-        .hero-section p { 
-            font-size: 1.4em; 
-            max-width: 700px; 
-            font-weight: 300; 
-            padding: 0 20px; 
-            opacity: 0.95;
-        }
+        .hero-section h1 { font-size: 3.5em; font-weight: 800; margin-bottom: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-        /* 3. TIMELINE NARRATIVA - MELHORADA */
+        /* 3. TIMELINE NARRATIVA COM ANIMAÇÃO DE SCROLL */
         .content-section { 
-            padding: 100px 40px; 
+            padding: 80px 40px; 
             max-width: 950px; 
             margin: 0 auto; 
             position: relative;
         }
 
-        /* Linha central com degradê mais visível */
+        /* A linha da timeline */
         .content-section::before {
             content: '';
             position: absolute;
             left: 65px;
-            top: 100px;
-            bottom: 100px;
+            top: 80px;
+            bottom: 80px;
             width: 3px;
             background: linear-gradient(to bottom, #ff8c00, #1e4d8c);
             border-radius: 10px;
+            opacity: 0.4;
+        }
+
+        /* ESTADO INICIAL PARA O SCROLL (Invisível) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) translateX(-10px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ESTADO QUANDO APARECE NO ECRÃ */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
         }
 
         .fase { 
@@ -91,17 +93,6 @@
             margin-bottom: 80px; 
             position: relative; 
             z-index: 1;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
-        }
-
-        /* Delay nas fases para o efeito de história */
-        .fase:nth-child(2) { animation-delay: 0.3s; }
-        .fase:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .fase-icon { 
@@ -115,33 +106,27 @@
             justify-content: center; 
             font-size: 22px; 
             flex-shrink: 0; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border: 2px solid #ff8c00;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .fase:hover .fase-icon {
-            background: #ff8c00;
-            color: white;
-            transform: scale(1.2) rotate(10deg);
+            transition: 0.5s;
         }
 
         .fase-content { 
             background: white; 
             padding: 40px; 
             border-radius: 28px; 
-            box-shadow: 0 10px 30px rgba(30, 77, 140, 0.04); 
-            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
             border: 1px solid rgba(226, 232, 240, 0.8);
             position: relative;
+            flex-grow: 1;
         }
 
-        /* Pequena seta a apontar para o ícone */
+        /* Seta lateral */
         .fase-content::after {
             content: '';
             position: absolute;
             left: -10px;
-            top: 22px;
+            top: 18px;
             width: 20px;
             height: 20px;
             background: white;
@@ -150,52 +135,32 @@
             border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        .fase:hover .fase-content {
-            transform: translateX(10px);
-            box-shadow: 0 15px 45px rgba(30, 77, 140, 0.08);
-            border-color: #ff8c0033;
-        }
+        .fase:hover .fase-icon { background: #ff8c00; color: white; transform: scale(1.1); }
+        .fase-content p { color: #475569; line-height: 1.8; font-size: 1.2em; }
 
-        .fase-content p { 
-            color: #475569; 
-            line-height: 1.8; 
-            font-size: 1.2em; 
-        }
-
-        /* 4. ASSINATURA */
+        /* 4. QUOTE FINAL */
         .quote-especial {
-            margin-top: 60px;
+            margin-top: 40px;
             padding: 50px;
             background: linear-gradient(135deg, #1e4d8c 0%, #0f172a 100%);
             color: white;
             border-radius: 35px;
             text-align: center;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
         }
 
-        .quote-especial p { font-size: 1.5em; font-style: italic; font-weight: 300; }
-        .quote-especial span { 
-            display: block; 
-            margin-top: 20px; 
-            color: #ff8c00; 
-            font-weight: 800; 
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 1em;
-        }
+        .quote-especial p { font-size: 1.6em; font-style: italic; }
+        .quote-especial span { display: block; margin-top: 20px; color: #ff8c00; font-weight: 800; letter-spacing: 2px; }
 
-        /* 5. RESPONSIVIDADE */
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
-            #menu-placeholder { width: 100%; height: auto; }
             main { margin-left: 0; }
-            .content-section { padding: 60px 20px; }
+            #menu-placeholder { width: 100%; }
             .content-section::before { left: 35px; }
             .fase { gap: 20px; }
-            .fase-icon { width: 40px; height: 40px; font-size: 16px; }
+            .fase-icon { width: 42px; height: 42px; font-size: 16px; }
             .fase-content { padding: 25px; }
             .fase-content::after { display: none; }
-            .hero-section h1 { font-size: 2.5em; }
         }
     </style>
 </head>
@@ -206,34 +171,33 @@
     <main>
         <section class="hero-section">
             <h1>A Nossa História</h1>
-            <p>Mais do que viagens, criamos laços entre pessoas e lugares.</p>
+            <p>Onde cada quilómetro conta uma memória.</p>
         </section>
 
         <section class="content-section">
-            <div class="fase">
+            <div class="fase reveal">
                 <div class="fase-icon"><i class="fas fa-seedling"></i></div>
                 <div class="fase-content">
                     <p>Tudo começou de forma genuína: dois passeios organizados para ajudar uma causa. O que nasceu como um gesto solidário, rapidamente revelou uma paixão adormecida pelo convívio e pela descoberta do nosso Portugal.</p>
                 </div>
             </div>
 
-            <div class="fase">
+            <div class="fase reveal">
                 <div class="fase-icon"><i class="fas fa-heart"></i></div>
                 <div class="fase-content">
                     <p>Foi o vosso sorriso e o incentivo constante que me fizeram olhar mais longe. <strong>"Miguel, quando é o próximo?"</strong> tornou-se a frase que deu vida a este projeto. Deixámos de ser apenas um grupo e passámos a ser uma família de estrada.</p>
                 </div>
             </div>
 
-            <div class="fase">
+            <div class="fase reveal">
                 <div class="fase-icon"><i class="fas fa-compass"></i></div>
                 <div class="fase-content">
                     <p>Hoje, este espaço é o ponto de encontro para quem procura viagens descontraídas, repletas de alma e acessíveis a todos. Do coração de São Pedro do Sul para os recantos mais mágicos do país, cada destino é escolhido a pensar na vossa alegria.</p>
                 </div>
             </div>
 
-            <div class="quote-especial">
-                <i class="fas fa-quote-left" style="font-size: 2em; opacity: 0.2; margin-bottom: 20px; display: block;"></i>
-                <p>Criamos caminhos, partilhamos destinos e guardamos amizades para a vida.</p>
+            <div class="quote-especial reveal">
+                <p>"Criamos caminhos, partilhamos destinos e guardamos amizades para a vida."</p>
                 <span>Passeios do Miguel</span>
             </div>
         </section>
@@ -242,15 +206,29 @@
     </main>
 
     <script>
+        // Função para carregar Menu e Rodapé
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
                 .then(data => { document.getElementById(id).innerHTML = data; })
                 .catch(error => console.error('Erro:', error));
         }
-
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
+
+        // LÓGICA DO SCROLL REVEAL (Especialista)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15 // Ativa quando 15% do elemento está visível
+        });
+
+        // Seleciona todos os elementos com a classe 'reveal' e observa-os
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
