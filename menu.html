@@ -1,135 +1,102 @@
 <style>
-    /* 1. ESTRUTURA LATERAL FIXA E ESTREITA */
+    /* 1. ESTRUTURA LATERAL CORRIGIDA */
     #menu-lateral { 
-        width: 85px; 
+        width: 250px; 
         background-color: #1e4d8c; 
         min-height: 100vh; 
-        position: fixed;
+        position: fixed; /* Mantém ele fixo ao rolar a página */
         left: 0;
         top: 0;
-        padding: 25px 0;
+        padding: 30px 15px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        align-items: center;
         z-index: 9999;
     }
 
-    /* 2. LOGÓTIPO PEQUENO E FIXO */
+    /* 2. LOGÓTIPO - AJUSTE DE VISIBILIDADE */
     .logo-container {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 40px;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 30px;
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden; 
         border-radius: 50%; 
-        border: 2px solid white; 
+        border: 4px solid white; 
         background-color: white; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
         text-decoration: none;
-        overflow: hidden;
     }
-    .logo-container .logo { width: 110%; height: auto; object-fit: contain; }
 
-    /* 3. LINKS DO MENU COM TEXTO "ESCONDIDO" */
-    #menu-lateral ul { list-style: none; padding: 0; margin: 0; width: 100%; } 
-    #menu-lateral li { position: relative; width: 100%; display: flex; justify-content: center; margin-bottom: 15px; }
+    .logo-container .logo { 
+        width: 115%; /* Zoom moderado para não cortar o texto */
+        height: auto;
+        object-fit: contain;
+        display: block;
+        transform: translateY(5px); /* Ajuste para centrar o texto no círculo */
+    }
+
+    /* 3. LINKS DO MENU - NOMES ORIGINAIS RECUPERADOS */
+    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } 
+    #menu-lateral li { margin-bottom: 10px; position: relative; }
 
     #menu-lateral ul li a { 
-        display: flex; align-items: center; justify-content: center;
-        color: white; text-decoration: none; 
-        width: 55px; height: 55px;
-        transition: 0.3s; border-radius: 15px; 
-        background: rgba(255, 255, 255, 0.08);
-        position: relative;
+        display: flex; align-items: center; color: white; text-decoration: none; 
+        padding: 12px 20px; font-size: 15px; font-weight: 600; 
+        transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.08);
     }
 
-    /* O ÍCONE */
-    .main-icon { font-size: 20px; transition: 0.3s; z-index: 2; }
-
-    /* O TEXTO QUE APARECE AO LADO (DESKTOP) */
-    .menu-text {
-        position: absolute;
-        left: 70px; /* Começa logo a seguir à barra */
+    #menu-lateral ul li a:hover { 
         background: linear-gradient(135deg, #ff8c00, #e67e00);
         color: white;
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 700;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(-10px); /* Efeito de slide */
-        transition: 0.3s ease;
-        white-space: nowrap;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    /* Seta do Balão */
-    .menu-text::after {
-        content: "";
-        position: absolute;
-        left: -6px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-width: 6px 6px 6px 0;
-        border-style: solid;
-        border-color: transparent #ff8c00 transparent transparent;
-    }
-
-    /* Efeito Hover por Item */
-    #menu-lateral li:hover a { background: #ff8c00; transform: scale(1.1); }
-    #menu-lateral li:hover .menu-text {
-        opacity: 1;
-        visibility: visible;
         transform: translateX(5px);
     }
 
-    /* 4. DROPDOWN (Adaptado para balão) */
+    .main-icon { margin-right: 12px; width: 20px; text-align: center; font-size: 18px; }
+    .fa-chevron-right { margin-left: auto; font-size: 11px; opacity: 0.7; }
+
+    /* 4. DROPDOWNS */
     .dropdown-content {
         display: none;
         position: absolute;
-        left: 70px; top: 0;
+        left: 100%; top: 0;
         background: white; 
-        min-width: 200px;
+        min-width: 260px;
         box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
         border-radius: 12px;
         padding: 10px 0;
         z-index: 10001;
+        margin-left: 10px;
     }
-    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown:hover > .dropdown-content { display: block; }
     .dropdown-content a {
-        background: transparent !important;
         color: #1e4d8c !important;
-        width: 100% !important; height: auto !important;
         padding: 12px 20px !important;
-        justify-content: flex-start !important;
-        border-radius: 0 !important;
+        display: block !important;
+        text-decoration: none !important;
         font-size: 14px !important;
+        border-bottom: 1px solid #f0f0f0;
     }
-    .dropdown-content a:hover { color: #ff8c00 !important; }
+    .dropdown-content a:hover { background: #f8f9fa !important; color: #ff8c00 !important; }
 
     /* 5. REDES SOCIAIS */
     .redes-sociais-menu {
-        margin-top: auto;
-        padding-bottom: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
     }
-    .redes-sociais-menu a { color: white; opacity: 0.6; transition: 0.3s; font-size: 18px; }
-    .redes-sociais-menu a:hover { opacity: 1; color: #ff8c00; transform: scale(1.2); }
+    .redes-sociais-menu p { color: rgba(255,255,255,0.5); font-size: 11px; margin-bottom: 15px; text-transform: uppercase; }
+    .icones-redes { display: flex; justify-content: center; gap: 15px; }
+    .icones-redes a { color: white; font-size: 20px; transition: 0.3s; opacity: 0.8; }
+    .icones-redes a:hover { color: #ff8c00; transform: scale(1.2); opacity: 1; }
 
-    /* AJUSTE PARA MOBILE (O menu não pode ser assim no telemóvel) */
+    /* MOBILE */
     @media (max-width: 1024px) {
-        #menu-lateral { 
-            width: 100%; min-height: auto; position: relative; 
-            flex-direction: row; padding: 10px 20px; justify-content: space-between;
-        }
-        .logo-container { margin-bottom: 0; width: 50px; height: 50px; }
-        #menu-lateral ul, .redes-sociais-menu { display: none; } /* Idealmente aqui entra um menu hambúrguer */
+        #menu-lateral { width: 100%; min-height: auto; position: relative; padding: 15px; }
+        .logo-container { width: 120px; height: 120px; }
+        .dropdown-content { position: static; width: 100%; box-shadow: none; background: rgba(0,0,0,0.1); }
     }
 </style>
 
@@ -139,38 +106,32 @@
     </a>
 
     <ul>
-        <li>
-            <a href="index.html"><i class="fas fa-home main-icon"></i></a>
-            <span class="menu-text">Início</span>
-        </li>
-        <li>
-            <a href="sobre.html"><i class="fas fa-user main-icon"></i></a>
-            <span class="menu-text">Sobre Mim</span>
-        </li>
+        <li><a href="index.html"><i class="fas fa-home main-icon"></i> Home</a></li>
+        <li><a href="sobre.html"><i class="fas fa-user main-icon"></i> Sobre Mim</a></li>
         
         <li class="dropdown">
-            <a href="passeios.html"><i class="fas fa-bus main-icon"></i></a>
+            <a href="passeios.html">
+                <i class="fas fa-bus main-icon"></i> Passeios 
+                <i class="fas fa-chevron-right"></i>
+            </a>
             <div class="dropdown-content">
                 <a href="passeios.html">Ver Todos os Passeios</a>
-                <a href="galeria.html">Diário de Bordo</a>
-                <a href="testemunhos.html">Mural de Memórias</a>
+                <a href="galeria.html">Exposição de Fotos</a>
             </div>
         </li>
 
-        <li>
-            <a href="contatos.html"><i class="fas fa-envelope main-icon"></i></a>
-            <span class="menu-text">Contactos</span>
-        </li>
-
-        <li>
-            <a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i></a>
-            <span class="menu-text">Dicas Úteis</span>
-        </li>
+        <li><a href="contatos.html"><i class="fas fa-envelope main-icon"></i> Contactos</a></li>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+        <li><a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i> Dicas Úteis</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle main-icon"></i> FAQ</a></li>
     </ul>
 
     <div class="redes-sociais-menu">
-        <a href="https://facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/passeiosdomiguel" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/351965715465" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <p>Siga-nos</p>
+        <div class="icones-redes">
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
     </div>
 </nav>
