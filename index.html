@@ -11,75 +11,83 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Home</title>
+    <title>Passeios do Miguel - Experiências Autênticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background-color: #f4f7f9; 
             min-height: 100vh;
-            display: block; /* Alterado de flex para block para evitar conflitos */
+            color: #333;
         }
 
-        /* 2. CONTEÚDO PRINCIPAL */
         main { 
             display: flex; 
             flex-direction: column; 
-            min-width: 0; 
-            /* Esta margem compensa o menu fixo de 250px */
             margin-left: 250px; 
         }
 
-        /* CABEÇALHO HERO */
+        /* HERO SECTION */
         .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
             background-size: cover; 
             background-position: center; 
-            height: 380px; 
+            height: 500px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center;
             color: white; 
             text-align: center; 
-            border-bottom: 5px solid #ff8c00;
+            border-bottom: 6px solid #ff8c00;
         }
-        .hero-section h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .hero-section p { font-size: 1.3em; max-width: 700px; font-weight: 300; padding: 0 20px; }
+        .hero-section h1 { font-size: 3.8em; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 15px; }
+        .hero-section p { font-size: 1.5em; max-width: 750px; font-weight: 300; padding: 0 20px; }
 
-        /* CONTENT CONTAINER */
-        .content-container { padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        .content-container { padding: 60px 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
-        .intro-text { text-align: center; margin-bottom: 40px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.2em; margin-bottom: 10px; }
-        .intro-text p { color: #555; font-size: 1.1em; line-height: 1.7; }
+        /* INTRODUÇÃO */
+        .intro-text { text-align: center; margin-bottom: 50px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.6em; margin-bottom: 15px; }
+        .intro-text p { color: #555; font-size: 1.25em; line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
-        /* VÍDEO YOUTUBE */
-        .video-section {
-            background-color: white; padding: 15px; border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-bottom: 50px;
+        /* VÍDEO SPOT PUBLICITÁRIO (DESTAQUE CENTRAL) */
+        .video-highlight {
+            background-color: white;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 70px;
         }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 15px;
+        }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* CARDS */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        /* FEATURES / BENEFÍCIOS */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
         .feature-card { 
-            background: white; padding: 35px 25px; border-radius: 18px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05); border-bottom: 4px solid #ff8c00; text-align: center; 
+            background: white; padding: 45px 30px; border-radius: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04); border-top: 5px solid #ff8c00; text-align: center; 
+            transition: 0.3s;
         }
-        .feature-card i { font-size: 45px; color: #ff8c00; margin-bottom: 15px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.4em; }
-        .feature-card p { color: #666; font-size: 0.95em; line-height: 1.6; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .feature-card i { font-size: 50px; color: #ff8c00; margin-bottom: 25px; }
+        .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
+        .feature-card p { color: #666; font-size: 1.05em; line-height: 1.6; }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2em; }
+            .hero-section h1 { font-size: 2.8em; }
         }
     </style>
 </head>
@@ -90,40 +98,46 @@
     <main>
         <section class="hero-section">
             <h1>Passeios do Miguel</h1>
-            <p>Descubra Portugal com Alma, Aventura e Boa Disposição!</p>
-            <a href="passeios.html" style="display:inline-block; margin-top: 25px; background: #ff8c00; color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255,140,0,0.3);">VER PRÓXIMOS PASSEIOS</a>
+            <p>Descubra Portugal com quem conhece cada caminho e valoriza cada sorriso.</p>
+            <a href="passeios.html" style="display:inline-block; margin-top: 35px; background: #ff8c00; color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 8px 20px rgba(255,140,0,0.3);">EXPLORAR PRÓXIMAS VIAGENS</a>
         </section>
 
         <div class="content-container">
+            
             <section class="intro-text">
-                <h2>Bem-vindo à nossa Comunidade</h2>
-                <p>De São Pedro do Sul para os cantos mais bonitos de Portugal. Junte-se a nós em viagens descontraídas e cheias de momentos inesquecíveis.</p>
+                <h2>Muito mais do que uma viagem</h2>
+                <p>Com saída de São Pedro do Sul, criamos experiências pensadas para serem vividas sem pressas, com conforto e em excelente companhia.</p>
             </section>
 
-            <section class="video-section">
+            <section class="video-highlight">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
+                <p style="text-align: center; margin-top: 20px; color: #1e4d8c; font-weight: 600; font-style: italic;">
+                    "Deixe o volante connosco e foque-se apenas em criar memórias."
+                </p>
             </section>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <i class="fas fa-bus-alt"></i>
-                    <h3>Viagens Confortáveis</h3>
-                    <p>Transporte seguro, moderno e um ambiente familiar em cada quilómetro.</p>
+                    <i class="fas fa-route"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Selecionamos locais autênticos, longe das rotas turísticas comuns, para uma experiência genuína.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Destinos Únicos</h3>
-                    <p>Locais escolhidos a dedo para mostrar o melhor de Portugal.</p>
+                    <i class="fas fa-couch"></i>
+                    <h3>Conforto & Segurança</h3>
+                    <p>Viagens em transporte moderno e confortável, garantindo que chega ao destino relaxado e pronto para explorar.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Boa Disposição</h3>
-                    <p>O convívio e a alegria são os nossos passageiros de honra.</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Convívio de Amigos</h3>
+                    <p>Privilegiamos grupos acolhedores onde ninguém se sente sozinho e a alegria é contagiante.</p>
                 </div>
             </div>
+
         </div>
+
         <div id="rodape-placeholder"></div>
     </main>
 
@@ -132,7 +146,7 @@
             fetch(ficheiro)
                 .then(response => response.text())
                 .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+                .catch(error => console.error('Erro ao carregar:', error));
         }
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
