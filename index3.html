@@ -15,85 +15,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 1. ESTRUTURA GLOBAL (Consistente com a Index) */
+        /* 1. ESTRUTURA GLOBAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            background-color: #f4f7f9; 
-            min-height: 100vh; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; background-color: #f4f7f9; min-height: 100vh; }
 
         /* 2. MENU LATERAL */
         #menu-placeholder { width: 260px; flex-shrink: 0; background-color: #1e4d8c; }
-
         #menu-placeholder img { 
-            width: 170px !important; height: 170px !important;     
-            object-fit: contain !important; border-radius: 50% !important;  
-            border: 4px solid white !important; background-color: white !important; 
-            margin: 30px auto !important; display: block !important;
+            width: 170px !important; height: 170px !important; object-fit: contain !important; 
+            border-radius: 50% !important; border: 4px solid white !important; 
+            background-color: white !important; margin: 30px auto !important; display: block !important;
         }
 
         /* 3. CONTEÚDO PRINCIPAL */
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* 4. BANNER (380px com imagem de Planeamento/Viagem) */
+        /* 4. BANNER */
         .banner-dicas {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
-            height: 380px; display: flex; flex-direction: column; justify-content: center; 
+            height: 350px; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; color: white; text-align: center; border-bottom: 5px solid #ff8c00;
         }
-        .banner-dicas h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        .banner-dicas p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
+        .banner-dicas h1 { font-size: 3em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-        /* 5. SECCÃO DE CONTEÚDO */
-        .seccao-dicas { padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
-        
-        .container-dicas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        /* 5. ABA DAS DICAS DE OURO (SECÇÃO DE TOPO) */
+        .ouro-bar {
+            background: #fff8e1; border-bottom: 2px solid #ffe082; padding: 30px 20px;
+            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
         }
+        .ouro-item { display: flex; align-items: center; gap: 15px; max-width: 400px; }
+        .ouro-item i { font-size: 35px; color: #d4af37; }
+        .ouro-item h4 { color: #1e4d8c; font-size: 1.1em; margin-bottom: 4px; }
+        .ouro-item p { color: #5d4037; font-size: 0.9em; line-height: 1.4; }
 
-        /* ESTILO DOS CARDS */
+        /* 6. CONTEÚDO DAS DICAS NORMAIS */
+        .seccao-dicas { padding: 50px 40px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
+        .container-dicas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+
         .card-dica {
-            background: #fff;
-            border-radius: 18px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-bottom: 4px solid #1e4d8c;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: #fff; border-radius: 15px; padding: 30px; display: flex; align-items: flex-start; gap: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #1e4d8c; transition: 0.3s;
         }
-
-        .card-dica:hover {
-            transform: translateY(-8px);
-            border-bottom-color: #ff8c00;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-        }
-
-        /* Destaque para as Dicas de Ouro */
-        .card-dica.ouro { border-bottom-color: #ff8c00; background: #fffdf7; }
-        .card-dica.ouro .icon-dica { color: #d4af37; }
-
-        .icon-dica { font-size: 45px; color: #ff8c00; margin-bottom: 20px; }
-
-        .card-dica h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
+        .card-dica:hover { transform: scale(1.02); border-left-color: #ff8c00; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .card-dica i { font-size: 30px; color: #ff8c00; flex-shrink: 0; margin-top: 5px; }
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 8px; font-size: 1.25em; }
         .card-dica p { color: #666; font-size: 0.95em; line-height: 1.6; }
-        .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; }
 
-        /* RODAPÉ COM RESPIRO */
+        /* RODAPÉ */
         .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
 
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; height: auto; }
             .container-dicas { grid-template-columns: 1fr; }
+            .ouro-bar { gap: 20px; }
         }
     </style>
 </head>
@@ -103,71 +81,108 @@
 
     <main>
         <div class="banner-dicas">
-            <h1>💡 Dicas do Miguel</h1>
-            <p>Pequenos detalhes que fazem toda a diferença na sua viagem.</p>
+            <h1>💡 Dicas de Viagem</h1>
+            <p>O Miguel ajuda-o a preparar-se para um dia perfeito.</p>
         </div>
+
+        <section class="ouro-bar">
+            <div class="ouro-item">
+                <i class="fas fa-crown"></i>
+                <div>
+                    <h4>Dica de Ouro: Pontualidade</h4>
+                    <p>Chegue 15 min antes ao ponto de encontro para garantirmos a partida a horas.</p>
+                </div>
+            </div>
+            <div class="ouro-item">
+                <i class="fas fa-sun"></i>
+                <div>
+                    <h4>Dica de Ouro: Clima</h4>
+                    <p>Verifique o tempo na véspera e adapte a sua roupa e acessórios.</p>
+                </div>
+            </div>
+        </section>
 
         <section class="seccao-dicas">
             <div class="container-dicas">
                 
-                <div class="card-dica ouro">
-                    <div class="icon-dica"><i class="fas fa-suitcase-rolling"></i></div>
-                    <h3>Dica de Ouro: Preparação</h3>
-                    <p>Verifique sempre a previsão do tempo no dia anterior. Estar preparado para uma chuva inesperada ou um sol forte garante o seu conforto.</p>
-                </div>
-
-                <div class="card-dica ouro">
-                    <div class="icon-dica"><i class="fas fa-bullhorn"></i></div>
-                    <h3>Dica de Ouro: Pontualidade</h3>
-                    <p>Recomendamos chegar 15 minutos antes ao ponto de encontro. Assim, garantimos a partida no horário e aproveitamos o destino por mais tempo!</p>
+                <div class="card-dica">
+                    <i class="fas fa-shoe-prints"></i>
+                    <div>
+                        <h3>Calçado Confortável</h3>
+                        <p>Escolha sapatilhas usadas. Passeios implicam caminhar e não quer bolhas a estragar o dia.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
-                    <h3>O Calçado Ideal</h3>
-                    <p>Privilegie sapatilhas confortáveis. Evite estrear sapatos novos em dias de passeio para evitar bolhas ou desconforto ao caminhar.</p>
+                    <i class="fas fa-layer-group"></i>
+                    <div>
+                        <h3>Vestuário em Camadas</h3>
+                        <p>O tempo muda! Leve sempre um agasalho leve, mesmo que pareça que vai estar calor.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
-                    <h3>Roupa "À Cebola"</h3>
-                    <p>Vista-se em camadas. As manhãs podem ser frias e as tardes quentes. Escolha vestuário que dê liberdade de movimentos.</p>
+                    <i class="fas fa-battery-half"></i>
+                    <div>
+                        <h3>Powerbank / Carregador</h3>
+                        <p>Muitas fotos gastam bateria depressa. Traga um carregador portátil para não ficar "às escuras".</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
-                    <h3>Registe e Partilhe</h3>
-                    <p>Traga o telemóvel carregado e, se possível, um powerbank. Portugal tem paisagens que vai querer guardar para sempre!</p>
+                    <i class="fas fa-bottle-water"></i>
+                    <div>
+                        <h3>Água Sempre à Mão</h3>
+                        <p>Mantenha-se hidratado. Uma garrafa reutilizável na mochila é essencial durante as paragens.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
-                    <h3>Hidratação e Snacks</h3>
-                    <p>Tenha sempre uma garrafa de água consigo. Pequenos snacks como fruta ou bolachas são ótimos aliados durante o trajeto no autocarro.</p>
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <h3>Leve Numerário</h3>
+                        <p>Nem todas as bancas de artesanato ou cafés de aldeia aceitam cartões ou MB Way.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-chair"></i></div>
-                    <h3>Escolha de Lugares</h3>
-                    <p>Os lugares são atribuídos por ordem de inscrição. Se tem preferência por algum lugar específico, reserve a sua viagem com antecedência.</p>
+                    <i class="fas fa-briefcase-medical"></i>
+                    <div>
+                        <h3>Medicação Pessoal</h3>
+                        <p>Não esqueça os seus remédios diários e algo para o enjoo, por precaução nas curvas.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-wallet"></i></div>
-                    <h3>Dinheiro em Numerário</h3>
-                    <p>Embora o MB Way seja comum, em aldeias mais isoladas ou feiras tradicionais, o dinheiro vivo ainda é essencial para pequenos cafés ou lembranças.</p>
+                    <i class="fas fa-umbrella-beach"></i>
+                    <div>
+                        <h3>Proteção Solar</h3>
+                        <p>Mesmo no inverno, o sol pode queimar. Use protetor solar e leve óculos de sol.</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fas fa-pills"></i></div>
-                    <h3>Saúde em Dia</h3>
-                    <p>Não esqueça a medicação habitual. Um pequeno estojo com comprimidos para o enjoo pode tornar a viagem muito mais agradável para si.</p>
+                    <i class="fas fa-camera-retro"></i>
+                    <div>
+                        <h3>Limpe a Memória</h3>
+                        <p>Antes de sair, verifique se tem espaço no telemóvel para as centenas de fotos que vai tirar!</p>
+                    </div>
                 </div>
 
                 <div class="card-dica">
-                    <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
-                    <h3>Comunidade Miguel</h3>
-                    <p>Já conhece o nosso grupo? <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Clique aqui</a> para ver as fotos das últimas aventuras!</p>
+                    <i class="fas fa-cookie-bite"></i>
+                    <div>
+                        <h3>Snacks Leves</h3>
+                        <p>Fruta ou bolachas ajudam a manter a energia entre as refeições principais do passeio.</p>
+                    </div>
+                </div>
+
+                <div class="card-dica">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h3>Espírito de Grupo</h3>
+                        <p>Venha com vontade de fazer novos amigos! A boa disposição é o segredo dos nossos passeios.</p>
+                    </div>
                 </div>
 
             </div>
@@ -180,15 +195,11 @@
     </main>
 
     <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+        function carregar(id, url) {
+            fetch(url).then(res => res.text()).then(data => document.getElementById(id).innerHTML = data);
         }
-
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
+        carregar('menu-placeholder', 'menu.html');
+        carregar('footer-placeholder', 'rodape.html');
     </script>
 
 </body>
