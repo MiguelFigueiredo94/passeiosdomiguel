@@ -38,11 +38,11 @@
             color: white; height: 380px; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--accent); 
         }
-        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 700; }
+        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* MURAL DE EXPERIÊNCIAS (DOIS BOTÕES) */
+        /* BARRA EXPERIÊNCIAS (BOTÕES DIÁRIO E MURAL) */
         .mural-experiencias-float { 
-            background: white; padding: 25px; display: flex; justify-content: center; align-items: center; gap: 30px; 
+            background: white; padding: 20px 30px; display: flex; justify-content: center; align-items: center; gap: 30px; 
             border-radius: 25px; margin: -50px auto 0; 
             width: 90%; max-width: 950px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
             border: 1px solid #e2e8f0; position: relative; z-index: 10;
@@ -53,7 +53,7 @@
         
         .mural-btns { display: flex; gap: 12px; }
         .btn-mural { 
-            padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 700; 
+            padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; 
             font-size: 0.9em; display: flex; align-items: center; gap: 8px; transition: 0.3s;
         }
         .btn-feed { background: #f0f7ff; color: var(--primary); border: 1px solid #cde4ff; }
@@ -62,9 +62,9 @@
         .btn-gal:hover { background: #d97706; color: white; }
 
         /* FILTROS */
-        .filtros-container { max-width: 1200px; margin: 60px auto 20px; padding: 0 30px; text-align: center; }
+        .filtros-container { max-width: 1200px; margin: 65px auto 20px; padding: 0 30px; text-align: center; }
         .btn-filtro { 
-            padding: 12px 30px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
+            padding: 12px 28px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
             background: white; color: var(--primary); cursor: pointer; font-weight: 700; transition: 0.3s;
         }
         .btn-filtro.active { background: var(--primary); color: white; }
@@ -109,14 +109,15 @@
         .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; }
         .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
         .btn-ins:hover { background: var(--accent); }
-        .btn-wts { background: var(--whatsapp); color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; }
+        .btn-wts { background: var(--whatsapp); color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; transition: 0.3s; }
+        .btn-wts:hover { background: #128c7e; transform: scale(1.05); }
 
         @media (max-width: 1024px) {
             body { display: block; }
             #menu-placeholder { width: 100%; min-height: auto; }
-            .mural-experiencias-float { flex-direction: column; width: 95%; gap: 20px; text-align: center; }
+            .mural-experiencias-float { flex-direction: column; width: 95%; gap: 20px; text-align: center; border-radius: 20px; }
             .mural-info { flex-direction: column; }
-            .banner-passeios h1 { font-size: 2.5em; }
+            .banner-passeios h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -127,24 +128,24 @@
     <main>
         <div class="banner-passeios">
             <h1>Os Nossos Passeios</h1>
-            <p>Descubra Portugal e o mundo connosco.</p>
+            <p>Experiências autênticas, memórias para a vida toda.</p>
         </div>
 
         <div class="mural-experiencias-float">
             <div class="mural-info">
-                <i class="fas fa-star"></i>
-                <p>Memórias de quem viaja:<br><span style="font-weight: 400; font-size: 0.9em; color: #64748b;">Feedbacks e Galeria de Fotos</span></p>
+                <i class="fas fa-route"></i>
+                <p>Reviva cada destino:<br><span style="font-weight: 400; font-size: 0.9em; color: #64748b;">Feedback dos viajantes e fotos dos passeios</span></p>
             </div>
             <div class="mural-btns">
-                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots"></i> Testemunhos</a>
-                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-images"></i> Galeria</a>
+                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots"></i> Mural de Memórias</a>
+                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-camera"></i> Diário de Bordo</a>
             </div>
         </div>
 
         <div class="filtros-container">
-            <button class="btn-filtro" onclick="filtrar('todos')">Todos os Anos</button>
-            <button class="btn-filtro" onclick="filtrar('proximos')">Próximas Viagens</button>
-            <button class="btn-filtro" onclick="filtrar('concluidos')">Já Realizados</button>
+            <button class="btn-filtro" onclick="filtrar('todos')">Todos os Passeios</button>
+            <button class="btn-filtro" onclick="filtrar('proximos')">A Realizar</button>
+            <button class="btn-filtro" onclick="filtrar('concluidos')">Realizados</button>
         </div>
 
         <section class="seccao-branca">
