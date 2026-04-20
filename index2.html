@@ -11,7 +11,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suporte Especialista - Passeios do Miguel</title>
+    <title>Central de Ajuda - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -20,6 +20,7 @@
             --accent: #ff8c00;
             --bg: #f8fafc;
             --text: #334155;
+            --tag-bg: #e2e8f0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,55 +36,62 @@
 
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* BANNER STYLE */
-        .hero-support {
-            background: linear-gradient(135deg, #1e4d8c 0%, #0d2b52 100%);
-            padding: 60px 40px; text-align: center; color: white; border-bottom: 5px solid var(--accent);
+        /* BANNER PADRONIZADO (380px) */
+        .banner-ajuda {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            height: 380px; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; color: white; text-align: center; border-bottom: 5px solid var(--accent);
         }
-        .hero-support h1 { font-size: 3em; font-weight: 800; margin-bottom: 15px; }
-        .hero-support p { font-size: 1.1em; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .banner-ajuda h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .banner-ajuda p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
 
         /* CONTACTO DIRETO */
         .quick-contact {
-            display: flex; justify-content: center; gap: 20px; margin-top: -30px; padding: 0 20px;
+            display: flex; justify-content: center; gap: 20px; margin-top: -35px; padding: 0 20px;
         }
         .contact-pill {
-            background: white; padding: 12px 25px; border-radius: 50px; display: flex; align-items: center; gap: 10px;
+            background: white; padding: 15px 30px; border-radius: 50px; display: flex; align-items: center; gap: 10px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-decoration: none; color: var(--primary);
             font-weight: 700; transition: 0.3s; border: 1px solid #e2e8f0;
         }
         .contact-pill:hover { transform: translateY(-3px); border-color: var(--accent); }
-        .contact-pill i { color: var(--accent); }
 
-        /* GRILL DE QUESTÕES */
+        /* GRELHA DE QUESTÕES POR SETORES */
         .help-grid {
-            max-width: 1200px; margin: 50px auto; padding: 0 30px;
+            max-width: 1200px; margin: 60px auto; padding: 0 30px;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px;
         }
 
         .help-card {
-            background: white; border-radius: 20px; padding: 30px; border: 1px solid #e2e8f0;
-            transition: 0.4s; position: relative; display: flex; flex-direction: column;
+            background: white; border-radius: 20px; padding: 35px; border: 1px solid #e2e8f0;
+            transition: 0.4s; display: flex; flex-direction: column; position: relative;
         }
-        .help-card:hover { border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .help-card i { font-size: 1.8em; color: var(--primary); margin-bottom: 15px; }
-        .help-card h3 { font-size: 1.2em; margin-bottom: 12px; color: var(--primary); }
-        .help-card p { font-size: 0.95em; line-height: 1.6; color: #64748b; }
-        .help-card strong { color: var(--text); }
+        .help-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         
-        .btn-card {
-            display: inline-block; margin-top: 15px; color: var(--accent); 
-            text-decoration: none; font-weight: 700; font-size: 0.9em;
+        .sector-tag {
+            position: absolute; top: 20px; right: 25px; 
+            background: var(--tag-bg); color: #475569; padding: 4px 12px; 
+            border-radius: 50px; font-size: 0.75em; font-weight: 700; text-transform: uppercase;
         }
 
-        /* RODAPÉ */
+        .help-card i { font-size: 1.8em; color: var(--primary); margin-bottom: 20px; }
+        .help-card h3 { font-size: 1.25em; margin-bottom: 15px; color: var(--primary); padding-right: 60px; }
+        .help-card p { font-size: 0.95em; line-height: 1.6; color: #555; }
+        
+        .btn-card {
+            display: inline-block; margin-top: 20px; color: var(--accent); 
+            text-decoration: none; font-weight: 700; font-size: 0.95em;
+        }
+
         .footer-wrapper { padding: 40px; margin-top: auto; }
 
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             #menu-placeholder { width: 100%; }
-            .quick-contact { flex-direction: column; align-items: center; }
-            .contact-pill { width: 100%; max-width: 300px; justify-content: center; }
+            .quick-contact { flex-direction: column; align-items: center; margin-top: 20px; }
+            .contact-pill { width: 100%; max-width: 320px; justify-content: center; }
         }
     </style>
 </head>
@@ -92,72 +100,102 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <section class="hero-support">
+        <div class="banner-ajuda">
             <h1>Central de Ajuda</h1>
-            <p>Informações fundamentais para garantir que a sua viagem corre na perfeição.</p>
-        </section>
+            <p>Todas as respostas que precisa para viajar connosco.</p>
+        </div>
 
         <div class="quick-contact">
             <a href="https://wa.me/351965715465" class="contact-pill"><i class="fab fa-whatsapp"></i> 965 715 465</a>
-            <a href="tel:+351965715465" class="contact-pill"><i class="fas fa-phone"></i> Ligar ao Miguel</a>
+            <a href="tel:+351965715465" class="contact-pill"><i class="fas fa-phone"></i> Chamada / WhatsApp</a>
         </div>
 
         <section class="help-grid">
             
             <div class="help-card">
-                <i class="fas fa-edit"></i>
+                <span class="sector-tag">Reservas</span>
+                <i class="fas fa-pen-fancy"></i>
                 <h3>Como fazer a inscrição?</h3>
-                <p>Pode inscrever-se facilmente através do nosso <strong>formulário online</strong> ou pelos canais alternativos (chamada e WhatsApp).</p>
-                <a href="https://passeiosdomiguel.com/inscricao.html" class="btn-card">Ir para o Formulário →</a>
+                <p>Pode usar o nosso <strong>formulário online</strong> ou canais alternativos como chamada direta e WhatsApp (965 715 465). A reserva só é garantida após o pagamento.</p>
+                <a href="https://passeiosdomiguel.com/inscricao.html" class="btn-card">Formulário de Inscrição →</a>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-bus-alt"></i>
+                <span class="sector-tag">Logística</span>
+                <i class="fas fa-bus"></i>
                 <h3>Onde apanho o autocarro?</h3>
-                <p>Passamos habitualmente em <strong>Castro Daire, S. Pedro do Sul, Vouzela, O. Frades e Viseu</strong>. Contudo, os pontos podem alterar-se de passeio para passeio. Consulte-nos sempre para confirmar a rota exata.</p>
+                <p>Temos pontos em <strong>Castro Daire, S. Pedro do Sul, Vouzela, Oliveira de Frades e Viseu</strong>. Contudo, consulte-nos sempre, pois os pontos podem alterar-se de passeio para passeio.</p>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-sort-amount-down"></i>
-                <h3>Como funcionam os lugares?</h3>
-                <p>A organização do autocarro é simples e justa: os lugares são atribuídos estritamente por <strong>ordem de inscrição</strong>. Garanta o seu lugar cedo!</p>
+                <span class="sector-tag">Lugar</span>
+                <i class="fas fa-chair"></i>
+                <h3>Posso escolher o meu lugar?</h3>
+                <p>Os lugares são atribuídos estritamente por <strong>ordem de inscrição</strong>. Quem reserva e liquida o passeio primeiro, garante automaticamente os lugares mais à frente.</p>
             </div>
 
             <div class="help-card">
+                <span class="sector-tag">Família</span>
                 <i class="fas fa-child"></i>
-                <h3>As crianças têm desconto?</h3>
-                <p>O valor para crianças depende de cada passeio específico. Recomendamos que <strong>consulte o cartaz</strong> do evento ou fale diretamente com a organização.</p>
+                <h3>As crianças pagam menos?</h3>
+                <p>O desconto para crianças depende de cada passeio. Deverá <strong>consultar o cartaz publicitário</strong> ou falar diretamente com a organização para confirmar valores.</p>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-coins"></i>
-                <h3>Métodos de Pagamento</h3>
-                <p>Aceitamos <strong>MB Way</strong>, transferência bancária ou numerário (em S. Pedro do Sul). A reserva só é validada após receção do pagamento.</p>
+                <span class="sector-tag">Pagamento</span>
+                <i class="fas fa-wallet"></i>
+                <h3>Como posso pagar?</h3>
+                <p>Aceitamos <strong>MB Way</strong>, transferência bancária ou numerário (em S. Pedro do Sul). Pedimos sempre o envio do comprovativo para validar a sua vaga.</p>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-calendar-times"></i>
-                <h3>Política de Desistência</h3>
-                <p>Devolução total disponível até 30 dias antes da partida. Após esse prazo, o valor não é reembolsável, mas o lugar pode ser cedido a outra pessoa.</p>
+                <span class="sector-tag">Política</span>
+                <i class="fas fa-user-times"></i>
+                <h3>Desistências e Reembolsos</h3>
+                <p>Devolução total disponível até 30 dias antes do passeio. Após este prazo, o valor não é reembolsável, mas o lugar pode ser cedido a outra pessoa.</p>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-info-circle"></i>
-                <h3>O que está incluído?</h3>
-                <p>O valor base cobre o transporte e o acompanhamento. Refeições ou entradas extras só estão incluídas se estiver mencionado no cartaz publicitário.</p>
+                <span class="sector-tag">Serviço</span>
+                <i class="fas fa-utensils"></i>
+                <h3>As refeições estão incluídas?</h3>
+                <p>O valor base inclui transporte e acompanhamento. Refeições, lanches ou entradas em museus só estão incluídas quando mencionado no cartaz do passeio.</p>
             </div>
 
             <div class="help-card">
-                <i class="fas fa-walking"></i>
-                <h3>Apoio à Mobilidade</h3>
-                <p>Para passageiros com mobilidade reduzida, pedimos que nos informem no ato da reserva para podermos organizar o melhor acolhimento possível.</p>
+                <span class="sector-tag">Acessibilidade</span>
+                <i class="fas fa-wheelchair"></i>
+                <h3>Mobilidade Reduzida</h3>
+                <p>Caso tenha dificuldades de locomoção, informe-nos no ato da reserva. Faremos o possível para garantir o seu acolhimento e conforto durante a viagem.</p>
             </div>
 
             <div class="help-card">
-                <i class="fab fa-facebook"></i>
-                <h3>Onde vejo as fotos?</h3>
-                <p>Partilhamos as memórias de cada aventura no nosso grupo exclusivo. Junte-se à nossa comunidade online!</p>
-                <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="btn-card">Ver Grupo →</a>
+                <span class="sector-tag">Regras</span>
+                <i class="fas fa-paw"></i>
+                <h3>Posso levar animais?</h3>
+                <p>Para garantir o conforto e higiene de todos os passageiros, não é permitida a entrada de animais no autocarro (exceto cães-guia certificados).</p>
+            </div>
+
+            <div class="help-card">
+                <span class="sector-tag">Apoio</span>
+                <i class="fas fa-search"></i>
+                <h3>Perdi um objeto no autocarro?</h3>
+                <p>Se se esqueceu de algo, contacte-nos! Verificamos sempre o autocarro no final do dia e guardamos objetos encontrados para entrega posterior.</p>
+            </div>
+
+            <div class="help-card">
+                <span class="sector-tag">Redes</span>
+                <i class="fab fa-facebook-f"></i>
+                <h3>Onde vejo as fotos do grupo?</h3>
+                <p>Partilhamos as memórias de cada aventura no nosso grupo de Facebook. É o local ideal para rever amigos e as fotos do dia.</p>
+                <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="btn-card">Entrar no Grupo →</a>
+            </div>
+
+            <div class="help-card">
+                <span class="sector-tag">Urgente</span>
+                <i class="fas fa-headset"></i>
+                <h3>Dúvidas de última hora?</h3>
+                <p>Para questões urgentes no dia do passeio, utilize sempre o contacto telefónico <strong>965 715 465</strong> para uma resposta imediata.</p>
             </div>
 
         </section>
