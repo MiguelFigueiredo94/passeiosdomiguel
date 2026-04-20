@@ -115,19 +115,38 @@
         .form-container button:hover { background: var(--accent); }
 
         /* RESPONSIVIDADE */
-        @media (max-width: 1100px) {
-            .grid-contatos { grid-template-columns: repeat(2, 1fr); } /* 2x2 em tablets */
-        }
-
         @media (max-width: 1024px) {
             body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; position: relative; }
+            #menu-placeholder { width: 100%; height: auto; }
             main { margin-left: 0; }
+            
+            /* Ajuste do Formulário para não criar scroll lateral */
+            .form-wrapper {
+                grid-template-columns: 1fr; /* Transforma as 2 colunas em 1 (azul em cima, branco em baixo) */
+            }
+            .form-info { padding: 30px; text-align: center; }
+            .form-container { padding: 30px 20px; }
+        }
+
+        @media (max-width: 1100px) {
+            .grid-contatos { grid-template-columns: repeat(2, 1fr); gap: 15px; }
         }
 
         @media (max-width: 600px) {
-            .grid-contatos { grid-template-columns: 1fr; } /* 1 coluna em telemóveis */
+            .grid-contatos { grid-template-columns: 1fr; }
+            
+            .banner-contatos { height: 300px; padding: 20px; }
             .banner-contatos h1 { font-size: 2.2em; }
+            
+            /* Remove margens excessivas que "empurram" o site para o lado */
+            .grid-contatos, .form-section { padding: 0 15px; }
+            
+            .quick-contact { 
+                flex-direction: column; 
+                align-items: center; 
+                margin-top: -50px; 
+            }
+            .contact-pill { width: 100%; max-width: 300px; justify-content: center; }
         }
     </style>
 </head>
