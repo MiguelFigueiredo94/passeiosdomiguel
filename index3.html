@@ -1,746 +1,195 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Memórias - Passeios do Miguel</title>
-    
+    <title>Dicas de Viagem - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
     
     <style>
-        :root {
-            --bg-wall: #f2f2f2;
-            --frame-dark: #1a1a1a;
-            --accent: #ff8c00;
-            --plate-silver: linear-gradient(145deg, #e6e6e6, #ffffff);
+        /* 1. ESTRUTURA GLOBAL (Consistente com a Index) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            background-color: #f4f7f9; 
+            min-height: 100vh; 
         }
 
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg-wall); scroll-behavior: smooth; padding-bottom: 120px; }
+        /* 2. MENU LATERAL */
+        #menu-placeholder { width: 260px; flex-shrink: 0; background-color: #1e4d8c; }
 
-        .museum-header {
-            height: 380px; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; color: white; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; border-bottom: 8px solid var(--frame-dark);
-        }
-        .museum-header h1 { font-size: 3.2rem; font-weight: 200; text-transform: uppercase; letter-spacing: 12px; margin: 0; }
-
-        .filter-nav { 
-            display: flex; justify-content: center; gap: 20px; 
-            padding: 40px 0; background: #e0e0e0; position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .filter-btn {
-            background: #f0f0f0; border: 1px solid #aaa; padding: 12px 28px;
-            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
-            cursor: pointer; transition: 0.3s; color: #444; font-weight: bold;
-            box-shadow: 4px 4px 0px #999;
-        }
-        .filter-btn:hover, .filter-btn.active { background: var(--frame-dark); color: white; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--accent); }
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 60px; padding: 60px 8%; }
-
-        .museum-frame {
-            background: #fff; padding: 30px; border: 12px solid var(--frame-dark);
-            box-shadow: 15px 15px 45px rgba(0,0,0,0.1); transition: 0.4s;
-            position: relative;
-        }
-        .museum-frame img { width: 100%; height: 280px; object-fit: cover; border: 1px solid #ddd; cursor: pointer; }
-
-        .id-plate {
-            margin-top: 25px; padding: 15px; border: 1px solid #ccc;
-            background: var(--plate-silver); text-align: center;
-        }
-        .id-plate h3 { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #111; }
-        .id-plate span { font-size: 0.65rem; color: #777; display: block; margin-top: 5px; text-transform: uppercase; }
-
-        .tour-link {
-            display: inline-block; margin-top: 12px; font-size: 0.7rem; color: var(--accent);
-            text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+        #menu-placeholder img { 
+            width: 170px !important; height: 170px !important;     
+            object-fit: contain !important; border-radius: 50% !important;  
+            border: 4px solid white !important; background-color: white !important; 
+            margin: 30px auto !important; display: block !important;
         }
 
-        .footer-controls {
-            position: fixed; bottom: 0; left: 0; width: 100%; 
-            background: rgba(26, 26, 26, 0.95); 
-            display: flex; justify-content: space-between; padding: 15px 40px;
-            box-sizing: border-box; z-index: 1000; border-top: 2px solid var(--accent);
-        }
-        .nav-btn {
-            background: transparent; color: white; text-decoration: none;
-            padding: 10px 20px; font-size: 0.75rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3);
-            cursor: pointer; transition: 0.3s;
-        }
-        .nav-btn:hover { background: var(--accent); border-color: var(--accent); }
+        /* 3. CONTEÚDO PRINCIPAL */
+        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+        /* 4. BANNER (380px com imagem de Planeamento/Viagem) */
+        .banner-dicas {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            height: 380px; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; color: white; text-align: center; border-bottom: 5px solid #ff8c00;
         }
-        .contact-card { background: white; padding: 40px; width: 320px; text-align: center; border-top: 10px solid var(--accent); }
+        .banner-dicas h1 { font-size: 3.2em; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .banner-dicas p { font-size: 1.3em; max-width: 700px; font-weight: 300; }
 
-        .status-tag { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 10px; font-size: 0.6rem; font-weight: bold; z-index: 10; }
-        .hidden { display: none; }
-
-        /* --- ADAPTAÇÃO PARA MOBILE (TELEMÓVEIS) --- */
-        @media (max-width: 768px) {
-            /* Ajusta o cabeçalho para não ocupar o ecrã todo */
-            .museum-header { height: 250px; }
-            .museum-header h1 { font-size: 1.8rem; letter-spacing: 5px; padding: 0 20px; }
+        /* 5. SECCÃO DE CONTEÚDO */
+        .seccao-dicas { padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; flex-grow: 1; }
         
-            /* Botões de filtro em coluna ou menores para caberem lado a lado */
-            .filter-nav { 
-                flex-wrap: wrap; 
-                gap: 10px; 
-                padding: 20px 10px; 
-            }
-            .filter-btn { 
-                padding: 8px 15px; 
-                font-size: 0.6rem; 
-                flex: 1 1 auto; /* Faz os botões dividirem o espaço */
-            }
-        
-            /* Uma coluna única de fotos no telemóvel */
-            .gallery-grid { 
-                grid-template-columns: 1fr; 
-                padding: 20px 5%; 
-                gap: 30px; 
-            }
-        
-            /* Reduz as molduras para a foto ser a protagonista */
-            .museum-frame { padding: 15px; border-width: 8px; }
-            .museum-frame img { height: 220px; }
-        
-            /* Barra inferior ajustada para ecrãs pequenos */
-            .footer-controls { 
-                padding: 10px 15px; 
-            }
-            .nav-btn { 
-                font-size: 0.6rem; 
-                padding: 8px 12px; 
-            }
-        
-            /* Modal de contacto mais estreito */
-            .contact-card { width: 85%; padding: 25px; }
+        .container-dicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        
+        /* ESTILO DOS CARDS */
+        .card-dica {
+            background: #fff;
+            border-radius: 18px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-bottom: 4px solid #1e4d8c;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-dica:hover {
+            transform: translateY(-8px);
+            border-bottom-color: #ff8c00;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Destaque para as Dicas de Ouro */
+        .card-dica.ouro { border-bottom-color: #ff8c00; background: #fffdf7; }
+        .card-dica.ouro .icon-dica { color: #d4af37; }
+
+        .icon-dica { font-size: 45px; color: #ff8c00; margin-bottom: 20px; }
+
+        .card-dica h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
+        .card-dica p { color: #666; font-size: 0.95em; line-height: 1.6; }
+        .card-dica a { color: #1e4d8c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #ff8c00; }
+
+        /* RODAPÉ COM RESPIRO */
+        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
+
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; }
+            .container-dicas { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="museum-header">
-        <h1>MURAL DE MEMÓRIAS</h1>
-        <p>A NOSSA HISTÓRIA EM CADA QUADRO</p>
-    </header>
+    <div id="menu-placeholder"></div>
 
-    <nav class="filter-nav">
-        <button class="filter-btn" id="btn-all" onclick="filterYear('all')">Ver Toda a Exposição</button>
-        <button class="filter-btn" id="btn-2026" onclick="filterYear('2026')">Coleção 2026</button>
-        <button class="filter-btn" id="btn-2025" onclick="filterYear('2025')">Coleção 2025</button>
-    </nav>
-
-    <div class="gallery-grid">
-        
-        <div class="museum-frame" data-year="2026">
-            <div class="status-tag">AGENDADO</div>
-            <img src="https://i.imgur.com/L58QRQc.png" style="opacity: 0.4;">
-            <div class="id-plate">
-                <h3>Festas do Povo</h3>
-                <span>Campo Maior &bull; Agosto 2026</span>
-                <a href="campomaior.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
+    <main>
+        <div class="banner-dicas">
+            <h1>💡 Dicas do Miguel</h1>
+            <p>Pequenos detalhes que fazem toda a diferença na sua viagem.</p>
         </div>
 
-        <div class="museum-frame" data-year="2026">
-            <div class="status-tag">AGENDADO</div>
-            <img src="https://i.imgur.com/kX8ScBU.png" style="opacity: 0.4;">
-            <div class="id-plate">
-                <h3>Rota da Cereja</h3>
-                <span>Fundão &bull; Junho 2026</span>
-                <a href="cereja.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2026">
-            <div class="status-tag">AGENDADO</div>
-            <img src="https://i.imgur.com/uC6VTVp.png" style="opacity: 0.4;">
-            <div class="id-plate">
-                <h3>Festa das Cruzes</h3>
-                <span>Barcelos &bull; Maio 2026</span>
-                <a href="cruzes.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2026">
-            <div class="status-tag">20 FOTOS</div>
-            <a href="https://i.imgur.com/PmjIQux.png" class="glightbox" data-gallery="camelia">
-                <img src="https://i.imgur.com/PmjIQux.png" alt="Camélias">
-            </a>
-            <div class="hidden">
-                <a href="https://i.imgur.com/EOkoi7x.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/9kW5H4x.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/hYKN0vf.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/2s8yWvS.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/kPpFwtg.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/KqmPKHg.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/28NUA7I.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/BAgGEDn.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/KvwcNpe.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/ZApKojD.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/f8UIniC.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/IVesjq3.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/vp6Hn9u.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/gCa4tFu.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/ttxD9Mm.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/YGLTqHP.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/yxqkFLF.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/stGBtVp.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/zOkfT0e.png" class="glightbox" data-gallery="camelia"></a>
-                <a href="https://i.imgur.com/mzP2aCH.png" class="glightbox" data-gallery="camelia"></a>
-            </div>
-            <div class="id-plate">
-                <h3>Festa das Camélias</h3>
-                <span>Celorico de Basto &bull; Março 2026</span>
-                <a href="camelias.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">56 FOTOS</div>
-            <a href="https://i.imgur.com/aUixZ0Y.png" class="glightbox" data-gallery="vigo">
-                <img src="https://i.imgur.com/aUixZ0Y.png" alt="Vigo">
-            </a>
-            <div class="hidden-photos">
-                <a href="https://i.imgur.com/cb5VM8v.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/QpXyqwY.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/ROyguFs.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/xoCGoDr.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/GgembIC.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/12BjbZZ.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/A1vGght.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/B6jAPuy.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/uvl1LDM.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/maoc5PW.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/NqwerN8.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/pJkHHAk.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Vou3YzU.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Cz7vdWU.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/vaqD7lQ.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/bLZ0p0f.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/jxcjnAT.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/yQ8C7jV.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/YOu7PvY.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/IL8PgHP.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/HAV39XZ.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/2Q67rrp.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/P6B1sP3.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/OdnOcdL.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/2mFxrcA.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Y7veoyl.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/5XrFwpE.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/aNui51E.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/wMfoiAE.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/GxwWp8i.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/EF2cF9a.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/yT4ftyM.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/e2WFqn7.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/k5Y0uYR.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/OwmMtsj.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/hmvBl0n.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/aNVRtBl.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/FbJYBTC.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/3dDO5H8.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/sGjCGjY.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/N7gAKPk.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/p6lUETs.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/3tA95qc.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/K0ZdG5a.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/wPiii8s.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/hpg8x6v.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/KwwkuHO.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/54171mS.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/pthZTji.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/AiW8uxd.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/9NH4wZW.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/PqB6JN9.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/jxAvwK3.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/P81PiuQ.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/rtm2N3Z.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/qZlk9Wj.jpg" class="glightbox" data-gallery="vigo" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                </div>
-            <div class="id-plate">
-                <h3>Especial de Natal</h3>
+        <section class="seccao-dicas">
+            <div class="container-dicas">
                 
-                <span>Vigo e Valença &bull; Dezembro 2025</span>
-                <a href="vigo.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">56 FOTOS</div>
-            <a href="https://i.imgur.com/oDpPY1r.png" class="glightbox" data-gallery="marvao">
-                <img src="https://i.imgur.com/oDpPY1r.png" alt="Marvão">
-            </a>
-            <div class="hidden-photos">
-                <a href="https://i.imgur.com/MeVNYnF.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Nl134cK.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/eHNXa0m.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/RMWIINA.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/xySWMI6.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/8J0imhK.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/mAGkEEn.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Rq71JDV.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/YIcHp86.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/k3rZ9JC.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/9J58wpT.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/UBxAW2V.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/KjZ49Vi.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/e5PcDQU.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/X6gW5R9.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/xLA4w3Q.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/xbhYM4c.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/0xJY6Zy.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Zt360lm.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Ji9rR9p.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Fmi72JO.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/3L6400A.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/ZRF5dNt.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/5J6bAj0.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/T2Ar8E3.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/bEF3BvH.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/tiQrjKu.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/GHFouAa.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/7qtdn8Z.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/0JPfGHs.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/FaMCbU2.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/FT87P9r.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/zVO3tOf.png" class="glightbox" data-gallery="marvao" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                 </div>
-            <div class="id-plate">
-                <h3>Festa da Castanha</h3>
-                <span>Nisa e Marvão &bull; Outubro 2025</span>
-                <a href="marvao.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-
-        
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">38 FOTOS</div>
-            <a href="https://i.imgur.com/1OhlRDd.png" class="glightbox" data-gallery="espinho">
-                <img src="https://i.imgur.com/1OhlRDd.png" alt="Espinho">
-            </a>
-             <div class="hidden-photos">
-                <a href="https://i.imgur.com/FtgTFEt.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/dGjJMhY.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/9ARDQSj.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/OjruOEL.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/48k0Fcq.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/VrOa9sz.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/TzJKBbD.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/a65asbb.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/01MWUcd.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/HJAd6Ol.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/8Iih9m8.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/uL2VTra.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/K8ERkTZ.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/MH3gWJs.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/B6UHLoH.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/AlFmtcc.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/zZQjVlf.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/uxAiv2p.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/zjDhe1V.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/hoGhdfe.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/ESJzk1y.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/5vpABjG.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/AVqfNDf.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/pjeyVID.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/MRNIeFt.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/ojyVzuK.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/AekosBq.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/RX2NhRv.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/NwVAqyY.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/Eb1evrt.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/S3Knzkp.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/NvAMCw9.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/k4GFxKP.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/k4GFxKP.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/ksKEqVi.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/AYzLUQJ.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/6ksItyh.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-                <a href="https://i.imgur.com/BX7BdUF.jpg" class="glightbox" data-gallery="espinho" data-fb="https://www.facebook.com/media/set/?set=a.122170474724788433&type=3"></a>
-            </div>
-            <div class="id-plate">
-                <h3>Nossa Senhora d'Ajuda</h3>
-                <span>Espinho &bull; Setembro 2025</span>
-                <a href="espinho.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
-
-
-        
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">40 FOTOS</div>
-        <a href="https://i.imgur.com/NmjlEsz.png" class="glightbox" data-gallery="agonia">
-                <img src="https://i.imgur.com/NmjlEsz.png" alt="Agonia">
-            </a>
-            <div class="hidden-photos">
-                <a href="https://i.imgur.com/5ALPQlS.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/fTGGkPt.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/iiYobM1.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/rCEnNU5.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/6qNrYLx.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/ILqchy0.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/XNCTo35.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/KNwCQ2L.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/71mHwbI.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/QINLORB.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/sbw7zMd.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/lPnrUbc.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/BbMmBzk.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/1jMcGW1.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/MjcPAkM.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/Ti05xu1.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/JHgepVD.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/VGwBDMA.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/saEDP0W.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/deNz8wK.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/LUgWbnq.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/nI5qhwu.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/kTb12Lq.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/zfJpx32.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/rdEkwGU.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/vrgUNGb.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/zhWmOR7.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/GLKqS4L.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/7X7mNyx.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/wYXrhY2.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/ZZgEjop.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/ZhzQSrp.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/E0eUtGE.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/mMaEGAZ.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/CwVnNs6.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/CbLzcLM.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/TbRvohj.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/rZSWcBs.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/6cW9ihz.png" class="glightbox" data-gallery="agonia"></a>
-                <a href="https://i.imgur.com/ghG3Zvc.png" class="glightbox" data-gallery="agonia"></a>
+                <div class="card-dica ouro">
+                    <div class="icon-dica"><i class="fas fa-suitcase-rolling"></i></div>
+                    <h3>Dica de Ouro: Preparação</h3>
+                    <p>Verifique sempre a previsão do tempo no dia anterior. Estar preparado para uma chuva inesperada ou um sol forte garante o seu conforto.</p>
                 </div>
-            <div class="id-plate">
-                <h3>Nossa Senhora d' Agonia</h3>
-                <span>Viana do Castelo &bull; Agosto 2025</span>
-                <a href="viana.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
 
-
-        
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">38 FOTOS</div>
-            <a href="https://i.imgur.com/NqapppF.png" class="glightbox" data-gallery="geres">
-                <img src="https://i.imgur.com/NqapppF.png" alt="Gerês">
-            </a>
-            <div class="hidden-photos">
-                <a href="https://i.imgur.com/OKR9Vce.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/41YJNam.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/lHpzbQw.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/WuciuXj.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/S9xZgIc.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/ALkTYl2.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/m8m5782.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/bvaeBX3.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/NIHHp3a.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/7DFZFft.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/ZaRkinW.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/UO8s2ck.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/0AoLa7U.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/wBfTf9M.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/zLOE8Ke.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/gPyPMBc.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/ufQ0Ns7.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/g5aa2ef.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/q4JHq3r.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/kAFKlXz.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/mrvaiPY.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/GZH7FTG.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/MpiRZYl.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/nCrQgTG.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/9SlHbO6.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/HyBeRok.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/cruubpv.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/zMofDpq.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/5PObFvB.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/YHAK8qk.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/sXEtGju.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/QLJo6Up.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/bNi6xsS.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/m81Lb2v.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/atrDgOH.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/trD05nX.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/kyT9bgC.png" class="glightbox" data-gallery="geres"></a>
-                <a href="https://i.imgur.com/lvsUC7h.png" class="glightbox" data-gallery="geres"></a>
+                <div class="card-dica ouro">
+                    <div class="icon-dica"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Dica de Ouro: Pontualidade</h3>
+                    <p>Recomendamos chegar 15 minutos antes ao ponto de encontro. Assim, garantimos a partida no horário e aproveitamos o destino por mais tempo!</p>
                 </div>
-            <div class="id-plate">
-                <h3>Gerês e Braga</h3>
-                <span>Minho &bull; Julho 2025</span>
-                <a href="geres.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
 
-
-        
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">18 FOTOS</div>
-            <a href="https://i.imgur.com/dZF0utN.png.jpg" class="glightbox" data-gallery="fatima">
-                <img src="https://i.imgur.com/dZF0utN.png" alt="Fátima">
-            </a>
-             <div class="hidden-photos">
-                <a href="https://i.imgur.com/kmX2G5F.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/ZGjLV5I.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/15BMkL5.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/tjwXBLP.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/Ax18XBk.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/YwCiT7E.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/MAxo8v2.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/knR0fyT.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/Cyy6oZ5.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/1Gwgdt4.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/zYqY4rh.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/ycA15G7.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/zLyfXV9.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/no6m0Mi.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/9o77lE1.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/B3wiMtH.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/JPtNEFq.png" class="glightbox" data-gallery="fatima"></a>
-                <a href="https://i.imgur.com/5D6hMUE.png" class="glightbox" data-gallery="fatima"></a>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-shoe-prints"></i></div>
+                    <h3>O Calçado Ideal</h3>
+                    <p>Privilegie sapatilhas confortáveis. Evite estrear sapatos novos em dias de passeio para evitar bolhas ou desconforto ao caminhar.</p>
                 </div>
-            <div class="id-plate">
-                <h3>Santuário de Fátima</h3>
-                <span>Fátima &bull; Junho 2025</span>
-                <a href="fatima.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
 
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">56 FOTOS</div>
-            <a href="https://i.imgur.com/dJqHQFF.png" class="glightbox" data-gallery="obidos">
-                <img src="https://i.imgur.com/PmjIQux.png" alt="Óbidos">
-            </a>
-                <div class="hidden-photos">
-                <a href="https://i.imgur.com/DBDIE7f.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/MJNaloC.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/9MVVmjJ.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/vb52Gda.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/Wex3NRs.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/zIoHV25.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/2Y3KImJ.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/J1UBrDg.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/WMjVn5Z.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/7uYP7JD.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/95k7DuE.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/EsTQIpc.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/N3sOgmh.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/s2Xi407.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/GUnRwN6.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/OwZ29pN.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/aJc7JAE.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/fx3zEMO.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/MlGxmZV.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/PeTbX0P.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/Qi3G9tp.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/VTcZ8jr.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/1GkKzba.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/VO9U39a.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/09TgCd0.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/OcSB6zo.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/XpKuQqO.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/zwYUr9R.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/zXtIAPf.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/3d6IEwO.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/H7hMtcI.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/4cDHXSf.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/cPJbdCp.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/0j6dyEK.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/pmEgHZI.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/pyhPGKL.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/XwXZGxx.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/31DGpb1.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/1GZesCC.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/3PTRviE.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/27qBDGN.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/qTaSu49.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/8UA9zJr.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/n1xHw0T.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/QByA7vZ.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/1rABDhS.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/u9nX4s1.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/olSNTlq.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/CjWyZkt.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/Na4WwwB.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/sJGkMhx.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/2FWq0lk.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/ACIrfvl.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/HkDF1bf.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/391ej95.png" class="glightbox" data-gallery="obidos"></a>
-                <a href="https://i.imgur.com/LHNFD3C.png" class="glightbox" data-gallery="obidos"></a>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-tshirt"></i></div>
+                    <h3>Roupa "À Cebola"</h3>
+                    <p>Vista-se em camadas. As manhãs podem ser frias e as tardes quentes. Escolha vestuário que dê liberdade de movimentos.</p>
                 </div>
-            
-            <div class="id-plate">
-                <h3>Festival do Chocolate</h3>
-                <span>Óbidos &bull; Abril 2025</span>
-                <a href="obidos.html" target="_blank" class="tour-link">Explorar Roteiro</a>
-            </div>
-        </div>
 
-
-        
-        <div class="museum-frame" data-year="2025">
-            <div class="status-tag">68 FOTOS</div>
-            <a href="https://i.imgur.com/VJkJt5h.png" class="glightbox" data-gallery="amendoeiras">
-                <img src="https://i.imgur.com/VJkJt5h.png" alt="Amendoeiras">
-            </a>
-            <div class="hidden-photos">
-                <a href="https://i.imgur.com/2UgSqIu.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/FBtNtvB.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/TIKN5Jy.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/4GdFFhX.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/gHJ7z8J.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/xlecShb.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/4gLMpaU.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/xeYCfKx.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/UGNbeA7.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/jcRlXIE.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/V9xd2ix.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/nSvtzry.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/jj06Bsl.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/32uGwzr.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/MYJclpG.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/pG0QhHo.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/lS34Vrh.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/oKO2Vd9.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/R91K7pf.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/o8OkOFC.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/ezgLDWC.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/YQguCBJ.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/MDwdloS.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/msJGNlL.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/1oDZh9p.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/REhS5QL.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/aKWekvM.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/BjTRTfS.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/R8LR0Ka.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/3iO2CU3.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/oEV9FWU.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/Y6RhT4v.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/WsKTOvr.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/20lrEPQ.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/s2mOeSK.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/d9KjBZx.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/mU3awEk.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/BBYYddX.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/v6M3t1s.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/ZRNFV1h.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/WZKqCfV.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/euzaUgH.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/WGV8wr0.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/SAnNxeG.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/3JsbFGz.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/EpW4OD9.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/qox1YlD.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/dZYU19d.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/Yp6SbWH.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/wXzSHH2.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/HfxxO1J.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/3S9oYiC.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/A0vHIpM.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/AeGjsV4.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/GUyIi7I.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/dg9dBzu.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/xsxiLYt.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/kiJtSze.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/La3jfx7.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/sj3zhsk.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/Xr95mb9.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/JpyHswQ.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/0l71VUo.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/SS6YVHb.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/oFR7zj2.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/lthZAI9.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/0VXRBRS.png" class="glightbox" data-gallery="amendoeiras"></a>
-                <a href="https://i.imgur.com/8IYz2fZ.png" class="glightbox" data-gallery="amendoeiras"></a>
-        </div>
-            <div class="id-plate">
-                <h3>Amendoeiras em Flor</h3>
-                <span>Foz Côa &bull; Março 2025</span>
-                <a href="amendoeiras.html" target="_blank" class="tour-link">Explorar Roteiro</a>
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-battery-full"></i></div>
+                    <h3>Registe e Partilhe</h3>
+                    <p>Traga o telemóvel carregado e, se possível, um powerbank. Portugal tem paisagens que vai querer guardar para sempre!</p>
                 </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-faucet-drip"></i></div>
+                    <h3>Hidratação e Snacks</h3>
+                    <p>Tenha sempre uma garrafa de água consigo. Pequenos snacks como fruta ou bolachas são ótimos aliados durante o trajeto no autocarro.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-chair"></i></div>
+                    <h3>Escolha de Lugares</h3>
+                    <p>Os lugares são atribuídos por ordem de inscrição. Se tem preferência por algum lugar específico, reserve a sua viagem com antecedência.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-wallet"></i></div>
+                    <h3>Dinheiro em Numerário</h3>
+                    <p>Embora o MB Way seja comum, em aldeias mais isoladas ou feiras tradicionais, o dinheiro vivo ainda é essencial para pequenos cafés ou lembranças.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fas fa-pills"></i></div>
+                    <h3>Saúde em Dia</h3>
+                    <p>Não esqueça a medicação habitual. Um pequeno estojo com comprimidos para o enjoo pode tornar a viagem muito mais agradável para si.</p>
+                </div>
+
+                <div class="card-dica">
+                    <div class="icon-dica"><i class="fab fa-facebook-messenger"></i></div>
+                    <h3>Comunidade Miguel</h3>
+                    <p>Já conhece o nosso grupo? <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Clique aqui</a> para ver as fotos das últimas aventuras!</p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="footer-wrapper">
+            <div id="footer-placeholder"></div>
         </div>
 
-    </div>
+    </main>
 
-    <div class="footer-controls">
-        <a href="index.html" class="nav-btn"><i class="fas fa-door-open"></i> Sair da Exposição</a>
-        <button class="nav-btn" onclick="toggleModal()"><i class="fas fa-address-book"></i> Contactos</button>
-    </div>
-
-    <div class="modal-overlay" id="contactModal">
-    <div class="contact-card" style="border-radius: 8px;">
-        <i class="fas fa-id-card" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-        <h2 style="letter-spacing: 4px; margin-bottom: 5px;">CONTACTOS</h2>
-        <p style="font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">Atendimento Personalizado</p>
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-        
-        <p style="margin: 15px 0;">
-            <strong style="display: block; font-size: 0.9rem; margin-bottom: 5px;">Passeios do Miguel</strong><br>
-            <a href="tel:+351965715465" style="text-decoration: none; color: #111; font-size: 1.1rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fas fa-phone-alt" style="color: var(--accent);"></i> +351 965 715 465
-            </a>
-        </p>
-        
-        <p style="margin: 15px 0;">
-            <a href="mailto:geral@passeiosdomiguel.com" style="text-decoration: none; color: #555; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fas fa-envelope-open-text" style="color: var(--accent);"></i> geral@passeiosdomiguel.com
-            </a>
-        </p>
-
-        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee;">
-             <p style="font-size: 0.65rem; color: #aaa; text-transform: uppercase;">📍 São Pedro do Sul &bull; Viseu &bull; Castro Daire &bull; Vouzela &bull; Oliveira de Frades</p>
-        </div>
-        
-        <button onclick="toggleModal()" class="filter-btn" style="margin-top:20px; width: 100%; box-shadow: 4px 4px 0px #ddd;">
-            <i class="fas fa-times"></i> Fechar
-        </button>
-    </div>
-</div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <script>
-        const lightbox = GLightbox({ selector: '.glightbox', loop: true });
-
-        function toggleModal() {
-            const modal = document.getElementById('contactModal');
-            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro:', error));
         }
 
-        function filterYear(year) {
-            localStorage.setItem('muralFilter', year);
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if(year === 'all') document.getElementById('btn-all').classList.add('active');
-            else document.getElementById(`btn-${year}`).classList.add('active');
-            
-            document.querySelectorAll('.museum-frame').forEach(frame => {
-                frame.style.display = (year === 'all' || frame.getAttribute('data-year') === year) ? 'block' : 'none';
-            });
-        }
-
-        window.onload = function() {
-            const savedFilter = localStorage.getItem('muralFilter') || 'all';
-            filterYear(savedFilter);
-        };
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
     </script>
+
 </body>
 </html>
