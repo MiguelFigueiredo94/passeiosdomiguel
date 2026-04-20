@@ -20,17 +20,16 @@
             --accent: #ff8c00;
             --bg: #f4f7f9;
             --white: #ffffff;
+            --text: #334155;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; min-height: 100vh; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; min-height: 100vh; color: var(--text); }
 
-        /* MENU LATERAL */
         #menu-placeholder { width: 250px; flex-shrink: 0; background-color: var(--primary); min-height: 100vh; }
-
         main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* BANNER PADRONIZADO */
+        /* BANNER */
         .banner-passeios { 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
@@ -38,87 +37,79 @@
             color: white; height: 380px; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--accent); 
         }
-        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; }
 
-        /* MURAL FLOAT */
         .banner-mural-float { 
             background: white; padding: 20px 30px; display: flex; justify-content: center; align-items: center; gap: 25px; 
             border-radius: 50px; margin: -45px auto 0; 
             width: 85%; max-width: 800px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
             border: 2px solid var(--accent); position: relative; z-index: 10;
         }
-        .banner-mural-float p { font-size: 16px; color: var(--primary); font-weight: 600; }
         .btn-mural-topo { background: var(--primary); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .btn-mural-topo:hover { background: var(--accent); transform: scale(1.05); }
+        .btn-mural-topo:hover { background: var(--accent); }
 
-        /* FILTROS RÁPIDOS */
-        .filtros-container { max-width: 1200px; margin: 60px auto 0; padding: 0 30px; text-align: center; }
+        /* FILTROS */
+        .filtros-container { max-width: 1200px; margin: 60px auto 20px; padding: 0 30px; text-align: center; }
         .btn-filtro { 
-            padding: 10px 25px; margin: 5px; border: 1px solid var(--primary); border-radius: 25px; 
-            background: white; color: var(--primary); cursor: pointer; font-weight: 600; transition: 0.3s;
+            padding: 12px 28px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
+            background: white; color: var(--primary); cursor: pointer; font-weight: 700; transition: 0.3s;
         }
-        .btn-filtro.active, .btn-filtro:hover { background: var(--primary); color: white; }
+        .btn-filtro.active { background: var(--primary); color: white; }
+        .btn-filtro:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-filtro.active:hover { color: white; }
 
-        /* CONTEÚDO */
-        .seccao-branca { padding: 40px 30px 60px; }
+        /* GRID */
+        .seccao-branca { padding: 20px 30px 60px; }
         .container-cards { max-width: 1200px; margin: 0 auto; }
-        
-        .titulo-ano { 
-            color: var(--primary); font-size: 2.2em; margin: 40px 0 25px; 
-            border-left: 6px solid var(--accent); padding-left: 15px; font-weight: bold; 
-        }
+        .titulo-ano { color: var(--primary); font-size: 2.2em; margin: 40px 0 25px; border-left: 6px solid var(--accent); padding-left: 15px; font-weight: bold; }
         
         .grid-passeios { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
             gap: 35px; 
-            margin-bottom: 50px; 
         }
 
-        /* CARDS COM EFEITO ZOOM */
+        /* CARDS */
         .card-passeio { 
             border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; 
-            background: var(--white); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            display: flex; flex-direction: column; position: relative; 
+            background: var(--white); transition: 0.4s; display: flex; flex-direction: column; position: relative; 
         }
-        .card-passeio:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-passeio.hidden { display: none; }
         
         .img-box { height: 220px; overflow: hidden; position: relative; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .card-passeio:hover .img-box img { transform: scale(1.1); }
         
-        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; }
         .badge-aberto { background: #2ecc71; }
         .badge-realizado { background: #94a3b8; }
         .badge-esgotado { background: #e74c3c; }
         .badge-ultimas { background: #f39c12; animation: pulse 2s infinite; }
+        .badge-cancelado { background: #2c3e50; }
 
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
         .card-info { padding: 30px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
-        
-        /* CALENDÁRIO MAIS MODERNO */
         .cal-pope { width: 70px; border: 2px solid var(--primary); border-radius: 12px; margin: -65px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
         .cal-mes { background: var(--primary); color: white; font-size: 0.85em; padding: 5px; font-weight: bold; text-transform: uppercase; }
         .cal-dia { font-size: 1.5em; font-weight: 800; padding: 8px; color: var(--primary); }
 
         .card-info h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.5em; }
-        .card-info p { color: #64748b; font-size: 1.1em; margin-bottom: 5px; }
+        .card-info p { color: #64748b; font-size: 1.1em; }
 
         .card-footer { padding: 20px; background: #f8fafc; border-top: 1px solid #edf2f7; }
-        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #e2e8f0; color: var(--primary); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; }
-        .btn-v-detalhes:hover { background: var(--primary); color: white; }
+        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #e2e8f0; color: var(--primary); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; }
+        .btn-v-detalhes:hover { background: #d1d9e2; }
         
-        .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; margin-top: 12px; }
-        .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; }
+        .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
         .btn-ins:hover { background: var(--accent); }
-        .btn-wts { background: #25d366; color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; transition: 0.3s; }
-        .btn-wts:hover { background: #128c7e; transform: rotate(10deg); }
+        .btn-wts { background: #25d366; color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; }
 
         @media (max-width: 1024px) {
             body { display: block; }
             #menu-placeholder { width: 100%; min-height: auto; }
-            .banner-mural-float { flex-direction: column; text-align: center; border-radius: 20px; }
             .banner-passeios h1 { font-size: 2.5em; }
         }
     </style>
@@ -130,70 +121,98 @@
     <main>
         <div class="banner-passeios">
             <h1>Os Nossos Passeios</h1>
-            <p>Experiências únicas em excelente companhia.</p>
+            <p>Escolha o seu próximo destino.</p>
         </div>
 
         <div class="banner-mural-float">
-            <i class="fas fa-camera-retro" style="color: var(--accent); font-size: 28px;"></i>
-            <p>Reviva os melhores momentos das nossas viagens!</p>
+            <i class="fas fa-heart" style="color: var(--accent); font-size: 28px;"></i>
+            <p>Veja as fotos das nossas últimas aventuras!</p>
             <a href="testemunhos.html" class="btn-mural-topo">Mural de Memórias</a>
         </div>
 
         <div class="filtros-container">
-            <button class="btn-filtro active">Todos</button>
-            <button class="btn-filtro">Próximos</button>
-            <button class="btn-filtro">2026</button>
-            <button class="btn-filtro">Realizados</button>
+            <button class="btn-filtro" onclick="filtrar('todos')">Todos</button>
+            <button class="btn-filtro" onclick="filtrar('proximos')">A Realizar</button>
+            <button class="btn-filtro" onclick="filtrar('concluidos')">Realizados</button>
         </div>
 
         <section class="seccao-branca">
             <div class="container-cards">
                 
-                <h2 class="titulo-ano">2026</h2>
+                <h2 class="titulo-ano" id="title-2026">2026</h2>
                 <div class="grid-passeios">
                     
-                    <article class="card-passeio">
-                        <div class="img-box">
-                            <span class="status-badge badge-aberto">Inscrições Abertas</span>
-                            <img src="https://i.imgur.com/L58QRQc.png" alt="Festas do Povo">
-                        </div>
+                    <article class="card-passeio" data-status="proximos">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/L58QRQc.png"></div>
                         <div class="card-info">
                             <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div>
-                            <h3>Festas do Povo</h3>
-                            <p><i class="fas fa-map-marker-alt"></i> Campo Maior</p>
+                            <h3>Festas do Povo</h3><p><i class="fas fa-map-marker-alt"></i> Campo Maior</p>
                         </div>
                         <div class="card-footer">
-                            <a href="campomaior.html" class="btn-v-detalhes">Ver Programa Completo</a>
+                            <a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a>
                             <div class="row-btns">
-                                <a href="inscricao.html" class="btn-ins">Reservar Vaga</a>
-                                <a href="https://wa.me/351965715465" class="btn-wts" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                <a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </article>
 
-                    <article class="card-passeio">
-                        <div class="img-box">
-                            <span class="status-badge badge-ultimas">Últimos Lugares</span>
-                            <img src="https://i.imgur.com/uC6VTVp.png" alt="Festa das Cruzes">
+                    <article class="card-passeio" data-status="proximos">
+                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div>
+                            <h3>Rota da Cereja</h3><p><i class="fas fa-map-marker-alt"></i> Fundão</p>
                         </div>
+                        <div class="card-footer">
+                            <a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            <div class="row-btns">
+                                <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                <a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card-passeio" data-status="proximos">
+                        <div class="img-box"><span class="status-badge badge-ultimas">Últimos Lugares</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
                         <div class="card-info">
                             <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div>
-                            <h3>Festa das Cruzes</h3>
-                            <p><i class="fas fa-map-marker-alt"></i> Barcelos</p>
+                            <h3>Festa das Cruzes</h3><p><i class="fas fa-map-marker-alt"></i> Barcelos</p>
                         </div>
                         <div class="card-footer">
-                            <a href="cruzes.html" class="btn-v-detalhes">Ver Programa Completo</a>
+                            <a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a>
                             <div class="row-btns">
-                                <a href="inscricao.html" class="btn-ins">Reservar Vaga</a>
-                                <a href="https://wa.me/351965715465" class="btn-wts" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                <a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </article>
 
+                    <article class="card-passeio" data-status="concluidos">
+                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div>
+                            <h3>Festa das Camélias</h3><p><i class="fas fa-map-marker-alt"></i> Celorico de Basto</p>
+                        </div>
+                        <div class="card-footer"><a href="camelias.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                    </article>
+
+                    <article class="card-passeio" data-status="concluidos">
+                        <div class="img-box"><span class="status-badge badge-cancelado">Cancelado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
+                        <div class="card-info">
+                            <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div>
+                            <h3>Magia Animal</h3><p><i class="fas fa-map-marker-alt"></i> Vila Nova de Gaia</p>
+                        </div>
+                        <div class="card-footer"><a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                    </article>
                 </div>
 
-                <h2 class="titulo-ano">Histórico 2025</h2>
+                <h2 class="titulo-ano" id="title-2025">2025</h2>
+                <div class="grid-passeios">
+                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Vigo & Valença</h3><p>Especial Natal</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p>Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Sra. d'Ajuda</h3><p>Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
                 </div>
+            </div>
         </section>
         
         <div id="footer-placeholder"></div>
@@ -201,13 +220,49 @@
 
     <script>
         function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
+            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
         }
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
+
+        // LÓGICA DE FILTRO COM MEMÓRIA (LocalStorage)
+        function filtrar(categoria) {
+            const cards = document.querySelectorAll('.card-passeio');
+            const btns = document.querySelectorAll('.btn-filtro');
+            
+            // Guardar escolha
+            localStorage.setItem('filtroPasseios', categoria);
+
+            // Atualizar botões
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(categoria)) btn.classList.add('active');
+            });
+
+            // Filtrar cards
+            cards.forEach(card => {
+                if (categoria === 'todos') {
+                    card.classList.remove('hidden');
+                } else {
+                    card.getAttribute('data-status') === categoria 
+                        ? card.classList.remove('hidden') 
+                        : card.classList.add('hidden');
+                }
+            });
+
+            // Esconder títulos de ano se não houver cards visíveis naquela secção
+            document.querySelectorAll('.titulo-ano').forEach(titulo => {
+                const proximoGrid = titulo.nextElementSibling;
+                const temVisiveis = Array.from(proximoGrid.children).some(c => !c.classList.contains('hidden'));
+                titulo.style.display = temVisiveis ? 'block' : 'none';
+            });
+        }
+
+        // Ao carregar a página, aplicar o último filtro ou 'proximos' por defeito
+        window.onload = () => {
+            const ultimoFiltro = localStorage.getItem('filtroPasseios') || 'proximos';
+            filtrar(ultimoFiltro);
+        };
     </script>
 </body>
 </html>
