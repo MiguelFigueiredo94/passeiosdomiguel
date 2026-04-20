@@ -1,0 +1,137 @@
+<style>
+    /* 1. ESTRUTURA LATERAL CORRIGIDA */
+    #menu-lateral { 
+        width: 250px; 
+        background-color: #1e4d8c; 
+        min-height: 100vh; 
+        position: fixed; /* Mantém ele fixo ao rolar a página */
+        left: 0;
+        top: 0;
+        padding: 30px 15px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        z-index: 9999;
+    }
+
+    /* 2. LOGÓTIPO - AJUSTE DE VISIBILIDADE */
+    .logo-container {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; 
+        border-radius: 50%; 
+        border: 4px solid white; 
+        background-color: white; 
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        text-decoration: none;
+    }
+
+    .logo-container .logo { 
+        width: 115%; /* Zoom moderado para não cortar o texto */
+        height: auto;
+        object-fit: contain;
+        display: block;
+        transform: translateY(5px); /* Ajuste para centrar o texto no círculo */
+    }
+
+    /* 3. LINKS DO MENU - NOMES ORIGINAIS RECUPERADOS */
+    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } 
+    #menu-lateral li { margin-bottom: 10px; position: relative; }
+
+    #menu-lateral ul li a { 
+        display: flex; align-items: center; color: white; text-decoration: none; 
+        padding: 12px 20px; font-size: 15px; font-weight: 600; 
+        transition: 0.3s; border-radius: 50px; background: rgba(255, 255, 255, 0.08);
+    }
+
+    #menu-lateral ul li a:hover { 
+        background: linear-gradient(135deg, #ff8c00, #e67e00);
+        color: white;
+        transform: translateX(5px);
+    }
+
+    .main-icon { margin-right: 12px; width: 20px; text-align: center; font-size: 18px; }
+    .fa-chevron-right { margin-left: auto; font-size: 11px; opacity: 0.7; }
+
+    /* 4. DROPDOWNS */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 100%; top: 0;
+        background: white; 
+        min-width: 260px;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+        border-radius: 12px;
+        padding: 10px 0;
+        z-index: 10001;
+        margin-left: 10px;
+    }
+    .dropdown:hover > .dropdown-content { display: block; }
+    .dropdown-content a {
+        color: #1e4d8c !important;
+        padding: 12px 20px !important;
+        display: block !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .dropdown-content a:hover { background: #f8f9fa !important; color: #ff8c00 !important; }
+
+    /* 5. REDES SOCIAIS */
+    .redes-sociais-menu {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+    }
+    .redes-sociais-menu p { color: rgba(255,255,255,0.5); font-size: 11px; margin-bottom: 15px; text-transform: uppercase; }
+    .icones-redes { display: flex; justify-content: center; gap: 15px; }
+    .icones-redes a { color: white; font-size: 20px; transition: 0.3s; opacity: 0.8; }
+    .icones-redes a:hover { color: #ff8c00; transform: scale(1.2); opacity: 1; }
+
+    /* MOBILE */
+    @media (max-width: 1024px) {
+        #menu-lateral { width: 100%; min-height: auto; position: relative; padding: 15px; }
+        .logo-container { width: 120px; height: 120px; }
+        .dropdown-content { position: static; width: 100%; box-shadow: none; background: rgba(0,0,0,0.1); }
+    }
+</style>
+
+<nav id="menu-lateral">
+    <a href="index.html" class="logo-container">
+        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+    </a>
+
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home main-icon"></i> Home</a></li>
+        <li><a href="sobre.html"><i class="fas fa-user main-icon"></i> Sobre Mim</a></li>
+        
+        <li class="dropdown">
+            <a href="passeios.html">
+                <i class="fas fa-bus main-icon"></i> Passeios 
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            <div class="dropdown-content">
+                <a href="passeios.html">Ver Todos os Passeios</a>
+                <a href="galeria.html">Exposição de Fotos</a>
+            </div>
+        </li>
+
+        <li><a href="contatos.html"><i class="fas fa-envelope main-icon"></i> Contactos</a></li>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+        <li><a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i> Dicas Úteis</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle main-icon"></i> FAQ</a></li>
+    </ul>
+
+    <div class="redes-sociais-menu">
+        <p>Siga-nos</p>
+        <div class="icones-redes">
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+</nav>
