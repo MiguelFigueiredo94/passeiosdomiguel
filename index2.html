@@ -1,245 +1,191 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
+<style>
+    /* 1. ESTRUTURA LATERAL DINÂMICA */
+    #menu-lateral { 
+        width: 80px; /* Largura inicial (só ícones) */
+        background-color: #1e4d8c; 
+        min-height: 100vh; 
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 30px 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        z-index: 9999;
+        transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    /* Expansão ao passar o rato (Apenas no PC) */
+    @media (min-width: 1025px) {
+        #menu-lateral:hover { 
+            width: 260px; 
+            padding: 30px 20px;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+        }
+    }
+
+    /* 2. LOGÓTIPO ADAPTÁVEL */
+    .logo-container {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%; 
+        border: 2px solid white; 
+        background-color: white; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-decoration: none;
+        transition: 0.4s;
+        flex-shrink: 0;
+    }
+
+    #menu-lateral:hover .logo-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .logo-container .logo { 
+        width: 110%;
+        height: auto;
+        object-fit: contain;
+        transition: 0.4s;
+    }
+
+    /* 3. LINKS DO MENU */
+    #menu-lateral ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; width: 100%; } 
+    #menu-lateral li { margin-bottom: 12px; position: relative; }
+
+    #menu-lateral ul li a { 
+        display: flex; align-items: center; color: white; text-decoration: none; 
+        padding: 14px; font-size: 15px; font-weight: 600; 
+        transition: 0.3s; border-radius: 12px; background: rgba(255, 255, 255, 0.05);
+    }
+
+    #menu-lateral ul li a:hover { 
+        background: linear-gradient(135deg, #ff8c00, #e67e00);
+        transform: scale(1.02);
+    }
+
+    /* Controla o texto dos links */
+    .menu-text {
+        opacity: 0;
+        margin-left: 15px;
+        transition: 0.3s;
+        pointer-events: none;
+    }
+
+    #menu-lateral:hover .menu-text {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .main-icon { 
+        font-size: 20px; 
+        width: 40px; /* Garante que o ícone fica centrado quando fechado */
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .fa-chevron-right { 
+        margin-left: auto; 
+        font-size: 11px; 
+        opacity: 0; 
+        transition: 0.3s;
+    }
+    #menu-lateral:hover .fa-chevron-right { opacity: 0.7; }
+
+    /* 4. DROPDOWNS (AJUSTADOS PARA O NOVO ESTILO) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 100%; top: 0;
+        background: white; 
+        min-width: 220px;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+        border-radius: 12px;
+        padding: 10px 0;
+        z-index: 10001;
+        margin-left: 15px;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios - Passeios do Miguel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f4f7f9;
-            --white: #ffffff;
-            --text: #334155;
-            --whatsapp: #25d366;
+    /* 5. REDES SOCIAIS */
+    .redes-sociais-menu {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+        transition: 0.3s;
+    }
+    .redes-sociais-menu p { 
+        color: white; 
+        font-size: 10px; 
+        opacity: 0; 
+        height: 0; 
+        overflow: hidden; 
+        transition: 0.3s; 
+    }
+    #menu-lateral:hover .redes-sociais-menu p { opacity: 0.5; height: auto; margin-bottom: 15px; }
+
+    .icones-redes { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    #menu-lateral:hover .icones-redes { flex-direction: row; justify-content: center; }
+
+    /* MOBILE: Volta ao estilo clássico para ser usável */
+    @media (max-width: 1024px) {
+        #menu-lateral { 
+            width: 100% !important; 
+            min-height: auto; 
+            position: relative; 
+            padding: 15px !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
         }
+        .logo-container { width: 80px !important; height: 80px !important; margin: 0; }
+        .menu-text { opacity: 1; margin-left: 10px; }
+        #menu-lateral ul { display: none; } /* Aqui normalmente usarias um botão hamburguer para abrir */
+        .redes-sociais-menu { display: none; }
+    }
+</style>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; min-height: 100vh; color: var(--text); }
+<nav id="menu-lateral">
+    <a href="index.html" class="logo-container">
+        <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+    </a>
 
-        #menu-placeholder { width: 250px; flex-shrink: 0; background-color: var(--primary); min-height: 100vh; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* BANNER */
-        .banner-passeios { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
-            background-size: cover; background-position: center; 
-            color: white; height: 380px; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--accent); 
-        }
-        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* BARRA EXPERIÊNCIAS */
-        .mural-experiencias-float { 
-            background: white; padding: 20px 30px; display: flex; justify-content: center; align-items: center; gap: 30px; 
-            border-radius: 25px; margin: -50px auto 0; 
-            width: 90%; max-width: 950px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
-            border: 1px solid #e2e8f0; position: relative; z-index: 10;
-        }
-        .mural-info { display: flex; align-items: center; gap: 15px; flex-grow: 1; }
-        .mural-info i { color: var(--accent); font-size: 2em; }
-        .mural-info p { font-weight: 600; color: var(--primary); font-size: 1.1em; line-height: 1.2; }
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home main-icon"></i> <span class="menu-text">Home</span></a></li>
+        <li><a href="sobre.html"><i class="fas fa-user main-icon"></i> <span class="menu-text">Sobre Mim</span></a></li>
         
-        .mural-btns { display: flex; gap: 12px; }
-        .btn-mural { 
-            padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; 
-            font-size: 0.9em; display: flex; align-items: center; gap: 8px; transition: 0.3s;
-        }
-        .btn-feed { background: #f0f7ff; color: var(--primary); border: 1px solid #cde4ff; }
-        .btn-feed:hover { background: var(--primary); color: white; }
-        .btn-gal { background: #fff4e6; color: #d97706; border: 1px solid #ffe3bc; }
-        .btn-gal:hover { background: #d97706; color: white; }
-
-        /* FILTROS */
-        .filtros-container { max-width: 1200px; margin: 65px auto 20px; padding: 0 30px; text-align: center; }
-        .btn-filtro { 
-            padding: 12px 28px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
-            background: white; color: var(--primary); cursor: pointer; font-weight: 700; transition: 0.3s;
-        }
-        .btn-filtro.active { background: var(--primary); color: white; }
-        .btn-filtro:hover { border-color: var(--accent); color: var(--accent); }
-
-        /* GRID E CARDS */
-        .seccao-branca { padding: 20px 30px 60px; }
-        .container-cards { max-width: 1200px; margin: 0 auto; }
-        .titulo-ano { color: var(--primary); font-size: 2.2em; margin: 40px 0 25px; border-left: 6px solid var(--accent); padding-left: 15px; font-weight: bold; }
-        
-        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; }
-
-        .card-passeio { border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; background: var(--white); transition: 0.4s; display: flex; flex-direction: column; position: relative; }
-        .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-passeio.hidden { display: none; }
-        
-        .img-box { height: 220px; overflow: hidden; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card-passeio:hover .img-box img { transform: scale(1.1); }
-        
-        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; }
-        .badge-aberto { background: #2ecc71; }
-        .badge-realizado { background: #94a3b8; }
-        .badge-esgotado { background: #e74c3c; }
-        .badge-ultimas { background: #f39c12; animation: pulse 2s infinite; }
-        .badge-cancelado { background: #2c3e50; }
-
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-
-        .card-info { padding: 30px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
-        .cal-pope { width: 70px; border: 2px solid var(--primary); border-radius: 12px; margin: -65px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .cal-mes { background: var(--primary); color: white; font-size: 0.85em; padding: 5px; font-weight: bold; text-transform: uppercase; }
-        .cal-dia { font-size: 1.5em; font-weight: 800; padding: 8px; color: var(--primary); }
-
-        .card-info h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.5em; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .card-info p { color: #64748b; font-size: 1.1em; }
-        .card-info p i { color: var(--accent); margin-right: 5px; }
-
-        .card-footer { padding: 20px; background: #f8fafc; border-top: 1px solid #edf2f7; }
-        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #e2e8f0; color: var(--primary); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; }
-        .btn-v-detalhes:hover { background: #d1d9e2; }
-        
-        .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; }
-        .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
-        .btn-ins:hover { background: var(--accent); }
-        .btn-wts { background: var(--whatsapp); color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; transition: 0.3s; }
-        .btn-wts:hover { background: #128c7e; transform: scale(1.05); }
-
-        @media (max-width: 1024px) {
-            body { display: block; }
-            #menu-placeholder { width: 100%; min-height: auto; }
-            .mural-experiencias-float { flex-direction: column; width: 95%; gap: 20px; text-align: center; border-radius: 20px; }
-            .mural-info { flex-direction: column; }
-            .banner-passeios h1 { font-size: 2.2em; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="menu-placeholder"></div>
-
-    <main>
-        <div class="banner-passeios">
-            <h1>Os Nossos Passeios</h1>
-            <p>Experiências autênticas, memórias para a vida toda.</p>
-        </div>
-
-        <div class="mural-experiencias-float">
-            <div class="mural-info">
-                <i class="fas fa-route"></i>
-                <p>Reviva cada destino:<br><span style="font-weight: 400; font-size: 0.9em; color: #64748b;">Feedback dos viajantes e fotos dos passeios</span></p>
+        <li class="dropdown">
+            <a href="passeios.html">
+                <i class="fas fa-bus main-icon"></i> 
+                <span class="menu-text">Passeios</span>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            <div class="dropdown-content">
+                <a href="passeios.html" style="color:#1e4d8c !important;">Ver Todos os Passeios</a>
+                <a href="galeria.html" style="color:#1e4d8c !important;">Diário de Bordo</a>
+                <a href="testemunhos.html" style="color:#1e4d8c !important;">Mural de Memórias</a>
             </div>
-            <div class="mural-btns">
-                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots"></i> Mural de Memórias</a>
-                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-camera"></i> Diário de Bordo</a>
-            </div>
+        </li>
+
+        <li><a href="contatos.html"><i class="fas fa-envelope main-icon"></i> <span class="menu-text">Contactos</span></a></li>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+        <li><a href="dicas.html"><i class="fas fa-lightbulb main-icon"></i> <span class="menu-text">Dicas Úteis</span></a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle main-icon"></i> <span class="menu-text">FAQ</span></a></li>
+    </ul>
+
+    <div class="redes-sociais-menu">
+        <p>Siga-nos</p>
+        <div class="icones-redes">
+            <a href="https://www.facebook.com/passeiosdomiguel" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-
-        <div class="filtros-container">
-            <button class="btn-filtro" onclick="filtrar('todos')">Todos os Passeios</button>
-            <button class="btn-filtro" onclick="filtrar('proximos')">A Realizar</button>
-            <button class="btn-filtro" onclick="filtrar('concluidos')">Realizados</button>
-        </div>
-
-        <section class="seccao-branca">
-            <div class="container-cards">
-                
-                <h2 class="titulo-ano" id="title-2026">2026</h2>
-                <div class="grid-passeios">
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/L58QRQc.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div><h3>Festas do Povo</h3><p><i class="fas fa-map-marker-alt"></i> Campo Maior</p></div>
-                        <div class="card-footer"><a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-aberto">Aberto</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div><h3>Rota da Cereja</h3><p><i class="fas fa-map-marker-alt"></i> Fundão</p></div>
-                        <div class="card-footer"><a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-ultimas">Últimos Lugares</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div><h3>Festa das Cruzes</h3><p><i class="fas fa-map-marker-alt"></i> Barcelos</p></div>
-                        <div class="card-footer"><a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div><h3>Festa das Camélias</h3><p><i class="fas fa-map-marker-alt"></i> Celorico de Basto</p></div>
-                        <div class="card-footer"><a href="camelias.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-cancelado">Cancelado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div><h3>Magia Animal</h3><p><i class="fas fa-map-marker-alt"></i> Vila Nova de Gaia</p></div>
-                        <div class="card-footer"><a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
-                </div>
-
-                <h2 class="titulo-ano" id="title-2025">2025</h2>
-                <div class="grid-passeios">
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Vigo & Valença</h3><p><i class="fas fa-map-marker-alt"></i> Especial Natal</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p><i class="fas fa-map-marker-alt"></i> Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Nossa Senhora d'Ajuda</h3><p><i class="fas fa-map-marker-alt"></i> Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Nossa Senhora d'Agonia</h3><p><i class="fas fa-map-marker-alt"></i> Viana do Castelo</p></div><div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p><i class="fas fa-map-marker-alt"></i> Gerês</p></div><div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário de Fátima</h3><p><i class="fas fa-map-marker-alt"></i> Fátima</p></div><div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival do Chocolate</h3><p><i class="fas fa-map-marker-alt"></i> Óbidos</p></div><div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p><i class="fas fa-map-marker-alt"></i> Foz Côa</p></div><div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                </div>
-            </div>
-        </section>
-        
-        <div id="footer-placeholder"></div>
-    </main>
-
-    <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
-        }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
-
-        function filtrar(categoria) {
-            const cards = document.querySelectorAll('.card-passeio');
-            const btns = document.querySelectorAll('.btn-filtro');
-            localStorage.setItem('filtroPasseios', categoria);
-
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('onclick').includes(categoria)) btn.classList.add('active');
-            });
-
-            cards.forEach(card => {
-                if (categoria === 'todos') {
-                    card.classList.remove('hidden');
-                } else {
-                    card.getAttribute('data-status') === categoria 
-                        ? card.classList.remove('hidden') 
-                        : card.classList.add('hidden');
-                }
-            });
-
-            document.querySelectorAll('.titulo-ano').forEach(titulo => {
-                const proximoGrid = titulo.nextElementSibling;
-                const temVisiveis = Array.from(proximoGrid.children).some(c => !c.classList.contains('hidden'));
-                titulo.style.display = temVisiveis ? 'block' : 'none';
-            });
-        }
-
-        window.onload = () => {
-            const ultimoFiltro = localStorage.getItem('filtroPasseios') || 'proximos';
-            filtrar(ultimoFiltro);
-        };
-    </script>
-</body>
-</html>
+    </div>
+</nav>
