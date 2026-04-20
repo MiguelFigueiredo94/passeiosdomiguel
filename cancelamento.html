@@ -11,82 +11,133 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Cancelamento - Passeios do Miguel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Termos e Condições - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* Base e Layout Lateral */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; background-color: #f8f9fa; }
-        
-        #menu-placeholder {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            z-index: 1000;
+        :root {
+            --primary: #1e4d8c;
+            --accent: #ff8c00;
+            --bg: #f8fafc;
+            --text: #334155;
+            --danger: #d9534f;
         }
-        
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
 
-        /* BANNER PREMIUM */
+        /* 1. ESTRUTURA GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--bg); 
+            display: flex; 
+            color: var(--text); 
+            min-height: 100vh; 
+        }
+
+        /* MENU LATERAL FIXO (IGUAL AO INDEX) */
+        #menu-placeholder { 
+            width: 250px; 
+            flex-shrink: 0; 
+            background-color: var(--primary);
+        }
+
+        main { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
+        }
+
+        /* 2. BANNER PADRONIZADO */
         .banner-legal {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; color: white;
-            padding: 80px 20px; text-align: center; border-radius: 0 0 50px 0;
+            background-size: cover; 
+            background-position: center;
+            height: 350px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            text-align: center; 
+            border-bottom: 5px solid var(--accent);
+            padding: 20px;
         }
-        .banner-legal h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .banner-legal h1 { font-size: clamp(2em, 5vw, 3.2em); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        .banner-legal p { font-size: clamp(1em, 3vw, 1.3em); max-width: 700px; font-weight: 300; opacity: 0.9; }
 
-        /* CONTEÚDO LEGAL */
-        .seccao-legal { padding: 60px 20px; background: white; flex-grow: 1; }
-        .container-legal { max-width: 850px; margin: 0 auto; line-height: 1.8; color: #444; }
+        /* 3. CONTEÚDO LEGAL PROFISSIONAL */
+        .seccao-legal { 
+            padding: 60px 30px; 
+            background: white; 
+            max-width: 900px; 
+            margin: -40px auto 60px; 
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            z-index: 10;
+            position: relative;
+        }
         
-        h2 { color: #1e4d8c; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; margin-top: 45px; display: flex; align-items: center; gap: 10px; }
-        h2 i { color: #ff8c00; font-size: 0.9em; }
+        .container-legal { line-height: 1.8; }
+        .intro-legal { font-size: 1.1em; color: var(--primary); margin-bottom: 30px; border-left: 4px solid var(--accent); padding-left: 20px; }
 
+        h2 { 
+            color: var(--primary); 
+            font-size: 1.5em; 
+            margin-top: 45px; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+        h2 i { color: var(--accent); font-size: 0.9em; }
+
+        /* BOXES DE DESTAQUE */
         .box-alerta { 
             background: #fff9e6; border-left: 5px solid #ffbc00; 
-            padding: 25px; margin: 30px 0; border-radius: 8px;
+            padding: 25px; margin: 30px 0; border-radius: 12px;
             color: #856404; font-weight: 500;
+        }
+        .box-perigo {
+            background: #fff0f0; border-left: 5px solid var(--danger);
+            padding: 25px; margin: 30px 0; border-radius: 12px;
+            color: #a94442;
         }
 
         .lista-legal { list-style: none; padding: 0; }
-        .lista-legal li { margin-bottom: 15px; padding-left: 30px; position: relative; }
-        .lista-legal li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: #1e4d8c; }
+        .lista-legal li { margin-bottom: 18px; padding-left: 35px; position: relative; }
+        .lista-legal li::before { 
+            content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; 
+            position: absolute; left: 0; color: var(--primary); font-size: 1.1em;
+        }
 
         .btn-voltar {
-            display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
-            padding: 12px 25px; background: #1e4d8c; color: white; text-decoration: none;
-            border-radius: 12px; font-weight: bold; transition: 0.3s;
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 50px;
+            padding: 15px 30px; background: var(--primary); color: white; 
+            text-decoration: none; border-radius: 50px; font-weight: bold; 
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(30,77,140,0.2);
         }
-        .btn-voltar:hover { background: #ff8c00; transform: translateX(-5px); }
+        .btn-voltar:hover { background: var(--accent); transform: translateX(-5px); box-shadow: 0 8px 20px rgba(255,140,0,0.3); }
 
-        /* Força os títulos dentro do rodapé a serem brancos, ignorando o azul da página */
-            #footer-placeholder h2, 
-            .footer-universal h2 {
-                color: #ffffff !important; 
-                border-bottom: none !important;
-                margin-top: 0 !important;
-            }
-            
-            /* Garante que o texto de descrição também seja legível */
-            .footer-universal p {
-                color: rgba(255, 255, 255, 0.8) !important;
-            }
+        /* AJUSTE RODAPÉ (CORES DO TEXTO) */
+        #footer-placeholder h2 { color: #ffffff !important; border: none !important; margin-top: 0 !important; padding: 0 !important; }
+        #footer-placeholder p { color: rgba(255, 255, 255, 0.8) !important; }
 
-                @media (max-width: 1024px) {
-            #menu-placeholder {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-        
-            main {
-                margin-left: 0;
-            }
+        /* 4. RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            #menu-placeholder { width: 100%; height: auto; position: relative; }
+            .seccao-legal { margin: 20px; padding: 40px 20px; }
         }
 
+        @media (max-width: 600px) {
+            .banner-legal { height: 280px; }
+            h2 { font-size: 1.3em; }
+            .box-alerta, .box-perigo { padding: 15px; font-size: 0.95em; }
+        }
     </style>
 </head>
 <body>
@@ -101,19 +152,21 @@
 
         <section class="seccao-legal">
             <div class="container-legal">
-                <p>Para garantir a melhor organização e evitar imprevistos, os <strong>"Passeios do Miguel"</strong> estabelecem as seguintes condições para inscrições, cancelamentos e reembolsos.</p>
+                <p class="intro-legal">Para garantir a melhor organização e evitar imprevistos, os <strong>"Passeios do Miguel"</strong> estabelecem as seguintes condições para inscrições, cancelamentos e reembolsos.</p>
 
                 <h2><i class="fas fa-file-invoice-dollar"></i> 1. Inscrição e Pagamento</h2>
                 <p>A sua inscrição é confirmada <strong>apenas após o pagamento do valor total</strong>. A reserva só é efetivada após esta confirmação, sendo os lugares no autocarro atribuídos por ordem de chegada do pagamento.</p>
 
                 <h2><i class="fas fa-user-times"></i> 2. Cancelamento pelo Participante</h2>
                 <p>Assumimos compromissos financeiros com transportadoras e restaurantes que se tornam irrecuperáveis próximo da data.</p>
+                
                 <div class="box-alerta">
                     <i class="fas fa-calendar-alt"></i> <strong>Prazos de Reembolso:</strong><br>
                     • Até 30 dias antes do passeio: Reembolso de 100%.<br>
                     • Menos de 30 dias: Não haverá lugar a reembolso.
                 </div>
-                <p><strong>Dica de Segurança:</strong> Caso não possa comparecer, <span style="color:#1e4d8c; font-weight:bold;">poderá ceder o seu lugar a outra pessoa</span>, desde que nos informe o nome do novo passageiro até 24h antes da partida.</p>
+                
+                <p><strong>Dica de Segurança:</strong> Caso não possa comparecer, <span style="color:var(--primary); font-weight:bold;">poderá ceder o seu lugar a outra pessoa</span>, desde que nos informe o nome do novo passageiro até 24h antes da partida.</p>
 
                 <h2><i class="fas fa-exclamation-triangle"></i> 3. Cancelamento pelos "Passeios do Miguel"</h2>
                 <p>Reservamo-nos o direito de cancelar a atividade por: número insuficiente de participantes, questões técnicas, condições climatéricas adversas ou força maior.</p>
@@ -127,8 +180,8 @@
                 </ul>
 
                 <h2><i class="fas fa-clock"></i> 5. Pontualidade e No-Show</h2>
-                <div class="box-alerta" style="background: #fff0f0; border-left-color: #d9534f; color: #a94442;">
-                    <strong>Regra de Partida:</strong> O autocarro parte rigorosamente à hora marcada. A não comparência no local e hora de partida (no-show) implica a perda total do valor pago, sem direito a reembolso ou crédito para outro passeio.
+                <div class="box-perigo">
+                    <i class="fas fa-bus"></i> <strong>Regra de Partida:</strong> O autocarro parte rigorosamente à hora marcada. A não comparência no local e hora de partida (no-show) implica a perda total do valor pago, sem direito a reembolso ou crédito para outro passeio.
                 </div>
 
                 <h2><i class="fas fa-shield-alt"></i> 6. Seguros e Responsabilidade Civil</h2>
@@ -158,24 +211,16 @@
 
         <div id="footer-placeholder"></div> 
     </main>
-  
-    
+
     <script>
-        // 1. CARREGAR O MENU PRIMEIRO (Igual aos Contactos)
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar menu:', err));
-    
-        // 2. CARREGAR O RODAPÉ DEPOIS
-        fetch('rodape.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Erro ao carregar rodapé:', err));
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro:', error));
+        }
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
     </script>
 </body>
 </html>
