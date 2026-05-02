@@ -11,17 +11,18 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Festa das Cruzes - Barcelos - Passeios do Miguel</title>
+    <title>Festa das Cruzes: Barcelos - Passeios do Miguel</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary-red: #b91d27;   
-            --bg-light: #f8f9fa;
+            --primary-color: #b91d27; /* Vermelho Barcelos */
+            --accent-color: #f1c40f;  /* Amarelo Ouro */
+            --vibrant-color: #d63031; 
+            --bg-light: #fefaf9;
             --text-dark: #2d3436;
-            --accent-yellow: #ffeb3b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,70 +30,66 @@
 
         .btn-voltar {
             position: fixed; top: 25px; left: 25px; z-index: 1001;
-            background: white; color: var(--primary-red);
+            background: white; color: var(--primary-color);
             width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s ease;
         }
-        .btn-voltar:hover { background: var(--primary-red); color: white; transform: translateX(-5px); }
+        .btn-voltar:hover { background: var(--primary-color); color: white; transform: translateX(-5px); }
 
         .hero {
             height: 60vh; min-height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://i.imgur.com/6uhc4J1.png');
+            /* Usando a imagem de Barcelos do seu primeiro exemplo ou similar */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.imgur.com/6uhc4J1.png');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
-        .hero .data-badge { font-size: 1.3em; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; padding: 8px 35px; border: 1px solid white; border-radius: 50px; font-weight: 600; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4.2em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .hero .data-badge { font-size: 1.3em; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: white; padding: 8px 35px; border: 1px solid white; border-radius: 50px; font-weight: 600; }
 
         .wrapper { max-width: 1200px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
 
         .main-card { background: white; padding: 45px; border-radius: 35px; box-shadow: 0 15px 50px rgba(0,0,0,0.05); }
-        .title-sec { font-family: 'Playfair Display', serif; color: var(--primary-red); font-size: 2.2em; margin-bottom: 25px; }
+        .title-sec { font-family: 'Playfair Display', serif; color: var(--primary-color); font-size: 2.2em; margin-bottom: 25px; }
         
         .feature-box { display: flex; gap: 20px; margin-bottom: 20px; padding: 20px; border-radius: 20px; background: #fff; border: 1px solid #eee; }
-        .feature-box i { color: var(--primary-red); font-size: 1.4em; min-width: 25px; }
+        .feature-box i { color: var(--primary-color); font-size: 1.4em; min-width: 25px; }
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        .tips-section { background: #fffcf0; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f7e7a4; }
-        .tips-section h4 { color: #856404; margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; }
-        .tip-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.95em; color: #5d4e1f; }
-        .tip-item i { color: #b91d27; margin-top: 4px; }
+        .btn-galeria {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff5f5; color: var(--primary-color); padding: 15px 30px;
+            border-radius: 15px; text-decoration: none; font-weight: 700;
+            margin: 30px 0; border: 2px solid var(--primary-color); transition: 0.3s;
+        }
+        .btn-galeria:hover { background: var(--primary-color); color: white; }
 
-        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
+        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 10px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
+        .info-item i { color: var(--primary-color); margin-top: 3px; }
 
         .booking-card { 
-            background: var(--primary-red); color: white; padding: 40px; border-radius: 35px; 
-            position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(185, 29, 39, 0.2);
+            background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
+            position: sticky; top: 30px; height: fit-content; text-align: center;
         }
-        .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; }
-        .price-label { font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .price-label span { display: block; font-size: 0.75em; font-weight: 300; opacity: 0.8; text-transform: none; letter-spacing: 0; }
-        .price-amount { font-size: 2.5em; font-weight: 800; }
-
-        .feriado-banner { 
-            background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center; padding: 10px; border-radius: 15px; font-weight: 700; 
-            font-size: 0.9em; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px;
+        .success-badge {
+            background: rgba(185, 29, 39, 0.15); border: 1px solid var(--primary-color);
+            padding: 12px; border-radius: 15px; font-weight: 700; color: #ff7675;
+            margin-bottom: 20px; text-transform: uppercase; font-size: 0.9em;
         }
-
-        .btn-main {
-            display: block; background: white; color: var(--primary-red); text-align: center;
+        .btn-proximos {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--vibrant-color); color: white; text-align: center;
             padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.2em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
         }
-
-        .seat-info { background: rgba(0,0,0,0.1); padding: 15px; border-radius: 15px; margin-top: 20px; font-size: 0.85em; line-height: 1.4; border-left: 4px solid var(--accent-yellow); }
-
-        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
-        .photo-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; cursor: pointer; }
+        .btn-proximos:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(185, 29, 39, 0.3); }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 2.8em; }
+            .hero h1 { font-size: 2.5em; }
             .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
             .info-lists { grid-template-columns: 1fr; }
         }
@@ -104,29 +101,19 @@
 
     <header class="hero">
         <h1>Festa das Cruzes</h1>
-        <div class="data-badge">01 Maio 2026</div>
+        <div class="data-badge">Realizado a 01 de Maio 2026</div>
     </header>
 
     <div class="wrapper">
         <main class="main-card">
-            <h2 class="title-sec">Barcelos em Festa</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7;">Junte-se a nós na romaria que abre a época das grandes festas minhotas. Um dia repleto de tradição, cultura e o brio único das gentes de Barcelos.</p>
-
-            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-red); padding-left: 15px;">Destaques do Programa:</h3>
-
-            <div class="feature-box">
-                <i class="fas fa-drum"></i>
-                <div>
-                    <h4>Animação de Rua</h4>
-                    <p>Arruadas de Zés P’reiras, Bandas Filarmónicas e Folclore a animar todos os cantos da cidade.</p>
-                </div>
-            </div>
+            <h2 class="title-sec">Tradição e Cor em Barcelos</h2>
+            <p style="margin-bottom: 30px; color: #555; line-height: 1.7;">Vivemos um dia magnífico na primeira grande romaria do Minho. Entre tapetes de pétalas e o som das concertinas, Barcelos acolheu-nos com toda a sua hospitalidade e brio.</p>
 
             <div class="feature-box">
                 <i class="fas fa-leaf"></i>
                 <div>
-                    <h4>Tapetes de Pétalas</h4>
-                    <p>Visita aos magníficos tapetes de flores naturais, uma tradição de beleza incomparável.</p>
+                    <h4>Tapetes de Flores Naturais</h4>
+                    <p>Ficámos deslumbrados com a arte e paciência depositada nos magníficos tapetes que decoram o Templo do Senhor Bom Jesus da Cruz.</p>
                 </div>
             </div>
 
@@ -134,76 +121,54 @@
                 <i class="fas fa-certificate"></i>
                 <div>
                     <h4>Batalha das Flores</h4>
-                    <p>O grande desfile alegórico onde a cor e a festa transbordam pelas avenidas.</p>
+                    <p>Assistimos ao icónico desfile de carros alegóricos, um espetáculo único de cor e alegria que contagiou todos os nossos viajantes.</p>
                 </div>
             </div>
 
-            <div class="tips-section">
-                <h4><i class="fas fa-lightbulb"></i> Dicas do Miguel:</h4>
-                <div class="tip-item"><i class="fas fa-shoe-prints"></i> <span><strong>Calçado:</strong> Use sapatos confortáveis, a cidade estará em festa e o melhor é explorá-la a caminhar.</span></div>
-                <div class="tip-item"><i class="fas fa-camera-retro"></i> <span><strong>Fotos:</strong> Os tapetes de flores e a Batalha das Flores são momentos imperdíveis para fotografar.</span></div>
+            <div class="feature-box">
+                <i class="fas fa-palette"></i>
+                <div>
+                    <h4>Artesanato e Identidade</h4>
+                    <p>Explorámos a feira tradicional, onde o Figurado de Barcelos e o famoso Galo foram os protagonistas deste mergulho na cultura popular.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="galeria.html" class="btn-galeria">
+                    <i class="fas fa-images"></i> VER FOTOS NA GALERIA
+                </a>
             </div>
 
             <div class="info-lists">
                 <div>
-                    <h4 style="margin-bottom: 12px; color: #2ecc71; font-size: 0.95em;"><i class="fas fa-check"></i> O QUE INCLUI:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro de Turismo</li>
-                    <li class="info-item"><i class="fas fa-user-check"></i> Guia acompanhante</li>
-                    <li class="info-item"><i class="fas fa-map-marked-alt"></i> Visita aos locais indicados no programa</li>
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color); font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-check"></i> Incluído no Passeio:</h4>
+                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Turismo</li>
+                    <li class="info-item"><i class="fas fa-user-tie"></i> Guia Acompanhante</li>
+                    <li class="info-item"><i class="fas fa-map-marked-alt"></i> Visita ao Centro Histórico</li>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 12px; color: #e74c3c; font-size: 0.95em;"><i class="fas fa-times"></i> NÃO INCLUI:</h4>
-                    <li class="info-item"><i class="fas fa-utensils"></i> Refeições não mencionadas</li>
-                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entradas em monumentos/museus</li>
-                    <li class="info-item"><i class="fas fa-wallet"></i> Despesas de carácter pessoal</li>
+                    <h4 style="margin-bottom: 15px; color: #555; font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-map-marker-alt"></i> Recolhas Efetuadas:</h4>
+                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire, S. Pedro do Sul e Vouzela</li>
+                    <li class="info-item"><i class="fas fa-circle"></i> Oliveira de Frades e Viseu</li>
                 </div>
-            </div>
-
-            <h2 class="title-sec" style="margin-top: 40px;">O que vamos ver?</h2>
-            <div class="photo-grid">
-                <img src="https://i.imgur.com/6B2EkQL.jpg" onclick="abrirM(this.src)">
-                <img src="https://i.imgur.com/4EpVA7m.jpg" onclick="abrirM(this.src)">
-                <img src="https://i.imgur.com/Y1X07Lx.jpg" onclick="abrirM(this.src)">
-                <img src="https://i.imgur.com/x1dYBrH.jpg" onclick="abrirM(this.src)">
             </div>
         </main>
 
         <aside class="booking-card">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 5px;">Inscrição</h3>
-            <p style="font-size: 0.9em; font-weight: 700; color: var(--accent-yellow); margin-bottom: 20px;">
-                <i class="fas fa-fire"></i> LUGARES LIMITADOS!
-            </p>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 10px;">Sucesso Total!</h3>
             
-            <div class="price-row">
-                <div class="price-label">Preço Único<span>Transporte + Guia</span></div>
-                <span class="price-amount">30€</span>
+            <div class="success-badge">
+                <i class="fas fa-users"></i> 40 Participantes
             </div>
 
-            <div class="feriado-banner">
-                <i class="fas fa-flag"></i> Feriado Nacional
-            </div>
+            <p style="font-size: 0.95em; color: #eee; line-height: 1.6; font-style: italic; opacity: 0.9;">
+                "Uma jornada pela alma do Minho que encheu os olhos de cor e o coração de tradição. Obrigado a todos pela companhia!"
+            </p>
 
-            <div style="font-size: 0.85em; line-height: 1.8;">
-                <p><i class="fas fa-map-marker-alt" style="margin-right:8px; width: 15px;"></i> <strong>Recolhas:</strong> Castro Daire, S. Pedro do Sul, Vouzela e Oliveira de Frades.</p>
-                <p style="font-size: 0.85em; opacity: 0.9; margin-left: 23px;">(Outros pontos em rota sob consulta)</p>
-                <p style="color: var(--accent-yellow); font-weight: 600; margin-top: 5px;"><i class="fas fa-exclamation-triangle" style="margin-right:8px; width: 15px;"></i> Mínimo de 35 participantes.</p>
-            </div>
-
-            <div class="seat-info">
-                <i class="fas fa-chair"></i> <strong>Lugares no Autocarro:</strong><br>
-                A numeração dos lugares é atribuída rigorosamente por ordem de pagamento da reserva.
-            </div>
-
-            <a href="inscricao.html?passeio=BarcelosCruzes" class="btn-main">Reservar Agora</a>
+            <a href="passeios.html" class="btn-proximos">
+                Ver Novos Destinos <i class="fas fa-arrow-right" style="margin-left:10px;"></i>
+            </a>
         </aside>
     </div>
-
-    <div id="modalG" style="display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center;" onclick="this.style.display='none'">
-        <img id="modalImg" style="max-width: 90%; max-height: 80%; border-radius: 15px; border: 3px solid white;">
-    </div>
-
-    <script>
-        function abrirM(s){ document.getElementById('modalG').style.display='flex'; document.getElementById('modalImg').src=s; }
-    </script>
 </body>
 </html>
