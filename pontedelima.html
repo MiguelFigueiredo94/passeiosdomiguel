@@ -18,10 +18,10 @@
     
     <style>
         :root {
-            --primary-color: #b81414;   /* Vermelho Minhoto do Cartaz */
+            --primary-color: #b81414;   /* Vermelho tradicional das Feiras Novas */
             --bg-light: #fffcfc;
             --text-dark: #2d3436;
-            --accent-gold: #f39c12;    /* Ouro dos lenços minhotos */
+            --accent-gold: #f39c12;    /* Tom de ouro minhoto para destaques */
             --secondary-dark: #800c0c;
         }
 
@@ -40,7 +40,7 @@
 
         .hero {
             height: 60vh; min-height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://i.imgur.com/xmx2ooK.img');
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://i.imgur.com/xmx2ooK.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
@@ -66,7 +66,7 @@
 
         .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fafafa; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #555; line-height: 1.4; }
-        .info-item i { color: #27ae60; }
+        .info-item i { color: #27ae60; font-size: 1.1em; }
         .info-item.not i { color: #c0392b; }
 
         .booking-card { 
@@ -76,7 +76,7 @@
         .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.15); margin-bottom: 15px; }
         .price-label { font-size: 1.1em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .price-label span { display: block; font-size: 0.75em; font-weight: 300; opacity: 0.8; text-transform: none; letter-spacing: 0; }
-        .price-amount { font-size: 2.5em; font-weight: 800; color: var(--accent-gold); }
+        .price-amount { font-size: 2.5em; font-weight: 800; color: #ffffff; }
 
         .status-banner { 
             background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);
@@ -117,15 +117,15 @@
     <div class="wrapper">
         <main class="main-card">
             <h2 class="title-sec">Ponte de Lima</h2>
-            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7; font-weight: 300;">"Tradição, povo e emoção!" Viva uma experiência única na maior e mais autêntica festa popular de Portugal. Deixe-se contagiar pela alegria minhota numa viagem inesquecível a Ponte de Lima.</p>
+            <p style="margin-bottom: 30px; color: #555; font-size: 1.05em; line-height: 1.7; font-weight: 300;">"Tradição, povo e emoção!" Viva uma experiência única na maior e mais autêntica festa popular de Portugal. Deixe-se contagiar pela alegria minhota numa viagem inesquecível a Ponte de Lima com os Passeios do Miguel.</p>
 
-            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-color); padding-left: 15px; font-weight: 700;">O que vamos vivenciar:</h3>
+            <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-color); padding-left: 15px; font-weight: 700;">Destaques do Programa:</h3>
 
             <div class="feature-box">
                 <i class="fa-solid fa-guitar"></i>
                 <div>
                     <h4>Concertinas & Animação nas Ruas</h4>
-                    <p>Sinta a verdadeira essência do Minho com as desgarradas, as concertinas espontâneas e os grupos que dão vida a cada esquina.</p>
+                    <p>Sinta a verdadeira essência do Minho com as desgarradas, os tocadores de concertina espontâneos e os grupos que dão vida à vila limiana.</p>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
                 <i class="fas fa-utensils"></i>
                 <div>
                     <h4>Gastronomia & Sabores do Minho</h4>
-                    <p>Tempo livre dedicado para se deliciar com o melhor que a cozinha regional tem para oferecer (arroz de sarrabulho, enchidos e o bom vinho verde).</p>
+                    <p>Aproveite o tempo livre para desfrutar da rica gastronomia regional, como o famoso arroz de sarrabulho e o refrescante vinho verde.</p>
                 </div>
             </div>
 
@@ -141,7 +141,7 @@
                 <i class="fas fa-users"></i>
                 <div>
                     <h4>Cortejos e Tradições Populares</h4>
-                    <p>Deslumbre-se com os trajes tradicionais à minhota, o ouro ao peito das lavradeiras e os cabeçudos que marcam a identidade do nosso povo.</p>
+                    <p>Deslumbre-se com a riqueza dos desfiles, os trajes tradicionais à minhota ricamente confecionados e todo o bairrismo local.</p>
                 </div>
             </div>
 
@@ -149,14 +149,14 @@
                 <i class="fas fa-fireworks"></i>
                 <div>
                     <h4>Grande Noite de Fogo de Artifício</h4>
-                    <p>Assista ao magnífico espetáculo pirotécnico nos céus da vila limiana, um dos momentos mais aguardados e emocionantes da festa.</p>
+                    <p>Assista a um dos momentos mais aguardados e grandiosos das festas: o impressionante espetáculo pirotécnico sobre o rio Lima.</p>
                 </div>
             </div>
 
             <div class="tips-section">
                 <h4><i class="fas fa-info-circle"></i> Notas do Miguel:</h4>
-                <div class="tip-item"><i class="fas fa-clock"></i> <span><strong>Não percas esta festa única!</strong> Trata-se de um dia inteiro livre planeado estrategicamente para aproveitares ao máximo as grandes festas da vila.</span></div>
-                <div class="tip-item"><i class="fas fa-star"></i> <span><strong>Recomendação:</strong> Leve calçado confortável e muita energia para acompanhar o ritmo contagiante das concertinas!</span></div>
+                <div class="tip-item"><i class="fas fa-clock"></i> <span><strong>Tempo Livre Total:</strong> Esta viagem foi desenhada para lhe dar total autonomia para explorar e viver as festas ao seu ritmo.</span></div>
+                <div class="tip-item"><i class="fas fa-star"></i> <span><strong>Dica:</strong> Vá de calçado confortável e máquina fotográfica preparada, porque não vai querer perder nenhum detalhe!</span></div>
             </div>
 
             <div class="info-lists">
@@ -164,22 +164,22 @@
                     <h4 style="margin-bottom: 12px; color: #27ae60; font-size: 0.95em; font-weight: 700;"><i class="fas fa-check-circle"></i> O QUE INCLUI:</h4>
                     <li class="info-item"><i class="fas fa-check"></i> Transporte em autocarro de turismo</li>
                     <li class="info-item"><i class="fas fa-check"></i> Tempo livre para desfrutar da festa</li>
+                    <li class="info-item"><i class="fas fa-check"></i> Seguro de viagem incluído</li>
                     <li class="info-item"><i class="fas fa-check"></i> Acompanhamento pela equipa Passeios do Miguel</li>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 12px; color: #c0392b; font-size: 0.95em; font-weight: 700;"><i class="fas fa-times-circle"></i> INFO & REQUISITOS:</h4>
-                    <li class="info-item not"><i class="fas fa-times"></i> Viagem sujeita a mín. de 35 participantes</li>
-                    <li class="info-item not"><i class="fas fa-times"></i> Pré-inscrição obrigatória</li>
-                    <li class="info-item not"><i class="fas fa-times"></i> Confirmação apenas após pagamento</li>
+                    <h4 style="margin-bottom: 12px; color: #c0392b; font-size: 0.95em; font-weight: 700;"><i class="fas fa-times-circle"></i> NÃO INCLUI:</h4>
+                    <li class="info-item not"><i class="fas fa-times"></i> Almoço, jantar ou lanches (Refeições livres)</li>
+                    <li class="info-item not"><i class="fas fa-times"></i> Outras despesas de caráter pessoal</li>
                 </div>
             </div>
 
             <h2 class="title-sec" style="margin-top: 40px;">O que vamos ver?</h2>
             <div class="photo-grid">
-                <img src="https://i.imgur.com/nB5wN3B.img" onclick="abrirM(this.src)" alt="Tradições Ponte de Lima">
-                <img src="https://i.imgur.com/MPPZ6v3.img" onclick="abrirM(this.src)" alt="Rusgas e Concertinas">
-                <img src="https://i.imgur.com/2NpasSG.img" onclick="abrirM(this.src)" alt="Ambiente Feiras Novas">
-                <img src="https://i.imgur.com/D9EyIMg.img" onclick="abrirM(this.src)" alt="Fogo de artifício em Ponte de Lima">
+                <img src="https://i.imgur.com/nB5wN3B.jpg" onclick="abrirM(this.src)" alt="Tradições Ponte de Lima">
+                <img src="https://i.imgur.com/MPPZ6v3.jpg" onclick="abrirM(this.src)" alt="Rusgas e Concertinas">
+                <img src="https://i.imgur.com/2NpasSG.jpg" onclick="abrirM(this.src)" alt="Ambiente Feiras Novas">
+                <img src="https://i.imgur.com/D9EyIMg.jpg" onclick="abrirM(this.src)" alt="Fogo de artifício em Ponte de Lima">
             </div>
         </main>
 
@@ -190,25 +190,25 @@
             </p>
             
             <div class="price-row" style="border-bottom: none; margin-bottom: 0;">
-                <div class="price-label">Preço Único <span>Por pessoa</span></div>
+                <div class="price-label">Apenas <span>Por pessoa</span></div>
                 <span class="price-amount">39€</span>
             </div>
 
             <div class="status-banner" style="margin-top: 20px;">
-                <i class="fa-solid fa-flag"></i> Capital do Lindoso Minho
+                <i class="fa-solid fa-flag"></i> Vive uma experiência única!
             </div>
 
             <div style="font-size: 0.85em; line-height: 1.8;">
-                <p><i class="fas fa-map-marker-alt" style="margin-right:8px; width: 15px; color: var(--accent-gold);"></i> <strong>Pontos de Recolha habitual:</strong></p>
-                <p style="font-size: 0.9em; opacity: 0.95; margin-left: 23px;">S. Pedro do Sul, Viseu e rotas associadas.</p>
-                <p style="font-size: 0.85em; opacity: 0.8; margin-left: 23px;">(Confirme o seu ponto exato no ato de reserva)</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right:8px; width: 15px; color: var(--accent-gold);"></i> <strong>Recolhas habituais:</strong></p>
+                <p style="font-size: 0.9em; opacity: 0.95; margin-left: 23px;">S. Pedro do Sul, Viseu e restantes pontos da rota.</p>
             </div>
 
             <div class="seat-info">
-                <i class="fas fa-credit-card"></i> <strong>Métodos de Pagamento:</strong><br>
-                • MB WAY<br>
-                • Transferência Bancária<br>
-                <span style="font-size: 0.9em; display:block; margin-top: 5px; opacity: 0.9;">*Inscrição validada após envio de comprovativo.</span>
+                <i class="fas fa-info-circle"></i> <strong>Condições & Informações:</strong><br>
+                • Viagem sujeita a número mínimo de 35 participantes.<br>
+                • Pré-inscrição obrigatória.<br>
+                • Inscrição confirmada apenas após pagamento.<br><br>
+                <i class="fas fa-credit-card"></i> <strong>Pagamento:</strong> Por MB WAY ou Transferência Bancária.
             </div>
 
             <a href="inscricao.html?passeio=FeirasNovas" class="btn-main">Reservar Agora</a>
