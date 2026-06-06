@@ -18,11 +18,11 @@
     
     <style>
         :root {
-            --primary-color: #0b3c5d;   /* Azul escuro elegante e natalício */
-            --bg-light: #f7fafc;
+            --primary-color: #a61c1c;   /* Vermelho Azevinho Tradicional */
+            --bg-light: #fdfbfb;
             --text-dark: #2d3436;
-            --accent-gold: #d4af37;    /* Dourado festivo para as luzes de Natal */
-            --secondary-dark: #06273f;
+            --accent-gold: #e6b800;    /* Dourado brilhante das luzes */
+            --secondary-dark: #1e3f20;  /* Verde Pinheiro para contrastes natalícios */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +40,7 @@
 
         .hero {
             height: 60vh; min-height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('https://i.imgur.com/tETEqHK.png');
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.55)), url('https://i.imgur.com/tETEqHK.png');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
@@ -59,10 +59,10 @@
         .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
         .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
 
-        .tips-section { background: #f0f7fc; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #d2e4f0; }
-        .tips-section h4 { color: var(--secondary-dark); margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .tips-section { background: #fdf5f5; border-radius: 25px; padding: 30px; margin-top: 30px; border: 1px solid #f6dede; }
+        .tips-section h4 { color: var(--primary-color); margin-bottom: 15px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
         .tip-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.95em; color: #444; }
-        .tip-item i { color: var(--primary-color); margin-top: 4px; }
+        .tip-item i { color: var(--secondary-dark); margin-top: 4px; }
 
         .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; background: #fafafa; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
         .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #555; line-height: 1.4; }
@@ -71,7 +71,7 @@
 
         .booking-card { 
             background: var(--primary-color); color: white; padding: 40px; border-radius: 35px; 
-            position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(11, 60, 93, 0.2);
+            position: sticky; top: 30px; height: fit-content; box-shadow: 0 20px 40px rgba(166, 28, 28, 0.2);
         }
         .price-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.15); margin-bottom: 15px; }
         .price-label { font-size: 1.1em; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -122,7 +122,7 @@
             <h3 style="font-size: 1.2em; margin-bottom: 20px; color: #111; border-left: 4px solid var(--primary-color); padding-left: 15px; font-weight: 700;">Destaques do Programa:</h3>
 
             <div class="feature-box">
-                <i class="fas fa-gothic"></i>
+                <i class="fas fa-fortress-castle"></i>
                 <div>
                     <h4>Ciudad Rodrigo: Muralhas e História</h4>
                     <p>Descubra o encanto desta cidade histórica fortificada. Explore as suas imponentes muralhas medievais e visite o seu acolhedor Mercado de Natal.</p>
@@ -130,7 +130,7 @@
             </div>
 
             <div class="feature-box">
-                <i class="fas fa-tree"></i>
+                <i class="fas fa-gifts"></i>
                 <div>
                     <h4>Salamanca: Luzes Mágicas de Natal</h4>
                     <p>Maravilhe-se com a magnífica iluminação festiva que cobre a Plaza Mayor e as ruas históricas, transformando a cidade num autêntico cenário de conto de fadas.</p>
@@ -138,7 +138,7 @@
             </div>
 
             <div class="feature-box">
-                <i class="fas fa-gifts"></i>
+                <i class="fas fa-shopping-bag"></i>
                 <div>
                     <h4>Mercados, Compras & Tempo Livre</h4>
                     <p>Aproveite o tempo livre na cidade universitária para fazer as suas compras de Natal, saborear a doçaria típica e explorar ao seu próprio ritmo.</p>
@@ -147,9 +147,9 @@
 
             <div class="tips-section">
                 <h4><i class="fas fa-info-circle"></i> Notas do Miguel:</h4>
-                <div class="tip-item"><i class="fas fa-utensils"></i> <span><strong>Pausa para Almoço:</strong> Sendo uma viagem com dinâmica flexível, poderá optar por levar farnel ou desfrutar da excelente oferta da restauração local durante as paragens.</span></div>
-                <div class="tip-item"><i class="fas fa-shopping-bag"></i> <span><strong>Tempo Livre Total:</strong> Desenhamos os horários para garantir tempo suficiente para ver as luzes acesas no seu esplendor máximo e fazer compras sem pressas.</span></div>
-                <div class="tip-item"><i class="fas fa-mitten"></i> <span><strong>Dica:</strong> Salamanca no inverno costuma ser bastante fresca. Leve roupa bem quentinha, calçado confortável e muita disposição para fotografar!</span></div>
+                <div class="tip-item"><i class="fas fa-utensils"></i> <span><strong>Almoço Livre:</strong> O almoço será totalmente livre. Poderá optar por levar o seu farnel de casa ou escolher e deliciar-se com a gastronomia local nos vários restaurantes das nossas paragens.</span></div>
+                <div class="tip-item"><i class="fas fa-clock"></i> <span><strong>Tempo Livre Total:</strong> Desenhamos os horários para garantir tempo suficiente para ver as luzes acesas no seu esplendor máximo e fazer compras sem pressas.</span></div>
+                <div class="tip-item"><i class="fas fa-snowflake"></i> <span><strong>Dica:</strong> Salamanca no inverno costuma ser bastante fresca. Leve roupa bem quentinha, calçado confortável e muita disposição para fotografar!</span></div>
             </div>
 
             <div class="info-lists">
@@ -170,7 +170,7 @@
             <h2 class="title-sec" style="margin-top: 40px;">O que vamos ver?</h2>
             <div class="photo-grid">
                 <img src="https://i.imgur.com/wPERwg4.jpg" onclick="abrirM(this.src)" alt="Ciudad Rodrigo">
-                <img src="https://i.imgur.com/iN7Lb46.jpg" onclick="abrirM(this.src)" alt=" Salamanca de Natal">
+                <img src="https://i.imgur.com/iN7Lb46.jpg" onclick="abrirM(this.src)" alt="Salamanca de Natal">
                 <img src="https://i.imgur.com/uYQWPe1.jpg" onclick="abrirM(this.src)" alt="Luzes na Plaza Mayor">
                 <img src="https://i.imgur.com/7DqhPXv.jpg" onclick="abrirM(this.src)" alt="Mercado de Natal histórico">
             </div>
