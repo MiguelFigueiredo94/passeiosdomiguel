@@ -8,167 +8,630 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Festas do Povo (Campo Maior) - Passeios do Miguel</title>
-    
+
+    <title>Feiras Novas - Passeios do Miguel</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
+
         :root {
-            --primary-color: #2d5a27;   
-            --bg-light: #f8fcf8;
-            --text-dark: #2d3436;
-            --secondary-pink: #e91e63;
+            --primary: #1e4d8c;
+            --accent: #ff8c00;
+            --bg-light: #f4f7f9;
+            --text-dark: #334155;
+            --white: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; padding-bottom: 60px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+
+        /* BOTÃO VOLTAR */
 
         .btn-voltar {
-            position: fixed; top: 25px; left: 25px; z-index: 1001;
-            background: white; color: var(--primary-color);
-            width: 50px; height: 50px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s ease;
         }
-        .btn-voltar:hover { background: var(--primary-color); color: white; transform: translateX(-5px); }
+
+        .btn-voltar:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+
+        /* HERO */
 
         .hero {
-            height: 60vh; min-height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://i.imgur.com/Un4E3qX.jpg');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; border-radius: 0 0 60px 60px; padding: 20px;
+            height: 60vh;
+            min-height: 450px;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+                url('https://i.imgur.com/N5OIeOM.png');
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+
+            border-radius: 0 0 60px 60px;
+            padding: 20px;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5em; font-weight: 900; line-height: 1.1; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .hero .data-badge { font-size: 1.3em; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: white; padding: 8px 35px; border: 1px solid white; border-radius: 50px; font-weight: 600; }
 
-        .wrapper { max-width: 1200px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2em;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        }
 
-        .main-card { background: white; padding: 45px; border-radius: 35px; box-shadow: 0 15px 50px rgba(0,0,0,0.05); }
-        .title-sec { font-family: 'Playfair Display', serif; color: var(--primary-color); font-size: 2.2em; margin-bottom: 25px; }
-        
-        .feature-box { display: flex; gap: 20px; margin-bottom: 20px; padding: 20px; border-radius: 20px; background: #fff; border: 1px solid #eee; }
-        .feature-box i { color: var(--secondary-pink); font-size: 1.4em; min-width: 25px; }
-        .feature-box h4 { font-weight: 700; color: #111; margin-bottom: 4px; }
-        .feature-box p { font-size: 0.9em; color: #666; line-height: 1.5; }
+        .hero .data-badge {
+            font-size: 1.3em;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 8px 35px;
+            border: 1px solid white;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+
+        /* ESTRUTURA PRINCIPAL */
+
+        .wrapper {
+            max-width: 1200px;
+            margin: -60px auto 0;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 30px;
+        }
+
+
+        /* CARTÃO PRINCIPAL */
+
+        .main-card {
+            background: white;
+            padding: 45px;
+            border-radius: 35px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+        }
+
+        .title-sec {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 2.2em;
+            margin-bottom: 25px;
+        }
+
+
+        /* BLOCOS DE DESTAQUE */
+
+        .feature-box {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .feature-box i {
+            color: var(--accent);
+            font-size: 1.4em;
+            min-width: 25px;
+        }
+
+        .feature-box h4 {
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .feature-box p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        /* BOTÃO GALERIA */
 
         .btn-galeria {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #fff5f8; color: var(--secondary-pink); padding: 15px 30px;
-            border-radius: 15px; text-decoration: none; font-weight: 700;
-            margin: 30px 0; border: 2px solid var(--secondary-pink); transition: 0.3s;
-        }
-        .btn-galeria:hover { background: var(--secondary-pink); color: white; }
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
-        .info-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 10px; background: #fdfdfd; padding: 25px; border-radius: 25px; border: 1px dashed #ddd; }
-        .info-item { list-style: none; font-size: 0.88em; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: #555; line-height: 1.4; }
-        .info-item i { color: var(--primary-color); margin-top: 3px; }
+            background: #fff4e6;
+            color: var(--accent);
 
-        .booking-card { 
-            background: #2d3436; color: white; padding: 40px; border-radius: 35px; 
-            position: sticky; top: 30px; height: fit-content; text-align: center;
+            padding: 15px 30px;
+            border-radius: 15px;
+
+            text-decoration: none;
+            font-weight: 700;
+
+            margin: 30px 0;
+
+            border: 2px solid var(--accent);
+
+            transition: 0.3s;
         }
+
+        .btn-galeria:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+
+        /* LISTAS DE INFORMAÇÃO */
+
+        .info-lists {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+
+            margin-top: 10px;
+
+            background: #fdfdfd;
+            padding: 25px;
+
+            border-radius: 25px;
+            border: 1px dashed #ddd;
+        }
+
+        .info-item {
+            list-style: none;
+            font-size: 0.88em;
+            margin-bottom: 12px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+
+        /* CARTÃO LATERAL */
+
+        .booking-card {
+            background: var(--primary);
+            color: white;
+
+            padding: 40px;
+            border-radius: 35px;
+
+            position: sticky;
+            top: 30px;
+
+            height: fit-content;
+
+            text-align: center;
+
+            box-shadow: 0 20px 40px rgba(30,77,140,0.18);
+        }
+
+
+        /* BADGE */
+
         .success-badge {
-            background: rgba(45, 90, 39, 0.15); border: 1px solid var(--primary-color);
-            padding: 12px; border-radius: 15px; font-weight: 700; color: #55efc4;
-            margin-bottom: 20px; text-transform: uppercase; font-size: 0.9em;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+
+            padding: 12px;
+            border-radius: 15px;
+
+            font-weight: 700;
+            color: #fff;
+
+            margin-bottom: 20px;
+
+            text-transform: uppercase;
+            font-size: 0.9em;
         }
+
+
+        /* BOTÃO NOVOS DESTINOS */
+
         .btn-proximos {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--primary-color); color: white; text-align: center;
-            padding: 20px; border-radius: 18px; text-decoration: none; font-weight: 800;
-            font-size: 1.1em; transition: 0.3s; margin-top: 25px; text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            background: var(--accent);
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+            border-radius: 18px;
+
+            text-decoration: none;
+
+            font-weight: 800;
+            font-size: 1.1em;
+
+            transition: 0.3s;
+            margin-top: 25px;
+
+            text-transform: uppercase;
         }
-        .btn-proximos:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 90, 39, 0.3); }
+
+        .btn-proximos:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,140,0,0.3);
+        }
+
+
+        /* RESPONSIVO */
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 2.5em; }
-            .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
-            .info-lists { grid-template-columns: 1fr; }
+
+            .hero h1 {
+                font-size: 2.6em;
+            }
+
+            .wrapper {
+                grid-template-columns: 1fr;
+                margin-top: -30px;
+            }
+
+            .info-lists {
+                grid-template-columns: 1fr;
+            }
+
         }
+
     </style>
 </head>
+
+
 <body>
 
-    <a href="passeios.html" class="btn-voltar"><i class="fas fa-arrow-left"></i></a>
+
+    <!-- BOTÃO VOLTAR -->
+
+    <a href="passeios.html" class="btn-voltar">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+
+    <!-- HERO -->
 
     <header class="hero">
-        <h1>Festas do Povo</h1>
-        <div class="data-badge">Realizado a 08 de Agosto 2026</div>
+
+        <h1>Feiras Novas</h1>
+
+        <div class="data-badge">
+            Realizado a 12 de setembro de 2026
+        </div>
+
     </header>
 
+
+
+    <!-- CONTEÚDO -->
+
     <div class="wrapper">
+
+
+        <!-- CARTÃO PRINCIPAL -->
+
         <main class="main-card">
-            <h2 class="title-sec">Campo Maior & Tejo</h2>
-            <p style="margin-bottom: 30px; color: #555; line-height: 1.7;">Uma experiência única onde a arte popular de Campo Maior (Património UNESCO) se cruzou com a beleza natural do Rio Tejo. Um dia inesquecível de cores, tradição e muito convívio.</p>
 
-            <div class="feature-box">
-                <i class="fas fa-ship"></i>
-                <div>
-                    <h4>Cruzeiro no Rio Tejo</h4>
-                    <p>Passeio relaxante de 2h30 pelas Portas do Ródão com observação de fauna local e um fantástico almoço servido a bordo.</p>
-                </div>
-            </div>
+            <h2 class="title-sec">
+                Ponte de Lima
+            </h2>
 
-            <div class="feature-box">
-                <i class="fas fa-seedling"></i>
-                <div>
-                    <h4>Ruas Floridas (UNESCO)</h4>
-                    <p>Descoberta das famosas ruas enfeitadas com flores de papel, uma arte única e deslumbrante criada inteiramente pela população.</p>
-                </div>
-            </div>
 
-            <div class="feature-box">
-                <i class="fas fa-users"></i>
-                <div>
-                    <h4>Ambiente de Festa</h4>
-                    <p>Música, animação e um espírito de partilha inigualável que contagiou todos os nossos viajantes ao longo do dia.</p>
-                </div>
-            </div>
+            <p style="margin-bottom:30px; color:#555; line-height:1.7;">
 
-            <div style="text-align: center;">
-                <a href="galeria.html" class="btn-galeria">
-                    <i class="fas fa-images"></i> VER FOTOS NA GALERIA
-                </a>
-            </div>
+                Um dia dedicado à tradição, cultura e animação das
+                <strong>Feiras Novas de Ponte de Lima</strong>, numa viagem que começou em Vila Verde
+                e terminou noite dentro, entre música, festa e o tradicional fogo de artifício.
 
-            <div class="info-lists">
-                <div>
-                    <h4 style="margin-bottom: 15px; color: var(--primary-color); font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-check"></i> Incluído no Passeio:</h4>
-                    <li class="info-item"><i class="fas fa-bus"></i> Transporte em Autocarro Turismo</li>
-                    <li class="info-item"><i class="fas fa-ship"></i> Cruzeiro com Almoço a bordo</li>
-                    <li class="info-item"><i class="fas fa-ticket-alt"></i> Entrada nas Ruas Floridas</li>
-                    <li class="info-item"><i class="fas fa-user-check"></i> Guia Acompanhante</li>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 15px; color: #555; font-size: 0.9em; text-transform: uppercase;"><i class="fas fa-map-marker-alt"></i> Recolhas Efetuadas:</h4>
-                    <li class="info-item"><i class="fas fa-circle"></i> Castro Daire</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> São Pedro do Sul</li>
-                    <li class="info-item"><i class="fas fa-circle"></i> Viseu</li>
-                </div>
-            </div>
-        </main>
+                Um dia vivido em boa companhia, com muitos momentos para recordar.
 
-        <aside class="booking-card">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 10px;">Sucesso Total!</h3>
-            
-            <div class="success-badge">
-                <i class="fas fa-users"></i> 110 Participantes
-            </div>
-
-            <p style="font-size: 0.95em; color: #eee; line-height: 1.6; font-style: italic; opacity: 0.9;">
-                "Um dia verdadeiramente memorável e repleto de cor. Um agradecimento muito especial aos 110 participantes que trouxeram tanta alegria a esta jornada fantástica entre o Tejo e Campo Maior."
             </p>
 
+
+
+            <!-- SANTUÁRIO -->
+
+            <div class="feature-box">
+
+                <i class="fas fa-church"></i>
+
+                <div>
+
+                    <h4>
+                        Santuário de Nossa Senhora do Alívio
+                    </h4>
+
+                    <p>
+                        A primeira paragem do nosso passeio foi em Vila Verde,
+                        onde tivemos oportunidade de conhecer o Santuário de
+                        Nossa Senhora do Alívio e o seu espaço envolvente.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CORTEJO -->
+
+            <div class="feature-box">
+
+                <i class="fas fa-people-group"></i>
+
+                <div>
+
+                    <h4>
+                        Cortejo Etnográfico
+                    </h4>
+
+                    <p>
+                        Em Ponte de Lima, assistimos ao tradicional
+                        Cortejo Etnográfico das Atividades Agrícolas,
+                        marcado pelos trajes, costumes, tradições e
+                        representações da vida rural minhota.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEIRAS NOVAS -->
+
+            <div class="feature-box">
+
+                <i class="fas fa-music"></i>
+
+                <div>
+
+                    <h4>
+                        Feiras Novas
+                    </h4>
+
+                    <p>
+                        Ao longo do dia vivemos o ambiente das Feiras Novas,
+                        entre tradição, música, animação e o espírito festivo
+                        que transforma Ponte de Lima numa verdadeira celebração
+                        da cultura minhota.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONVÍVIO -->
+
+            <div class="feature-box">
+
+                <i class="fas fa-users"></i>
+
+                <div>
+
+                    <h4>
+                        Um dia de convívio
+                    </h4>
+
+                    <p>
+                        Foram <strong>57 viajantes</strong> a juntar-se a mais
+                        uma aventura dos Passeios do Miguel, num dia cheio de
+                        boa disposição, partilha e muitas memórias.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GALERIA -->
+
+            <div style="text-align:center;">
+
+                <a href="galeria.html" class="btn-galeria">
+
+                    <i class="fas fa-images"></i>
+
+                    VER FOTOS NA GALERIA
+
+                </a>
+
+            </div>
+
+
+
+            <!-- INFORMAÇÃO -->
+
+            <div class="info-lists">
+
+
+                <!-- EXPERIÊNCIA -->
+
+                <div>
+
+                    <h4 style="margin-bottom:15px; color:var(--primary); font-size:0.9em; text-transform:uppercase;">
+
+                        <i class="fas fa-check"></i>
+                        Momentos vividos:
+
+                    </h4>
+
+
+                    <li class="info-item">
+                        <i class="fas fa-bus"></i>
+                        Viagem em Autocarro de Turismo
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-church"></i>
+                        Santuário de Nossa Senhora do Alívio
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-people-group"></i>
+                        Cortejo Etnográfico
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-music"></i>
+                        Feiras Novas
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-star"></i>
+                        Ambiente festivo e tradicional
+                    </li>
+
+                </div>
+
+
+
+                <!-- DESTINOS -->
+
+                <div>
+
+                    <h4 style="margin-bottom:15px; color:#555; font-size:0.9em; text-transform:uppercase;">
+
+                        <i class="fas fa-map-marker-alt"></i>
+                        Destinos visitados:
+
+                    </h4>
+
+
+                    <li class="info-item">
+                        <i class="fas fa-circle"></i>
+                        Vila Verde
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-circle"></i>
+                        Santuário de Nossa Senhora do Alívio
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-circle"></i>
+                        Ponte de Lima
+                    </li>
+
+                    <li class="info-item">
+                        <i class="fas fa-circle"></i>
+                        Feiras Novas
+                    </li>
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+
+
+        <!-- CARTÃO LATERAL -->
+
+        <aside class="booking-card">
+
+
+            <h3 style="font-family:'Playfair Display', serif; font-size:2em; margin-bottom:10px;">
+
+                Mais uma viagem cumprida!
+
+            </h3>
+
+
+
+            <div class="success-badge">
+
+                <i class="fas fa-users"></i>
+                57 Viajantes
+
+            </div>
+
+
+
+            <p style="font-size:0.95em; color:#eee; line-height:1.6; font-style:italic; opacity:0.95;">
+
+                "Obrigado a todos os que viajaram connosco até Ponte de Lima.
+                Entre a tradição, a música, a festa e tantos momentos partilhados,
+                vivemos juntos mais um dia para guardar na memória."
+
+            </p>
+
+
+
             <a href="passeios.html" class="btn-proximos">
-                Ver Novos Destinos <i class="fas fa-arrow-right" style="margin-left:10px;"></i>
+
+                Ver Novos Destinos
+
+                <i class="fas fa-arrow-right"></i>
+
             </a>
+
+
         </aside>
+
+
     </div>
+
+
 </body>
 </html>
