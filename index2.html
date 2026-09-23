@@ -91,9 +91,7 @@
             .hero-section h1 { font-size: 2.8em; }
         }
 
-        /* =========================================================
-           ESTILOS DA ANIMAÇÃO DE ENTRADA (REAJUSTADO)
-           ========================================================= */
+        /* */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -300,11 +298,11 @@
             100% { background-position: -80px 0; }
         }
 
-        /* AUTOCARRO TURÍSTICO (ELEVAÇÃO AUMENTADA PARA NÃO OCULTAR O TEXTO) */
+        /* AUTOCARRO TURÍSTICO (ALINHAMENTO COM A ESTRADA) */
         .bus-wrapper {
             position: absolute;
             left: 80px;
-            bottom: 45px; /* Subido de 25px para 45px para garantir total visibilidade */
+            bottom: 30px; /* As rodas assentam perfeitamente na estrada */
             z-index: 20;
             cursor: pointer;
             transition: transform 0.3s;
@@ -327,7 +325,7 @@
         }
 
         .bus-svg {
-            width: 300px;
+            width: 320px;
             height: auto;
             display: block;
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6));
@@ -337,7 +335,7 @@
         .headlight-beam {
             position: absolute;
             right: -160px;
-            top: 32px;
+            top: 36px;
             width: 180px;
             height: 50px;
             background: linear-gradient(90deg, rgba(255,255,200,0.85) 0%, rgba(255,255,150,0.2) 65%, transparent 100%);
@@ -427,46 +425,46 @@
             <div class="road">
                 <div class="road-line" id="roadLine"></div>
 
-                <!-- AUTOCARRO INTERATIVO (REDEFINIDO) -->
+                <!-- AUTOCARRO INTERATIVO (DESIGN CORRIGIDO: TEXTO TOTALMENTE AFASTE DAS RODAS) -->
                 <div class="bus-wrapper" id="busWrapper">
                     <div class="bus-hint-badge">Clique em mim!</div>
                     <div class="headlight-beam" id="headlightBeam"></div>
                     
                     <svg class="bus-svg" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Corpo do Autocarro -->
-                        <rect x="10" y="10" width="260" height="70" rx="12" fill="#134e8e" />
+                        <!-- Corpo Superior do Autocarro -->
+                        <rect x="10" y="10" width="260" height="72" rx="12" fill="#134e8e" />
                         
-                        <!-- Faixa Laranja da Marca -->
-                        <rect x="10" y="52" width="260" height="10" fill="#ff8c00" />
+                        <!-- Faixa Laranja Destacada para o Nome -->
+                        <rect x="10" y="48" width="260" height="18" fill="#ff8c00" />
                         
-                        <!-- Parte Inferior Escura (Onde fica a marca escrita) -->
-                        <rect x="10" y="62" width="260" height="20" fill="#0b2e52" />
+                        <!-- Parte Inferior Escura (Saia do Autocarro) -->
+                        <rect x="10" y="66" width="260" height="16" fill="#0b2e52" />
                         
                         <!-- Vidros / Janelas -->
-                        <rect x="25" y="18" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="68" y="18" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="111" y="18" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="154" y="18" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="25" y="16" width="35" height="26" rx="4" fill="#e0f2fe" opacity="0.95"/>
+                        <rect x="68" y="16" width="35" height="26" rx="4" fill="#e0f2fe" opacity="0.95"/>
+                        <rect x="111" y="16" width="35" height="26" rx="4" fill="#e0f2fe" opacity="0.95"/>
+                        <rect x="154" y="16" width="35" height="26" rx="4" fill="#e0f2fe" opacity="0.95"/>
                         <!-- Parabrisas Dianteiro -->
-                        <path d="M200 18 L255 18 C262 18 265 23 265 30 L265 46 L200 46 Z" fill="#bae6fd" opacity="0.9"/>
+                        <path d="M200 16 L255 16 C262 16 265 21 265 28 L265 42 L200 42 Z" fill="#bae6fd" opacity="0.95"/>
                         
-                        <!-- Texto Lateral do Autocarro (DESTAQUE REFORÇADO) -->
-                        <text x="140" y="76" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">PASSEIOS DO MIGUEL</text>
+                        <!-- TEXTO "PASSEIOS DO MIGUEL" NO MEIO DA FAIXA LARANJA (TOTALMENTE ACIMA DAS RODAS) -->
+                        <text x="135" y="61" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="1.2">PASSEIOS DO MIGUEL</text>
                         
                         <!-- Faróis Dianteiros -->
                         <circle cx="266" cy="57" r="5" fill="#fef08a" />
                         <!-- Faróis Traseiros -->
-                        <rect x="10" y="55" width="3" height="10" fill="#ef4444" />
+                        <rect x="10" y="52" width="3" height="12" fill="#ef4444" />
                         
-                        <!-- Rodas com detalhes em prateado -->
+                        <!-- Rodas bem posicionadas na parte inferior (y=82) -->
                         <!-- Roda Traseira -->
-                        <circle cx="65" cy="82" r="18" fill="#1e293b" />
-                        <circle cx="65" cy="82" r="10" fill="#94a3b8" />
+                        <circle cx="65" cy="82" r="16" fill="#1e293b" />
+                        <circle cx="65" cy="82" r="9" fill="#94a3b8" />
                         <circle cx="65" cy="82" r="4" fill="#334155" />
                         
                         <!-- Roda Dianteira -->
-                        <circle cx="215" cy="82" r="18" fill="#1e293b" />
-                        <circle cx="215" cy="82" r="10" fill="#94a3b8" />
+                        <circle cx="215" cy="82" r="16" fill="#1e293b" />
+                        <circle cx="215" cy="82" r="9" fill="#94a3b8" />
                         <circle cx="215" cy="82" r="4" fill="#334155" />
                     </svg>
                 </div>
@@ -550,7 +548,7 @@
             let isStarted = false;
             let soundEnabled = true;
 
-            // SOM SEM DELAYS (INSTANTÂNEO)
+            // SOM SEM DELAYS (INSTANTÂNEO COM WEB AUDIO API)
             function playEngineSound() {
                 if (!soundEnabled) return;
                 try {
@@ -558,28 +556,33 @@
                     if (!AudioContext) return;
                     const audioCtx = new AudioContext();
 
-                    // 1. Buzina Instantânea
+                    // Ativar AudioContext se estiver suspenso pelo browser
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+
+                    // 1. Buzina Instantânea (Disparo Imediato)
                     const hornOsc = audioCtx.createOscillator();
                     const hornGain = audioCtx.createGain();
                     hornOsc.type = 'triangle';
                     hornOsc.frequency.setValueAtTime(350, audioCtx.currentTime);
-                    hornOsc.frequency.setValueAtTime(420, audioCtx.currentTime + 0.1);
-                    hornGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                    hornGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                    hornOsc.frequency.setValueAtTime(420, audioCtx.currentTime + 0.08);
+                    hornGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                    hornGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.28);
                     
                     hornOsc.connect(hornGain);
                     hornGain.connect(audioCtx.destination);
                     hornOsc.start(audioCtx.currentTime);
-                    hornOsc.stop(audioCtx.currentTime + 0.3);
+                    hornOsc.stop(audioCtx.currentTime + 0.28);
 
-                    // 2. Arranque do Motor Instantâneo (começa no tempo 0)
+                    // 2. Motor a Arrancar Instantaneamente
                     const engineOsc = audioCtx.createOscillator();
                     const engineGain = audioCtx.createGain();
                     engineOsc.type = 'sawtooth';
-                    engineOsc.frequency.setValueAtTime(70, audioCtx.currentTime);
-                    engineOsc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 1.8);
+                    engineOsc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                    engineOsc.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 1.8);
                     
-                    engineGain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    engineGain.gain.setValueAtTime(0.12, audioCtx.currentTime);
                     engineGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 2.0);
                     
                     engineOsc.connect(engineGain);
@@ -597,7 +600,7 @@
                 if (isStarted) return;
                 isStarted = true;
 
-                // Tocar som no exato momento
+                // Tocar som no exato momento do clique/soltar da chave
                 playEngineSound();
 
                 // Disparar efeitos visuais instantaneamente
@@ -655,7 +658,7 @@
                 isDragging = false;
                 const deltaY = e.clientY - startY;
                 pullString.style.height = '140px';
-                if (deltaY > 20) {
+                if (deltaY > 15) {
                     startJourney();
                 }
             });
