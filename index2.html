@@ -92,7 +92,7 @@
         }
 
         /* =========================================================
-           ESTILOS DA ANIMAÇÃO DE ENTRADA (CUBRE O ECRÃ INTEIRO E MENU)
+           ESTILOS DA ANIMAÇÃO DE ENTRADA (CORRIGIDO ALINHAMENTO)
            ========================================================= */
         #intro-overlay {
             position: fixed;
@@ -101,7 +101,7 @@
             width: 100vw;
             height: 100vh;
             background: linear-gradient(to bottom, #0d1b2a 0%, #1b263b 60%, #415a77 100%);
-            z-index: 999999; /* Fica por cima de absolutamente tudo, incluindo o menu lateral */
+            z-index: 999999;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -117,7 +117,7 @@
             pointer-events: none;
         }
 
-        /* CORDÃO E CHAVE DE IGNIÇÃO (TIPO ANIMAÇÃO DA LÂMPADA) */
+        /* CORDÃO E CHAVE DE IGNIÇÃO */
         .pull-cord-container {
             position: absolute;
             top: 0;
@@ -213,7 +213,7 @@
 
         /* CONTEÚDO CENTRAL */
         .intro-header {
-            margin-top: 100px;
+            margin-top: 80px;
             text-align: center;
             color: white;
             z-index: 10;
@@ -253,32 +253,33 @@
         /* CENÁRIO (MONTANHAS E ESTRADA) */
         .scenery-container {
             width: 100%;
-            height: 350px;
+            height: 380px;
             position: relative;
             display: flex;
-            align-items: flex-end;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
         .mountains-bg {
             position: absolute;
-            bottom: 80px;
+            bottom: 120px;
             width: 100%;
-            height: 200px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320'%3E%3Cpath fill='%20%231b263b' fill-opacity='0.5' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%230d1b2a' fill-opacity='0.8' d='M0,96L60,117.3C120,139,240,181,360,197.3C480,213,600,203,720,176C840,149,960,107,1080,112C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            height: 220px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320'%3E%3Cpath fill='%231b263b' fill-opacity='0.5' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%230d1b2a' fill-opacity='0.8' d='M0,96L60,117.3C120,139,240,181,360,197.3C480,213,600,203,720,176C840,149,960,107,1080,112C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
             background-size: cover;
             background-repeat: repeat-x;
         }
 
         .road {
             width: 100%;
-            height: 90px;
+            height: 120px;
             background: #1a1d20;
             position: relative;
-            border-top: 4px solid #333;
+            border-top: 5px solid #ff8c00;
             box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .road-line {
@@ -299,14 +300,16 @@
             100% { background-position: -80px 0; }
         }
 
-        /* AUTOCARRO TURÍSTICO SVG */
+        /* AUTOCARRO TURÍSTICO (POSICIONADO PERFEITAMENTE SOBRE A ESTRADA) */
         .bus-wrapper {
             position: absolute;
             left: 80px;
-            bottom: 30px;
+            bottom: 25px; /* Eleva o autocarro para assentar perfeitamente na estrada */
             z-index: 20;
             cursor: pointer;
             transition: transform 0.3s;
+            display: flex;
+            align-items: center;
         }
 
         .bus-wrapper:hover {
@@ -324,20 +327,21 @@
         }
 
         .bus-svg {
-            width: 240px;
+            width: 280px;
             height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            display: block;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6));
         }
 
         /* LUZ DOS FARÓIS DO AUTOCARRO */
         .headlight-beam {
             position: absolute;
-            right: -140px;
-            bottom: 12px;
-            width: 160px;
-            height: 45px;
-            background: linear-gradient(90deg, rgba(255,255,200,0.8) 0%, rgba(255,255,150,0.2) 60%, transparent 100%);
-            clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+            right: -160px;
+            top: 35px;
+            width: 180px;
+            height: 50px;
+            background: linear-gradient(90deg, rgba(255,255,200,0.85) 0%, rgba(255,255,150,0.2) 65%, transparent 100%);
+            clip-path: polygon(0 35%, 100% 0, 100% 100%, 0 65%);
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
@@ -350,28 +354,29 @@
         /* ETIQUETA SOBRE O AUTOCARRO */
         .bus-hint-badge {
             position: absolute;
-            top: -35px;
+            top: -38px;
             left: 50%;
             transform: translateX(-50%);
             background: #ff8c00;
             color: white;
             font-weight: bold;
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 12px;
+            font-size: 13px;
+            padding: 5px 14px;
+            border-radius: 15px;
             white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             pointer-events: none;
             animation: pulse 1.5s infinite;
+            z-index: 30;
         }
 
         .bus-hint-badge::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 5px 5px 0;
+            border-width: 6px 6px 0;
             border-style: solid;
             border-color: #ff8c00 transparent;
         }
@@ -385,7 +390,7 @@
 <body>
 
     <!-- =========================================================
-         SOBREPOSIÇÃO DA ANIMAÇÃO DE ENTRADA (CUBRE TODO O ECRÃ)
+         SOBREPOSIÇÃO DA ANIMAÇÃO DE ENTRADA (EANÃ INTEIRO)
          ========================================================= -->
     <div id="intro-overlay">
 
@@ -398,7 +403,7 @@
             <div class="pull-hint">↓ PUXE PARA ARRANCAR</div>
         </div>
 
-        <!-- CONTROLO DE SOM E BOTAO PARA PASSAR À FRENTE -->
+        <!-- CONTROLO DE SOM E BOTÃO PARA PASSAR À FRENTE -->
         <div class="top-controls">
             <button class="btn-intro-control" id="toggleSoundBtn">
                 <i class="fas fa-volume-up" id="soundIcon"></i> <span id="soundText">Som Ativado</span>
@@ -427,40 +432,40 @@
                     <div class="bus-hint-badge">Clique em mim!</div>
                     <div class="headlight-beam" id="headlightBeam"></div>
                     
-                    <svg class="bus-svg" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="bus-svg" viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg">
                         <!-- Corpo do Autocarro -->
-                        <rect x="10" y="20" width="260" height="70" rx="15" fill="#134e8e" />
+                        <rect x="10" y="10" width="260" height="70" rx="15" fill="#134e8e" />
                         <!-- Faixa Laranja da Marca -->
-                        <path d="M10 65 L270 65 L270 75 L10 75 Z" fill="#ff8c00" />
+                        <path d="M10 55 L270 55 L270 65 L10 65 Z" fill="#ff8c00" />
                         <!-- Parte Inferior Escura -->
-                        <rect x="10" y="75" width="260" height="15" rx="2" fill="#0c3866" />
+                        <rect x="10" y="65" width="260" height="15" rx="2" fill="#0c3866" />
                         
                         <!-- Vidros / Janelas -->
-                        <rect x="25" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="68" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="111" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
-                        <rect x="154" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="25" y="20" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="68" y="20" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="111" y="20" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="154" y="20" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
                         <!-- Parabrisas Dianteiro -->
-                        <path d="M200 30 L255 30 C262 30 265 35 265 42 L265 58 L200 58 Z" fill="#bae6fd" opacity="0.9"/>
+                        <path d="M200 20 L255 20 C262 20 265 25 265 32 L265 48 L200 48 Z" fill="#bae6fd" opacity="0.9"/>
                         
                         <!-- Texto Lateral do Autocarro -->
-                        <text x="30" y="82" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="9" fill="#ffffff" letter-spacing="1">PASSEIOS DO MIGUEL</text>
+                        <text x="30" y="72" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="9" fill="#ffffff" letter-spacing="1">PASSEIOS DO MIGUEL</text>
                         
                         <!-- Faróis Dianteiros -->
-                        <circle cx="266" cy="70" r="5" fill="#fef08a" />
+                        <circle cx="266" cy="60" r="5" fill="#fef08a" />
                         <!-- Faróis Traseiros -->
-                        <rect x="10" y="68" width="3" height="10" fill="#ef4444" />
+                        <rect x="10" y="58" width="3" height="10" fill="#ef4444" />
                         
-                        <!-- Rodas -->
+                        <!-- Rodas com detalhes em prateado -->
                         <!-- Roda Traseira -->
-                        <circle cx="65" cy="90" r="16" fill="#1e293b" />
-                        <circle cx="65" cy="90" r="9" fill="#94a3b8" />
-                        <circle cx="65" cy="90" r="4" fill="#334155" />
+                        <circle cx="65" cy="80" r="18" fill="#1e293b" />
+                        <circle cx="65" cy="80" r="10" fill="#94a3b8" />
+                        <circle cx="65" cy="80" r="4" fill="#334155" />
                         
                         <!-- Roda Dianteira -->
-                        <circle cx="215" cy="90" r="16" fill="#1e293b" />
-                        <circle cx="215" cy="90" r="9" fill="#94a3b8" />
-                        <circle cx="215" cy="90" r="4" fill="#334155" />
+                        <circle cx="215" cy="80" r="18" fill="#1e293b" />
+                        <circle cx="215" cy="80" r="10" fill="#94a3b8" />
+                        <circle cx="215" cy="80" r="4" fill="#334155" />
                     </svg>
                 </div>
             </div>
@@ -586,7 +591,7 @@
                         engineOsc.stop(audioCtx.currentTime + 2.0);
                     }, 200);
                 } catch(e) {
-                    console.log('Audio não suportado ou bloqueado.');
+                    console.log('Áudio não suportado ou bloqueado.');
                 }
             }
 
