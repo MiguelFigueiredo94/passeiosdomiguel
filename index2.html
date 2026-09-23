@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <!-- Google Tag Manager / Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -32,426 +31,6 @@
             margin-left: 250px; 
         }
 
-        /* -------------------------------------------------------------
-           ESTILOS DA ANIMAÇÃO INTERATIVA (INTRO OVERLAY / BUS IGNITION)
-           ------------------------------------------------------------- */
-        #intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999;
-            background: linear-gradient(to bottom, #09131f 0%, #17324d 50%, #2f4b66 100%);
-            transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.2s;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            user-select: none;
-        }
-
-        #intro-overlay.hidden-intro {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        /* Top Bar Controls inside overlay */
-        .intro-topbar {
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 40;
-            width: 100%;
-        }
-
-        .intro-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .intro-brand-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ff8c00;
-        }
-
-        .intro-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-intro-action {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.25s ease;
-        }
-
-        .btn-intro-action:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-1px);
-        }
-
-        .btn-skip {
-            background: #ff8c00;
-            border: none;
-            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
-        }
-
-        .btn-skip:hover {
-            background: #e07b00;
-        }
-
-        /* Pull Cord Ignition Lamp Mechanic */
-        .pull-cord-container {
-            position: absolute;
-            top: 0;
-            right: 12%;
-            z-index: 50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: grab;
-            touch-action: none;
-        }
-
-        .pull-cord-container:active {
-            cursor: grabbing;
-        }
-
-        .cord-line {
-            width: 3px;
-            height: 160px;
-            background: linear-gradient(to bottom, #444, #bbb);
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-            transform-origin: top center;
-            transition: height 0.15s ease-out;
-        }
-
-        .cord-handle {
-            width: 42px;
-            height: 42px;
-            background: radial-gradient(circle, #ff8c00 0%, #b85400 100%);
-            border: 3px solid #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 6px 16px rgba(255, 140, 0, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            transition: transform 0.15s ease, background 0.3s;
-        }
-
-        .cord-handle:hover {
-            transform: scale(1.15);
-        }
-
-        .pulse-glow {
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.8); }
-            70% { box-shadow: 0 0 0 20px rgba(255, 140, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0); }
-        }
-
-        .cord-tooltip {
-            position: absolute;
-            bottom: -36px;
-            white-space: nowrap;
-            background: rgba(0, 0, 0, 0.75);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Central Prompt Box */
-        .intro-prompt {
-            text-align: center;
-            z-index: 30;
-            padding: 0 20px;
-            margin-top: -30px;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .intro-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 140, 0, 0.2);
-            color: #ff8c00;
-            border: 1px solid rgba(255, 140, 0, 0.35);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            backdrop-filter: blur(4px);
-        }
-
-        .intro-prompt h1 {
-            color: #ffffff;
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .intro-prompt p {
-            color: #cbd5e1;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 28px auto;
-            font-weight: 300;
-            line-height: 1.5;
-        }
-
-        .btn-start-engine {
-            background: linear-gradient(135deg, #ff8c00 0%, #e05300 100%);
-            color: white;
-            border: none;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-start-engine:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 140, 0, 0.6);
-        }
-
-        /* Mountains Parallax & Animated Road Scene */
-        .scene-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .mountain-bg {
-            position: absolute;
-            bottom: 100px;
-            width: 200%;
-            height: 250px;
-            background-repeat: repeat-x;
-            background-position: bottom;
-        }
-
-        .m-back {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='%23112236' d='M0,300 L0,180 L150,110 L300,190 L450,90 L600,210 L750,120 L900,200 L1050,100 L1200,230 L1200,300 Z'/%3E%3C/svg%3E");
-            opacity: 0.6;
-            animation: floatMountains 60s linear infinite;
-        }
-
-        .m-front {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='%231a334e' d='M0,300 L0,220 L180,140 L350,230 L520,130 L700,240 L880,160 L1040,250 L1200,180 L1200,300 Z'/%3E%3C/svg%3E");
-            animation: floatMountains 30s linear infinite;
-        }
-
-        @keyframes floatMountains {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .road-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 120px;
-            background: #1e232a;
-            border-top: 4px solid #38414d;
-            overflow: hidden;
-        }
-
-        .road-line {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 200%;
-            height: 8px;
-            background: repeating-linear-gradient(90deg, #ffcc00, #ffcc00 50px, transparent 50px, transparent 100px);
-        }
-
-        .road-line.moving {
-            animation: moveRoad 0.5s linear infinite;
-        }
-
-        @keyframes moveRoad {
-            0% { transform: translate(0, -50%); }
-            100% { transform: translate(-100px, -50%); }
-        }
-
-        /* Bus Positioning & Animation */
-        .bus-wrapper {
-            position: absolute;
-            bottom: 25px;
-            left: 8vw;
-            z-index: 20;
-            cursor: pointer;
-            transition: left 0.8s ease-out;
-        }
-
-        .bus-wrapper.driving-off {
-            animation: driveAway 2.2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
-        }
-
-        @keyframes driveAway {
-            0% { left: 8vw; }
-            30% { transform: translateY(-4px) rotate(-1deg); }
-            100% { left: 125vw; transform: translateY(0) rotate(0deg); }
-        }
-
-        .bus-body {
-            position: relative;
-            width: 240px;
-            height: 100px;
-            filter: drop-shadow(0 15px 12px rgba(0, 0, 0, 0.6));
-        }
-
-        .bus-engine-vibe {
-            animation: vibe 0.12s linear infinite;
-        }
-
-        @keyframes vibe {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-        }
-
-        .bus-click-tooltip {
-            position: absolute;
-            top: -38px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ff8c00;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            white-space: nowrap;
-            animation: bounceTooltip 1.5s infinite;
-        }
-
-        @keyframes bounceTooltip {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, -6px); }
-        }
-
-        /* Headlights Beam */
-        .headlight-beam {
-            position: absolute;
-            top: -20px;
-            left: 225px;
-            width: 0px;
-            height: 110px;
-            background: linear-gradient(90deg, rgba(255, 255, 230, 0.95) 0%, rgba(255, 220, 130, 0.35) 45%, rgba(255, 255, 255, 0) 100%);
-            clip-path: polygon(0% 35%, 100% 0%, 100% 100%, 0% 65%);
-            opacity: 0;
-            transition: opacity 0.4s ease, width 0.6s ease-out;
-            pointer-events: none;
-            filter: blur(2px);
-        }
-
-        .headlight-beam.active {
-            opacity: 0.9;
-            width: 650px;
-        }
-
-        /* Smoke Particles */
-        .smoke-particle {
-            position: absolute;
-            bottom: 15px;
-            left: -10px;
-            width: 14px;
-            height: 14px;
-            background: rgba(220, 220, 220, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: smokeRise 0.9s ease-out forwards;
-        }
-
-        @keyframes smokeRise {
-            0% { opacity: 0.8; transform: translate(0, 0) scale(1); }
-            100% { opacity: 0; transform: translate(-60px, -35px) scale(3.5); }
-        }
-
-        .scene-illuminated {
-            background: linear-gradient(to bottom, #102a45 0%, #1e4975 50%, #3a6896 100%) !important;
-        }
-
-        /* Replay Animation Floating Button inside site */
-        .replay-anim-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            background: #1e4d8c;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .replay-anim-btn:hover {
-            background: #ff8c00;
-            transform: translateY(-2px);
-        }
-
-        /* -------------------------------------------------------------
-           ESTILOS ORIGINAIS FORNECIDOS PELO UTILIZADOR
-           ------------------------------------------------------------- */
         /* HERO SECTION */
         .hero-section {
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
@@ -505,142 +84,393 @@
         .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
         .feature-card p { color: #666; font-size: 1.05em; line-height: 1.6; }
 
-        /* RESPONSIVIDADE ORIGINAIS */
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
             .hero-section h1 { font-size: 2.8em; }
-            .intro-prompt h1 { font-size: 2.2rem; }
-            .intro-prompt p { font-size: 0.95rem; }
+        }
+
+        /* =========================================================
+           ESTILOS DA ANIMAÇÃO DE ENTRADA (CUBRE O ECRÃ INTEIRO E MENU)
+           ========================================================= */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #0d1b2a 0%, #1b263b 60%, #415a77 100%);
+            z-index: 999999; /* Fica por cima de absolutamente tudo, incluindo o menu lateral */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+            user-select: none;
+        }
+
+        #intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* CORDÃO E CHAVE DE IGNIÇÃO (TIPO ANIMAÇÃO DA LÂMPADA) */
+        .pull-cord-container {
+            position: absolute;
+            top: 0;
+            right: 80px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+        }
+
+        .pull-cord-container:active {
+            cursor: grabbing;
+        }
+
+        .pull-string {
+            width: 4px;
+            height: 140px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), #ffffff);
+            box-shadow: 0 0 5px rgba(255,255,255,0.5);
+            transition: height 0.1s ease;
+        }
+
+        .pull-handle {
+            width: 44px;
+            height: 44px;
+            background: #ff8c00;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.8), 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, background-color 0.3s;
+        }
+
+        .pull-handle:hover {
+            transform: scale(1.1);
+            background: #ff9f1a;
+        }
+
+        .pull-hint {
+            position: absolute;
+            bottom: -30px;
+            white-space: nowrap;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.6);
+            padding: 4px 10px;
+            border-radius: 12px;
+            pointer-events: none;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        /* CONTROLO DE SOM E SKIP */
+        .top-controls {
+            position: absolute;
+            top: 20px;
+            right: 150px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-intro-control {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-intro-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* CONTEÚDO CENTRAL */
+        .intro-header {
+            margin-top: 100px;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .intro-badge {
+            display: inline-block;
+            background: rgba(255, 140, 0, 0.2);
+            border: 1px solid #ff8c00;
+            color: #ff8c00;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .intro-header h1 {
+            font-size: 3em;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .intro-header p {
+            font-size: 1.2em;
+            color: #e0e6ed;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        /* CENÁRIO (MONTANHAS E ESTRADA) */
+        .scenery-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .mountains-bg {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            height: 200px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320'%3E%3Cpath fill='%20%231b263b' fill-opacity='0.5' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%230d1b2a' fill-opacity='0.8' d='M0,96L60,117.3C120,139,240,181,360,197.3C480,213,600,203,720,176C840,149,960,107,1080,112C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: repeat-x;
+        }
+
+        .road {
+            width: 100%;
+            height: 90px;
+            background: #1a1d20;
+            position: relative;
+            border-top: 4px solid #333;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .road-line {
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(90deg, #ff8c00, #ff8c00 40px, transparent 40px, transparent 80px);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .road-line.moving {
+            animation: moveRoad 0.6s linear infinite;
+        }
+
+        @keyframes moveRoad {
+            0% { background-position: 0 0; }
+            100% { background-position: -80px 0; }
+        }
+
+        /* AUTOCARRO TURÍSTICO SVG */
+        .bus-wrapper {
+            position: absolute;
+            left: 80px;
+            bottom: 30px;
+            z-index: 20;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bus-wrapper:hover {
+            transform: scale(1.03);
+        }
+
+        .bus-wrapper.driving {
+            animation: driveOut 2.2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+        }
+
+        @keyframes driveOut {
+            0% { left: 80px; }
+            20% { left: 60px; }
+            100% { left: 120vw; }
+        }
+
+        .bus-svg {
+            width: 240px;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
+        /* LUZ DOS FARÓIS DO AUTOCARRO */
+        .headlight-beam {
+            position: absolute;
+            right: -140px;
+            bottom: 12px;
+            width: 160px;
+            height: 45px;
+            background: linear-gradient(90deg, rgba(255,255,200,0.8) 0%, rgba(255,255,150,0.2) 60%, transparent 100%);
+            clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .headlight-beam.active {
+            opacity: 1;
+        }
+
+        /* ETIQUETA SOBRE O AUTOCARRO */
+        .bus-hint-badge {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff8c00;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            pointer-events: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        .bus-hint-badge::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #ff8c00 transparent;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.08); }
         }
     </style>
 </head>
 <body>
 
-    <!-- INTRO OVERLAY ANIMATION -->
+    <!-- =========================================================
+         SOBREPOSIÇÃO DA ANIMAÇÃO DE ENTRADA (CUBRE TODO O ECRÃ)
+         ========================================================= -->
     <div id="intro-overlay">
-        
-        <!-- Top Bar -->
-        <div class="intro-topbar">
-            <div class="intro-brand">
-                <div class="intro-brand-icon">
-                    <i class="fa-solid fa-bus"></i>
-                </div>
-                <span>Passeios do Miguel</span>
-            </div>
 
-            <div class="intro-actions">
-                <button id="sound-btn" class="btn-intro-action" title="Ativar/Desativar Som">
-                    <i class="fa-solid fa-volume-high text-brand" id="sound-icon" style="color: #ff8c00;"></i>
-                    <span id="sound-text">Som Ativado</span>
-                </button>
-                <button id="skip-btn" class="btn-intro-action btn-skip">
-                    Pular Animação <i class="fa-solid fa-forward"></i>
-                </button>
+        <!-- CABO PARA PUXAR A CHAVE DE IGNIÇÃO -->
+        <div class="pull-cord-container" id="pullCord" title="Puxe para arrancar!">
+            <div class="pull-string" id="pullString"></div>
+            <div class="pull-handle">
+                <i class="fas fa-key"></i>
             </div>
+            <div class="pull-hint">↓ PUXE PARA ARRANCAR</div>
         </div>
 
-        <!-- Pull Cord Ignition (Classic Lamp Mechanic) -->
-        <div id="pull-cord" class="pull-cord-container" title="Puxe o cordão para ligar!">
-            <div id="cord-line-el" class="cord-line"></div>
-            <div id="cord-handle-el" class="cord-handle pulse-glow">
-                <i class="fa-solid fa-key"></i>
-            </div>
-            <div class="cord-tooltip">
-                <i class="fa-solid fa-arrow-down" style="color: #ff8c00;"></i> PUXE O CORDÃO PARA ARRANCAR
-            </div>
-        </div>
-
-        <!-- Central Prompt -->
-        <div class="intro-prompt" id="prompt-box">
-            <div class="intro-badge">
-                <i class="fa-solid fa-compass"></i> Experiência Interativa
-            </div>
-            <h1>Pronto para a sua próxima viagem?</h1>
-            <p>Puxe o cordão da chave de ignição, clique no autocarro ou prima o botão para dar arranque!</p>
-            <button id="start-engine-btn" class="btn-start-engine">
-                <i class="fa-solid fa-power-off"></i>
-                <span>ARRANCAR VIAGEM</span>
+        <!-- CONTROLO DE SOM E BOTAO PARA PASSAR À FRENTE -->
+        <div class="top-controls">
+            <button class="btn-intro-control" id="toggleSoundBtn">
+                <i class="fas fa-volume-up" id="soundIcon"></i> <span id="soundText">Som Ativado</span>
+            </button>
+            <button class="btn-intro-control" id="skipIntroBtn">
+                Pular Animação <i class="fas fa-forward"></i>
             </button>
         </div>
 
-        <!-- Mountain & Road Scene -->
-        <div class="scene-container">
-            <div class="mountain-bg m-back"></div>
-            <div class="mountain-bg m-front"></div>
+        <!-- MENSAGEM PRINCIPAL -->
+        <div class="intro-header">
+            <span class="intro-badge"><i class="fas fa-compass"></i> Experiência Interativa</span>
+            <h1>Pronto para a sua próxima viagem?</h1>
+            <p>Puxe o cordão da chave de ignição ou clique no autocarro para dar arranque!</p>
+        </div>
 
-            <div class="road-container">
-                <div id="road-line" class="road-line"></div>
-            </div>
+        <!-- CENÁRIO COM ESTRADA E AUTOCARRO -->
+        <div class="scenery-container">
+            <div class="mountains-bg"></div>
+            
+            <div class="road">
+                <div class="road-line" id="roadLine"></div>
 
-            <!-- Interactive Bus -->
-            <div id="bus-wrapper" class="bus-wrapper" title="Clique no autocarro para arrancar!">
-                <div class="bus-click-tooltip">
-                    <i class="fa-solid fa-hand-pointer"></i> Clique em mim!
-                </div>
-
-                <div id="bus-body-inner" class="bus-body">
-                    <!-- Headlight Beam -->
-                    <div id="headlight-beam" class="headlight-beam"></div>
-
-                    <!-- Bus Vector Graphic -->
-                    <svg viewBox="0 0 240 100" class="w-full h-full">
-                        <!-- Main Body -->
-                        <rect x="5" y="15" width="220" height="65" rx="12" fill="#1e4d8c" />
-                        <!-- Roof Accent -->
-                        <path d="M 5 35 L 225 35 L 225 25 Q 225 15 210 15 L 20 15 Q 5 15 5 25 Z" fill="#2a62a9" />
-                        <!-- Side Orange Stripe -->
-                        <path d="M 5 55 Q 110 50 225 60 L 225 68 L 5 68 Z" fill="#ff8c00" />
-
-                        <!-- Windows -->
-                        <path d="M 175 22 L 215 22 Q 222 22 222 30 L 222 45 L 175 45 Z" fill="#e0f2fe" opacity="0.9" />
-                        <rect x="20" y="22" width="26" height="23" rx="3" fill="#e0f2fe" opacity="0.85" />
-                        <rect x="52" y="22" width="26" height="23" rx="3" fill="#e0f2fe" opacity="0.85" />
-                        <rect x="84" y="22" width="26" height="23" rx="3" fill="#e0f2fe" opacity="0.85" />
-                        <rect x="116" y="22" width="26" height="23" rx="3" fill="#e0f2fe" opacity="0.85" />
-                        <rect x="144" y="22" width="26" height="23" rx="3" fill="#e0f2fe" opacity="0.85" />
-
-                        <!-- Passengers Silhouettes -->
-                        <circle cx="33" cy="32" r="4" fill="#0f2b52" />
-                        <circle cx="65" cy="32" r="4" fill="#0f2b52" />
-                        <circle cx="188" cy="30" r="5" fill="#0f2b52" />
-
-                        <!-- Bus Text -->
-                        <text x="30" y="58" font-family="'Segoe UI', sans-serif" font-weight="800" font-size="9" fill="#ffffff" letter-spacing="0.5">PASSEIOS DO MIGUEL</text>
-
-                        <!-- Lights -->
-                        <rect x="222" y="50" width="4" height="12" rx="2" fill="#fffbcf" id="svg-headlight" />
-                        <rect x="4" y="52" width="3" height="10" rx="1" fill="#ef4444" />
-
-                        <!-- Wheels -->
-                        <g>
-                            <circle cx="50" cy="80" r="16" fill="#1f2937" />
-                            <circle cx="50" cy="80" r="9" fill="#9ca3af" />
-                            <circle cx="50" cy="80" r="4" fill="#374151" />
-                        </g>
-                        <g>
-                            <circle cx="180" cy="80" r="16" fill="#1f2937" />
-                            <circle cx="180" cy="80" r="9" fill="#9ca3af" />
-                            <circle cx="180" cy="80" r="4" fill="#374151" />
-                        </g>
-
-                        <!-- Wheel Arches -->
-                        <path d="M 32 80 A 18 18 0 0 1 68 80" fill="none" stroke="#0f2b52" stroke-width="4" />
-                        <path d="M 162 80 A 18 18 0 0 1 198 80" fill="none" stroke="#0f2b52" stroke-width="4" />
+                <!-- AUTOCARRO INTERATIVO -->
+                <div class="bus-wrapper" id="busWrapper">
+                    <div class="bus-hint-badge">Clique em mim!</div>
+                    <div class="headlight-beam" id="headlightBeam"></div>
+                    
+                    <svg class="bus-svg" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Corpo do Autocarro -->
+                        <rect x="10" y="20" width="260" height="70" rx="15" fill="#134e8e" />
+                        <!-- Faixa Laranja da Marca -->
+                        <path d="M10 65 L270 65 L270 75 L10 75 Z" fill="#ff8c00" />
+                        <!-- Parte Inferior Escura -->
+                        <rect x="10" y="75" width="260" height="15" rx="2" fill="#0c3866" />
+                        
+                        <!-- Vidros / Janelas -->
+                        <rect x="25" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="68" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="111" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <rect x="154" y="30" width="35" height="28" rx="4" fill="#e0f2fe" opacity="0.9"/>
+                        <!-- Parabrisas Dianteiro -->
+                        <path d="M200 30 L255 30 C262 30 265 35 265 42 L265 58 L200 58 Z" fill="#bae6fd" opacity="0.9"/>
+                        
+                        <!-- Texto Lateral do Autocarro -->
+                        <text x="30" y="82" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="9" fill="#ffffff" letter-spacing="1">PASSEIOS DO MIGUEL</text>
+                        
+                        <!-- Faróis Dianteiros -->
+                        <circle cx="266" cy="70" r="5" fill="#fef08a" />
+                        <!-- Faróis Traseiros -->
+                        <rect x="10" y="68" width="3" height="10" fill="#ef4444" />
+                        
+                        <!-- Rodas -->
+                        <!-- Roda Traseira -->
+                        <circle cx="65" cy="90" r="16" fill="#1e293b" />
+                        <circle cx="65" cy="90" r="9" fill="#94a3b8" />
+                        <circle cx="65" cy="90" r="4" fill="#334155" />
+                        
+                        <!-- Roda Dianteira -->
+                        <circle cx="215" cy="90" r="16" fill="#1e293b" />
+                        <circle cx="215" cy="90" r="9" fill="#94a3b8" />
+                        <circle cx="215" cy="90" r="4" fill="#334155" />
                     </svg>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Replay Animation Button (Visible on site) -->
-    <button id="replay-anim-btn" class="replay-anim-btn">
-        <i class="fa-solid fa-rotate-left" style="color: #ff8c00;"></i> Ver Animação
-    </button>
-
-    <!-- CONTEÚDO ORIGINAL DO UTILIZADOR -->
+    <!-- PLACEHOLDER DO MENU (CARREGADO VIA JS) -->
     <div id="menu-placeholder"></div>
 
+    <!-- CONTEÚDO PRINCIPAL DO SITE -->
     <main>
         <section class="hero-section">
             <h1>Passeios do Miguel</h1>
@@ -687,9 +517,9 @@
         <div id="rodape-placeholder"></div>
     </main>
 
-    <!-- SCRIPTS ORIGINAIS E LÓGICA DA ANIMAÇÃO INTERATIVA -->
+    <!-- SCRIPT DE CARREGAMENTO DE COMPONENTES E LÓGICA DA ANIMAÇÃO -->
     <script>
-        // Script original do utilizador para carregar menu e rodapé
+        // 1. CARREGAR COMPONENTES (MENU E RODAPÉ)
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
@@ -699,208 +529,156 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // -------------------------------------------------------------
-        // LÓGICA DA ANIMAÇÃO INTERATIVA DO AUTOCARRO & IGNITION
-        // -------------------------------------------------------------
-        document.addEventListener('DOMContentLoaded', () => {
-            const introOverlay = document.getElementById('intro-overlay');
-            const busWrapper = document.getElementById('bus-wrapper');
-            const headlightBeam = document.getElementById('headlight-beam');
-            const roadLine = document.getElementById('road-line');
-            const startBtn = document.getElementById('start-engine-btn');
-            const skipBtn = document.getElementById('skip-btn');
-            const replayAnimBtn = document.getElementById('replay-anim-btn');
-            const promptBox = document.getElementById('prompt-box');
-            const pullCord = document.getElementById('pull-cord');
-            const cordLineEl = document.getElementById('cord-line-el');
-            const soundBtn = document.getElementById('sound-btn');
-            const soundIcon = document.getElementById('sound-icon');
-            const soundText = document.getElementById('sound-text');
-            const svgHeadlight = document.getElementById('svg-headlight');
+        // 2. LÓGICA DA ANIMAÇÃO INTERATIVA
+        document.addEventListener("DOMContentLoaded", function() {
+            const overlay = document.getElementById('intro-overlay');
+            const bus = document.getElementById('busWrapper');
+            const roadLine = document.getElementById('roadLine');
+            const headlight = document.getElementById('headlightBeam');
+            const pullCord = document.getElementById('pullCord');
+            const pullString = document.getElementById('pullString');
+            const skipBtn = document.getElementById('skipIntroBtn');
+            const toggleSoundBtn = document.getElementById('toggleSoundBtn');
+            const soundIcon = document.getElementById('soundIcon');
+            const soundText = document.getElementById('soundText');
 
             let isStarted = false;
-            let audioEnabled = true;
+            let soundEnabled = true;
 
-            // Web Audio API para Som do Motor e Buzina
+            // GERADOR DE SOM SINTETIZADO (WEB AUDIO API)
             let audioCtx = null;
 
-            function initAudio() {
-                if (!audioCtx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    if (AudioContext) audioCtx = new AudioContext();
-                }
-            }
-
-            function playHornSound() {
-                if (!audioEnabled) return;
-                initAudio();
-                if (!audioCtx) return;
-
-                const now = audioCtx.currentTime;
-                [0, 0.18].forEach(delay => {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(370, now + delay);
-                    
-                    gain.gain.setValueAtTime(0.2, now + delay);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + delay + 0.12);
-
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-
-                    osc.start(now + delay);
-                    osc.stop(now + delay + 0.13);
-                });
-            }
-
             function playEngineSound() {
-                if (!audioEnabled) return;
-                initAudio();
-                if (!audioCtx) return;
+                if (!soundEnabled) return;
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioContext) return;
+                    audioCtx = new AudioContext();
 
-                const now = audioCtx.currentTime;
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                const filter = audioCtx.createBiquadFilter();
+                    // Buzina Curta Inicial
+                    const hornOsc = audioCtx.createOscillator();
+                    const hornGain = audioCtx.createGain();
+                    hornOsc.type = 'triangle';
+                    hornOsc.frequency.setValueAtTime(320, audioCtx.currentTime);
+                    hornOsc.frequency.setValueAtTime(400, audioCtx.currentTime + 0.15);
+                    hornGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    hornGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    hornOsc.connect(hornGain);
+                    hornGain.connect(audioCtx.destination);
+                    hornOsc.start();
+                    hornOsc.stop(audioCtx.currentTime + 0.35);
 
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(55, now);
-                osc.frequency.exponentialRampToValueAtTime(160, now + 1.2);
-                osc.frequency.linearRampToValueAtTime(40, now + 2.2);
-
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(200, now);
-                filter.frequency.linearRampToValueAtTime(600, now + 1.2);
-
-                gain.gain.setValueAtTime(0.01, now);
-                gain.gain.linearRampToValueAtTime(0.25, now + 0.3);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 2.3);
-
-                osc.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start(now);
-                osc.stop(now + 2.3);
-            }
-
-            soundBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                audioEnabled = !audioEnabled;
-                if (audioEnabled) {
-                    soundIcon.className = "fa-solid fa-volume-high";
-                    soundIcon.style.color = "#ff8c00";
-                    soundText.innerText = "Som Ativado";
-                } else {
-                    soundIcon.className = "fa-solid fa-volume-xmark";
-                    soundIcon.style.color = "#94a3b8";
-                    soundText.innerText = "Som Desativado";
-                }
-            });
-
-            function createSmokeParticle() {
-                if (!isStarted) return;
-                const smoke = document.createElement('div');
-                smoke.className = 'smoke-particle';
-                busWrapper.appendChild(smoke);
-
-                setTimeout(() => {
-                    smoke.remove();
-                }, 900);
-            }
-
-            // Pull Cord Mechanic
-            let isDragging = false;
-            let startY = 0;
-            const defaultLineHeight = 160;
-
-            function onPointerDown(e) {
-                if (isStarted) return;
-                isDragging = true;
-                startY = e.clientY || (e.touches && e.touches[0].clientY);
-                document.addEventListener('pointermove', onPointerMove);
-                document.addEventListener('pointerup', onPointerUp);
-            }
-
-            function onPointerMove(e) {
-                if (!isDragging) return;
-                const currentY = e.clientY || (e.touches && e.touches[0].clientY);
-                const deltaY = Math.max(0, currentY - startY);
-                
-                if (deltaY < 120) {
-                    cordLineEl.style.height = `${defaultLineHeight + deltaY}px`;
-                }
-
-                if (deltaY > 70 && !isStarted) {
-                    triggerAnimationSequence();
-                    onPointerUp();
+                    // Aceleração do Motor
+                    setTimeout(() => {
+                        if (!audioCtx) return;
+                        const engineOsc = audioCtx.createOscillator();
+                        const engineGain = audioCtx.createGain();
+                        engineOsc.type = 'sawtooth';
+                        engineOsc.frequency.setValueAtTime(60, audioCtx.currentTime);
+                        engineOsc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 1.8);
+                        
+                        engineGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                        engineGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 2.0);
+                        
+                        engineOsc.connect(engineGain);
+                        engineGain.connect(audioCtx.destination);
+                        engineOsc.start();
+                        engineOsc.stop(audioCtx.currentTime + 2.0);
+                    }, 200);
+                } catch(e) {
+                    console.log('Audio não suportado ou bloqueado.');
                 }
             }
 
-            function onPointerUp() {
-                isDragging = false;
-                cordLineEl.style.height = `${defaultLineHeight}px`;
-                document.removeEventListener('pointermove', onPointerMove);
-                document.removeEventListener('pointerup', onPointerUp);
-            }
-
-            pullCord.addEventListener('pointerdown', onPointerDown);
-
-            // Sequência de Animação de Arranque
-            function triggerAnimationSequence() {
+            // FUNÇÃO QUE INICIA A VIAGEM
+            function startJourney() {
                 if (isStarted) return;
                 isStarted = true;
 
-                playHornSound();
-                setTimeout(playEngineSound, 250);
+                // Tocar Áudio
+                playEngineSound();
 
-                setTimeout(() => {
-                    headlightBeam.classList.add('active');
-                    svgHeadlight.setAttribute('fill', '#ffffff');
-                    introOverlay.classList.add('scene-illuminated');
-                }, 200);
-
-                busWrapper.classList.add('bus-engine-vibe');
+                // Ligar faróis e iniciar movimento da estrada
+                headlight.classList.add('active');
                 roadLine.classList.add('moving');
 
-                const smokeInterval = setInterval(createSmokeParticle, 110);
+                // Arrancar com o autocarro
+                bus.classList.add('driving');
 
-                promptBox.style.opacity = '0';
-                promptBox.style.transform = 'translateY(-20px)';
-
+                // Esconder overlay suavemente após a animação
                 setTimeout(() => {
-                    busWrapper.classList.add('driving-off');
-                }, 600);
-
-                setTimeout(() => {
-                    clearInterval(smokeInterval);
-                    introOverlay.classList.add('hidden-intro');
-                }, 2000);
+                    overlay.classList.add('hidden');
+                }, 1800);
             }
 
-            // Listeners
-            busWrapper.addEventListener('click', triggerAnimationSequence);
-            startBtn.addEventListener('click', triggerAnimationSequence);
-
-            skipBtn.addEventListener('click', () => {
-                isStarted = true;
-                introOverlay.classList.add('hidden-intro');
+            // CONTROLO DE SOM
+            toggleSoundBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                soundEnabled = !soundEnabled;
+                if (soundEnabled) {
+                    soundIcon.className = 'fas fa-volume-up';
+                    soundText.textContent = 'Som Ativado';
+                } else {
+                    soundIcon.className = 'fas fa-volume-mute';
+                    soundText.textContent = 'Som Mudo';
+                }
             });
 
-            replayAnimBtn.addEventListener('click', () => {
-                isStarted = false;
-                headlightBeam.classList.remove('active');
-                introOverlay.classList.remove('scene-illuminated');
-                busWrapper.classList.remove('driving-off', 'bus-engine-vibe');
-                roadLine.classList.remove('moving');
-                svgHeadlight.setAttribute('fill', '#fffbcf');
-                
-                promptBox.style.opacity = '1';
-                promptBox.style.transform = 'translateY(0)';
+            // BOTAO DE PULAR ANIMAÇÃO
+            skipBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                overlay.classList.add('hidden');
+            });
 
-                introOverlay.classList.remove('hidden-intro');
+            // MODO 1: CLIQUE NO AUTOCARRO
+            bus.addEventListener('click', startJourney);
+
+            // MODO 2: PUXAR O CORDÃO DA CHAVE
+            let startY = 0;
+            let isDragging = false;
+
+            pullCord.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startY = e.clientY;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const deltaY = e.clientY - startY;
+                if (deltaY > 0 && deltaY < 60) {
+                    pullString.style.height = (140 + deltaY) + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const deltaY = e.clientY - startY;
+                pullString.style.height = '140px';
+                if (deltaY > 25) {
+                    startJourney();
+                }
+            });
+
+            // SUPORTE A ECRÃS TÁTEIS (MOBILE)
+            pullCord.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const deltaY = e.touches[0].clientY - startY;
+                if (deltaY > 0 && deltaY < 60) {
+                    pullString.style.height = (140 + deltaY) + 'px';
+                }
+            });
+
+            document.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                pullString.style.height = '140px';
+                startJourney();
             });
         });
     </script>
