@@ -119,7 +119,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 15px;
-            transition: left 1.3s cubic-bezier(0.45, 0, 0.55, 1);
+            transition: left 1.2s cubic-bezier(0.45, 0, 0.55, 1);
             border: 3px solid #ffffff;
         }
 
@@ -284,7 +284,7 @@
 
         .bus-drive-off {
             left: 120% !important;
-            transition: left 1.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
+            transition: left 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
         }
 
         .wheel-spin .wheel {
@@ -501,12 +501,62 @@
             splashScreen.classList.add('splash-bypass');
         }
 
-        // SONS MP3 REAIS E CURTOS
-        const soundLuggage = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); 
-        const soundEngine = new Audio('https://assets.mixkit.co/active_storage/sfx/1512/1512-preview.mp3'); // Arranque curto de motor
+        // SISTEMA DE ÁUDIO NATIVO SUAVE (SEM FICHIEROS EXTERNO RUIDOSOS)
+        let audioCtx = null;
 
-        // Garante que o som do motor NÃO fica em loop
-        soundEngine.loop = false;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        // 1. Som Suave para a Mala (Clique/Tranca Suave)
+        function playLuggageSound() {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.15);
+
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start();
+                osc.stop(ctx.currentTime + 0.15);
+            } catch (e) {}
+        }
+
+        // 2. Som Suave para o Arranque do Autocarro (Motor Suave com Fade-Out)
+        function playBusSound() {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(70, ctx.currentTime);
+                osc.frequency.linearRampToValueAtTime(110, ctx.currentTime + 0.8);
+
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.0);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start();
+                osc.stop(ctx.currentTime + 1.0);
+            } catch (e) {}
+        }
 
         let malaPronta = false;
 
@@ -515,8 +565,7 @@
             if (malaPronta) return;
 
             malaPronta = true;
-            soundLuggage.currentTime = 0;
-            soundLuggage.play().catch(() => {});
+            playLuggageSound(); // Som suave de fecho
             
             // Animação da mala a entrar no bagageiro
             luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
@@ -547,24 +596,19 @@
             // Regista a visita para não repetir no menu do site
             sessionStorage.setItem('visitedIndex', 'true');
 
-            // 1. Liga o motor e toca o arranque curto
-            soundEngine.currentTime = 0;
-            soundEngine.play().catch(() => {});
+            // 1. Liga o motor e toca o som suave
+            playBusSound();
             busSide.classList.add('engine-on', 'wheel-spin');
 
             // 2. Autocarro avança na estrada
             setTimeout(() => {
                 busSide.classList.add('bus-drive-off');
-            }, 300);
+            }, 200);
 
-            // 3. A tela sobe, revela o site e CESSA TODO O SOM
+            // 3. A tela sobe e revela o site principal
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-                
-                // Corta e para o som completamente ao entrar no site
-                soundEngine.pause();
-                soundEngine.currentTime = 0;
-            }, 1200);
+            }, 1000);
         });
     </script>
 </body>
