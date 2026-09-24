@@ -36,7 +36,7 @@
 
         /* FORMULÁRIO ESTILO QUADRO DE NOTAS */
         .container-form {
-            max-width: 900px; width: calc(100% - 40px); margin: -50px auto 50px; z-index: 10;
+            max-width: 950px; width: calc(100% - 40px); margin: -50px auto 50px; z-index: 10;
         }
 
         .barra-feedback {
@@ -78,7 +78,7 @@
         }
         .btn-v:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 140, 0, 0.3); }
 
-        /* MURAL ESTILO MASONRY (COLUNAS MISTAS) */
+        /* MURAL ESTILO MASONRY (COLUNAS) */
         .seccao-mural { 
             padding: 0 40px 80px; width: 100%; max-width: 1300px; margin: 0 auto; 
             column-count: 3; column-gap: 25px;
@@ -117,7 +117,7 @@
         .comentario { font-family: 'Kalam', cursive; font-size: 1.15em; color: #1e293b; line-height: 1.5; margin-bottom: 15px; }
         .autor { font-weight: 700; color: #1e4d8c; font-size: 0.9em; text-align: right; display: block; }
 
-        /* BOTÃO FLUTUANTE PARA DISPOSITIVOS MÓVEIS OU ROLAGEM */
+        /* BOTÃO FLUTUANTE DE ATALHO */
         .btn-flutuante {
             position: fixed; bottom: 25px; right: 25px; background: #ff8c00; color: white;
             padding: 14px 22px; border-radius: 50px; font-weight: 700; text-decoration: none;
@@ -161,14 +161,14 @@
 
                 <div id="status-mensagem" data-fs-success>
                     <i class="fas fa-heart"></i>
-                    <p>Muito obrigado pela sua partilha!<br>O seu testemunho será afixado no mural muito em breve.</p>
+                    <p>Obrigado pelo seu testemunho! <br> Em breve iremos colocar neste mural.</p>
                 </div>
 
                 <form id="mural-form">
                     <div class="form-grid">
-                        <input type="text" name="nome" class="input-estilizado" placeholder="O seu nome (ex: Maria e João)" required data-fs-field>
-                        <input type="text" name="passeio" class="input-estilizado" placeholder="Qual foi o passeio? (ex: Festas do Povo)" required data-fs-field>
-                        <textarea name="mensagem" class="input-estilizado textarea-full" placeholder="Conte-nos como foi a sua experiência, o convívio, a organização..." required data-fs-field></textarea>
+                        <input type="text" name="nome" class="input-estilizado" placeholder="O seu nome" required data-fs-field>
+                        <input type="text" name="passeio" class="input-estilizado" placeholder="Qual foi o passeio?" required data-fs-field>
+                        <textarea name="mensagem" class="input-estilizado textarea-full" placeholder="Escreva a sua experiência..." required data-fs-field></textarea>
                     </div>
 
                     <div class="form-actions">
@@ -189,14 +189,14 @@
                             <i class="fas fa-paper-plane"></i> Publicar no Mural
                         </button>
                     </div>
-                    <div style="color: #e11d48; font-size: 13px; margin-top: 10px; text-align: center;" data-fs-error></div>
+                    <div style="color: #e11d48; font-size: 12px; margin-top: 10px; text-align: center;" data-fs-error></div>
                 </form>
             </div>
         </div>
 
-        <!-- SEÇÃO DO MURAL -->
+        <!-- SEÇÃO DO MURAL COM TODOS OS SEUS TESTEMUNHOS -->
         <section class="seccao-mural">
-            
+
             <div class="nota">
                 <div class="pione"></div>
                 <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
@@ -207,15 +207,103 @@
 
             <div class="nota">
                 <div class="pione"></div>
+                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Adorámos o passeio. O almoço no Restaurante do Alívio estava muito bom e foi uma ótima forma de começar o dia. Depois, Ponte de Lima e as Feiras Novas fizeram o resto. Tudo muito bem organizado."</p>
+                <span class="autor">— Manuel e Teresa Costa</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Gostámos especialmente do Cortejo Etnográfico. Foi muito bonito conhecer melhor as tradições da região. O autocarro era confortável e o Sr. Miguel esteve sempre disponível. Uma experiência a repetir."</p>
+                <span class="autor">— Luís Fernandes</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Uma excelente viagem, desde a saída até ao regresso. Tudo muito organizado e sem complicações. As Feiras Novas têm um ambiente fantástico e foi muito bom poder aproveitar o dia com calma."</p>
+                <span class="autor">— José Martins</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi a nossa primeira viagem com o Passeios do Miguel e ficámos muito satisfeitos. Boa organização, simpatia e cumprimento dos horários. Gostámos muito do programa e voltaremos a participar."</p>
+                <span class="autor">— Paulo e Sandra Oliveira</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
                 <span class="viagem-tag">Festas do Povo - Campo Maior</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Gostámos muito de toda a organização. O autocarro era confortável e o ambiente durante a viagem foi excelente. O passeio pelo Tejo foi magnífico."</p>
+                <p class="comentario">"Foi um dia muito bem organizado. O Sr. Miguel esteve sempre atento a tudo e cumpriu os horários, o que tornou a viagem muito tranquila. As Festas do Povo são lindíssimas e foi uma experiência que valeu mesmo a pena."</p>
+                <span class="autor">— Maria Fernandes</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Gostámos muito de toda a organização. O autocarro era confortável e o ambiente durante a viagem foi excelente. O passeio pelo Tejo foi magnífico e tornou o dia ainda mais completo. Parabéns ao Sr. Miguel."</p>
                 <span class="autor">— António e Helena Martins</span>
             </div>
 
             <div class="nota">
                 <div class="pione"></div>
+                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Um passeio muito bem pensado do início ao fim. Tudo muito organizado, sem grandes esperas e sempre com o Sr. Miguel disponível para ajudar. As Portas de Ródão e Campo Maior foram uma excelente combinação."</p>
+                <span class="autor">— Joaquim Pereira</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi a primeira vez que viajámos com o Passeios do Miguel e ficámos muito satisfeitos. Boa organização, horários cumpridos e muita simpatia. O autocarro e toda a viagem correram muito bem."</p>
+                <span class="autor">— Carlos e Rosa Almeida</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Um dia muito agradável e bem organizado. O Sr. Miguel foi sempre muito prestável e conseguiu manter tudo a funcionar dentro dos horários previstos. Voltaremos certamente a viajar."</p>
+                <span class="autor">— António Silva</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
                 <span class="viagem-tag">Rota das Cerejas - Fundão</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Top Recomendo!"</p>
+                <span class="autor">— Fernando e Paula Carvalho</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Rota das Cerejas no Fundão</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Gostei muito, foi 5 estrelas."</p>
+                <span class="autor">— Pedro Lopes</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Rota das Cerejas Fundão</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi sensacional, muito bom mesmo, a companhia também, parabéns e vamos para próxima."</p>
+                <span class="autor">— Glauce Santos</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Passeio das Cerejas</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="comentario">"Uma experiência única, com pessoas maravilhosas, simpáticas e super divertidas. Adorei!! 👏👏"</p>
                 <span class="autor">— Lurdes Santos</span>
@@ -223,15 +311,71 @@
 
             <div class="nota">
                 <div class="pione"></div>
+                <span class="viagem-tag">Viagem a Barcelos - Batalha das Flores</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Dia incrível, muito boa organização e ótima companhia durante todo o passeio."</p>
+                <span class="autor">— Maria Lopes</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
                 <span class="viagem-tag">Batalha das Flores - Barcelos</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Foi um dia memorável que jamais esquecerei! E sem dúvidas que o Sr. Miguel é um excelente organizador, proporcionando momentos muito divertidos."</p>
+                <p class="comentario">"Tudo impecável, desde o transporte à organização. Excelente dia!"</p>
+                <span class="autor">— Carlos Martins</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Passeio a Barcelos - Batalha das Flores</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Passeio muito bem organizado, ambiente fantástico e experiência a repetir sem dúvida!"</p>
+                <span class="autor">— Ana Ferreira</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Batalha das Flores - Barcelos</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi um dia memorável que jamais esquecerei! E sem dúvidas que o Sr. Miguel, é um excelente organizador, que proporciona momentos, muitos divertidos e agradáveis."</p>
                 <span class="autor">— Lurdes Santos</span>
             </div>
 
             <div class="nota">
                 <div class="pione"></div>
+                <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
+                <span class="autor">— Maria Silva</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festa das Camélias - Celorico de Basto</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade, excelente organizador!"</p>
+                <span class="autor">— Carlos Pires</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Senhora da Graça - Celorico de Basto</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel organiza tudo de forma fantástica."</p>
+                <span class="autor">— Ana Rita</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
                 <span class="viagem-tag">Valença e Vigo</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Tudo bem organizado e pensado para termos uma ótima experiência. Foi uma excelente escolha. Obrigada."</p>
+                <span class="autor">— Marta Soares</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Valença do Minho e Vigo</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="comentario">"Passeio excelente, muito bem organizado e com um ambiente natalício fantástico em ambas as cidades. Adorei a experiência!"</p>
                 <span class="autor">— Carolina</span>
@@ -239,10 +383,10 @@
 
             <div class="nota">
                 <div class="pione"></div>
-                <span class="viagem-tag">Festa das Camélias - Celorico de Basto</span>
+                <span class="viagem-tag">Valença e Vigo</span>
                 <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo impecavelmente!"</p>
-                <span class="autor">— Maria Silva</span>
+                <p class="comentario">"Tudo impecável, desde a organização ao espírito do grupo. Foi um dia muito bonito e bem aproveitado."</p>
+                <span class="autor">— Rui</span>
             </div>
 
         </section>
