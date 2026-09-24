@@ -3,309 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Próximas Viagens</title>
+    <title>Passeios do Miguel - Cartões Dinâmicos</title>
     
+    <!-- Ícones FontAwesome para WhatsApp e Localização -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- ESTILOS GERAIS DA PÁGINA --- */
+        /* --- ESTILOS GERAIS --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
+            background-color: #f1f5f9;
+            color: #0f172a;
             margin: 0;
             padding: 0;
         }
 
         .seccao-passeios {
-            padding: 50px 20px;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
 
         .titulo-seccao {
             text-align: center;
             color: #1e4d8c;
-            margin-bottom: 40px;
-            font-size: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
         }
 
-        /* --- CONTAINER DA TIMELINE --- */
-        .container-timeline {
-            position: relative;
-            padding-left: 40px;
-            border-left: 4px solid #1e4d8c; /* Linha vertical do percurso */
-        }
-
-        /* --- CARTÃO DE PASSEIO --- */
-        .card-passeio {
-            position: relative;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 24px;
+        /* --- FILTROS DE VISUALIZAÇÃO --- */
+        .filtros-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 35px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease-in-out;
-            border: 1px solid #e2e8f0;
         }
 
-        /* Ponto Brilhante na Linha do Tempo (Passeios Futuros) */
-        .card-passeio::before {
-            content: '';
-            position: absolute;
-            left: -49px;
-            top: 28px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: #ff8c00;
-            border: 3px solid #ffffff;
-            box-shadow: 0 0 10px #ff8c00;
+        .btn-filtro {
+            padding: 10px 22px;
+            border: 2px solid #1e4d8c;
+            background: #ffffff;
+            color: #1e4d8c;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        /* Elevação e destaque ao passar o rato (Apenas nos futuros) */
-        .card-passeio.passeio-proximo:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(30, 77, 140, 0.15);
-            border-color: rgba(255, 140, 0, 0.4);
+        .btn-filtro:hover, .btn-filtro.ativo {
+            background-color: #1e4d8c;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(30, 77, 140, 0.3);
         }
 
-        /* --- PASSEIOS CONCLUÍDOS (AUTOMÁTICO) --- */
+        /* --- GRELHA DE CARTÕES (GRID) --- */
+        .grelha-passeios {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- DESIGN DO CARTÃO --- */
+        .card-passeio {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+        }
+
+        /* Efeito de destaque para Passeios Futuros */
+        .card-passeio.passeio-proximo {
+            border-color: rgba(255, 140, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.1);
+        }
+
+        .card-passeio.passeio-proximo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(30, 77, 140, 0.2);
+            border-color: #ff8c00;
+        }
+
+        /* Estilo Automático para Passeios Realizados */
         .card-passeio.passeio-concluido {
-            background-color: #f1f5f9;
-            opacity: 0.8;
+            opacity: 0.75;
+            filter: grayscale(30%);
+            background: #f8fafc;
             border-color: #cbd5e1;
         }
 
-        .card-passeio.passeio-concluido::before {
-            background-color: #94a3b8;
-            box-shadow: none;
+        .card-passeio.oculto {
+            display: none;
         }
 
-        /* --- CABEÇALHO DO CARTÃO E BADGES --- */
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+        /* --- IMAGEM E CAPA --- */
+        .card-imagem-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
         }
 
+        .card-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-passeio:hover .card-imagem {
+            transform: scale(1.05);
+        }
+
+        /* ETIQUETA / BADGE SOBRE A IMAGEM */
         .badge-status {
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 4px 12px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
             border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .passeio-proximo .badge-status {
-            background-color: #fff3e0;
-            color: #e65100;
-            border: 1px solid #ffe0b2;
+            background-color: #ff8c00;
+            color: #ffffff;
         }
 
         .passeio-concluido .badge-status {
-            background-color: #e2e8f0;
-            color: #475569;
-        }
-
-        .data-destaque {
-            font-weight: 600;
-            color: #1e4d8c;
-            font-size: 0.95rem;
+            background-color: #64748b;
+            color: #ffffff;
         }
 
         /* --- CONTEÚDO DO CARTÃO --- */
-        .card-body h3 {
+        .card-conteudo {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-data {
+            font-size: 0.85rem;
+            color: #ff8c00;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .card-titulo {
+            font-size: 1.25rem;
             margin: 0 0 10px 0;
             color: #0f172a;
-            font-size: 1.25rem;
         }
 
-        .card-body p {
+        .card-local {
+            font-size: 0.9rem;
             color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .card-detalhes {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 15px;
-        }
-
-        /* --- BOTÕES --- */
-        .card-footer {
+            margin-bottom: 12px;
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            gap: 6px;
         }
 
-        .btn-reserva {
-            display: inline-block;
-            padding: 10px 22px;
-            background-color: #1e4d8c;
+        .card-descricao {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* --- RODAPÉ E BOTÃO WHATSAPP --- */
+        .card-rodape {
+            margin-top: auto;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 0;
+            background-color: #25d366;
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: background-color 0.2s ease;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
         }
 
-        .btn-reserva:hover {
-            background-color: #ff8c00;
+        .btn-whatsapp:hover {
+            background-color: #1eb954;
+            transform: scale(1.02);
         }
 
-        .btn-concluido {
-            display: inline-block;
-            padding: 8px 16px;
+        .btn-realizado {
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: 12px 0;
             background-color: #e2e8f0;
             color: #64748b;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 6px;
-        }
-
-        /* Responsividade para Telemóveis */
-        @media (max-width: 600px) {
-            .container-timeline {
-                padding-left: 25px;
-            }
-            .card-passeio::before {
-                left: -34px;
-            }
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
+            font-weight: 700;
+            border-radius: 10px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
     <section class="seccao-passeios">
-        <h2 class="titulo-seccao">As Nossas Viagens</h2>
+        <h2 class="titulo-seccao">Próximas Viagens & Excursões</h2>
 
-        <div class="container-timeline">
-            
-            <!-- Ecoparque Sensorial da Pia do Urso e Fátima -->
+        <!-- BOTÕES DE FILTRO -->
+        <div class="filtros-container">
+            <button class="btn-filtro ativo" onclick="filtrarPasseios('todos')">Todos</button>
+            <button class="btn-filtro" onclick="filtrarPasseios('proximos')">A Realizar</button>
+            <button class="btn-filtro" onclick="filtrarPasseios('concluidos')">Realizados</button>
+        </div>
+
+        <!-- GRELHA DE PASSEIOS -->
+        <div class="grelha-passeios">
+
+            <!-- Fátima e Pia do Urso -->
             <article class="card-passeio" data-data="2026-10-18">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1548625149-fc4a29cf7092?auto=format&fit=crop&w=600&q=80" alt="Fátima" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">18 Outubro 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Ecoparque Sensorial da Pia do Urso & Fátima</h3>
-                    <p>Uma viagem especial que combina a natureza e acessibilidade dos caminhos da Pia do Urso com a tranquilidade e espiritualidade do Santuário de Fátima.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">18 Outubro 2026</div>
+                    <h3 class="card-titulo">Pia do Urso & Fátima</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Batalha & Fátima</div>
+                    <p class="card-descricao">Caminhada pelos trilhos sensoriais da Pia do Urso seguida de tarde livre no Santuário de Fátima.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Gostaria%20de%20reservar%20lugar%20para%20o%20passeio%20da%20Pia%20do%20Urso%20e%20Fátima." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
             <!-- Magusto em Santoinho -->
             <article class="card-passeio" data-data="2026-11-15">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" alt="Santoinho" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">15 Novembro 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Magusto Tradicional na Quinta de Santoinho & Viana do Castelo</h3>
-                    <p>Animação, folclore, gastronomia minhota e castanhas assadas na grande festa do Magusto em Santoinho, com visita prévia a Viana do Castelo.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">15 Novembro 2026</div>
+                    <h3 class="card-titulo">Magusto em Santoinho</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Viana do Castelo</div>
+                    <p class="card-descricao">Festa tradicional com folclore, gastronomia minhota e castanhas assadas na Quinta de Santoinho.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Gostaria%20de%20reservar%20lugar%20para%20o%20Magusto%20em%20Santoinho." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
             <!-- Mercado de Natal em Salamanca -->
             <article class="card-passeio" data-data="2026-12-13">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=80" alt="Salamanca" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">13 Dezembro 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Mercado de Natal em Salamanca & Ciudad Rodrigo</h3>
-                    <p>Celebre a magia do Natal nas iluminações e mercados natalícios de Salamanca e na histórica cidade muralhada de Ciudad Rodrigo.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">13 Dezembro 2026</div>
+                    <h3 class="card-titulo">Mercado de Natal em Salamanca</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Salamanca & Ciudad Rodrigo</div>
+                    <p class="card-descricao">A iluminação festiva, mercados natalícios e encanto das cidades históricas espanholas.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Gostaria%20de%20reservar%20lugar%20para%20Salamanca." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
             <!-- Feiras Novas em Ponte de Lima -->
             <article class="card-passeio" data-data="2026-09-20">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" alt="Ponte de Lima" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">20 Setembro 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Feiras Novas em Ponte de Lima</h3>
-                    <p>Dia inesquecível marcado pela tradição, folclore, concertinas e alegria contagiante das romarias em Ponte de Lima.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">20 Setembro 2026</div>
+                    <h3 class="card-titulo">Feiras Novas em Ponte de Lima</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Ponte de Lima</div>
+                    <p class="card-descricao">A grande romaria minhota com concertinas, folclore e animação popular em Ponte de Lima.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20Feiras%20Novas." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
             <!-- Rota da Cereja no Fundão -->
             <article class="card-passeio" data-data="2026-06-09">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=600&q=80" alt="Fundão" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">09 Junho 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Rota da Cereja no Fundão & Castelo Novo</h3>
-                    <p>Visita aos pomares de cerejas na Quinta das Rasas, Alcongosta e descoberta da aldeia histórica de Castelo Novo.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">09 Junho 2026</div>
+                    <h3 class="card-titulo">Rota da Cereja no Fundão</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Fundão & Castelo Novo</div>
+                    <p class="card-descricao">Passeio pelos pomares na Alcongosta, apanha da cereja e visita à aldeia histórica.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Info%20sobre%20a%20Rota%20da%20Cereja." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
             <!-- Festa das Cruzes em Barcelos -->
             <article class="card-passeio" data-data="2026-05-03">
-                <div class="card-header">
+                <div class="card-imagem-wrapper">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Barcelos" class="card-imagem">
                     <span class="badge-status"></span>
-                    <span class="data-destaque">03 Maio 2026</span>
                 </div>
-                <div class="card-body">
-                    <h3>Festa das Cruzes em Barcelos</h3>
-                    <p>Participação nas tradicionais festividades das Cruzes, tapetes de pétalas de flores e ambiente festivo em Barcelos.</p>
-                    <div class="card-detalhes">
-                        <span><strong>Transporte:</strong> Autocarro de Turismo</span>
+                <div class="card-conteudo">
+                    <div class="card-data">03 Maio 2026</div>
+                    <h3 class="card-titulo">Festa das Cruzes em Barcelos</h3>
+                    <div class="card-local"><i class="fa-solid fa-location-dot"></i> Barcelos</div>
+                    <p class="card-descricao">As celebres festividades de Barcelos com os tradicionais tapetes de pétalas de flores.</p>
+                    <div class="card-rodape">
+                        <a href="https://wa.me/351900000000?text=Olá!%20Info%20sobre%20Festa%20das%20Cruzes." target="_blank" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar pelo WhatsApp
+                        </a>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#contacto" class="btn-reserva">Reservar Lugar</a>
                 </div>
             </article>
 
         </div>
     </section>
 
-    <!-- SCRIPT PARA ATUALIZAÇÃO AUTOMÁTICA DA DATA -->
+    <!-- SCRIPT JS DE AUTOMATIZAÇÃO E FILTRAGEM -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Obter data atual no formato YYYY-MM-DD
+            // Obter a data atual
             const hoje = new Date();
-            hoje.setHours(0, 0, 0, 0); // Define meia-noite para comparação justa
+            hoje.setHours(0, 0, 0, 0);
 
             const cartoes = document.querySelectorAll(".card-passeio");
 
@@ -313,22 +366,21 @@
                 const dataStr = cartao.getAttribute("data-data");
                 if (!dataStr) return;
 
-                // Converte a string 'YYYY-MM-DD' para objeto Date
-                const partesData = dataStr.split("-");
-                const dataPasseio = new Date(partesData[0], partesData[1] - 1, partesData[2]);
+                const partes = dataStr.split("-");
+                const dataPasseio = new Date(partes[0], partes[1] - 1, partes[2]);
 
                 const badge = cartao.querySelector(".badge-status");
-                const footer = cartao.querySelector(".card-footer");
+                const rodape = cartao.querySelector(".card-rodape");
 
-                // Se a data do passeio for estritamente anterior à data de hoje
+                // SE A DATA JÁ PASSOU AUTOMATICAMENTE PASSAS PARA CONCLUÍDO
                 if (dataPasseio < hoje) {
                     cartao.setAttribute("data-status", "concluidos");
                     cartao.classList.remove("passeio-proximo");
                     cartao.classList.add("passeio-concluido");
                     
                     if (badge) badge.textContent = "Realizado";
-                    if (footer) {
-                        footer.innerHTML = '<span class="btn-concluido">Passeio Realizado</span>';
+                    if (rodape) {
+                        rodape.innerHTML = '<span class="btn-realizado"><i class="fa-solid fa-check"></i> Passeio Realizado</span>';
                     }
                 } else {
                     cartao.setAttribute("data-status", "proximos");
@@ -339,6 +391,23 @@
                 }
             });
         });
+
+        // FUNÇÃO DE FILTRAR POR BOTOES (TODOS / A REALIZAR / REALIZADOS)
+        function filtrarPasseios(categoria) {
+            const botoes = document.querySelectorAll(".btn-filtro");
+            botoes.forEach(btn => btn.classList.remove("ativo"));
+            event.target.classList.add("ativo");
+
+            const cartoes = document.querySelectorAll(".card-passeio");
+            cartoes.forEach(cartao => {
+                const status = cartao.getAttribute("data-status");
+                if (categoria === 'todos' || status === categoria) {
+                    cartao.classList.remove("oculto");
+                } else {
+                    cartao.classList.add("oculto");
+                }
+            });
+        }
     </script>
 
 </body>
