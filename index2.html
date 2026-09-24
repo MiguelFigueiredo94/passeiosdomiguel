@@ -55,10 +55,10 @@
             margin-left: 250px;
         }
 
-        /* HERO BANNER */
+        /* 1. HERO BANNER ORIGINAL (ESCURO RESTAURADO) */
         .hero-section {
             background-image:
-                linear-gradient(rgba(15, 23, 42, 0.65), rgba(30, 77, 140, 0.7)),
+                linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
                 url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1200');
 
             background-size: cover;
@@ -78,70 +78,67 @@
 
         .hero-section h1 {
             font-size: clamp(2.2em, 5vw, 3.4em);
-            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
             margin-bottom: 10px;
             color: white !important;
-            font-weight: 800;
+            font-weight: 700;
         }
 
         .hero-section p {
-            font-size: clamp(1.1em, 2.5vw, 1.35em);
+            font-size: clamp(1.1em, 2.5vw, 1.3em);
             max-width: 700px;
             font-weight: 300;
-            opacity: 0.95;
         }
 
-        /* BARRA DE GARANTIAS / BENEFÍCIOS */
-        .trust-bar {
-            max-width: 900px;
-            margin: -35px auto 20px;
-            padding: 0 20px;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .trust-container {
-            background: white;
-            border-radius: 50px;
-            padding: 16px 30px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9em;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .trust-item i {
-            color: var(--accent);
-            font-size: 1.2em;
-        }
-
-        /* FORMULÁRIO */
+        /* 2. CONTAINER DO FORMULÁRIO COM BARRA DE PROGRESSO */
         .seccao-form {
-            padding: 30px 20px 60px;
+            padding: 40px 20px 60px;
             flex-grow: 1;
         }
 
         .container-form {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
             background: white;
             padding: 45px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* BARRA DE PROGRESSO DINÂMICA */
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 10%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-status span.percent {
+            color: var(--accent);
+            font-size: 1.1em;
         }
 
         h2 {
@@ -160,57 +157,56 @@
 
         .campo-grupo {
             margin-bottom: 22px;
-            position: relative;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 700;
+            font-weight: 600;
             color: #334155;
             font-size: 0.95em;
         }
 
-        .input-wrapper {
+        .input-icon-group {
             position: relative;
         }
 
-        .input-wrapper i {
+        .input-icon-group i {
             position: absolute;
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: #94a3b8;
-            font-size: 1.05em;
-            transition: 0.3s;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
             pointer-events: none;
         }
 
         input, select {
             width: 100%;
-            padding: 16px 16px 16px 50px;
+            padding: 16px 16px 16px 48px;
             border: 2px solid #e2e8f0;
             border-radius: 14px;
             font-size: 1em;
             transition: all 0.3s ease;
-            background: #f8fafc;
+            background: #fcfdfe;
             color: #1e293b;
             font-family: inherit;
         }
 
-        /* Remove recuo no select se não tiver ícone explícito */
         select {
-            padding-left: 18px;
+            cursor: pointer;
         }
 
         input:focus, select:focus {
             border-color: var(--primary);
             outline: none;
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.1);
+            box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.08);
         }
 
-        input:focus + i {
+        .input-icon-group input:focus + i,
+        .input-icon-group select:focus + i {
             color: var(--accent);
         }
 
@@ -218,6 +214,23 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+        }
+
+        /* BADGE DINÂMICO DE RESUMO DE LUGARES */
+        .lugares-summary-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            border: 1px solid #bae6fd;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         /* CARTÃO ACOMPANHANTE */
@@ -235,14 +248,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* BOTÃO DE ENVIO VIBRANTE */
         .btn-enviar {
-            background: linear-gradient(135deg, var(--primary), #2a65b0);
+            background: var(--primary);
             color: white;
-            padding: 20px 30px;
+            padding: 22px;
             border: none;
-            border-radius: 50px;
+            border-radius: 18px;
             width: 100%;
-            font-weight: 800;
+            font-weight: bold;
             font-size: 1.25em;
             cursor: pointer;
             margin-top: 35px;
@@ -251,13 +265,13 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 10px 25px rgba(30, 77, 140, 0.25);
+            box-shadow: 0 8px 20px rgba(30, 77, 140, 0.2);
         }
 
         .btn-enviar:hover {
-            background: linear-gradient(135deg, var(--accent), #e67e00);
+            background: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.35);
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.3);
         }
 
         /* MENSAGENS STATUS */
@@ -286,17 +300,26 @@
         /* FOOTER */
         #footer-placeholder { width: 100%; }
 
+        #footer-placeholder footer,
+        #footer-placeholder p,
+        #footer-placeholder h1,
+        #footer-placeholder h2,
+        #footer-placeholder h3,
+        #footer-placeholder a,
+        #footer-placeholder span,
+        #footer-placeholder i {
+            color: #ffffff !important;
+        }
+
         /* RESPONSIVO */
         @media (max-width: 1024px) {
             #menu-placeholder { position: relative; width: 100%; height: auto; }
             main { margin-left: 0; }
-            .trust-container { flex-direction: column; gap: 8px; border-radius: 20px; text-align: center; }
         }
 
         @media (max-width: 768px) {
             .grid-inputs { grid-template-columns: 1fr; }
-            .container-form { padding: 25px 20px; }
-            .hero-section { height: 320px; }
+            .container-form { padding: 28px 20px; }
             .hero-section h1 { font-size: 2.2em; }
             .hero-section p { font-size: 1.05em; }
         }
@@ -309,44 +332,40 @@
 
     <main>
 
+        <!-- BANNER COM IMAGE E OPACIDADE ESCURA ORIGINAL -->
         <section class="hero-section">
             <h1>Reserva de Lugar</h1>
-            <p>Garanta a sua presença e venha viver a próxima aventura connosco!</p>
+            <p>Garanta a sua presença na nossa próxima aventura.</p>
         </section>
-
-        <!-- BARRA DE SEGURANÇA E CONFIANÇA -->
-        <div class="trust-bar">
-            <div class="trust-container">
-                <div class="trust-item">
-                    <i class="fas fa-shield-alt"></i> Reserva 100% Segura
-                </div>
-                <div class="trust-item">
-                    <i class="fas fa-chair"></i> Lugar Atribuído por Ordem
-                </div>
-                <div class="trust-item">
-                    <i class="fas fa-headset"></i> Apoio Permanente
-                </div>
-            </div>
-        </div>
 
         <section class="seccao-form">
 
             <div class="container-form">
+                <!-- BARRA DE PROGRESSO -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+
+                <div class="progress-status">
+                    <span><i class="fas fa-edit"></i> Formulário de Inscrição</span>
+                    <span class="percent" id="progress-percent">0% Concluído</span>
+                </div>
 
                 <form id="form-inscricao">
 
                     <h2>
                         <i class="fas fa-user-circle"></i>
-                        Dados do Titular da Reserva
+                        Dados do Viajante
                     </h2>
 
                     <div class="campo-grupo">
                         <label>Nome Completo</label>
-                        <div class="input-wrapper">
+                        <div class="input-icon-group">
                             <input
                                 type="text"
                                 name="nomeResponsavel"
-                                placeholder="Como consta no Cartão de Cidadão"
+                                class="form-control"
+                                placeholder="Como no cartão de cidadão"
                                 required
                             >
                             <i class="fas fa-user"></i>
@@ -357,10 +376,11 @@
 
                         <div class="campo-grupo">
                             <label>Telemóvel</label>
-                            <div class="input-wrapper">
+                            <div class="input-icon-group">
                                 <input
                                     type="tel"
                                     name="contactoResponsavel"
+                                    class="form-control"
                                     placeholder="9xx xxx xxx"
                                     required
                                 >
@@ -370,10 +390,11 @@
 
                         <div class="campo-grupo">
                             <label>Data de Nascimento</label>
-                            <div class="input-wrapper">
+                            <div class="input-icon-group">
                                 <input
                                     type="date"
                                     name="nascimentoResponsavel"
+                                    class="form-control"
                                     required
                                 >
                                 <i class="fas fa-calendar-alt"></i>
@@ -384,69 +405,83 @@
 
                     <div class="campo-grupo">
                         <label>Localidade</label>
-                        <div class="input-wrapper">
+                        <div class="input-icon-group">
                             <input
                                 type="text"
                                 name="localidadeResponsavel"
-                                placeholder="Ex: São Pedro do Sul, Viseu..."
+                                class="form-control"
+                                placeholder="Ex: São Pedro do Sul"
                                 required
                             >
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                     </div>
 
-                    <hr style="border:0; border-top:1px solid var(--border); margin:35px 0;">
+                    <hr style="border:0; border-top:1px solid #e2e8f0; margin:35px 0;">
 
                     <h2>
                         <i class="fas fa-bus"></i>
-                        Detalhes do Passeio
+                        Detalhes da Viagem
                     </h2>
 
                     <div class="campo-grupo">
-                        <label>Escolha o Passeio Pretendido</label>
-                        <!-- Adicionados atributos data-data em formato YYYY-MM-DD para ocultação automática -->
-                        <select
-                            id="passeioEscolhido"
-                            name="Passeio"
-                            required
-                        >
-                            <option value="">Selecione o seu destino no menu...</option>
+                        <label>Escolha o Passeio</label>
+                        <div class="input-icon-group">
+                            <select
+                                id="passeioEscolhido"
+                                name="Passeio"
+                                class="form-control"
+                                required
+                            >
+                                <option value="">Selecione um destino...</option>
 
-                            <option value="Feiras Novas" data-data="2026-09-12">
-                                Feiras Novas (Ponte de Lima) - 12 de Setembro de 2026
-                            </option>
+                                <option value="Feiras Novas" data-data="2026-09-12">
+                                    Feiras Novas (Ponte de Lima) - 12 de setembro de 2026
+                                </option>
 
-                            <option value="Santuário de Fátima" data-data="2026-10-10">
-                                Santuário de Fátima (Fátima & Batalha) - 10 de Outubro de 2026
-                            </option>
+                                <option value="Santuário de Fátima" data-data="2026-10-10">
+                                    Santuário de Fátima (Fátima & Batalha) - 10 de outubro de 2026
+                                </option>
 
-                            <option value="Santoinho" data-data="2026-11-07">
-                                Santoinho & Viana do Castelo - 07 de Novembro de 2026
-                            </option>
+                                <option value="Santoinho" data-data="2026-11-07">
+                                    Santoinho & Viana do Castelo - 07 de novembro de 2026
+                                </option>
 
-                            <option value="Salamanca" data-data="2026-12-05">
-                                Salamanca (Espanha) - 05 de Dezembro de 2026
-                            </option>
+                                <option value="Salamanca" data-data="2026-12-05">
+                                    Salamanca - 05 de dezembro de 2026
+                                </option>
 
-                        </select>
+                            </select>
+                            <i class="fas fa-route"></i>
+                        </div>
                     </div>
 
                     <div class="campo-grupo">
                         <label>Número de Acompanhantes</label>
-                        <select id="numPessoas" onchange="gerarCampos()">
-                            <option value="0">Vou sozinho(a)</option>
-                            <option value="1">1 Acompanhante (+1 lugar)</option>
-                            <option value="2">2 Acompanhantes (+2 lugares)</option>
-                            <option value="3">3 Acompanhantes (+3 lugares)</option>
-                            <option value="4">4 Acompanhantes (+4 lugares)</option>
-                            <option value="5">5 Acompanhantes (+5 lugares)</option>
-                        </select>
+                        <div class="input-icon-group">
+                            <select id="numPessoas" class="form-control" onchange="gerarCampos()">
+                                <option value="0">Vou sozinho(a)</option>
+                                <option value="1">1 Acompanhante</option>
+                                <option value="2">2 Acompanhantes</option>
+                                <option value="3">3 Acompanhantes</option>
+                                <option value="4">4 Acompanhantes</option>
+                                <option value="5">5 Acompanhantes</option>
+                            </select>
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+
+                    <!-- INDICADOR DINÂMICO DE RESUMO DE LUGARES -->
+                    <div id="lugares-badge-container">
+                        <div class="lugares-summary-badge">
+                            <i class="fas fa-ticket-alt"></i> Total a reservar: <span id="total-lugares-txt">1 Lugar</span> (Lugar atribuído por ordem de confirmação)
+                        </div>
                     </div>
 
                     <div id="camposDinamicos"></div>
 
                     <button type="submit" class="btn-enviar">
-                        Garantir a Minha Reserva
+                        Confirmar Inscrição
                         <i class="fas fa-paper-plane"></i>
                     </button>
 
@@ -454,14 +489,14 @@
                         id="mensagem-sucesso"
                         class="mensagem-status mensagem-sucesso"
                     >
-                        🎉 Inscrição enviada com sucesso! Entraremos em contacto brevemente para confirmar a sua reserva.
+                        ✔️ Inscrição enviada com sucesso! Entraremos em contacto brevemente.
                     </div>
 
                     <div
                         id="mensagem-erro"
                         class="mensagem-status mensagem-erro"
                     >
-                        ❌ Ocorreu um erro ao submeter a inscrição. Por favor, tente novamente ou ligue para o 965 715 465.
+                        ❌ Ocorreu um erro ao enviar a inscrição. Tente novamente ou fale connosco pelo WhatsApp.
                     </div>
 
                 </form>
@@ -474,7 +509,6 @@
 
     </main>
 
-    <!-- SCRIPT COMPONENTES + OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS -->
     <script>
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
@@ -486,7 +520,6 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('footer-placeholder', 'rodape.html');
 
-        // LÓGICA DE OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS E PREENCHIMENTO VIA URL
         window.onload = () => {
             ocultarPasseiosPassados();
 
@@ -496,14 +529,15 @@
             if (passeio) {
                 document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
             }
+            
+            atualizarProgresso();
         };
 
-        // Função que verifica a data atual e oculta automaticamente passeios cuja data já passou
+        // LÓGICA DE OCULTAÇÃO AUTOMÁTICA DE PASSEIOS COM DATAS PASSADAS
         function ocultarPasseiosPassados() {
             const selectPasseio = document.getElementById('passeioEscolhido');
             const opcoes = selectPasseio.querySelectorAll('option[data-data]');
             
-            // Obter data de hoje em formato YYYY-MM-DD (hora local)
             const hoje = new Date();
             hoje.setHours(0, 0, 0, 0);
 
@@ -513,7 +547,6 @@
                     const dataPasseio = new Date(dataPasseioStr);
                     dataPasseio.setHours(0, 0, 0, 0);
 
-                    // Se a data do passeio for anterior ao dia de hoje, oculta a opção
                     if (dataPasseio < hoje) {
                         opcao.style.display = 'none';
                         opcao.disabled = true;
@@ -522,27 +555,33 @@
             });
         }
 
-        // Geração dinâmica dos campos de acompanhantes
+        // GERAÇÃO DINÂMICA DE ACOMPANHANTES E RESUMO
         function gerarCampos() {
-            const qtd = document.getElementById('numPessoas').value;
+            const qtd = parseInt(document.getElementById('numPessoas').value);
             const container = document.getElementById('camposDinamicos');
+            const totalLugaresTxt = document.getElementById('total-lugares-txt');
+            
+            // Atualiza resumo
+            const total = qtd + 1;
+            totalLugaresTxt.textContent = total + (total === 1 ? ' Lugar' : ' Lugares');
+
             container.innerHTML = '';
 
             for (let i = 1; i <= qtd; i++) {
                 container.innerHTML += `
                 <div class="card-extra">
-                    <h3 style="color:var(--primary); margin-bottom:18px; font-size:1.1em; display:flex; align-items:center; gap:10px;">
-                        <i class="fas fa-user-plus" style="color:var(--accent)"></i>
-                        Dados do Acompanhante ${i}
+                    <h3 style="color:#1e4d8c; margin-bottom:20px; font-size:1.1em; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-plus" style="color:#ff8c00"></i>
+                        Acompanhante ${i}
                     </h3>
 
                     <div class="campo-grupo">
-                        <label>Nome Completo</label>
-                        <div class="input-wrapper">
+                        <div class="input-icon-group">
                             <input
                                 type="text"
                                 name="nomeExtra${i}"
-                                placeholder="Nome completo do acompanhante"
+                                class="form-control"
+                                placeholder="Nome Completo do Acompanhante"
                                 required
                             >
                             <i class="fas fa-user"></i>
@@ -551,11 +590,11 @@
 
                     <div class="grid-inputs">
                         <div class="campo-grupo">
-                            <label>Data de Nascimento</label>
-                            <div class="input-wrapper">
+                            <div class="input-icon-group">
                                 <input
                                     type="date"
                                     name="nascExtra${i}"
+                                    class="form-control"
                                     required
                                 >
                                 <i class="fas fa-calendar-alt"></i>
@@ -563,12 +602,12 @@
                         </div>
 
                         <div class="campo-grupo">
-                            <label>Telemóvel (Opcional)</label>
-                            <div class="input-wrapper">
+                            <div class="input-icon-group">
                                 <input
                                     type="tel"
                                     name="telExtra${i}"
-                                    placeholder="9xx xxx xxx"
+                                    class="form-control"
+                                    placeholder="Telemóvel (Opcional)"
                                 >
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -577,10 +616,43 @@
                 </div>
                 `;
             }
+
+            // Reassocia eventos para atualizar a barra de progresso
+            adicionarEventosProgresso();
+            atualizarProgresso();
         }
+
+        // BARRA DE PROGRESSO DINÂMICA
+        function atualizarProgresso() {
+            const inputs = document.querySelectorAll('.form-control[required]');
+            let preenchidos = 0;
+
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    preenchidos++;
+                }
+            });
+
+            const percentagem = inputs.length > 0 ? Math.round((preenchidos / inputs.length) * 100) : 0;
+            
+            document.getElementById('progress-fill').style.width = percentagem + '%';
+            document.getElementById('progress-percent').textContent = percentagem + '% Concluído';
+        }
+
+        function adicionarEventosProgresso() {
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.removeEventListener('input', atualizarProgresso);
+                input.addEventListener('input', atualizarProgresso);
+                input.removeEventListener('change', atualizarProgresso);
+                input.addEventListener('change', atualizarProgresso);
+            });
+        }
+
+        adicionarEventosProgresso();
     </script>
 
-    <!-- SCRIPT SUBMIT FORMSPREE -->
+    <!-- SCRIPT ENVIO FORMSPREE -->
     <script>
         const form = document.getElementById("form-inscricao");
 
@@ -607,6 +679,7 @@
                     mensagemSucesso.style.display = "block";
                     form.reset();
                     document.getElementById('camposDinamicos').innerHTML = '';
+                    atualizarProgresso();
                 } else {
                     mensagemErro.style.display = "block";
                 }
