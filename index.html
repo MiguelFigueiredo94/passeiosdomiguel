@@ -18,15 +18,15 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f4f7f9; 
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
+            background-color: #f8fafc; 
             min-height: 100vh;
-            color: #333;
+            color: #1e293b;
             overflow-x: hidden;
         }
 
         /* --------------------------------------------------
-           TELA DE BOAS-VINDAS: ASSISTENTE DE CHAT DINÂMICO
+           MÓDULO DO ASSISTENTE DE BOAS-VINDAS (CHAT PREMIUM)
         -------------------------------------------------- */
         #splash-screen {
             position: fixed;
@@ -34,14 +34,15 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95) 0%, rgba(11, 30, 56, 0.98) 100%),
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200') center/cover no-repeat;
+            background: rgba(11, 25, 44, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 99999;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
         .splash-bypass {
@@ -51,26 +52,27 @@
         .chat-card {
             background: #ffffff;
             width: 100%;
-            max-width: 520px;
-            height: 600px;
-            max-height: 90vh;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            max-width: 500px;
+            height: 640px;
+            max-height: 88vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: popUp 0.5s ease-out;
+            animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* CABEÇALHO DO CHAT */
         .chat-header {
-            background: linear-gradient(135deg, #1e4d8c, #0b1e38);
+            background: #1e4d8c;
             color: white;
-            padding: 18px 22px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 4px solid #ff8c00;
+            border-bottom: 3px solid #ff8c00;
         }
 
         .assistant-profile {
@@ -84,76 +86,90 @@
         }
 
         .avatar {
-            width: 46px;
-            height: 46px;
-            background: #ff8c00;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ff8c00, #e07b00);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: white;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
         .status-dot {
             position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 12px;
-            height: 12px;
+            bottom: 0;
+            right: 0;
+            width: 11px;
+            height: 11px;
             background: #22c55e;
-            border: 2px solid #ffffff;
+            border: 2px solid #1e4d8c;
             border-radius: 50%;
         }
 
         .assistant-info h3 {
-            font-size: 1.15em;
+            font-size: 1.05em;
             font-weight: 700;
-            line-height: 1.2;
+            letter-spacing: 0.3px;
         }
 
         .assistant-info p {
-            font-size: 0.82em;
-            color: #cbd5e1;
+            font-size: 0.78em;
+            color: #93c5fd;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .skip-btn {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
-            border: none;
-            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.85em;
+            font-size: 0.8em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .skip-btn:hover {
             background: #ff8c00;
+            border-color: #ff8c00;
         }
 
-        /* CORPO DO CHAT (MENSAGENS) */
+        /* CORPO DAS MENSAGENS */
         .chat-body {
             flex: 1;
             padding: 20px;
-            background: #f8fafc;
+            background: #f1f5f9;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             scroll-behavior: smooth;
         }
 
+        .msg-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
         .msg {
-            max-width: 82%;
+            max-width: 85%;
             padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 0.95em;
-            line-height: 1.45;
+            border-radius: 16px;
+            font-size: 0.92em;
+            line-height: 1.5;
             word-wrap: break-word;
-            animation: fadeInMsg 0.3s ease-out;
+            animation: msgIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
         .msg.bot {
@@ -161,7 +177,7 @@
             color: #1e293b;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
         }
 
@@ -170,75 +186,153 @@
             color: #ffffff;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
-            box-shadow: 0 3px 10px rgba(30, 77, 140, 0.25);
+            box-shadow: 0 2px 6px rgba(30, 77, 140, 0.2);
         }
 
-        /* AÇÕES/SUGESTÕES EM BOTÃO */
-        .chat-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
+        .msg-time {
+            font-size: 0.68em;
+            color: #94a3b8;
+            margin-top: 2px;
             align-self: flex-start;
+            padding-left: 4px;
         }
 
-        .opt-btn {
+        .msg-time.user-time {
+            align-self: flex-end;
+            padding-right: 4px;
+        }
+
+        /* MENSAGENS DE DIGITAÇÃO (TYPING INDICATOR) */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 14px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            align-self: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounceDot 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* PAINEL DE BOTÕES DE OPÇÕES */
+        .chat-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .opt-card {
             background: #ffffff;
             color: #1e4d8c;
-            border: 1.5px solid #1e4d8c;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.88em;
+            border: 1px solid #cbd5e1;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
             font-weight: 600;
             cursor: pointer;
+            text-align: left;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         }
 
-        .opt-btn:hover {
-            background: #ff8c00;
-            color: white;
+        .opt-card i {
+            color: #ff8c00;
+            font-size: 1.1em;
+            width: 18px;
+            text-align: center;
+        }
+
+        .opt-card:hover {
             border-color: #ff8c00;
+            background: #fff7ed;
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.12);
         }
 
-        /* RODAPÉ E ENTRADA DE TEXTO */
+        .opt-card.full-width {
+            grid-column: span 2;
+        }
+
+        /* LISTAS DENTRO DAS RESPOSTAS DO BOT */
+        .info-list {
+            list-style: none;
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 0.95em;
+        }
+
+        .info-list li i {
+            color: #ff8c00;
+            margin-top: 3px;
+            font-size: 0.85em;
+        }
+
+        /* RODAPÉ DO CHAT */
         .chat-footer {
             padding: 12px 16px;
             background: #ffffff;
             border-top: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .chat-input {
             flex: 1;
             border: 1px solid #cbd5e1;
-            padding: 12px 16px;
-            border-radius: 25px;
+            padding: 10px 16px;
+            border-radius: 20px;
             outline: none;
-            font-size: 0.95em;
-            transition: border-color 0.2s;
+            font-size: 0.9em;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .chat-input:focus {
             border-color: #1e4d8c;
+            box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.1);
         }
 
         .send-btn {
             background: #ff8c00;
             color: white;
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 0.95em;
             transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 2px 6px rgba(255, 140, 0, 0.3);
         }
 
         .send-btn:hover {
@@ -247,20 +341,24 @@
         }
 
         .splash-hidden {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
+            opacity: 0 !important;
+            visibility: hidden !important;
         }
 
-        /* ANIMACÕES */
-        @keyframes popUp {
-            from { opacity: 0; transform: scale(0.88); }
-            to { opacity: 1; transform: scale(1); }
+        /* ANIMAÇÕES */
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        @keyframes fadeInMsg {
-            from { opacity: 0; transform: translateY(8px); }
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceDot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
         }
 
         /* CONTEÚDO PRINCIPAL DO SITE */
@@ -325,12 +423,14 @@
             .hero-section h1 { font-size: 2.8em; }
             .chat-card { height: 100%; max-height: 100%; border-radius: 0; }
             #splash-screen { padding: 0; }
+            .chat-options { grid-template-columns: 1fr; }
+            .opt-card.full-width { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TELA DE BOAS-VINDAS / CHAT INTERATIVO -->
+    <!-- ASSISTENTE DE BOAS-VINDAS PROFISSIONAL -->
     <div id="splash-screen">
         <div class="chat-card">
             <!-- CABEÇALHO -->
@@ -341,32 +441,44 @@
                         <div class="status-dot"></div>
                     </div>
                     <div class="assistant-info">
-                        <h3>Guia Passeios do Miguel</h3>
-                        <p>Assistente Virtual • Online</p>
+                        <h3>Passeios do Miguel</h3>
+                        <p><i class="fas fa-circle" style="font-size: 7px; color: #22c55e;"></i> Assistente Virtual</p>
                     </div>
                 </div>
-                <button class="skip-btn" id="skipBtn" title="Ir para o site">Entrar no Site <i class="fas fa-arrow-right"></i></button>
+                <button class="skip-btn" id="skipBtn">Entrar no Site <i class="fas fa-arrow-right"></i></button>
             </div>
 
-            <!-- MENSAGENS DO CHAT -->
+            <!-- CORPO DO CHAT -->
             <div class="chat-body" id="chatBody">
-                <div class="msg bot">
-                    Olá! 👋 Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>!
+                <div class="msg-group">
+                    <div class="msg bot">
+                        Olá! Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>. 👋
+                    </div>
+                    <div class="msg bot">
+                        Estou aqui para o ajudar a planear a sua próxima viagem. Como posso ajudar?
+                    </div>
+                    <span class="msg-time" id="initTime">00:00</span>
                 </div>
-                <div class="msg bot">
-                    Sou o seu assistente virtual. Como posso ajudar a planear a sua próxima viagem hoje?
-                </div>
+
                 <div class="chat-options" id="initialOptions">
-                    <button class="opt-btn" onclick="handleOption('proximos')">🚌 Ver próximos passeios</button>
-                    <button class="opt-btn" onclick="handleOption('origem')">📍 De onde saem os autocarros?</button>
-                    <button class="opt-btn" onclick="handleOption('reservas')">📲 Como fazer reservas?</button>
-                    <button class="opt-btn" onclick="handleOption('entrar')">🌐 Explorar o site</button>
+                    <button class="opt-card" onclick="handleOption('proximos')">
+                        <i class="fas fa-bus"></i> <span>Próximos Passeios</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('origem')">
+                        <i class="fas fa-map-marker-alt"></i> <span>Locais de Partida</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('reservas')">
+                        <i class="fas fa-calendar-check"></i> <span>Reservas & Contacto</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('entrar')">
+                        <i class="fas fa-globe"></i> <span>Explorar o Site</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- ENTRADA DE MENSAGEM -->
+            <!-- RODAPÉ DE MENSAGEM -->
             <div class="chat-footer">
-                <input type="text" class="chat-input" id="userInput" placeholder="Escreva a sua dúvida aqui..." onkeypress="handleKeyPress(event)">
+                <input type="text" class="chat-input" id="userInput" placeholder="Escreva aqui a sua questão..." onkeypress="handleKeyPress(event)">
                 <button class="send-btn" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
@@ -422,7 +534,7 @@
     </main>
 
     <script>
-        // CARREGAMENTO DE COMPONENTES
+        // CARREGAMENTO DOS COMPONENTES
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
@@ -438,12 +550,19 @@
         const userInput = document.getElementById('userInput');
         const skipBtn = document.getElementById('skipBtn');
 
-        // NAVEGAÇÃO INTERNA: Se já interagiu/entrou nesta sessão, oculta o assistente
+        // REGISTO DA HORA ATUAL NAS MENSAGENS
+        function getFormattedTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        }
+        document.getElementById('initTime').innerText = getFormattedTime();
+
+        // NAVEGAÇÃO INTERNA: Oculta o assistente se já navegou nesta sessão
         if (sessionStorage.getItem('visitedIndex')) {
             splashScreen.classList.add('splash-bypass');
         }
 
-        // SISTEMA DE ÁUDIO NATIVO PARA MENSAGENS
+        // ÁUDIO NATIVO PARA EFEITOS DE MENSAGEM
         let audioCtx = null;
         function playSound(freq, type) {
             try {
@@ -454,25 +573,52 @@
                 const gain = audioCtx.createGain();
                 osc.type = type || 'sine';
                 osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start();
-                osc.stop(audioCtx.currentTime + 0.15);
+                osc.stop(audioCtx.currentTime + 0.12);
             } catch(e){}
         }
 
-        function playSendSound() { playSound(600, 'sine'); }
-        function playRecvSound() { playSound(800, 'triangle'); }
+        function playSendSound() { playSound(520, 'sine'); }
+        function playRecvSound() { playSound(750, 'triangle'); }
 
-        // MENSAGENS E LÓGICA DO ASSISTENTE
+        // EXIBIÇÃO DE INDICADOR DE DIGITAÇÃO
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.id = 'typingIndicator';
+            typing.className = 'typing-indicator';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatBody.appendChild(typing);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // ADICIONAR MENSAGENS AO CHAT
         function appendMessage(text, sender) {
+            const group = document.createElement('div');
+            group.className = 'msg-group';
+
             const msgDiv = document.createElement('div');
             msgDiv.className = `msg ${sender}`;
             msgDiv.innerHTML = text;
-            chatBody.appendChild(msgDiv);
+
+            const timeSpan = document.createElement('span');
+            timeSpan.className = `msg-time ${sender === 'user' ? 'user-time' : ''}`;
+            timeSpan.innerText = getFormattedTime();
+
+            group.appendChild(msgDiv);
+            group.appendChild(timeSpan);
+
+            chatBody.appendChild(group);
             chatBody.scrollTop = chatBody.scrollHeight;
+
             if (sender === 'user') playSendSound();
             else playRecvSound();
         }
@@ -484,40 +630,68 @@
 
         skipBtn.addEventListener('click', closeSplash);
 
+        // FLUXO DE RESPOSTAS E OPÇÕES
         function handleOption(key) {
             if (key === 'proximos') {
                 appendMessage('🚌 Ver próximos passeios', 'user');
+                showTyping();
                 setTimeout(() => {
-                    appendMessage('Temos viagens fantásticas preparadas! Pode ver todos os detalhes e datas atualizadas na nossa página de passeios.', 'bot');
+                    hideTyping();
+                    appendMessage('Temos várias viagens agendadas com roteiros cuidadosamente preparados! Pode consultar os detalhes de cada excursão na página de passeios.', 'bot');
                     addOptions([
-                        { text: '👉 Ir para Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } },
-                        { text: ' Outra questão', action: showInitialOptions }
+                        { icon: 'fa-arrow-right', text: 'Ver Lista de Passeios', action: () => { window.location.href = 'passeios.html'; }, full: true },
+                        { icon: 'fa-question-circle', text: 'Outra Dúvida', action: showInitialOptions }
                     ]);
-                }, 500);
+                }, 600);
             } else if (key === 'origem') {
                 appendMessage('📍 De onde saem os autocarros?', 'user');
+                showTyping();
                 setTimeout(() => {
-                    appendMessage('As nossas partidas principais são de <strong>São Pedro do Sul</strong> e <strong>Viseu</strong>, com paragens combinadas ao longo do percurso!', 'bot');
+                    hideTyping();
+                    appendMessage(`
+                        Os nossos pontos principais de partida são:
+                        <ul class="info-list">
+                            <li><i class="fas fa-map-pin"></i> <strong>São Pedro do Sul</strong></li>
+                            <li><i class="fas fa-map-pin"></i> <strong>Castro Daire</strong></li>
+                        </ul>
+                        <br>Realizamos também paragens habituais em <strong>Viseu</strong>, <strong>Vouzela</strong> e <strong>Oliveira de Frades</strong>.
+                    `, 'bot');
                     addOptions([
-                        { text: '📲 Contactar para combinar paragem', action: () => handleOption('reservas') },
-                        { text: '🌐 Ver o site', action: closeSplash }
+                        { icon: 'fa-street-view', text: 'Combinar Paragem', action: () => handleOption('combinar_paragem') },
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar') }
                     ]);
-                }, 500);
+                }, 600);
+            } else if (key === 'combinar_paragem') {
+                appendMessage('📍 Como posso combinar um ponto de recolha?', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage('Basta indicar-nos o local onde pretende embarcar no momento do contacto. Confirmaremos consigo a hora exata da paragem do autocarro.', 'bot');
+                    addOptions([
+                        { icon: 'fa-phone-alt', text: 'Falar no WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
+                    ]);
+                }, 600);
             } else if (key === 'reservas') {
                 appendMessage('📲 Como fazer reservas?', 'user');
+                showTyping();
                 setTimeout(() => {
-                    appendMessage('As reservas podem ser feitas facilmente por mensagem ou chamada. Estarei totalmente disponível para ajudar!', 'bot');
+                    hideTyping();
+                    appendMessage('Garantir o seu lugar é muito simples! Pode contactar-nos diretamente por mensagem ou chamada para efetuar a reserva.', 'bot');
                     addOptions([
-                        { text: '💬 Falar no WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); } },
-                        { text: '🌐 Explorar o site', action: closeSplash }
+                        { icon: 'fa-phone-alt', text: 'Reservar por WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
                     ]);
-                }, 500);
+                }, 600);
             } else if (key === 'entrar') {
                 appendMessage('🌐 Explorar o site', 'user');
+                showTyping();
                 setTimeout(() => {
-                    appendMessage('Excelente! Desejo-lhe uma ótima navegação.', 'bot');
-                    setTimeout(closeSplash, 800);
-                }, 400);
+                    hideTyping();
+                    appendMessage('Excelente! Desejo-lhe uma ótima navegação e esperamos vê-lo em breve a bordo! 🚌✨', 'bot');
+                    // Pausa de 2 segundos para o utilizador ler com calma a mensagem de despedida
+                    setTimeout(closeSplash, 2000);
+                }, 500);
             }
         }
 
@@ -526,8 +700,8 @@
             container.className = 'chat-options';
             opts.forEach(opt => {
                 const btn = document.createElement('button');
-                btn.className = 'opt-btn';
-                btn.innerText = opt.text;
+                btn.className = `opt-card ${opt.full ? 'full-width' : ''}`;
+                btn.innerHTML = `<i class="fas ${opt.icon}"></i> <span>${opt.text}</span>`;
                 btn.onclick = opt.action;
                 container.appendChild(btn);
             });
@@ -537,10 +711,10 @@
 
         function showInitialOptions() {
             addOptions([
-                { text: '🚌 Ver próximos passeios', action: () => handleOption('proximos') },
-                { text: '📍 De onde saem os autocarros?', action: () => handleOption('origem') },
-                { text: '📲 Como fazer reservas?', action: () => handleOption('reservas') },
-                { text: '🌐 Explorar o site', action: closeSplash }
+                { icon: 'fa-bus', text: 'Próximos Passeios', action: () => handleOption('proximos') },
+                { icon: 'fa-map-marker-alt', text: 'Locais de Partida', action: () => handleOption('origem') },
+                { icon: 'fa-calendar-check', text: 'Reservas & Contacto', action: () => handleOption('reservas') },
+                { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
             ]);
         }
 
@@ -552,27 +726,30 @@
             userInput.value = '';
 
             const lower = text.toLowerCase();
+            showTyping();
+
             setTimeout(() => {
+                hideTyping();
                 if (lower.includes('passeio') || lower.includes('viagem') || lower.includes('destino')) {
-                    appendMessage('Temos várias opções de viagem disponíveis! Deseja consultar a lista completa?', 'bot');
+                    appendMessage('Temos vários destinos disponíveis durante o ano todo! Deseja consultar a lista completa com todas as informações?', 'bot');
                     addOptions([
-                        { text: 'Ver Lista de Passeios', action: () => { window.location.href = 'passeios.html'; } },
-                        { text: 'Entrar no site', action: closeSplash }
+                        { icon: 'fa-bus', text: 'Ver Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar') }
                     ]);
-                } else if (lower.includes('preco') || lower.includes('preço') || lower.includes('valor') || lower.includes('reserva')) {
-                    appendMessage('Os valores variam consoante o destino e o que está incluído. Pode consultar cada programa detalhado ou falar diretamente connosco.', 'bot');
+                } else if (lower.includes('preco') || lower.includes('preço') || lower.includes('valor')) {
+                    appendMessage('Cada passeio tem um valor específico que inclui o transporte e o programa detalhado. Pode consultar na página de passeios ou falar connosco.', 'bot');
                     addOptions([
-                        { text: 'Ver passeios e preços', action: () => { window.location.href = 'passeios.html'; } },
-                        { text: 'Contacto direto', action: () => handleOption('reservas') }
+                        { icon: 'fa-list', text: 'Ver Tabela de Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { icon: 'fa-phone-alt', text: 'Fazer Pergunta Direta', action: () => handleOption('reservas') }
                     ]);
                 } else {
-                    appendMessage('Obrigado pela mensagem! Para explorar todas as informações, convido-o a navegar pelo nosso site.', 'bot');
+                    appendMessage('Obrigado pelo seu contacto! Para explorar todas as informações sobre as nossas excursões, convido-o a entrar no site.', 'bot');
                     addOptions([
-                        { text: 'Entrar no Site', action: closeSplash },
-                        { text: 'Ver Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } }
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar'), full: true },
+                        { icon: 'fa-bus', text: 'Ver Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } }
                     ]);
                 }
-            }, 600);
+            }, 700);
         }
 
         function handleKeyPress(e) {
