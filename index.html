@@ -478,7 +478,7 @@
         <div id="rodape-placeholder"></div>
     </main>
 
-<script>
+    <script>
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
@@ -488,7 +488,7 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // ELEMENTOS
+        // ELEMENTOS DO DOM
         const splashScreen = document.getElementById('splash-screen');
         const busSide = document.getElementById('busSide');
         const luggageBtn = document.getElementById('luggageBtn');
@@ -496,12 +496,12 @@
         const ignitionBtn = document.getElementById('ignitionBtn');
         const splashStatusText = document.getElementById('splashStatusText');
 
-        // NAVEGAÇÃO INTERNA: Se já visitou nesta sessão, esconde a animação
+        // NAVEGAÇÃO INTERNA: Se já visitou nesta sessão, esconde a animação de entrada
         if (sessionStorage.getItem('visitedIndex')) {
             splashScreen.classList.add('splash-bypass');
         }
 
-        // SISTEMA DE ÁUDIO NATIVO DE MOTOR DIESEL / CARRO A ANDAR
+        // SISTEMA DE ÁUDIO NATIVO
         let audioCtx = null;
 
         function getAudioContext() {
@@ -536,13 +536,12 @@
             } catch (e) {}
         }
 
-        // 2. SIMULAÇÃO REALISTA DE MOTOR A DARR À CHAVE E A ARRANCAR
+        // 2. SIMULAÇÃO REALISTA DE MOTOR A DAR À CHAVE E A ARRANCAR
         function playEngineSound() {
             try {
                 const ctx = getAudioContext();
-                const duration = 1.3; // Duração do arranque e arranque em movimento
+                const duration = 1.3;
 
-                // Gerador de ruído para a rotação/ar da combustão do motor
                 const bufferSize = ctx.sampleRate * duration;
                 const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
                 const data = buffer.getChannelData(0);
@@ -553,88 +552,61 @@
                 const noise = ctx.createBufferSource();
                 noise.buffer = buffer;
 
-                // Filtro para dar o tom grave de motor
                 const filter = ctx.createBiquadFilter();
                 filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(100, ctx.currentTime); // Motor ao relanti
-                filter.frequency.linearRampToValueAtTime(280, ctx.currentTime + duration); // Aceleração ao arrancar
+                filter.frequency.setValueAtTime(100, ctx.currentTime);
+                filter.frequency.linearRampToValueAtTime(280, ctx.currentTime + duration);
 
-                // Oscilador grave para a vibração dos pistões (ronco do motor)
-                const engineOsc = ctx.createOscillator();
-                engineOsc.type = 'sawtooth';
-                engineOsc.frequency.setValueAtTime(45, ctx.currentTime); // Ronco inicial
-                engineOsc.frequency.linearRampToValueAtTime(95, ctx.currentTime + duration); // Aceleração
-
-                // Controlo de volume suave com fade out gradual
                 const gain = ctx.createGain();
-                gain.gain.setValueAtTime(0.01, ctx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 0.2); // Liga o motor
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration); // Afasta-se e desvanece
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.4, ctx.currentTime + 0.3);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
 
-                // Conexões de áudio
                 noise.connect(filter);
                 filter.connect(gain);
-                engineOsc.connect(gain);
                 gain.connect(ctx.destination);
 
-                // Iniciar e parar áudio
                 noise.start();
-                engineOsc.start();
                 noise.stop(ctx.currentTime + duration);
-                engineOsc.stop(ctx.currentTime + duration);
             } catch (e) {}
         }
 
-        let malaPronta = false;
+        // INTERAÇÕES DA SPLASH SCREEN
+        let luggageLoaded = false;
 
-        // PASSO 1: CLICAR NA MALA
         luggageBtn.addEventListener('click', () => {
-            if (malaPronta) return;
+            if (luggageLoaded) return;
+            luggageLoaded = true;
 
-            malaPronta = true;
             playLuggageSound();
-            
-            luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
-            luggageBtn.style.opacity = '0';
-            
-            setTimeout(() => {
-                luggageBtn.style.display = 'none';
-            }, 500);
 
-            splashStatusText.textContent = 'Mala no bagageiro! Agora podes dar à chave! 🔑';
+            // Animação da mala a entrar no autocarro
+            luggageBtn.style.transform = 'translate(-200px, -20px) scale(0.2)';
+            luggageBtn.style.opacity = '0';
+
+            // Atualiza textos e ativa o botão de ignição
+            splashStatusText.innerHTML = 'Mala guardada no porão! 🎒 Agora é só dar à chave.';
             ignitionBtn.classList.add('active');
         });
 
-        // PASSO 2: CLICAR EM DAR À CHAVE
         ignitionBtn.addEventListener('click', () => {
-            if (!malaPronta) {
-                luggageBubble.textContent = '⚠️ Carrega a mala primeiro!';
-                luggageBubble.style.background = '#ff8c00';
-                luggageBubble.style.color = '#fff';
-                setTimeout(() => {
-                    luggageBubble.textContent = 'Clica em mim para carregar a mala! 👇';
-                    luggageBubble.style.background = '#fff';
-                    luggageBubble.style.color = '#1e4d8c';
-                }, 1800);
-                return;
-            }
+            if (!luggageLoaded) return;
 
-            // Regista a visita para não repetir
-            sessionStorage.setItem('visitedIndex', 'true');
-
-            // 1. Toca o som do motor a ligar e a acelerar
             playEngineSound();
-            busSide.classList.add('engine-on', 'wheel-spin');
 
-            // 2. Autocarro avança na estrada
+            // Efeitos visuais do autocarro a ligar e arrancar
+            busSide.classList.add('engine-on');
+            splashStatusText.innerHTML = 'Motor ligado! Boa viagem... 🚌💨';
+
             setTimeout(() => {
-                busSide.classList.add('bus-drive-off');
-            }, 200);
+                busSide.classList.add('wheel-spin', 'bus-drive-off');
+            }, 300);
 
-            // 3. A tela de entrada recolhe e revela o site
+            // Transição para o site principal
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 1100);
+                sessionStorage.setItem('visitedIndex', 'true');
+            }, 1200);
         });
     </script>
 </body>
