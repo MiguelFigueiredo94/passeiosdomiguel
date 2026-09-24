@@ -42,8 +42,13 @@
             align-items: center;
             padding: 30px 20px;
             color: white;
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
             overflow: hidden;
+        }
+
+        /* Se já navegou internamente, esconde a tela sem piscar */
+        .splash-bypass {
+            display: none !important;
         }
 
         .splash-header {
@@ -100,7 +105,7 @@
             transform: translateY(-50%);
         }
 
-        /* DESENHO DO AUTOCARRO DE PERFIL (LATERAL) */
+        /* AUTOCARRO LATERAL PERSONALIZADO */
         .bus-side-container {
             position: absolute;
             bottom: 55px;
@@ -118,7 +123,6 @@
             border: 3px solid #ffffff;
         }
 
-        /* JANELAS DO AUTOCARRO */
         .bus-windows {
             display: flex;
             gap: 8px;
@@ -138,7 +142,6 @@
             background: #bae6fd;
         }
 
-        /* MARCA LATERAL - PASSEIOS DO MIGUEL */
         .bus-brand {
             text-align: center;
             font-weight: 900;
@@ -153,7 +156,6 @@
             margin-bottom: 5px;
         }
 
-        /* RODAS DO AUTOCARRO */
         .bus-wheels {
             position: absolute;
             bottom: -18px;
@@ -186,7 +188,6 @@
             border-radius: 50%;
         }
 
-        /* FARÓIS DO AUTOCARRO */
         .headlight {
             position: absolute;
             right: -10px;
@@ -199,7 +200,7 @@
             transition: box-shadow 0.3s;
         }
 
-        /* MALA DE VIAGEM E BALÃO */
+        /* MALA E BALÃO */
         .luggage-area {
             position: absolute;
             bottom: 55px;
@@ -235,7 +236,7 @@
             animation: bounceBubble 1.8s infinite;
         }
 
-        /* BOTÃO DÁ À CHAVE */
+        /* BOTÃO DE ARRANQUE */
         .splash-footer {
             margin-bottom: 20px;
             text-align: center;
@@ -487,93 +488,22 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // SINTETIZADOR DE SONS (WEB AUDIO API - NATIVO)
-        let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
-        // 1. Som da Mala (Thud/Deslize no Bagageiro)
-        function playLuggageSound() {
-            initAudio();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.3);
-
-            gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
-        }
-
-        // 2. Som da Ignição do Motor (Arranque)
-        function playEngineStartSound() {
-            initAudio();
-            const bufferSize = audioCtx.sampleRate * 0.6;
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-
-            for (let i = 0; i < bufferSize; i++) {
-                data[i] = Math.random() * 2 - 1;
-            }
-
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buffer;
-
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(120, audioCtx.currentTime);
-            filter.frequency.linearRampToValueAtTime(350, audioCtx.currentTime + 0.4);
-
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
-
-            noise.connect(filter);
-            filter.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            noise.start();
-        }
-
-        // 3. Som da Aceleração / Arranque do Autocarro
-        function playDriveOffSound() {
-            initAudio();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(60, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 1.2);
-
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 0.5);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.3);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 1.3);
-        }
-
-        // LÓGICA PASSO-A-PASSO DA TELA DE ENTRADA
+        // ELEMENTOS
         const splashScreen = document.getElementById('splash-screen');
         const busSide = document.getElementById('busSide');
         const luggageBtn = document.getElementById('luggageBtn');
         const luggageBubble = document.getElementById('luggageBubble');
         const ignitionBtn = document.getElementById('ignitionBtn');
         const splashStatusText = document.getElementById('splashStatusText');
+
+        // VERIFICAÇÃO DE NAVEGAÇÃO (EVITA MOSTRAR SE A PESSOA JÁ ESTÁ A NAVEGAR NO SITE)
+        if (sessionStorage.getItem('visitedIndex')) {
+            splashScreen.classList.add('splash-bypass');
+        }
+
+        // SONS MP3 REAIS E NATIVOS
+        const soundLuggage = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); // Fecho/mala
+        const soundEngine = new Audio('https://assets.mixkit.co/active_storage/sfx/2753/2753-preview.mp3');   // Motor a ligar/arranque
 
         let malaPronta = false;
 
@@ -582,9 +512,9 @@
             if (malaPronta) return;
 
             malaPronta = true;
-            playLuggageSound(); // 🔊 Toca o som da mala
+            soundLuggage.play().catch(() => {}); // Toca som MP3 de mala a fechar
             
-            // Animação da mala
+            // Animação da mala a deslizar para o bagageiro
             luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
             luggageBtn.style.opacity = '0';
             
@@ -610,13 +540,15 @@
                 return;
             }
 
-            // 1. Motor arranca com áudio do motor
-            playEngineStartSound(); // 🔊 Toca o som do arranque do motor
+            // Regista na sessão que o utilizador já fez a animação de entrada
+            sessionStorage.setItem('visitedIndex', 'true');
+
+            // 1. Motor arranca com áudio MP3 de autocarro
+            soundEngine.play().catch(() => {});
             busSide.classList.add('engine-on', 'wheel-spin');
 
-            // 2. Autocarro arranca e acelera
+            // 2. Autocarro avança na estrada
             setTimeout(() => {
-                playDriveOffSound(); // 🔊 Toca o som da aceleração
                 busSide.classList.add('bus-drive-off');
             }, 400);
 
