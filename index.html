@@ -662,13 +662,13 @@
                     ]);
                 }, 600);
             } else if (key === 'combinar_paragem') {
-                appendMessage('📍 Como posso combinar um ponto de recolha?', 'user');
+                appendMessage('📍 Há possibilidade de paragem no meu concelho?', 'user');
                 showTyping();
                 setTimeout(() => {
                     hideTyping();
-                    appendMessage('Basta indicar-nos o local onde pretende embarcar no momento do contacto. Confirmaremos consigo a hora exata da paragem do autocarro.', 'bot');
+                    appendMessage('Ao entrar em contacto connosco, indique-nos o seu concelho de residência. Avaliaremos a rota do autocarro e confirmaremos se existe essa possibilidade.', 'bot');
                     addOptions([
-                        { icon: 'fa-phone-alt', text: 'Falar no WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-phone-alt', text: 'Consultar por WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
                         { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
                     ]);
                 }, 600);
@@ -679,7 +679,7 @@
                     hideTyping();
                     appendMessage('Garantir o seu lugar é muito simples! Pode contactar-nos diretamente por mensagem ou chamada para efetuar a reserva.', 'bot');
                     addOptions([
-                        { icon: 'fa-phone-alt', text: 'Reservar por WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-phone-alt', text: 'Reservar por WhatsApp', action: () => { window.open('https://wa.me/351965715465', '_blank'); }, full: true },
                         { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
                     ]);
                 }, 600);
