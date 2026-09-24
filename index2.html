@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Lateral - Passeios do Miguel</title>
-    
+    <title>Passeios do Miguel - Viagens e Excursões em Portugal</title>
+
     <!-- FontAwesome 6 & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) para utilitários de layout e estilo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#1e4d8c',
+                        brandOrange: '#ff8c00',
+                        brandOrangeHover: '#e67e00',
+                        brandBg: '#f4f7fb',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         :root {
@@ -33,7 +50,8 @@
         }
 
         body {
-            background: transparent;
+            background-color: #f4f7fb;
+            color: #333333;
             overflow-x: hidden;
         }
 
@@ -49,7 +67,7 @@
             padding: 20px 15px;
             display: flex;
             flex-direction: column;
-            z-index: 99999;
+            z-index: 9999;
             transition: width var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
             user-select: none;
@@ -403,7 +421,7 @@
         /* Animações Individuais nas Redes */
         .icones-redes a.facebook:hover {
             background: #1877f2;
-            transform: translateY(-50%) scale(1.15) rotate(8deg);
+            transform: translateY(-5px) scale(1.15) rotate(8deg);
             box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
         }
 
@@ -431,8 +449,35 @@
             font-size: 14px;
         }
 
-        /* RESPONSIVIDADE MOBILE (COMPACT/DRAWER) */
+        /* ADAPTAÇÕES DE CONTEÚDO PRINCIPAL DE ACORDO COM O ESTADO DO MENU */
+        #main-content {
+            margin-left: var(--sidebar-width);
+            transition: margin-left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 100vh;
+        }
+
+        body.menu-collapsed #main-content {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* OVERLAY E RESPONSIVIDADE MOBILE */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
         @media (max-width: 1024px) {
+            #main-content {
+                margin-left: 0 !important;
+                padding-top: 60px;
+            }
+
             #menu-lateral {
                 transform: translateX(-100%);
                 width: 270px !important;
@@ -440,6 +485,11 @@
 
             #menu-lateral.mobile-open {
                 transform: translateX(0);
+            }
+
+            .mobile-overlay.active {
+                display: block;
+                opacity: 1;
             }
 
             .collapse-toggle-btn {
@@ -465,7 +515,23 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-brandBg">
+
+    <!-- OVERLAY PARA MOBILE -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- HEADER / BARRA DE TOPO MOBILE -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-brandBlue text-white flex items-center justify-between px-4 z-50 shadow-md">
+        <div class="flex items-center space-x-3">
+            <button id="mobileMenuBtn" class="text-2xl p-2 focus:outline-none hover:text-brandOrange transition-colors" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="font-bold text-lg tracking-wide">Passeios do Miguel</span>
+        </div>
+        <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition-all flex items-center justify-center w-9 h-9">
+            <i class="fab fa-whatsapp text-lg"></i>
+        </a>
+    </header>
 
     <!-- MENU LATERAL ISOLADO -->
     <nav id="menu-lateral">
@@ -476,13 +542,13 @@
 
         <!-- LOGÓTIPO -->
         <a href="index.html" class="logo-container">
-            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel">
+            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e4d8c/ffffff?text=Passeios+Miguel'">
         </a>
 
         <!-- LISTA DE NAVEGAÇÃO -->
         <ul class="menu-list">
             <li>
-                <a href="index.html" class="menu-link">
+                <a href="index.html" class="menu-link active">
                     <i class="fas fa-home main-icon"></i>
                     <span class="link-text">Home</span>
                 </a>
@@ -549,12 +615,308 @@
         </div>
     </nav>
 
+    <!-- ÁREA PRINCIPAL DE CONTEÚDO -->
+    <main id="main-content" class="w-full">
+        
+        <!-- HERO SECTION / BANNER PRINCIPAL -->
+        <section class="relative min-h-[550px] lg:min-h-[620px] flex items-center justify-center bg-cover bg-center text-white px-4 md:px-8 py-16" 
+                 style="background-image: linear-gradient(rgba(15, 32, 67, 0.75), rgba(30, 77, 140, 0.85)), url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1920&auto=format&fit=crop');">
+            <div class="max-w-4xl mx-auto text-center space-y-6">
+                <span class="inline-block bg-brandOrange/90 text-white font-semibold text-xs md:text-sm uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg transform -translate-y-2">
+                    <i class="fas fa-route mr-1.5"></i> Viagens em Grupo & Excursões
+                </span>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Descubra Portugal com a <br><span class="text-brandOrange underline decoration-brandOrange/40">Passeios do Miguel</span>
+                </h1>
+                <p class="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+                    Viaje com o máximo conforto, animação e segurança. Junte-se a nós para passeios inesquecíveis pelos recantos mais bonitos do país!
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#proximos-passeios" class="w-full sm:w-auto bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-orange-500/30 flex items-center justify-center">
+                        <i class="fas fa-calendar-alt mr-2"></i> Ver Próximos Passeios
+                    </a>
+                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-green-500/30 flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Grupo de WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PRÓXIMOS PASSEIOS EM DESTAQUE -->
+        <section id="proximos-passeios" class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">Próximos Passeios em Destaque</h2>
+                <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">Reserve já o seu lugar na nossa próxima aventura. Lugares limitados para o seu maior conforto!</p>
+                <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cartão Passeio 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=800&auto=format&fit=crop" 
+                             alt="Passeio à Serra da Estrela" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Serra+da+Estrela'">
+                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
+                            35€ / pessoa
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
+                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 12 de Outubro
+                        </span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Montanha & Natureza</span>
+                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Serra da Estrela e Sabugueiro</h3>
+                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Venha apreciar as paisagens deslumbrantes, saborear o tradicional queijo da serra e visitar as aldeias típicas.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 07:30h</span>
+                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
+                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartão Passeio 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1548707309-dcebeab9ec98?q=80&w=800&auto=format&fit=crop" 
+                             alt="Passeio a Sintra e Cascais" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Sintra+e+Cascais'">
+                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
+                            28€ / pessoa
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
+                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 26 de Outubro
+                        </span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Cultura & Mar</span>
+                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Encantos de Sintra & Cascais</h3>
+                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Um dia mágico entre vilas históricas, palácios de encantar e a vista relaxante da beira-mar de Cascais.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 08:00h</span>
+                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
+                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartão Passeio 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=800&auto=format&fit=crop" 
+                             alt="Passeio ao Porto e Douro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Porto+e+Douro'">
+                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
+                            40€ / pessoa
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
+                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 09 de Novembro
+                        </span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Gastronomia & Cruzeiro</span>
+                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Porto Invicta & Cruzeiro das 6 Pontes</h3>
+                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Passeio de dia inteiro na belíssima cidade do Porto com opção de cruzeiro no Rio Douro e almoço livre.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 06:45h</span>
+                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
+                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="passeios.html" class="inline-flex items-center text-brandBlue hover:text-brandOrange font-bold text-base border-2 border-brandBlue hover:border-brandOrange px-8 py-3 rounded-xl transition-all duration-300">
+                    <i class="fas fa-th-list mr-2"></i> Ver Todos os Passeios Agendados
+                </a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PORQUÊ VIAJAR CONNOSCO -->
+        <section class="py-16 bg-white px-4 sm:px-8 border-y border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">Porquê Viajar Connosco?</h2>
+                    <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">Garantimos uma experiência acolhedora do início ao fim de cada viagem.</p>
+                    <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Destaque 1 -->
+                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
+                        <div class="w-16 h-16 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandBlue/20">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Autocarros Modernos</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Viaturas confortáveis, equipadas com ar condicionado e todo o conforto necessário para a sua viagem.</p>
+                    </div>
+
+                    <!-- Destaque 2 -->
+                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
+                        <div class="w-16 h-16 bg-brandOrange text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandOrange/20">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Ambiente Familiar</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Convívio, boa disposição e novas amizades em cada passeio. Uma verdadeira comunidade de viajantes!</p>
+                    </div>
+
+                    <!-- Destaque 3 -->
+                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
+                        <div class="w-16 h-16 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandBlue/20">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Preços Acessíveis</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Passeios e excursões pensados para oferecer a melhor relação qualidade/preço sem surpresas.</p>
+                    </div>
+
+                    <!-- Destaque 4 -->
+                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
+                        <div class="w-16 h-16 bg-brandOrange text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandOrange/20">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Roteiros Cuidados</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Locais selecionados ao pormenor para que aproveite cada momento sem preocupações organizacionais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: TESTEMUNHOS DE PASSAGEIROS -->
+        <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">O Que Dizem os Nossos Passageiros</h2>
+                <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">A satisfação de quem viaja connosco é o nosso maior orgulho.</p>
+                <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testemunho 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed">"O passeio à Serra da Estrela foi Simply fantástico! Muito bem organizado, o autocarro super confortável e a animação do Miguel fez toda a diferença."</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-sm">
+                            MA
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Maria Amélia</h4>
+                            <span class="text-xs text-gray-400">Passageira Frequente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed">"Já fui a 4 passeios com a Passeios do Miguel e recomendo vivamente a todos. Preços justos, pontualidade rigorosa e um ambiente espetacular."</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brandOrange text-white flex items-center justify-center font-bold text-sm">
+                            JS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">João Silva</h4>
+                            <span class="text-xs text-gray-400">Passageiro de Lisboa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed">"Excelente opção para quem quer passear sem o stresse de ter de guiar. Correu tudo lindamente e fiz amigos impecáveis no grupo!"</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-sm">
+                            TC
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Teresa Costa</h4>
+                            <span class="text-xs text-gray-400">Passageira de Sintra</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RODAPÉ (FOOTER) -->
+        <footer class="bg-brandBlue text-white pt-12 pb-6 px-4 sm:px-8 border-t-4 border-brandOrange">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-white/10">
+                <!-- Coluna 1: Sobre -->
+                <div class="space-y-3">
+                    <h3 class="text-xl font-bold tracking-wide text-brandOrange">Passeios do Miguel</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Organização de excursões e passeios de autocarro por todo o país. A sua melhor companhia para descobrir a beleza de Portugal.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div class="space-y-3">
+                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Home</a></li>
+                        <li><a href="sobre.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Sobre Mim</a></li>
+                        <li><a href="passeios.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Lista de Passeios</a></li>
+                        <li><a href="galeria.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Exposição de Fotos</a></li>
+                        <li><a href="contactos.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Contactos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Contactos -->
+                <div class="space-y-3">
+                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Contacte-nos</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex items-center"><i class="fab fa-whatsapp text-green-400 mr-2 text-base"></i> Grupo WhatsApp Disponível</li>
+                        <li class="flex items-center"><i class="fas fa-envelope text-brandOrange mr-2"></i> info@passeiosdomiguel.pt</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt text-brandOrange mr-2"></i> Lisboa & arredores, Portugal</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 text-center sm:text-left gap-3">
+                <p>&copy; Passeios do Miguel. Todos os direitos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook-f text-base"></i></a>
+                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-instagram text-base"></i></a>
+                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-whatsapp text-base"></i></a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- LÓGICA JAVASCRIPT DO MENU E PÁGINA -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuLateral = document.getElementById('menu-lateral');
             const collapseBtn = document.getElementById('collapseBtn');
             const dropdowns = document.querySelectorAll('.dropdown');
             const allLinks = document.querySelectorAll('#menu-lateral a');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
 
             // 1. LÓGICA AUTOMÁTICA DE PÁGINA ATIVA
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -578,11 +940,12 @@
                 }
             });
 
-            // 2. TOGGLE PARA MINIMIZAR / EXPANDIR O MENU
+            // 2. TOGGLE PARA MINIMIZAR / EXPANDIR O MENU (DESKTOP)
             if (collapseBtn) {
                 collapseBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     menuLateral.classList.toggle('collapsed');
+                    document.body.classList.toggle('menu-collapsed');
                     
                     // Fechar dropdowns abertos ao recolher para manter limpo
                     if (menuLateral.classList.contains('collapsed')) {
@@ -605,6 +968,7 @@
                     // Se estiver colapsado, expande primeiro
                     if (menuLateral.classList.contains('collapsed') && window.innerWidth > 1024) {
                         menuLateral.classList.remove('collapsed');
+                        document.body.classList.remove('menu-collapsed');
                     }
 
                     const isOpen = dropdown.classList.contains('open');
@@ -618,6 +982,20 @@
                     }
                 });
             });
+
+            // 4. SUPORTE PARA MENU HAMBÚRGUER EM DISPOSITIVOS MÓVEIS
+            function toggleMobileMenu() {
+                menuLateral.classList.toggle('mobile-open');
+                mobileOverlay.classList.toggle('active');
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', toggleMobileMenu);
+            }
         });
     </script>
 </body>
