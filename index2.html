@@ -51,7 +51,7 @@
             margin-left: 250px;
         }
 
-        /* BANNER ORIGINAL */
+        /* BANNER */
         .hero-section {
             background-image:
                 linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
@@ -410,18 +410,148 @@
             color: var(--accent);
         }
 
-        /* MENSAGENS STATUS */
+        /* ESTILOS DOS DADOS DE PAGAMENTO */
+        .card-pagamento {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .pagamento-titulo {
+            color: var(--primary);
+            font-size: 1.05em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pagamento-instrucoes {
+            font-size: 0.88em;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .grid-pagamento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .metodo-pagamento {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .metodo-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .metodo-header i {
+            color: var(--accent);
+        }
+
+        .metodo-detalhe {
+            font-size: 0.88em;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4px;
+        }
+
+        .metodo-detalhe span {
+            color: #94a3b8;
+            font-size: 0.8em;
+        }
+
+        .metodo-detalhe strong {
+            color: #1e293b;
+            font-size: 0.95em;
+            word-break: break-all;
+        }
+
+        .aviso-comprovativo {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82em;
+            color: #1e40af;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .aviso-comprovativo i {
+            margin-top: 2px;
+        }
+
+        /* CAIXAS DE MENSAGEM STATUS */
         .mensagem-status {
             margin-top: 20px;
-            padding: 18px;
-            border-radius: 14px;
-            font-weight: bold;
+            padding: 22px;
+            border-radius: 16px;
+            font-weight: normal;
             display: none;
             text-align: center;
         }
 
         .mensagem-sucesso { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
         .mensagem-erro { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        .sucesso-icon {
+            font-size: 2.8em;
+            color: #16a34a;
+            margin-bottom: 10px;
+        }
+
+        .mensagem-sucesso h3 {
+            color: #166534;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+
+        .resumo-pagamento-sucesso {
+            background: #ffffff;
+            padding: 14px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border: 1px dashed #86efac;
+            text-align: left;
+            font-size: 0.92em;
+        }
+
+        .btn-whatsapp-comprovativo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.98em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp-comprovativo:hover {
+            background: #1da851;
+        }
 
         #footer-placeholder { width: 100%; }
 
@@ -431,7 +561,7 @@
         }
 
         @media (max-width: 768px) {
-            .grid-inputs { grid-template-columns: 1fr; }
+            .grid-inputs, .grid-pagamento { grid-template-columns: 1fr; }
             .container-form { padding: 25px 20px; }
             .hero-section h1 { font-size: 2.2em; }
             .step-buttons { flex-direction: column; }
@@ -483,7 +613,6 @@
                         <div class="campo-grupo">
                             <label>Destino Pretendido</label>
                             <div class="input-icon-group">
-                                <!-- Preços base definidos nos atributos data-preco -->
                                 <select id="passeioEscolhido" name="Passeio" onchange="verificarOpcoesPasseio()" required>
                                     <option value="">Selecione um destino...</option>
                                     <option value="Feiras Novas" data-data="2026-09-12" data-preco="25">
@@ -503,13 +632,13 @@
                             </div>
                         </div>
 
-                        <!-- CARTÃO DINÂMICO DE ALMOÇO (APARECE APENAS EM SALAMANCA) -->
+                        <!-- CARTÃO DINÂMICO DE ALMOÇO (APARECE CONFORME data-almoco-opcional) -->
                         <div class="card-almoco-opcional" id="box-almoco-opcional">
                             <div class="almoco-info">
                                 <i class="fas fa-utensils"></i>
                                 <div>
-                                    <strong>Almoço Incluído?</strong>
-                                    <span>Possibilidade de incluir refeição completa (+19€/pessoa)</span>
+                                    <strong>Almoço Típico Incluído?</strong>
+                                    <span>Possibilidade de incluir refeição completa no passeio selecionado</span>
                                 </div>
                             </div>
                             <label class="checkbox-custom-toggle">
@@ -538,7 +667,7 @@
                         </button>
                     </div>
 
-                    <!-- PASSO 2: DADOS PESSOAIS + CONTACTO DE EMERGÊNCIA -->
+                    <!-- PASSO 2: DADOS PESSOAIS + CONTACTO DE EMERGÊNCIA + PAGAMENTO -->
                     <div class="form-step" id="step-2">
                         <h2><i class="fas fa-user-circle"></i> Dados do Titular da Reserva</h2>
 
@@ -638,8 +767,56 @@
                                 <span class="summary-total-label">Valor Total Estimado:</span>
                                 <span class="summary-total-price" id="summary-preco-total">0€</span>
                             </div>
-                            <!-- Campo escondido para enviar o preço calculado no Formspree -->
                             <input type="hidden" name="ValorTotalEstimado" id="inputValorTotalEstimado" value="0€">
+                        </div>
+
+                        <!-- DADOS DE PAGAMENTO (MBWAY E IBAN) -->
+                        <div class="card-pagamento">
+                            <h3 class="pagamento-titulo">
+                                <i class="fas fa-wallet"></i> Dados para Pagamento / Sinalização
+                            </h3>
+                            <p class="pagamento-instrucoes">
+                                Poderá efetuar o pagamento do valor total ou sinalização do lugar através de um dos seguintes meios:
+                            </p>
+
+                            <div class="grid-pagamento">
+                                <!-- MBWAY -->
+                                <div class="metodo-pagamento">
+                                    <div class="metodo-header">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <strong>MB WAY</strong>
+                                    </div>
+                                    <div class="metodo-detalhe">
+                                        <span>Número:</span>
+                                        <strong>965 715 465</strong>
+                                    </div>
+                                    <div class="metodo-detalhe">
+                                        <span>Nome:</span>
+                                        <small>Passeios do Miguel</small>
+                                    </div>
+                                </div>
+
+                                <!-- IBAN -->
+                                <div class="metodo-pagamento">
+                                    <div class="metodo-header">
+                                        <i class="fas fa-university"></i>
+                                        <strong>IBAN (Transferência)</strong>
+                                    </div>
+                                    <div class="metodo-detalhe">
+                                        <span>IBAN:</span>
+                                        <strong>PT50 0045 8723 4040 6724 4720 2</strong>
+                                    </div>
+                                    <div class="metodo-detalhe">
+                                        <span>Titular:</span>
+                                        <small>Miguel A. Almeida Figueiredo</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="aviso-comprovativo">
+                                <i class="fas fa-info-circle"></i> 
+                                <span>Por favor, inclua o seu <strong>Nome e Passeio</strong> na descrição do pagamento e envie o comprovativo por WhatsApp.</span>
+                            </div>
                         </div>
 
                         <div class="step-buttons">
@@ -652,8 +829,20 @@
                         </div>
                     </div>
 
+                    <!-- MENSAGEM DE SUCESSO APÓS CONFIRMAR -->
                     <div id="mensagem-sucesso" class="mensagem-status mensagem-sucesso">
-                        ✔️ Inscrição enviada com sucesso! Entraremos em contacto brevemente.
+                        <div class="sucesso-icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>Inscrição Enviada com Sucesso!</h3>
+                        <p>A sua reserva foi registada. Para concluir o processo, por favor efetue o pagamento para os dados abaixo e envie o comprovativo:</p>
+                        
+                        <div class="resumo-pagamento-sucesso">
+                            <p><strong>MB WAY:</strong> 9XX XXX XXX</p>
+                            <p><strong>IBAN:</strong> PT50 0000 0000 0000 0000 0000 0</p>
+                        </div>
+
+                        <a href="https://wa.me/3519XXXXXXXX?text=Ol%C3%A1%21%20Envio%20em%20anexo%20o%20comprovativo%20de%20pagamento%20da%20minha%20reserva." target="_blank" class="btn-whatsapp-comprovativo">
+                            <i class="fab fa-whatsapp"></i> Enviar Comprovativo por WhatsApp
+                        </a>
                     </div>
 
                     <div id="mensagem-erro" class="mensagem-status mensagem-erro">
@@ -715,20 +904,20 @@
             });
         }
 
-        // VERIFICA SE O PASSEIO SELECIONADO TEM OPÇÃO DE ALMOÇO (EX: SALAMANCA)
+        // VERIFICA SE O PASSEIO SELECIONADO TEM OPÇÃO DE ALMOÇO
         function verificarOpcoesPasseio() {
             const selectPasseio = document.getElementById('passeioEscolhido');
             const boxAlmoco = document.getElementById('box-almoco-opcional');
             const checkAlmoco = document.getElementById('checkAlmoco');
             
             const selectedOpt = selectPasseio.options[selectPasseio.selectedIndex];
-            const temAlmocoOpcional = selectedOpt.getAttribute('data-almoco-opcional');
+            const temAlmocoOpcional = selectedOpt ? selectedOpt.getAttribute('data-almoco-opcional') : null;
 
             if (temAlmocoOpcional) {
                 boxAlmoco.classList.add('active');
             } else {
                 boxAlmoco.classList.remove('active');
-                checkAlmoco.checked = false;
+                if (checkAlmoco) checkAlmoco.checked = false;
             }
 
             calcularPrecoTotal();
@@ -760,7 +949,7 @@
             const txtExtras = document.getElementById('summary-extras-txt');
             if (valorAlmocoExtra > 0) {
                 rowExtras.style.display = 'flex';
-                txtExtras.textContent = 'Com Almoço (+19€/pess.)';
+                txtExtras.textContent = 'Com Almoço (+' + valorAlmocoExtra + '€/pess.)';
             } else {
                 rowExtras.style.display = 'none';
             }
@@ -868,7 +1057,8 @@
                     mensagemSucesso.style.display = "block";
                     form.reset();
                     document.getElementById('camposDinamicos').innerHTML = '';
-                    setTimeout(() => { passoAnterior(); }, 3500);
+                    // Rola a tela até à mensagem de sucesso
+                    mensagemSucesso.scrollIntoView({ behavior: 'smooth' });
                 } else {
                     mensagemErro.style.display = "block";
                 }
