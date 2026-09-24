@@ -8,784 +8,612 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas de Viagem - Passeios do Miguel</title>
+    <title>Inscrição - Passeios do Miguel</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         :root {
             --primary: #1e4d8c;
-            --primary-dark: #153866;
             --accent: #ff8c00;
-            --bg: #f8fafc;
+            --bg: #f4f7f9;
             --text: #334155;
             --border: #e2e8f0;
             --whatsapp: #25d366;
         }
 
-        /* 1. ESTRUTURA GLOBAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            display: flex; 
-            background-color: var(--bg); 
-            min-height: 100vh; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            min-height: 100vh;
+            display: block;
             color: var(--text);
         }
 
-        /* 2. MENU LATERAL */
-        #menu-placeholder { width: 250px; flex-shrink: 0; }
+        #menu-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            z-index: 1000;
+        }
 
-        /* 3. CONTEÚDO PRINCIPAL */
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        main {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            margin-left: 250px;
+        }
 
-        /* 4. BANNER COM CONTADOR */
-        .banner-dicas {
-            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(30, 77, 140, 0.75)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; 
+        /* HERO BANNER */
+        .hero-section {
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.65), rgba(30, 77, 140, 0.7)),
+                url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1200');
+
+            background-size: cover;
             background-position: center;
-            padding: 55px 20px 60px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            color: white; 
-            text-align: center; 
+            height: 380px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+            text-align: center;
             border-bottom: 5px solid var(--accent);
-            position: relative;
+            padding: 0 20px;
         }
 
-        .banner-dicas h1 { 
-            font-size: clamp(2.2em, 5vw, 3.2em); 
-            text-shadow: 0 4px 15px rgba(0,0,0,0.4); 
-            margin-bottom: 8px;
-            font-weight: 700;
+        .hero-section h1 {
+            font-size: clamp(2.2em, 5vw, 3.4em);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            margin-bottom: 10px;
+            color: white !important;
+            font-weight: 800;
         }
 
-        .banner-dicas p {
-            font-size: clamp(1em, 2.5vw, 1.25em);
+        .hero-section p {
+            font-size: clamp(1.1em, 2.5vw, 1.35em);
+            max-width: 700px;
             font-weight: 300;
-            max-width: 650px;
             opacity: 0.95;
-            margin-bottom: 25px;
         }
 
-        /* BARRA DE PESQUISA */
-        .search-dicas-wrapper {
-            width: 100%;
-            max-width: 550px;
-            position: relative;
-        }
-
-        .search-dicas-wrapper input {
-            width: 100%;
-            padding: 16px 20px 16px 50px;
-            border-radius: 50px;
-            border: 2px solid transparent;
-            font-size: 1em;
-            outline: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            transition: all 0.3s ease;
-        }
-
-        .search-dicas-wrapper input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
-        }
-
-        .search-dicas-wrapper i {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 1.1em;
-        }
-
-        /* 5. DICAS DE OURO (ESTILO CARDS FLUTUANTES COM BRILHO) */
-        .ouro-section {
-            max-width: 1200px;
-            margin: -25px auto 10px;
-            padding: 0 25px;
+        /* BARRA DE GARANTIAS / BENEFÍCIOS */
+        .trust-bar {
+            max-width: 900px;
+            margin: -35px auto 20px;
+            padding: 0 20px;
             width: 100%;
             position: relative;
             z-index: 10;
         }
 
-        .ouro-bar {
+        .trust-container {
             background: white;
-            border: 1px solid rgba(255, 140, 0, 0.3);
-            border-radius: 20px;
-            padding: 22px 30px;
-            display: flex; 
-            justify-content: space-around; 
-            gap: 25px; 
-            flex-wrap: wrap;
-            box-shadow: 0 10px 30px rgba(30, 77, 140, 0.08);
-            background: linear-gradient(135deg, #ffffff 0%, #fffbf5 100%);
-        }
-
-        .ouro-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 18px; 
-            max-width: 480px;
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .ouro-icon-wrapper {
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 140, 0, 0.12);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 2px solid var(--accent);
-            animation: pulse-border 2.5s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 140, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0); }
-        }
-
-        .ouro-icon-wrapper i { 
-            font-size: 24px; 
-            color: var(--accent); 
-        }
-
-        .ouro-item h4 { 
-            color: var(--primary); 
-            font-size: 1.1em; 
-            margin-bottom: 3px; 
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ouro-badge {
-            background: var(--accent);
-            color: white;
-            font-size: 0.65em;
-            padding: 2px 8px;
             border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .ouro-item p { 
-            color: #64748b; 
-            font-size: 0.9em; 
-            line-height: 1.45; 
-        }
-
-        /* 6. FILTROS DE CATEGORIA */
-        .filter-container {
-            max-width: 1200px;
-            margin: 30px auto 10px;
-            padding: 0 25px;
+            padding: 16px 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
-            width: 100%;
-        }
-
-        .filter-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag-btn {
-            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             border: 1px solid var(--border);
-            padding: 9px 18px;
-            border-radius: 50px;
-            font-size: 0.88em;
-            font-weight: 600;
-            color: #64748b;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
+        }
+
+        .trust-item {
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .tag-btn:hover, .tag-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(30, 77, 140, 0.25);
-        }
-
-        .dicas-counter {
-            font-size: 0.88em;
-            color: #64748b;
-            font-weight: 600;
-        }
-
-        .dicas-counter span {
+        .trust-item i {
             color: var(--accent);
+            font-size: 1.2em;
+        }
+
+        /* FORMULÁRIO */
+        .seccao-form {
+            padding: 30px 20px 60px;
+            flex-grow: 1;
+        }
+
+        .container-form {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-weight: 700;
         }
 
-        /* 7. GRELHA DE DICAS INTERATIVAS */
-        .seccao-dicas { 
-            padding: 20px 25px 60px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            width: 100%; 
-            flex-grow: 1; 
+        h2 i {
+            color: var(--accent);
         }
 
-        .container-dicas { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 22px; 
-            align-items: start;
-        }
-
-        .card-dica {
-            background: #fff; 
-            border-radius: 16px; 
-            padding: 26px; 
-            display: flex; 
-            flex-direction: column;
-            gap: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
-            border: 1px solid var(--border);
-            border-left: 5px solid var(--primary); 
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        .campo-grupo {
+            margin-bottom: 22px;
             position: relative;
-            overflow: hidden;
         }
 
-        .card-dica:hover { 
-            transform: translateY(-6px); 
-            border-left-color: var(--accent); 
-            border-color: var(--accent);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08); 
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 0.95em;
         }
 
-        .card-dica-top {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
+        .input-wrapper {
+            position: relative;
         }
 
-        .card-icon-box {
-            width: 48px;
-            height: 48px;
-            background: #f1f5f9;
-            border-radius: 12px;
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.05em;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            color: #1e293b;
+            font-family: inherit;
+        }
+
+        /* Remove recuo no select se não tiver ícone explícito */
+        select {
+            padding-left: 18px;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.1);
+        }
+
+        input:focus + i {
+            color: var(--accent);
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* CARTÃO ACOMPANHANTE */
+        .card-extra {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 18px;
+            margin-top: 20px;
+            border: 2px dashed #cbd5e1;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-enviar {
+            background: linear-gradient(135deg, var(--primary), #2a65b0);
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 100%;
+            font-weight: 800;
+            font-size: 1.25em;
+            cursor: pointer;
+            margin-top: 35px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(30, 77, 140, 0.25);
         }
 
-        .card-dica:hover .card-icon-box {
-            background: rgba(255, 140, 0, 0.15);
-            transform: rotate(5deg) scale(1.05);
+        .btn-enviar:hover {
+            background: linear-gradient(135deg, var(--accent), #e67e00);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.35);
         }
 
-        .card-icon-box i { 
-            font-size: 22px; 
-            color: var(--accent); 
-        }
-
-        .card-dica-content h3 { 
-            color: var(--primary); 
-            margin-bottom: 6px; 
-            font-size: 1.15em; 
-            font-weight: 700;
-            line-height: 1.35;
-        }
-
-        .card-dica-content p { 
-            color: #555; 
-            font-size: 0.95em; 
-            line-height: 1.6; 
-        }
-
-        .card-dica-content a { 
-            color: var(--primary); 
-            font-weight: bold; 
-            text-decoration: none; 
-            border-bottom: 2px solid var(--accent); 
-            transition: 0.2s;
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        .card-dica-content a:hover {
-            color: var(--accent);
-        }
-
-        /* BOTÃO INTERATIVO "CHECK" NA DICA */
-        .card-footer-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 12px;
-            border-top: 1px solid #f1f5f9;
-            margin-top: 5px;
-        }
-
-        .btn-check-dica {
-            background: none;
-            border: 1px dashed #cbd5e1;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.78em;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 600;
-        }
-
-        .btn-check-dica:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .card-dica.completed {
-            background: #f8fafc;
-            border-left-color: #10b981;
-            opacity: 0.85;
-        }
-
-        .card-dica.completed .btn-check-dica {
-            background: #d1fae5;
-            border-color: #34d399;
-            color: #065f46;
-        }
-
-        .dica-num {
-            font-size: 0.75em;
-            font-weight: 700;
-            color: #cbd5e1;
-        }
-
-        /* SEM RESULTADOS */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px 20px;
+        /* MENSAGENS STATUS */
+        .mensagem-status {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: bold;
             display: none;
-            color: #64748b;
+            text-align: center;
+            font-size: 1.05em;
         }
 
-        .no-results i {
-            font-size: 3em;
-            margin-bottom: 12px;
-            color: #cbd5e1;
+        .mensagem-sucesso {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
         }
 
-        /* RODAPÉ */
-        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
+        .mensagem-erro {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
 
-        /* RESPONSIVIDADE */
+        /* FOOTER */
+        #footer-placeholder { width: 100%; }
+
+        /* RESPONSIVO */
         @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; }
-            .container-dicas { grid-template-columns: 1fr; }
-            .ouro-section { margin-top: 20px; }
-            .filter-container { flex-direction: column; align-items: flex-start; }
+            #menu-placeholder { position: relative; width: 100%; height: auto; }
+            main { margin-left: 0; }
+            .trust-container { flex-direction: column; gap: 8px; border-radius: 20px; text-align: center; }
         }
 
-        @media (max-width: 600px) {
-            .banner-dicas { padding: 40px 15px; }
-            .ouro-bar { padding: 18px; }
-            .ouro-item { flex-direction: column; text-align: center; }
-            .seccao-dicas { padding: 15px; }
+        @media (max-width: 768px) {
+            .grid-inputs { grid-template-columns: 1fr; }
+            .container-form { padding: 25px 20px; }
+            .hero-section { height: 320px; }
+            .hero-section h1 { font-size: 2.2em; }
+            .hero-section p { font-size: 1.05em; }
         }
     </style>
 </head>
+
 <body>
 
     <div id="menu-placeholder"></div>
 
     <main>
-        <!-- BANNER COM BARRA DE PESQUISA -->
-        <div class="banner-dicas">
-            <h1>💡 Dicas do Miguel</h1>
-            <p>Prepare-se para viver momentos inesquecíveis connosco com toda a comodidade.</p>
 
-            <div class="search-dicas-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" id="search-dicas" placeholder="Procure uma dica (ex: sapatilhas, telemóvel, dinheiro)...">
-            </div>
-        </div>
-
-        <!-- DICAS DE OURO DESTACADAS -->
-        <section class="ouro-section">
-            <div class="ouro-bar">
-                <div class="ouro-item">
-                    <div class="ouro-icon-wrapper">
-                        <i class="fas fa-stopwatch"></i>
-                    </div>
-                    <div>
-                        <h4>Dica de Ouro: Pontualidade <span class="ouro-badge">Essencial</span></h4>
-                        <p>Recomendamos chegar 15 min antes ao ponto de encontro para a partida a horas.</p>
-                    </div>
-                </div>
-                <div class="ouro-item">
-                    <div class="ouro-icon-wrapper">
-                        <i class="fas fa-cloud-sun"></i>
-                    </div>
-                    <div>
-                        <h4>Dica de Ouro: Clima <span class="ouro-badge">Essencial</span></h4>
-                        <p>Verifique o tempo na véspera e prepare o seu vestuário e acessórios.</p>
-                    </div>
-                </div>
-            </div>
+        <section class="hero-section">
+            <h1>Reserva de Lugar</h1>
+            <p>Garanta a sua presença e venha viver a próxima aventura connosco!</p>
         </section>
 
-        <!-- FILTROS POR CATEGORIA -->
-        <div class="filter-container">
-            <div class="filter-tags">
-                <button class="tag-btn active" data-filter="all"><i class="fas fa-th-large"></i> Todas</button>
-                <button class="tag-btn" data-filter="preparacao"><i class="fas fa-user-check"></i> Preparação</button>
-                <button class="tag-btn" data-filter="conforto"><i class="fas fa-smile"></i> Conforto & Saúde</button>
-                <button class="tag-btn" data-filter="equipamento"><i class="fas fa-mobile-alt"></i> Equipamento</button>
-                <button class="tag-btn" data-filter="social"><i class="fas fa-camera"></i> Recordações</button>
-            </div>
-            <div class="dicas-counter">
-                A mostrar <span id="visible-count">12</span> de 12 dicas
+        <!-- BARRA DE SEGURANÇA E CONFIANÇA -->
+        <div class="trust-bar">
+            <div class="trust-container">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i> Reserva 100% Segura
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-chair"></i> Lugar Atribuído por Ordem
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i> Apoio Permanente
+                </div>
             </div>
         </div>
 
-        <!-- GRELHA DE DICAS -->
-        <section class="seccao-dicas">
-            <div class="container-dicas" id="dicas-grid">
-                
-                <!-- 1. CALÇADO -->
-                <div class="card-dica" data-category="preparacao conforto">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-shoe-prints"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Calçado Habitual</h3>
-                            <p>Use sapatilhas confortáveis e já habituadas ao seu pé. Evite estrear sapatos novos em dias de passeio.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#01</span>
-                    </div>
-                </div>
+        <section class="seccao-form">
 
-                <!-- 2. ROUPA -->
-                <div class="card-dica" data-category="preparacao conforto">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-tshirt"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Roupa Prática (Cebola)</h3>
-                            <p>Escolha vestuário que dê liberdade. Vestir em camadas é o ideal para as variações de temperatura.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#02</span>
-                    </div>
-                </div>
+            <div class="container-form">
 
-                <!-- 3. TELEMÓVEL -->
-                <div class="card-dica" data-category="equipamento social">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-battery-full"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Registe os Momentos</h3>
-                            <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio das paisagens!</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#03</span>
-                    </div>
-                </div>
+                <form id="form-inscricao">
 
-                <!-- 4. ÁGUA E LANCHES -->
-                <div class="card-dica" data-category="conforto preparacao">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-faucet-drip"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Água e Lanches</h3>
-                            <p>Tenha sempre consigo uma garrafa de água e um snack leve (bolachas ou fruta) para o trajeto.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#04</span>
-                    </div>
-                </div>
+                    <h2>
+                        <i class="fas fa-user-circle"></i>
+                        Dados do Titular da Reserva
+                    </h2>
 
-                <!-- 5. LUGARES -->
-                <div class="card-dica" data-category="preparacao">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-chair"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Marcação de Lugares</h3>
-                            <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus favoritos!</p>
+                    <div class="campo-grupo">
+                        <label>Nome Completo</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                name="nomeResponsavel"
+                                placeholder="Como consta no Cartão de Cidadão"
+                                required
+                            >
+                            <i class="fas fa-user"></i>
                         </div>
                     </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#05</span>
-                    </div>
-                </div>
 
-                <!-- 6. DINHEIRO -->
-                <div class="card-dica" data-category="preparacao">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Dinheiro (Numerário)</h3>
-                            <p>Em aldeias ou feiras isoladas, nem sempre há multibanco. Traga alguns euros para o café ou lembranças.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#06</span>
-                    </div>
-                </div>
+                    <div class="grid-inputs">
 
-                <!-- 7. SAÚDE -->
-                <div class="card-dica" data-category="conforto">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-pills"></i>
+                        <div class="campo-grupo">
+                            <label>Telemóvel</label>
+                            <div class="input-wrapper">
+                                <input
+                                    type="tel"
+                                    name="contactoResponsavel"
+                                    placeholder="9xx xxx xxx"
+                                    required
+                                >
+                                <i class="fas fa-phone"></i>
+                            </div>
                         </div>
-                        <div class="card-dica-content">
-                            <h3>Saúde e Bem-estar</h3>
-                            <p>Não esqueça os seus medicamentos diários. Um kit para o enjoo pode ser um grande aliado nas curvas.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#07</span>
-                    </div>
-                </div>
 
-                <!-- 8. FOTOS -->
-                <div class="card-dica" data-category="social">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fab fa-facebook-messenger"></i>
+                        <div class="campo-grupo">
+                            <label>Data de Nascimento</label>
+                            <div class="input-wrapper">
+                                <input
+                                    type="date"
+                                    name="nascimentoResponsavel"
+                                    required
+                                >
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
                         </div>
-                        <div class="card-dica-content">
-                            <h3>Partilha de Fotos</h3>
-                            <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#08</span>
-                    </div>
-                </div>
 
-                <!-- 9. SOL -->
-                <div class="card-dica" data-category="conforto">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Proteção Solar</h3>
-                            <p>Mesmo em dias nublados, o sol de passeio cansa a pele. Use protetor e não esqueça os óculos de sol.</p>
-                        </div>
                     </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#09</span>
-                    </div>
-                </div>
 
-                <!-- 10. MEMÓRIA -->
-                <div class="card-dica" data-category="equipamento social">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-sd-card"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Memória do Telemóvel</h3>
-                            <p>Verifique se tem espaço para novas fotos e vídeos. Vai precisar de muita memória para as recordações!</p>
+                    <div class="campo-grupo">
+                        <label>Localidade</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                name="localidadeResponsavel"
+                                placeholder="Ex: São Pedro do Sul, Viseu..."
+                                required
+                            >
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                     </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#10</span>
-                    </div>
-                </div>
 
-                <!-- 11. DOCUMENTOS -->
-                <div class="card-dica" data-category="preparacao">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-id-card"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Documentos à Mão</h3>
-                            <p>Mantenha o seu Cartão de Cidadão sempre consigo. É essencial para qualquer eventualidade.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#11</span>
-                    </div>
-                </div>
+                    <hr style="border:0; border-top:1px solid var(--border); margin:35px 0;">
 
-                <!-- 12. BOA DISPOSIÇÃO -->
-                <div class="card-dica" data-category="conforto social">
-                    <div class="card-dica-top">
-                        <div class="card-icon-box">
-                            <i class="fas fa-grin-beam"></i>
-                        </div>
-                        <div class="card-dica-content">
-                            <h3>Boa Disposição</h3>
-                            <p>O ingrediente principal! Venha com espírito aberto para conhecer novos lugares e fazer novas amizades.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer-actions">
-                        <button class="btn-check-dica" onclick="toggleDicaCheck(this)">
-                            <i class="far fa-circle"></i> Anotar Dica
-                        </button>
-                        <span class="dica-num">#12</span>
-                    </div>
-                </div>
+                    <h2>
+                        <i class="fas fa-bus"></i>
+                        Detalhes do Passeio
+                    </h2>
 
-                <!-- MENSAGEM QUANDO NENHUMA DICA É ENCONTRADA -->
-                <div class="no-results" id="no-results">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Nenhuma dica encontrada</h3>
-                    <p>Tente pesquisar por outros termos como "sapatilhas", "água" ou "fotografias".</p>
-                </div>
+                    <div class="campo-grupo">
+                        <label>Escolha o Passeio Pretendido</label>
+                        <!-- Adicionados atributos data-data em formato YYYY-MM-DD para ocultação automática -->
+                        <select
+                            id="passeioEscolhido"
+                            name="Passeio"
+                            required
+                        >
+                            <option value="">Selecione o seu destino no menu...</option>
+
+                            <option value="Feiras Novas" data-data="2026-09-12">
+                                Feiras Novas (Ponte de Lima) - 12 de Setembro de 2026
+                            </option>
+
+                            <option value="Santuário de Fátima" data-data="2026-10-10">
+                                Santuário de Fátima (Fátima & Batalha) - 10 de Outubro de 2026
+                            </option>
+
+                            <option value="Santoinho" data-data="2026-11-07">
+                                Santoinho & Viana do Castelo - 07 de Novembro de 2026
+                            </option>
+
+                            <option value="Salamanca" data-data="2026-12-05">
+                                Salamanca (Espanha) - 05 de Dezembro de 2026
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label>Número de Acompanhantes</label>
+                        <select id="numPessoas" onchange="gerarCampos()">
+                            <option value="0">Vou sozinho(a)</option>
+                            <option value="1">1 Acompanhante (+1 lugar)</option>
+                            <option value="2">2 Acompanhantes (+2 lugares)</option>
+                            <option value="3">3 Acompanhantes (+3 lugares)</option>
+                            <option value="4">4 Acompanhantes (+4 lugares)</option>
+                            <option value="5">5 Acompanhantes (+5 lugares)</option>
+                        </select>
+                    </div>
+
+                    <div id="camposDinamicos"></div>
+
+                    <button type="submit" class="btn-enviar">
+                        Garantir a Minha Reserva
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                    <div
+                        id="mensagem-sucesso"
+                        class="mensagem-status mensagem-sucesso"
+                    >
+                        🎉 Inscrição enviada com sucesso! Entraremos em contacto brevemente para confirmar a sua reserva.
+                    </div>
+
+                    <div
+                        id="mensagem-erro"
+                        class="mensagem-status mensagem-erro"
+                    >
+                        ❌ Ocorreu um erro ao submeter a inscrição. Por favor, tente novamente ou ligue para o 965 715 465.
+                    </div>
+
+                </form>
 
             </div>
+
         </section>
 
-        <div class="footer-wrapper">
-            <div id="footer-placeholder"></div>
-        </div>
+        <div id="footer-placeholder"></div>
 
     </main>
 
-    <!-- SCRIPT DE CARREGAMENTO DOS COMPONENTES -->
+    <!-- SCRIPT COMPONENTES + OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS -->
     <script>
-        function carregar(id, url) {
-            fetch(url).then(res => res.text()).then(data => document.getElementById(id).innerHTML = data);
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(res => res.text())
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(err => console.error("Erro ao carregar:", ficheiro));
         }
-        carregar('menu-placeholder', 'menu.html');
-        carregar('footer-placeholder', 'rodape.html');
-    </script>
 
-    <!-- SCRIPT DE INTERATIVIDADE E PESQUISA -->
-    <script>
-        const cards = document.querySelectorAll('.card-dica');
-        const searchInput = document.getElementById('search-dicas');
-        const filterBtns = document.querySelectorAll('.tag-btn');
-        const visibleCountSpan = document.getElementById('visible-count');
-        const noResults = document.getElementById('no-results');
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
 
-        let currentFilter = 'all';
+        // LÓGICA DE OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS E PREENCHIMENTO VIA URL
+        window.onload = () => {
+            ocultarPasseiosPassados();
 
-        // Atualizar contador e visibilidade
-        function updateDicas() {
-            const query = searchInput.value.toLowerCase().trim();
-            let count = 0;
+            const params = new URLSearchParams(window.location.search);
+            const passeio = params.get('passeio');
 
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                const categories = card.getAttribute('data-category');
+            if (passeio) {
+                document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
+            }
+        };
 
-                const matchesFilter = (currentFilter === 'all') || categories.includes(currentFilter);
-                const matchesSearch = text.includes(query);
+        // Função que verifica a data atual e oculta automaticamente passeios cuja data já passou
+        function ocultarPasseiosPassados() {
+            const selectPasseio = document.getElementById('passeioEscolhido');
+            const opcoes = selectPasseio.querySelectorAll('option[data-data]');
+            
+            // Obter data de hoje em formato YYYY-MM-DD (hora local)
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
 
-                if (matchesFilter && matchesSearch) {
-                    card.style.display = 'flex';
-                    count++;
-                } else {
-                    card.style.display = 'none';
+            opcoes.forEach(opcao => {
+                const dataPasseioStr = opcao.getAttribute('data-data');
+                if (dataPasseioStr) {
+                    const dataPasseio = new Date(dataPasseioStr);
+                    dataPasseio.setHours(0, 0, 0, 0);
+
+                    // Se a data do passeio for anterior ao dia de hoje, oculta a opção
+                    if (dataPasseio < hoje) {
+                        opcao.style.display = 'none';
+                        opcao.disabled = true;
+                    }
                 }
             });
-
-            visibleCountSpan.textContent = count;
-            noResults.style.display = (count === 0) ? 'block' : 'none';
         }
 
-        // Evento de Pesquisa
-        searchInput.addEventListener('input', updateDicas);
+        // Geração dinâmica dos campos de acompanhantes
+        function gerarCampos() {
+            const qtd = document.getElementById('numPessoas').value;
+            const container = document.getElementById('camposDinamicos');
+            container.innerHTML = '';
 
-        // Evento dos Filtros
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.getAttribute('data-filter');
-                updateDicas();
-            });
-        });
+            for (let i = 1; i <= qtd; i++) {
+                container.innerHTML += `
+                <div class="card-extra">
+                    <h3 style="color:var(--primary); margin-bottom:18px; font-size:1.1em; display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-user-plus" style="color:var(--accent)"></i>
+                        Dados do Acompanhante ${i}
+                    </h3>
 
-        // Botão de "Anotar Dica / Check"
-        function toggleDicaCheck(btn) {
-            const card = btn.closest('.card-dica');
-            card.classList.toggle('completed');
+                    <div class="campo-grupo">
+                        <label>Nome Completo</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                name="nomeExtra${i}"
+                                placeholder="Nome completo do acompanhante"
+                                required
+                            >
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
 
-            if (card.classList.contains('completed')) {
-                btn.innerHTML = '<i class="fas fa-check-circle" style="color: #10b981;"></i> Anotado!';
-            } else {
-                btn.innerHTML = '<i class="far fa-circle"></i> Anotar Dica';
+                    <div class="grid-inputs">
+                        <div class="campo-grupo">
+                            <label>Data de Nascimento</label>
+                            <div class="input-wrapper">
+                                <input
+                                    type="date"
+                                    name="nascExtra${i}"
+                                    required
+                                >
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+
+                        <div class="campo-grupo">
+                            <label>Telemóvel (Opcional)</label>
+                            <div class="input-wrapper">
+                                <input
+                                    type="tel"
+                                    name="telExtra${i}"
+                                    placeholder="9xx xxx xxx"
+                                >
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
             }
         }
+    </script>
+
+    <!-- SCRIPT SUBMIT FORMSPREE -->
+    <script>
+        const form = document.getElementById("form-inscricao");
+
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const mensagemSucesso = document.getElementById("mensagem-sucesso");
+            const mensagemErro = document.getElementById("mensagem-erro");
+
+            mensagemSucesso.style.display = "none";
+            mensagemErro.style.display = "none";
+
+            try {
+                const response = await fetch("https://formspree.io/f/manjdnbw", {
+                    method: "POST",
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    mensagemSucesso.style.display = "block";
+                    form.reset();
+                    document.getElementById('camposDinamicos').innerHTML = '';
+                } else {
+                    mensagemErro.style.display = "block";
+                }
+            } catch (error) {
+                mensagemErro.style.display = "block";
+            }
+        });
     </script>
 
 </body>
