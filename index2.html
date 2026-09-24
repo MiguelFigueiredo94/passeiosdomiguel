@@ -17,18 +17,18 @@
     <style>
         :root {
             --primary: #1e4d8c;
+            --primary-hover: #163a6b;
             --accent: #ff8c00;
             --bg: #f8fafc;
             --text: #334155;
-            --tag-bg: #e2e8f0;
+            --border: #e2e8f0;
             --whatsapp: #25d366;
         }
 
-        /* 1. ESTRUTURA GERAL */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
             background-color: var(--bg); 
             display: flex; 
             color: var(--text); 
@@ -46,126 +46,82 @@
             display: flex; 
             flex-direction: column; 
             min-width: 0; 
-            margin-left: 0;
         }
 
-        /* 2. BANNER COM PESQUISA INTEGRADA */
+        /* BANNER */
         .banner-ajuda {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(rgba(30, 77, 140, 0.85), rgba(30, 77, 140, 0.85)), 
                         url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; 
             background-position: center;
-            padding: 60px 20px; 
+            padding: 50px 20px 60px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: center; 
             align-items: center; 
             color: white; 
-            text-align: center; 
-            border-bottom: 5px solid var(--accent);
+            text-align: center;
         }
 
         .banner-ajuda h1 { 
-            font-size: clamp(2.2em, 5vw, 3.2em); 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
-            margin-bottom: 10px; 
+            font-size: clamp(2em, 4vw, 2.8em); 
+            font-weight: 700;
+            margin-bottom: 8px; 
         }
 
         .banner-ajuda p { 
-            font-size: clamp(1em, 3vw, 1.2em); 
-            max-width: 700px; 
+            font-size: 1.1em; 
             font-weight: 300; 
             margin-bottom: 25px;
+            opacity: 0.9;
         }
 
-        /* BARRA DE PESQUISA DINÂMICA */
+        /* BARRA DE PESQUISA */
         .search-box-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             position: relative;
         }
 
         .search-box-container input {
             width: 100%;
-            padding: 18px 25px 18px 55px;
+            padding: 16px 20px 16px 50px;
             border-radius: 50px;
-            border: 2px solid transparent;
-            font-size: 1.05em;
+            border: none;
+            font-size: 1em;
             outline: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-
-        .search-box-container input:focus {
-            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .search-box-container i {
             position: absolute;
-            left: 22px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary);
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
-        /* 3. CONTACTO RÁPIDO */
-        .quick-contact {
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            margin-top: -28px; 
+        /* FILTROS E CATEGORIAS */
+        .filter-container {
+            max-width: 900px;
+            margin: 30px auto 10px;
             padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .contact-pill {
-            background: white; 
-            padding: 12px 25px; 
-            border-radius: 50px; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            text-decoration: none; 
-            color: var(--text);
-            font-weight: 700; 
-            transition: 0.3s; 
-            border: 1px solid #e2e8f0;
-            font-size: 0.95em;
-        }
-
-        .contact-pill:hover { 
-            transform: translateY(-3px); 
-            border-color: var(--accent); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
-        }
-
-        .btn-call i { color: var(--primary); font-size: 1.2em; }
-        .btn-whats i { color: var(--whatsapp); font-size: 1.3em; }
-
-        /* 4. FILTROS DE CATEGORIA */
-        .filter-tags {
-            max-width: 1200px;
-            margin: 40px auto 10px;
-            padding: 0 25px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .tag-btn {
             background: white;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--border);
             padding: 8px 18px;
             border-radius: 50px;
-            font-size: 0.9em;
+            font-size: 0.88em;
             font-weight: 600;
-            color: #475569;
+            color: #64748b;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s ease;
         }
 
         .tag-btn:hover, .tag-btn.active {
@@ -174,232 +130,258 @@
             border-color: var(--primary);
         }
 
-        /* 5. GRELHA DE QUESTÕES INTERATIVAS */
-        .help-grid {
-            max-width: 1200px; 
-            margin: 30px auto 60px; 
-            padding: 0 25px;
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 20px;
-            /* CRUCIAL PARA EVITAR QUE OS OUTROS CARTÕES ESTIQUEM */
-            align-items: start;
+        /* LISTA CLEAN DE FAQ (ACCORDION) */
+        .faq-section {
+            max-width: 900px;
+            margin: 20px auto 50px;
+            padding: 0 20px;
+            width: 100%;
         }
 
-        .help-card {
-            background: white; 
-            border-radius: 16px; 
-            padding: 25px; 
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease; 
-            display: flex; 
-            flex-direction: column; 
-            position: relative;
-            cursor: pointer;
-        }
-
-        .help-card:hover { 
-            border-color: var(--accent); 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
-        }
-
-        .sector-tag {
-            background: var(--tag-bg); 
-            color: #475569; 
-            padding: 4px 10px; 
-            border-radius: 50px; 
-            font-size: 0.7em; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            flex-shrink: 0;
-        }
-
-        .card-top-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .card-header {
+        .faq-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .faq-item.open {
+            border-color: var(--primary);
+        }
+
+        .faq-header {
+            padding: 18px 22px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
             gap: 15px;
         }
 
-        .card-header i.main-icon { 
-            font-size: 1.4em; 
-            color: var(--primary); 
-            margin-top: 2px;
-        }
-
-        .card-header h3 { 
-            font-size: 1.1em; 
-            color: var(--primary); 
-            line-height: 1.4;
+        .faq-title-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
             flex-grow: 1;
         }
 
-        /* SETA INDICADORA DE EXPANSÃO */
-        .toggle-arrow {
+        .faq-icon {
+            font-size: 1.2em;
+            color: var(--primary);
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .faq-header h3 {
+            font-size: 1.02em;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        .faq-badge {
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 0.72em;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .faq-arrow {
             color: #94a3b8;
-            font-size: 0.9em;
+            font-size: 0.85em;
             transition: transform 0.3s ease;
-            margin-left: 10px;
-            margin-top: 3px;
+            flex-shrink: 0;
         }
 
-        .help-card.open .toggle-arrow {
+        .faq-item.open .faq-arrow {
             transform: rotate(180deg);
-            color: var(--accent);
+            color: var(--primary);
         }
 
-        .card-body {
-            margin-top: 15px;
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-            padding-top: 15px;
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: #fafafa;
+        }
+
+        .faq-item.open .faq-content {
+            padding: 0 22px 20px 60px;
+            max-height: 300px;
             border-top: 1px solid #f1f5f9;
         }
 
-        .help-card.open .card-body {
-            display: block;
-        }
-
-        .card-body p { 
-            font-size: 0.95em; 
-            line-height: 1.6; 
-            color: #555; 
-        }
-
-        .btn-card {
-            display: inline-block; 
-            margin-top: 15px; 
-            color: var(--accent); 
-            text-decoration: none; 
-            font-weight: 700; 
-            font-size: 0.9em;
-        }
-
-        /* FEEDBACK (ÚTIL / NÃO ÚTIL) */
-        .feedback-box {
+        .faq-content p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #475569;
             margin-top: 15px;
-            padding-top: 10px;
+        }
+
+        .faq-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88em;
+        }
+
+        .faq-action-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* FEEDBACK */
+        .feedback-bar {
+            margin-top: 15px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 10px;
             font-size: 0.8em;
             color: #94a3b8;
         }
 
-        .feedback-buttons button {
+        .feedback-bar button {
             background: none;
             border: none;
             cursor: pointer;
             font-size: 1.1em;
-            margin-left: 8px;
-            transition: 0.2s;
             opacity: 0.6;
+            transition: 0.2s;
         }
 
-        .feedback-buttons button:hover {
+        .feedback-bar button:hover {
             opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
 
-        /* CARTÃO DESTACADO: NÃO ENCONTROU A RESPOSTA? */
-        .no-answer-card {
-            background: linear-gradient(135deg, var(--primary), #2a65b0);
-            color: white;
+        /* SECÇÃO "NÃO ENCONTROU A RESPOSTA?" (ESTILO INTERATIVO/CONTACTO) */
+        .need-help-banner {
+            max-width: 900px;
+            margin: 10px auto 60px;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .need-help-card {
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 25px;
+            padding: 30px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
-            box-shadow: 0 10px 20px rgba(30, 77, 140, 0.15);
-            border: 2px solid var(--accent);
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            background: linear-gradient(to right, #ffffff, #f8fafc);
         }
 
-        .no-answer-card h3 {
+        .need-help-info h3 {
             font-size: 1.2em;
-            margin-bottom: 10px;
-            color: white;
+            color: var(--primary);
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .no-answer-card p {
-            font-size: 0.95em;
-            line-height: 1.5;
-            color: #e2e8f0;
-            margin-bottom: 20px;
+        .need-help-info p {
+            font-size: 0.92em;
+            color: #64748b;
         }
 
-        .btn-direct-contact {
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
+        .need-help-actions {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-action {
             padding: 12px 20px;
             border-radius: 50px;
-            font-weight: bold;
+            text-decoration: none;
+            font-weight: 600;
             font-size: 0.9em;
-            text-align: center;
-            transition: 0.3s;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
+            transition: 0.2s ease;
         }
 
-        .btn-direct-contact:hover {
-            background: #e67e00;
+        .btn-action-primary {
+            background: var(--whatsapp);
+            color: white;
+        }
+
+        .btn-action-primary:hover {
+            background: #20bd5a;
             transform: translateY(-2px);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-action-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
         }
 
-        /* MENSAGEM QUANDO NENHUM RESULTADO É ENCONTRADO NA PESQUISA */
+        .btn-action-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* SEM RESULTADOS */
         .no-results {
-            grid-column: 1 / -1;
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
             display: none;
+            color: #64748b;
         }
 
         .no-results i {
-            font-size: 3em;
+            font-size: 2.5em;
+            margin-bottom: 10px;
             color: #cbd5e1;
-            margin-bottom: 15px;
         }
 
-        .footer-wrapper { padding: 40px; margin-top: auto; }
+        .footer-wrapper { padding: 40px 0 0; margin-top: auto; }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; }
+            #menu-placeholder { width: 100%; }
         }
 
         @media (max-width: 768px) {
-            .help-grid { 
-                grid-template-columns: 1fr; 
-                margin: 20px auto;
+            .need-help-card {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
             }
-            
-            .quick-contact { 
-                flex-direction: column; 
-                align-items: center; 
-                margin-top: 20px; 
+            .need-help-actions {
+                flex-direction: column;
+                width: 100%;
             }
-            
-            .contact-pill { 
-                width: 100%; 
-                max-width: 340px; 
-                justify-content: center; 
+            .btn-action {
+                justify-content: center;
+                width: 100%;
+            }
+            .faq-content {
+                padding-left: 22px !important;
             }
         }
     </style>
@@ -409,29 +391,20 @@
     <div id="menu-placeholder"></div>
 
     <main>
-        <!-- BANNER COM PESQUISA EM TEMPO REAL -->
+        <!-- BANNER COM PESQUISA -->
         <div class="banner-ajuda">
             <h1>Central de Ajuda</h1>
-            <p>Como podemos ajudar na sua próxima viagem hoje?</p>
+            <p>Encontre respostas rápidas para as suas dúvidas</p>
             
             <div class="search-box-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="faq-search" placeholder="Procure por dúvidas (ex: pagamento, autocarro, crianças)...">
+                <input type="text" id="faq-search" placeholder="Pesquisar (ex: inscrição, autocarro, pagamentos)...">
             </div>
         </div>
 
-        <div class="quick-contact">
-            <a href="tel:+351965715465" class="contact-pill btn-call">
-                <i class="fas fa-phone-alt"></i> Ligar: 965 715 465
-            </a>
-            <a href="https://wa.me/351965715465" target="_blank" class="contact-pill btn-whats">
-                <i class="fab fa-whatsapp"></i> Mensagem WhatsApp
-            </a>
-        </div>
-
-        <!-- BOTOES DE FILTRO -->
-        <div class="filter-tags">
-            <button class="tag-btn active" data-filter="all">Tudo</button>
+        <!-- FILTROS -->
+        <div class="filter-container">
+            <button class="tag-btn active" data-filter="all">Todas</button>
             <button class="tag-btn" data-filter="Reservas">Reservas</button>
             <button class="tag-btn" data-filter="Logística">Logística</button>
             <button class="tag-btn" data-filter="Lugar">Lugar</button>
@@ -440,227 +413,216 @@
             <button class="tag-btn" data-filter="Redes">Redes</button>
         </div>
 
-        <!-- GRELHA DE CARTÕES DE AJUDA -->
-        <section class="help-grid" id="faq-grid">
-            
-            <!-- 1. INSCRIÇÃO -->
-            <div class="help-card" data-category="Reservas">
-                <div class="card-top-info">
-                    <span class="sector-tag">Reservas</span>
+        <!-- LISTA UNIFICADA DE FAQ (PERFEITAMENTE ALINHADA) -->
+        <section class="faq-section" id="faq-list">
+
+            <!-- ITEM 1 -->
+            <div class="faq-item" data-category="Reservas">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-pen-fancy faq-icon"></i>
+                        <h3>Como fazer a inscrição?</h3>
+                    </div>
+                    <span class="faq-badge">Reservas</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-pen-fancy main-icon"></i>
-                    <h3>Como fazer a inscrição?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Pode usar o nosso <strong>formulário online</strong> ou canais alternativos como chamada direta e WhatsApp (965 715 465). A reserva só é garantida após o pagamento.</p>
-                    <a href="inscricao.html" class="btn-card">Formulário de Inscrição →</a>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Pode fazer a sua reserva através do nosso formulário online ou diretamente por telefone/WhatsApp (965 715 465). A reserva é confirmada após a validação do pagamento.</p>
+                    <a href="inscricao.html" class="faq-action-btn">Ir para o Formulário de Inscrição <i class="fas fa-arrow-right"></i></a>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. PONTOS DE EMBARQUE -->
-            <div class="help-card" data-category="Logística">
-                <div class="card-top-info">
-                    <span class="sector-tag">Logística</span>
+            <!-- ITEM 2 -->
+            <div class="faq-item" data-category="Logística">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-bus faq-icon"></i>
+                        <h3>Onde apanho o autocarro?</h3>
+                    </div>
+                    <span class="faq-badge">Logística</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-bus main-icon"></i>
-                    <h3>Onde apanho o autocarro?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Temos pontos em <strong>Castro Daire, S. Pedro do Sul, Vouzela, Oliveira de Frades e Viseu</strong>. Consulte-nos sempre, pois os pontos podem alterar-se conforme o destino.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Realizamos recolhas habituais em <strong>Castro Daire, São Pedro do Sul, Vouzela, Oliveira de Frades e Viseu</strong>. Os horários e locais exatos são confirmados antes de cada viagem.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. ESCOLHA DE LUGAR -->
-            <div class="help-card" data-category="Lugar">
-                <div class="card-top-info">
-                    <span class="sector-tag">Lugar</span>
+            <!-- ITEM 3 -->
+            <div class="faq-item" data-category="Lugar">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-chair faq-icon"></i>
+                        <h3>Posso escolher o meu lugar?</h3>
+                    </div>
+                    <span class="faq-badge">Lugar</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-chair main-icon"></i>
-                    <h3>Posso escolher o meu lugar?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Os lugares são atribuídos estritamente por <strong>ordem de inscrição</strong>. Quem reserva e liquida o passeio primeiro, garante os lugares mais à frente.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Os lugares no autocarro são atribuídos estritamente por <strong>ordem de inscrição e liquidação</strong>. Quanto mais cedo confirmar a viagem, mais à frente fica situado.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 4. CRIANÇAS -->
-            <div class="help-card" data-category="Reservas">
-                <div class="card-top-info">
-                    <span class="sector-tag">Família</span>
+            <!-- ITEM 4 -->
+            <div class="faq-item" data-category="Reservas">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-child faq-icon"></i>
+                        <h3>As crianças pagam menos?</h3>
+                    </div>
+                    <span class="faq-badge">Família</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-child main-icon"></i>
-                    <h3>As crianças pagam menos?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>O desconto para crianças depende de cada passeio. Consulte o cartaz publicitário ou fale connosco para confirmar os valores específicos.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Sim, na maioria das viagens existem condições especiais para crianças. Consulte os detalhes no cartaz de cada passeio ou fale connosco.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. PAGAMENTO -->
-            <div class="help-card" data-category="Pagamento">
-                <div class="card-top-info">
-                    <span class="sector-tag">Pagamento</span>
+            <!-- ITEM 5 -->
+            <div class="faq-item" data-category="Pagamento">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-wallet faq-icon"></i>
+                        <h3>Como posso pagar?</h3>
+                    </div>
+                    <span class="faq-badge">Pagamento</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-wallet main-icon"></i>
-                    <h3>Como posso pagar?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Aceitamos <strong>MB Way</strong>, transferência bancária ou numerário. Pedimos sempre o envio do comprovativo para validar a sua reserva.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Aceitamos pagamentos via <strong>MB Way</strong>, transferência bancária ou em numerário. Solicitamos o envio do comprovativo para associar à sua reserva.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. DESISTÊNCIAS -->
-            <div class="help-card" data-category="Política">
-                <div class="card-top-info">
-                    <span class="sector-tag">Política</span>
+            <!-- ITEM 6 -->
+            <div class="faq-item" data-category="Política">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-user-times faq-icon"></i>
+                        <h3>Desistências e Reembolsos</h3>
+                    </div>
+                    <span class="faq-badge">Política</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-user-times main-icon"></i>
-                    <h3>Desistências e Reembolsos</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Devolução total disponível até 30 dias antes do passeio. Após este prazo, o valor não é reembolsável, mas pode ceder o lugar a outra pessoa.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Garantimos reembolso total para desistências comunicadas até 30 dias antes do passeio. Após essa data, o valor não é reembolsável, mas pode ceder o seu lugar a um familiar ou amigo.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. MOBILIDADE REDUZIDA -->
-            <div class="help-card" data-category="Logística">
-                <div class="card-top-info">
-                    <span class="sector-tag">Acessibilidade</span>
+            <!-- ITEM 7 -->
+            <div class="faq-item" data-category="Logística">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-wheelchair faq-icon"></i>
+                        <h3>Mobilidade Reduzida</h3>
+                    </div>
+                    <span class="faq-badge">Acessibilidade</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-wheelchair main-icon"></i>
-                    <h3>Mobilidade Reduzida</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Caso tenha dificuldades de locomoção, informe-nos no ato da reserva. Faremos o possível para garantir o seu conforto durante toda a viagem.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Se tiver limitações de mobilidade, informe-nos aquando da inscrição para garantirmos o melhor acompanhamento e auxílio no acesso ao autocarro.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 8. PERDIDOS E ACHADOS -->
-            <div class="help-card" data-category="Logística">
-                <div class="card-top-info">
-                    <span class="sector-tag">Apoio</span>
+            <!-- ITEM 8 -->
+            <div class="faq-item" data-category="Logística">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-search faq-icon"></i>
+                        <h3>Perdi um objeto no autocarro?</h3>
+                    </div>
+                    <span class="faq-badge">Apoio</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fas fa-search main-icon"></i>
-                    <h3>Perdi um objeto no autocarro?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Se se esqueceu de algo, contacte-nos! Verificamos sempre o autocarro no final da viagem e guardamos os objetos encontrados.</p>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>Todos os objetos esquecidos no autocarro são recolhidos no final da viagem. Contacte-nos o mais breve possível para procedermos à devolução.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 9. FOTOS DO GRUPO -->
-            <div class="help-card" data-category="Redes">
-                <div class="card-top-info">
-                    <span class="sector-tag">Redes</span>
+            <!-- ITEM 9 -->
+            <div class="faq-item" data-category="Redes">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fab fa-facebook-f faq-icon"></i>
+                        <h3>Onde vejo as fotos das viagens?</h3>
+                    </div>
+                    <span class="faq-badge">Redes</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
                 </div>
-                <div class="card-header">
-                    <i class="fab fa-facebook-f main-icon"></i>
-                    <h3>Onde vejo as fotos do grupo?</h3>
-                    <i class="fas fa-chevron-down toggle-arrow"></i>
-                </div>
-                <div class="card-body">
-                    <p>Partilhamos as memórias de cada aventura no nosso grupo do Facebook. É o local ideal para rever os amigos e as fotos do dia.</p>
-                    <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="btn-card">Entrar no Grupo →</a>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
+                <div class="faq-content">
+                    <p>As fotografias e vídeos de cada aventura são partilhados no nosso grupo do Facebook exclusivo para convivas.</p>
+                    <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="faq-action-btn">Ver Grupo do Facebook <i class="fas fa-external-link-alt"></i></a>
+                    <div class="feedback-bar">
+                        <span>Esta resposta ajudou?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
                     </div>
                 </div>
             </div>
 
-            <!-- CARTÃO DESTACADO PARA CONTACTO DIRETO -->
-            <div class="no-answer-card">
-                <div>
-                    <h3><i class="fas fa-headset" style="color: var(--accent);"></i> Não encontrou a resposta?</h3>
-                    <p>Estamos disponíveis para esclarecer qualquer dúvida sobre os passeios ou reservas!</p>
-                </div>
-                <a href="https://wa.me/351965715465?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20os%20Passeios%20do%20Miguel." target="_blank" class="btn-direct-contact">
-                    <i class="fab fa-whatsapp"></i> Falar com o Miguel
-                </a>
-            </div>
-
-            <!-- CONTAINER PARA MENSAGEM SEM RESULTADOS NA PESQUISA -->
+            <!-- MENSAGEM SEM RESULTADOS -->
             <div class="no-results" id="no-results">
-                <i class="fas fa-question-circle"></i>
-                <h3>Não encontramos resposta para a sua pesquisa.</h3>
-                <p style="color: #64748b; margin-top: 8px;">Fale diretamente connosco pelo WhatsApp ou chamada telefónica!</p>
+                <i class="fas fa-search-minus"></i>
+                <h3>Nenhuma resposta encontrada</h3>
+                <p>Tente procurar por outros termos ou fale diretamente connosco abaixo.</p>
             </div>
 
+        </section>
+
+        <!-- BLOCO INTERATIVO DE CONTACTO NO FUNDO (ESTILO CLEAN & MODERNO) -->
+        <section class="need-help-banner">
+            <div class="need-help-card">
+                <div class="need-help-info">
+                    <h3><i class="fas fa-comments"></i> Ficou com alguma dúvida por esclarecer?</h3>
+                    <p>Estamos disponíveis para ajudar a organizar a sua próxima viagem.</p>
+                </div>
+                <div class="need-help-actions">
+                    <a href="https://wa.me/351965715465?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20os%20Passeios." target="_blank" class="btn-action btn-action-primary">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="tel:+351965715465" class="btn-action btn-action-secondary">
+                        <i class="fas fa-phone-alt"></i> 965 715 465
+                    </a>
+                </div>
+            </div>
         </section>
 
         <div class="footer-wrapper">
@@ -677,14 +639,21 @@
         carregar('menu-placeholder', 'menu.html');
         carregar('footer-placeholder', 'rodape.html');
 
-        // 2. EXPANDIR/RECOLHER CARTÕES (ACCORDION)
-        const cards = document.querySelectorAll('.help-card');
-        cards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Impede fechar ao clicar nos links de feedback ou botão interno
-                if(e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        // 2. ACCORDION (EXPANDIR/RECOLHER UM DE CADA VEZ OU LIVRE)
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const header = item.querySelector('.faq-header');
+            header.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
                 
-                card.classList.toggle('open');
+                // Opção: Fechar outros ao abrir um novo (descomente se preferir)
+                // faqItems.forEach(i => i.classList.remove('open'));
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                } else {
+                    item.classList.remove('open');
+                }
             });
         });
 
@@ -696,25 +665,25 @@
             const query = this.value.toLowerCase().trim();
             let hasMatches = false;
 
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
                 if (text.includes(query)) {
-                    card.style.display = 'flex';
+                    item.style.display = 'block';
                     if (query.length > 2) {
-                        card.classList.add('open');
+                        item.classList.add('open');
                     } else {
-                        card.classList.remove('open');
+                        item.classList.remove('open');
                     }
                     hasMatches = true;
                 } else {
-                    card.style.display = 'none';
+                    item.style.display = 'none';
                 }
             });
 
             noResults.style.display = hasMatches ? 'none' : 'block';
         });
 
-        // 4. FILTRAR POR CATEGORIAS (TAGS)
+        // 4. FILTROS POR CATEGORIA (TAGS)
         const filterBtns = document.querySelectorAll('.tag-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -724,13 +693,13 @@
                 const filter = btn.getAttribute('data-filter');
                 let hasMatches = false;
 
-                cards.forEach(card => {
-                    const category = card.getAttribute('data-category');
+                faqItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
                     if (filter === 'all' || category === filter) {
-                        card.style.display = 'flex';
+                        item.style.display = 'block';
                         hasMatches = true;
                     } else {
-                        card.style.display = 'none';
+                        item.style.display = 'none';
                     }
                 });
 
@@ -738,13 +707,13 @@
             });
         });
 
-        // 5. INTERAÇÃO DE FEEDBACK
+        // 5. FEEDBACK
         function voteFeedback(button, isPositive) {
             const container = button.parentElement;
             if(isPositive) {
-                container.innerHTML = "<span style='color: #16a34a;'>Obrigado pelo feedback! 😊</span>";
+                container.innerHTML = "<span style='color: #16a34a; font-weight: 600;'>Obrigado pelo seu feedback! 😊</span>";
             } else {
-                container.innerHTML = "<span style='color: #dc2626;'>Obrigado! Vamos melhorar esta resposta.</span>";
+                container.innerHTML = "<span style='color: #dc2626; font-weight: 600;'>Obrigado! Vamos melhorar esta informação.</span>";
             }
         }
     </script>
