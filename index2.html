@@ -228,6 +228,63 @@
             gap: 20px;
         }
 
+        /* OPÇÃO DE ALMOÇO ESPECÍFICA */
+        .card-almoco-opcional {
+            background: #fff8e1;
+            border: 2px dashed #ffe082;
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 22px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .card-almoco-opcional.active {
+            display: flex;
+        }
+
+        .almoco-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .almoco-info i {
+            font-size: 1.4em;
+            color: var(--accent);
+        }
+
+        .almoco-info strong {
+            display: block;
+            color: var(--primary);
+            font-size: 0.98em;
+        }
+
+        .almoco-info span {
+            font-size: 0.85em;
+            color: #64748b;
+        }
+
+        .checkbox-custom-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .checkbox-custom-toggle input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
         /* PASSOS VISÍVEIS/OCULTOS */
         .form-step { display: none; }
         .form-step.active { display: block; animation: fadeIn 0.3s ease-out; }
@@ -307,20 +364,51 @@
             border: 1px solid #bbf7d0;
         }
 
-        /* RESUMO DA RESERVA */
+        /* RESUMO DA RESERVA COM PREÇO TOTAL */
         .summary-box {
-            background: #f1f5f9;
-            border-radius: 14px;
-            padding: 18px 22px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            padding: 22px;
             margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .summary-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #cbd5e1;
+            font-size: 0.92em;
+            color: #64748b;
         }
 
-        .summary-info span { display: block; font-size: 0.85em; color: #64748b; }
-        .summary-info strong { font-size: 1.05em; color: var(--primary); }
+        .summary-row strong {
+            color: var(--primary);
+        }
+
+        .summary-total-row {
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 12px;
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-total-label {
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .summary-total-price {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--accent);
+        }
 
         /* MENSAGENS STATUS */
         .mensagem-status {
@@ -348,6 +436,7 @@
             .hero-section h1 { font-size: 2.2em; }
             .step-buttons { flex-direction: column; }
             .btn-prev, .btn-enviar { width: 100%; }
+            .card-almoco-opcional { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -394,23 +483,39 @@
                         <div class="campo-grupo">
                             <label>Destino Pretendido</label>
                             <div class="input-icon-group">
-                                <select id="passeioEscolhido" name="Passeio" required>
+                                <!-- Preços base definidos nos atributos data-preco -->
+                                <select id="passeioEscolhido" name="Passeio" onchange="verificarOpcoesPasseio()" required>
                                     <option value="">Selecione um destino...</option>
-                                    <option value="Feiras Novas" data-data="2026-09-12">
-                                        Feiras Novas (Ponte de Lima) - 12 de setembro de 2026
+                                    <option value="Feiras Novas" data-data="2026-09-12" data-preco="25">
+                                        Feiras Novas (Ponte de Lima) - 12 de Setembro - 25€ / pessoa
                                     </option>
-                                    <option value="Santuário de Fátima" data-data="2026-10-10">
-                                        Santuário de Fátima (Fátima & Batalha) - 10 de outubro de 2026
+                                    <option value="Santuário de Fátima" data-data="2026-10-10" data-preco="29">
+                                        Santuário de Fátima - 10 de Outubro - 29€ / pessoa
                                     </option>
-                                    <option value="Santoinho" data-data="2026-11-07">
-                                        Santoinho & Viana do Castelo - 07 de novembro de 2026
+                                    <option value="Santoinho" data-data="2026-11-07" data-preco="58">
+                                        Santoinho & Viana do Castelo - 07 de Novembro - 58€ / pessoa
                                     </option>
-                                    <option value="Salamanca" data-data="2026-12-05">
-                                        Salamanca - 05 de dezembro de 2026
+                                    <option value="Salamanca" data-data="2026-12-05" data-preco="40" data-almoco-opcional="19">
+                                        Salamanca - 05 de Dezembro - 40€ / pessoa
                                     </option>
                                 </select>
                                 <i class="fas fa-route"></i>
                             </div>
+                        </div>
+
+                        <!-- CARTÃO DINÂMICO DE ALMOÇO (APARECE APENAS EM SALAMANCA) -->
+                        <div class="card-almoco-opcional" id="box-almoco-opcional">
+                            <div class="almoco-info">
+                                <i class="fas fa-utensils"></i>
+                                <div>
+                                    <strong>Almoço Incluído?</strong>
+                                    <span>Possibilidade de incluir refeição completa (+19€/pessoa)</span>
+                                </div>
+                            </div>
+                            <label class="checkbox-custom-toggle">
+                                <input type="checkbox" id="checkAlmoco" name="IncluirAlmoco" value="Sim" onchange="calcularPrecoTotal()">
+                                Sim, quero almoço
+                            </label>
                         </div>
 
                         <div class="campo-grupo">
@@ -515,16 +620,26 @@
                         <!-- CAMPOS DINÂMICOS DE ACOMPANHANTES -->
                         <div id="camposDinamicos"></div>
 
-                        <!-- RESUMO AUTOMÁTICO DE LUGARES -->
+                        <!-- RESUMO AUTOMÁTICO DE LUGARES E CÁLCULO DE VALOR TOTAL -->
                         <div class="summary-box">
-                            <div class="summary-info">
+                            <div class="summary-row">
                                 <span>Passeio Selecionado:</span>
                                 <strong id="summary-passeio-txt">Nenhum selecionado</strong>
                             </div>
-                            <div class="summary-info" style="text-align: right;">
-                                <span>Total de Lugares:</span>
-                                <strong id="summary-lugares-txt" style="color: var(--accent);">1 Lugar</strong>
+                            <div class="summary-row">
+                                <span>Lugares a Reservar:</span>
+                                <strong id="summary-lugares-txt">1 Lugar</strong>
                             </div>
+                            <div class="summary-row" id="row-summary-extras" style="display: none;">
+                                <span>Extras Incluídos:</span>
+                                <strong id="summary-extras-txt">Sem Almoço</strong>
+                            </div>
+                            <div class="summary-total-row">
+                                <span class="summary-total-label">Valor Total Estimado:</span>
+                                <span class="summary-total-price" id="summary-preco-total">0€</span>
+                            </div>
+                            <!-- Campo escondido para enviar o preço calculado no Formspree -->
+                            <input type="hidden" name="ValorTotalEstimado" id="inputValorTotalEstimado" value="0€">
                         </div>
 
                         <div class="step-buttons">
@@ -575,6 +690,8 @@
             if (passeio) {
                 document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
             }
+
+            verificarOpcoesPasseio();
         };
 
         // OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS
@@ -598,6 +715,57 @@
             });
         }
 
+        // VERIFICA SE O PASSEIO SELECIONADO TEM OPÇÃO DE ALMOÇO (EX: SALAMANCA)
+        function verificarOpcoesPasseio() {
+            const selectPasseio = document.getElementById('passeioEscolhido');
+            const boxAlmoco = document.getElementById('box-almoco-opcional');
+            const checkAlmoco = document.getElementById('checkAlmoco');
+            
+            const selectedOpt = selectPasseio.options[selectPasseio.selectedIndex];
+            const temAlmocoOpcional = selectedOpt.getAttribute('data-almoco-opcional');
+
+            if (temAlmocoOpcional) {
+                boxAlmoco.classList.add('active');
+            } else {
+                boxAlmoco.classList.remove('active');
+                checkAlmoco.checked = false;
+            }
+
+            calcularPrecoTotal();
+        }
+
+        // CÁLCULO AUTOMÁTICO DO PREÇO TOTAL
+        function calcularPrecoTotal() {
+            const selectPasseio = document.getElementById('passeioEscolhido');
+            const selectedOpt = selectPasseio.options[selectPasseio.selectedIndex];
+            
+            const precoBaseStr = selectedOpt ? selectedOpt.getAttribute('data-preco') : 0;
+            const precoBase = precoBaseStr ? parseFloat(precoBaseStr) : 0;
+
+            const checkAlmoco = document.getElementById('checkAlmoco');
+            const valorAlmocoExtraStr = selectedOpt ? selectedOpt.getAttribute('data-almoco-opcional') : 0;
+            const valorAlmocoExtra = (checkAlmoco && checkAlmoco.checked && valorAlmocoExtraStr) ? parseFloat(valorAlmocoExtraStr) : 0;
+
+            const qtdAcompanhantes = parseInt(document.getElementById('numPessoas').value) || 0;
+            const totalPessoas = qtdAcompanhantes + 1;
+
+            const precoPorPessoa = precoBase + valorAlmocoExtra;
+            const precoTotal = precoPorPessoa * totalPessoas;
+
+            // Atualiza Interface
+            document.getElementById('summary-preco-total').textContent = precoTotal + '€';
+            document.getElementById('inputValorTotalEstimado').value = precoTotal + '€ (' + totalPessoas + ' pess. x ' + precoPorPessoa + '€)';
+
+            const rowExtras = document.getElementById('row-summary-extras');
+            const txtExtras = document.getElementById('summary-extras-txt');
+            if (valorAlmocoExtra > 0) {
+                rowExtras.style.display = 'flex';
+                txtExtras.textContent = 'Com Almoço (+19€/pess.)';
+            } else {
+                rowExtras.style.display = 'none';
+            }
+        }
+
         // NAVEGAÇÃO ENTRE PASSOS (PASSO 1 ➔ PASSO 2)
         function proximoPasso() {
             const selectPasseio = document.getElementById('passeioEscolhido');
@@ -613,8 +781,9 @@
             document.getElementById('step-tab-1').classList.add('completed');
             document.getElementById('step-tab-2').classList.add('active');
 
-            // Atualiza o resumo
-            document.getElementById('summary-passeio-txt').textContent = selectPasseio.options[selectPasseio.selectedIndex].text;
+            // Atualiza resumo no Passo 2
+            document.getElementById('summary-passeio-txt').textContent = selectPasseio.options[selectPasseio.selectedIndex].value;
+            calcularPrecoTotal();
         }
 
         function passoAnterior() {
@@ -669,6 +838,8 @@
                 </div>
                 `;
             }
+
+            calcularPrecoTotal();
         }
     </script>
 
@@ -697,7 +868,7 @@
                     mensagemSucesso.style.display = "block";
                     form.reset();
                     document.getElementById('camposDinamicos').innerHTML = '';
-                    setTimeout(() => { passoAnterior(); }, 3000);
+                    setTimeout(() => { passoAnterior(); }, 3500);
                 } else {
                     mensagemErro.style.display = "block";
                 }
