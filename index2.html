@@ -174,7 +174,7 @@
             border-color: var(--primary);
         }
 
-        /* 5. ESTRUTURA REORGANIZADA DE PERGUNTAS (SEM ALTURAS DESIGUAIS) */
+        /* 5. ESTRUTURA REORGANIZADA DE PERGUNTAS */
         .faq-section {
             max-width: 900px;
             margin: 20px auto 40px;
@@ -312,7 +312,7 @@
             transform: scale(1.15);
         }
 
-        /* 6. SECÇÃO "NÃO ENCONTROU A RESPOSTA?" (ESTILO HARMONIOSO) */
+        /* 6. SECÇÃO "NÃO ENCONTROU A RESPOSTA?" */
         .need-help-banner {
             max-width: 900px;
             margin: 10px auto 60px;
@@ -449,7 +449,7 @@
             
             <div class="search-box-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="faq-search" placeholder="Procure por dúvidas (ex: pagamento, autocarro, crianças)...">
+                <input type="text" id="faq-search" placeholder="Procure por dúvidas (ex: pagamento, autocarro, almoço)...">
             </div>
         </div>
 
@@ -538,7 +538,27 @@
                 </div>
             </div>
 
-            <!-- 4. CRIANÇAS -->
+            <!-- 4. LUGAR EM FAMÍLIA/GRUPO (NOVA) -->
+            <div class="faq-item" data-category="Lugar">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-users faq-icon"></i>
+                        <h3>Ficamos todos juntos no autocarro?</h3>
+                    </div>
+                    <span class="faq-badge">Lugar</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Sim! Ao inscreverem-se todos juntos, procuramos sempre colocar a família, amigos ou grupo nos lugares contíguos no autocarro.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta foi útil?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. CRIANÇAS -->
             <div class="faq-item" data-category="Reservas">
                 <div class="faq-header">
                     <div class="faq-title-group">
@@ -558,7 +578,27 @@
                 </div>
             </div>
 
-            <!-- 5. PAGAMENTO -->
+            <!-- 6. ALMOÇO E REFEIÇÕES (NOVA) -->
+            <div class="faq-item" data-category="Reservas">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-utensils faq-icon"></i>
+                        <h3>O almoço está incluído no passeio?</h3>
+                    </div>
+                    <span class="faq-badge">Reservas</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Depende de cada passeio. Deverá consultar o programa específico da viagem: alguns passeios têm refeição incluída e outros são de almoço livre.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta foi útil?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. PAGAMENTO -->
             <div class="faq-item" data-category="Pagamento">
                 <div class="faq-header">
                     <div class="faq-title-group">
@@ -578,7 +618,67 @@
                 </div>
             </div>
 
-            <!-- 6. DESISTÊNCIAS -->
+            <!-- 8. SEGURO DE VIAGEM (NOVA) -->
+            <div class="faq-item" data-category="Logística">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-shield-alt faq-icon"></i>
+                        <h3>A viagem inclui seguro?</h3>
+                    </div>
+                    <span class="faq-badge">Logística</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Sim, todas as nossas viagens incluem seguro de acidentes pessoais e de responsabilidade civil para total segurança dos passageiros.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta foi útil?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. CONFIRMAÇÃO DE HORÁRIOS (NOVA) -->
+            <div class="faq-item" data-category="Logística">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-clock faq-icon"></i>
+                        <h3>Quando recebo a confirmação dos horários?</h3>
+                    </div>
+                    <span class="faq-badge">Logística</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-content">
+                    <p>A confirmação final dos horários e do ponto de embarque é enviada durante a última semana que antecede o passeio, ou até 24h antes da viagem.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta foi útil?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. CONDIÇÕES METEOROLÓGICAS (NOVA) -->
+            <div class="faq-item" data-category="Política">
+                <div class="faq-header">
+                    <div class="faq-title-group">
+                        <i class="fas fa-cloud-sun-rain faq-icon"></i>
+                        <h3>O passeio realiza-se se estiver a chover?</h3>
+                    </div>
+                    <span class="faq-badge">Política</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Sim! O passeio realiza-se sempre normalmente. A menos que o tempo esteja realmente muito preocupante, com fortes tempestades que ponham em risco a segurança do grupo, as viagens mantêm-se agendadas.</p>
+                    <div class="feedback-bar">
+                        <span>Esta resposta foi útil?</span>
+                        <button onclick="voteFeedback(this, true)">👍</button>
+                        <button onclick="voteFeedback(this, false)">👎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. DESISTÊNCIAS -->
             <div class="faq-item" data-category="Política">
                 <div class="faq-header">
                     <div class="faq-title-group">
@@ -598,7 +698,7 @@
                 </div>
             </div>
 
-            <!-- 7. MOBILIDADE REDUZIDA -->
+            <!-- 12. MOBILIDADE REDUZIDA -->
             <div class="faq-item" data-category="Logística">
                 <div class="faq-header">
                     <div class="faq-title-group">
@@ -618,7 +718,7 @@
                 </div>
             </div>
 
-            <!-- 8. PERDIDOS E ACHADOS -->
+            <!-- 13. PERDIDOS E ACHADOS -->
             <div class="faq-item" data-category="Logística">
                 <div class="faq-header">
                     <div class="faq-title-group">
@@ -638,7 +738,7 @@
                 </div>
             </div>
 
-            <!-- 9. FOTOS DO GRUPO -->
+            <!-- 14. FOTOS DO GRUPO -->
             <div class="faq-item" data-category="Redes">
                 <div class="faq-header">
                     <div class="faq-title-group">
