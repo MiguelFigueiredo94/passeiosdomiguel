@@ -25,18 +25,111 @@
             overflow-x: hidden;
         }
 
+        /* --------------------------------------------------
+           SPLASH SCREEN (TELA DE ENTRADA COM O AUTOCARRO)
+        -------------------------------------------------- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e4d8c 0%, #0d284c 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+        }
+
+        .splash-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .splash-subtitle {
+            font-size: 1.2em;
+            color: #ff8c00;
+            margin-bottom: 50px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ESTRADA E AUTOCARRO */
+        .road-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 120px;
+            border-bottom: 4px dashed rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .bus-wrapper {
+            position: absolute;
+            left: 10%;
+            bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .bus-icon {
+            font-size: 4.5em;
+            color: #ff8c00;
+            filter: drop-shadow(0 10px 8px rgba(0,0,0,0.5));
+            animation: busWobble 2s infinite ease-in-out;
+        }
+
+        .click-hint {
+            margin-top: 30px;
+            background: #ff8c00;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+        }
+
+        /* ANIMAÇÃO QUANDO SE CLICA (ARRANQUE DO AUTOCARRO) */
+        .bus-drive-forward {
+            animation: driveAcrossRoad 1.2s forwards cubic-bezier(0.42, 0, 0.58, 1) !important;
+        }
+
+        .splash-hidden {
+            transform: translateY(-100vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --------------------------------------------------
+           CONTEÚDO PRINCIPAL DO SITE
+        -------------------------------------------------- */
         main { 
             display: flex; 
             flex-direction: column; 
             margin-left: 250px; 
         }
 
-        /* HERO SECTION COM ANIMAÇÃO */
+        /* HERO SECTION */
         .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200');
             background-size: cover; 
             background-position: center; 
-            min-height: 520px; 
+            height: 500px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -44,80 +137,9 @@
             color: white; 
             text-align: center; 
             border-bottom: 6px solid #ff8c00;
-            position: relative;
-            padding: 40px 20px;
         }
-        
-        .hero-section h1 { 
-            font-size: 3.8em; 
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.6); 
-            margin-bottom: 15px; 
-            animation: fadeInDown 1s ease-out;
-        }
-        
-        .hero-section p { 
-            font-size: 1.5em; 
-            max-width: 750px; 
-            font-weight: 300; 
-            padding: 0 20px; 
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        /* CARD/ÍCONE DO AUTOCARRO INTERATIVO */
-        .bus-interactive-container {
-            margin-top: 30px;
-            cursor: pointer;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            animation: bounceIn 1.2s ease-out 0.6s backwards;
-        }
-
-        .bus-icon-wrapper {
-            font-size: 3.5em;
-            color: #ff8c00;
-            background: white;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            position: relative;
-        }
-
-        .bus-interactive-container:hover .bus-icon-wrapper {
-            transform: scale(1.15) rotate(-3deg);
-            background-color: #fff3e6;
-        }
-
-        /* Efeito de fumo/rodas ao clicar */
-        .bus-drive-anim {
-            animation: driveAway 1s forwards ease-in-out !important;
-        }
-
-        .cta-btn {
-            margin-top: 20px; 
-            background: #ff8c00; 
-            color: white; 
-            padding: 18px 45px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 1.1em; 
-            box-shadow: 0 8px 20px rgba(255,140,0,0.4);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .cta-btn:hover {
-            background: #e07b00;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255,140,0,0.6);
-        }
+        .hero-section h1 { font-size: 3.8em; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 15px; }
+        .hero-section p { font-size: 1.5em; max-width: 750px; font-weight: 300; padding: 0 20px; }
 
         .content-container { padding: 60px 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
@@ -131,7 +153,7 @@
             background-color: white;
             padding: 25px;
             border-radius: 24px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             margin-bottom: 70px;
         }
         .video-wrapper { 
@@ -155,26 +177,21 @@
         .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
         .feature-card p { color: #666; font-size: 1.05em; line-height: 1.6; }
 
-        /* KEYFRAMES DE ANIMAÇÃO */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* KEYFRAMES */
+        @keyframes busWobble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
-        @keyframes bounceIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        @keyframes driveAway {
-            0% { transform: translateX(0) scale(1); }
-            30% { transform: translateX(-15px) scale(1.05); }
-            100% { transform: translateX(1000px) scale(0.8); opacity: 0; }
+        @keyframes driveAcrossRoad {
+            0% { left: 10%; transform: scale(1); }
+            20% { transform: scale(1.1) translateX(-10px); }
+            100% { left: 120%; transform: scale(1); }
         }
 
         /* RESPONSIVIDADE */
@@ -182,28 +199,39 @@
             main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
             .hero-section h1 { font-size: 2.8em; }
+            .splash-title { font-size: 2em; }
         }
     </style>
 </head>
 <body>
 
+    <!-- TELA DE ABERTURA / ANIMADA -->
+    <div id="splash-screen">
+        <div class="splash-title">Passeios do Miguel</div>
+        <div class="splash-subtitle">Sua próxima viagem começa aqui!</div>
+        
+        <div class="road-container" id="roadTrigger">
+            <div class="bus-wrapper" id="busWrapper">
+                <i class="fas fa-bus bus-icon"></i>
+            </div>
+        </div>
+
+        <div class="click-hint" id="startBtn">
+            <i class="fas fa-key"></i> CLIQUE NO AUTOCARRO PARA ENTRAR
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DO SITE -->
     <div id="menu-placeholder"></div>
 
     <main>
         <section class="hero-section">
             <h1>Passeios do Miguel</h1>
             <p>Descubra Portugal com quem conhece cada caminho e valoriza cada sorriso.</p>
-            
-            <!-- AUTOCARRO INTERATIVO -->
-            <div class="bus-interactive-container" id="busTrigger" title="Clique para arrancar para a aventura!">
-                <div class="bus-icon-wrapper" id="busIcon">
-                    <i class="fas fa-bus"></i>
-                </div>
-                <a href="passeios.html" class="cta-btn" id="ctaBtn">EXPLORAR PRÓXIMAS VIAGENS</a>
-            </div>
+            <a href="passeios.html" style="display:inline-block; margin-top: 35px; background: #ff8c00; color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 8px 20px rgba(255,140,0,0.3);">EXPLORAR PRÓXIMAS VIAGENS</a>
         </section>
 
-        <div class="content-container" id="conteudo">
+        <div class="content-container">
             
             <section class="intro-text">
                 <h2>Muito mais do que uma viagem</h2>
@@ -252,19 +280,25 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // Animação de clique no Autocarro
-        const busTrigger = document.getElementById('busTrigger');
-        const busIcon = document.getElementById('busIcon');
+        // LÓGICA DA TELA DE ABERTURA (SPLASH SCREEN)
+        const splashScreen = document.getElementById('splash-screen');
+        const busWrapper = document.getElementById('busWrapper');
+        const roadTrigger = document.getElementById('roadTrigger');
+        const startBtn = document.getElementById('startBtn');
 
-        busTrigger.addEventListener('click', function(e) {
-            // Adiciona a animação de "arranque" do autocarro
-            busIcon.classList.add('bus-drive-anim');
-            
-            // Aguarda a animação antes de navegar para a página de passeios
+        function iniciarViagem() {
+            // 1. Faz o autocarro avançar pela estrada
+            busWrapper.classList.add('bus-drive-forward');
+
+            // 2. Após a animação do autocarro (800ms), recolhe o painel de entrada para cima
             setTimeout(() => {
-                window.location.href = 'passeios.html';
+                splashScreen.classList.add('splash-hidden');
             }, 700);
-        });
+        }
+
+        // Permite clicar na estrada, no autocarro ou no botão
+        roadTrigger.addEventListener('click', iniciarViagem);
+        startBtn.addEventListener('click', iniciarViagem);
     </script>
 </body>
 </html>
