@@ -284,7 +284,7 @@
 
         .bus-drive-off {
             left: 120% !important;
-            transition: left 1.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
+            transition: left 1.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
         }
 
         .wheel-spin .wheel {
@@ -496,14 +496,17 @@
         const ignitionBtn = document.getElementById('ignitionBtn');
         const splashStatusText = document.getElementById('splashStatusText');
 
-        // VERIFICAÇÃO DE NAVEGAÇÃO (EVITA MOSTRAR SE A PESSOA JÁ ESTÁ A NAVEGAR NO SITE)
+        // NAVEGAÇÃO INTERNA: Se já visitou nesta sessão, esconde logo a animação
         if (sessionStorage.getItem('visitedIndex')) {
             splashScreen.classList.add('splash-bypass');
         }
 
-        // SONS MP3 REAIS E NATIVOS
-        const soundLuggage = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); // Fecho/mala
-        const soundEngine = new Audio('https://assets.mixkit.co/active_storage/sfx/2753/2753-preview.mp3');   // Motor a ligar/arranque
+        // SONS MP3 REAIS E CURTOS
+        const soundLuggage = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); 
+        const soundEngine = new Audio('https://assets.mixkit.co/active_storage/sfx/1512/1512-preview.mp3'); // Arranque curto de motor
+
+        // Garante que o som do motor NÃO fica em loop
+        soundEngine.loop = false;
 
         let malaPronta = false;
 
@@ -512,9 +515,10 @@
             if (malaPronta) return;
 
             malaPronta = true;
-            soundLuggage.play().catch(() => {}); // Toca som MP3 de mala a fechar
+            soundLuggage.currentTime = 0;
+            soundLuggage.play().catch(() => {});
             
-            // Animação da mala a deslizar para o bagageiro
+            // Animação da mala a entrar no bagageiro
             luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
             luggageBtn.style.opacity = '0';
             
@@ -540,21 +544,26 @@
                 return;
             }
 
-            // Regista na sessão que o utilizador já fez a animação de entrada
+            // Regista a visita para não repetir no menu do site
             sessionStorage.setItem('visitedIndex', 'true');
 
-            // 1. Motor arranca com áudio MP3 de autocarro
+            // 1. Liga o motor e toca o arranque curto
+            soundEngine.currentTime = 0;
             soundEngine.play().catch(() => {});
             busSide.classList.add('engine-on', 'wheel-spin');
 
             // 2. Autocarro avança na estrada
             setTimeout(() => {
                 busSide.classList.add('bus-drive-off');
-            }, 400);
+            }, 300);
 
-            // 3. A tela sobe e revela o site principal
+            // 3. A tela sobe, revela o site e CESSA TODO O SOM
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
+                
+                // Corta e para o som completamente ao entrar no site
+                soundEngine.pause();
+                soundEngine.currentTime = 0;
             }, 1200);
         });
     </script>
