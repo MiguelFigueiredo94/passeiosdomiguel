@@ -3,51 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposição Virtual - Diário de Bordo | Passeios do Miguel</title>
+    <title>Diário de Bordo | Passeios do Miguel</title>
     
-    <!-- CSS Bootstrap, GLightbox e FontAwesome -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <!-- FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- GLightbox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #ff8c00;
-            --museum-wall: #1a1a1a;
-            --museum-card: #262626;
+            --secondary-color: #e07b00;
+            --dark-color: #1a1a1a;
+            --light-color: #f8f9fa;
+            --museum-wall: #121212;
+            --museum-card: #1e1e1e;
             --gold-accent: #d4af37;
-            --text-light: #f5f5f5;
         }
 
         body {
+            font-family: 'Poppins', sans-serif;
             background-color: var(--museum-wall);
-            color: var(--text-light);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: radial-gradient(#333 1px, transparent 0);
+            color: #e0e0e0;
+            background-image: radial-gradient(#2a2a2a 1px, transparent 0);
             background-size: 24px 24px;
         }
 
-        /* Áudio Guia / Controle de Som */
-        .audio-guide-panel {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--gold-accent);
-            border-radius: 30px;
-            padding: 8px 18px;
-            backdrop-filter: blur(5px);
+        /* Navbar & Header */
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
         }
 
-        /* Molduras do Museu (Museum Frames) */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://picsum.photos/1920/600?grayscale');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0 50px 0;
+            border-bottom: 3px solid var(--gold-accent);
+        }
+
+        /* Painel do Áudio Guia */
+        .audio-guide-panel {
+            background: rgba(30, 30, 30, 0.85);
+            border: 1px solid var(--gold-accent);
+            border-radius: 30px;
+            padding: 8px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Anos / Separadores */
+        .year-header {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            color: var(--gold-accent);
+        }
+
+        /* Molduras do Museu (Museum Frames) com Foco de Luz e Efeito 3D */
         .museum-frame {
             position: relative;
             background: var(--museum-card);
-            border: 8px solid #333;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            border: 10px solid #2a2a2a;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            perspective: 1000px;
             overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Efeito de Foco de Luz (Spotlight) */
+        /* Foco de Luz (Spotlight) Superior */
         .museum-frame::before {
             content: '';
             position: absolute;
@@ -55,19 +93,18 @@
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
-            height: 40px;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
+            height: 45px;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 75%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
             z-index: 3;
         }
 
-        /* Efeito Hover: Tilt 3D + Elevação + Foco de Luz */
+        /* Efeito Hover: Elevação, Inclinação e Luz */
         .museum-frame:hover {
-            transform: translateY(-10px) rotateX(2deg) rotateY(-2deg) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 
-                        0 0 25px rgba(255, 140, 0, 0.3);
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 140, 0, 0.25);
             border-color: var(--gold-accent);
         }
 
@@ -77,7 +114,7 @@
 
         .museum-frame img {
             width: 100%;
-            height: 260px;
+            height: 250px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -88,17 +125,21 @@
 
         /* Placa Informativa do Museu */
         .plaque {
-            background: linear-gradient(145deg, #2b2b2b, #1f1f1f);
+            background: linear-gradient(145deg, #252525, #181818);
             border-top: 2px solid var(--gold-accent);
             padding: 15px;
             text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .plaque-title {
             color: var(--gold-accent);
             font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .plaque-date {
@@ -106,105 +147,272 @@
             color: #aaa;
         }
 
-        /* Esconder fotos extra da galeria GLightbox */
+        .badge-count {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            border: 1px solid var(--gold-accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        /* Elementos Escondidos para o GLightbox */
         .hidden-gallery {
             display: none;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid #333;
+            color: #888;
+            padding: 30px 0;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho & Controlo de Áudio Guia -->
-    <header class="container py-4">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <div>
-                <h1 class="h2 mb-0 text-warning"><i class="fa-solid fa-building-columns me-2"></i>Exposição Virtual</h1>
-                <p class="text-muted mb-0">Diário de Bordo - Passeios do Miguel</p>
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-bus-simple me-2"></i>Passeios do Miguel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#ano-2026">2026</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ano-2025">2025</a></li>
+                </ul>
             </div>
+        </div>
+    </nav>
+
+    <!-- Cabeçalho Principal -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold text-warning mb-2"><i class="fa-solid fa-building-columns me-3"></i>Diário de Bordo</h1>
+            <p class="lead text-light mb-4">Galeria Virtual de Memórias e Excursões</p>
             
-            <!-- Painel Áudio Guia -->
-            <div class="audio-guide-panel d-flex align-items-center gap-3">
-                <span class="small text-gold"><i class="fa-solid fa-headphones me-1"></i> Áudio Guia</span>
-                <button id="btn-ambient-sound" class="btn btn-sm btn-outline-warning rounded-circle">
+            <!-- Painel do Áudio Guia -->
+            <div class="audio-guide-panel">
+                <span class="small text-warning"><i class="fa-solid fa-headphones me-1"></i> Áudio Guia da Galeria</span>
+                <button id="btn-ambient-sound" class="btn btn-sm btn-outline-warning rounded-circle" title="Ativar Som Ambiente">
                     <i class="fa-solid fa-play"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Elementos de Áudio -->
+    <!-- Elementos Áudio -->
     <audio id="audio-ambient" loop src="https://assets.mixkit.co/active_storage/sfx/2874/2874-preview.mp3"></audio>
     <audio id="audio-click" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 
-    <!-- Exposição de Fotografias -->
+    <!-- Conteúdo da Galeria -->
     <main class="container my-5">
-        <div class="row g-4">
-            
-            <!-- Quadro 1 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="museum-frame">
-                    <a href="https://picsum.photos/1200/800?random=1" class="glightbox" data-gallery="excursao-1" data-title="Excursão a Fátima e Pia do Urso">
-                        <img src="https://picsum.photos/600/400?random=1" alt="Fátima e Pia do Urso">
-                    </a>
-                    <div class="plaque">
-                        <div class="plaque-title">Fátima & Pia do Urso</div>
-                        <div class="plaque-date"><i class="fa-regular fa-calendar me-1"></i>Outubro 2026</div>
-                    </div>
-                    <!-- Fotos Adicionais da Coleção -->
-                    <div class="hidden-gallery">
-                        <a href="https://picsum.photos/1200/800?random=11" class="glightbox" data-gallery="excursao-1"></a>
-                        <a href="https://picsum.photos/1200/800?random=12" class="glightbox" data-gallery="excursao-1"></a>
+
+        <!-- ======================= ANO 2026 ======================= -->
+        <section id="ano-2026">
+            <h2 class="year-header h3"><i class="fa-regular fa-calendar-check me-2"></i>Excursões de 2026</h2>
+            <div class="row g-4">
+
+                <!-- Fátima e Pia do Urso -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/10/pia-urso-1.jpg" class="glightbox" data-gallery="fatima-pia-urso" data-title="Ecoparque Sensorial da Pia do Urso e Fátima">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/10/pia-urso-1.jpg" alt="Pia do Urso e Fátima">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Ecoparque Pia do Urso & Fátima</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Outubro 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/10/fatima-1.jpg" class="glightbox" data-gallery="fatima-pia-urso" data-title="Santuário de Fátima"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Quadro 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="museum-frame">
-                    <a href="https://picsum.photos/1200/800?random=2" class="glightbox" data-gallery="excursao-2" data-title="Magusto em Santoinho e Viana do Castelo">
-                        <img src="https://picsum.photos/600/400?random=2" alt="Santoinho">
-                    </a>
-                    <div class="plaque">
-                        <div class="plaque-title">Magusto em Santoinho</div>
-                        <div class="plaque-date"><i class="fa-regular fa-calendar me-1"></i>Novembro 2026</div>
-                    </div>
-                    <div class="hidden-gallery">
-                        <a href="https://picsum.photos/1200/800?random=21" class="glightbox" data-gallery="excursao-2"></a>
+                <!-- Feiras Novas em Ponte de Lima -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/09/feiras-novas-1.jpg" class="glightbox" data-gallery="feiras-novas" data-title="Feiras Novas em Ponte de Lima">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/09/feiras-novas-1.jpg" alt="Feiras Novas">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Feiras Novas - Ponte de Lima</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Setembro 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/09/feiras-novas-2.jpg" class="glightbox" data-gallery="feiras-novas" data-title="Ponte Romana e Animação"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Quadro 3 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="museum-frame">
-                    <a href="https://picsum.photos/1200/800?random=3" class="glightbox" data-gallery="excursao-3" data-title="Mercados de Natal em Salamanca">
-                        <img src="https://picsum.photos/600/400?random=3" alt="Salamanca">
-                    </a>
-                    <div class="plaque">
-                        <div class="plaque-title">Salamanca & Ciudad Rodrigo</div>
-                        <div class="plaque-date"><i class="fa-regular fa-calendar me-1"></i>Dezembro 2026</div>
-                    </div>
-                    <div class="hidden-gallery">
-                        <a href="https://picsum.photos/1200/800?random=31" class="glightbox" data-gallery="excursao-3"></a>
+                <!-- Rota da Cereja no Fundão -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>3 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/06/cereja-fundao-1.jpg" class="glightbox" data-gallery="rota-cereja" data-title="Rota da Cereja no Fundão">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/06/cereja-fundao-1.jpg" alt="Rota da Cereja">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Rota da Cereja - Fundão</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Junho 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/06/alcongosta.jpg" class="glightbox" data-gallery="rota-cereja" data-title="Alcongosta"></a>
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/06/castelo-novo.jpg" class="glightbox" data-gallery="rota-cereja" data-title="Castelo Novo"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- Festa das Cruzes em Barcelos -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/05/barcelos-1.jpg" class="glightbox" data-gallery="festa-cruzes" data-title="Festa das Cruzes em Barcelos">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/05/barcelos-1.jpg" alt="Festa das Cruzes">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Festa das Cruzes - Barcelos</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Maio 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/05/barcelos-2.jpg" class="glightbox" data-gallery="festa-cruzes" data-title="Tapetes de Pétalas de Rosas"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Festa das Camélias em Celorico de Basto -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/03/camelias-1.jpg" class="glightbox" data-gallery="festa-camelias" data-title="Festa Internacional das Camélias - Celorico de Basto">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/03/camelias-1.jpg" alt="Festa das Camélias">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">1º Aniversário & Camélias</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Março 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/03/camelias-2.jpg" class="glightbox" data-gallery="festa-camelias" data-title="Exposição de Camélias"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parque Biológico de Gaia e Zoo Santo Inácio -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/02/gaia-1.jpg" class="glightbox" data-gallery="gaia-zoo" data-title="Parque Biológico de Gaia e Zoo Santo Inácio">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2026/02/gaia-1.jpg" alt="Parque Biológico de Gaia">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Gaia & Zoo Santo Inácio</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Fevereiro 2026</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2026/02/zoo-santo-inacio.jpg" class="glightbox" data-gallery="gaia-zoo" data-title="Zoo Santo Inácio"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================= ANO 2025 ======================= -->
+        <section id="ano-2025" class="mt-5">
+            <h2 class="year-header h3"><i class="fa-regular fa-calendar-check me-2"></i>Excursões de 2025</h2>
+            <div class="row g-4">
+
+                <!-- Valença e Vigo (Mercados de Natal) -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>3 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/12/vigo-1.jpg" class="glightbox" data-gallery="valenca-vigo" data-title="Valença do Minho e Luzes de Natal em Vigo">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2025/12/vigo-1.jpg" alt="Luzes de Natal em Vigo">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Valença & Luzes de Vigo</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Dezembro 2025</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/12/valenca-1.jpg" class="glightbox" data-gallery="valenca-vigo" data-title="Fortaleza de Valença do Minho"></a>
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/12/vigo-2.jpg" class="glightbox" data-gallery="valenca-vigo" data-title="Iluminação de Natal em Vigo"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Magusto em Santoinho e Viana do Castelo -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>2 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/11/santoinho-1.jpg" class="glightbox" data-gallery="santoinho-viana" data-title="Quinta de Santoinho e Viana do Castelo">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2025/11/santoinho-1.jpg" alt="Quinta de Santoinho">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Magusto em Santoinho & Viana</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Novembro 2025</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/11/viana-1.jpg" class="glightbox" data-gallery="santoinho-viana" data-title="Santuário de Santa Luzia em Viana do Castelo"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Festas do Povo em Campo Maior e Vila Velha de Ródão -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="museum-frame">
+                        <span class="badge-count"><i class="fa-solid fa-camera me-1"></i>3 fotos</span>
+                        <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/08/campo-maior-1.jpg" class="glightbox" data-gallery="campo-maior" data-title="Festas do Povo em Campo Maior e Passeio de Barco nas Portas de Ródão">
+                            <img src="https://passeiosdomiguel.pt/wp-content/uploads/2025/08/campo-maior-1.jpg" alt="Festas do Povo em Campo Maior">
+                        </a>
+                        <div class="plaque">
+                            <div class="plaque-title">Festas do Povo & Vila Velha de Ródão</div>
+                            <div class="plaque-date"><i class="fa-regular fa-clock me-1"></i>Agosto 2025</div>
+                        </div>
+                        <div class="hidden-gallery">
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/08/rodao-barco.jpg" class="glightbox" data-gallery="campo-maior" data-title="Passeio de Barco no Rio Tejo"></a>
+                            <a href="https://passeiosdomiguel.pt/wp-content/uploads/2025/08/campo-maior-flores.jpg" class="glightbox" data-gallery="campo-maior" data-title="Ruas Floridas de Campo Maior"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
-    <!-- Scripts: Bootstrap, GLightbox e Áudio Guia -->
+    <!-- Rodapé -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-1"><i class="fa-solid fa-bus-simple text-warning me-2"></i>Passeios do Miguel — Excursões e Viagens em Autocarro</p>
+            <p class="small text-muted mb-0">&copy; 2026 Todos os direitos reservados. Galeria Exposição Virtual "Diário de Bordo".</p>
+        </div>
+    </footer>
+
+    <!-- JS: Bootstrap & GLightbox -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- JS Interativo: Áudio Guia, Som de Click e Galeria -->
     <script>
-        // Inicialização da Galeria GLightbox
+        // Inicialização do GLightbox
         const lightbox = GLightbox({
             touchNavigation: true,
             loop: true,
-            autoplayVideos: true
+            autoplayVideos: true,
+            openEffect: 'zoom',
+            closeEffect: 'fade'
         });
 
-        // Controlo do Áudio Guia (Som de Fundo)
+        // Controlo do Áudio Guia (Música / Som de Fundo da Galeria)
         const audioAmbient = document.getElementById('audio-ambient');
         const audioClick = document.getElementById('audio-click');
         const btnAmbient = document.getElementById('btn-ambient-sound');
@@ -214,20 +422,24 @@
             if (isPlaying) {
                 audioAmbient.pause();
                 btnAmbient.innerHTML = '<i class="fa-solid fa-play"></i>';
+                btnAmbient.classList.remove('btn-warning');
+                btnAmbient.classList.add('btn-outline-warning');
             } else {
-                audioAmbient.volume = 0.3; // Volume suave de fundo
-                audioAmbient.play();
+                audioAmbient.volume = 0.25; // Volume suave
+                audioAmbient.play().catch(e => console.log("Ação do utilizador necessária para reproduzir áudio."));
                 btnAmbient.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                btnAmbient.classList.remove('btn-outline-warning');
+                btnAmbient.classList.add('btn-warning');
             }
             isPlaying = !isPlaying;
         });
 
-        // Efeito Sonoro de "Click de Fotografia" ao Selecionar uma Moldura
+        // Efeito Sonoro de Obturador/Click de Câmara ao Abrir as Molduras
         document.querySelectorAll('.museum-frame a').forEach(item => {
             item.addEventListener('click', () => {
                 audioClick.currentTime = 0;
-                audioClick.volume = 0.5;
-                audioClick.play();
+                audioClick.volume = 0.4;
+                audioClick.play().catch(e => console.log("Efeito sonoro ignorado pelo navegador."));
             });
         });
     </script>
