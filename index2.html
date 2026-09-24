@@ -22,14 +22,10 @@
             --bg: #f4f7f9;
             --text: #334155;
             --border: #e2e8f0;
-            --whatsapp: #25d366;
+            --success: #10b981;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -55,21 +51,18 @@
             margin-left: 250px;
         }
 
-        /* 1. HERO BANNER ORIGINAL (ESCURO RESTAURADO) */
+        /* BANNER ORIGINAL */
         .hero-section {
             background-image:
                 linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
                 url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1200');
-
             background-size: cover;
             background-position: center;
-            height: 380px;
-
+            height: 360px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             color: white;
             text-align: center;
             border-bottom: 5px solid var(--accent);
@@ -77,7 +70,7 @@
         }
 
         .hero-section h1 {
-            font-size: clamp(2.2em, 5vw, 3.4em);
+            font-size: clamp(2.2em, 5vw, 3.2em);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
             margin-bottom: 10px;
             color: white !important;
@@ -90,9 +83,9 @@
             font-weight: 300;
         }
 
-        /* 2. CONTAINER DO FORMULÁRIO COM BARRA DE PROGRESSO */
+        /* CONTAINER COM PASSOS */
         .seccao-form {
-            padding: 40px 20px 60px;
+            padding: 30px 20px 60px;
             flex-grow: 1;
         }
 
@@ -100,64 +93,91 @@
             max-width: 850px;
             margin: 0 auto;
             background: white;
-            padding: 45px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.07);
             position: relative;
-            overflow: hidden;
         }
 
-        /* BARRA DE PROGRESSO DINÂMICA */
-        .progress-bar-container {
-            width: 100%;
-            height: 6px;
-            background: #e2e8f0;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            width: 10%;
-            transition: width 0.4s ease;
-        }
-
-        .progress-status {
+        /* INDICADOR DE PASSOS (STEPS) */
+        .steps-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            font-size: 0.85em;
+            justify-content: space-between;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
+            font-size: 0.95em;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+
+        .step-item.active { color: var(--primary); }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e2e8f0;
             color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: all 0.3s;
         }
 
-        .progress-status span.percent {
-            color: var(--accent);
-            font-size: 1.1em;
+        .step-item.active .step-number {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(30, 77, 140, 0.3);
         }
 
-        h2 {
-            color: var(--primary);
-            font-size: 1.5em;
+        .step-item.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-divider {
+            flex-grow: 1;
+            height: 2px;
+            background: #e2e8f0;
+            margin: 0 15px;
+        }
+
+        .alert-urgency {
+            background: #fff7ed;
+            border-left: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 10px;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 12px;
+            font-size: 0.92em;
+            color: #9a3412;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.35em;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
         }
 
-        h2 i {
-            color: var(--accent);
-        }
+        h2 i { color: var(--accent); }
 
-        .campo-grupo {
-            margin-bottom: 22px;
-        }
+        .campo-grupo { margin-bottom: 22px; }
 
         label {
             display: block;
@@ -167,9 +187,7 @@
             font-size: 0.95em;
         }
 
-        .input-icon-group {
-            position: relative;
-        }
+        .input-icon-group { position: relative; }
 
         .input-icon-group i {
             position: absolute;
@@ -178,7 +196,7 @@
             transform: translateY(-50%);
             color: #94a3b8;
             font-size: 1.1em;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
             pointer-events: none;
         }
 
@@ -194,10 +212,6 @@
             font-family: inherit;
         }
 
-        select {
-            cursor: pointer;
-        }
-
         input:focus, select:focus {
             border-color: var(--primary);
             outline: none;
@@ -206,9 +220,7 @@
         }
 
         .input-icon-group input:focus + i,
-        .input-icon-group select:focus + i {
-            color: var(--accent);
-        }
+        .input-icon-group select:focus + i { color: var(--accent); }
 
         .grid-inputs {
             display: grid;
@@ -216,63 +228,99 @@
             gap: 20px;
         }
 
-        /* BADGE DINÂMICO DE RESUMO DE LUGARES */
-        .lugares-summary-badge {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 10px 18px;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            border: 1px solid #bae6fd;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        /* CARTÃO ACOMPANHANTE */
-        .card-extra {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 18px;
-            margin-top: 20px;
-            border: 2px dashed #cbd5e1;
-            animation: fadeIn 0.4s ease-out;
-        }
+        /* PASSOS VISÍVEIS/OCULTOS */
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeIn 0.3s ease-out; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* BOTÃO DE ENVIO VIBRANTE */
-        .btn-enviar {
-            background: var(--primary);
-            color: white;
-            padding: 22px;
-            border: none;
-            border-radius: 18px;
-            width: 100%;
-            font-weight: bold;
-            font-size: 1.25em;
+        /* BOTÕES DE NAVEGAÇÃO */
+        .step-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-next, .btn-prev, .btn-enviar {
+            padding: 18px 25px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.1em;
             cursor: pointer;
-            margin-top: 35px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
+            border: none;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-next:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-prev {
+            background: #e2e8f0;
+            color: #475569;
+            width: 35%;
+        }
+
+        .btn-prev:hover { background: #cbd5e1; }
+
+        .btn-enviar {
+            background: var(--primary);
+            color: white;
+            width: 65%;
             box-shadow: 0 8px 20px rgba(30, 77, 140, 0.2);
         }
 
         .btn-enviar:hover {
             background: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.3);
         }
+
+        /* CARTÃO ACOMPANHANTE E EMERGÊNCIA */
+        .card-extra {
+            background: #f8fafc;
+            padding: 22px;
+            border-radius: 16px;
+            margin-top: 18px;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .card-emergencia {
+            background: #f0fdf4;
+            padding: 22px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* RESUMO DA RESERVA */
+        .summary-box {
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #cbd5e1;
+        }
+
+        .summary-info span { display: block; font-size: 0.85em; color: #64748b; }
+        .summary-info strong { font-size: 1.05em; color: var(--primary); }
 
         /* MENSAGENS STATUS */
         .mensagem-status {
@@ -282,36 +330,13 @@
             font-weight: bold;
             display: none;
             text-align: center;
-            font-size: 1.05em;
         }
 
-        .mensagem-sucesso {
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #86efac;
-        }
+        .mensagem-sucesso { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        .mensagem-erro { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
 
-        .mensagem-erro {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fca5a5;
-        }
-
-        /* FOOTER */
         #footer-placeholder { width: 100%; }
 
-        #footer-placeholder footer,
-        #footer-placeholder p,
-        #footer-placeholder h1,
-        #footer-placeholder h2,
-        #footer-placeholder h3,
-        #footer-placeholder a,
-        #footer-placeholder span,
-        #footer-placeholder i {
-            color: #ffffff !important;
-        }
-
-        /* RESPONSIVO */
         @media (max-width: 1024px) {
             #menu-placeholder { position: relative; width: 100%; height: auto; }
             main { margin-left: 0; }
@@ -319,9 +344,10 @@
 
         @media (max-width: 768px) {
             .grid-inputs { grid-template-columns: 1fr; }
-            .container-form { padding: 28px 20px; }
+            .container-form { padding: 25px 20px; }
             .hero-section h1 { font-size: 2.2em; }
-            .hero-section p { font-size: 1.05em; }
+            .step-buttons { flex-direction: column; }
+            .btn-prev, .btn-enviar { width: 100%; }
         }
     </style>
 </head>
@@ -332,171 +358,191 @@
 
     <main>
 
-        <!-- BANNER COM IMAGE E OPACIDADE ESCURA ORIGINAL -->
         <section class="hero-section">
             <h1>Reserva de Lugar</h1>
-            <p>Garanta a sua presença na nossa próxima aventura.</p>
+            <p>Garanta o seu lugar no autocarro em menos de 2 minutos!</p>
         </section>
 
         <section class="seccao-form">
 
             <div class="container-form">
-                <!-- BARRA DE PROGRESSO -->
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-fill"></div>
+
+                <!-- ETAPAS DO FORMULÁRIO -->
+                <div class="steps-header">
+                    <div class="step-item active" id="step-tab-1">
+                        <div class="step-number">1</div>
+                        <span>Passeio</span>
+                    </div>
+                    <div class="step-divider"></div>
+                    <div class="step-item" id="step-tab-2">
+                        <div class="step-number">2</div>
+                        <span>Os Seus Dados</span>
+                    </div>
                 </div>
 
-                <div class="progress-status">
-                    <span><i class="fas fa-edit"></i> Formulário de Inscrição</span>
-                    <span class="percent" id="progress-percent">0% Concluído</span>
+                <div class="alert-urgency">
+                    <i class="fas fa-fire"></i>
+                    <span><strong>Lugares Atribuídos por Ordem de Inscrição:</strong> Quanto mais cedo reservar, mais à frente fica no autocarro!</span>
                 </div>
 
                 <form id="form-inscricao">
 
-                    <h2>
-                        <i class="fas fa-user-circle"></i>
-                        Dados do Viajante
-                    </h2>
-
-                    <div class="campo-grupo">
-                        <label>Nome Completo</label>
-                        <div class="input-icon-group">
-                            <input
-                                type="text"
-                                name="nomeResponsavel"
-                                class="form-control"
-                                placeholder="Como no cartão de cidadão"
-                                required
-                            >
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-
-                    <div class="grid-inputs">
+                    <!-- PASSO 1: SELEÇÃO DA VIAGEM -->
+                    <div class="form-step active" id="step-1">
+                        <h2><i class="fas fa-bus"></i> Escolha a Sua Viagem</h2>
 
                         <div class="campo-grupo">
-                            <label>Telemóvel</label>
+                            <label>Destino Pretendido</label>
                             <div class="input-icon-group">
-                                <input
-                                    type="tel"
-                                    name="contactoResponsavel"
-                                    class="form-control"
-                                    placeholder="9xx xxx xxx"
-                                    required
-                                >
-                                <i class="fas fa-phone"></i>
+                                <select id="passeioEscolhido" name="Passeio" required>
+                                    <option value="">Selecione um destino...</option>
+                                    <option value="Feiras Novas" data-data="2026-09-12">
+                                        Feiras Novas (Ponte de Lima) - 12 de setembro de 2026
+                                    </option>
+                                    <option value="Santuário de Fátima" data-data="2026-10-10">
+                                        Santuário de Fátima (Fátima & Batalha) - 10 de outubro de 2026
+                                    </option>
+                                    <option value="Santoinho" data-data="2026-11-07">
+                                        Santoinho & Viana do Castelo - 07 de novembro de 2026
+                                    </option>
+                                    <option value="Salamanca" data-data="2026-12-05">
+                                        Salamanca - 05 de dezembro de 2026
+                                    </option>
+                                </select>
+                                <i class="fas fa-route"></i>
                             </div>
                         </div>
 
                         <div class="campo-grupo">
-                            <label>Data de Nascimento</label>
+                            <label>Número de Acompanhantes</label>
                             <div class="input-icon-group">
-                                <input
-                                    type="date"
-                                    name="nascimentoResponsavel"
-                                    class="form-control"
-                                    required
-                                >
-                                <i class="fas fa-calendar-alt"></i>
+                                <select id="numPessoas" onchange="gerarCampos()">
+                                    <option value="0">Vou sozinho(a)</option>
+                                    <option value="1">1 Acompanhante (+1 lugar)</option>
+                                    <option value="2">2 Acompanhantes (+2 lugares)</option>
+                                    <option value="3">3 Acompanhantes (+3 lugares)</option>
+                                    <option value="4">4 Acompanhantes (+4 lugares)</option>
+                                    <option value="5">5 Acompanhantes (+5 lugares)</option>
+                                </select>
+                                <i class="fas fa-users"></i>
                             </div>
                         </div>
 
+                        <button type="button" class="btn-next" onclick="proximoPasso()">
+                            Continuar para os Seus Dados <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
 
-                    <div class="campo-grupo">
-                        <label>Localidade</label>
-                        <div class="input-icon-group">
-                            <input
-                                type="text"
-                                name="localidadeResponsavel"
-                                class="form-control"
-                                placeholder="Ex: São Pedro do Sul"
-                                required
-                            >
-                            <i class="fas fa-map-marker-alt"></i>
+                    <!-- PASSO 2: DADOS PESSOAIS + CONTACTO DE EMERGÊNCIA -->
+                    <div class="form-step" id="step-2">
+                        <h2><i class="fas fa-user-circle"></i> Dados do Titular da Reserva</h2>
+
+                        <div class="campo-grupo">
+                            <label>Nome Completo</label>
+                            <div class="input-icon-group">
+                                <input type="text" name="nomeResponsavel" placeholder="Como consta no Cartão de Cidadão" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+
+                        <div class="grid-inputs">
+                            <div class="campo-grupo">
+                                <label>Telemóvel</label>
+                                <div class="input-icon-group">
+                                    <input type="tel" name="contactoResponsavel" placeholder="9xx xxx xxx" required>
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+
+                            <div class="campo-grupo">
+                                <label>Data de Nascimento</label>
+                                <div class="input-icon-group">
+                                    <input type="date" name="nascimentoResponsavel" required>
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="campo-grupo">
+                            <label>Localidade</label>
+                            <div class="input-icon-group">
+                                <input type="text" name="localidadeResponsavel" placeholder="Ex: São Pedro do Sul" required>
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+
+                        <!-- CONTACTO DE EMERGÊNCIA / SEGURANÇA -->
+                        <div class="card-emergencia">
+                            <h3 style="color:#166534; font-size:1.05em; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-shield-alt" style="color:#16a34a"></i> Contacto de Segurança / Emergência
+                            </h3>
+
+                            <div class="campo-grupo">
+                                <label>Nome do Contacto de Emergência</label>
+                                <div class="input-icon-group">
+                                    <input type="text" name="nomeEmergencia" placeholder="Nome de um familiar ou amigo" required>
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid-inputs">
+                                <div class="campo-grupo">
+                                    <label>Telemóvel de Emergência</label>
+                                    <div class="input-icon-group">
+                                        <input type="tel" name="contactoEmergencia" placeholder="9xx xxx xxx" required>
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                </div>
+
+                                <div class="campo-grupo">
+                                    <label>Grau de Parentesco / Relação</label>
+                                    <div class="input-icon-group">
+                                        <select name="parentescoEmergencia" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="Cônjuge / Companheiro(a)">Cônjuge / Companheiro(a)</option>
+                                            <option value="Filho(a)">Filho(a)</option>
+                                            <option value="Pai / Mãe">Pai / Mãe</option>
+                                            <option value="Irmão / Irmã">Irmão / Irmã</option>
+                                            <option value="Outro Familiar">Outro Familiar</option>
+                                            <option value="Amigo(a)">Amigo(a)</option>
+                                        </select>
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CAMPOS DINÂMICOS DE ACOMPANHANTES -->
+                        <div id="camposDinamicos"></div>
+
+                        <!-- RESUMO AUTOMÁTICO DE LUGARES -->
+                        <div class="summary-box">
+                            <div class="summary-info">
+                                <span>Passeio Selecionado:</span>
+                                <strong id="summary-passeio-txt">Nenhum selecionado</strong>
+                            </div>
+                            <div class="summary-info" style="text-align: right;">
+                                <span>Total de Lugares:</span>
+                                <strong id="summary-lugares-txt" style="color: var(--accent);">1 Lugar</strong>
+                            </div>
+                        </div>
+
+                        <div class="step-buttons">
+                            <button type="button" class="btn-prev" onclick="passoAnterior()">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </button>
+                            <button type="submit" class="btn-enviar">
+                                Confirmar Reserva <i class="fas fa-paper-plane"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <hr style="border:0; border-top:1px solid #e2e8f0; margin:35px 0;">
-
-                    <h2>
-                        <i class="fas fa-bus"></i>
-                        Detalhes da Viagem
-                    </h2>
-
-                    <div class="campo-grupo">
-                        <label>Escolha o Passeio</label>
-                        <div class="input-icon-group">
-                            <select
-                                id="passeioEscolhido"
-                                name="Passeio"
-                                class="form-control"
-                                required
-                            >
-                                <option value="">Selecione um destino...</option>
-
-                                <option value="Feiras Novas" data-data="2026-09-12">
-                                    Feiras Novas (Ponte de Lima) - 12 de setembro de 2026
-                                </option>
-
-                                <option value="Santuário de Fátima" data-data="2026-10-10">
-                                    Santuário de Fátima (Fátima & Batalha) - 10 de outubro de 2026
-                                </option>
-
-                                <option value="Santoinho" data-data="2026-11-07">
-                                    Santoinho & Viana do Castelo - 07 de novembro de 2026
-                                </option>
-
-                                <option value="Salamanca" data-data="2026-12-05">
-                                    Salamanca - 05 de dezembro de 2026
-                                </option>
-
-                            </select>
-                            <i class="fas fa-route"></i>
-                        </div>
-                    </div>
-
-                    <div class="campo-grupo">
-                        <label>Número de Acompanhantes</label>
-                        <div class="input-icon-group">
-                            <select id="numPessoas" class="form-control" onchange="gerarCampos()">
-                                <option value="0">Vou sozinho(a)</option>
-                                <option value="1">1 Acompanhante</option>
-                                <option value="2">2 Acompanhantes</option>
-                                <option value="3">3 Acompanhantes</option>
-                                <option value="4">4 Acompanhantes</option>
-                                <option value="5">5 Acompanhantes</option>
-                            </select>
-                            <i class="fas fa-users"></i>
-                        </div>
-                    </div>
-
-                    <!-- INDICADOR DINÂMICO DE RESUMO DE LUGARES -->
-                    <div id="lugares-badge-container">
-                        <div class="lugares-summary-badge">
-                            <i class="fas fa-ticket-alt"></i> Total a reservar: <span id="total-lugares-txt">1 Lugar</span> (Lugar atribuído por ordem de confirmação)
-                        </div>
-                    </div>
-
-                    <div id="camposDinamicos"></div>
-
-                    <button type="submit" class="btn-enviar">
-                        Confirmar Inscrição
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-
-                    <div
-                        id="mensagem-sucesso"
-                        class="mensagem-status mensagem-sucesso"
-                    >
+                    <div id="mensagem-sucesso" class="mensagem-status mensagem-sucesso">
                         ✔️ Inscrição enviada com sucesso! Entraremos em contacto brevemente.
                     </div>
 
-                    <div
-                        id="mensagem-erro"
-                        class="mensagem-status mensagem-erro"
-                    >
-                        ❌ Ocorreu um erro ao enviar a inscrição. Tente novamente ou fale connosco pelo WhatsApp.
+                    <div id="mensagem-erro" class="mensagem-status mensagem-erro">
+                        ❌ Ocorreu um erro ao enviar a inscrição. Tente novamente ou contacte-nos pelo WhatsApp.
                     </div>
 
                 </form>
@@ -529,15 +575,12 @@
             if (passeio) {
                 document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
             }
-            
-            atualizarProgresso();
         };
 
-        // LÓGICA DE OCULTAÇÃO AUTOMÁTICA DE PASSEIOS COM DATAS PASSADAS
+        // OCULTAÇÃO AUTOMÁTICA DE DATAS PASSADAS
         function ocultarPasseiosPassados() {
             const selectPasseio = document.getElementById('passeioEscolhido');
             const opcoes = selectPasseio.querySelectorAll('option[data-data]');
-            
             const hoje = new Date();
             hoje.setHours(0, 0, 0, 0);
 
@@ -555,35 +598,55 @@
             });
         }
 
-        // GERAÇÃO DINÂMICA DE ACOMPANHANTES E RESUMO
+        // NAVEGAÇÃO ENTRE PASSOS (PASSO 1 ➔ PASSO 2)
+        function proximoPasso() {
+            const selectPasseio = document.getElementById('passeioEscolhido');
+            if(!selectPasseio.value) {
+                alert('Por favor, selecione primeiro o passeio pretendido.');
+                selectPasseio.focus();
+                return;
+            }
+
+            document.getElementById('step-1').classList.remove('active');
+            document.getElementById('step-2').classList.add('active');
+
+            document.getElementById('step-tab-1').classList.add('completed');
+            document.getElementById('step-tab-2').classList.add('active');
+
+            // Atualiza o resumo
+            document.getElementById('summary-passeio-txt').textContent = selectPasseio.options[selectPasseio.selectedIndex].text;
+        }
+
+        function passoAnterior() {
+            document.getElementById('step-2').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+
+            document.getElementById('step-tab-2').classList.remove('active');
+            document.getElementById('step-tab-1').classList.remove('completed');
+        }
+
+        // GERAÇÃO DINÂMICA DOS CAMPOS DOS ACOMPANHANTES
         function gerarCampos() {
             const qtd = parseInt(document.getElementById('numPessoas').value);
             const container = document.getElementById('camposDinamicos');
-            const totalLugaresTxt = document.getElementById('total-lugares-txt');
-            
-            // Atualiza resumo
+            const summaryLugares = document.getElementById('summary-lugares-txt');
+
             const total = qtd + 1;
-            totalLugaresTxt.textContent = total + (total === 1 ? ' Lugar' : ' Lugares');
+            summaryLugares.textContent = total + (total === 1 ? ' Lugar' : ' Lugares');
 
             container.innerHTML = '';
 
             for (let i = 1; i <= qtd; i++) {
                 container.innerHTML += `
                 <div class="card-extra">
-                    <h3 style="color:#1e4d8c; margin-bottom:20px; font-size:1.1em; display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-user-plus" style="color:#ff8c00"></i>
+                    <h3 style="color:var(--primary); margin-bottom:15px; font-size:1em; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-plus" style="color:var(--accent)"></i>
                         Acompanhante ${i}
                     </h3>
 
                     <div class="campo-grupo">
                         <div class="input-icon-group">
-                            <input
-                                type="text"
-                                name="nomeExtra${i}"
-                                class="form-control"
-                                placeholder="Nome Completo do Acompanhante"
-                                required
-                            >
+                            <input type="text" name="nomeExtra${i}" placeholder="Nome Completo do Acompanhante" required>
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
@@ -591,24 +654,14 @@
                     <div class="grid-inputs">
                         <div class="campo-grupo">
                             <div class="input-icon-group">
-                                <input
-                                    type="date"
-                                    name="nascExtra${i}"
-                                    class="form-control"
-                                    required
-                                >
+                                <input type="date" name="nascExtra${i}" required>
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
 
                         <div class="campo-grupo">
                             <div class="input-icon-group">
-                                <input
-                                    type="tel"
-                                    name="telExtra${i}"
-                                    class="form-control"
-                                    placeholder="Telemóvel (Opcional)"
-                                >
+                                <input type="tel" name="telExtra${i}" placeholder="Telemóvel (Opcional)">
                                 <i class="fas fa-phone"></i>
                             </div>
                         </div>
@@ -616,43 +669,10 @@
                 </div>
                 `;
             }
-
-            // Reassocia eventos para atualizar a barra de progresso
-            adicionarEventosProgresso();
-            atualizarProgresso();
         }
-
-        // BARRA DE PROGRESSO DINÂMICA
-        function atualizarProgresso() {
-            const inputs = document.querySelectorAll('.form-control[required]');
-            let preenchidos = 0;
-
-            inputs.forEach(input => {
-                if (input.value.trim() !== '') {
-                    preenchidos++;
-                }
-            });
-
-            const percentagem = inputs.length > 0 ? Math.round((preenchidos / inputs.length) * 100) : 0;
-            
-            document.getElementById('progress-fill').style.width = percentagem + '%';
-            document.getElementById('progress-percent').textContent = percentagem + '% Concluído';
-        }
-
-        function adicionarEventosProgresso() {
-            const inputs = document.querySelectorAll('.form-control');
-            inputs.forEach(input => {
-                input.removeEventListener('input', atualizarProgresso);
-                input.addEventListener('input', atualizarProgresso);
-                input.removeEventListener('change', atualizarProgresso);
-                input.addEventListener('change', atualizarProgresso);
-            });
-        }
-
-        adicionarEventosProgresso();
     </script>
 
-    <!-- SCRIPT ENVIO FORMSPREE -->
+    <!-- SCRIPT SUBMIT FORMSPREE -->
     <script>
         const form = document.getElementById("form-inscricao");
 
@@ -670,16 +690,14 @@
                 const response = await fetch("https://formspree.io/f/manjdnbw", {
                     method: "POST",
                     body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
                     mensagemSucesso.style.display = "block";
                     form.reset();
                     document.getElementById('camposDinamicos').innerHTML = '';
-                    atualizarProgresso();
+                    setTimeout(() => { passoAnterior(); }, 3000);
                 } else {
                     mensagemErro.style.display = "block";
                 }
