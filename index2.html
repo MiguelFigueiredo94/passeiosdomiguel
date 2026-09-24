@@ -1,1002 +1,793 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G0BKTCRNV9');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios do Miguel - Viagens e Excursões em Portugal</title>
+    <title>Contactos - Passeios do Miguel</title>
 
-    <!-- FontAwesome 6 & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS (CDN) para utilitários de layout e estilo -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandBlue: '#1e4d8c',
-                        brandOrange: '#ff8c00',
-                        brandOrangeHover: '#e67e00',
-                        brandBg: '#f4f7fb',
-                    }
-                }
-            }
-        }
-    </script>
 
     <style>
         :root {
-            --sidebar-bg: #1e4d8c;
-            --sidebar-width: 260px;
-            --sidebar-collapsed-width: 75px;
-            --primary-accent: #ff8c00;
-            --primary-accent-hover: #e67e00;
-            --text-color-light: #ffffff;
-            --text-color-muted: rgba(255, 255, 255, 0.7);
-            --item-hover-bg: rgba(255, 255, 255, 0.12);
-            --transition-speed: 0.3s;
-            --shadow-glow: 0 0 15px rgba(255, 140, 0, 0.4);
+            --primary: #1e4d8c;
+            --accent: #ff8c00;
+            --bg: #f8fafc;
+            --text: #334155;
+            --whatsapp: #25d366;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f4f7fb;
-            color: #333333;
-            overflow-x: hidden;
-        }
-
-        /* ESTRUTURA PRINCIPAL DO MENU LATERAL */
-        #menu-lateral {
-            width: var(--sidebar-width);
-            background-color: var(--sidebar-bg);
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            color: var(--text);
             min-height: 100vh;
-            height: 100%;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            z-index: 9999;
-            transition: width var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
-            user-select: none;
         }
 
-        /* MODO COLAPSADO */
-        #menu-lateral.collapsed {
-            width: var(--sidebar-collapsed-width);
-        }
-
-        /* BOTÃO COLLAPSE TOGGLE */
-        .collapse-toggle-btn {
-            position: absolute;
-            top: 22px;
-            right: -15px;
-            width: 30px;
-            height: 30px;
-            background: var(--primary-accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform var(--transition-speed) ease, background var(--transition-speed) ease;
-            z-index: 10001;
-            border: 2px solid white;
-        }
-
-        .collapse-toggle-btn:hover {
-            background: var(--primary-accent-hover);
-            transform: scale(1.15);
-        }
-
-        #menu-lateral.collapsed .collapse-toggle-btn i {
-            transform: rotate(180deg);
-        }
-
-        /* LOGÓTIPO */
-        .logo-container {
-            width: 130px;
-            height: 130px;
-            margin: 10px auto 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            background-color: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-            text-decoration: none;
-            transition: all var(--transition-speed) ease;
+        #menu-placeholder {
+            width: 250px;
             flex-shrink: 0;
-            position: relative;
         }
 
-        .logo-container .logo {
-            width: 115%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-            transform: translateY(3px);
-            transition: transform 0.3s ease;
-        }
-
-        .logo-container:hover .logo {
-            transform: translateY(3px) scale(1.05);
-        }
-
-        #menu-lateral.collapsed .logo-container {
-            width: 48px;
-            height: 48px;
-            margin: 10px auto 25px;
-            border-width: 2px;
-        }
-
-        /* LISTA DO MENU */
-        #menu-lateral ul.menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        main {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            min-width: 0;
         }
 
-        #menu-lateral ul.menu-list::-webkit-scrollbar {
-            width: 4px;
-        }
-        #menu-lateral ul.menu-list::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.25);
-            border-radius: 10px;
-        }
+        /* BANNER */
+        .banner-contatos {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1200&q=80');
 
-        #menu-lateral li {
-            position: relative;
-        }
+            background-size: cover;
+            background-position: center;
+            height: 380px;
 
-        /* LINKS DO MENU COM ANIMAÇÕES DE BRILHO */
-        #menu-lateral ul li a.menu-link {
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            color: var(--text-color-light);
-            text-decoration: none;
-            padding: 12px 16px;
-            font-size: 14.5px;
-            font-weight: 500;
-            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            position: relative;
-            white-space: nowrap;
-            overflow: hidden;
-        }
 
-        /* Efeito Glow / Shimmer no Hover */
-        #menu-lateral ul li a.menu-link::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        #menu-lateral ul li a.menu-link:hover::after {
-            left: 100%;
-        }
-
-        #menu-lateral ul li a.menu-link:hover {
-            background: var(--item-hover-bg);
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            color: #ffffff;
-        }
-
-        /* ITEM ATIVO COM DESTAQUE DINÂMICO */
-        #menu-lateral ul li a.menu-link.active,
-        #menu-lateral ul li.active > a.menu-link {
-            background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
-            color: white !important;
-            font-weight: 600;
-            box-shadow: var(--shadow-glow);
-        }
-
-        #menu-lateral ul li a.menu-link.active::before,
-        #menu-lateral ul li.active > a.menu-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 65%;
-            background: white;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .main-icon {
-            width: 24px;
+            color: white;
             text-align: center;
-            font-size: 17px;
+
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .banner-contatos h1 {
+            font-size: 3.2em;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .banner-contatos p {
+            font-size: 1.3em;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        /* CONTACTOS RÁPIDOS */
+        .quick-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: -35px;
+            padding: 0 20px;
+        }
+
+        .contact-pill {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+            text-decoration: none;
+            color: var(--text);
+
+            font-weight: 700;
+            transition: 0.3s;
+
+            border: 1px solid #e2e8f0;
+            font-size: 1em;
+        }
+
+        .contact-pill:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .btn-call i {
+            color: var(--primary);
+            font-size: 1.3em;
+        }
+
+        .btn-whats i {
+            color: var(--whatsapp);
+            font-size: 1.4em;
+        }
+
+        /* GRELHA CONTACTOS */
+        .grid-contatos {
+            max-width: 1250px;
+            margin: 60px auto 40px;
+            padding: 0 30px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card-contato {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 20px;
+            text-align: center;
+
+            border: 1px solid #eef0f2;
+
+            transition: 0.4s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+
+            text-decoration: none;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-contato:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .card-contato i {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card-contato strong {
+            font-size: 1.15em;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: block;
+        }
+
+        .card-contato p {
+            font-size: 0.95em;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        /* SECÇÃO DO FORMULÁRIO E MASCOTE INTERATIVA */
+        .form-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 30px;
+            width: 100%;
+        }
+
+        /* CARTÃO INTERATIVO DA MASCOTE */
+        .assistant-card {
+            background: linear-gradient(135deg, var(--primary), #2a65b0);
+            border-radius: 25px;
+            padding: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assistant-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .assistant-avatar-wrapper {
+            position: relative;
             flex-shrink: 0;
         }
 
-        .link-text {
-            margin-left: 12px;
-            opacity: 1;
-            transition: opacity 0.2s ease;
+        .assistant-avatar {
+            width: 110px;
+            height: 110px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            animation: bounce 2.5s infinite ease-in-out;
+            border: 4px solid var(--accent);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .assistant-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--whatsapp);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .assistant-content {
             flex-grow: 1;
         }
 
-        .fa-chevron-right {
-            margin-left: auto;
-            font-size: 11px;
-            opacity: 0.8;
-            transition: transform 0.3s ease;
+        .assistant-bubble {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 20px 25px;
+            border-radius: 18px;
+            border-top-left-radius: 4px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .dropdown.open .fa-chevron-right {
-            transform: rotate(90deg);
+        .assistant-bubble h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* DROPDOWNS / SUBMENUS FLUIDOS */
-        .dropdown-content {
-            display: none;
-            background: rgba(0, 0, 0, 0.22);
-            border-radius: 10px;
-            padding: 6px;
-            margin-top: 5px;
-            margin-left: 10px;
-            border-left: 2px solid var(--primary-accent);
+        .assistant-bubble p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.5;
         }
 
-        .dropdown.open .dropdown-content {
-            display: block;
-            animation: fadeInSubmenu 0.3s ease forwards;
-        }
-
-        @keyframes fadeInSubmenu {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dropdown-content a {
-            color: var(--text-color-muted) !important;
-            padding: 9px 14px !important;
-            display: flex !important;
-            align-items: center !important;
-            text-decoration: none !important;
-            font-size: 13.5px !important;
-            font-weight: 400 !important;
-            transition: all 0.2s ease !important;
-            border-radius: 8px !important;
-            background: transparent !important;
-            margin-bottom: 2px;
-        }
-
-        .dropdown-content a:hover {
-            color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.12) !important;
-            padding-left: 18px !important;
-        }
-
-        .dropdown-content a.active {
-            color: var(--primary-accent) !important;
-            background: rgba(255, 255, 255, 0.15) !important;
-            font-weight: 600 !important;
-        }
-
-        /* MODO COLAPSADO - REGRAS DE EXCLUSÃO DE TEXTO */
-        #menu-lateral.collapsed .link-text,
-        #menu-lateral.collapsed .fa-chevron-right,
-        #menu-lateral.collapsed .redes-sociais-menu p {
-            display: none;
-            opacity: 0;
-        }
-
-        #menu-lateral.collapsed ul li a.menu-link {
-            justify-content: center;
-            padding: 14px 0;
-        }
-
-        #menu-lateral.collapsed .main-icon {
-            margin: 0;
-        }
-
-        /* TOOLTIP NO MODO COLAPSADO */
-        .tooltip {
-            position: absolute;
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%) translateX(10px);
-            background: #0d1b2a;
+        .btn-open-form {
+            background: var(--accent);
             color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            pointer-events: none;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-open-form:hover {
+            transform: scale(1.05);
+            background: #e67e00;
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.5);
+        }
+
+        /* OVERLAY E PAINEL DESLIZANTE DO FORMULÁRIO */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.2s ease;
-            z-index: 10002;
+            transition: all 0.4s ease;
         }
 
-        .tooltip::before {
-            content: '';
-            position: absolute;
-            right: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent #0d1b2a transparent transparent;
-        }
-
-        #menu-lateral.collapsed li:hover .tooltip {
+        .drawer-overlay.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(-50%) translateX(15px);
         }
 
-        /* SUBMENU DROPDOWN NO MODO COLAPSADO */
-        #menu-lateral.collapsed .dropdown-content {
-            position: absolute;
-            left: 100%;
+        .form-drawer {
+            position: fixed;
             top: 0;
-            margin: 0 0 0 12px;
-            background: #1e4d8c;
-            min-width: 200px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 8px;
-            border: 1px solid rgba(255,255,255,0.15);
-            z-index: 10001;
-        }
-
-        /* REDES SOCIAIS COM ANIMAÇÃO BOUNCE / ROTATION */
-        .redes-sociais-menu {
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.12);
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .redes-sociais-menu p {
-            color: var(--text-color-muted);
-            font-size: 11px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .icones-redes {
+            right: -600px;
+            width: 100%;
+            max-width: 550px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .form-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .drawer-header h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
             gap: 12px;
         }
 
-        .icones-redes a {
+        .btn-close-drawer {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
             color: white;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.2s;
         }
 
-        /* Animações Individuais nas Redes */
-        .icones-redes a.facebook:hover {
-            background: #1877f2;
-            transform: translateY(-5px) scale(1.15) rotate(8deg);
-            box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+        .btn-close-drawer:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
 
-        .icones-redes a.instagram:hover {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            transform: translateY(-5px) scale(1.15) rotate(-8deg);
-            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4);
+        .drawer-body {
+            padding: 35px 30px;
+            flex-grow: 1;
         }
 
-        .icones-redes a.whatsapp:hover {
-            background: #25d366;
-            transform: translateY(-5px) scale(1.15) rotate(8deg);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        .grupo-input {
+            position: relative;
+            margin-bottom: 22px;
         }
 
-        #menu-lateral.collapsed .icones-redes {
-            flex-direction: column;
+        .grupo-input i {
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            color: #94a3b8;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 18px 18px 18px 50px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+
+            font-size: 1em;
+            outline: none;
+
+            transition: 0.3s;
+
+            background: #f8fafc;
+            font-family: inherit;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+        }
+
+        .form-container input:focus + i,
+        .form-container textarea:focus + i {
+            color: var(--accent);
+        }
+
+        .form-container button {
+            background: var(--primary);
+            color: white;
+
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+
+            width: 100%;
+
+            font-weight: bold;
+            font-size: 1.1em;
+
+            cursor: pointer;
+            transition: 0.3s;
+
+            display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 15px rgba(30, 77, 140, 0.2);
         }
 
-        #menu-lateral.collapsed .icones-redes a {
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
+        .form-container button:hover {
+            background: var(--accent);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
         }
 
-        /* ADAPTAÇÕES DE CONTEÚDO PRINCIPAL DE ACORDO COM O ESTADO DO MENU */
-        #main-content {
-            margin-left: var(--sidebar-width);
-            transition: margin-left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: 100vh;
-        }
-
-        body.menu-collapsed #main-content {
-            margin-left: var(--sidebar-collapsed-width);
-        }
-
-        /* OVERLAY E RESPONSIVIDADE MOBILE */
-        .mobile-overlay {
+        /* MENSAGENS */
+        .mensagem-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
             display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
-            z-index: 9998;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        }
+
+        .mensagem-sucesso {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .mensagem-erro {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1100px) {
+            .grid-contatos {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 1024px) {
-            #main-content {
-                margin-left: 0 !important;
-                padding-top: 60px;
+            body {
+                flex-direction: column;
             }
 
-            #menu-lateral {
-                transform: translateX(-100%);
-                width: 270px !important;
+            #menu-placeholder {
+                width: 100%;
+                height: auto;
             }
 
-            #menu-lateral.mobile-open {
-                transform: translateX(0);
+            .assistant-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
             }
 
-            .mobile-overlay.active {
-                display: block;
-                opacity: 1;
+            .assistant-bubble h3 {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-contatos {
+                grid-template-columns: 1fr;
             }
 
-            .collapse-toggle-btn {
-                display: none;
+            .banner-contatos {
+                height: 300px;
+                padding: 20px;
             }
 
-            #menu-lateral .link-text,
-            #menu-lateral .fa-chevron-right,
-            #menu-lateral .redes-sociais-menu p {
-                display: block !important;
-                opacity: 1 !important;
+            .banner-contatos h1 {
+                font-size: 2.2em;
             }
 
-            #menu-lateral .logo-container {
-                width: 110px !important;
-                height: 110px !important;
+            .grid-contatos,
+            .form-section {
+                padding: 0 15px;
             }
 
-            #menu-lateral ul li a.menu-link {
-                justify-content: flex-start !important;
-                padding: 12px 16px !important;
+            .quick-contact {
+                flex-direction: column;
+                align-items: center;
+                margin-top: -50px;
+            }
+
+            .contact-pill {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .form-drawer {
+                max-width: 100%;
             }
         }
     </style>
 </head>
-<body class="bg-brandBg">
 
-    <!-- OVERLAY PARA MOBILE -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
+<body>
 
-    <!-- HEADER / BARRA DE TOPO MOBILE -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-brandBlue text-white flex items-center justify-between px-4 z-50 shadow-md">
-        <div class="flex items-center space-x-3">
-            <button id="mobileMenuBtn" class="text-2xl p-2 focus:outline-none hover:text-brandOrange transition-colors" aria-label="Abrir Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <span class="font-bold text-lg tracking-wide">Passeios do Miguel</span>
-        </div>
-        <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition-all flex items-center justify-center w-9 h-9">
-            <i class="fab fa-whatsapp text-lg"></i>
-        </a>
-    </header>
+    <div id="menu-placeholder"></div>
 
-    <!-- MENU LATERAL ISOLADO -->
-    <nav id="menu-lateral">
-        <!-- BOTÃO PARA MINIMIZAR / COLAPSAR -->
-        <div class="collapse-toggle-btn" id="collapseBtn" title="Minimizar Menu">
-            <i class="fas fa-chevron-left"></i>
+    <main>
+
+        <div class="banner-contatos">
+            <h1>Fale Connosco</h1>
+            <p>Estamos à distância de um clique para ajudar na sua próxima viagem.</p>
         </div>
 
-        <!-- LOGÓTIPO -->
-        <a href="index.html" class="logo-container">
-            <img src="https://i.imgur.com/X1xT7Fx.png" class="logo" alt="Passeios do Miguel" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e4d8c/ffffff?text=Passeios+Miguel'">
-        </a>
+        <div class="quick-contact">
+            <a href="tel:+351965715465" class="contact-pill btn-call">
+                <i class="fas fa-phone-alt"></i>
+                Ligar: 965 715 465
+            </a>
 
-        <!-- LISTA DE NAVEGAÇÃO -->
-        <ul class="menu-list">
-            <li>
-                <a href="index.html" class="menu-link active">
-                    <i class="fas fa-home main-icon"></i>
-                    <span class="link-text">Home</span>
-                </a>
-                <div class="tooltip">Home</div>
-            </li>
+            <a href="https://wa.me/351965715465" target="_blank" class="contact-pill btn-whats">
+                <i class="fab fa-whatsapp"></i>
+                Mensagem WhatsApp
+            </a>
+        </div>
 
-            <li>
-                <a href="sobre.html" class="menu-link">
-                    <i class="fas fa-user main-icon"></i>
-                    <span class="link-text">Sobre Mim</span>
-                </a>
-                <div class="tooltip">Sobre Mim</div>
-            </li>
+        <section class="grid-contatos">
 
-            <!-- DROPDOWN DE PASSEIOS E GALERIA -->
-            <li class="dropdown">
-                <a href="passeios.html" class="menu-link">
-                    <i class="fas fa-bus main-icon"></i>
-                    <span class="link-text">Passeios</span>
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-                <div class="tooltip">Passeios</div>
-                <div class="dropdown-content">
-                    <a href="passeios.html"><i class="fas fa-list-ul" style="margin-right:8px;"></i> Ver Todos os Passeios</a>
-                    <a href="galeria.html"><i class="fas fa-camera" style="margin-right:8px;"></i> Exposição de Fotos</a>
-                </div>
-            </li>
-
-            <li>
-                <a href="contactos.html" class="menu-link">
-                    <i class="fas fa-envelope main-icon"></i>
-                    <span class="link-text">Contactos</span>
-                </a>
-                <div class="tooltip">Contactos</div>
-            </li>
-
-            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.12); margin: 6px 0;">
-
-            <li>
-                <a href="dicas.html" class="menu-link">
-                    <i class="fas fa-lightbulb main-icon"></i>
-                    <span class="link-text">Dicas Úteis</span>
-                </a>
-                <div class="tooltip">Dicas Úteis</div>
-            </li>
-
-            <li>
-                <a href="faq.html" class="menu-link">
-                    <i class="fas fa-question-circle main-icon"></i>
-                    <span class="link-text">FAQ</span>
-                </a>
-                <div class="tooltip">FAQ</div>
-            </li>
-        </ul>
-
-        <!-- REDES SOCIAIS -->
-        <div class="redes-sociais-menu">
-            <p>Siga-nos</p>
-            <div class="icones-redes">
-                <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" class="instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <div class="card-contato">
+                <i class="fas fa-user-tie"></i>
+                <strong>Responsável</strong>
+                <p>Miguel Figueiredo</p>
             </div>
-        </div>
-    </nav>
 
-    <!-- ÁREA PRINCIPAL DE CONTEÚDO -->
-    <main id="main-content" class="w-full">
-        
-        <!-- HERO SECTION / BANNER PRINCIPAL -->
-        <section class="relative min-h-[550px] lg:min-h-[620px] flex items-center justify-center bg-cover bg-center text-white px-4 md:px-8 py-16" 
-                 style="background-image: linear-gradient(rgba(15, 32, 67, 0.75), rgba(30, 77, 140, 0.85)), url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1920&auto=format&fit=crop');">
-            <div class="max-w-4xl mx-auto text-center space-y-6">
-                <span class="inline-block bg-brandOrange/90 text-white font-semibold text-xs md:text-sm uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg transform -translate-y-2">
-                    <i class="fas fa-route mr-1.5"></i> Viagens em Grupo & Excursões
-                </span>
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    Descubra Portugal com a <br><span class="text-brandOrange underline decoration-brandOrange/40">Passeios do Miguel</span>
-                </h1>
-                <p class="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
-                    Viaje com o máximo conforto, animação e segurança. Junte-se a nós para passeios inesquecíveis pelos recantos mais bonitos do país!
+            <div class="card-contato">
+                <i class="fas fa-map-marked-alt"></i>
+                <strong>Localização</strong>
+                <p>São Pedro do Sul, Viseu</p>
+            </div>
+
+            <div class="card-contato">
+                <i class="fas fa-calendar-check"></i>
+                <strong>Disponibilidade</strong>
+                <p>Segunda a Domingo</p>
+            </div>
+
+            <a href="mailto:passeiosdomiguel@gmail.com" class="card-contato">
+                <i class="fas fa-envelope-open-text"></i>
+                <strong>E-mail Direto</strong>
+                <p>passeiosdomiguel@gmail.com</p>
+            </a>
+
+        </section>
+
+        <!-- SECÇÃO DA MASCOTE INTERATIVA -->
+        <section class="form-section">
+            <div class="assistant-card">
+                <div class="assistant-avatar-wrapper">
+                    <div class="assistant-avatar">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <span class="assistant-badge"></span>
+                </div>
+                <div class="assistant-content">
+                    <div class="assistant-bubble">
+                        <h3><i class="fas fa-comment-dots" style="color: var(--accent);"></i> Olá! Precisa de ajuda?</h3>
+                        <p>Tem alguma dúvida sobre os próximos passeios, reservas ou quer apenas deixar o seu feedback? Clique no botão ao lado para me enviar uma mensagem!</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-open-form" id="btn-open-drawer">
+                    <i class="fas fa-pen"></i>
+                    Escrever Mensagem
+                </button>
+            </div>
+        </section>
+
+        <!-- OVERLAY E FORMULÁRIO DESLIZANTE -->
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+
+        <aside class="form-drawer" id="form-drawer">
+            <div class="drawer-header">
+                <h2><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Enviar Mensagem</h2>
+                <button type="button" class="btn-close-drawer" id="btn-close-drawer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="drawer-body form-container">
+                <p style="margin-bottom: 25px; color: #64748b; font-size: 0.95em;">
+                    Preencha os seus dados abaixo. Prometemos responder em menos de 24 horas!
                 </p>
-                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#proximos-passeios" class="w-full sm:w-auto bg-brandOrange hover:bg-brandOrangeHover text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-orange-500/30 flex items-center justify-center">
-                        <i class="fas fa-calendar-alt mr-2"></i> Ver Próximos Passeios
-                    </a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-green-500/30 flex items-center justify-center">
-                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Grupo de WhatsApp
-                    </a>
-                </div>
+
+                <form id="contact-form">
+                    <div class="grupo-input">
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="O seu nome"
+                            required
+                        >
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div class="grupo-input">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="O seu endereço de e-mail"
+                            required
+                        >
+                        <i class="fas fa-at"></i>
+                    </div>
+
+                    <div class="grupo-input">
+                        <input
+                            type="tel"
+                            name="telefone"
+                            placeholder="O seu contacto telefone"
+                            required
+                        >
+                        <i class="fas fa-phone"></i>
+                    </div>
+
+                    <div class="grupo-input">
+                        <textarea
+                            name="mensagem"
+                            rows="5"
+                            placeholder="Como podemos ajudar no seu próximo passeio?"
+                            required
+                        ></textarea>
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+
+                    <button type="submit">
+                        Enviar Mensagem
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                    <div
+                        id="mensagem-sucesso"
+                        class="mensagem-status mensagem-sucesso"
+                    >
+                        ✔️ Mensagem enviada com sucesso!
+                    </div>
+
+                    <div
+                        id="mensagem-erro"
+                        class="mensagem-status mensagem-erro"
+                    >
+                        ❌ Ocorreu um erro ao enviar. Tente novamente.
+                    </div>
+                </form>
             </div>
-        </section>
+        </aside>
 
-        <!-- SEÇÃO: PRÓXIMOS PASSEIOS EM DESTAQUE -->
-        <section id="proximos-passeios" class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">Próximos Passeios em Destaque</h2>
-                <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">Reserve já o seu lugar na nossa próxima aventura. Lugares limitados para o seu maior conforto!</p>
-                <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
-            </div>
+        <div id="footer-placeholder"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cartão Passeio 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
-                    <div class="relative overflow-hidden h-52">
-                        <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=800&auto=format&fit=crop" 
-                             alt="Passeio à Serra da Estrela" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Serra+da+Estrela'">
-                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
-                            35€ / pessoa
-                        </span>
-                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
-                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 12 de Outubro
-                        </span>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Montanha & Natureza</span>
-                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Serra da Estrela e Sabugueiro</h3>
-                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Venha apreciar as paisagens deslumbrantes, saborear o tradicional queijo da serra e visitar as aldeias típicas.</p>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
-                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 07:30h</span>
-                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
-                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cartão Passeio 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
-                    <div class="relative overflow-hidden h-52">
-                        <img src="https://images.unsplash.com/photo-1548707309-dcebeab9ec98?q=80&w=800&auto=format&fit=crop" 
-                             alt="Passeio a Sintra e Cascais" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Sintra+e+Cascais'">
-                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
-                            28€ / pessoa
-                        </span>
-                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
-                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 26 de Outubro
-                        </span>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Cultura & Mar</span>
-                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Encantos de Sintra & Cascais</h3>
-                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Um dia mágico entre vilas históricas, palácios de encantar e a vista relaxante da beira-mar de Cascais.</p>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
-                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 08:00h</span>
-                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
-                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cartão Passeio 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 group">
-                    <div class="relative overflow-hidden h-52">
-                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=800&auto=format&fit=crop" 
-                             alt="Passeio ao Porto e Douro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e4d8c/ffffff?text=Porto+e+Douro'">
-                        <span class="absolute top-4 right-4 bg-brandOrange text-white font-bold text-sm px-3 py-1 rounded-full shadow-md">
-                            40€ / pessoa
-                        </span>
-                        <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-md">
-                            <i class="fas fa-calendar-day text-brandOrange mr-1"></i> 09 de Novembro
-                        </span>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <span class="text-xs font-bold text-brandBlue uppercase tracking-wider">Gastronomia & Cruzeiro</span>
-                            <h3 class="text-xl font-bold text-gray-800 mt-1 group-hover:text-brandOrange transition-colors">Porto Invicta & Cruzeiro das 6 Pontes</h3>
-                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">Passeio de dia inteiro na belíssima cidade do Porto com opção de cruzeiro no Rio Douro e almoço livre.</p>
-                        </div>
-                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
-                            <span class="text-xs text-gray-500"><i class="fas fa-bus mr-1 text-brandBlue"></i> Saída: 06:45h</span>
-                            <a href="passeios.html" class="bg-brandBlue hover:bg-brandOrange text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300">
-                                Saber Mais <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="passeios.html" class="inline-flex items-center text-brandBlue hover:text-brandOrange font-bold text-base border-2 border-brandBlue hover:border-brandOrange px-8 py-3 rounded-xl transition-all duration-300">
-                    <i class="fas fa-th-list mr-2"></i> Ver Todos os Passeios Agendados
-                </a>
-            </div>
-        </section>
-
-        <!-- SEÇÃO: PORQUÊ VIAJAR CONNOSCO -->
-        <section class="py-16 bg-white px-4 sm:px-8 border-y border-gray-100">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">Porquê Viajar Connosco?</h2>
-                    <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">Garantimos uma experiência acolhedora do início ao fim de cada viagem.</p>
-                    <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Destaque 1 -->
-                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
-                        <div class="w-16 h-16 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandBlue/20">
-                            <i class="fas fa-bus"></i>
-                        </div>
-                        <h3 class="font-bold text-lg text-gray-800 mb-2">Autocarros Modernos</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Viaturas confortáveis, equipadas com ar condicionado e todo o conforto necessário para a sua viagem.</p>
-                    </div>
-
-                    <!-- Destaque 2 -->
-                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
-                        <div class="w-16 h-16 bg-brandOrange text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandOrange/20">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="font-bold text-lg text-gray-800 mb-2">Ambiente Familiar</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Convívio, boa disposição e novas amizades em cada passeio. Uma verdadeira comunidade de viajantes!</p>
-                    </div>
-
-                    <!-- Destaque 3 -->
-                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
-                        <div class="w-16 h-16 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandBlue/20">
-                            <i class="fas fa-piggy-bank"></i>
-                        </div>
-                        <h3 class="font-bold text-lg text-gray-800 mb-2">Preços Acessíveis</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Passeios e excursões pensados para oferecer a melhor relação qualidade/preço sem surpresas.</p>
-                    </div>
-
-                    <!-- Destaque 4 -->
-                    <div class="p-6 bg-brandBg rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100">
-                        <div class="w-16 h-16 bg-brandOrange text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-md shadow-brandOrange/20">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <h3 class="font-bold text-lg text-gray-800 mb-2">Roteiros Cuidados</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Locais selecionados ao pormenor para que aproveite cada momento sem preocupações organizacionais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO: TESTEMUNHOS DE PASSAGEIROS -->
-        <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-brandBlue mb-3">O Que Dizem os Nossos Passageiros</h2>
-                <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">A satisfação de quem viaja connosco é o nosso maior orgulho.</p>
-                <div class="w-20 h-1 bg-brandOrange mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testemunho 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
-                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 text-sm italic leading-relaxed">"O passeio à Serra da Estrela foi Simply fantástico! Muito bem organizado, o autocarro super confortável e a animação do Miguel fez toda a diferença."</p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-sm">
-                            MA
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 text-sm">Maria Amélia</h4>
-                            <span class="text-xs text-gray-400">Passageira Frequente</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testemunho 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
-                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 text-sm italic leading-relaxed">"Já fui a 4 passeios com a Passeios do Miguel e recomendo vivamente a todos. Preços justos, pontualidade rigorosa e um ambiente espetacular."</p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-brandOrange text-white flex items-center justify-center font-bold text-sm">
-                            JS
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 text-sm">João Silva</h4>
-                            <span class="text-xs text-gray-400">Passageiro de Lisboa</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testemunho 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between relative">
-                    <i class="fas fa-quote-right absolute top-6 right-6 text-brandOrange/15 text-4xl"></i>
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 text-sm italic leading-relaxed">"Excelente opção para quem quer passear sem o stresse de ter de guiar. Correu tudo lindamente e fiz amigos impecáveis no grupo!"</p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-sm">
-                            TC
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 text-sm">Teresa Costa</h4>
-                            <span class="text-xs text-gray-400">Passageira de Sintra</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RODAPÉ (FOOTER) -->
-        <footer class="bg-brandBlue text-white pt-12 pb-6 px-4 sm:px-8 border-t-4 border-brandOrange">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-white/10">
-                <!-- Coluna 1: Sobre -->
-                <div class="space-y-3">
-                    <h3 class="text-xl font-bold tracking-wide text-brandOrange">Passeios do Miguel</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        Organização de excursões e passeios de autocarro por todo o país. A sua melhor companhia para descobrir a beleza de Portugal.
-                    </p>
-                </div>
-
-                <!-- Coluna 2: Links Rápidos -->
-                <div class="space-y-3">
-                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Links Rápidos</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="index.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Home</a></li>
-                        <li><a href="sobre.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Sobre Mim</a></li>
-                        <li><a href="passeios.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Lista de Passeios</a></li>
-                        <li><a href="galeria.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Exposição de Fotos</a></li>
-                        <li><a href="contactos.html" class="hover:text-brandOrange transition-colors"><i class="fas fa-chevron-right text-xs text-brandOrange mr-1"></i> Contactos</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 3: Contactos -->
-                <div class="space-y-3">
-                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Contacte-nos</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex items-center"><i class="fab fa-whatsapp text-green-400 mr-2 text-base"></i> Grupo WhatsApp Disponível</li>
-                        <li class="flex items-center"><i class="fas fa-envelope text-brandOrange mr-2"></i> info@passeiosdomiguel.pt</li>
-                        <li class="flex items-center"><i class="fas fa-map-marker-alt text-brandOrange mr-2"></i> Lisboa & arredores, Portugal</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 text-center sm:text-left gap-3">
-                <p>&copy; Passeios do Miguel. Todos os direitos reservados.</p>
-                <div class="flex space-x-4">
-                    <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-facebook-f text-base"></i></a>
-                    <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-instagram text-base"></i></a>
-                    <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-whatsapp text-base"></i></a>
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <!-- LÓGICA JAVASCRIPT DO MENU E PÁGINA -->
+    <!-- SCRIPT DE CARREGAMENTO DOS COMPONENTES -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuLateral = document.getElementById('menu-lateral');
-            const collapseBtn = document.getElementById('collapseBtn');
-            const dropdowns = document.querySelectorAll('.dropdown');
-            const allLinks = document.querySelectorAll('#menu-lateral a');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileOverlay = document.getElementById('mobileOverlay');
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(error => console.error('Erro:', error));
+        }
 
-            // 1. LÓGICA AUTOMÁTICA DE PÁGINA ATIVA
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            const currentHash = window.location.hash;
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('footer-placeholder', 'rodape.html');
+    </script>
 
-            allLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (!linkHref) return;
+    <!-- SCRIPT DA ANIMAÇÃO DO PAINEL / MASCOTE -->
+    <script>
+        const btnOpenDrawer = document.getElementById('btn-open-drawer');
+        const btnCloseDrawer = document.getElementById('btn-close-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const formDrawer = document.getElementById('form-drawer');
 
-                // Comparação precisa de URL/Arquivo ou Ancora (#)
-                if (linkHref === currentPath || (currentHash && linkHref.includes(currentHash))) {
-                    link.classList.add('active');
-                    
-                    // Se estiver dentro de um dropdown, abre o submenu pai e destaca-o
-                    const parentDropdown = link.closest('.dropdown');
-                    if (parentDropdown) {
-                        parentDropdown.classList.add('open');
-                        const parentMenuLink = parentDropdown.querySelector('.menu-link');
-                        if (parentMenuLink) parentMenuLink.classList.add('active');
-                    }
-                }
-            });
+        function openDrawer() {
+            formDrawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita scroll de fundo
+        }
 
-            // 2. TOGGLE PARA MINIMIZAR / EXPANDIR O MENU (DESKTOP)
-            if (collapseBtn) {
-                collapseBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    menuLateral.classList.toggle('collapsed');
-                    document.body.classList.toggle('menu-collapsed');
-                    
-                    // Fechar dropdowns abertos ao recolher para manter limpo
-                    if (menuLateral.classList.contains('collapsed')) {
-                        dropdowns.forEach(d => d.classList.remove('open'));
-                    }
-                });
-            }
+        function closeDrawer() {
+            formDrawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-            // 3. NAVEGAÇÃO E ACESSOS DE SUBMENU (DROPDOWNS)
-            dropdowns.forEach(dropdown => {
-                const dropdownToggle = dropdown.querySelector('.menu-link');
-                
-                dropdownToggle.addEventListener('click', function(e) {
-                    // Se o item tem links para navegação normal, deixa navegar se não for link vazio
-                    const href = this.getAttribute('href');
-                    if (!href || href === '#' || href === 'javascript:void(0);') {
-                        e.preventDefault();
-                    }
+        btnOpenDrawer.addEventListener('click', openDrawer);
+        btnCloseDrawer.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
 
-                    // Se estiver colapsado, expande primeiro
-                    if (menuLateral.classList.contains('collapsed') && window.innerWidth > 1024) {
-                        menuLateral.classList.remove('collapsed');
-                        document.body.classList.remove('menu-collapsed');
-                    }
-
-                    const isOpen = dropdown.classList.contains('open');
-                    
-                    // Fechar outros dropdowns
-                    dropdowns.forEach(d => d.classList.remove('open'));
-
-                    // Alternar o atual
-                    if (!isOpen) {
-                        dropdown.classList.add('open');
-                    }
-                });
-            });
-
-            // 4. SUPORTE PARA MENU HAMBÚRGUER EM DISPOSITIVOS MÓVEIS
-            function toggleMobileMenu() {
-                menuLateral.classList.toggle('mobile-open');
-                mobileOverlay.classList.toggle('active');
-            }
-
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            }
-
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', toggleMobileMenu);
+        // Tecla ESC fecha o formulário
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && formDrawer.classList.contains('active')) {
+                closeDrawer();
             }
         });
     </script>
+
+    <!-- SCRIPT DO SUBMIT FORMSPREE -->
+    <script>
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const mensagemSucesso = document.getElementById("mensagem-sucesso");
+            const mensagemErro = document.getElementById("mensagem-erro");
+
+            mensagemSucesso.style.display = "none";
+            mensagemErro.style.display = "none";
+
+            try {
+                const response = await fetch("https://formspree.io/f/mdawddar", {
+                    method: "POST",
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    mensagemSucesso.style.display = "block";
+                    form.reset();
+
+                    // Opcional: Fechar o painel após 3 segundos com sucesso
+                    setTimeout(() => {
+                        closeDrawer();
+                        mensagemSucesso.style.display = "none";
+                    }, 3000);
+                } else {
+                    mensagemErro.style.display = "block";
+                }
+            } catch (error) {
+                mensagemErro.style.display = "block";
+            }
+        });
+    </script>
+
 </body>
 </html>
