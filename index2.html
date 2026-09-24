@@ -11,205 +11,132 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Nossa História - Passeios do Miguel</title>
+    <title>Mural de Memórias - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. ESTRUTURA BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #e9eff3; min-height: 100vh; display: block; color: #2d3748; }
         
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #f4f7f9; 
-            min-height: 100vh;
-            display: block;
-            color: #334155;
-            overflow-x: hidden;
-        }
-
         #menu-placeholder { width: 250px; flex-shrink: 0; }
+        main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        main { 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-            margin-left: 250px; 
-        }
-
-        /* 2. HERO SECTION COM PARALLAX SUAVE */
+        /* HERO SECTION */
         .hero-section {
             background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                              url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed;
-            height: 380px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            color: white; 
-            text-align: center; 
-            border-bottom: 5px solid #ff8c00;
+                              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; height: 340px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
+            padding: 0 20px;
         }
-        .hero-section h1 { 
-            font-size: 3.5em; 
-            font-weight: 800; 
-            margin-bottom: 10px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
-            animation: fadeInDown 0.8s ease-out;
-        }
-        .hero-section p { 
-            font-size: 1.3em; 
-            font-weight: 300; 
-            padding: 0 20px; 
-            animation: fadeInUp 0.8s ease-out;
+        .hero-section h1 { font-size: 3.8em; text-shadow: 3px 3px 15px rgba(0,0,0,0.5); font-family: 'Kalam', cursive; margin-bottom: 5px; }
+        .hero-section p { font-size: 1.2em; font-weight: 300; max-width: 600px; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+
+        /* FORMULÁRIO ESTILO QUADRO DE NOTAS */
+        .container-form {
+            max-width: 900px; width: calc(100% - 40px); margin: -50px auto 50px; z-index: 10;
         }
 
-        /* 3. TIMELINE NARRATIVA DINÂMICA */
-        .content-section { 
-            padding: 80px 40px; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            position: relative;
+        .barra-feedback {
+            background: #ffffff; padding: 30px; 
+            border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
+            border: 2px solid #ff8c00; position: relative;
         }
 
-        /* Linha de Estrada da Timeline */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            left: 65px;
-            top: 100px;
-            bottom: 100px;
-            width: 3px;
-            background: linear-gradient(to bottom, #ff8c00, #1e4d8c);
-            opacity: 0.3;
-            border-radius: 2px;
-        }
+        .form-header { text-align: center; margin-bottom: 20px; }
+        .form-header h2 { font-size: 1.5em; color: #1e4d8c; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .form-header p { font-size: 0.95em; color: #64748b; margin-top: 4px; }
 
-        /* Autocarro Interativo na Linha */
-        .bus-tracker {
-            position: absolute;
-            left: 53px;
-            top: 100px;
-            width: 28px;
-            height: 28px;
-            background: #ff8c00;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            box-shadow: 0 0 12px rgba(255, 140, 0, 0.6);
-            z-index: 2;
-            transition: top 0.15s ease-out;
-        }
+        #status-mensagem { text-align: center; display: none; padding: 20px; }
+        #status-mensagem i { color: #28a745; font-size: 50px; margin-bottom: 15px; }
+        #status-mensagem p { font-weight: 600; color: #1e4d8c; font-size: 1.2em; }
 
-        /* Scroll Reveal Suave */
-        .reveal {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .input-estilizado { 
+            width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 12px; 
+            outline: none; font-family: 'Poppins', sans-serif; font-size: 0.95em; transition: 0.3s;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .input-estilizado:focus { border-color: #ff8c00; box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.15); }
+
+        .textarea-full { grid-column: span 2; resize: vertical; min-height: 90px; }
+
+        .form-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+        
+        .star-box { display: flex; align-items: center; gap: 10px; background: #fff7ed; padding: 8px 18px; border-radius: 50px; border: 1px solid #ffedd5; }
+        .star-box span { font-size: 0.85em; font-weight: 600; color: #c2410c; }
+        .star-rating { display: flex; gap: 6px; }
+        .star-rating i { color: #cbd5e1; cursor: pointer; font-size: 22px; transition: 0.2s; }
+        .star-rating i.active { color: #ff8c00; transform: scale(1.1); }
+
+        .btn-v { 
+            background: #1e4d8c; color: white; border: none; padding: 14px 32px; 
+            border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; 
+            align-items: center; gap: 10px; transition: 0.3s; font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 12px rgba(30, 77, 140, 0.2);
         }
+        .btn-v:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 140, 0, 0.3); }
 
-        .fase { 
-            display: flex; 
-            gap: 40px; 
-            margin-bottom: 60px; 
-            position: relative; 
-            z-index: 1;
-        }
-
-        .fase-icon { 
-            background: white; 
-            color: #ff8c00; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 20px; 
-            flex-shrink: 0; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 2px solid #ff8c00;
-            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
-        }
-
-        .fase-content { 
-            background: white; 
-            padding: 35px; 
-            border-radius: 24px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
-            border-left: 5px solid #ff8c00;
-            flex-grow: 1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Animação ao passar o rato na fase */
-        .fase:hover .fase-content {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.07);
-        }
-
-        .fase:hover .fase-icon {
-            transform: scale(1.15) rotate(5deg);
-            background: #ff8c00;
-            color: white;
-        }
-
-        .fase-content h3 { color: #1e4d8c; margin-bottom: 12px; font-size: 1.4em; }
-        .fase-content p { color: #475569; line-height: 1.8; font-size: 1.15em; }
-
-        /* 4. MENSAGEM FINAL / QUOTE */
-        .quote-especial {
-            margin-top: 50px;
-            padding: 45px 30px;
-            background: linear-gradient(135deg, #1e4d8c 0%, #0f172a 100%);
-            color: white;
-            border-radius: 24px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.2);
-            overflow: hidden;
+        /* MURAL ESTILO MASONRY (COLUNAS MISTAS) */
+        .seccao-mural { 
+            padding: 0 40px 80px; width: 100%; max-width: 1300px; margin: 0 auto; 
+            column-count: 3; column-gap: 25px;
         }
         
-        .quote-especial p { 
-            font-size: 1.4em; 
-            font-style: italic; 
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .quote-especial span { 
-            display: block; 
-            margin-top: 15px; 
-            color: #ff8c00; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 0.95em;
+        .nota { 
+            display: inline-block; width: 100%; margin-bottom: 25px; padding: 30px 25px 25px; 
+            position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.06); transition: 0.3s ease; 
+            border-radius: 8px; break-inside: avoid;
         }
 
-        /* ANIMAÇÕES KEYFRAMES */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* PINO / PIONE DE CORTIÇA */
+        .pione {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 16px; background: #e11d48; border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3); z-index: 5;
+        }
+        .pione::after {
+            content: ''; position: absolute; top: 3px; left: 4px; width: 4px; height: 4px;
+            background: rgba(255,255,255,0.6); border-radius: 50%;
+        }
+        
+        /* ESTILOS VARIADOS DE NOTAS */
+        .nota:nth-child(4n+1) { background: #fffde7; transform: rotate(-1.5deg); }
+        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1deg); border-top: 6px solid #ff8c00; }
+        .nota:nth-child(4n+3) { background: #eff6ff; transform: rotate(-1deg); }
+        .nota:nth-child(4n+4) { background: #f0fdf4; transform: rotate(1.5deg); }
+        
+        .nota:hover {
+            transform: scale(1.03) rotate(0deg) !important; z-index: 20;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; letter-spacing: 0.8px; display: block; margin-bottom: 8px; opacity: 0.85; }
+        .stars-nota { color: #ff8c00; font-size: 13px; margin-bottom: 12px; }
+        .comentario { font-family: 'Kalam', cursive; font-size: 1.15em; color: #1e293b; line-height: 1.5; margin-bottom: 15px; }
+        .autor { font-weight: 700; color: #1e4d8c; font-size: 0.9em; text-align: right; display: block; }
+
+        /* BOTÃO FLUTUANTE PARA DISPOSITIVOS MÓVEIS OU ROLAGEM */
+        .btn-flutuante {
+            position: fixed; bottom: 25px; right: 25px; background: #ff8c00; color: white;
+            padding: 14px 22px; border-radius: 50px; font-weight: 700; text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4); display: flex; align-items: center; gap: 8px;
+            z-index: 99; transition: 0.3s;
+        }
+        .btn-flutuante:hover { background: #1e4d8c; transform: scale(1.05); }
 
         /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             main { margin-left: 0; }
             #menu-placeholder { width: 100%; }
-            .content-section::before { left: 35px; }
-            .bus-tracker { left: 23px; }
-            .fase { gap: 20px; }
-            .fase-content { padding: 25px; }
-            .hero-section { background-attachment: scroll; }
+            .seccao-mural { column-count: 2; }
+        }
+        @media (max-width: 768px) {
+            .seccao-mural { column-count: 1; padding: 0 20px 80px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .textarea-full { grid-column: span 1; }
+            .hero-section h1 { font-size: 2.8em; }
         }
     </style>
 </head>
@@ -219,89 +146,153 @@
 
     <main>
         <section class="hero-section">
-            <h1>A Nossa História</h1>
-            <p>Onde cada quilómetro conta uma memória.</p>
+            <h1>Mural de Memórias</h1>
+            <p>As recordações dos nossos passageiros em cada quilómetro percorrido.</p>
         </section>
 
-        <section class="content-section">
+        <!-- FORMULÁRIO DESTACADO -->
+        <div class="container-form" id="escrever-testemunho">
+            <div class="barra-feedback">
+                
+                <div class="form-header">
+                    <h2><i class="fas fa-pen-nib" style="color: #ff8c00;"></i> Viajou connosco? Deixe a sua pegada!</h2>
+                    <p>Partilhe a sua experiência e ajude a fazer crescer a nossa família de estrada.</p>
+                </div>
+
+                <div id="status-mensagem" data-fs-success>
+                    <i class="fas fa-heart"></i>
+                    <p>Muito obrigado pela sua partilha!<br>O seu testemunho será afixado no mural muito em breve.</p>
+                </div>
+
+                <form id="mural-form">
+                    <div class="form-grid">
+                        <input type="text" name="nome" class="input-estilizado" placeholder="O seu nome (ex: Maria e João)" required data-fs-field>
+                        <input type="text" name="passeio" class="input-estilizado" placeholder="Qual foi o passeio? (ex: Festas do Povo)" required data-fs-field>
+                        <textarea name="mensagem" class="input-estilizado textarea-full" placeholder="Conte-nos como foi a sua experiência, o convívio, a organização..." required data-fs-field></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="star-box">
+                            <span>A sua avaliação:</span>
+                            <div class="star-rating" id="starSelector">
+                                <i class="fas fa-star active" data-value="1"></i>
+                                <i class="fas fa-star active" data-value="2"></i>
+                                <i class="fas fa-star active" data-value="3"></i>
+                                <i class="fas fa-star active" data-value="4"></i>
+                                <i class="fas fa-star active" data-value="5"></i>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" name="estrelas" id="estrelas-valor" value="5">
+
+                        <button type="submit" class="btn-v" data-fs-submit-btn>
+                            <i class="fas fa-paper-plane"></i> Publicar no Mural
+                        </button>
+                    </div>
+                    <div style="color: #e11d48; font-size: 13px; margin-top: 10px; text-align: center;" data-fs-error></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DO MURAL -->
+        <section class="seccao-mural">
             
-            <!-- Autocarro animado na linha de tempo -->
-            <div class="bus-tracker" id="busTracker">
-                <i class="fas fa-bus"></i>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi um dia muito bem organizado. Gostámos muito da visita ao Santuário de Nossa Senhora do Alívio e depois das Feiras Novas. O Sr. Miguel foi sempre muito atencioso e cumpriu os horários."</p>
+                <span class="autor">— Ana Rodrigues</span>
             </div>
 
-            <!-- Fase 1 -->
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-seedling"></i></div>
-                <div class="fase-content">
-                    <h3>A Semente</h3>
-                    <p>Tudo começou de forma genuína: dois passeios organizados para ajudar uma causa. O que nasceu como um gesto solidário, rapidamente revelou uma paixão adormecida pelo convívio e pela descoberta do nosso Portugal.</p>
-                </div>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Gostámos muito de toda a organização. O autocarro era confortável e o ambiente durante a viagem foi excelente. O passeio pelo Tejo foi magnífico."</p>
+                <span class="autor">— António e Helena Martins</span>
             </div>
 
-            <!-- Fase 2 -->
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-heart"></i></div>
-                <div class="fase-content">
-                    <h3>A Família de Estrada</h3>
-                    <p>Foi o vosso sorriso e o incentivo constante que me fizeram olhar mais longe. <strong>"Miguel, quando é o próximo?"</strong> tornou-se a frase que deu vida a este projeto. Deixámos de ser apenas um grupo e passámos a ser uma família.</p>
-                </div>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Rota das Cerejas - Fundão</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Uma experiência única, com pessoas maravilhosas, simpáticas e super divertidas. Adorei!! 👏👏"</p>
+                <span class="autor">— Lurdes Santos</span>
             </div>
 
-            <!-- Fase 3 -->
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-compass"></i></div>
-                <div class="fase-content" style="border-left-color: #1e4d8c;">
-                    <h3>O Destino Hoje</h3>
-                    <p>Hoje, este espaço é o ponto de encontro para quem procura viagens descontraídas e repletas de alma. Do coração de São Pedro do Sul para o país inteiro, cada destino é escolhido a pensar na vossa alegria.</p>
-                </div>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Batalha das Flores - Barcelos</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Foi um dia memorável que jamais esquecerei! E sem dúvidas que o Sr. Miguel é um excelente organizador, proporcionando momentos muito divertidos."</p>
+                <span class="autor">— Lurdes Santos</span>
             </div>
 
-            <!-- Mensagem Final -->
-            <div class="quote-especial reveal">
-                <p>"Criamos caminhos, partilhamos destinos e guardamos amizades para a vida."</p>
-                <span>Passeios do Miguel</span>
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Valença e Vigo</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"Passeio excelente, muito bem organizado e com um ambiente natalício fantástico em ambas as cidades. Adorei a experiência!"</p>
+                <span class="autor">— Carolina</span>
+            </div>
+
+            <div class="nota">
+                <div class="pione"></div>
+                <span class="viagem-tag">Festa das Camélias - Celorico de Basto</span>
+                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo impecavelmente!"</p>
+                <span class="autor">— Maria Silva</span>
             </div>
 
         </section>
 
-        <div id="footer-placeholder"></div>
+        <!-- BOTÃO FLUTUANTE DE ATALHO -->
+        <a href="#escrever-testemunho" class="btn-flutuante">
+            <i class="fas fa-comment-medical"></i> Deixar Nota
+        </a>
+
+        <div id="rodape-placeholder"></div>
     </main>
 
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
-        // Carregamento de Componentes (Menu e Rodapé)
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
-        }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
-
-        // Scroll Reveal para os blocos
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Animação do Autocarro a percorrer a Timeline com o Scroll
-        window.addEventListener('scroll', () => {
-            const timeline = document.querySelector('.content-section');
-            const bus = document.getElementById('busTracker');
-            
-            if (timeline && bus) {
-                const rect = timeline.getBoundingClientRect();
-                const totalHeight = rect.height - 120;
-                const scrollPosition = window.innerHeight / 2 - rect.top;
-                
-                let progress = Math.max(0, Math.min(scrollPosition, totalHeight));
-                bus.style.top = `${100 + progress}px`;
+        // Formspree
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { 
+            formElement: '#mural-form', 
+            formId: 'mnjlzngy',
+            onSuccess: function() {
+                document.getElementById('mural-form').style.display = 'none';
+                document.querySelector('.form-header').style.display = 'none';
+                document.getElementById('status-mensagem').style.display = 'block';
             }
         });
+
+        // Estrelas Interativas
+        let selectedStars = 5;
+        const stars = document.querySelectorAll('#starSelector i');
+        const inputEstrelas = document.getElementById('estrelas-valor');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => { 
+                selectedStars = star.getAttribute('data-value');
+                inputEstrelas.value = selectedStars;
+                updateStars(); 
+            });
+            star.addEventListener('mouseover', () => highlightStars(star.getAttribute('data-value')));
+        });
+        document.getElementById('starSelector').addEventListener('mouseleave', updateStars);
+
+        function highlightStars(val) { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val)); }
+        function updateStars() { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars)); }
+
+        // Componentes Externos
+        function carregarComponente(id, ficheiro) {
+            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
+        }
+        carregarComponente('menu-placeholder', 'menu.html');
+        carregarComponente('rodape-placeholder', 'rodape.html');
     </script>
 </body>
 </html>
