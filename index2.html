@@ -26,7 +26,7 @@
         }
 
         /* --------------------------------------------------
-           SPLASH SCREEN INTERATIVA (COBRE 100% DO ECRÃ E ESCONDE O MENU)
+           SPLASH SCREEN INTERATIVA (TELA DE ENTRADA)
         -------------------------------------------------- */
         #splash-screen {
             position: fixed;
@@ -35,43 +35,42 @@
             width: 100vw;
             height: 100vh;
             background: linear-gradient(135deg, #1e4d8c 0%, #0b1e38 100%);
-            z-index: 99999; /* Cobre todo o menu e conteúdos */
+            z-index: 99999; /* Cobre o menu e todo o site */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: white;
             transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
             overflow: hidden;
         }
 
-        /* CABEÇALHO DA SPLASH SCREEN */
         .splash-header {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             z-index: 2;
         }
 
         .splash-header h1 {
-            font-size: 3em;
+            font-size: 2.8em;
             font-weight: 800;
             color: #ffffff;
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .splash-header p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #ff8c00;
             font-weight: 600;
         }
 
-        /* ÁREA DE JOGO / CENÁRIO INTERATIVO */
+        /* ÁREA DA ESTRADA E DO AUTOCARRO LATERAL */
         .interactive-stage {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             height: 320px;
             display: flex;
             align-items: flex-end;
@@ -79,15 +78,14 @@
             z-index: 2;
         }
 
-        /* ESTRADA ILUSTRADA */
         .road {
             position: absolute;
             bottom: 20px;
             width: 100%;
-            height: 80px;
+            height: 70px;
             background: #2c3e50;
             border-radius: 12px;
-            border-top: 4px solid #ff8c00;
+            border-top: 5px solid #ff8c00;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             overflow: hidden;
         }
@@ -102,94 +100,145 @@
             transform: translateY(-50%);
         }
 
-        /* AUTOCARRO */
-        .bus-container {
+        /* DESENHO DO AUTOCARRO DE PERFIL (LATERAL) */
+        .bus-side-container {
             position: absolute;
-            bottom: 45px;
-            left: 15%;
+            bottom: 55px;
+            left: 10%;
+            width: 320px;
+            height: 110px;
+            background: #ff8c00;
+            border-radius: 20px 45px 10px 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 15px;
+            transition: left 1.2s cubic-bezier(0.45, 0, 0.55, 1);
+            border: 3px solid #ffffff;
+        }
+
+        /* JANELAS DO AUTOCARRO */
+        .bus-windows {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .window {
+            height: 35px;
+            background: #e0f2fe;
+            border-radius: 6px;
+            flex: 1;
+            border: 2px solid #1e4d8c;
+        }
+
+        .window.driver {
+            border-radius: 6px 20px 6px 6px;
+            background: #bae6fd;
+        }
+
+        /* MARCA LATERAL - PASSEIOS DO MIGUEL */
+        .bus-brand {
+            text-align: center;
+            font-weight: 900;
+            font-size: 0.95em;
+            color: #1e4d8c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: #ffffff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 5px;
+        }
+
+        /* RODAS DO AUTOCARRO */
+        .bus-wheels {
+            position: absolute;
+            bottom: -18px;
+            width: 100%;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 30px;
+        }
+
+        .wheel {
+            width: 36px;
+            height: 36px;
+            background: #111;
+            border-radius: 50%;
+            border: 4px solid #777;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+        }
+
+        /* FARÓIS DO AUTOCARRO */
+        .headlight {
+            position: absolute;
+            right: -10px;
+            bottom: 25px;
+            width: 12px;
+            height: 20px;
+            background: #fff;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 0 0 rgba(255,255,255,0);
+            transition: box-shadow 0.3s;
+        }
+
+        /* MALA DE VIAGEM E BALÃO */
+        .luggage-area {
+            position: absolute;
+            bottom: 55px;
+            right: 12%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: left 1.2s cubic-bezier(0.45, 0, 0.55, 1);
             cursor: pointer;
+            transition: all 0.5s ease;
         }
 
-        .bus-body {
-            font-size: 5.5em;
-            color: #ff8c00;
-            filter: drop-shadow(0 12px 10px rgba(0,0,0,0.6));
-            position: relative;
+        .luggage-icon {
+            font-size: 3.2em;
+            color: #ffffff;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
             transition: transform 0.3s;
         }
 
-        .bus-headlights {
-            position: absolute;
-            right: -15px;
-            bottom: 20px;
-            width: 25px;
-            height: 25px;
-            background: radial-gradient(circle, rgba(255,255,225,0.9) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .luggage-area:hover .luggage-icon {
+            transform: scale(1.15) rotate(-5deg);
         }
 
-        /* ELEMENTOS INTERATIVOS: MALA E CHAVE */
-        .interactive-items {
-            position: absolute;
-            bottom: 40px;
-            right: 15%;
-            display: flex;
-            gap: 25px;
-            align-items: flex-end;
-        }
-
-        .item-box {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .item-box:hover {
-            transform: scale(1.15) translateY(-5px);
-        }
-
-        .item-icon {
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2em;
-            color: #1e4d8c;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            border: 3px solid #ff8c00;
-        }
-
-        /* BALÃO DE DIÁLOGO / INSTRUÇÕES */
         .speech-bubble {
-            position: absolute;
-            top: -55px;
             background: #ffffff;
             color: #1e4d8c;
-            padding: 8px 15px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9em;
             white-space: nowrap;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
             animation: bounceBubble 1.8s infinite;
         }
 
         .speech-bubble::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
             border-width: 8px 8px 0;
@@ -197,43 +246,60 @@
             border-color: #ffffff transparent;
         }
 
-        /* PAINEL INFERIOR DE COMANDO */
+        /* BOTÃO DÁ À CHAVE */
         .splash-footer {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
             z-index: 2;
         }
 
         .start-key-btn {
-            background: #ff8c00;
-            color: white;
+            background: #666;
+            color: #ccc;
             border: none;
-            padding: 18px 45px;
+            padding: 16px 40px;
             border-radius: 50px;
-            font-size: 1.2em;
+            font-size: 1.15em;
             font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.5);
+            cursor: not-allowed;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
+            gap: 12px;
+            transition: all 0.4s ease;
+        }
+
+        /* BOTÃO ATIVADO APÓS A MALA ESTAR PRONTA */
+        .start-key-btn.active {
+            background: #ff8c00;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.6);
             animation: pulseBtn 1.5s infinite;
         }
 
-        .start-key-btn:hover {
+        .start-key-btn.active:hover {
             background: #e07b00;
             transform: scale(1.08);
-            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.7);
         }
 
-        /* CLASSES DE ANIMAÇÃO DE ARRANQUE */
-        .engine-on .bus-headlights { opacity: 1; }
-        .engine-on .bus-body { animation: busVibrate 0.2s infinite; }
+        /* ANIMAÇÕES DO MOTOR E DA VIAGEM */
+        .engine-on .headlight {
+            box-shadow: 15px 0 25px 10px rgba(255, 255, 200, 0.9);
+            background: #fffde7;
+        }
+
+        .engine-on {
+            animation: busVibrate 0.15s infinite;
+        }
 
         .bus-drive-off {
             left: 120% !important;
-            transition: left 1.2s ease-in !important;
+            transition: left 1.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
+        }
+
+        .wheel-spin .wheel {
+            animation: spinWheel 0.4s linear infinite;
         }
 
         .splash-hidden {
@@ -255,8 +321,13 @@
 
         @keyframes busVibrate {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+            50% { transform: translateY(-2px); }
             100% { transform: translateY(0); }
+        }
+
+        @keyframes spinWheel {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* CONTEÚDO PRINCIPAL DO SITE */
@@ -320,17 +391,18 @@
             .features-grid { grid-template-columns: 1fr; }
             .hero-section h1 { font-size: 2.8em; }
             .splash-header h1 { font-size: 2.2em; }
-            .interactive-items { right: 5%; gap: 10px; }
+            .bus-side-container { width: 250px; height: 95px; }
+            .bus-brand { font-size: 0.8em; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. SPLASH SCREEN COMPLETA (OCULTA O MENU E RESTANTE SITE) -->
+    <!-- TELA DE ENTRADA INTERATIVA -->
     <div id="splash-screen">
         <div class="splash-header">
             <h1>Passeios do Miguel</h1>
-            <p>Estás pronto para entrar na próxima aventura?</p>
+            <p id="splashStatusText">Primeiro, coloca a tua mala no autocarro! 🧳</p>
         </div>
 
         <div class="interactive-stage">
@@ -338,23 +410,26 @@
                 <div class="road-line"></div>
             </div>
 
-            <!-- AUTOCARRO -->
-            <div class="bus-container" id="busContainer" title="O teu transporte para o próximo passeio!">
-                <div class="bus-body">
-                    <i class="fas fa-bus"></i>
-                    <div class="bus-headlights"></div>
+            <!-- AUTOCARRO LATERAL PERSONALIZADO -->
+            <div class="bus-side-container" id="busSide">
+                <div class="bus-windows">
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window driver"></div>
+                </div>
+                <div class="bus-brand">PASSEIOS DO MIGUEL</div>
+                <div class="headlight"></div>
+                <div class="bus-wheels">
+                    <div class="wheel"></div>
+                    <div class="wheel"></div>
                 </div>
             </div>
 
-            <!-- ITENS INTERATIVOS -->
-            <div class="interactive-items">
-                <!-- MALA DE VIAGEM -->
-                <div class="item-box" id="luggageBtn" title="Fazer a mala">
-                    <div class="speech-bubble">Mala feita? 🧳</div>
-                    <div class="item-icon">
-                        <i class="fas fa-suitcase-rolling"></i>
-                    </div>
-                </div>
+            <!-- ÁREA DA MALA INTERATIVA -->
+            <div class="luggage-area" id="luggageBtn">
+                <div class="speech-bubble" id="luggageBubble">Clica em mim para carregar a mala! 👇</div>
+                <i class="fas fa-suitcase-rolling luggage-icon"></i>
             </div>
         </div>
 
@@ -365,7 +440,7 @@
         </div>
     </div>
 
-    <!-- 2. COMPONENTES E CONTEÚDO PRINCIPAL DO SITE -->
+    <!-- CONTEÚDO PRINCIPAL DO SITE (SÓ É REVELADO APÓS A ANIMAÇÃO) -->
     <div id="menu-placeholder"></div>
 
     <main>
@@ -415,7 +490,6 @@
     </main>
 
     <script>
-        // Carregamento modular de Menu e Rodapé
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
@@ -425,41 +499,63 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // LÓGICA DO MINI-JOGO / TELA DE ENTRADA INTERATIVA
+        // LÓGICA PASSO-A-PASSO DA TELA DE ENTRADA
         const splashScreen = document.getElementById('splash-screen');
-        const busContainer = document.getElementById('busContainer');
+        const busSide = document.getElementById('busSide');
         const luggageBtn = document.getElementById('luggageBtn');
+        const luggageBubble = document.getElementById('luggageBubble');
         const ignitionBtn = document.getElementById('ignitionBtn');
+        const splashStatusText = document.getElementById('splashStatusText');
 
         let malaPronta = false;
 
-        // Clique na Mala
+        // PASSO 1: CLICAR NA MALA
         luggageBtn.addEventListener('click', () => {
+            if (malaPronta) return;
+
             malaPronta = true;
-            luggageBtn.style.transform = 'scale(0.8) translateY(20px)';
-            luggageBtn.style.opacity = '0.5';
-            const bubble = luggageBtn.querySelector('.speech-bubble');
-            if(bubble) bubble.textContent = 'Mala no autocarro! ✅';
+            
+            // Animação da mala a entrar para o autocarro
+            luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
+            luggageBtn.style.opacity = '0';
+            
+            setTimeout(() => {
+                luggageBtn.style.display = 'none';
+            }, 500);
+
+            // Atualiza textos e ativa o botão de ignição
+            splashStatusText.textContent = 'Mala no bagageiro! Agora podes dar à chave! 🔑';
+            ignitionBtn.classList.add('active');
         });
 
-        // Clique para "Dar à Chave" / Arrancar
-        function darAChave() {
-            // 1. Liga os faróis e faz tremer o motor
-            busContainer.classList.add('engine-on');
+        // PASSO 2: CLICAR EM DAR À CHAVE
+        ignitionBtn.addEventListener('click', () => {
+            if (!malaPronta) {
+                // Se tentarem clicar antes da mala, dá um aviso visual
+                luggageBubble.textContent = '⚠️ Carrega a mala primeiro!';
+                luggageBubble.style.background = '#ff8c00';
+                luggageBubble.style.color = '#fff';
+                setTimeout(() => {
+                    luggageBubble.textContent = 'Clica em mim para carregar a mala! 👇';
+                    luggageBubble.style.background = '#fff';
+                    luggageBubble.style.color = '#1e4d8c';
+                }, 1800);
+                return;
+            }
 
-            // 2. Após meio segundo de motor a trabalhar, o autocarro avança
+            // 1. Motor arranca (faróis acendem, carro vibra e rodas giram)
+            busSide.classList.add('engine-on', 'wheel-spin');
+
+            // 2. Autocarro avança na estrada
             setTimeout(() => {
-                busContainer.classList.add('bus-drive-off');
+                busSide.classList.add('bus-drive-off');
             }, 400);
 
-            // 3. Recolhe a tela para revelar o site
+            // 3. A tela sobe e revela o site principal
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 1000);
-        }
-
-        ignitionBtn.addEventListener('click', darAChave);
-        busContainer.addEventListener('click', darAChave);
+            }, 1100);
+        });
     </script>
 </body>
 </html>
