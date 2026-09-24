@@ -35,7 +35,7 @@
             width: 100vw;
             height: 100vh;
             background: linear-gradient(135deg, #1e4d8c 0%, #0b1e38 100%);
-            z-index: 99999; /* Cobre o menu e todo o site */
+            z-index: 99999;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -114,7 +114,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 15px;
-            transition: left 1.2s cubic-bezier(0.45, 0, 0.55, 1);
+            transition: left 1.3s cubic-bezier(0.45, 0, 0.55, 1);
             border: 3px solid #ffffff;
         }
 
@@ -235,17 +235,6 @@
             animation: bounceBubble 1.8s infinite;
         }
 
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 8px 8px 0;
-            border-style: solid;
-            border-color: #ffffff transparent;
-        }
-
         /* BOTÃO DÁ À CHAVE */
         .splash-footer {
             margin-bottom: 20px;
@@ -269,7 +258,6 @@
             transition: all 0.4s ease;
         }
 
-        /* BOTÃO ATIVADO APÓS A MALA ESTAR PRONTA */
         .start-key-btn.active {
             background: #ff8c00;
             color: white;
@@ -295,11 +283,11 @@
 
         .bus-drive-off {
             left: 120% !important;
-            transition: left 1.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
+            transition: left 1.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
         }
 
         .wheel-spin .wheel {
-            animation: spinWheel 0.4s linear infinite;
+            animation: spinWheel 0.3s linear infinite;
         }
 
         .splash-hidden {
@@ -440,7 +428,7 @@
         </div>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL DO SITE (SÓ É REVELADO APÓS A ANIMAÇÃO) -->
+    <!-- CONTEÚDO PRINCIPAL DO SITE -->
     <div id="menu-placeholder"></div>
 
     <main>
@@ -499,6 +487,86 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
+        // SINTETIZADOR DE SONS (WEB AUDIO API - NATIVO)
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // 1. Som da Mala (Thud/Deslize no Bagageiro)
+        function playLuggageSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.3);
+
+            gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        // 2. Som da Ignição do Motor (Arranque)
+        function playEngineStartSound() {
+            initAudio();
+            const bufferSize = audioCtx.sampleRate * 0.6;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(120, audioCtx.currentTime);
+            filter.frequency.linearRampToValueAtTime(350, audioCtx.currentTime + 0.4);
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            noise.start();
+        }
+
+        // 3. Som da Aceleração / Arranque do Autocarro
+        function playDriveOffSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 1.2);
+
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 0.5);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.3);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 1.3);
+        }
+
         // LÓGICA PASSO-A-PASSO DA TELA DE ENTRADA
         const splashScreen = document.getElementById('splash-screen');
         const busSide = document.getElementById('busSide');
@@ -514,8 +582,9 @@
             if (malaPronta) return;
 
             malaPronta = true;
+            playLuggageSound(); // 🔊 Toca o som da mala
             
-            // Animação da mala a entrar para o autocarro
+            // Animação da mala
             luggageBtn.style.transform = 'translateX(-220px) translateY(10px) scale(0.3)';
             luggageBtn.style.opacity = '0';
             
@@ -523,7 +592,6 @@
                 luggageBtn.style.display = 'none';
             }, 500);
 
-            // Atualiza textos e ativa o botão de ignição
             splashStatusText.textContent = 'Mala no bagageiro! Agora podes dar à chave! 🔑';
             ignitionBtn.classList.add('active');
         });
@@ -531,7 +599,6 @@
         // PASSO 2: CLICAR EM DAR À CHAVE
         ignitionBtn.addEventListener('click', () => {
             if (!malaPronta) {
-                // Se tentarem clicar antes da mala, dá um aviso visual
                 luggageBubble.textContent = '⚠️ Carrega a mala primeiro!';
                 luggageBubble.style.background = '#ff8c00';
                 luggageBubble.style.color = '#fff';
@@ -543,18 +610,20 @@
                 return;
             }
 
-            // 1. Motor arranca (faróis acendem, carro vibra e rodas giram)
+            // 1. Motor arranca com áudio do motor
+            playEngineStartSound(); // 🔊 Toca o som do arranque do motor
             busSide.classList.add('engine-on', 'wheel-spin');
 
-            // 2. Autocarro avança na estrada
+            // 2. Autocarro arranca e acelera
             setTimeout(() => {
+                playDriveOffSound(); // 🔊 Toca o som da aceleração
                 busSide.classList.add('bus-drive-off');
             }, 400);
 
             // 3. A tela sobe e revela o site principal
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 1100);
+            }, 1200);
         });
     </script>
 </body>
