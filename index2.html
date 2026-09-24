@@ -182,6 +182,8 @@
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 20px;
+            /* CRUCIAL PARA EVITAR QUE OS OUTROS CARTÕES ESTIQUEM */
+            align-items: start;
         }
 
         .help-card {
@@ -189,7 +191,7 @@
             border-radius: 16px; 
             padding: 25px; 
             border: 1px solid #e2e8f0;
-            transition: 0.3s ease; 
+            transition: all 0.3s ease; 
             display: flex; 
             flex-direction: column; 
             position: relative;
@@ -202,9 +204,6 @@
         }
 
         .sector-tag {
-            position: absolute; 
-            top: 20px; 
-            right: 20px; 
             background: var(--tag-bg); 
             color: #475569; 
             padding: 4px 10px; 
@@ -212,6 +211,14 @@
             font-size: 0.7em; 
             font-weight: 700; 
             text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .card-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .card-header {
@@ -221,21 +228,35 @@
         }
 
         .card-header i.main-icon { 
-            font-size: 1.5em; 
+            font-size: 1.4em; 
             color: var(--primary); 
             margin-top: 2px;
         }
 
         .card-header h3 { 
-            font-size: 1.15em; 
+            font-size: 1.1em; 
             color: var(--primary); 
-            padding-right: 50px; 
             line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        /* SETA INDICADORA DE EXPANSÃO */
+        .toggle-arrow {
+            color: #94a3b8;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+            margin-left: 10px;
+            margin-top: 3px;
+        }
+
+        .help-card.open .toggle-arrow {
+            transform: rotate(180deg);
+            color: var(--accent);
         }
 
         .card-body {
             margin-top: 15px;
-            display: none; /* Escondido até ser clicado */
+            display: none;
             animation: fadeIn 0.3s ease-in-out;
             padding-top: 15px;
             border-top: 1px solid #f1f5f9;
@@ -286,12 +307,62 @@
             transform: scale(1.2);
         }
 
+        /* CARTÃO DESTACADO: NÃO ENCONTROU A RESPOSTA? */
+        .no-answer-card {
+            background: linear-gradient(135deg, var(--primary), #2a65b0);
+            color: white;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(30, 77, 140, 0.15);
+            border: 2px solid var(--accent);
+        }
+
+        .no-answer-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .no-answer-card p {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .btn-direct-contact {
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-direct-contact:hover {
+            background: #e67e00;
+            transform: translateY(-2px);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* MENSAGEM QUANDO NENHUM RESULTADO É ENCONTRADO */
+        /* MENSAGEM QUANDO NENHUM RESULTADO É ENCONTRADO NA PESQUISA */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -372,10 +443,13 @@
         <section class="help-grid" id="faq-grid">
             
             <div class="help-card" data-category="Reservas">
-                <span class="sector-tag">Reservas</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Reservas</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-pen-fancy main-icon"></i>
                     <h3>Como fazer a inscrição?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Pode usar o nosso <strong>formulário online</strong> ou canais alternativos como chamada direta e WhatsApp (965 715 465). A reserva só é garantida após o pagamento.</p>
@@ -391,10 +465,13 @@
             </div>
 
             <div class="help-card" data-category="Logística">
-                <span class="sector-tag">Logística</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Logística</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-bus main-icon"></i>
                     <h3>Onde apanho o autocarro?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Temos pontos em <strong>Castro Daire, S. Pedro do Sul, Vouzela, Oliveira de Frades e Viseu</strong>. Consulte-nos sempre, pois os pontos podem alterar-se conforme o destino.</p>
@@ -409,10 +486,13 @@
             </div>
 
             <div class="help-card" data-category="Lugar">
-                <span class="sector-tag">Lugar</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Lugar</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-chair main-icon"></i>
                     <h3>Posso escolher o meu lugar?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Os lugares são atribuídos estritamente por <strong>ordem de inscrição</strong>. Quem reserva e liquida o passeio primeiro, garante os lugares mais à frente.</p>
@@ -427,10 +507,13 @@
             </div>
 
             <div class="help-card" data-category="Reservas">
-                <span class="sector-tag">Família</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Família</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-child main-icon"></i>
                     <h3>As crianças pagam menos?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>O desconto para crianças depende de cada passeio. Consulte o cartaz publicitário ou fale connosco para confirmar os valores específicos.</p>
@@ -445,10 +528,13 @@
             </div>
 
             <div class="help-card" data-category="Pagamento">
-                <span class="sector-tag">Pagamento</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Pagamento</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-wallet main-icon"></i>
                     <h3>Como posso pagar?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Aceitamos <strong>MB Way</strong>, transferência bancária ou numerário. Pedimos sempre o envio do comprovativo para validar a sua reserva.</p>
@@ -463,10 +549,13 @@
             </div>
 
             <div class="help-card" data-category="Política">
-                <span class="sector-tag">Política</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Política</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-user-times main-icon"></i>
                     <h3>Desistências e Reembolsos</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Devolução total disponível até 30 dias antes do passeio. Após este prazo, o valor não é reembolsável, mas pode ceder o lugar a outra pessoa.</p>
@@ -481,10 +570,13 @@
             </div>
 
             <div class="help-card" data-category="Logística">
-                <span class="sector-tag">Acessibilidade</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Acessibilidade</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-wheelchair main-icon"></i>
                     <h3>Mobilidade Reduzida</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Caso tenha dificuldades de locomoção, informe-nos no ato da reserva. Faremos o possível para garantir o seu conforto durante toda a viagem.</p>
@@ -499,10 +591,13 @@
             </div>
 
             <div class="help-card" data-category="Logística">
-                <span class="sector-tag">Apoio</span>
+                <div class="card-top-info">
+                    <span class="sector-tag">Apoio</span>
+                </div>
                 <div class="card-header">
                     <i class="fas fa-search main-icon"></i>
                     <h3>Perdi um objeto no autocarro?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
                 </div>
                 <div class="card-body">
                     <p>Se se esqueceu de algo, contacte-nos! Verificamos sempre o autocarro no final da viagem e guardamos os objetos encontrados.</p>
@@ -516,26 +611,18 @@
                 </div>
             </div>
 
-            <div class="help-card" data-category="Reservas">
-                <span class="sector-tag">Redes</span>
-                <div class="card-header">
-                    <i class="fab fa-facebook-f main-icon"></i>
-                    <h3>Onde vejo as fotos do grupo?</h3>
+            <!-- CARTÃO ADICIONAL DESTACADO PARA CONTACTO DIRETO -->
+            <div class="no-answer-card">
+                <div>
+                    <h3><i class="fas fa-headset" style="color: var(--accent);"></i> Não encontrou a resposta?</h3>
+                    <p>Estamos disponíveis para esclarecer qualquer dúvida sobre os passeios ou reservas!</p>
                 </div>
-                <div class="card-body">
-                    <p>Partilhamos as memórias de cada aventura no nosso grupo de Facebook. É o local ideal para rever os amigos e as fotos do dia.</p>
-                    <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="btn-card">Entrar no Grupo →</a>
-                    <div class="feedback-box">
-                        <span>Esta resposta foi útil?</span>
-                        <div class="feedback-buttons">
-                            <button onclick="voteFeedback(this, true)">👍</button>
-                            <button onclick="voteFeedback(this, false)">👎</button>
-                        </div>
-                    </div>
-                </div>
+                <a href="https://wa.me/351965715465?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20os%20Passeios%20do%20Miguel." target="_blank" class="btn-direct-contact">
+                    <i class="fab fa-whatsapp"></i> Falar com o Miguel
+                </a>
             </div>
 
-            <!-- CONTAINER PARA MENSAGEM SEM RESULTADOS -->
+            <!-- CONTAINER PARA MENSAGEM SEM RESULTADOS NA PESQUISA -->
             <div class="no-results" id="no-results">
                 <i class="fas fa-question-circle"></i>
                 <h3>Não encontramos resposta para a sua pesquisa.</h3>
@@ -558,11 +645,11 @@
         carregar('menu-placeholder', 'menu.html');
         carregar('footer-placeholder', 'rodape.html');
 
-        // 2. EXPANDIR/RECOLHER CARTÕES (ACCORDION EFFECT)
+        // 2. EXPANDIR/RECOLHER CARTÕES (ACCORDION)
         const cards = document.querySelectorAll('.help-card');
         cards.forEach(card => {
             card.addEventListener('click', (e) => {
-                // Impede fechar ao clicar nos links de feedback
+                // Impede fechar ao clicar nos links de feedback ou botão interno
                 if(e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
                 
                 card.classList.toggle('open');
@@ -581,7 +668,6 @@
                 const text = card.textContent.toLowerCase();
                 if (text.includes(query)) {
                     card.style.display = 'flex';
-                    // Abre o cartão automaticamente se o utilizador estiver a pesquisar
                     if (query.length > 2) {
                         card.classList.add('open');
                     } else {
@@ -620,7 +706,7 @@
             });
         });
 
-        // 5. INTERAÇÃO DE FEEDBACK (OPCIONAL)
+        // 5. INTERAÇÃO DE FEEDBACK
         function voteFeedback(button, isPositive) {
             const container = button.parentElement;
             if(isPositive) {
