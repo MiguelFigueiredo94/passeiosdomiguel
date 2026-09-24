@@ -437,11 +437,13 @@
             <button class="tag-btn" data-filter="Lugar">Lugar</button>
             <button class="tag-btn" data-filter="Pagamento">Pagamento</button>
             <button class="tag-btn" data-filter="Política">Política</button>
+            <button class="tag-btn" data-filter="Redes">Redes</button>
         </div>
 
         <!-- GRELHA DE CARTÕES DE AJUDA -->
         <section class="help-grid" id="faq-grid">
             
+            <!-- 1. INSCRIÇÃO -->
             <div class="help-card" data-category="Reservas">
                 <div class="card-top-info">
                     <span class="sector-tag">Reservas</span>
@@ -464,6 +466,7 @@
                 </div>
             </div>
 
+            <!-- 2. PONTOS DE EMBARQUE -->
             <div class="help-card" data-category="Logística">
                 <div class="card-top-info">
                     <span class="sector-tag">Logística</span>
@@ -485,6 +488,7 @@
                 </div>
             </div>
 
+            <!-- 3. ESCOLHA DE LUGAR -->
             <div class="help-card" data-category="Lugar">
                 <div class="card-top-info">
                     <span class="sector-tag">Lugar</span>
@@ -506,6 +510,7 @@
                 </div>
             </div>
 
+            <!-- 4. CRIANÇAS -->
             <div class="help-card" data-category="Reservas">
                 <div class="card-top-info">
                     <span class="sector-tag">Família</span>
@@ -527,6 +532,7 @@
                 </div>
             </div>
 
+            <!-- 5. PAGAMENTO -->
             <div class="help-card" data-category="Pagamento">
                 <div class="card-top-info">
                     <span class="sector-tag">Pagamento</span>
@@ -548,6 +554,7 @@
                 </div>
             </div>
 
+            <!-- 6. DESISTÊNCIAS -->
             <div class="help-card" data-category="Política">
                 <div class="card-top-info">
                     <span class="sector-tag">Política</span>
@@ -569,6 +576,7 @@
                 </div>
             </div>
 
+            <!-- 7. MOBILIDADE REDUZIDA -->
             <div class="help-card" data-category="Logística">
                 <div class="card-top-info">
                     <span class="sector-tag">Acessibilidade</span>
@@ -590,6 +598,7 @@
                 </div>
             </div>
 
+            <!-- 8. PERDIDOS E ACHADOS -->
             <div class="help-card" data-category="Logística">
                 <div class="card-top-info">
                     <span class="sector-tag">Apoio</span>
@@ -611,7 +620,30 @@
                 </div>
             </div>
 
-            <!-- CARTÃO ADICIONAL DESTACADO PARA CONTACTO DIRETO -->
+            <!-- 9. FOTOS DO GRUPO -->
+            <div class="help-card" data-category="Redes">
+                <div class="card-top-info">
+                    <span class="sector-tag">Redes</span>
+                </div>
+                <div class="card-header">
+                    <i class="fab fa-facebook-f main-icon"></i>
+                    <h3>Onde vejo as fotos do grupo?</h3>
+                    <i class="fas fa-chevron-down toggle-arrow"></i>
+                </div>
+                <div class="card-body">
+                    <p>Partilhamos as memórias de cada aventura no nosso grupo do Facebook. É o local ideal para rever os amigos e as fotos do dia.</p>
+                    <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" class="btn-card">Entrar no Grupo →</a>
+                    <div class="feedback-box">
+                        <span>Esta resposta foi útil?</span>
+                        <div class="feedback-buttons">
+                            <button onclick="voteFeedback(this, true)">👍</button>
+                            <button onclick="voteFeedback(this, false)">👎</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTÃO DESTACADO PARA CONTACTO DIRETO -->
             <div class="no-answer-card">
                 <div>
                     <h3><i class="fas fa-headset" style="color: var(--accent);"></i> Não encontrou a resposta?</h3>
