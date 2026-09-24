@@ -26,7 +26,7 @@
         }
 
         /* --------------------------------------------------
-           SPLASH SCREEN INTERATIVA (TELA DE ENTRADA)
+           TELA DE BOAS-VINDAS: ASSISTENTE DE CHAT DINÂMICO
         -------------------------------------------------- */
         #splash-screen {
             position: fixed;
@@ -34,289 +34,233 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, #1e4d8c 0%, #0b1e38 100%);
+            background: linear-gradient(135deg, rgba(30, 77, 140, 0.95) 0%, rgba(11, 30, 56, 0.98) 100%),
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200') center/cover no-repeat;
             z-index: 99999;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 30px 20px;
-            color: white;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
-            overflow: hidden;
+            padding: 20px;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        /* Se já navegou internamente, esconde a tela sem piscar */
         .splash-bypass {
             display: none !important;
         }
 
-        .splash-header {
-            text-align: center;
-            margin-top: 15px;
-            z-index: 2;
-        }
-
-        .splash-header h1 {
-            font-size: 2.8em;
-            font-weight: 800;
-            color: #ffffff;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            margin-bottom: 5px;
-        }
-
-        .splash-header p {
-            font-size: 1.2em;
-            color: #ff8c00;
-            font-weight: 600;
-        }
-
-        /* ÁREA DA ESTRADA E DO AUTOCARRO LATERAL */
-        .interactive-stage {
-            position: relative;
+        .chat-card {
+            background: #ffffff;
             width: 100%;
-            max-width: 950px;
-            height: 320px;
+            max-width: 520px;
+            height: 600px;
+            max-height: 90vh;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .road {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            height: 70px;
-            background: #2c3e50;
-            border-radius: 12px;
-            border-top: 5px solid #ff8c00;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex-direction: column;
             overflow: hidden;
+            animation: popUp 0.5s ease-out;
         }
 
-        .road-line {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 4px;
-            border-top: 6px dashed #ffffff;
-            opacity: 0.6;
-            transform: translateY(-50%);
-        }
-
-        /* AUTOCARRO LATERAL PERSONALIZADO */
-        .bus-side-container {
-            position: absolute;
-            bottom: 55px;
-            left: 10%;
-            width: 320px;
-            height: 110px;
-            background: #ff8c00;
-            border-radius: 20px 45px 10px 10px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        /* CABEÇALHO DO CHAT */
+        .chat-header {
+            background: linear-gradient(135deg, #1e4d8c, #0b1e38);
+            color: white;
+            padding: 18px 22px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 10px 15px;
-            transition: left 1.2s cubic-bezier(0.45, 0, 0.55, 1);
-            border: 3px solid #ffffff;
-        }
-
-        .bus-windows {
-            display: flex;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .window {
-            height: 35px;
-            background: #e0f2fe;
-            border-radius: 6px;
-            flex: 1;
-            border: 2px solid #1e4d8c;
-        }
-
-        .window.driver {
-            border-radius: 6px 20px 6px 6px;
-            background: #bae6fd;
-        }
-
-        .bus-brand {
-            text-align: center;
-            font-weight: 900;
-            font-size: 0.95em;
-            color: #1e4d8c;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: #ffffff;
-            padding: 3px 10px;
-            border-radius: 20px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 5px;
-        }
-
-        .bus-wheels {
-            position: absolute;
-            bottom: -18px;
-            width: 100%;
-            left: 0;
-            display: flex;
-            justify-content: space-around;
-            padding: 0 30px;
-        }
-
-        .wheel {
-            width: 36px;
-            height: 36px;
-            background: #111;
-            border-radius: 50%;
-            border: 4px solid #777;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-            position: relative;
-        }
-
-        .wheel::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: #ddd;
-            border-radius: 50%;
-        }
-
-        .headlight {
-            position: absolute;
-            right: -10px;
-            bottom: 25px;
-            width: 12px;
-            height: 20px;
-            background: #fff;
-            border-radius: 0 5px 5px 0;
-            box-shadow: 0 0 0 rgba(255,255,255,0);
-            transition: box-shadow 0.3s;
-        }
-
-        /* MALA E BALÃO */
-        .luggage-area {
-            position: absolute;
-            bottom: 55px;
-            right: 12%;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            cursor: pointer;
-            transition: all 0.5s ease;
+            justify-content: space-between;
+            border-bottom: 4px solid #ff8c00;
         }
 
-        .luggage-icon {
-            font-size: 3.2em;
-            color: #ffffff;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
-            transition: transform 0.3s;
-        }
-
-        .luggage-area:hover .luggage-icon {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
-        .speech-bubble {
-            background: #ffffff;
-            color: #1e4d8c;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9em;
-            white-space: nowrap;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
-            animation: bounceBubble 1.8s infinite;
-        }
-
-        /* BOTÃO DE ARRANQUE */
-        .splash-footer {
-            margin-bottom: 20px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .start-key-btn {
-            background: #666;
-            color: #ccc;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-size: 1.15em;
-            font-weight: bold;
-            cursor: not-allowed;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .assistant-profile {
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: all 0.4s ease;
         }
 
-        .start-key-btn.active {
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar {
+            width: 46px;
+            height: 46px;
+            background: #ff8c00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            color: white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: #22c55e;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+        }
+
+        .assistant-info h3 {
+            font-size: 1.15em;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .assistant-info p {
+            font-size: 0.82em;
+            color: #cbd5e1;
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skip-btn:hover {
+            background: #ff8c00;
+        }
+
+        /* CORPO DO CHAT (MENSAGENS) */
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            background: #f8fafc;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            scroll-behavior: smooth;
+        }
+
+        .msg {
+            max-width: 82%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95em;
+            line-height: 1.45;
+            word-wrap: break-word;
+            animation: fadeInMsg 0.3s ease-out;
+        }
+
+        .msg.bot {
+            background: #ffffff;
+            color: #1e293b;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .msg.user {
+            background: #1e4d8c;
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 3px 10px rgba(30, 77, 140, 0.25);
+        }
+
+        /* AÇÕES/SUGESTÕES EM BOTÃO */
+        .chat-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+            align-self: flex-start;
+        }
+
+        .opt-btn {
+            background: #ffffff;
+            color: #1e4d8c;
+            border: 1.5px solid #1e4d8c;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.88em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .opt-btn:hover {
             background: #ff8c00;
             color: white;
+            border-color: #ff8c00;
+            transform: translateY(-2px);
+        }
+
+        /* RODAPÉ E ENTRADA DE TEXTO */
+        .chat-footer {
+            padding: 12px 16px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+            padding: 12px 16px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95em;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: #1e4d8c;
+        }
+
+        .send-btn {
+            background: #ff8c00;
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.6);
-            animation: pulseBtn 1.5s infinite;
+            font-size: 1.1em;
+            transition: transform 0.2s, background 0.2s;
         }
 
-        .start-key-btn.active:hover {
+        .send-btn:hover {
             background: #e07b00;
-            transform: scale(1.08);
-        }
-
-        /* ANIMAÇÕES DO MOTOR E DA VIAGEM */
-        .engine-on .headlight {
-            box-shadow: 15px 0 25px 10px rgba(255, 255, 200, 0.9);
-            background: #fffde7;
-        }
-
-        .engine-on {
-            animation: busVibrate 0.15s infinite;
-        }
-
-        .bus-drive-off {
-            left: 120% !important;
-            transition: left 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
-        }
-
-        .wheel-spin .wheel {
-            animation: spinWheel 0.3s linear infinite;
+            transform: scale(1.05);
         }
 
         .splash-hidden {
-            transform: translateY(-100vh);
             opacity: 0;
+            transform: scale(0.95);
             pointer-events: none;
         }
 
-        /* KEYFRAMES */
-        @keyframes bounceBubble {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+        /* ANIMACÕES */
+        @keyframes popUp {
+            from { opacity: 0; transform: scale(0.88); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes pulseBtn {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes busVibrate {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes spinWheel {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* CONTEÚDO PRINCIPAL DO SITE */
@@ -379,53 +323,52 @@
             main { margin-left: 0; }
             .features-grid { grid-template-columns: 1fr; }
             .hero-section h1 { font-size: 2.8em; }
-            .splash-header h1 { font-size: 2.2em; }
-            .bus-side-container { width: 250px; height: 95px; }
-            .bus-brand { font-size: 0.8em; }
+            .chat-card { height: 100%; max-height: 100%; border-radius: 0; }
+            #splash-screen { padding: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TELA DE ENTRADA INTERATIVA -->
+    <!-- TELA DE BOAS-VINDAS / CHAT INTERATIVO -->
     <div id="splash-screen">
-        <div class="splash-header">
-            <h1>Passeios do Miguel</h1>
-            <p id="splashStatusText">Primeiro, coloca a tua mala no autocarro! 🧳</p>
-        </div>
-
-        <div class="interactive-stage">
-            <div class="road">
-                <div class="road-line"></div>
-            </div>
-
-            <!-- AUTOCARRO LATERAL PERSONALIZADO -->
-            <div class="bus-side-container" id="busSide">
-                <div class="bus-windows">
-                    <div class="window"></div>
-                    <div class="window"></div>
-                    <div class="window"></div>
-                    <div class="window driver"></div>
+        <div class="chat-card">
+            <!-- CABEÇALHO -->
+            <div class="chat-header">
+                <div class="assistant-profile">
+                    <div class="avatar-container">
+                        <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="assistant-info">
+                        <h3>Guia Passeios do Miguel</h3>
+                        <p>Assistente Virtual • Online</p>
+                    </div>
                 </div>
-                <div class="bus-brand">PASSEIOS DO MIGUEL</div>
-                <div class="headlight"></div>
-                <div class="bus-wheels">
-                    <div class="wheel"></div>
-                    <div class="wheel"></div>
+                <button class="skip-btn" id="skipBtn" title="Ir para o site">Entrar no Site <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- MENSAGENS DO CHAT -->
+            <div class="chat-body" id="chatBody">
+                <div class="msg bot">
+                    Olá! 👋 Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>!
+                </div>
+                <div class="msg bot">
+                    Sou o seu assistente virtual. Como posso ajudar a planear a sua próxima viagem hoje?
+                </div>
+                <div class="chat-options" id="initialOptions">
+                    <button class="opt-btn" onclick="handleOption('proximos')">🚌 Ver próximos passeios</button>
+                    <button class="opt-btn" onclick="handleOption('origem')">📍 De onde saem os autocarros?</button>
+                    <button class="opt-btn" onclick="handleOption('reservas')">📲 Como fazer reservas?</button>
+                    <button class="opt-btn" onclick="handleOption('entrar')">🌐 Explorar o site</button>
                 </div>
             </div>
 
-            <!-- ÁREA DA MALA INTERATIVA -->
-            <div class="luggage-area" id="luggageBtn">
-                <div class="speech-bubble" id="luggageBubble">Clica em mim para carregar a mala! 👇</div>
-                <i class="fas fa-suitcase-rolling luggage-icon"></i>
+            <!-- ENTRADA DE MENSAGEM -->
+            <div class="chat-footer">
+                <input type="text" class="chat-input" id="userInput" placeholder="Escreva a sua dúvida aqui..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
-        </div>
-
-        <div class="splash-footer">
-            <button class="start-key-btn" id="ignitionBtn">
-                <i class="fas fa-key"></i> Dá à chave e vem connosco!
-            </button>
         </div>
     </div>
 
@@ -464,7 +407,7 @@
                 <div class="feature-card">
                     <i class="fas fa-bus-alt"></i>
                     <h3>Conforto & Segurança</h3>
-                    <p>Viagens de autocarro moderno e confortável, garantindo que chega ao destino relaxado e pronto para explorar.</p>
+                    <p>Viagens em autocarro moderno e confortável, garantindo que chega ao destino relaxado e pronto para explorar.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-users"></i>
@@ -479,6 +422,7 @@
     </main>
 
     <script>
+        // CARREGAMENTO DE COMPONENTES
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
                 .then(response => response.text())
@@ -488,126 +432,152 @@
         carregarComponente('menu-placeholder', 'menu.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
-        // ELEMENTOS DO DOM
+        // ELEMENTOS DO CHAT
         const splashScreen = document.getElementById('splash-screen');
-        const busSide = document.getElementById('busSide');
-        const luggageBtn = document.getElementById('luggageBtn');
-        const luggageBubble = document.getElementById('luggageBubble');
-        const ignitionBtn = document.getElementById('ignitionBtn');
-        const splashStatusText = document.getElementById('splashStatusText');
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+        const skipBtn = document.getElementById('skipBtn');
 
-        // NAVEGAÇÃO INTERNA: Se já visitou nesta sessão, esconde a animação de entrada
+        // NAVEGAÇÃO INTERNA: Se já interagiu/entrou nesta sessão, oculta o assistente
         if (sessionStorage.getItem('visitedIndex')) {
             splashScreen.classList.add('splash-bypass');
         }
 
-        // SISTEMA DE ÁUDIO NATIVO
+        // SISTEMA DE ÁUDIO NATIVO PARA MENSAGENS
         let audioCtx = null;
-
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            return audioCtx;
-        }
-
-        // 1. Som Suave para a Mala (Tranca/Clique)
-        function playLuggageSound() {
+        function playSound(freq, type) {
             try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(250, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + 0.12);
-
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type || 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
                 osc.connect(gain);
-                gain.connect(ctx.destination);
-
+                gain.connect(audioCtx.destination);
                 osc.start();
-                osc.stop(ctx.currentTime + 0.12);
-            } catch (e) {}
+                osc.stop(audioCtx.currentTime + 0.15);
+            } catch(e){}
         }
 
-        // 2. SIMULAÇÃO REALISTA DE MOTOR A DAR À CHAVE E A ARRANCAR
-        function playEngineSound() {
-            try {
-                const ctx = getAudioContext();
-                const duration = 1.3;
+        function playSendSound() { playSound(600, 'sine'); }
+        function playRecvSound() { playSound(800, 'triangle'); }
 
-                const bufferSize = ctx.sampleRate * duration;
-                const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-                const data = buffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = Math.random() * 2 - 1;
+        // MENSAGENS E LÓGICA DO ASSISTENTE
+        function appendMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${sender}`;
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            if (sender === 'user') playSendSound();
+            else playRecvSound();
+        }
+
+        function closeSplash() {
+            splashScreen.classList.add('splash-hidden');
+            sessionStorage.setItem('visitedIndex', 'true');
+        }
+
+        skipBtn.addEventListener('click', closeSplash);
+
+        function handleOption(key) {
+            if (key === 'proximos') {
+                appendMessage('🚌 Ver próximos passeios', 'user');
+                setTimeout(() => {
+                    appendMessage('Temos viagens fantásticas preparadas! Pode ver todos os detalhes e datas atualizadas na nossa página de passeios.', 'bot');
+                    addOptions([
+                        { text: '👉 Ir para Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { text: ' Outra questão', action: showInitialOptions }
+                    ]);
+                }, 500);
+            } else if (key === 'origem') {
+                appendMessage('📍 De onde saem os autocarros?', 'user');
+                setTimeout(() => {
+                    appendMessage('As nossas partidas principais são de <strong>São Pedro do Sul</strong> e <strong>Viseu</strong>, com paragens combinadas ao longo do percurso!', 'bot');
+                    addOptions([
+                        { text: '📲 Contactar para combinar paragem', action: () => handleOption('reservas') },
+                        { text: '🌐 Ver o site', action: closeSplash }
+                    ]);
+                }, 500);
+            } else if (key === 'reservas') {
+                appendMessage('📲 Como fazer reservas?', 'user');
+                setTimeout(() => {
+                    appendMessage('As reservas podem ser feitas facilmente por mensagem ou chamada. Estarei totalmente disponível para ajudar!', 'bot');
+                    addOptions([
+                        { text: '💬 Falar no WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); } },
+                        { text: '🌐 Explorar o site', action: closeSplash }
+                    ]);
+                }, 500);
+            } else if (key === 'entrar') {
+                appendMessage('🌐 Explorar o site', 'user');
+                setTimeout(() => {
+                    appendMessage('Excelente! Desejo-lhe uma ótima navegação.', 'bot');
+                    setTimeout(closeSplash, 800);
+                }, 400);
+            }
+        }
+
+        function addOptions(opts) {
+            const container = document.createElement('div');
+            container.className = 'chat-options';
+            opts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'opt-btn';
+                btn.innerText = opt.text;
+                btn.onclick = opt.action;
+                container.appendChild(btn);
+            });
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function showInitialOptions() {
+            addOptions([
+                { text: '🚌 Ver próximos passeios', action: () => handleOption('proximos') },
+                { text: '📍 De onde saem os autocarros?', action: () => handleOption('origem') },
+                { text: '📲 Como fazer reservas?', action: () => handleOption('reservas') },
+                { text: '🌐 Explorar o site', action: closeSplash }
+            ]);
+        }
+
+        function sendUserMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            userInput.value = '';
+
+            const lower = text.toLowerCase();
+            setTimeout(() => {
+                if (lower.includes('passeio') || lower.includes('viagem') || lower.includes('destino')) {
+                    appendMessage('Temos várias opções de viagem disponíveis! Deseja consultar a lista completa?', 'bot');
+                    addOptions([
+                        { text: 'Ver Lista de Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { text: 'Entrar no site', action: closeSplash }
+                    ]);
+                } else if (lower.includes('preco') || lower.includes('preço') || lower.includes('valor') || lower.includes('reserva')) {
+                    appendMessage('Os valores variam consoante o destino e o que está incluído. Pode consultar cada programa detalhado ou falar diretamente connosco.', 'bot');
+                    addOptions([
+                        { text: 'Ver passeios e preços', action: () => { window.location.href = 'passeios.html'; } },
+                        { text: 'Contacto direto', action: () => handleOption('reservas') }
+                    ]);
+                } else {
+                    appendMessage('Obrigado pela mensagem! Para explorar todas as informações, convido-o a navegar pelo nosso site.', 'bot');
+                    addOptions([
+                        { text: 'Entrar no Site', action: closeSplash },
+                        { text: 'Ver Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } }
+                    ]);
                 }
-
-                const noise = ctx.createBufferSource();
-                noise.buffer = buffer;
-
-                const filter = ctx.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(100, ctx.currentTime);
-                filter.frequency.linearRampToValueAtTime(280, ctx.currentTime + duration);
-
-                const gain = ctx.createGain();
-                gain.gain.setValueAtTime(0.2, ctx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.4, ctx.currentTime + 0.3);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-
-                noise.connect(filter);
-                filter.connect(gain);
-                gain.connect(ctx.destination);
-
-                noise.start();
-                noise.stop(ctx.currentTime + duration);
-            } catch (e) {}
+            }, 600);
         }
 
-        // INTERAÇÕES DA SPLASH SCREEN
-        let luggageLoaded = false;
-
-        luggageBtn.addEventListener('click', () => {
-            if (luggageLoaded) return;
-            luggageLoaded = true;
-
-            playLuggageSound();
-
-            // Animação da mala a entrar no autocarro
-            luggageBtn.style.transform = 'translate(-200px, -20px) scale(0.2)';
-            luggageBtn.style.opacity = '0';
-
-            // Atualiza textos e ativa o botão de ignição
-            splashStatusText.innerHTML = 'Mala guardada no porão! 🎒 Agora é só dar à chave.';
-            ignitionBtn.classList.add('active');
-        });
-
-        ignitionBtn.addEventListener('click', () => {
-            if (!luggageLoaded) return;
-
-            playEngineSound();
-
-            // Efeitos visuais do autocarro a ligar e arrancar
-            busSide.classList.add('engine-on');
-            splashStatusText.innerHTML = 'Motor ligado! Boa viagem... 🚌💨';
-
-            setTimeout(() => {
-                busSide.classList.add('wheel-spin', 'bus-drive-off');
-            }, 300);
-
-            // Transição para o site principal
-            setTimeout(() => {
-                splashScreen.classList.add('splash-hidden');
-                sessionStorage.setItem('visitedIndex', 'true');
-            }, 1200);
-        });
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendUserMessage();
+        }
     </script>
 </body>
 </html>
