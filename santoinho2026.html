@@ -103,9 +103,68 @@
         .photo-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(179, 0, 0, 0.15); }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 2.5em; }
-            .wrapper { grid-template-columns: 1fr; margin-top: -30px; }
-            .info-lists { grid-template-columns: 1fr; }
+    .hero {
+        height: auto;
+        min-height: 350px;
+        padding: 65px 20px 45px;
+        border-radius: 0 0 35px 35px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+    }
+
+    .booking-card {
+        position: static;
+        grid-row: 1;
+    }
+
+    .info-lists {
+        grid-template-columns: 1fr;
+    }
+}
+
+        @media (max-width: 480px) {
+            .hero {
+                height: auto;
+                min-height: 350px;
+                padding: 75px 20px 45px;
+            }
+        
+            .hero h1 {
+                font-size: 2.15em;
+                line-height: 1.15;
+            }
+        
+            .hero .data-badge {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        
+            .wrapper {
+                margin-top: 0;
+                padding: 0 12px;
+                gap: 20px;
+            }
+        
+            .main-card,
+            .booking-card {
+                padding: 23px;
+                border-radius: 25px;
+            }
+        
+            .price-amount {
+                font-size: 2.1em;
+            }
+        
+            .photo-grid img {
+                height: 130px;
+            }
         }
     </style>
 </head>
