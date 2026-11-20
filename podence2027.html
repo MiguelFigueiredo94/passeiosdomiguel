@@ -12,21 +12,25 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vem descobrir o Entrudo Chocalheiro de Podence, uma das tradições mais emblemáticas de Portugal. Passeio a 7 de fevereiro de 2027 com Os Passeios do Miguel.">
+
+    <meta name="description" content="Vem descobrir o Entrudo Chocalheiro de Podence a 7 de fevereiro de 2027. Um dia de tradição, cultura e animação por 35€ por pessoa, com Os Passeios do Miguel.">
+
     <title>Entrudo Chocalheiro de Podence – 07 de fevereiro de 2027 | Os Passeios do Miguel</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #12345a;
-            --secondary-blue: #2878b9;
-            --accent-blue: #70b9e8;
-            --bg-light: #f1f6fa;
+            --primary-color: #ed7900;
+            --orange-dark: #c96100;
+            --orange-light: #fff0df;
+            --blue-dark: #12345a;
+            --blue-medium: #2878b9;
+            --blue-light: #e7f2fa;
+            --bg-light: #f4f7fa;
             --text-dark: #263747;
-            --light-blue-bg: #e7f2fa;
-            --border-blue: #d3e4f0;
             --white: #ffffff;
         }
 
@@ -44,13 +48,15 @@
             padding-bottom: 40px;
         }
 
+        /* BOTÃO VOLTAR */
+
         .btn-voltar {
             position: fixed;
             top: 25px;
             left: 25px;
             z-index: 1001;
             background: white;
-            color: var(--primary-color);
+            color: var(--blue-dark);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -63,18 +69,20 @@
         }
 
         .btn-voltar:hover {
-            background: var(--primary-color);
+            background: var(--blue-dark);
             color: white;
             transform: translateX(-5px);
         }
+
+        /* CABEÇALHO */
 
         .hero {
             min-height: 470px;
             height: 62vh;
             background:
-                radial-gradient(circle at 80% 20%, rgba(112,185,232,0.35), transparent 30%),
-                radial-gradient(circle at 15% 85%, rgba(40,120,185,0.4), transparent 35%),
-                linear-gradient(135deg, #0b203b 0%, #12345a 48%, #2878b9 100%);
+                radial-gradient(circle at 85% 15%, rgba(255,255,255,0.2), transparent 30%),
+                radial-gradient(circle at 10% 90%, rgba(18,52,90,0.3), transparent 35%),
+                linear-gradient(135deg, #c96100 0%, #ed7900 55%, #ffad45 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -92,7 +100,7 @@
         .hero::after {
             content: '';
             position: absolute;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.15);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -123,7 +131,7 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.35);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
             color: #fff;
         }
 
@@ -132,8 +140,8 @@
             max-width: 700px;
             margin: 0 auto 25px;
             line-height: 1.7;
-            color: rgba(255,255,255,0.9);
-            font-weight: 300;
+            color: rgba(255,255,255,0.95);
+            font-weight: 400;
         }
 
         .data-badge {
@@ -141,14 +149,13 @@
             align-items: center;
             gap: 10px;
             font-size: 1.05em;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(8px);
+            background: var(--blue-dark);
             color: white;
             padding: 11px 28px;
             border: 1px solid rgba(255,255,255,0.35);
             border-radius: 50px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
         }
 
         .evento-badge {
@@ -157,15 +164,17 @@
             gap: 9px;
             margin-bottom: 24px;
             padding: 10px 22px;
-            background: var(--accent-blue);
-            color: var(--primary-color);
+            background: white;
+            color: var(--blue-dark);
             border-radius: 50px;
             font-size: 0.78em;
             font-weight: 800;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
+
+        /* ESTRUTURA PRINCIPAL */
 
         .wrapper {
             max-width: 1200px;
@@ -187,13 +196,13 @@
 
         .title-sec {
             font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
+            color: var(--orange-dark);
             font-size: 2.2em;
             margin-bottom: 25px;
         }
 
         .title-sec span {
-            color: var(--secondary-blue);
+            color: var(--blue-medium);
         }
 
         .intro-text {
@@ -207,11 +216,13 @@
         .section-heading {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: var(--primary-color);
-            border-left: 4px solid var(--secondary-blue);
+            color: var(--blue-dark);
+            border-left: 4px solid var(--primary-color);
             padding-left: 15px;
             font-weight: 700;
         }
+
+        /* DESTAQUES */
 
         .feature-box {
             display: flex;
@@ -226,12 +237,12 @@
 
         .feature-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(18,52,90,0.07);
-            border-color: var(--accent-blue);
+            box-shadow: 0 10px 25px rgba(237,121,0,0.09);
+            border-color: var(--primary-color);
         }
 
         .feature-box > i {
-            color: var(--secondary-blue);
+            color: var(--primary-color);
             font-size: 1.65em;
             min-width: 27px;
             margin-top: 2px;
@@ -239,7 +250,7 @@
 
         .feature-box h4 {
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--blue-dark);
             margin-bottom: 5px;
         }
 
@@ -249,16 +260,18 @@
             line-height: 1.7;
         }
 
+        /* CAIXAS DE DESTAQUE */
+
         .tips-section {
-            background: var(--light-blue-bg);
+            background: var(--orange-light);
             border-radius: 25px;
             padding: 30px;
             margin-top: 30px;
-            border: 1px solid var(--border-blue);
+            border: 1px solid #f4d3ae;
         }
 
         .tips-section h4 {
-            color: var(--primary-color);
+            color: var(--blue-dark);
             margin-bottom: 18px;
             font-size: 1.1em;
             text-transform: uppercase;
@@ -270,7 +283,7 @@
         }
 
         .tips-section h4 i {
-            color: var(--secondary-blue);
+            color: var(--primary-color);
         }
 
         .tip-item {
@@ -288,9 +301,11 @@
         }
 
         .tip-item i {
-            color: var(--secondary-blue);
+            color: var(--orange-dark);
             margin-top: 5px;
         }
+
+        /* PROGRAMA */
 
         .program-box {
             margin-top: 35px;
@@ -314,7 +329,7 @@
             top: 38px;
             bottom: 0;
             width: 2px;
-            background: #c8deee;
+            background: #d8e4ed;
         }
 
         .program-icon {
@@ -333,7 +348,7 @@
         }
 
         .program-content h4 {
-            color: var(--primary-color);
+            color: var(--blue-dark);
             font-size: 0.98em;
             margin-bottom: 4px;
         }
@@ -344,15 +359,17 @@
             line-height: 1.65;
         }
 
+        /* INCLUI / NÃO INCLUI */
+
         .info-lists {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
             margin-top: 35px;
-            background: #f8fafc;
+            background: var(--blue-light);
             padding: 25px;
             border-radius: 25px;
-            border: 1px dashed #cbdce8;
+            border: 1px dashed #b6cfe1;
         }
 
         .info-item {
@@ -371,12 +388,14 @@
         }
 
         .info-item i {
-            color: var(--secondary-blue);
+            color: var(--orange-dark);
             margin-top: 3px;
         }
 
+        /* CARTÃO LATERAL */
+
         .booking-card {
-            background: var(--primary-color);
+            background: var(--blue-dark);
             color: white;
             padding: 40px;
             border-radius: 35px;
@@ -411,10 +430,48 @@
         .booking-subtitle {
             font-size: 0.82em;
             font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 28px;
+            color: #ffad45;
+            margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* PREÇO */
+
+        .price-box {
+            background: var(--primary-color);
+            border-radius: 22px;
+            padding: 22px 18px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .price-label {
+            display: block;
+            font-size: 0.82em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .price-value {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            line-height: 1.15;
+            font-weight: 900;
+            color: white;
+        }
+
+        .price-note {
+            display: block;
+            font-size: 0.78em;
+            color: rgba(255,255,255,0.9);
+            margin-top: 5px;
         }
 
         .status-banner {
@@ -441,7 +498,7 @@
         }
 
         .booking-detail i {
-            color: var(--accent-blue);
+            color: #ffad45;
             font-size: 1.2em;
             margin-top: 3px;
             min-width: 20px;
@@ -464,7 +521,7 @@
             margin-top: 25px;
             padding: 20px;
             background: rgba(0,0,0,0.15);
-            border-left: 4px solid var(--accent-blue);
+            border-left: 4px solid var(--primary-color);
             border-radius: 12px;
             font-size: 0.88em;
             line-height: 1.7;
@@ -472,7 +529,7 @@
         }
 
         .booking-message i {
-            color: var(--accent-blue);
+            color: #ffad45;
             margin-right: 5px;
         }
 
@@ -484,8 +541,8 @@
             width: 100%;
             margin-top: 25px;
             padding: 15px 20px;
-            background: var(--accent-blue);
-            color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-size: 0.9em;
@@ -496,6 +553,7 @@
 
         .btn-contacto:hover {
             background: white;
+            color: var(--blue-dark);
             transform: translateY(-3px);
         }
 
@@ -507,6 +565,8 @@
             line-height: 1.5;
         }
 
+        /* RODAPÉ */
+
         footer {
             max-width: 1200px;
             margin: 40px auto 0;
@@ -517,8 +577,10 @@
         }
 
         footer strong {
-            color: var(--primary-color);
+            color: var(--blue-dark);
         }
+
+        /* RESPONSIVO */
 
         @media (max-width: 900px) {
             .hero {
@@ -600,6 +662,10 @@
             .program-item {
                 gap: 13px;
             }
+
+            .price-value {
+                font-size: 3em;
+            }
         }
     </style>
 </head>
@@ -610,7 +676,10 @@
         <i class="fas fa-arrow-left"></i>
     </a>
 
+    <!-- CABEÇALHO -->
+
     <header class="hero">
+
         <div class="hero-content">
 
             <div class="evento-badge">
@@ -631,9 +700,12 @@
             </div>
 
         </div>
+
     </header>
 
     <div class="wrapper">
+
+        <!-- CONTEÚDO PRINCIPAL -->
 
         <main class="main-card">
 
@@ -674,9 +746,9 @@
                 <div>
                     <h4>Entrudo Chocalheiro</h4>
                     <p>
-                        O ambiente festivo de uma celebração única, onde a música,
-                        os sons dos chocalhos e as manifestações tradicionais
-                        dão vida às ruas da aldeia.
+                        O ambiente festivo de uma celebração única, onde os sons
+                        dos chocalhos e as manifestações tradicionais dão vida
+                        às ruas da aldeia.
                     </p>
                 </div>
             </div>
@@ -686,14 +758,17 @@
                 <div>
                     <h4>Podence e as suas tradições</h4>
                     <p>
-                        Tempo para conhecer a aldeia, descobrir a sua identidade
+                        Tempo livre para conhecer a aldeia, descobrir a sua identidade
                         cultural e sentir de perto uma tradição que faz parte
                         da memória coletiva da região.
                     </p>
                 </div>
             </div>
 
+            <!-- DESTAQUE CULTURAL -->
+
             <div class="tips-section">
+
                 <h4>
                     <i class="fas fa-star"></i>
                     Uma tradição com identidade própria
@@ -712,8 +787,8 @@
                     <i class="fas fa-globe-europe"></i>
                     <span>
                         <strong>Património cultural:</strong>
-                        o Entrudo Chocalheiro é uma tradição reconhecida
-                        internacionalmente e uma expressão marcante da cultura popular.
+                        uma tradição reconhecida pela UNESCO como Património Cultural
+                        Imaterial da Humanidade.
                     </span>
                 </div>
 
@@ -725,7 +800,10 @@
                         e oportunidades para fotografias.
                     </span>
                 </div>
+
             </div>
+
+            <!-- PROGRAMA -->
 
             <div class="program-box">
 
@@ -753,22 +831,8 @@
                     <div class="program-content">
                         <h4>Paragem de apoio em Murça</h4>
                         <p>
-                            Paragem prevista na Repsol de Murça, com cerca
-                            de 30 a 40 minutos para descanso.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>Entrudo Chocalheiro – Podence</h4>
-                        <p>
-                            Chegada a Podence para acompanhar o ambiente
-                            do Entrudo Chocalheiro, conhecer as tradições
-                            e desfrutar da festa ao longo do dia.
+                            Paragem prevista na Repsol de Murça, para uma pausa
+                            durante a viagem.
                         </p>
                     </div>
                 </div>
@@ -778,10 +842,23 @@
                         <i class="fas fa-mountain"></i>
                     </div>
                     <div class="program-content">
-                        <h4>Miradouro de São Domingos</h4>
+                        <h4>Miradouro do Monte de São Domingos</h4>
                         <p>
-                            Paragem panorâmica prevista, com cerca de
-                            20 minutos, para apreciar a paisagem.
+                            Paragem no Miradouro do Monte de São Domingos, em Murça,
+                            para apreciar as magníficas paisagens transmontanas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="program-item">
+                    <div class="program-icon">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    <div class="program-content">
+                        <h4>Entrudo Chocalheiro – Podence</h4>
+                        <p>
+                            Tempo livre em Podence para descobrir os Caretos
+                            e viver o Entrudo Chocalheiro.
                         </p>
                     </div>
                 </div>
@@ -793,113 +870,111 @@
                     <div class="program-content">
                         <h4>Regresso a casa</h4>
                         <p>
-                            Regresso previsto à região entre as 19h00
-                            e as 20h00, dependendo das condições de trânsito
-                            e do decorrer do programa.
+                            Regresso previsto à região entre as 19h00 e as 20h00,
+                            dependendo das condições de trânsito e do decorrer
+                            do programa.
                         </p>
                     </div>
                 </div>
 
             </div>
 
+            <!-- INCLUI / NÃO INCLUI -->
+
             <div class="info-lists">
 
                 <div>
-                    <h4 style="margin-bottom:14px; color:var(--primary-color); font-size:0.95em; font-weight:700;">
-                        <i class="fas fa-route"></i> INFORMAÇÕES DA VIAGEM
+
+                    <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
+                        <i class="fas fa-check-circle"></i> INCLUI
                     </h4>
 
                     <li class="info-item">
                         <i class="fas fa-check"></i>
-                        Viagem em autocarro de turismo
+                        Transporte em autocarro de turismo
                     </li>
 
                     <li class="info-item">
                         <i class="fas fa-check"></i>
-                        Partida de São Pedro do Sul
+                        Acompanhamento por Tour Leader
                     </li>
 
                     <li class="info-item">
                         <i class="fas fa-check"></i>
-                        Paragem de apoio em Murça
+                        Seguro
                     </li>
 
-                    <li class="info-item">
-                        <i class="fas fa-check"></i>
-                        Visita ao Entrudo Chocalheiro
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-check"></i>
-                        Paragem no Miradouro de São Domingos
-                    </li>
                 </div>
 
                 <div>
-                    <h4 style="margin-bottom:14px; color:var(--primary-color); font-size:0.95em; font-weight:700;">
-                        <i class="fas fa-heart"></i> O ESPÍRITO DA VIAGEM
+
+                    <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
+                        <i class="fas fa-times-circle"></i> NÃO INCLUI
                     </h4>
 
                     <li class="info-item">
-                        <i class="fas fa-star"></i>
-                        Cultura e tradições portuguesas
+                        <i class="fas fa-times"></i>
+                        Refeições
                     </li>
 
                     <li class="info-item">
-                        <i class="fas fa-star"></i>
-                        Descoberta de Trás-os-Montes
+                        <i class="fas fa-times"></i>
+                        Despesas de caráter pessoal
                     </li>
 
                     <li class="info-item">
-                        <i class="fas fa-star"></i>
-                        Festa e animação popular
+                        <i class="fas fa-times"></i>
+                        Entradas ou atividades pagas, caso existam
                     </li>
 
-                    <li class="info-item">
-                        <i class="fas fa-star"></i>
-                        Paisagens e momentos especiais
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-star"></i>
-                        Convívio e boa disposição
-                    </li>
                 </div>
 
             </div>
 
-            <div class="tips-section" style="margin-top:30px;">
+            <!-- INFORMAÇÕES IMPORTANTES -->
+
+            <div class="tips-section" style="margin-top:25px;">
+
                 <h4>
                     <i class="fas fa-info-circle"></i>
                     Informações importantes
                 </h4>
 
                 <div class="tip-item">
-                    <i class="fas fa-clock"></i>
-                    <span>
-                        Os horários apresentados são previsões e poderão sofrer
-                        ajustes em função do trânsito e da organização do evento.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-shoe-prints"></i>
-                    <span>
-                        Recomenda-se calçado confortável e roupa adequada
-                        às condições meteorológicas de fevereiro.
-                    </span>
-                </div>
-
-                <div class="tip-item">
                     <i class="fas fa-users"></i>
                     <span>
-                        O programa poderá ser ajustado de acordo com a dinâmica
-                        e as condições de acesso ao evento.
+                        Realização sujeita a um mínimo de 35 participantes.
                     </span>
                 </div>
+
+                <div class="tip-item">
+                    <i class="fas fa-euro-sign"></i>
+                    <span>
+                        A pré-inscrição só fica confirmada após o pagamento.
+                    </span>
+                </div>
+
+                <div class="tip-item">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>
+                        Os lugares são atribuídos por ordem de inscrição,
+                        após pagamento.
+                    </span>
+                </div>
+
+                <div class="tip-item">
+                    <i class="fas fa-clock"></i>
+                    <span>
+                        Horários, locais de embarque e restantes informações
+                        serão comunicados previamente.
+                    </span>
+                </div>
+
             </div>
 
         </main>
+
+        <!-- CARTÃO LATERAL -->
 
         <aside class="booking-card">
 
@@ -909,6 +984,24 @@
                 <i class="fas fa-mask"></i>
                 Uma tradição que vale a pena conhecer
             </p>
+
+            <!-- PREÇO -->
+
+            <div class="price-box">
+
+                <span class="price-label">
+                    Preço por pessoa
+                </span>
+
+                <span class="price-value">
+                    35€
+                </span>
+
+                <span class="price-note">
+                    Um dia de tradição e animação!
+                </span>
+
+            </div>
 
             <div class="status-banner">
                 <i class="fas fa-calendar-check"></i>
@@ -950,8 +1043,18 @@
             <div class="booking-detail">
                 <i class="fas fa-route"></i>
                 <div>
-                    <strong>Paragens previstas</strong>
-                    <span>Murça e Miradouro de São Domingos</span>
+                    <strong>Locais a visitar</strong>
+                    <span>
+                        Miradouro do Monte de São Domingos e Podence
+                    </span>
+                </div>
+            </div>
+
+            <div class="booking-detail">
+                <i class="fas fa-users"></i>
+                <div>
+                    <strong>Mínimo de participantes</strong>
+                    <span>35 pessoas</span>
                 </div>
             </div>
 
@@ -966,8 +1069,10 @@
                class="btn-contacto"
                target="_blank"
                rel="noopener">
+
                 <i class="fab fa-whatsapp"></i>
                 Pedir informações
+
             </a>
 
             <p class="contact-note">
@@ -979,6 +1084,8 @@
         </aside>
 
     </div>
+
+    <!-- RODAPÉ -->
 
     <footer>
         <p>
