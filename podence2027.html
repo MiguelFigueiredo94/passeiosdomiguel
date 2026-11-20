@@ -25,6 +25,9 @@
             --primary-color: #ed7900;
             --orange-dark: #c96100;
             --orange-light: #fff0df;
+            --green-dark: #133a2b;
+            --green-medium: #245c43;
+            --green-light: #eaf1ec;
             --blue-dark: #12345a;
             --blue-medium: #2878b9;
             --blue-light: #e7f2fa;
@@ -136,22 +139,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
 
-        .evento-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 24px;
-            padding: 10px 22px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50px;
-            font-size: 0.78em;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
         /* ESTRUTURA PRINCIPAL */
 
         .wrapper {
@@ -172,15 +159,17 @@
             box-shadow: 0 20px 50px rgba(18,52,90,0.07);
         }
 
+        /* TÍTULOS PRINCIPAIS - VERDE ESCURO */
+
         .title-sec {
             font-family: 'Playfair Display', serif;
-            color: var(--orange-dark);
+            color: var(--green-dark);
             font-size: 2.2em;
             margin-bottom: 25px;
         }
 
         .title-sec span {
-            color: var(--blue-medium);
+            color: var(--green-dark);
         }
 
         .intro-text {
@@ -194,8 +183,8 @@
         .section-heading {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: var(--blue-dark);
-            border-left: 4px solid var(--primary-color);
+            color: var(--green-dark);
+            border-left: 4px solid var(--green-dark);
             padding-left: 15px;
             font-weight: 700;
         }
@@ -274,8 +263,8 @@
 
         .feature-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(237,121,0,0.09);
-            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(19,58,43,0.09);
+            border-color: var(--green-dark);
         }
 
         .feature-box > i {
@@ -287,7 +276,7 @@
 
         .feature-box h4 {
             font-weight: 700;
-            color: var(--blue-dark);
+            color: var(--green-dark);
             margin-bottom: 5px;
         }
 
@@ -308,7 +297,7 @@
         }
 
         .tips-section h4 {
-            color: var(--blue-dark);
+            color: var(--green-dark);
             margin-bottom: 18px;
             font-size: 1.1em;
             text-transform: uppercase;
@@ -385,7 +374,7 @@
         }
 
         .program-content h4 {
-            color: var(--blue-dark);
+            color: var(--green-dark);
             font-size: 0.98em;
             margin-bottom: 4px;
         }
@@ -509,47 +498,55 @@
             margin-top: 5px;
         }
 
-        /* BOTÃO DE INSCRIÇÃO */
+        /* BOTÃO INSCREVER-ME */
 
         .btn-inscricao {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 11px;
             width: 100%;
             margin-top: 15px;
-            padding: 16px 20px;
-            background: white;
-            color: var(--orange-dark);
+            margin-bottom: 28px;
+            padding: 17px 20px;
+            background: var(--green-dark);
+            color: white;
             text-decoration: none;
-            border: 2px solid white;
+            border: 2px solid rgba(255,255,255,0.85);
             border-radius: 50px;
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: 800;
-            transition: 0.3s;
+            letter-spacing: 0.3px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             position: relative;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            animation: chamar-inscricao 2.8s ease-in-out infinite;
+        }
+
+        .btn-inscricao i {
+            font-size: 1.05em;
         }
 
         .btn-inscricao:hover {
-            background: var(--orange-light);
-            border-color: var(--orange-light);
-            color: var(--blue-dark);
-            transform: translateY(-3px);
+            background: var(--green-medium);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+            animation: none;
         }
 
-        .status-banner {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.25);
-            text-align: center;
-            padding: 13px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 0.85em;
-            margin-bottom: 22px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: white;
+        @keyframes chamar-inscricao {
+            0%, 100% {
+                box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+                transform: translateY(0);
+            }
+            50% {
+                box-shadow: 0 8px 23px rgba(255,255,255,0.22);
+                transform: translateY(-2px);
+            }
         }
+
+        /* DETALHES DA VIAGEM */
 
         .booking-detail {
             display: flex;
@@ -596,6 +593,8 @@
             margin-right: 5px;
         }
 
+        /* BOTÃO WHATSAPP */
+
         .btn-contacto {
             display: flex;
             align-items: center;
@@ -641,6 +640,19 @@
 
         footer strong {
             color: var(--blue-dark);
+        }
+
+        /* ACESSIBILIDADE: REDUZIR ANIMAÇÕES */
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn-inscricao {
+                animation: none;
+            }
+
+            * {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         /* RESPONSIVO */
@@ -693,11 +705,6 @@
                 padding: 9px 16px;
             }
 
-            .evento-badge {
-                font-size: 0.68em;
-                padding: 9px 14px;
-            }
-
             .wrapper {
                 margin-top: 0;
                 padding: 0 12px;
@@ -738,6 +745,11 @@
 
             .price-value {
                 font-size: 3em;
+            }
+
+            .btn-inscricao {
+                padding: 16px;
+                font-size: 0.95em;
             }
         }
     </style>
@@ -810,10 +822,10 @@
                     <div class="photo-card">
                         <img
                             src="https://i.imgur.com/DYzWPf9.png"
-                            alt="Caretos de Podence com os seus fatos coloridos"
+                            alt="Miradouro do Monte de São Domingos, em Murça"
                             loading="lazy">
                         <div class="photo-caption">
-                            <i class="fas fa-mask"></i>
+                            <i class="fas fa-mountain"></i>
                             Monte / Miradouro de S. Domingos (Murça)
                         </div>
                     </div>
@@ -1014,7 +1026,7 @@
                     <div class="program-content">
                         <h4>Regresso a casa</h4>
                         <p>
-                            Regresso previsto à entre as 19h00 e as 20h00,
+                            Regresso previsto à região entre as 19h00 e as 20h00,
                             dependendo das condições de trânsito e do decorrer
                             do programa.
                         </p>
@@ -1134,14 +1146,11 @@
             <!-- BOTÃO DE INSCRIÇÃO -->
 
             <a href="/inscricao.html" class="btn-inscricao">
-                <i class="fas fa-clipboard-list"></i>
-                Fazer inscrição
+                <i class="fas fa-clipboard-check"></i>
+                Inscrever-me!
             </a>
 
-            <div class="status-banner" style="margin-top:22px;">
-                <i class="fas fa-calendar-check"></i>
-                Próxima viagem
-            </div>
+            <!-- DETALHES DA VIAGEM -->
 
             <div class="booking-detail">
                 <i class="fas fa-calendar-alt"></i>
@@ -1199,6 +1208,8 @@
                 cor e animação. Vamos juntos descobrir uma das festas
                 mais características de Portugal!
             </div>
+
+            <!-- CONTACTO WHATSAPP -->
 
             <a href="https://wa.me/351965715465?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20ao%20Entrudo%20Chocalheiro%20de%20Podence%2C%20a%207%20de%20fevereiro%20de%202027."
                class="btn-contacto"
