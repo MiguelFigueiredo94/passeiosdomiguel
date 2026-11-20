@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -29,12 +28,19 @@
       --green: #133a2b;
       --green-dark: #0c281e;
       --green-light: #eaf0eb;
-      --gold: #cca43b;
-      --gold-light: #f4e8c5;
+
+      --orange: #f28c28;
+      --orange-dark: #dc7415;
+      --orange-light: #fff0df;
+
+      --blue: #28628f;
+      --blue-light: #eaf3fa;
+
       --cream: #faf9f5;
       --text: #292d2a;
       --muted: #737a74;
       --white: #ffffff;
+
       --shadow: 0 12px 35px rgba(19, 58, 43, .10);
       --radius: 18px;
     }
@@ -71,11 +77,36 @@
       margin: 0 auto;
     }
 
+    /* BOTÃO VOLTAR */
+
+    .back-link {
+      position: absolute;
+      top: 25px;
+      left: max(20px, calc((100% - 1120px) / 2));
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50px;
+      background: rgba(0,0,0,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      backdrop-filter: blur(6px);
+      transition: background .25s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(0,0,0,.5);
+    }
+
     /* HERO */
 
     .hero {
       position: relative;
-      min-height: 590px;
+      min-height: 620px;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -97,8 +128,8 @@
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 700px;
-      padding: 85px 0 105px;
+      max-width: 730px;
+      padding: 100px 0 105px;
     }
 
     .eyebrow {
@@ -106,20 +137,20 @@
       align-items: center;
       gap: 9px;
       padding: 8px 15px;
-      border: 1px solid rgba(255,255,255,.38);
+      border: 1px solid rgba(242,140,40,.65);
       border-radius: 50px;
-      background: rgba(255,255,255,.12);
+      background: rgba(242,140,40,.17);
       backdrop-filter: blur(6px);
       color: #fff;
       font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.4px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .eyebrow i {
-      color: var(--gold);
+      color: var(--orange);
     }
 
     .hero h1 {
@@ -129,19 +160,20 @@
       font-weight: 700;
       letter-spacing: -.8px;
       margin-bottom: 22px;
-      text-shadow: 0 3px 15px rgba(0,0,0,.2);
+      color: var(--orange);
+      text-shadow: 0 3px 15px rgba(0,0,0,.3);
     }
 
     .hero h1 span {
       display: block;
-      color: #f0d58b;
+      color: #ffb35f;
     }
 
     .hero-description {
-      max-width: 570px;
+      max-width: 590px;
       font-size: clamp(15px, 2vw, 18px);
       line-height: 1.8;
-      color: rgba(255,255,255,.92);
+      color: rgba(255,255,255,.94);
       margin-bottom: 30px;
     }
 
@@ -158,15 +190,20 @@
       gap: 9px;
       font-size: 13px;
       font-weight: 500;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.22);
       border-radius: 50px;
       padding: 10px 15px;
       backdrop-filter: blur(5px);
+      color: #fff;
     }
 
     .hero-meta i {
-      color: #f0d58b;
+      color: #83c4f2;
+    }
+
+    .hero-meta .meta-price i {
+      color: var(--orange);
     }
 
     .hero-button {
@@ -175,8 +212,8 @@
       justify-content: center;
       gap: 11px;
       padding: 15px 27px;
-      background: var(--gold);
-      color: var(--green-dark);
+      background: var(--orange);
+      color: #fff;
       font-weight: 700;
       font-size: 14px;
       border-radius: 8px;
@@ -184,11 +221,11 @@
     }
 
     .hero-button:hover {
-      background: #e0bd5c;
+      background: var(--orange-dark);
       transform: translateY(-2px);
     }
 
-    /* RESUMO */
+    /* DESTAQUES DA VIAGEM */
 
     .quick-info {
       position: relative;
@@ -218,20 +255,20 @@
     }
 
     .quick-icon {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 48px;
+      width: 50px;
+      height: 50px;
+      flex: 0 0 50px;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 19px;
+      background: var(--orange-light);
+      color: var(--orange-dark);
+      font-size: 20px;
     }
 
     .quick-info-item strong {
       display: block;
-      color: var(--green);
+      color: var(--blue);
       font-size: 14px;
       font-weight: 700;
     }
@@ -257,7 +294,7 @@
 
     .section-kicker {
       display: inline-block;
-      color: #9b7924;
+      color: var(--blue);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -315,8 +352,8 @@
     .intro-highlight {
       margin-top: 25px;
       padding: 18px 20px;
-      border-left: 4px solid var(--gold);
-      background: #f1f2eb;
+      border-left: 4px solid var(--orange);
+      background: var(--orange-light);
       border-radius: 0 10px 10px 0;
       color: var(--green);
       font-size: 14px;
@@ -377,7 +414,7 @@
     }
 
     .experiences .section-kicker {
-      color: #e4c56f;
+      color: #ffb35f;
     }
 
     .experiences .title-sec {
@@ -385,7 +422,7 @@
     }
 
     .experiences .section-heading p {
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.78);
     }
 
     .experience-grid {
@@ -430,14 +467,14 @@
     }
 
     .experience-card p {
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.78);
       font-size: 12px;
       line-height: 1.8;
     }
 
     .experience-number {
       display: inline-block;
-      color: #e4c56f;
+      color: #ffb35f;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -496,8 +533,8 @@
       height: 14px;
       border: 3px solid var(--cream);
       border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 2px var(--gold);
+      background: var(--orange);
+      box-shadow: 0 0 0 2px var(--orange);
     }
 
     .timeline-item h3 {
@@ -515,7 +552,7 @@
 
     .timeline-time {
       display: inline-block;
-      color: #98751f;
+      color: var(--blue);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .6px;
@@ -529,13 +566,13 @@
       align-items: flex-start;
       margin-top: 35px;
       padding: 20px 22px;
-      background: var(--green-light);
+      background: var(--blue-light);
       border-radius: 12px;
       color: var(--green);
     }
 
     .route-note i {
-      color: #a9842c;
+      color: var(--blue);
       font-size: 19px;
       margin-top: 3px;
     }
@@ -572,8 +609,8 @@
       height: 52px;
       margin: 0 auto 15px;
       border-radius: 50%;
-      background: var(--green-light);
-      color: var(--green);
+      background: var(--orange-light);
+      color: var(--orange-dark);
       font-size: 20px;
     }
 
@@ -621,7 +658,7 @@
     }
 
     .booking-copy .section-kicker {
-      color: #e4c56f;
+      color: #83c4f2;
     }
 
     .booking-copy h2 {
@@ -633,7 +670,7 @@
     }
 
     .booking-copy p {
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.82);
       font-size: 14px;
       line-height: 1.9;
       margin-bottom: 20px;
@@ -654,7 +691,7 @@
     }
 
     .booking-points i {
-      color: #e4c56f;
+      color: var(--orange);
       width: 17px;
     }
 
@@ -666,45 +703,46 @@
       box-shadow: 0 18px 45px rgba(0,0,0,.18);
     }
 
-    .price-topline {
+    .price-main {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-bottom: 14px;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 5px 0 22px;
       border-bottom: 1px solid #e9ece7;
     }
 
-    .price-topline strong {
-      font-size: 18px;
-      font-weight: 600;
+    .price-description strong {
+      display: block;
+      font-size: 19px;
+      font-weight: 700;
       color: var(--green);
     }
 
-    .price-topline span {
-      color: #8b7540;
-      font-size: 10px;
-      letter-spacing: 1.6px;
-      font-weight: 700;
-    }
-
-    .price-bottomline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 15px;
-    }
-
-    .price-bottomline small {
+    .price-description small {
       display: block;
       color: #7b837c;
-      font-size: 13px;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .price-value {
+      text-align: right;
+    }
+
+    .price-value small {
+      display: block;
+      color: var(--blue);
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      font-weight: 700;
+      margin-bottom: 3px;
     }
 
     .price-amount {
-      color: var(--green);
+      color: var(--orange);
       font-family: 'Playfair Display', serif;
-      font-size: 48px;
+      font-size: 52px;
       line-height: 1;
       font-weight: 700;
       white-space: nowrap;
@@ -728,20 +766,20 @@
       width: 100%;
       margin-top: 23px;
       padding: 16px 20px;
-      background: var(--green);
+      background: var(--orange);
       color: white;
-      border: 1px solid var(--green);
+      border: 1px solid var(--orange);
       border-radius: 9px;
       font-family: 'Poppins', sans-serif;
       font-size: 14px;
       font-weight: 700;
-      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+      transition: background .25s ease, transform .25s ease;
     }
 
     .booking-button:hover {
-      background: #1d513c;
+      background: var(--orange-dark);
+      border-color: var(--orange-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(19,58,43,.18);
     }
 
     .booking-button i {
@@ -778,7 +816,7 @@
     }
 
     .condition-item i {
-      color: #a9842c;
+      color: var(--orange);
       font-size: 18px;
       margin-top: 3px;
     }
@@ -819,7 +857,7 @@
     }
 
     .footer-brand span {
-      color: var(--gold);
+      color: var(--orange);
     }
 
     .footer-info {
@@ -832,6 +870,7 @@
       gap: 15px;
       align-items: center;
       font-size: 12px;
+      flex-wrap: wrap;
     }
 
     .footer-contact a {
@@ -840,7 +879,7 @@
     }
 
     .footer-contact a:hover {
-      color: var(--gold);
+      color: var(--orange);
     }
 
     .footer-bottom {
@@ -876,13 +915,23 @@
         width: min(100% - 30px, 540px);
       }
 
+      .back-link {
+        top: 18px;
+        left: 15px;
+      }
+
       .hero {
-        min-height: 650px;
+        min-height: 680px;
         background-position: 58% center;
       }
 
       .hero-content {
-        padding: 75px 0 100px;
+        padding: 95px 0 100px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1px;
       }
 
       .hero h1 {
@@ -900,6 +949,11 @@
       .hero-meta span {
         font-size: 11px;
         padding: 8px 12px;
+      }
+
+      .hero-button {
+        font-size: 12px;
+        padding: 14px 19px;
       }
 
       .quick-info {
@@ -1011,7 +1065,7 @@
       }
 
       .price-amount {
-        font-size: 42px;
+        font-size: 44px;
       }
     }
 
@@ -1035,12 +1089,18 @@
 
   <!-- HERO -->
   <header class="hero">
+
+    <a href="/passeios.html" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i>
+      Voltar aos passeios
+    </a>
+
     <div class="container">
       <div class="hero-content">
 
         <div class="eyebrow">
           <i class="fa-solid fa-masks-theater"></i>
-          Tradição, cultura e animação
+          Cultura &amp; Tradição
         </div>
 
         <h1>
@@ -1055,7 +1115,7 @@
         <div class="hero-meta">
           <span><i class="fa-regular fa-calendar"></i> 07 fevereiro 2027</span>
           <span><i class="fa-solid fa-location-dot"></i> Podence · Macedo de Cavaleiros</span>
-          <span><i class="fa-solid fa-euro-sign"></i> 35 € por pessoa</span>
+          <span class="meta-price"><i class="fa-solid fa-euro-sign"></i> 35 € por pessoa</span>
         </div>
 
         <a href="#inscricao" class="hero-button">
@@ -1067,7 +1127,7 @@
     </div>
   </header>
 
-  <!-- RESUMO DA VIAGEM -->
+  <!-- DESTAQUES DA VIAGEM -->
   <div class="quick-info">
     <div class="container">
       <div class="quick-info-grid">
@@ -1078,17 +1138,17 @@
           </div>
           <div>
             <strong>Domingo, 07 fevereiro</strong>
-            <small>Um dia de tradição e descoberta</small>
+            <small>Marca esta data na agenda!</small>
           </div>
         </div>
 
         <div class="quick-info-item">
           <div class="quick-icon">
-            <i class="fa-solid fa-bus"></i>
+            <i class="fa-solid fa-location-dot"></i>
           </div>
           <div>
-            <strong>Transporte incluído</strong>
-            <small>Viagem em autocarro de turismo</small>
+            <strong>Podence · Trás-os-Montes</strong>
+            <small>Uma aldeia com uma identidade única</small>
           </div>
         </div>
 
@@ -1097,8 +1157,8 @@
             <i class="fa-solid fa-masks-theater"></i>
           </div>
           <div>
-            <strong>Entrudo de Podence</strong>
-            <small>Uma tradição única em Portugal</small>
+            <strong>Entrudo Chocalheiro</strong>
+            <small>Caretos, máscaras e chocalhos</small>
           </div>
         </div>
 
@@ -1357,14 +1417,16 @@
 
         <div class="price-card">
 
-          <div class="price-topline">
-            <strong>Viagem</strong>
-            <span>PREÇO</span>
-          </div>
+          <div class="price-main">
+            <div class="price-description">
+              <strong>Viagem</strong>
+              <small>Por pessoa</small>
+            </div>
 
-          <div class="price-bottomline">
-            <small>Por pessoa</small>
-            <div class="price-amount">35 €</div>
+            <div class="price-value">
+              <small>PREÇO</small>
+              <div class="price-amount">35 €</div>
+            </div>
           </div>
 
           <div class="price-note">
