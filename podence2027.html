@@ -4,10 +4,10 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G0BKTCRNV9');
     </script>
 
     <meta charset="UTF-8">
@@ -18,7 +18,6 @@
     <title>Entrudo Chocalheiro de Podence – 07 de fevereiro de 2027 | Os Passeios do Miguel</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -42,7 +41,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
+            background: var(--bg-light);
             color: var(--text-dark);
             overflow-x: hidden;
             padding-bottom: 40px;
@@ -64,8 +63,8 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
 
         .btn-voltar:hover {
@@ -74,15 +73,18 @@
             transform: translateX(-5px);
         }
 
-        /* CABEÇALHO */
+        /* CABEÇALHO COM FOTOGRAFIA */
 
         .hero {
-            min-height: 470px;
-            height: 62vh;
+            min-height: 520px;
+            height: 65vh;
             background:
-                radial-gradient(circle at 85% 15%, rgba(255,255,255,0.2), transparent 30%),
-                radial-gradient(circle at 10% 90%, rgba(18,52,90,0.3), transparent 35%),
-                linear-gradient(135deg, #c96100 0%, #ed7900 55%, #ffad45 100%);
+                linear-gradient(
+                    135deg,
+                    rgba(18,52,90,0.78),
+                    rgba(201,97,0,0.62)
+                ),
+                url('https://i.imgur.com/uxOScxT.png') center 45% / cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,32 +93,9 @@
             color: white;
             border-radius: 0 0 60px 60px;
             padding: 30px 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.18);
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before,
-        .hero::after {
-            content: '';
-            position: absolute;
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero::before {
-            width: 420px;
-            height: 420px;
-            right: -130px;
-            top: -150px;
-        }
-
-        .hero::after {
-            width: 300px;
-            height: 300px;
-            left: -100px;
-            bottom: -130px;
         }
 
         .hero-content {
@@ -131,8 +110,8 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-            color: #fff;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+            color: white;
         }
 
         .hero-description {
@@ -140,8 +119,8 @@
             max-width: 700px;
             margin: 0 auto 25px;
             line-height: 1.7;
-            color: rgba(255,255,255,0.95);
-            font-weight: 400;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
         }
 
         .data-badge {
@@ -152,10 +131,9 @@
             background: var(--blue-dark);
             color: white;
             padding: 11px 28px;
-            border: 1px solid rgba(255,255,255,0.35);
             border-radius: 50px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
 
         .evento-badge {
@@ -164,14 +142,14 @@
             gap: 9px;
             margin-bottom: 24px;
             padding: 10px 22px;
-            background: white;
-            color: var(--blue-dark);
+            background: var(--primary-color);
+            color: white;
             border-radius: 50px;
             font-size: 0.78em;
             font-weight: 800;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         /* ESTRUTURA PRINCIPAL */
@@ -222,6 +200,65 @@
             font-weight: 700;
         }
 
+        /* O QUE NOS ESPERA - GALERIA */
+
+        .gallery-section {
+            margin: 35px 0 40px;
+        }
+
+        .gallery-intro {
+            color: #65717d;
+            font-size: 0.94em;
+            line-height: 1.7;
+            margin-top: -12px;
+            margin-bottom: 22px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 7px 20px rgba(18,52,90,0.09);
+            border: 1px solid #e6edf2;
+            transition: 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(18,52,90,0.15);
+        }
+
+        .photo-card img {
+            display: block;
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .photo-caption {
+            padding: 14px 15px;
+            font-size: 0.84em;
+            color: var(--blue-dark);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .photo-caption i {
+            color: var(--primary-color);
+            margin-right: 6px;
+        }
+
         /* DESTAQUES */
 
         .feature-box {
@@ -260,7 +297,7 @@
             line-height: 1.7;
         }
 
-        /* CAIXAS DE DESTAQUE */
+        /* CAIXA DE DESTAQUE */
 
         .tips-section {
             background: var(--orange-light);
@@ -436,8 +473,6 @@
             letter-spacing: 1px;
         }
 
-        /* PREÇO */
-
         .price-box {
             background: var(--primary-color);
             border-radius: 22px;
@@ -585,7 +620,7 @@
         @media (max-width: 900px) {
             .hero {
                 height: auto;
-                min-height: 390px;
+                min-height: 430px;
                 padding: 75px 20px 65px;
                 border-radius: 0 0 35px 35px;
             }
@@ -609,10 +644,11 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
             .hero {
-                min-height: 370px;
+                min-height: 390px;
                 padding: 80px 18px 50px;
+                background-position: center;
             }
 
             .hero h1 {
@@ -650,6 +686,15 @@
                 font-size: 1.8em;
             }
 
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .photo-card img {
+                height: 210px;
+            }
+
             .feature-box {
                 padding: 17px;
                 gap: 14px;
@@ -679,7 +724,6 @@
     <!-- CABEÇALHO -->
 
     <header class="hero">
-
         <div class="hero-content">
 
             <div class="evento-badge">
@@ -700,7 +744,6 @@
             </div>
 
         </div>
-
     </header>
 
     <div class="wrapper">
@@ -725,18 +768,96 @@
                 entre cultura, paisagens e convívio.
             </p>
 
+            <!-- O QUE NOS ESPERA -->
+
+            <section class="gallery-section">
+
+                <h2 class="title-sec">
+                    O que nos <span>espera...</span>
+                </h2>
+
+                <p class="gallery-intro">
+                    Um cenário cheio de cor, tradição e autenticidade.
+                    Espreita alguns dos momentos e lugares que dão vida
+                    a esta experiência!
+                </p>
+
+                <div class="photo-grid">
+
+                    <div class="photo-card">
+                        <img
+                            src="https://i.imgur.com/ygpxBo6.png"
+                            alt="Caretos de Podence com os seus fatos coloridos"
+                            loading="lazy">
+                        <div class="photo-caption">
+                            <i class="fas fa-mask"></i>
+                            Os Caretos de Podence
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <img
+                            src="https://i.imgur.com/DYzWPf9.png"
+                            alt="Caretos durante o Entrudo Chocalheiro"
+                            loading="lazy">
+                        <div class="photo-caption">
+                            <i class="fas fa-bell"></i>
+                            A energia do Entrudo Chocalheiro
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <img
+                            src="https://i.imgur.com/0cmzkfC.png"
+                            alt="A aldeia de Podence durante o Carnaval"
+                            loading="lazy">
+                        <div class="photo-caption">
+                            <i class="fas fa-house"></i>
+                            A aldeia de Podence
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <img
+                            src="https://i.imgur.com/IoY9otW.png"
+                            alt="Ambiente tradicional do Entrudo Chocalheiro"
+                            loading="lazy">
+                        <div class="photo-caption">
+                            <i class="fas fa-people-group"></i>
+                            Uma tradição cheia de vida
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- DESTAQUES DO PROGRAMA -->
+
             <h3 class="section-heading">
-                O que vamos descobrir:
+                Destaques do programa
             </h3>
+
+            <div class="feature-box">
+                <i class="fas fa-mountain"></i>
+                <div>
+                    <h4>Miradouro de São Domingos</h4>
+                    <p>
+                        Uma paragem no miradouro do Monte de São Domingos,
+                        em Murça, para apreciar as magníficas paisagens
+                        transmontanas.
+                    </p>
+                </div>
+            </div>
 
             <div class="feature-box">
                 <i class="fas fa-mask"></i>
                 <div>
                     <h4>Os Caretos de Podence</h4>
                     <p>
-                        Figuras emblemáticas do Entrudo, com os seus fatos coloridos,
-                        máscaras e chocalhos. Uma tradição popular cheia de simbolismo,
-                        movimento e irreverência.
+                        Figuras emblemáticas do Entrudo, com os seus fatos
+                        coloridos, máscaras e chocalhos. Uma tradição popular
+                        cheia de simbolismo e irreverência.
                     </p>
                 </div>
             </div>
@@ -756,11 +877,11 @@
             <div class="feature-box">
                 <i class="fas fa-landmark"></i>
                 <div>
-                    <h4>Podence e as suas tradições</h4>
+                    <h4>Tradição e cultura</h4>
                     <p>
-                        Tempo livre para conhecer a aldeia, descobrir a sua identidade
-                        cultural e sentir de perto uma tradição que faz parte
-                        da memória coletiva da região.
+                        Tempo livre para conhecer a aldeia, descobrir a sua
+                        identidade cultural e sentir de perto uma tradição
+                        que faz parte da memória coletiva da região.
                     </p>
                 </div>
             </div>
@@ -778,8 +899,8 @@
                     <i class="fas fa-mask"></i>
                     <span>
                         <strong>Os Caretos:</strong>
-                        personagens inconfundíveis, conhecidos pelos fatos coloridos,
-                        máscaras e chocalhos.
+                        personagens inconfundíveis, conhecidos pelos fatos
+                        coloridos, máscaras e chocalhos.
                     </span>
                 </div>
 
@@ -787,8 +908,8 @@
                     <i class="fas fa-globe-europe"></i>
                     <span>
                         <strong>Património cultural:</strong>
-                        uma tradição reconhecida pela UNESCO como Património Cultural
-                        Imaterial da Humanidade.
+                        uma tradição reconhecida pela UNESCO como Património
+                        Cultural Imaterial da Humanidade.
                     </span>
                 </div>
 
@@ -803,7 +924,7 @@
 
             </div>
 
-            <!-- PROGRAMA -->
+            <!-- PROGRAMA DA VIAGEM -->
 
             <div class="program-box">
 
@@ -884,7 +1005,6 @@
             <div class="info-lists">
 
                 <div>
-
                     <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
                         <i class="fas fa-check-circle"></i> INCLUI
                     </h4>
@@ -903,11 +1023,9 @@
                         <i class="fas fa-check"></i>
                         Seguro
                     </li>
-
                 </div>
 
                 <div>
-
                     <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
                         <i class="fas fa-times-circle"></i> NÃO INCLUI
                     </h4>
@@ -926,7 +1044,6 @@
                         <i class="fas fa-times"></i>
                         Entradas ou atividades pagas, caso existam
                     </li>
-
                 </div>
 
             </div>
@@ -985,22 +1102,10 @@
                 Uma tradição que vale a pena conhecer
             </p>
 
-            <!-- PREÇO -->
-
             <div class="price-box">
-
-                <span class="price-label">
-                    Preço por pessoa
-                </span>
-
-                <span class="price-value">
-                    35€
-                </span>
-
-                <span class="price-note">
-                    Um dia de tradição e animação!
-                </span>
-
+                <span class="price-label">Preço por pessoa</span>
+                <span class="price-value">35€</span>
+                <span class="price-note">Um dia de tradição e animação!</span>
             </div>
 
             <div class="status-banner">
