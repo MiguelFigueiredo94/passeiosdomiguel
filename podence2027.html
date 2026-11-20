@@ -509,6 +509,34 @@
             margin-top: 5px;
         }
 
+        /* BOTÃO DE INSCRIÇÃO */
+
+        .btn-inscricao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 15px;
+            padding: 16px 20px;
+            background: white;
+            color: var(--orange-dark);
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 0.95em;
+            font-weight: 800;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .btn-inscricao:hover {
+            background: var(--orange-light);
+            border-color: var(--orange-light);
+            color: var(--blue-dark);
+            transform: translateY(-3px);
+        }
+
         .status-banner {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.25);
@@ -1103,7 +1131,14 @@
                 <span class="price-note">Um dia de tradição e animação!</span>
             </div>
 
-            <div class="status-banner">
+            <!-- BOTÃO DE INSCRIÇÃO -->
+
+            <a href="/inscricao.html" class="btn-inscricao">
+                <i class="fas fa-clipboard-list"></i>
+                Fazer inscrição
+            </a>
+
+            <div class="status-banner" style="margin-top:22px;">
                 <i class="fas fa-calendar-check"></i>
                 Próxima viagem
             </div>
