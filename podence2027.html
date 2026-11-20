@@ -1,1245 +1,1477 @@
 
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-G0BKTCRNV9');
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Vem descobrir o Entrudo Chocalheiro de Podence a 7 de fevereiro de 2027. Um dia de tradição, cultura e animação por 35€ por pessoa, com Os Passeios do Miguel.">
-
-    <title>Entrudo Chocalheiro de Podence – 07 de fevereiro de 2027 | Passeios do Miguel</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root {
-            --primary-color: #ed7900;
-            --orange-dark: #c96100;
-            --orange-light: #fff0df;
-            --green-dark: #133a2b;
-            --green-medium: #245c43;
-            --green-light: #eaf1ec;
-            --blue-dark: #12345a;
-            --blue-medium: #2878b9;
-            --blue-light: #e7f2fa;
-            --bg-light: #f4f7fa;
-            --text-dark: #263747;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            padding-bottom: 40px;
-        }
-
-        /* BOTÃO VOLTAR */
-
-        .btn-voltar {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 1001;
-            background: white;
-            color: var(--blue-dark);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-
-        .btn-voltar:hover {
-            background: var(--blue-dark);
-            color: white;
-            transform: translateX(-5px);
-        }
-
-        /* CABEÇALHO COM FOTOGRAFIA */
-
-        .hero {
-            min-height: 520px;
-            height: 65vh;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(18,52,90,0.78),
-                    rgba(201,97,0,0.62)
-                ),
-                url('https://i.imgur.com/uxOScxT.png') center 45% / cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            border-radius: 0 0 60px 60px;
-            padding: 30px 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.18);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4em;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
-            color: white;
-        }
-
-        .hero-description {
-            font-size: 1.05em;
-            max-width: 700px;
-            margin: 0 auto 25px;
-            line-height: 1.7;
-            color: white;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-        }
-
-        .data-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.05em;
-            background: var(--blue-dark);
-            color: white;
-            padding: 11px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-        }
-
-        /* ESTRUTURA PRINCIPAL */
-
-        .wrapper {
-            max-width: 1200px;
-            margin: -60px auto 0;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .main-card {
-            background: white;
-            padding: 45px;
-            border-radius: 35px;
-            box-shadow: 0 20px 50px rgba(18,52,90,0.07);
-        }
-
-        /* TÍTULOS PRINCIPAIS - VERDE ESCURO */
-
-        .title-sec {
-            font-family: 'Playfair Display', serif;
-            color: var(--green-dark);
-            font-size: 2.2em;
-            margin-bottom: 25px;
-        }
-
-        .title-sec span {
-            color: var(--green-dark);
-        }
-
-        .intro-text {
-            margin-bottom: 30px;
-            color: #566575;
-            font-size: 1.02em;
-            line-height: 1.85;
-            font-weight: 300;
-        }
-
-        .section-heading {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: var(--green-dark);
-            border-left: 4px solid var(--green-dark);
-            padding-left: 15px;
-            font-weight: 700;
-        }
-
-        /* O QUE NOS ESPERA - GALERIA */
-
-        .gallery-section {
-            margin: 35px 0 40px;
-        }
-
-        .gallery-intro {
-            color: #65717d;
-            font-size: 0.94em;
-            line-height: 1.7;
-            margin-top: -12px;
-            margin-bottom: 22px;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .photo-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 7px 20px rgba(18,52,90,0.09);
-            border: 1px solid #e6edf2;
-            transition: 0.3s ease;
-        }
-
-        .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(18,52,90,0.15);
-        }
-
-        .photo-card img {
-            display: block;
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.04);
-        }
-
-        .photo-caption {
-            padding: 14px 15px;
-            font-size: 0.84em;
-            color: var(--blue-dark);
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
-        .photo-caption i {
-            color: var(--primary-color);
-            margin-right: 6px;
-        }
-
-        /* DESTAQUES */
-
-        .feature-box {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 18px;
-            padding: 21px;
-            border-radius: 20px;
-            background: #fff;
-            border: 1px solid #e2eaf0;
-            transition: 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(19,58,43,0.09);
-            border-color: var(--green-dark);
-        }
-
-        .feature-box > i {
-            color: var(--primary-color);
-            font-size: 1.65em;
-            min-width: 27px;
-            margin-top: 2px;
-        }
-
-        .feature-box h4 {
-            font-weight: 700;
-            color: var(--green-dark);
-            margin-bottom: 5px;
-        }
-
-        .feature-box p {
-            font-size: 0.9em;
-            color: #5b6672;
-            line-height: 1.7;
-        }
-
-        /* CAIXA DE DESTAQUE */
-
-        .tips-section {
-            background: var(--orange-light);
-            border-radius: 25px;
-            padding: 30px;
-            margin-top: 30px;
-            border: 1px solid #f4d3ae;
-        }
-
-        .tips-section h4 {
-            color: var(--green-dark);
-            margin-bottom: 18px;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
-
-        .tips-section h4 i {
-            color: var(--primary-color);
-        }
-
-        .tip-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 14px;
-            font-size: 0.93em;
-            color: #33485a;
-            line-height: 1.7;
-        }
-
-        .tip-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .tip-item i {
-            color: var(--orange-dark);
-            margin-top: 5px;
-        }
-
-        /* PROGRAMA */
-
-        .program-box {
-            margin-top: 35px;
-        }
-
-        .program-item {
-            display: flex;
-            gap: 18px;
-            position: relative;
-            padding-bottom: 24px;
-        }
-
-        .program-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .program-item:not(:last-child)::before {
-            content: '';
-            position: absolute;
-            left: 17px;
-            top: 38px;
-            bottom: 0;
-            width: 2px;
-            background: #d8e4ed;
-        }
-
-        .program-icon {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-            font-size: 0.85em;
-        }
-
-        .program-content h4 {
-            color: var(--green-dark);
-            font-size: 0.98em;
-            margin-bottom: 4px;
-        }
-
-        .program-content p {
-            color: #65717d;
-            font-size: 0.88em;
-            line-height: 1.65;
-        }
-
-        /* INCLUI / NÃO INCLUI */
-
-        .info-lists {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 35px;
-            background: var(--blue-light);
-            padding: 25px;
-            border-radius: 25px;
-            border: 1px dashed #b6cfe1;
-        }
-
-        .info-item {
-            list-style: none;
-            font-size: 0.88em;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: #4b5967;
-            line-height: 1.55;
-        }
-
-        .info-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .info-item i {
-            color: var(--orange-dark);
-            margin-top: 3px;
-        }
-
-        /* CARTÃO LATERAL */
-
-        .booking-card {
-            background: var(--blue-dark);
-            color: white;
-            padding: 40px;
-            border-radius: 35px;
-            position: sticky;
-            top: 30px;
-            height: fit-content;
-            box-shadow: 0 25px 45px rgba(18,52,90,0.2);
-            overflow: hidden;
-        }
-
-        .booking-card::before {
-            content: '\f1b9';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: -15px;
-            top: 65px;
-            font-size: 8em;
-            color: rgba(255,255,255,0.045);
-            transform: rotate(-15deg);
-        }
-
-        .booking-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.15em;
-            margin-bottom: 10px;
-            color: white;
-            position: relative;
-            line-height: 1.2;
-        }
-
-        .booking-subtitle {
-            font-size: 0.82em;
-            font-weight: 700;
-            color: #ffad45;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .price-box {
-            background: var(--primary-color);
-            border-radius: 22px;
-            padding: 22px 18px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            position: relative;
-        }
-
-        .price-label {
-            display: block;
-            font-size: 0.82em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: white;
-            margin-bottom: 4px;
-        }
-
-        .price-value {
-            display: block;
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            line-height: 1.15;
-            font-weight: 900;
-            color: white;
-        }
-
-        .price-note {
-            display: block;
-            font-size: 0.78em;
-            color: rgba(255,255,255,0.9);
-            margin-top: 5px;
-        }
-
-        /* BOTÃO INSCREVER-ME */
-
-        .btn-inscricao {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 11px;
-            width: 100%;
-            margin-top: 15px;
-            margin-bottom: 28px;
-            padding: 17px 20px;
-            background: var(--green-dark);
-            color: white;
-            text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.85);
-            border-radius: 50px;
-            font-size: 1em;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            position: relative;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-            animation: chamar-inscricao 2.8s ease-in-out infinite;
-        }
-
-        .btn-inscricao i {
-            font-size: 1.05em;
-        }
-
-        .btn-inscricao:hover {
-            background: var(--green-medium);
-            color: white;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-            animation: none;
-        }
-
-        @keyframes chamar-inscricao {
-            0%, 100% {
-                box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-                transform: translateY(0);
-            }
-            50% {
-                box-shadow: 0 8px 23px rgba(255,255,255,0.22);
-                transform: translateY(-2px);
-            }
-        }
-
-        /* DETALHES DA VIAGEM */
-
-        .booking-detail {
-            display: flex;
-            align-items: flex-start;
-            gap: 13px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            position: relative;
-        }
-
-        .booking-detail i {
-            color: #ffad45;
-            font-size: 1.2em;
-            margin-top: 3px;
-            min-width: 20px;
-        }
-
-        .booking-detail strong {
-            display: block;
-            font-size: 0.9em;
-            margin-bottom: 4px;
-        }
-
-        .booking-detail span {
-            display: block;
-            font-size: 0.84em;
-            opacity: 0.9;
-            line-height: 1.55;
-        }
-
-        .booking-message {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(0,0,0,0.15);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 12px;
-            font-size: 0.88em;
-            line-height: 1.7;
-            position: relative;
-        }
-
-        .booking-message i {
-            color: #ffad45;
-            margin-right: 5px;
-        }
-
-        /* BOTÃO WHATSAPP */
-
-        .btn-contacto {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            margin-top: 25px;
-            padding: 15px 20px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: 800;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .btn-contacto:hover {
-            background: white;
-            color: var(--blue-dark);
-            transform: translateY(-3px);
-        }
-
-        .contact-note {
-            margin-top: 12px;
-            text-align: center;
-            font-size: 0.74em;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.5;
-        }
-
-        /* RODAPÉ */
-
-        footer {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding: 25px 20px;
-            text-align: center;
-            color: #788592;
-            font-size: 0.8em;
-        }
-
-        footer strong {
-            color: var(--blue-dark);
-        }
-
-        /* ACESSIBILIDADE: REDUZIR ANIMAÇÕES */
-
-        @media (prefers-reduced-motion: reduce) {
-            .btn-inscricao {
-                animation: none;
-            }
-
-            * {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* RESPONSIVO */
-
-        @media (max-width: 900px) {
-            .hero {
-                height: auto;
-                min-height: 430px;
-                padding: 75px 20px 65px;
-                border-radius: 0 0 35px 35px;
-            }
-
-            .hero h1 {
-                font-size: 2.8em;
-            }
-
-            .wrapper {
-                grid-template-columns: 1fr;
-                margin-top: 0;
-            }
-
-            .booking-card {
-                position: static;
-                grid-row: 1;
-            }
-
-            .info-lists {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .hero {
-                min-height: 390px;
-                padding: 80px 18px 50px;
-                background-position: center;
-            }
-
-            .hero h1 {
-                font-size: 2.2em;
-                line-height: 1.15;
-            }
-
-            .hero-description {
-                font-size: 0.9em;
-            }
-
-            .data-badge {
-                font-size: 0.88em;
-                padding: 9px 16px;
-            }
-
-            .wrapper {
-                margin-top: 0;
-                padding: 0 12px;
-                gap: 20px;
-            }
-
-            .main-card,
-            .booking-card {
-                padding: 23px;
-                border-radius: 25px;
-            }
-
-            .title-sec {
-                font-size: 1.8em;
-            }
-
-            .photo-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .photo-card img {
-                height: 210px;
-            }
-
-            .feature-box {
-                padding: 17px;
-                gap: 14px;
-            }
-
-            .tips-section {
-                padding: 22px;
-            }
-
-            .program-item {
-                gap: 13px;
-            }
-
-            .price-value {
-                font-size: 3em;
-            }
-
-            .btn-inscricao {
-                padding: 16px;
-                font-size: 0.95em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vem viver o Entrudo Chocalheiro de Podence no dia 7 de fevereiro de 2027. Um dia de tradição, cultura e animação com Os Passeios do Miguel. Viagem por apenas 35€ por pessoa.">
+  <meta name="theme-color" content="#133a2b">
+
+  <title>Entrudo Chocalheiro de Podence | Os Passeios do Miguel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G0BKTCRNV9');
+  </script>
+
+  <style>
+    :root {
+      --green: #133a2b;
+      --green-dark: #0c281e;
+      --green-light: #eaf0eb;
+      --gold: #cca43b;
+      --gold-light: #f4e8c5;
+      --cream: #faf9f5;
+      --text: #292d2a;
+      --muted: #737a74;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(19, 58, 43, .10);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(7, 25, 18, .82) 0%, rgba(7, 25, 18, .52) 52%, rgba(7, 25, 18, .12) 100%),
+        url("https://i.imgur.com/uxOScxT.png") center 48% / cover no-repeat;
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 100px;
+      background: linear-gradient(transparent, rgba(7, 25, 18, .35));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 85px 0 105px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 50px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow i {
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.06;
+      font-weight: 700;
+      letter-spacing: -.8px;
+      margin-bottom: 22px;
+      text-shadow: 0 3px 15px rgba(0,0,0,.2);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #f0d58b;
+    }
+
+    .hero-description {
+      max-width: 570px;
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.8;
+      color: rgba(255,255,255,.92);
+      margin-bottom: 30px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 500;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px;
+      padding: 10px 15px;
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-meta i {
+      color: #f0d58b;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 15px 27px;
+      background: var(--gold);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: background .25s ease, transform .25s ease;
+    }
+
+    .hero-button:hover {
+      background: #e0bd5c;
+      transform: translateY(-2px);
+    }
+
+    /* RESUMO */
+
+    .quick-info {
+      position: relative;
+      z-index: 2;
+      margin-top: -43px;
+    }
+
+    .quick-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .quick-info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 25px 28px;
+      border-right: 1px solid #edf0ec;
+    }
+
+    .quick-info-item:last-child {
+      border-right: 0;
+    }
+
+    .quick-icon {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 19px;
+    }
+
+    .quick-info-item strong {
+      display: block;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .quick-info-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* SECÇÕES */
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 45px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      color: #9b7924;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .title-sec {
+      font-family: 'Playfair Display', serif;
+      color: var(--green);
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .title-sec span {
+      color: var(--green);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* INTRODUÇÃO */
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .intro-copy .section-kicker {
+      margin-bottom: 10px;
+    }
+
+    .intro-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.2;
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+
+    .intro-copy p {
+      color: #626a63;
+      font-size: 14px;
+      line-height: 2;
+      margin-bottom: 15px;
+    }
+
+    .intro-highlight {
+      margin-top: 25px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--gold);
+      background: #f1f2eb;
+      border-radius: 0 10px 10px 0;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .intro-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 360px;
+    }
+
+    .intro-image img {
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+    }
+
+    .intro-image::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.5));
+    }
+
+    .intro-image-caption {
+      position: absolute;
+      z-index: 1;
+      bottom: 22px;
+      left: 24px;
+      right: 24px;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    /* O QUE NOS ESPERA */
+
+    .experiences {
+      background: var(--green);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experiences::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      top: -180px;
+      right: -100px;
+    }
+
+    .experiences .section-kicker {
+      color: #e4c56f;
+    }
+
+    .experiences .title-sec {
+      color: var(--white);
+    }
+
+    .experiences .section-heading p {
+      color: rgba(255,255,255,.72);
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .experience-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform .3s ease, background .3s ease;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,.13);
+    }
+
+    .experience-card img {
+      height: 205px;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .experience-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .experience-card-content {
+      padding: 19px 17px 22px;
+    }
+
+    .experience-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 19px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .experience-card p {
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .experience-number {
+      display: inline-block;
+      color: #e4c56f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
+    }
+
+    /* PROGRAMA */
+
+    .program-section {
+      background: var(--cream);
+    }
+
+    .program-layout {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .program-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: -20px auto 38px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      bottom: 20px;
+      left: 10px;
+      width: 2px;
+      background: #dce4dc;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 30px 22px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--cream);
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .timeline-item h3 {
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item p {
+      color: #6d746e;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .timeline-time {
+      display: inline-block;
+      color: #98751f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .route-note {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 35px;
+      padding: 20px 22px;
+      background: var(--green-light);
+      border-radius: 12px;
+      color: var(--green);
+    }
+
+    .route-note i {
+      color: #a9842c;
+      font-size: 19px;
+      margin-top: 3px;
+    }
+
+    .route-note p {
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* INCLUI */
+
+    .includes-section {
+      background: #f0f1eb;
+    }
+
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .include-card {
+      background: white;
+      padding: 26px 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(19,58,43,.045);
+      text-align: center;
+    }
+
+    .include-card i {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    .include-card h3 {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .include-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .not-included {
+      max-width: 750px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: #737a74;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .not-included strong {
+      color: var(--green);
+    }
+
+    /* PREÇO E INSCRIÇÃO */
+
+    .booking-section {
+      padding: 85px 0 95px;
+      background:
+        linear-gradient(rgba(12,40,30,.94), rgba(12,40,30,.96)),
+        url("https://i.imgur.com/uxOScxT.png") center / cover no-repeat;
+      color: white;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .booking-copy .section-kicker {
+      color: #e4c56f;
+    }
+
+    .booking-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(31px, 4vw, 44px);
+      line-height: 1.2;
+      color: white;
+      margin-bottom: 18px;
+    }
+
+    .booking-copy p {
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .booking-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .booking-points span {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: rgba(255,255,255,.9);
+      font-size: 13px;
+    }
+
+    .booking-points i {
+      color: #e4c56f;
+      width: 17px;
+    }
+
+    .price-card {
+      background: white;
+      color: var(--green);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.18);
+    }
+
+    .price-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e9ece7;
+    }
+
+    .price-topline strong {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .price-topline span {
+      color: #8b7540;
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      font-weight: 700;
+    }
+
+    .price-bottomline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 15px;
+    }
+
+    .price-bottomline small {
+      display: block;
+      color: #7b837c;
+      font-size: 13px;
+    }
+
+    .price-amount {
+      color: var(--green);
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .price-note {
+      margin-top: 20px;
+      padding: 13px 15px;
+      background: #f2f4ef;
+      border-radius: 9px;
+      color: #667067;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .booking-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: 23px;
+      padding: 16px 20px;
+      background: var(--green);
+      color: white;
+      border: 1px solid var(--green);
+      border-radius: 9px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+
+    .booking-button:hover {
+      background: #1d513c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(19,58,43,.18);
+    }
+
+    .booking-button i {
+      font-size: 15px;
+    }
+
+    .booking-conditions {
+      margin-top: 16px;
+      text-align: center;
+      color: #7b837c;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* CONDIÇÕES */
+
+    .conditions {
+      padding: 55px 0;
+      background: white;
+    }
+
+    .conditions-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .condition-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .condition-item i {
+      color: #a9842c;
+      font-size: 18px;
+      margin-top: 3px;
+    }
+
+    .condition-item h3 {
+      color: var(--green);
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .condition-item p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #0b241b;
+      color: rgba(255,255,255,.72);
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .footer-brand span {
+      color: var(--gold);
+    }
+
+    .footer-info {
+      font-size: 10px;
+      line-height: 1.9;
+    }
+
+    .footer-contact {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .footer-contact a {
+      color: white;
+      transition: color .2s ease;
+    }
+
+    .footer-contact a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 25px;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      color: rgba(255,255,255,.48);
+    }
+
+    /* RESPONSIVO */
+
+    @media (max-width: 900px) {
+      .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .intro-grid {
+        gap: 35px;
+      }
+
+      .booking-grid {
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 30px, 540px);
+      }
+
+      .hero {
+        min-height: 650px;
+        background-position: 58% center;
+      }
+
+      .hero-content {
+        padding: 75px 0 100px;
+      }
+
+      .hero h1 {
+        font-size: 47px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-meta {
+        gap: 8px;
+      }
+
+      .hero-meta span {
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+
+      .quick-info {
+        margin-top: -35px;
+      }
+
+      .quick-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-info-item {
+        padding: 17px 20px;
+        border-right: 0;
+        border-bottom: 1px solid #edf0ec;
+      }
+
+      .quick-info-item:last-child {
+        border-bottom: 0;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .intro-grid,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-image {
+        min-height: 280px;
+      }
+
+      .intro-image img {
+        min-height: 280px;
+      }
+
+      .experience-grid {
+        gap: 12px;
+      }
+
+      .experience-card img {
+        height: 155px;
+      }
+
+      .experience-card-content {
+        padding: 15px 13px 17px;
+      }
+
+      .experience-card h3 {
+        font-size: 16px;
+      }
+
+      .experience-card p {
+        font-size: 11px;
+      }
+
+      .includes-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .include-card {
+        padding: 21px 14px;
+      }
+
+      .include-card h3 {
+        font-size: 12px;
+      }
+
+      .include-card p {
+        font-size: 11px;
+      }
+
+      .conditions-inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .price-card {
+        padding: 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card img {
+        height: 210px;
+      }
+
+      .includes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-amount {
+        font-size: 42px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <a href="passeios.html" class="btn-voltar" aria-label="Voltar aos passeios">
-        <i class="fas fa-arrow-left"></i>
-    </a>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
 
-    <!-- CABEÇALHO -->
+        <div class="eyebrow">
+          <i class="fa-solid fa-masks-theater"></i>
+          Tradição, cultura e animação
+        </div>
 
-    <header class="hero">
-        <div class="hero-content">
+        <h1>
+          Entrudo Chocalheiro
+          <span>de Podence</span>
+        </h1>
 
-            <h1>Entrudo Chocalheiro de Podence</h1>
+        <p class="hero-description">
+          Há tradições que não se explicam: vivem-se! Vem descobrir uma das manifestações mais genuínas da cultura popular portuguesa, num dia dedicado aos Caretos, à alegria e à identidade transmontana.
+        </p>
 
-            <p class="hero-description">
-                Uma viagem ao coração de Trás-os-Montes para descobrir
-                uma das tradições mais genuínas e animadas do Carnaval português!
+        <div class="hero-meta">
+          <span><i class="fa-regular fa-calendar"></i> 07 fevereiro 2027</span>
+          <span><i class="fa-solid fa-location-dot"></i> Podence · Macedo de Cavaleiros</span>
+          <span><i class="fa-solid fa-euro-sign"></i> 35 € por pessoa</span>
+        </div>
+
+        <a href="#inscricao" class="hero-button">
+          Quero fazer parte desta viagem
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- RESUMO DA VIAGEM -->
+  <div class="quick-info">
+    <div class="container">
+      <div class="quick-info-grid">
+
+        <div class="quick-info-item">
+          <div class="quick-icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div>
+            <strong>Domingo, 07 fevereiro</strong>
+            <small>Um dia de tradição e descoberta</small>
+          </div>
+        </div>
+
+        <div class="quick-info-item">
+          <div class="quick-icon">
+            <i class="fa-solid fa-bus"></i>
+          </div>
+          <div>
+            <strong>Transporte incluído</strong>
+            <small>Viagem em autocarro de turismo</small>
+          </div>
+        </div>
+
+        <div class="quick-info-item">
+          <div class="quick-icon">
+            <i class="fa-solid fa-masks-theater"></i>
+          </div>
+          <div>
+            <strong>Entrudo de Podence</strong>
+            <small>Uma tradição única em Portugal</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRODUÇÃO -->
+  <section>
+    <div class="container">
+      <div class="intro-grid">
+
+        <div class="intro-copy">
+          <span class="section-kicker">Uma experiência diferente</span>
+
+          <h2>Um dia para descobrir uma tradição com séculos de história</h2>
+
+          <p>
+            Em Podence, no concelho de Macedo de Cavaleiros, o Carnaval tem uma identidade muito própria. As ruas enchem-se de cor, música, energia e da presença inconfundível dos Caretos, figuras emblemáticas desta tradição transmontana.
+          </p>
+
+          <p>
+            Com os seus fatos coloridos, máscaras e chocalhos, os Caretos dão vida a uma celebração popular que atravessa gerações e que continua a atrair visitantes de todo o país e do estrangeiro.
+          </p>
+
+          <p>
+            Mais do que assistir a uma festa, esta é uma oportunidade para conhecer uma tradição profundamente ligada à comunidade e à cultura local.
+          </p>
+
+          <div class="intro-highlight">
+            Prepara-te para um dia de descoberta, boa disposição e tradições que merecem ser vividas!
+          </div>
+        </div>
+
+        <div class="intro-image">
+          <img
+            src="https://i.imgur.com/0cmzkfC.png"
+            alt="Os Caretos de Podence durante o Entrudo Chocalheiro"
+            loading="lazy"
+          >
+          <div class="intro-image-caption">
+            Os Caretos: a alma do Entrudo Chocalheiro
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE NOS ESPERA -->
+  <section class="experiences">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="section-kicker">O que nos espera...</span>
+        <h2 class="title-sec">Um dia cheio de motivos para sair de casa!</h2>
+        <p>
+          Da paisagem transmontana às ruas de Podence, preparámos um programa que junta lugares especiais, tradição e momentos para desfrutar sem pressas.
+        </p>
+      </div>
+
+      <div class="experience-grid">
+
+        <article class="experience-card">
+          <img
+            src="https://i.imgur.com/DYzWPf9.png"
+            alt="Miradouro do Monte de São Domingos, em Murça"
+            loading="lazy"
+          >
+          <div class="experience-card-content">
+            <span class="experience-number">01 · PAISAGEM</span>
+            <h3>Miradouro de São Domingos</h3>
+            <p>Paragem no Miradouro do Monte de São Domingos, em Murça, para apreciar as paisagens envolventes e desfrutar de um momento de contemplação.</p>
+          </div>
+        </article>
+
+        <article class="experience-card">
+          <img
+            src="https://i.imgur.com/0cmzkfC.png"
+            alt="Os tradicionais Caretos de Podence"
+            loading="lazy"
+          >
+          <div class="experience-card-content">
+            <span class="experience-number">02 · TRADIÇÃO</span>
+            <h3>Os Caretos de Podence</h3>
+            <p>Descoberta de uma das tradições mais emblemáticas do Carnaval português, marcada pelas cores, máscaras e chocalhos dos Caretos.</p>
+          </div>
+        </article>
+
+        <article class="experience-card">
+          <img
+            src="https://i.imgur.com/uXYJ4W6.png"
+            alt="A aldeia tradicional de Podence"
+            loading="lazy"
+          >
+          <div class="experience-card-content">
+            <span class="experience-number">03 · DESCOBERTA</span>
+            <h3>A aldeia de Podence</h3>
+            <p>Tempo para passear pelas ruas da aldeia, conhecer o ambiente da festa e descobrir a identidade de uma comunidade com uma tradição muito própria.</p>
+          </div>
+        </article>
+
+        <article class="experience-card">
+          <img
+            src="https://i.imgur.com/IoY9otW.png"
+            alt="A tradição e a animação do Entrudo Chocalheiro"
+            loading="lazy"
+          >
+          <div class="experience-card-content">
+            <span class="experience-number">04 · EXPERIÊNCIA</span>
+            <h3>Uma tradição cheia de vida</h3>
+            <p>Um ambiente único, onde a cultura popular, a alegria e a autenticidade se encontram numa celebração que vale a pena conhecer.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA -->
+  <section class="program-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="section-kicker">Programa da viagem</span>
+        <h2 class="title-sec">O nosso dia, passo a passo</h2>
+        <p>
+          Um percurso pensado para aproveitar a viagem e desfrutar dos principais momentos do dia.
+        </p>
+      </div>
+
+      <div class="program-layout">
+
+        <p class="program-intro">
+          Os horários apresentados são previsões e poderão sofrer pequenos ajustes em função das condições da viagem e da organização do evento.
+        </p>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <span class="timeline-time">07h30 · Partida</span>
+            <h3>Início da viagem em São Pedro do Sul</h3>
+            <p>
+              Saída em direção a Trás-os-Montes, com possibilidade de embarque noutros pontos ao longo do percurso, mediante organização prévia.
             </p>
+          </div>
 
-            <div class="data-badge">
-                <i class="fas fa-calendar-alt"></i>
-                Domingo, 07 de fevereiro de 2027
-            </div>
+          <div class="timeline-item">
+            <span class="timeline-time">Durante a manhã · Paragem</span>
+            <h3>Paragem na Repsol de Murça</h3>
+            <p>
+              Breve paragem para descanso e para quem desejar tomar o pequeno-almoço ou fazer uma pausa antes de continuarmos viagem.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-time">Durante a manhã · Visita</span>
+            <h3>Miradouro do Monte de São Domingos</h3>
+            <p>
+              Paragem no miradouro, em Murça, para apreciar a paisagem e desfrutar de um momento de tranquilidade.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-time">Durante o dia · Podence</span>
+            <h3>Entrudo Chocalheiro</h3>
+            <p>
+              Chegada a Podence e tempo livre para viver o ambiente do Entrudo Chocalheiro, acompanhar a animação, passear pela aldeia e descobrir esta tradição tão característica.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-time">Final da tarde · Regresso</span>
+            <h3>Regresso à região</h3>
+            <p>
+              Início da viagem de regresso, com chegada prevista à região entre as 19h00 e as 20h00.
+            </p>
+          </div>
 
         </div>
-    </header>
 
-    <div class="wrapper">
-
-        <!-- CONTEÚDO PRINCIPAL -->
-
-        <main class="main-card">
-
-            <h2 class="title-sec">
-                Máscaras, tradição e <span>muita animação!</span>
-            </h2>
-
-            <p class="intro-text">
-                Há tradições que atravessam gerações e continuam a surpreender!
-                Vamos até Podence, no concelho de Macedo de Cavaleiros, para viver
-                o ambiente único do Entrudo Chocalheiro, uma celebração popular
-                marcada pelas cores, pelos chocalhos e pela energia contagiante
-                dos Caretos.
-                <br><br>
-                Uma oportunidade para conhecer de perto uma tradição muito
-                especial de Trás-os-Montes e passar um domingo diferente,
-                entre cultura, paisagens e convívio.
-            </p>
-
-            <!-- O QUE NOS ESPERA -->
-
-            <section class="gallery-section">
-
-                <h2 class="title-sec">
-                    O que nos <span>espera...</span>
-                </h2>
-
-                <p class="gallery-intro">
-                    Um cenário cheio de cor, tradição e autenticidade.
-                    Espreita alguns dos momentos e lugares que dão vida
-                    a esta experiência!
-                </p>
-
-                <div class="photo-grid">
-
-                    <div class="photo-card">
-                        <img
-                            src="https://i.imgur.com/DYzWPf9.png"
-                            alt="Miradouro do Monte de São Domingos, em Murça"
-                            loading="lazy">
-                        <div class="photo-caption">
-                            <i class="fas fa-mountain"></i>
-                            Monte / Miradouro de S. Domingos (Murça)
-                        </div>
-                    </div>
-
-                    <div class="photo-card">
-                        <img
-                            src="https://i.imgur.com/0cmzkfC.png"
-                            alt="Caretos durante o Entrudo Chocalheiro"
-                            loading="lazy">
-                        <div class="photo-caption">
-                            <i class="fas fa-bell"></i>
-                            Os Caretos de Podence
-                        </div>
-                    </div>
-
-                    <div class="photo-card">
-                        <img
-                            src="https://i.imgur.com/uXYJ4W6.png"
-                            alt="A aldeia de Podence durante o Carnaval"
-                            loading="lazy">
-                        <div class="photo-caption">
-                            <i class="fas fa-house"></i>
-                            A aldeia de Podence
-                        </div>
-                    </div>
-
-                    <div class="photo-card">
-                        <img
-                            src="https://i.imgur.com/IoY9otW.png"
-                            alt="Ambiente tradicional do Entrudo Chocalheiro"
-                            loading="lazy">
-                        <div class="photo-caption">
-                            <i class="fas fa-people-group"></i>
-                            Uma tradição cheia de vida
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- DESTAQUES DO PROGRAMA -->
-
-            <h3 class="section-heading">
-                Destaques do programa
-            </h3>
-
-            <div class="feature-box">
-                <i class="fas fa-mountain"></i>
-                <div>
-                    <h4>Miradouro de São Domingos</h4>
-                    <p>
-                        Uma paragem no miradouro do Monte de São Domingos,
-                        em Murça, para apreciar as magníficas paisagens
-                        transmontanas.
-                    </p>
-                </div>
-            </div>
-
-            <div class="feature-box">
-                <i class="fas fa-mask"></i>
-                <div>
-                    <h4>Os Caretos de Podence</h4>
-                    <p>
-                        Figuras emblemáticas do Entrudo, com os seus fatos
-                        coloridos, máscaras e chocalhos. Uma tradição popular
-                        cheia de simbolismo e irreverência.
-                    </p>
-                </div>
-            </div>
-
-            <div class="feature-box">
-                <i class="fas fa-bell"></i>
-                <div>
-                    <h4>Entrudo Chocalheiro</h4>
-                    <p>
-                        O ambiente festivo de uma celebração única, onde os sons
-                        dos chocalhos e as manifestações tradicionais dão vida
-                        às ruas da aldeia.
-                    </p>
-                </div>
-            </div>
-
-            <div class="feature-box">
-                <i class="fas fa-landmark"></i>
-                <div>
-                    <h4>Tradição e cultura</h4>
-                    <p>
-                        Tempo livre para conhecer a aldeia, descobrir a sua
-                        identidade cultural e sentir de perto uma tradição
-                        que faz parte da memória coletiva da região.
-                    </p>
-                </div>
-            </div>
-
-            <!-- DESTAQUE CULTURAL -->
-
-            <div class="tips-section">
-
-                <h4>
-                    <i class="fas fa-star"></i>
-                    Uma tradição com identidade própria
-                </h4>
-
-                <div class="tip-item">
-                    <i class="fas fa-mask"></i>
-                    <span>
-                        <strong>Os Caretos:</strong>
-                        personagens inconfundíveis, conhecidos pelos fatos
-                        coloridos, máscaras e chocalhos.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-globe-europe"></i>
-                    <span>
-                        <strong>Património cultural:</strong>
-                        uma tradição reconhecida pela UNESCO como Património
-                        Cultural Imaterial da Humanidade.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-camera"></i>
-                    <span>
-                        <strong>Momentos para recordar:</strong>
-                        uma experiência diferente, com muita cor, tradição
-                        e oportunidades para fotografias.
-                    </span>
-                </div>
-
-            </div>
-
-            <!-- PROGRAMA DA VIAGEM -->
-
-            <div class="program-box">
-
-                <h2 class="title-sec" style="margin-bottom:25px;">
-                    Programa da <span>viagem</span>
-                </h2>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-bus"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>07h30 – Partida de São Pedro do Sul</h4>
-                        <p>
-                            Início da viagem em direção a Trás-os-Montes,
-                            em autocarro de turismo.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-coffee"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>Paragem de apoio em Murça</h4>
-                        <p>
-                            Paragem prevista na Repsol de Murça, para uma pausa
-                            durante a viagem.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-mountain"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>Miradouro do Monte de São Domingos</h4>
-                        <p>
-                            Paragem no Miradouro do Monte de São Domingos, em Murça,
-                            para apreciar as magníficas paisagens transmontanas.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-mask"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>Entrudo Chocalheiro – Podence</h4>
-                        <p>
-                            Tempo livre em Podence para descobrir os Caretos
-                            e viver o Entrudo Chocalheiro.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="program-item">
-                    <div class="program-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="program-content">
-                        <h4>Regresso a casa</h4>
-                        <p>
-                            Regresso previsto à região entre as 19h00 e as 20h00,
-                            dependendo das condições de trânsito e do decorrer
-                            do programa.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- INCLUI / NÃO INCLUI -->
-
-            <div class="info-lists">
-
-                <div>
-                    <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
-                        <i class="fas fa-check-circle"></i> INCLUI
-                    </h4>
-
-                    <li class="info-item">
-                        <i class="fas fa-check"></i>
-                        Transporte em autocarro de turismo
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-check"></i>
-                        Acompanhamento por Tour Leader
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-check"></i>
-                        Seguro
-                    </li>
-                </div>
-
-                <div>
-                    <h4 style="margin-bottom:14px; color:var(--blue-dark); font-size:0.95em; font-weight:700;">
-                        <i class="fas fa-times-circle"></i> NÃO INCLUI
-                    </h4>
-
-                    <li class="info-item">
-                        <i class="fas fa-times"></i>
-                        Refeições
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-times"></i>
-                        Despesas de caráter pessoal
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-times"></i>
-                        Entradas ou atividades pagas, caso existam
-                    </li>
-                </div>
-
-            </div>
-
-            <!-- INFORMAÇÕES IMPORTANTES -->
-
-            <div class="tips-section" style="margin-top:25px;">
-
-                <h4>
-                    <i class="fas fa-info-circle"></i>
-                    Informações importantes
-                </h4>
-
-                <div class="tip-item">
-                    <i class="fas fa-users"></i>
-                    <span>
-                        Realização sujeita a um mínimo de 35 participantes.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-euro-sign"></i>
-                    <span>
-                        A pré-inscrição só fica confirmada após o pagamento.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-ticket-alt"></i>
-                    <span>
-                        Os lugares são atribuídos por ordem de inscrição,
-                        após pagamento.
-                    </span>
-                </div>
-
-                <div class="tip-item">
-                    <i class="fas fa-clock"></i>
-                    <span>
-                        Horários, locais de embarque e restantes informações
-                        serão comunicados previamente.
-                    </span>
-                </div>
-
-            </div>
-
-        </main>
-
-        <!-- CARTÃO LATERAL -->
-
-        <aside class="booking-card">
-
-            <h3>Vamos viver o Entrudo?</h3>
-
-            <p class="booking-subtitle">
-                <i class="fas fa-mask"></i>
-                Uma tradição que vale a pena conhecer
-            </p>
-
-            <div class="price-box">
-                <span class="price-label">Preço por pessoa</span>
-                <span class="price-value">35€</span>
-                <span class="price-note">Um dia de tradição e animação!</span>
-            </div>
-
-            <!-- BOTÃO DE INSCRIÇÃO -->
-
-            <a href="/inscricao.html" class="btn-inscricao">
-                <i class="fas fa-clipboard-check"></i>
-                Inscrever-me!
-            </a>
-
-            <!-- DETALHES DA VIAGEM -->
-
-            <div class="booking-detail">
-                <i class="fas fa-calendar-alt"></i>
-                <div>
-                    <strong>Data da viagem</strong>
-                    <span>Domingo, 07 de fevereiro de 2027</span>
-                </div>
-            </div>
-
-            <div class="booking-detail">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <strong>Destino principal</strong>
-                    <span>Podence – Macedo de Cavaleiros</span>
-                </div>
-            </div>
-
-            <div class="booking-detail">
-                <i class="fas fa-bus"></i>
-                <div>
-                    <strong>Partida</strong>
-                    <span>São Pedro do Sul – 07h30</span>
-                </div>
-            </div>
-
-            <div class="booking-detail">
-                <i class="fas fa-clock"></i>
-                <div>
-                    <strong>Regresso previsto</strong>
-                    <span>Chegada a São Pedro do Sul entre as 19h00 e as 20h00</span>
-                </div>
-            </div>
-
-            <div class="booking-detail">
-                <i class="fas fa-route"></i>
-                <div>
-                    <strong>Locais a visitar</strong>
-                    <span>
-                        Miradouro do Monte de São Domingos e Podence
-                    </span>
-                </div>
-            </div>
-
-            <div class="booking-detail">
-                <i class="fas fa-users"></i>
-                <div>
-                    <strong>Mínimo de participantes</strong>
-                    <span>35 pessoas</span>
-                </div>
-            </div>
-
-            <div class="booking-message">
-                <i class="fas fa-quote-left"></i>
-                Prepara-te para um domingo diferente, cheio de tradição,
-                cor e animação. Vamos juntos descobrir uma das festas
-                mais características de Portugal!
-            </div>
-
-            <!-- CONTACTO WHATSAPP -->
-
-            <a href="https://wa.me/351965715465?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20ao%20Entrudo%20Chocalheiro%20de%20Podence%2C%20a%207%20de%20fevereiro%20de%202027."
-               class="btn-contacto"
-               target="_blank"
-               rel="noopener">
-
-                <i class="fab fa-whatsapp"></i>
-                Pedir informações
-
-            </a>
-
-            <p class="contact-note">
-                Passeios do Miguel
-                <br>
-                Passeios com Alma e Aventura
-            </p>
-
-        </aside>
+        <div class="route-note">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>
+            <strong>Locais de embarque:</strong> partida de São Pedro do Sul, com possibilidade de embarque noutros pontos em rota, como Castro Daire ou outras localidades, mediante confirmação e organização prévia.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUÍDO -->
+  <section class="includes-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="section-kicker">Tudo preparado para si</span>
+        <h2 class="title-sec">O que está incluído?</h2>
+        <p>
+          Tratamos da organização da viagem para que possa aproveitar o dia com tranquilidade.
+        </p>
+      </div>
+
+      <div class="includes-grid">
+
+        <div class="include-card">
+          <i class="fa-solid fa-bus"></i>
+          <h3>Transporte de turismo</h3>
+          <p>Viagem em autocarro de turismo, com partida e regresso à região.</p>
+        </div>
+
+        <div class="include-card">
+          <i class="fa-solid fa-person-walking"></i>
+          <h3>Acompanhamento</h3>
+          <p>Acompanhamento por Tour Leader dos Passeios do Miguel durante a viagem.</p>
+        </div>
+
+        <div class="include-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Seguro incluído</h3>
+          <p>Seguro de acidentes pessoais e responsabilidade civil, nos termos aplicáveis.</p>
+        </div>
+
+      </div>
+
+      <p class="not-included">
+        <strong>Não inclui:</strong> refeições, despesas de carácter pessoal e eventuais entradas ou atividades pagas que não estejam expressamente indicadas no programa.
+      </p>
 
     </div>
+  </section>
 
-    <!-- RODAPÉ -->
+  <!-- PREÇO E INSCRIÇÃO -->
+  <section class="booking-section" id="inscricao">
+    <div class="container">
 
-    <footer>
-        <p>
-            <strong>Passeios do Miguel</strong>
-            <br>
-            Passeios com Alma e Aventura
-        </p>
-    </footer>
+      <div class="booking-grid">
+
+        <div class="booking-copy">
+          <span class="section-kicker">07 fevereiro 2027</span>
+
+          <h2>Vamos descobrir esta tradição juntos?</h2>
+
+          <p>
+            Reserva o teu lugar e vem connosco viver um dia diferente em Podence. Uma viagem para conhecer, descobrir e guardar na memória.
+          </p>
+
+          <div class="booking-points">
+            <span><i class="fa-solid fa-check"></i> Transporte em autocarro de turismo</span>
+            <span><i class="fa-solid fa-check"></i> Acompanhamento por Tour Leader</span>
+            <span><i class="fa-solid fa-check"></i> Seguro incluído</span>
+            <span><i class="fa-solid fa-check"></i> Possibilidade de embarque em pontos em rota</span>
+          </div>
+        </div>
+
+        <div class="price-card">
+
+          <div class="price-topline">
+            <strong>Viagem</strong>
+            <span>PREÇO</span>
+          </div>
+
+          <div class="price-bottomline">
+            <small>Por pessoa</small>
+            <div class="price-amount">35 €</div>
+          </div>
+
+          <div class="price-note">
+            O lugar fica confirmado após a conclusão da inscrição e respetivo pagamento. Os detalhes de embarque serão comunicados previamente.
+          </div>
+
+          <a href="/inscricao.html" class="booking-button">
+            <i class="fa-solid fa-clipboard-check"></i>
+            Inscrever-me
+          </a>
+
+          <div class="booking-conditions">
+            Inscrições sujeitas à disponibilidade de lugares.<br>
+            Realização da viagem condicionada a um mínimo de 35 participantes.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONDIÇÕES -->
+  <section class="conditions">
+    <div class="container">
+      <div class="conditions-inner">
+
+        <div class="condition-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            <h3>Inscrição e confirmação</h3>
+            <p>A pré-inscrição só fica confirmada após o respetivo pagamento. Os lugares são atribuídos por ordem de inscrição e pagamento.</p>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <i class="fa-solid fa-bus-simple"></i>
+          <div>
+            <h3>Embarques</h3>
+            <p>Os pontos de embarque e os horários específicos serão comunicados aos participantes antes da viagem.</p>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <i class="fa-solid fa-users"></i>
+          <div>
+            <h3>Realização da viagem</h3>
+            <p>A viagem está sujeita a um número mínimo de 35 participantes.</p>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <h3>Horários</h3>
+            <p>Os horários indicados são previsões e poderão ser ajustados por motivos operacionais ou circunstâncias alheias à organização.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div>
+          <div class="footer-brand">
+            Os Passeios <span>do Miguel</span>
+          </div>
+          <div class="footer-info">
+            Passeios com Alma e Aventura<br>
+            RNAAT 688/2026
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <a href="tel:+351965715465">
+            <i class="fa-solid fa-phone"></i> 965 715 465
+          </a>
+          <a href="mailto:passeiosdomiguel@gmail.com">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+          <a href="https://www.facebook.com/passeiosdomiguel" target="_blank" rel="noopener">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://www.instagram.com/passeiosdomiguel/" target="_blank" rel="noopener">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year">2026</span> Os Passeios do Miguel. Todos os direitos reservados.</span>
+        <span>Conheça. Descubra. Viva momentos únicos.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
