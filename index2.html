@@ -19,7 +19,7 @@
         
         body { 
             font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
-            background-color: #f8fafc; 
+            background-color: #f6f8fb; 
             min-height: 100vh;
             color: #1e293b;
             overflow-x: hidden;
@@ -34,7 +34,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(11, 25, 44, 0.75);
+            background: rgba(8, 23, 44, 0.78);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 99999;
@@ -56,23 +56,23 @@
             height: 640px;
             max-height: 88vh;
             border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
             overflow: hidden;
             animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(212, 175, 90, 0.35);
         }
 
         /* CABEÇALHO DO CHAT */
         .chat-header {
-            background: #1e4d8c;
+            background: linear-gradient(135deg, #102d50, #1e4d8c);
             color: white;
             padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid #ff8c00;
+            border-bottom: 3px solid #d4af5a;
         }
 
         .assistant-profile {
@@ -88,14 +88,14 @@
         .avatar {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #ff8c00, #e07b00);
+            background: linear-gradient(135deg, #d4af5a, #f0d995);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
-            color: white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            color: #102d50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .status-dot {
@@ -117,16 +117,16 @@
 
         .assistant-info p {
             font-size: 0.78em;
-            color: #93c5fd;
+            color: #f3dfab;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
         }
 
         .skip-btn {
             background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(240, 217, 149, 0.4);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.8em;
@@ -139,8 +139,9 @@
         }
 
         .skip-btn:hover {
-            background: #ff8c00;
-            border-color: #ff8c00;
+            background: linear-gradient(135deg, #d4af5a, #f0d995);
+            border-color: #f0d995;
+            color: #102d50;
         }
 
         /* CORPO DAS MENSAGENS */
@@ -239,7 +240,7 @@
 
         .opt-card {
             background: #ffffff;
-            color: #1e4d8c;
+            color: #102d50;
             border: 1px solid #cbd5e1;
             padding: 10px 12px;
             border-radius: 12px;
@@ -255,17 +256,17 @@
         }
 
         .opt-card i {
-            color: #ff8c00;
+            color: #c6a052;
             font-size: 1.1em;
             width: 18px;
             text-align: center;
         }
 
         .opt-card:hover {
-            border-color: #ff8c00;
-            background: #fff7ed;
+            border-color: #d4af5a;
+            background: #fffcf3;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.12);
+            box-shadow: 0 4px 10px rgba(212, 175, 90, 0.16);
         }
 
         .opt-card.full-width {
@@ -289,7 +290,7 @@
         }
 
         .info-list li i {
-            color: #ff8c00;
+            color: #c6a052;
             margin-top: 3px;
             font-size: 0.85em;
         }
@@ -316,12 +317,12 @@
 
         .chat-input:focus {
             border-color: #1e4d8c;
-            box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.1);
+            box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.12);
         }
 
         .send-btn {
-            background: #ff8c00;
-            color: white;
+            background: linear-gradient(135deg, #c89f4c, #e5c476);
+            color: #102d50;
             border: none;
             width: 40px;
             height: 40px;
@@ -331,13 +332,13 @@
             justify-content: center;
             cursor: pointer;
             font-size: 0.95em;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 2px 6px rgba(255, 140, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(212, 175, 90, 0.35);
         }
 
         .send-btn:hover {
-            background: #e07b00;
             transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(212, 175, 90, 0.45);
         }
 
         .splash-hidden {
@@ -368,73 +369,28 @@
             margin-left: 250px; 
         }
 
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1512389142860-3c449b4b1d3b?auto=format&fit=crop&w=2000&q=85');
-            background-size: cover; 
-            background-position: center; 
-            height: 500px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            color: white; 
-            text-align: center; 
-            border-bottom: 6px solid #ff8c00;
-        }
-        .hero-section h1 { font-size: 3.8em; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 15px; }
-        .hero-section p { font-size: 1.5em; max-width: 750px; font-weight: 300; padding: 0 20px; }
-
-        .content-container { padding: 60px 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
-
-        .intro-text { text-align: center; margin-bottom: 50px; }
-        .intro-text h2 { color: #1e4d8c; font-size: 2.6em; margin-bottom: 15px; }
-        .intro-text p { color: #555; font-size: 1.25em; line-height: 1.6; max-width: 850px; margin: 0 auto; }
-
-        .video-highlight {
-            background-color: white;
-            padding: 25px;
-            border-radius: 24px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            margin-bottom: 70px;
-        }
-        .video-wrapper { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            border-radius: 15px;
-        }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
-        .feature-card { 
-            background: white; padding: 45px 30px; border-radius: 20px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04); border-top: 5px solid #ff8c00; text-align: center; 
-            transition: 0.3s;
-        }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-        .feature-card i { font-size: 50px; color: #ff8c00; margin-bottom: 25px; }
-        .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
-        .feature-card p { color: #666; font-size: 1.05em; line-height: 1.6; }
-
-
         /* ================================================
-           EDIÇÃO ESPECIAL DE NATAL - PÁGINA INICIAL
+           HERO - EDIÇÃO ESPECIAL DE NATAL
         ================================================ */
-
         .hero-section {
             position: relative;
             isolation: isolate;
             overflow: hidden;
             background-image:
-                linear-gradient(115deg, rgba(8, 27, 49, 0.78), rgba(12, 37, 62, 0.34)),
+                linear-gradient(115deg, rgba(8, 27, 49, 0.8), rgba(16, 51, 82, 0.38)),
                 url('https://images.unsplash.com/photo-1512389142860-3c449b4b1d3b?auto=format&fit=crop&w=2000&q=85');
             background-size: cover;
             background-position: center 52%;
+            height: 510px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
             border-bottom: 6px solid #d4af5a;
         }
 
-        /* Subtle golden lights along the top of the hero */
         .hero-lights {
             position: absolute;
             top: 0;
@@ -447,7 +403,7 @@
                 radial-gradient(circle, #fff5c7 0 3px, rgba(255,225,145,.45) 4px, transparent 9px)
                 0 0 / 54px 28px repeat-x;
             filter: drop-shadow(0 0 5px rgba(255,221,130,.8));
-            opacity: .9;
+            opacity: .92;
         }
 
         .hero-lights::after {
@@ -472,7 +428,7 @@
         .hero-snow span {
             position: absolute;
             top: -25px;
-            color: rgba(255,255,255,.78);
+            color: rgba(255,255,255,.8);
             text-shadow: 0 0 8px rgba(255,255,255,.45);
             animation: heroSnowFall linear infinite;
         }
@@ -496,12 +452,12 @@
             align-items: center;
             gap: 9px;
             margin-bottom: 18px;
-            padding: 9px 17px;
-            border: 1px solid rgba(239,211,145,.7);
+            padding: 9px 18px;
+            border: 1px solid rgba(239,211,145,.75);
             border-radius: 30px;
-            background: rgba(8,27,49,.48);
+            background: rgba(8,27,49,.55);
             color: #f5dfaa;
-            font-size: .88em;
+            font-size: .86em;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -518,46 +474,53 @@
         }
 
         .hero-section h1 {
+            font-size: 3.8em;
+            margin-bottom: 15px;
             color: #fff;
             text-shadow: 0 3px 20px rgba(0,0,0,.65);
         }
 
         .hero-section p {
+            font-size: 1.45em;
+            max-width: 750px;
+            font-weight: 300;
+            padding: 0 20px;
             text-shadow: 0 2px 10px rgba(0,0,0,.7);
         }
 
         .hero-section .hero-cta {
             display: inline-block;
-            margin-top: 35px;
+            margin-top: 32px;
             background: linear-gradient(135deg, #d4af5a, #f0d995);
             color: #173451;
-            padding: 17px 39px;
+            padding: 16px 38px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.05em;
+            font-size: 1.02em;
             letter-spacing: .4px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            box-shadow: 0 8px 24px rgba(0,0,0,.28);
             transition: transform .25s ease, box-shadow .25s ease;
         }
 
         .hero-section .hero-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0,0,0,.32);
+            box-shadow: 0 12px 28px rgba(212,175,90,.35);
         }
 
+        /* FAIXA MENSAGEM DE NATAL */
         .christmas-wish {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 22px;
-            padding: 25px 30px;
+            padding: 26px 32px;
             margin: 0;
             text-align: center;
             color: #f8edcf;
             background: linear-gradient(110deg, #102d50, #19466c, #102d50);
-            border-bottom: 1px solid rgba(212,175,90,.5);
+            border-bottom: 1px solid rgba(212,175,90,.45);
         }
 
         .christmas-wish .wish-icon {
@@ -568,17 +531,19 @@
 
         .christmas-wish strong {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: #f2d995;
             font-family: Georgia, serif;
-            font-size: 1.35em;
+            font-size: 1.38em;
             font-weight: 600;
+            letter-spacing: 0.2px;
         }
 
         .christmas-wish p {
-            color: rgba(255,255,255,.88);
+            color: rgba(255,255,255,.9);
             font-size: .98em;
-            line-height: 1.55;
+            line-height: 1.6;
+            max-width: 780px;
         }
 
         .christmas-wish .wish-sparkle {
@@ -587,9 +552,25 @@
             flex: 0 0 auto;
         }
 
+        /* CONTEÚDO INTERNO */
+        .content-container {
+            padding: 60px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
         .intro-text h2 {
             position: relative;
             display: inline-block;
+            color: #102d50;
+            font-size: 2.6em;
+            margin-bottom: 15px;
         }
 
         .intro-text h2::after {
@@ -601,17 +582,95 @@
             letter-spacing: 7px;
         }
 
-        .feature-card {
-            border-top-color: #c6a052;
+        .intro-text p {
+            color: #475569;
+            font-size: 1.2em;
+            line-height: 1.65;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .video-highlight {
+            background-color: white;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(16, 45, 80, 0.08);
+            border: 1px solid rgba(212, 175, 90, 0.25);
+            margin-bottom: 70px;
+        }
+
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 15px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 20px;
+            color: #102d50;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card { 
+            background: white;
+            padding: 45px 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(16, 45, 80, 0.05);
+            border-top: 5px solid #c6a052;
+            border-bottom: 1px solid rgba(212, 175, 90, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 14px 32px rgba(198, 160, 82, 0.16);
         }
 
         .feature-card i {
+            font-size: 48px;
             color: #c6a052;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            color: #102d50;
+            margin-bottom: 14px;
+            font-size: 1.48em;
+        }
+
+        .feature-card p {
+            color: #55657d;
+            font-size: 1.05em;
+            line-height: 1.6;
         }
 
         @media (max-width: 1024px) {
+            main { margin-left: 0; }
+            .features-grid { grid-template-columns: 1fr; }
+            .content-container { padding: 45px 20px; }
+
             .hero-section {
-                min-height: 460px;
+                min-height: 450px;
                 height: auto;
                 padding: 75px 18px;
             }
@@ -626,22 +685,17 @@
 
             .christmas-wish .wish-icon { font-size: 21px; }
             .christmas-wish strong { font-size: 1.15em; }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-            .hero-snow span { animation: none !important; }
-            .hero-section .hero-cta { transition: none !important; }
-        }
-
-
-        @media (max-width: 1024px) {
-            main { margin-left: 0; }
-            .features-grid { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.8em; }
             .chat-card { height: 100%; max-height: 100%; border-radius: 0; }
             #splash-screen { padding: 0; }
             .chat-options { grid-template-columns: 1fr; }
             .opt-card.full-width { grid-column: span 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-snow span { animation: none !important; }
+            .hero-section .hero-cta,
+            .feature-card { transition: none !important; }
         }
     </style>
 </head>
@@ -659,7 +713,7 @@
                     </div>
                     <div class="assistant-info">
                         <h3>Passeios do Miguel</h3>
-                        <p><i class="fas fa-circle" style="font-size: 7px; color: #22c55e;"></i> Assistente Virtual</p>
+                        <p><i class="fas fa-sparkles" style="font-size: 9px; color: #f0d995;"></i> Assistente Virtual · Edição de Natal</p>
                     </div>
                 </div>
                 <button class="skip-btn" id="skipBtn">Entrar no Site <i class="fas fa-arrow-right"></i></button>
@@ -669,7 +723,7 @@
             <div class="chat-body" id="chatBody">
                 <div class="msg-group">
                     <div class="msg bot">
-                        Olá! Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>. 👋
+                        Olá e Boas Festas! Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>. 🎄✨
                     </div>
                     <div class="msg bot">
                         Estou aqui para o ajudar a planear a sua próxima viagem. Como posso ajudar?
@@ -745,7 +799,7 @@
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <p style="text-align: center; margin-top: 20px; color: #1e4d8c; font-weight: 600; font-style: italic;">
+                <p class="video-caption">
                     "Deixe o volante connosco e foque-se apenas em criar memórias."
                 </p>
             </section>
@@ -777,11 +831,14 @@
         // CARREGAMENTO DOS COMPONENTES
         function carregarComponente(id, ficheiro) {
             fetch(ficheiro)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.text();
+                })
                 .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro ao carregar:', error));
+                .catch(error => console.error('Erro ao carregar:', ficheiro, error));
         }
-        carregarComponente('menu-placeholder', 'index3_menu2');
+        carregarComponente('menu-placeholder', 'index3_menu2.html');
         carregarComponente('rodape-placeholder', 'rodape.html');
 
         // ELEMENTOS DO CHAT
@@ -908,7 +965,7 @@
                     hideTyping();
                     appendMessage('Ao entrar em contacto connosco, indique-nos o seu concelho de residência. Avaliaremos a rota do autocarro e confirmaremos se existe essa possibilidade.', 'bot');
                     addOptions([
-                        { icon: 'fa-phone-alt', text: 'Consultar por WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-phone-alt', text: 'Consultar por WhatsApp', action: () => { window.open('https://wa.me/351965715465', '_blank'); }, full: true },
                         { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
                     ]);
                 }, 600);
@@ -928,8 +985,7 @@
                 showTyping();
                 setTimeout(() => {
                     hideTyping();
-                    appendMessage('Excelente! Desejo-lhe uma ótima navegação e esperamos vê-lo em breve a bordo! 🚌✨', 'bot');
-                    // Pausa de 2 segundos para o utilizador ler com calma a mensagem de despedida
+                    appendMessage('Excelente! Boas Festas e uma ótima navegação — esperamos vê-lo em breve a bordo! 🚌✨', 'bot');
                     setTimeout(closeSplash, 2000);
                 }, 500);
             }
