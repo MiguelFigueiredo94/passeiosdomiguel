@@ -8,300 +8,993 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios - Passeios do Miguel</title>
+    <title>Passeios do Miguel - Experiências Autênticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f4f7f9;
-            --white: #ffffff;
-            --text: #334155;
-            --whatsapp: #25d366;
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; min-height: 100vh; color: var(--text); }
-
-        #menu-placeholder { width: 250px; flex-shrink: 0; background-color: var(--primary); min-height: 100vh; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* BANNER */
-        .banner-passeios { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
-            background-size: cover; background-position: center; 
-            color: white; height: 380px; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--accent); 
+        
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
+            background-color: #f8fafc; 
+            min-height: 100vh;
+            color: #1e293b;
+            overflow-x: hidden;
         }
-        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* BARRA EXPERIÊNCIAS */
-        .mural-experiencias-float { 
-            background: white; padding: 20px 30px; display: flex; justify-content: center; align-items: center; gap: 30px; 
-            border-radius: 25px; margin: -50px auto 0; 
-            width: 90%; max-width: 950px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
-            border: 1px solid #e2e8f0; position: relative; z-index: 10;
+        /* --------------------------------------------------
+           MÓDULO DO ASSISTENTE DE BOAS-VINDAS (CHAT PREMIUM)
+        -------------------------------------------------- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 25, 44, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .mural-info { display: flex; align-items: center; gap: 15px; flex-grow: 1; }
-        .mural-info i { color: var(--accent); font-size: 2em; }
-        .mural-info p { font-weight: 600; color: var(--primary); font-size: 1.1em; line-height: 1.2; }
-        
-        .mural-btns { display: flex; gap: 12px; }
-        .btn-mural { 
-            padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; 
-            font-size: 0.9em; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+
+        .splash-bypass {
+            display: none !important;
         }
-        .btn-feed { background: #f0f7ff; color: var(--primary); border: 1px solid #cde4ff; }
-        .btn-feed:hover { background: var(--primary); color: white; }
-        .btn-gal { background: #fff4e6; color: #d97706; border: 1px solid #ffe3bc; }
-        .btn-gal:hover { background: #d97706; color: white; }
 
-        /* FILTROS */
-        .filtros-container { max-width: 1200px; margin: 65px auto 20px; padding: 0 30px; text-align: center; }
-        .btn-filtro { 
-            padding: 12px 28px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
-            background: white; color: var(--primary); cursor: pointer; font-weight: 700; transition: 0.3s;
+        .chat-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            height: 640px;
+            max-height: 88vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .btn-filtro.active { background: var(--primary); color: white; }
-        .btn-filtro:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* GRID E CARDS */
-        .seccao-branca { padding: 20px 30px 60px; }
-        .container-cards { max-width: 1200px; margin: 0 auto; }
-        .titulo-ano { color: var(--primary); font-size: 2.2em; margin: 40px 0 25px; border-left: 6px solid var(--accent); padding-left: 15px; font-weight: bold; }
-        
-        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; }
+        /* CABEÇALHO DO CHAT */
+        .chat-header {
+            background: #1e4d8c;
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid #ff8c00;
+        }
 
-        .card-passeio { border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; background: var(--white); transition: 0.4s; display: flex; flex-direction: column; position: relative; }
-        .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-passeio.hidden { display: none; }
-        
-        .img-box { height: 220px; overflow: hidden; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card-passeio:hover .img-box img { transform: scale(1.1); }
-        
-        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; }
-        .badge-aberto { background: #2ecc71; }
-        .badge-realizado { background: #94a3b8; }
-        .badge-esgotado { background: #e74c3c; }
-        .badge-ultimas { background: #f39c12; animation: pulse 2s infinite; }
-        .badge-cancelado { background: #2c3e50; }
+        .assistant-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .avatar-container {
+            position: relative;
+        }
 
-        .card-info { padding: 30px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
-        .cal-pope { width: 70px; border: 2px solid var(--primary); border-radius: 12px; margin: -65px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .cal-mes { background: var(--primary); color: white; font-size: 0.85em; padding: 5px; font-weight: bold; text-transform: uppercase; }
-        .cal-dia { font-size: 1.5em; font-weight: 800; padding: 8px; color: var(--primary); }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ff8c00, #e07b00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
 
-        .card-info h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.5em; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .card-info p { color: #64748b; font-size: 1.1em; }
-        .card-info p i { color: var(--accent); margin-right: 5px; }
+        .status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 11px;
+            height: 11px;
+            background: #22c55e;
+            border: 2px solid #1e4d8c;
+            border-radius: 50%;
+        }
 
-        .card-footer { padding: 20px; background: #f8fafc; border-top: 1px solid #edf2f7; }
-        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #e2e8f0; color: var(--primary); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; }
-        .btn-v-detalhes:hover { background: #d1d9e2; }
-        
-        .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; }
-        .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
-        .btn-ins:hover { background: var(--accent); }
-        .btn-wts { background: var(--whatsapp); color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; transition: 0.3s; }
-        .btn-wts:hover { background: #128c7e; transform: scale(1.05); }
+        .assistant-info h3 {
+            font-size: 1.05em;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .assistant-info p {
+            font-size: 0.78em;
+            color: #93c5fd;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skip-btn:hover {
+            background: #ff8c00;
+            border-color: #ff8c00;
+        }
+
+        /* CORPO DAS MENSAGENS */
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            background: #f1f5f9;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+        }
+
+        .msg-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.92em;
+            line-height: 1.5;
+            word-wrap: break-word;
+            animation: msgIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .msg.bot {
+            background: #ffffff;
+            color: #1e293b;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .msg.user {
+            background: #1e4d8c;
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 6px rgba(30, 77, 140, 0.2);
+        }
+
+        .msg-time {
+            font-size: 0.68em;
+            color: #94a3b8;
+            margin-top: 2px;
+            align-self: flex-start;
+            padding-left: 4px;
+        }
+
+        .msg-time.user-time {
+            align-self: flex-end;
+            padding-right: 4px;
+        }
+
+        /* MENSAGENS DE DIGITAÇÃO (TYPING INDICATOR) */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 14px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            align-self: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounceDot 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* PAINEL DE BOTÕES DE OPÇÕES */
+        .chat-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .opt-card {
+            background: #ffffff;
+            color: #1e4d8c;
+            border: 1px solid #cbd5e1;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .opt-card i {
+            color: #ff8c00;
+            font-size: 1.1em;
+            width: 18px;
+            text-align: center;
+        }
+
+        .opt-card:hover {
+            border-color: #ff8c00;
+            background: #fff7ed;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.12);
+        }
+
+        .opt-card.full-width {
+            grid-column: span 2;
+        }
+
+        /* LISTAS DENTRO DAS RESPOSTAS DO BOT */
+        .info-list {
+            list-style: none;
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 0.95em;
+        }
+
+        .info-list li i {
+            color: #ff8c00;
+            margin-top: 3px;
+            font-size: 0.85em;
+        }
+
+        /* RODAPÉ DO CHAT */
+        .chat-footer {
+            padding: 12px 16px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+            padding: 10px 16px;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: #1e4d8c;
+            box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.1);
+        }
+
+        .send-btn {
+            background: #ff8c00;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 2px 6px rgba(255, 140, 0, 0.3);
+        }
+
+        .send-btn:hover {
+            background: #e07b00;
+            transform: scale(1.05);
+        }
+
+        .splash-hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceDot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* CONTEÚDO PRINCIPAL DO SITE */
+        main { 
+            display: flex; 
+            flex-direction: column; 
+            margin-left: 250px; 
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1512389142860-3c449b4b1d3b?auto=format&fit=crop&w=2000&q=85');
+            background-size: cover; 
+            background-position: center; 
+            height: 500px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            color: white; 
+            text-align: center; 
+            border-bottom: 6px solid #ff8c00;
+        }
+        .hero-section h1 { font-size: 3.8em; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin-bottom: 15px; }
+        .hero-section p { font-size: 1.5em; max-width: 750px; font-weight: 300; padding: 0 20px; }
+
+        .content-container { padding: 60px 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
+
+        .intro-text { text-align: center; margin-bottom: 50px; }
+        .intro-text h2 { color: #1e4d8c; font-size: 2.6em; margin-bottom: 15px; }
+        .intro-text p { color: #555; font-size: 1.25em; line-height: 1.6; max-width: 850px; margin: 0 auto; }
+
+        .video-highlight {
+            background-color: white;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-bottom: 70px;
+        }
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 15px;
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
+        .feature-card { 
+            background: white; padding: 45px 30px; border-radius: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04); border-top: 5px solid #ff8c00; text-align: center; 
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .feature-card i { font-size: 50px; color: #ff8c00; margin-bottom: 25px; }
+        .feature-card h3 { color: #1e4d8c; margin-bottom: 15px; font-size: 1.5em; }
+        .feature-card p { color: #666; font-size: 1.05em; line-height: 1.6; }
+
+
+        /* ================================================
+           EDIÇÃO ESPECIAL DE NATAL - PÁGINA INICIAL
+        ================================================ */
+
+        .hero-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-image:
+                linear-gradient(115deg, rgba(8, 27, 49, 0.78), rgba(12, 37, 62, 0.34)),
+                url('https://images.unsplash.com/photo-1512389142860-3c449b4b1d3b?auto=format&fit=crop&w=2000&q=85');
+            background-size: cover;
+            background-position: center 52%;
+            border-bottom: 6px solid #d4af5a;
+        }
+
+        /* Subtle golden lights along the top of the hero */
+        .hero-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 42px;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                radial-gradient(circle, #fff5c7 0 3px, rgba(255,225,145,.45) 4px, transparent 9px)
+                0 0 / 54px 28px repeat-x;
+            filter: drop-shadow(0 0 5px rgba(255,221,130,.8));
+            opacity: .9;
+        }
+
+        .hero-lights::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 100%;
+            height: 12px;
+            border-top: 1px solid rgba(255,230,170,.55);
+            border-radius: 50%;
+        }
+
+        .hero-snow {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-snow span {
+            position: absolute;
+            top: -25px;
+            color: rgba(255,255,255,.78);
+            text-shadow: 0 0 8px rgba(255,255,255,.45);
+            animation: heroSnowFall linear infinite;
+        }
+
+        .hero-snow span:nth-child(1) { left: 8%; font-size: 13px; animation-duration: 13s; }
+        .hero-snow span:nth-child(2) { left: 22%; font-size: 18px; animation-duration: 17s; animation-delay: 3s; }
+        .hero-snow span:nth-child(3) { left: 39%; font-size: 11px; animation-duration: 15s; animation-delay: 6s; }
+        .hero-snow span:nth-child(4) { left: 57%; font-size: 16px; animation-duration: 19s; animation-delay: 2s; }
+        .hero-snow span:nth-child(5) { left: 73%; font-size: 12px; animation-duration: 14s; animation-delay: 5s; }
+        .hero-snow span:nth-child(6) { left: 89%; font-size: 19px; animation-duration: 18s; animation-delay: 1s; }
+
+        @keyframes heroSnowFall {
+            0% { transform: translate3d(0,-20px,0) rotate(0deg); opacity: 0; }
+            12% { opacity: .85; }
+            85% { opacity: .75; }
+            100% { transform: translate3d(35px,540px,0) rotate(280deg); opacity: 0; }
+        }
+
+        .hero-season-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 18px;
+            padding: 9px 17px;
+            border: 1px solid rgba(239,211,145,.7);
+            border-radius: 30px;
+            background: rgba(8,27,49,.48);
+            color: #f5dfaa;
+            font-size: .88em;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-section h1,
+        .hero-section p,
+        .hero-section .hero-cta {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-section h1 {
+            color: #fff;
+            text-shadow: 0 3px 20px rgba(0,0,0,.65);
+        }
+
+        .hero-section p {
+            text-shadow: 0 2px 10px rgba(0,0,0,.7);
+        }
+
+        .hero-section .hero-cta {
+            display: inline-block;
+            margin-top: 35px;
+            background: linear-gradient(135deg, #d4af5a, #f0d995);
+            color: #173451;
+            padding: 17px 39px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.05em;
+            letter-spacing: .4px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .hero-section .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,.32);
+        }
+
+        .christmas-wish {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            padding: 25px 30px;
+            margin: 0;
+            text-align: center;
+            color: #f8edcf;
+            background: linear-gradient(110deg, #102d50, #19466c, #102d50);
+            border-bottom: 1px solid rgba(212,175,90,.5);
+        }
+
+        .christmas-wish .wish-icon {
+            color: #e8c879;
+            font-size: 27px;
+            flex: 0 0 auto;
+        }
+
+        .christmas-wish strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #f2d995;
+            font-family: Georgia, serif;
+            font-size: 1.35em;
+            font-weight: 600;
+        }
+
+        .christmas-wish p {
+            color: rgba(255,255,255,.88);
+            font-size: .98em;
+            line-height: 1.55;
+        }
+
+        .christmas-wish .wish-sparkle {
+            color: #e8c879;
+            font-size: 18px;
+            flex: 0 0 auto;
+        }
+
+        .intro-text h2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro-text h2::after {
+            content: "✦  ❄  ✦";
+            display: block;
+            margin-top: 9px;
+            color: #c6a052;
+            font-size: 16px;
+            letter-spacing: 7px;
+        }
+
+        .feature-card {
+            border-top-color: #c6a052;
+        }
+
+        .feature-card i {
+            color: #c6a052;
+        }
 
         @media (max-width: 1024px) {
-            body { display: block; }
-            #menu-placeholder { width: 100%; min-height: auto; }
-            .mural-experiencias-float { flex-direction: column; width: 95%; gap: 20px; text-align: center; border-radius: 20px; }
-            .mural-info { flex-direction: column; }
-            .banner-passeios h1 { font-size: 2.2em; }
+            .hero-section {
+                min-height: 460px;
+                height: auto;
+                padding: 75px 18px;
+            }
+
+            .hero-section h1 { font-size: 2.6em; }
+            .hero-section p { font-size: 1.15em; }
+
+            .christmas-wish {
+                gap: 12px;
+                padding: 22px 16px;
+            }
+
+            .christmas-wish .wish-icon { font-size: 21px; }
+            .christmas-wish strong { font-size: 1.15em; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-snow span { animation: none !important; }
+            .hero-section .hero-cta { transition: none !important; }
+        }
+
+
+        @media (max-width: 1024px) {
+            main { margin-left: 0; }
+            .features-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2.8em; }
+            .chat-card { height: 100%; max-height: 100%; border-radius: 0; }
+            #splash-screen { padding: 0; }
+            .chat-options { grid-template-columns: 1fr; }
+            .opt-card.full-width { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ASSISTENTE DE BOAS-VINDAS PROFISSIONAL -->
+    <div id="splash-screen">
+        <div class="chat-card">
+            <!-- CABEÇALHO -->
+            <div class="chat-header">
+                <div class="assistant-profile">
+                    <div class="avatar-container">
+                        <div class="avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="assistant-info">
+                        <h3>Passeios do Miguel</h3>
+                        <p><i class="fas fa-circle" style="font-size: 7px; color: #22c55e;"></i> Assistente Virtual</p>
+                    </div>
+                </div>
+                <button class="skip-btn" id="skipBtn">Entrar no Site <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- CORPO DO CHAT -->
+            <div class="chat-body" id="chatBody">
+                <div class="msg-group">
+                    <div class="msg bot">
+                        Olá! Seja muito bem-vindo aos <strong>Passeios do Miguel</strong>. 👋
+                    </div>
+                    <div class="msg bot">
+                        Estou aqui para o ajudar a planear a sua próxima viagem. Como posso ajudar?
+                    </div>
+                    <span class="msg-time" id="initTime">00:00</span>
+                </div>
+
+                <div class="chat-options" id="initialOptions">
+                    <button class="opt-card" onclick="handleOption('proximos')">
+                        <i class="fas fa-bus"></i> <span>Próximos Passeios</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('origem')">
+                        <i class="fas fa-map-marker-alt"></i> <span>Locais de Partida</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('reservas')">
+                        <i class="fas fa-calendar-check"></i> <span>Reservas & Contacto</span>
+                    </button>
+                    <button class="opt-card" onclick="handleOption('entrar')">
+                        <i class="fas fa-globe"></i> <span>Explorar o Site</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RODAPÉ DE MENSAGEM -->
+            <div class="chat-footer">
+                <input type="text" class="chat-input" id="userInput" placeholder="Escreva aqui a sua questão..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DO SITE -->
     <div id="menu-placeholder"></div>
 
     <main>
-        <div class="banner-passeios">
-            <h1>Os Nossos Passeios</h1>
-            <p>Experiências autênticas, memórias para a vida toda.</p>
-        </div>
-
-        <div class="mural-experiencias-float">
-            <div class="mural-info">
-                <i class="fas fa-route"></i>
-                <p>Reviva cada destino:<br><span style="font-weight: 400; font-size: 0.9em; color: #64748b;">Feedback dos viajantes e fotos dos passeios</span></p>
+        <section class="hero-section">
+            <div class="hero-lights" aria-hidden="true"></div>
+            <div class="hero-snow" aria-hidden="true">
+                <span>❄</span><span>❅</span><span>❄</span>
+                <span>❅</span><span>❄</span><span>❅</span>
             </div>
-            <div class="mural-btns">
-                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots"></i> Mural de Memórias</a>
-                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-camera"></i> Diário de Bordo</a>
+
+            <div class="hero-season-label">
+                <i class="fas fa-star"></i> Uma época especial para viajar
             </div>
-        </div>
 
-        <div class="filtros-container">
-            <button class="btn-filtro" onclick="filtrar('todos')">Todos os Passeios</button>
-            <button class="btn-filtro" onclick="filtrar('proximos')">A Realizar</button>
-            <button class="btn-filtro" onclick="filtrar('concluidos')">Realizados</button>
-        </div>
+            <h1>Passeios do Miguel</h1>
+            <p>Descubra Portugal com quem conhece cada caminho e valoriza cada sorriso.</p>
 
-        <section class="seccao-branca">
-            <div class="container-cards">
-
-<h2 class="titulo-ano" id="title-2027">2027</h2>
-                <div class="grid-passeios">
-
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/7LbKMSn.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">11</div></div><h3>Festa dos Tabuleiros</h3><p><i class="fas fa-map-marker-alt"></i> Tomar</p></div>
-                        <div class="card-footer"><a href="festadostabuleiros2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/N8PI5V5.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">17</div></div><h3>Jardim da Paz e Cultura Oriental</h3><p><i class="fas fa-map-marker-alt"></i> Bombarral</p></div>
-                        <div class="card-footer"><a href="bombarral2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/hpb7rhy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">23</div></div><h3>Semana Santa</h3><p><i class="fas fa-map-marker-alt"></i> Braga</p></div>
-                        <div class="card-footer"><a href="semanasantabraga2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/oYV0BTF.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">07</div></div><h3>Entrudo Chocalheiro</h3><p><i class="fas fa-map-marker-alt"></i> Podence</p></div>
-                        <div class="card-footer"><a href="podence2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                                        
-                </div>
-
-                
-                <h2 class="titulo-ano" id="title-2026">2026</h2>
-                <div class="grid-passeios">
-                    
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-esgotado">Esgotado</span><img src="https://i.imgur.com/4aue9Fy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">12</div></div><h3>Especial Natal - Grupo 2</h3><p><i class="fas fa-map-marker-alt"></i> Salamanca</p></div>
-                        <div class="card-footer"><a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                    
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-esgotado">Esgotado</span><img src="https://i.imgur.com/4aue9Fy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">28</div></div><h3>Especial Natal - Grupo 1</h3><p><i class="fas fa-map-marker-alt"></i> Salamanca</p></div>
-                        <div class="card-footer"><a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                     
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/LloFccE.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">07</div></div><h3>Santoinho</h3><p><i class="fas fa-map-marker-alt"></i> Viana do Castelo</p></div>
-                        <div class="card-footer"><a href="santoinho2026.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VCOHAEw.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Out</div><div class="cal-dia">10</div></div><h3>Santuário de Fátima & Aldeia Pia do Urso</h3><p><i class="fas fa-map-marker-alt"></i> Batalha & Fátima</p></div>
-                        <div class="card-footer"><a href="fatima2026.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                   
-                    
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/N5OIeOM.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Feiras Novas</h3><p><i class="fas fa-map-marker-alt"></i> Ponte de Lima</p></div>
-                        <div class="card-footer"><a href="pontedelima.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                                    
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/L58QRQc.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div><h3>Festas do Povo</h3><p><i class="fas fa-map-marker-alt"></i> Campo Maior</p></div>
-                        <div class="card-footer"><a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div><h3>Rota da Cereja</h3><p><i class="fas fa-map-marker-alt"></i> Fundão</p></div>
-                        <div class="card-footer"><a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a><div>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div><h3>Festa das Cruzes</h3><p><i class="fas fa-map-marker-alt"></i> Barcelos</p></div>
-                        <div class="card-footer"><a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a><div>
-                    </article>
-                        
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div><h3>Festa das Camélias</h3><p><i class="fas fa-map-marker-alt"></i> Celorico de Basto</p></div>
-                        <div class="card-footer"><a href="camelias.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
-
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-cancelado">Cancelado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div><h3>Magia Animal</h3><p><i class="fas fa-map-marker-alt"></i> Vila Nova de Gaia</p></div>
-                        <div class="card-footer"><a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
-                </div>
-
-                <h2 class="titulo-ano" id="title-2025">2025</h2>
-                <div class="grid-passeios">
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Especial de Natal</h3><p><i class="fas fa-map-marker-alt"></i> Valença do Minho & Vigo</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p><i class="fas fa-map-marker-alt"></i> Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Nossa Senhora d'Ajuda</h3><p><i class="fas fa-map-marker-alt"></i> Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Nossa Senhora d'Agonia</h3><p><i class="fas fa-map-marker-alt"></i> Viana do Castelo</p></div><div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p><i class="fas fa-map-marker-alt"></i> Gerês</p></div><div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário de Fátima</h3><p><i class="fas fa-map-marker-alt"></i> Fátima</p></div><div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival do Chocolate</h3><p><i class="fas fa-map-marker-alt"></i> Óbidos</p></div><div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p><i class="fas fa-map-marker-alt"></i> Foz Côa</p></div><div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                </div>
-            </div>
+            <a href="passeios.html" class="hero-cta">
+                EXPLORAR PRÓXIMAS VIAGENS
+                <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
         </section>
-        
-        <div id="footer-placeholder"></div>
+
+        <section class="christmas-wish" aria-label="Mensagem de Natal">
+            <span class="wish-icon" aria-hidden="true">✦</span>
+            <div>
+                <strong>Que a magia do Natal nos leve mais longe!</strong>
+                <p>Novos destinos, boas companhias e momentos que ficam na memória. Boas Festas, com votos de muitas viagens e boas descobertas.</p>
+            </div>
+            <span class="wish-sparkle" aria-hidden="true">❄ ✨</span>
+        </section>
+
+        <div class="content-container">
+            
+            <section class="intro-text">
+                <h2>Muito mais do que uma viagem</h2>
+                <p>Com saída de São Pedro do Sul, criamos experiências pensadas para serem vividas sem pressas, com conforto e em excelente companhia.</p>
+            </section>
+
+            <section class="video-highlight">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/7uOx4BxH0rk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #1e4d8c; font-weight: 600; font-style: italic;">
+                    "Deixe o volante connosco e foque-se apenas em criar memórias."
+                </p>
+            </section>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-route"></i>
+                    <h3>Roteiros Únicos</h3>
+                    <p>Selecionamos locais autênticos, longe das rotas turísticas comuns, para uma experiência genuína.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bus-alt"></i>
+                    <h3>Conforto & Segurança</h3>
+                    <p>Viagens em autocarro moderno e confortável, garantindo que chega ao destino relaxado e pronto para explorar.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Convívio de Amigos</h3>
+                    <p>Privilegiamos grupos acolhedores onde ninguém se sente sozinho e a alegria é contagiante.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="rodape-placeholder"></div>
     </main>
 
     <script>
+        // CARREGAMENTO DOS COMPONENTES
         function carregarComponente(id, ficheiro) {
-            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
+            fetch(ficheiro)
+                .then(response => response.text())
+                .then(data => { document.getElementById(id).innerHTML = data; })
+                .catch(error => console.error('Erro ao carregar:', error));
         }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
+        carregarComponente('menu-placeholder', 'index3_menu2');
+        carregarComponente('rodape-placeholder', 'rodape.html');
 
-        function filtrar(categoria) {
-            const cards = document.querySelectorAll('.card-passeio');
-            const btns = document.querySelectorAll('.btn-filtro');
-            localStorage.setItem('filtroPasseios', categoria);
+        // ELEMENTOS DO CHAT
+        const splashScreen = document.getElementById('splash-screen');
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+        const skipBtn = document.getElementById('skipBtn');
 
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('onclick').includes(categoria)) btn.classList.add('active');
+        // REGISTO DA HORA ATUAL NAS MENSAGENS
+        function getFormattedTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        }
+        document.getElementById('initTime').innerText = getFormattedTime();
+
+        // NAVEGAÇÃO INTERNA: Oculta o assistente se já navegou nesta sessão
+        if (sessionStorage.getItem('visitedIndex')) {
+            splashScreen.classList.add('splash-bypass');
+        }
+
+        // ÁUDIO NATIVO PARA EFEITOS DE MENSAGEM
+        let audioCtx = null;
+        function playSound(freq, type) {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type || 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.12);
+            } catch(e){}
+        }
+
+        function playSendSound() { playSound(520, 'sine'); }
+        function playRecvSound() { playSound(750, 'triangle'); }
+
+        // EXIBIÇÃO DE INDICADOR DE DIGITAÇÃO
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.id = 'typingIndicator';
+            typing.className = 'typing-indicator';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatBody.appendChild(typing);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // ADICIONAR MENSAGENS AO CHAT
+        function appendMessage(text, sender) {
+            const group = document.createElement('div');
+            group.className = 'msg-group';
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${sender}`;
+            msgDiv.innerHTML = text;
+
+            const timeSpan = document.createElement('span');
+            timeSpan.className = `msg-time ${sender === 'user' ? 'user-time' : ''}`;
+            timeSpan.innerText = getFormattedTime();
+
+            group.appendChild(msgDiv);
+            group.appendChild(timeSpan);
+
+            chatBody.appendChild(group);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            if (sender === 'user') playSendSound();
+            else playRecvSound();
+        }
+
+        function closeSplash() {
+            splashScreen.classList.add('splash-hidden');
+            sessionStorage.setItem('visitedIndex', 'true');
+        }
+
+        skipBtn.addEventListener('click', closeSplash);
+
+        // FLUXO DE RESPOSTAS E OPÇÕES
+        function handleOption(key) {
+            if (key === 'proximos') {
+                appendMessage('🚌 Ver próximos passeios', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage('Temos várias viagens agendadas com roteiros cuidadosamente preparados! Pode consultar os detalhes de cada excursão na página de passeios.', 'bot');
+                    addOptions([
+                        { icon: 'fa-arrow-right', text: 'Ver Lista de Passeios', action: () => { window.location.href = 'passeios.html'; }, full: true },
+                        { icon: 'fa-question-circle', text: 'Outra Dúvida', action: showInitialOptions }
+                    ]);
+                }, 600);
+            } else if (key === 'origem') {
+                appendMessage('📍 De onde saem os autocarros?', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage(`
+                        Os nossos pontos principais de partida são:
+                        <ul class="info-list">
+                            <li><i class="fas fa-map-pin"></i> <strong>São Pedro do Sul</strong></li>
+                            <li><i class="fas fa-map-pin"></i> <strong>Castro Daire</strong></li>
+                        </ul>
+                        <br>Realizamos também paragens habituais em <strong>Viseu</strong>, <strong>Vouzela</strong> e <strong>Oliveira de Frades</strong>.
+                    `, 'bot');
+                    addOptions([
+                        { icon: 'fa-street-view', text: 'Combinar Paragem', action: () => handleOption('combinar_paragem') },
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar') }
+                    ]);
+                }, 600);
+            } else if (key === 'combinar_paragem') {
+                appendMessage('📍 Há possibilidade de paragem no meu concelho?', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage('Ao entrar em contacto connosco, indique-nos o seu concelho de residência. Avaliaremos a rota do autocarro e confirmaremos se existe essa possibilidade.', 'bot');
+                    addOptions([
+                        { icon: 'fa-phone-alt', text: 'Consultar por WhatsApp', action: () => { window.open('https://wa.me/351900000000', '_blank'); }, full: true },
+                        { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
+                    ]);
+                }, 600);
+            } else if (key === 'reservas') {
+                appendMessage('📲 Como fazer reservas?', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage('Garantir o seu lugar é muito simples! Pode contactar-nos diretamente por mensagem ou chamada para efetuar a reserva.', 'bot');
+                    addOptions([
+                        { icon: 'fa-phone-alt', text: 'Reservar por WhatsApp', action: () => { window.open('https://wa.me/351965715465', '_blank'); }, full: true },
+                        { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
+                    ]);
+                }, 600);
+            } else if (key === 'entrar') {
+                appendMessage('🌐 Explorar o site', 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    appendMessage('Excelente! Desejo-lhe uma ótima navegação e esperamos vê-lo em breve a bordo! 🚌✨', 'bot');
+                    // Pausa de 2 segundos para o utilizador ler com calma a mensagem de despedida
+                    setTimeout(closeSplash, 2000);
+                }, 500);
+            }
+        }
+
+        function addOptions(opts) {
+            const container = document.createElement('div');
+            container.className = 'chat-options';
+            opts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = `opt-card ${opt.full ? 'full-width' : ''}`;
+                btn.innerHTML = `<i class="fas ${opt.icon}"></i> <span>${opt.text}</span>`;
+                btn.onclick = opt.action;
+                container.appendChild(btn);
             });
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
 
-            cards.forEach(card => {
-                if (categoria === 'todos') {
-                    card.classList.remove('hidden');
+        function showInitialOptions() {
+            addOptions([
+                { icon: 'fa-bus', text: 'Próximos Passeios', action: () => handleOption('proximos') },
+                { icon: 'fa-map-marker-alt', text: 'Locais de Partida', action: () => handleOption('origem') },
+                { icon: 'fa-calendar-check', text: 'Reservas & Contacto', action: () => handleOption('reservas') },
+                { icon: 'fa-globe', text: 'Explorar o Site', action: () => handleOption('entrar') }
+            ]);
+        }
+
+        function sendUserMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            userInput.value = '';
+
+            const lower = text.toLowerCase();
+            showTyping();
+
+            setTimeout(() => {
+                hideTyping();
+                if (lower.includes('passeio') || lower.includes('viagem') || lower.includes('destino')) {
+                    appendMessage('Temos vários destinos disponíveis durante o ano todo! Deseja consultar a lista completa com todas as informações?', 'bot');
+                    addOptions([
+                        { icon: 'fa-bus', text: 'Ver Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar') }
+                    ]);
+                } else if (lower.includes('preco') || lower.includes('preço') || lower.includes('valor')) {
+                    appendMessage('Cada passeio tem um valor específico que inclui o transporte e o programa detalhado. Pode consultar na página de passeios ou falar connosco.', 'bot');
+                    addOptions([
+                        { icon: 'fa-list', text: 'Ver Tabela de Passeios', action: () => { window.location.href = 'passeios.html'; } },
+                        { icon: 'fa-phone-alt', text: 'Fazer Pergunta Direta', action: () => handleOption('reservas') }
+                    ]);
                 } else {
-                    card.getAttribute('data-status') === categoria 
-                        ? card.classList.remove('hidden') 
-                        : card.classList.add('hidden');
+                    appendMessage('Obrigado pelo seu contacto! Para explorar todas as informações sobre as nossas excursões, convido-o a entrar no site.', 'bot');
+                    addOptions([
+                        { icon: 'fa-globe', text: 'Entrar no Site', action: () => handleOption('entrar'), full: true },
+                        { icon: 'fa-bus', text: 'Ver Próximos Passeios', action: () => { window.location.href = 'passeios.html'; } }
+                    ]);
                 }
-            });
-
-            document.querySelectorAll('.titulo-ano').forEach(titulo => {
-                const proximoGrid = titulo.nextElementSibling;
-                const temVisiveis = Array.from(proximoGrid.children).some(c => !c.classList.contains('hidden'));
-                titulo.style.display = temVisiveis ? 'block' : 'none';
-            });
+            }, 700);
         }
 
-        window.onload = () => {
-            const ultimoFiltro = localStorage.getItem('filtroPasseios') || 'proximos';
-            filtrar(ultimoFiltro);
-        };
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendUserMessage();
+        }
     </script>
 </body>
 </html>
