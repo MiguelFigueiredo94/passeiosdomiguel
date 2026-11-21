@@ -1,0 +1,380 @@
+<style>
+    /* =========================================
+       RODAPÉ - EDIÇÃO DE NATAL
+       PASSEIOS DO MIGUEL
+    ========================================= */
+
+    .footer-wrapper {
+        padding: 35px 25px 25px;
+        background-color: #f6f8fb;
+        font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    .footer-container {
+        background: linear-gradient(135deg, #102d50 0%, #173d68 55%, #102b49 100%);
+        color: white;
+        padding: 38px 45px 22px;
+        border-radius: 28px;
+        max-width: 1400px;
+        margin: 10px auto;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 90, 0.35);
+        box-shadow: 0 15px 35px rgba(16, 45, 80, 0.22);
+    }
+
+    /* Linha dourada animada no topo (igual ao menu) */
+    .footer-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            #b78b39,
+            #f7df9b,
+            #ffffff,
+            #d4af5a,
+            #b78b39
+        );
+        background-size: 200% 100%;
+        animation: footerLuzesNatal 5s linear infinite;
+        z-index: 3;
+    }
+
+    @keyframes footerLuzesNatal {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+
+    /* Flocos decorativos subtis no fundo */
+    .footer-snow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .footer-snow span {
+        position: absolute;
+        color: rgba(242, 217, 149, 0.14);
+        font-size: 18px;
+        user-select: none;
+    }
+
+    .footer-snow span:nth-child(1) { top: 18px; left: 4%; font-size: 15px; }
+    .footer-snow span:nth-child(2) { bottom: 48px; left: 34%; font-size: 20px; }
+    .footer-snow span:nth-child(3) { top: 22px; right: 30%; font-size: 14px; }
+    .footer-snow span:nth-child(4) { bottom: 52px; right: 5%; font-size: 19px; }
+
+    .footer-grid,
+    .f-bottom {
+        position: relative;
+        z-index: 2;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1.2fr;
+        gap: 30px;
+        align-items: center;
+    }
+
+    /* Marca e descrição */
+    .f-brand h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+        font-weight: 800;
+        display: inline-block;
+        position: relative;
+        color: #ffffff;
+    }
+
+    .f-brand h2::after {
+        content: "";
+        display: block;
+        width: 65%;
+        height: 2.5px;
+        background: linear-gradient(90deg, #d4af5a, #f0d995);
+        margin-top: 5px;
+        border-radius: 2px;
+    }
+
+    .f-brand p {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.85);
+        margin-top: 10px;
+        line-height: 1.55;
+    }
+
+    .f-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 12px;
+        font-size: 11.5px;
+        color: #f3dfab;
+        font-weight: 700;
+        background: rgba(212, 175, 90, 0.14);
+        border: 1px solid rgba(212, 175, 90, 0.35);
+        padding: 4px 12px;
+        border-radius: 50px;
+        letter-spacing: 0.3px;
+    }
+
+    /* Links do rodapé */
+    .f-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px 14px;
+    }
+
+    .f-links a {
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    .f-links a:hover {
+        color: #f2d995;
+        transform: translateX(7px);
+    }
+
+    .f-links a::before {
+        content: '✦';
+        font-size: 10px;
+        color: #d4af5a;
+        margin-right: -10px;
+        opacity: 0;
+        transition: 0.3s ease;
+    }
+
+    .f-links a:hover::before {
+        margin-right: 8px;
+        opacity: 1;
+    }
+
+    /* Botões de Contacto */
+    .f-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .f-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(212, 175, 90, 0.28);
+        padding: 11px 18px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        color: white !important;
+        text-decoration: none;
+        transition: all 0.28s ease;
+    }
+
+    .f-btn:hover {
+        background: rgba(212, 175, 90, 0.14);
+        border-color: #f0d995;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .f-btn i {
+        color: #e8c879;
+        font-size: 19px;
+        width: 22px;
+        text-align: center;
+    }
+
+    .f-btn div strong {
+        font-size: 14.5px;
+        display: block;
+        color: #ffffff;
+    }
+
+    .f-btn div span {
+        font-size: 9.5px;
+        color: rgba(245, 223, 170, 0.78);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        display: block;
+    }
+
+    /* Barra inferior */
+    .f-bottom {
+        margin-top: 26px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(212, 175, 90, 0.22);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .f-legal {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .f-bottom a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.25s ease;
+    }
+
+    .f-bottom a:hover {
+        color: #f2d995;
+    }
+
+    /* Livro de Reclamações */
+    .livro-reclamacoes {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .livro-reclamacoes img {
+        width: 90px;
+        height: auto;
+        display: block;
+        border-radius: 4px;
+        transition: opacity 0.25s ease;
+    }
+
+    .livro-reclamacoes:hover img {
+        opacity: 0.85;
+    }
+
+    @media (max-width: 900px) {
+        .footer-wrapper {
+            padding: 25px 15px 20px;
+        }
+
+        .footer-container {
+            padding: 30px 22px 20px;
+            border-radius: 22px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .f-links {
+            justify-items: center;
+        }
+
+        .f-actions {
+            align-items: center;
+        }
+
+        .f-btn {
+            width: 100%;
+            max-width: 340px;
+            text-align: left;
+        }
+
+        .f-bottom {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .f-legal {
+            justify-content: center;
+        }
+
+        .f-brand h2::after {
+            margin: 5px auto 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .footer-container::before {
+            animation: none !important;
+        }
+
+        .f-links a,
+        .f-btn {
+            transition: none !important;
+        }
+    }
+</style>
+
+<div class="footer-wrapper">
+    <footer class="footer-container">
+        <div class="footer-snow" aria-hidden="true">
+            <span>❄</span>
+            <span>✦</span>
+            <span>❅</span>
+            <span>✦</span>
+        </div>
+
+        <div class="footer-grid">
+            
+            <div class="f-brand">
+                <h2>Passeios do Miguel</h2>
+                <p>O prazer de descobrir Portugal com a proximidade de um amigo.</p>
+                <div class="f-tag"><i class="fas fa-star"></i> Boas Festas · Passeios com Alma</div>
+            </div>
+
+            <div class="f-links">
+                <a href="index.html">Início</a>
+                <a href="testemunhos.html">Mural</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="galeria.html">Exposição</a>
+                <a href="passeios.html">Passeios</a>
+                <a href="contatos.html">Contacto</a>
+            </div>
+
+            <div class="f-actions">
+                <a href="tel:+351965715465" class="f-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <span>Ligar para o Miguel</span>
+                        <strong>965 715 465</strong>
+                        <span>Chamada para a rede móvel nacional</span>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="f-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <span>WhatsApp</span>
+                        <strong>Conversar agora</strong>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="f-bottom">
+            <div>&copy; 2026 Passeios do Miguel</div>
+
+            <div class="f-legal">
+                <a href="cancelamento.html">Cancelamento</a>
+                <a href="faq.html">Dúvidas (FAQ)</a>
+
+                <a href="https://www.livroreclamacoes.pt/Inicio/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="livro-reclamacoes">
+                    <img src="https://i.imgur.com/T0HnFBi.png" 
+                         alt="Livro de Reclamações">
+                </a>
+            </div>
+        </div>
+
+    </footer>
+</div>
