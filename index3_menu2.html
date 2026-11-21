@@ -1,659 +1,528 @@
 
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0BKTCRNV9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0BKTCRNV9');
-    </script>
+<style>
+    /* =========================================
+       MENU LATERAL - EDIÇÃO DE NATAL
+       OS PASSEIOS DO MIGUEL
+    ========================================= */
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    #menu-lateral {
+        width: 250px;
+        background: linear-gradient(180deg, #102d50 0%, #173d68 55%, #102b49 100%);
+        min-height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 30px 15px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        z-index: 9999;
+        overflow: visible;
+        border-right: 2px solid rgba(212, 175, 90, 0.35);
+        box-shadow: 4px 0 18px rgba(0,0,0,0.16);
+    }
 
-    <title>Santoinho - Passeios do Miguel</title>
+    /* Brilho dourado superior */
+    #menu-lateral::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            #b78b39,
+            #f7df9b,
+            #ffffff,
+            #d4af5a,
+            #b78b39
+        );
+        background-size: 200% 100%;
+        animation: luzesNatal 5s linear infinite;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    @keyframes luzesNatal {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
 
-    <style>
+    /* =========================================
+       LOGÓTIPO E GORRO DE NATAL
+    ========================================= */
 
-        :root {
-            --primary: #b30000;
-            --accent: #cca43b;
-            --bg-light: #f4f6f5;
-            --text-dark: #1e2522;
-            --white: #ffffff;
+    .logo-container {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        position: relative;
+        border-radius: 50%;
+        border: 4px solid #e7c875;
+        background-color: white;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.28),
+                    0 0 15px rgba(231,200,117,0.25);
+        text-decoration: none;
+    }
+
+    .logo-container .logo {
+        width: 115%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        transform: translateY(5px);
+        border-radius: 50%;
+    }
+
+    /* Gorro de Pai Natal */
+    .gorro-natal {
+        position: absolute;
+        width: 76px;
+        height: 58px;
+        top: -27px;
+        right: -13px;
+        z-index: 5;
+        transform: rotate(18deg);
+        pointer-events: none;
+    }
+
+    .gorro-natal .gorro-corpo {
+        position: absolute;
+        width: 60px;
+        height: 38px;
+        background: linear-gradient(135deg, #d92332, #a80e20);
+        border-radius: 70% 15% 0 0;
+        transform: rotate(-12deg);
+        top: 4px;
+        left: 3px;
+        clip-path: polygon(0 100%, 20% 40%, 100% 0, 75% 100%);
+    }
+
+    .gorro-natal .gorro-base {
+        position: absolute;
+        width: 63px;
+        height: 13px;
+        background: #fff;
+        border-radius: 50%;
+        top: 34px;
+        left: 0;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.15);
+    }
+
+    .gorro-natal .gorro-pompom {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: white;
+        border-radius: 50%;
+        top: 0;
+        right: 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* =========================================
+       DECORAÇÃO DE AZEVINHO
+    ========================================= */
+
+    .decoracao-natal {
+        text-align: center;
+        color: #e6c477;
+        font-size: 20px;
+        letter-spacing: 5px;
+        margin: -19px 0 23px;
+        opacity: 0.95;
+        text-shadow: 0 0 8px rgba(231,200,117,0.25);
+    }
+
+    /* =========================================
+       LINKS DO MENU
+    ========================================= */
+
+    #menu-lateral ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-grow: 1;
+    }
+
+    #menu-lateral li {
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    #menu-lateral ul li a {
+        display: flex;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border-radius: 50px;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.035);
+    }
+
+    #menu-lateral ul li a:hover {
+        background: linear-gradient(135deg, #d6ad57, #f1d68e);
+        color: #173451;
+        transform: translateX(5px);
+        box-shadow: 0 3px 12px rgba(212,175,90,0.22);
+    }
+
+    .main-icon {
+        margin-right: 12px;
+        width: 20px;
+        text-align: center;
+        font-size: 18px;
+        color: #e8c879;
+        transition: 0.3s;
+    }
+
+    #menu-lateral ul li a:hover .main-icon {
+        color: #173451;
+    }
+
+    .fa-chevron-right {
+        margin-left: auto;
+        font-size: 11px;
+        opacity: 0.7;
+    }
+
+    /* =========================================
+       DROPDOWNS
+    ========================================= */
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: 0;
+        background: #fff;
+        min-width: 260px;
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+        border-radius: 12px;
+        padding: 10px 0;
+        z-index: 10001;
+        margin-left: 10px;
+        border-top: 3px solid #d6ad57;
+    }
+
+    .dropdown:hover > .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a {
+        color: #1e4d8c !important;
+        padding: 12px 20px !important;
+        display: block !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 0 !important;
+        background: white !important;
+    }
+
+    .dropdown-content a:hover {
+        background: #fff9ec !important;
+        color: #b58a36 !important;
+        transform: none !important;
+    }
+
+    /* =========================================
+       SEPARADOR
+    ========================================= */
+
+    #menu-lateral hr {
+        border: 0;
+        border-top: 1px solid rgba(231,200,117,0.3);
+        margin: 15px 0;
+    }
+
+    /* =========================================
+       REDES SOCIAIS
+    ========================================= */
+
+    .redes-sociais-menu {
+        padding-top: 20px;
+        border-top: 1px solid rgba(231,200,117,0.25);
+        text-align: center;
+    }
+
+    .redes-sociais-menu p {
+        color: #e8c879;
+        font-size: 11px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+    .icones-redes {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .icones-redes a {
+        color: white;
+        font-size: 20px;
+        transition: 0.3s;
+        opacity: 0.85;
+    }
+
+    .icones-redes a:hover {
+        color: #e8c879;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    /* Mensagem natalícia */
+    .mensagem-natal {
+        text-align: center;
+        color: #e8c879;
+        font-size: 11px;
+        margin-top: 17px;
+        letter-spacing: 0.5px;
+        opacity: 0.9;
+    }
+
+    .mensagem-natal span {
+        display: block;
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    /* =========================================
+       NEVE ANIMADA
+    ========================================= */
+
+    .neve-menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .floco {
+        position: absolute;
+        top: -20px;
+        color: rgba(255,255,255,0.55);
+        font-size: 11px;
+        animation: cairNeve linear infinite;
+    }
+
+    .floco:nth-child(1) {
+        left: 15%;
+        animation-duration: 12s;
+        animation-delay: 0s;
+    }
+
+    .floco:nth-child(2) {
+        left: 45%;
+        animation-duration: 16s;
+        animation-delay: 3s;
+    }
+
+    .floco:nth-child(3) {
+        left: 75%;
+        animation-duration: 13s;
+        animation-delay: 5s;
+    }
+
+    .floco:nth-child(4) {
+        left: 90%;
+        animation-duration: 18s;
+        animation-delay: 2s;
+    }
+
+    @keyframes cairNeve {
+        0% {
+            transform: translateY(-20px) rotate(0deg);
+            opacity: 0;
+        }
+        15% { opacity: 0.8; }
+        85% { opacity: 0.7; }
+        100% {
+            transform: translateY(105vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Garantir que o conteúdo fica sobre a neve */
+    #menu-lateral > *:not(.neve-menu) {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 1024px) {
+        #menu-lateral {
+            width: 100%;
+            min-height: auto;
+            position: relative;
+            padding: 20px 15px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .logo-container {
+            width: 120px;
+            height: 120px;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            padding-bottom: 60px;
+        .gorro-natal {
+            transform: scale(0.8) rotate(18deg);
+            top: -24px;
+            right: -15px;
         }
 
-        /* BOTÃO VOLTAR */
-
-        .btn-voltar {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 1001;
-            background: white;
-            color: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: 0.3s ease;
+        .dropdown-content {
+            position: static;
+            width: 100%;
+            box-shadow: none;
+            background: rgba(0,0,0,0.1);
+            margin-left: 0;
         }
 
-        .btn-voltar:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateX(-5px);
+        .neve-menu {
+            height: 100%;
+        }
+    }
+
+    /* Respeitar preferência de movimento reduzido */
+    @media (prefers-reduced-motion: reduce) {
+        .floco,
+        #menu-lateral::before {
+            animation: none !important;
         }
 
-        /* HERO */
-
-        .hero {
-            height: 60vh;
-            min-height: 450px;
-
-            background:
-                linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-                url('https://i.imgur.com/SqY2vAX.png');
-
-            background-size: cover;
-            background-position: center;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-            color: white;
-
-            border-radius: 0 0 60px 60px;
-            padding: 20px;
+        #menu-lateral ul li a,
+        .icones-redes a {
+            transition: none !important;
         }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.2em;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .hero .data-badge {
-            font-size: 1.3em;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(8px);
-            color: white;
-            padding: 8px 35px;
-            border: 1px solid white;
-            border-radius: 50px;
-            font-weight: 600;
-        }
-
-        /* ESTRUTURA PRINCIPAL */
-
-        .wrapper {
-            max-width: 1200px;
-            margin: -60px auto 0;
-            padding: 0 20px;
-
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 30px;
-        }
-
-        /* CARTÃO PRINCIPAL */
-
-        .main-card {
-            background: white;
-            padding: 45px;
-            border-radius: 35px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
-        }
-
-        .title-sec {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
-            font-size: 2.2em;
-            margin-bottom: 25px;
-        }
-
-        /* BLOCOS DE DESTAQUE */
-
-        .feature-box {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 20px;
-            background: #fff;
-            border: 1px solid #eee;
-        }
-
-        .feature-box i {
-            color: var(--accent);
-            font-size: 1.4em;
-            min-width: 25px;
-        }
-
-        .feature-box h4 {
-            font-weight: 700;
-            color: #111;
-            margin-bottom: 4px;
-        }
-
-        .feature-box p {
-            font-size: 0.9em;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* BOTÃO GALERIA */
-
-        .btn-galeria {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-
-            background: #f3ede2;
-            color: var(--primary);
-
-            padding: 15px 30px;
-            border-radius: 15px;
-
-            text-decoration: none;
-            font-weight: 700;
-
-            margin: 30px 0;
-
-            border: 2px solid var(--accent);
-
-            transition: 0.3s;
-        }
-
-        .btn-galeria:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* LISTAS DE INFORMAÇÃO */
-
-        .info-lists {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-
-            margin-top: 10px;
-
-            background: #fdfdfd;
-            padding: 25px;
-
-            border-radius: 25px;
-            border: 1px dashed #ddd;
-        }
-
-        .info-item {
-            list-style: none;
-            font-size: 0.88em;
-            margin-bottom: 12px;
-
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-
-            color: #555;
-            line-height: 1.4;
-        }
-
-        .info-item i {
-            color: var(--primary);
-            margin-top: 3px;
-        }
-
-        /* CARTÃO LATERAL */
-
-        .booking-card {
-            background: var(--primary);
-            color: white;
-
-            padding: 40px;
-            border-radius: 35px;
-
-            position: sticky;
-            top: 30px;
-
-            height: fit-content;
-
-            text-align: center;
-
-            box-shadow: 0 20px 40px rgba(179,0,0,0.18);
-        }
-
-        /* BADGE */
-
-        .success-badge {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-
-            padding: 12px;
-            border-radius: 15px;
-
-            font-weight: 700;
-            color: #fff;
-
-            margin-bottom: 20px;
-
-            text-transform: uppercase;
-            font-size: 0.9em;
-        }
-
-        /* BOTÃO NOVOS DESTINOS */
-
-        .btn-proximos {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-
-            background: var(--accent);
-            color: var(--primary);
-
-            text-align: center;
-
-            padding: 20px;
-            border-radius: 18px;
-
-            text-decoration: none;
-
-            font-weight: 800;
-            font-size: 1.1em;
-
-            transition: 0.3s;
-            margin-top: 25px;
-
-            text-transform: uppercase;
-        }
-
-        .btn-proximos:hover {
-            transform: translateY(-3px);
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        /* RESPONSIVO */
-
-        @media (max-width: 900px) {
-
-            .hero {
-                height: auto;
-                min-height: 350px;
-                padding: 65px 20px 45px;
-                border-radius: 0 0 35px 35px;
-            }
-
-            .hero h1 {
-                font-size: 2.6em;
-            }
-
-            .wrapper {
-                grid-template-columns: 1fr;
-                margin-top: -30px;
-            }
-
-            .info-lists {
-                grid-template-columns: 1fr;
-            }
-
-            .booking-card {
-                position: static;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            .hero h1 {
-                font-size: 2.15em;
-            }
-
-            .hero .data-badge {
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
-
-            .wrapper {
-                padding: 0 12px;
-                gap: 20px;
-            }
-
-            .main-card,
-            .booking-card {
-                padding: 23px;
-                border-radius: 25px;
-            }
-
-            .title-sec {
-                font-size: 1.8em;
-            }
-        }
-
-    </style>
-</head>
-
-<body>
-
-    <!-- BOTÃO VOLTAR -->
-
-    <a href="passeios.html" class="btn-voltar">
-        <i class="fas fa-arrow-left"></i>
+    }
+</style>
+
+<nav id="menu-lateral">
+
+    <!-- Neve decorativa -->
+    <div class="neve-menu">
+        <span class="floco">❄</span>
+        <span class="floco">❅</span>
+        <span class="floco">❄</span>
+        <span class="floco">❅</span>
+    </div>
+
+    <!-- Logótipo -->
+    <a href="index.html" class="logo-container">
+        <img src="https://i.imgur.com/X1xT7Fx.png"
+             class="logo"
+             alt="Passeios do Miguel">
+
+        <!-- Gorro de Pai Natal -->
+        <div class="gorro-natal">
+            <div class="gorro-corpo"></div>
+            <div class="gorro-base"></div>
+            <div class="gorro-pompom"></div>
+        </div>
     </a>
 
-    <!-- HERO -->
-
-    <header class="hero">
-
-        <h1>Arraial Minhoto no Santoinho</h1>
-
-        <div class="data-badge">
-            Realizado a 07 de novembro de 2026
-        </div>
-
-    </header>
-
-    <!-- CONTEÚDO -->
-
-    <div class="wrapper">
-
-        <!-- CARTÃO PRINCIPAL -->
-
-        <main class="main-card">
-
-            <h2 class="title-sec">
-                Viana do Castelo e Santoinho
-            </h2>
-
-            <p style="margin-bottom:30px; color:#555; line-height:1.7;">
-
-                Um dia dedicado às paisagens, à cultura e às tradições minhotas,
-                numa viagem que nos levou até Viana do Castelo e terminou com
-                uma noite de festa no emblemático <strong>Santoinho</strong>.
-
-                Entre vistas deslumbrantes, gastronomia regional, folclore,
-                castanhas assadas e muita animação, vivemos mais uma aventura
-                para guardar na memória.
-
-            </p>
-
-            <!-- MONTE DE SANTA LUZIA -->
-
-            <div class="feature-box">
-
-                <i class="fas fa-mountain"></i>
-
-                <div>
-
-                    <h4>
-                        Monte de Santa Luzia
-                    </h4>
-
-                    <p>
-                        Começámos por conhecer um dos lugares mais emblemáticos
-                        de Viana do Castelo, com uma vista panorâmica sobre
-                        a cidade, o rio Lima e o Oceano Atlântico.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- VIANA DO CASTELO -->
-
-            <div class="feature-box">
-
-                <i class="fas fa-city"></i>
-
-                <div>
-
-                    <h4>
-                        Viana do Castelo
-                    </h4>
-
-                    <p>
-                        Uma passagem pela bonita cidade minhota, com
-                        oportunidade para descobrir o seu centro histórico
-                        e apreciar o ambiente característico desta região.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- SANTOINHO -->
-
-            <div class="feature-box">
-
-                <i class="fas fa-music"></i>
-
-                <div>
-
-                    <h4>
-                        Arraial Minhoto no Santoinho
-                    </h4>
-
-                    <p>
-                        O grande destaque do passeio! Uma noite de jantar
-                        regional, gastronomia tradicional, folclore,
-                        música e muita animação, num dos arraiais mais
-                        conhecidos do Minho.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- MAGUSTO -->
-
-            <div class="feature-box">
-
-                <i class="fas fa-fire"></i>
-
-                <div>
-
-                    <h4>
-                        Magusto e tradições de outono
-                    </h4>
-
-                    <p>
-                        Novembro trouxe também o ambiente típico do magusto,
-                        com castanhas assadas e o espírito festivo das
-                        tradições populares desta época do ano.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- CONVÍVIO -->
-
-            <div class="feature-box">
-
-                <i class="fas fa-users"></i>
-
-                <div>
-
-                    <h4>
-                        Um dia de convívio
-                    </h4>
-
-                    <p>
-                        Foram <strong>50 viajantes</strong> a juntar-se
-                        a mais uma aventura dos Passeios do Miguel,
-                        num dia marcado pela descoberta, partilha
-                        e boa disposição.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- GALERIA -->
-
-            <div style="text-align:center;">
-
-                <a href="galeria.html" class="btn-galeria">
-
-                    <i class="fas fa-images"></i>
-
-                    VER FOTOS NA GALERIA
-
-                </a>
-
-            </div>
-
-            <!-- INFORMAÇÃO -->
-
-            <div class="info-lists">
-
-                <!-- EXPERIÊNCIA -->
-
-                <div>
-
-                    <h4 style="margin-bottom:15px; color:var(--primary); font-size:0.9em; text-transform:uppercase;">
-
-                        <i class="fas fa-check"></i>
-                        Momentos vividos:
-
-                    </h4>
-
-                    <li class="info-item">
-                        <i class="fas fa-bus"></i>
-                        Viagem em Autocarro de Turismo
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-mountain"></i>
-                        Monte de Santa Luzia
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-city"></i>
-                        Viana do Castelo
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-utensils"></i>
-                        Jantar regional no Santoinho
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-drum"></i>
-                        Folclore e animação minhota
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-fire"></i>
-                        Magusto e castanhas assadas
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-users"></i>
-                        Convívio e boa disposição
-                    </li>
-
-                </div>
-
-                <!-- DESTINOS -->
-
-                <div>
-
-                    <h4 style="margin-bottom:15px; color:#555; font-size:0.9em; text-transform:uppercase;">
-
-                        <i class="fas fa-map-marker-alt"></i>
-                        Destinos visitados:
-
-                    </h4>
-
-                    <li class="info-item">
-                        <i class="fas fa-circle"></i>
-                        Monte de Santa Luzia
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-circle"></i>
-                        Viana do Castelo
-                    </li>
-
-                    <li class="info-item">
-                        <i class="fas fa-circle"></i>
-                        Santoinho
-                    </li>
-
-                </div>
-
-            </div>
-
-        </main>
-
-        <!-- CARTÃO LATERAL -->
-
-        <aside class="booking-card">
-
-            <h3 style="font-family:'Playfair Display', serif; font-size:2em; margin-bottom:10px;">
-
-                Mais uma noite de festa e tradição!
-
-            </h3>
-
-            <div class="success-badge">
-
-                <i class="fas fa-users"></i>
-                50 Viajantes
-
-            </div>
-
-            <p style="font-size:0.95em; color:#eee; line-height:1.6; font-style:italic; opacity:0.95;">
-
-                "Obrigado a todos os que se juntaram a nós nesta viagem
-                até ao coração do Minho. Entre as paisagens de Viana,
-                os sabores tradicionais, o folclore e a animação do
-                Santoinho, vivemos juntos mais um dia especial.
-                Até à próxima aventura!"
-
-            </p>
-
-            <a href="passeios.html" class="btn-proximos">
-
-                Ver Novos Destinos
-
-                <i class="fas fa-arrow-right"></i>
-
+    <!-- Decoração -->
+    <div class="decoracao-natal">❄ ✦ 🎄 ✦ ❄</div>
+
+    <!-- Navegação -->
+    <ul>
+
+        <li>
+            <a href="index.html">
+                <i class="fas fa-home main-icon"></i> Home
+            </a>
+        </li>
+
+        <li>
+            <a href="sobre.html">
+                <i class="fas fa-user main-icon"></i> Sobre Mim
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="passeios.html">
+                <i class="fas fa-bus main-icon"></i> Passeios
+                <i class="fas fa-chevron-right"></i>
             </a>
 
-        </aside>
+            <div class="dropdown-content">
+                <a href="passeios.html">Ver Todos os Passeios</a>
+                <a href="galeria.html">Exposição de Fotos</a>
+            </div>
+        </li>
+
+        <li>
+            <a href="contatos.html">
+                <i class="fas fa-envelope main-icon"></i> Contactos
+            </a>
+        </li>
+
+        <hr>
+
+        <li>
+            <a href="dicas.html">
+                <i class="fas fa-lightbulb main-icon"></i> Dicas Úteis
+            </a>
+        </li>
+
+        <li>
+            <a href="faq.html">
+                <i class="fas fa-question-circle main-icon"></i> FAQ
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- Redes sociais -->
+    <div class="redes-sociais-menu">
+
+        <p>Siga-nos</p>
+
+        <div class="icones-redes">
+
+            <a href="https://www.facebook.com/passeiosdomiguel"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.instagram.com/passeiosdomiguel/"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+        </div>
+
+        <div class="mensagem-natal">
+            <span>🎄 ✨ 🎄</span>
+            Passeios com Alma e Aventura
+            <br>
+            <strong>Boas Festas!</strong>
+        </div>
 
     </div>
 
-</body>
-</html>
+</nav>
