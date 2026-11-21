@@ -47,13 +47,13 @@
     }
 
     /* =========================================
-       LOGÓTIPO E GORRO DE NATAL
+       LOGÓTIPO E LAÇO DE NATAL
     ========================================= */
 
     .logo-container {
         width: 180px;
         height: 180px;
-        margin: 0 auto 30px;
+        margin: 12px auto 30px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,20 +76,20 @@
         border-radius: 50%;
     }
 
-    /* Gorro de Pai Natal (SVG suave e natural) */
-    .gorro-natal {
+    /* Laço natalício elegante no topo do logótipo */
+    .laco-natal {
         position: absolute;
-        width: 96px;
-        height: 76px;
-        top: -27px;
-        right: -19px;
+        width: 104px;
+        height: 54px;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 5;
-        transform: rotate(22deg);
         pointer-events: none;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.28));
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
-    .gorro-natal svg {
+    .laco-natal svg {
         width: 100%;
         height: 100%;
         display: block;
@@ -351,13 +351,13 @@
         .logo-container {
             width: 120px;
             height: 120px;
+            margin-top: 14px;
         }
 
-        .gorro-natal {
-            width: 72px;
-            height: 58px;
-            top: -21px;
-            right: -14px;
+        .laco-natal {
+            width: 78px;
+            height: 40px;
+            top: -17px;
         }
 
         .dropdown-content {
@@ -403,28 +403,31 @@
              class="logo"
              alt="Passeios do Miguel">
 
-        <!-- Gorro de Pai Natal -->
-        <div class="gorro-natal" aria-hidden="true">
-            <svg viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Laço Natalício -->
+        <div class="laco-natal" aria-hidden="true">
+            <svg viewBox="0 0 160 84" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="gorroVermelho" x1="18" y1="12" x2="88" y2="72" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#ef3340"/>
-                        <stop offset="55%" stop-color="#c81928"/>
-                        <stop offset="100%" stop-color="#8f0d19"/>
+                    <linearGradient id="fitaOuro" x1="15" y1="10" x2="145" y2="65" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#f5dc95"/>
+                        <stop offset="50%" stop-color="#d4af5a"/>
+                        <stop offset="100%" stop-color="#9e7426"/>
                     </linearGradient>
-                    <linearGradient id="gorroBranco" x1="12" y1="58" x2="92" y2="82" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="100%" stop-color="#e9eef5"/>
+                    <linearGradient id="centroRubi" x1="65" y1="20" x2="95" y2="54" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#dc2626"/>
+                        <stop offset="100%" stop-color="#8f111b"/>
                     </linearGradient>
                 </defs>
-                <!-- Corpo curvado do gorro -->
-                <path d="M16 64 C20 26, 56 6, 86 24 C98 31, 102 43, 98 52 C92 43, 81 40, 72 46 C69 52, 74 58, 82 62 Z" fill="url(#gorroVermelho)"/>
-                <!-- Dobra/sombra na ponta caída -->
-                <path d="M72 46 C81 40, 92 43, 98 52 C93 56, 86 58, 80 56 C74 54, 70 50, 72 46 Z" fill="#7c0a14" opacity="0.45"/>
-                <!-- Aba fofa branca -->
-                <rect x="10" y="58" width="76" height="17" rx="8.5" fill="url(#gorroBranco)" stroke="#dce4ee" stroke-width="1"/>
-                <!-- Pompom na ponta -->
-                <circle cx="101" cy="54" r="11" fill="url(#gorroBranco)" stroke="#dce4ee" stroke-width="1"/>
+                <!-- Pontas inferiores do laço -->
+                <path d="M68 42 L44 74 L58 70 L66 80 L77 46 Z" fill="url(#fitaOuro)"/>
+                <path d="M92 42 L116 74 L102 70 L94 80 L83 46 Z" fill="url(#fitaOuro)"/>
+                <!-- Laçada esquerda -->
+                <path d="M74 36 C54 10, 14 12, 16 36 C18 56, 54 52, 74 40 Z" fill="url(#fitaOuro)" stroke="#fff1c2" stroke-width="1.5"/>
+                <!-- Laçada direita -->
+                <path d="M86 36 C106 10, 146 12, 144 36 C142 56, 106 52, 86 40 Z" fill="url(#fitaOuro)" stroke="#fff1c2" stroke-width="1.5"/>
+                <!-- Nó central -->
+                <rect x="68" y="27" width="24" height="22" rx="7" fill="url(#centroRubi)" stroke="#f5dc95" stroke-width="2"/>
+                <!-- Estrela brilhante no centro -->
+                <path d="M80 30 L82.4 35.2 L88 35.8 L83.8 39.5 L85 45 L80 42.2 L75 45 L76.2 39.5 L72 35.8 L77.6 35.2 Z" fill="#fff3c4"/>
             </svg>
         </div>
     </a>
