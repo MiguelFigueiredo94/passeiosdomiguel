@@ -16,7 +16,7 @@
         display: flex;
         flex-direction: column;
         z-index: 9999;
-        overflow: hidden;
+        overflow: visible;
         border-right: 2px solid rgba(212, 175, 90, 0.35);
         box-shadow: 4px 0 18px rgba(0,0,0,0.16);
     }
@@ -39,7 +39,6 @@
         );
         background-size: 200% 100%;
         animation: luzesNatal 5s linear infinite;
-        z-index: 4;
     }
 
     @keyframes luzesNatal {
@@ -64,7 +63,7 @@
         border: 4px solid #e7c875;
         background-color: white;
         box-shadow: 0 6px 20px rgba(0,0,0,0.28),
-                    0 0 16px rgba(231,200,117,0.28);
+                    0 0 15px rgba(231,200,117,0.25);
         text-decoration: none;
     }
 
@@ -77,62 +76,36 @@
         border-radius: 50%;
     }
 
-    /* Gorro de Pai Natal */
+    /* Gorro de Pai Natal (SVG suave e natural) */
     .gorro-natal {
         position: absolute;
-        width: 76px;
-        height: 58px;
-        top: -24px;
-        right: -12px;
+        width: 96px;
+        height: 76px;
+        top: -27px;
+        right: -19px;
         z-index: 5;
-        transform: rotate(18deg);
+        transform: rotate(22deg);
         pointer-events: none;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.28));
     }
 
-    .gorro-natal .gorro-corpo {
-        position: absolute;
-        width: 60px;
-        height: 38px;
-        background: linear-gradient(135deg, #d92332, #a80e20);
-        border-radius: 70% 15% 0 0;
-        transform: rotate(-12deg);
-        top: 4px;
-        left: 3px;
-        clip-path: polygon(0 100%, 20% 40%, 100% 0, 75% 100%);
-    }
-
-    .gorro-natal .gorro-base {
-        position: absolute;
-        width: 63px;
-        height: 13px;
-        background: #fff;
-        border-radius: 50%;
-        top: 34px;
-        left: 0;
-        box-shadow: 0 2px 3px rgba(0,0,0,0.15);
-    }
-
-    .gorro-natal .gorro-pompom {
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        background: white;
-        border-radius: 50%;
-        top: 0;
-        right: 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    .gorro-natal svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: visible;
     }
 
     /* =========================================
-       DECORAÇÃO DE NATAL
+       DECORAÇÃO DE AZEVINHO
     ========================================= */
 
     .decoracao-natal {
         text-align: center;
         color: #e6c477;
-        font-size: 19px;
+        font-size: 20px;
         letter-spacing: 5px;
-        margin: -18px 0 22px;
+        margin: -19px 0 23px;
         opacity: 0.95;
         text-shadow: 0 0 8px rgba(231,200,117,0.25);
     }
@@ -164,14 +137,14 @@
         transition: all 0.3s ease;
         border-radius: 50px;
         background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.035);
     }
 
     #menu-lateral ul li a:hover {
         background: linear-gradient(135deg, #d6ad57, #f1d68e);
         color: #173451;
         transform: translateX(5px);
-        box-shadow: 0 3px 12px rgba(212,175,90,0.25);
+        box-shadow: 0 3px 12px rgba(212,175,90,0.22);
     }
 
     .main-icon {
@@ -190,7 +163,7 @@
     .fa-chevron-right {
         margin-left: auto;
         font-size: 11px;
-        opacity: 0.75;
+        opacity: 0.7;
     }
 
     /* =========================================
@@ -204,9 +177,9 @@
         top: 0;
         background: #fff;
         min-width: 260px;
-        box-shadow: 10px 10px 30px rgba(0,0,0,0.22);
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
         border-radius: 12px;
-        padding: 8px 0;
+        padding: 10px 0;
         z-index: 10001;
         margin-left: 10px;
         border-top: 3px solid #d6ad57;
@@ -217,23 +190,19 @@
     }
 
     .dropdown-content a {
-        color: #102d50 !important;
+        color: #1e4d8c !important;
         padding: 12px 20px !important;
         display: block !important;
         text-decoration: none !important;
         font-size: 14px !important;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid #f0f0f0;
         border-radius: 0 !important;
         background: white !important;
     }
 
-    .dropdown-content a:last-child {
-        border-bottom: none;
-    }
-
     .dropdown-content a:hover {
         background: #fff9ec !important;
-        color: #a87d28 !important;
+        color: #b58a36 !important;
         transform: none !important;
     }
 
@@ -260,7 +229,7 @@
     .redes-sociais-menu p {
         color: #e8c879;
         font-size: 11px;
-        margin-bottom: 14px;
+        margin-bottom: 15px;
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 600;
@@ -269,14 +238,14 @@
     .icones-redes {
         display: flex;
         justify-content: center;
-        gap: 16px;
+        gap: 15px;
     }
 
     .icones-redes a {
         color: white;
         font-size: 20px;
-        transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease;
-        opacity: 0.88;
+        transition: 0.3s;
+        opacity: 0.85;
     }
 
     .icones-redes a:hover {
@@ -289,11 +258,10 @@
     .mensagem-natal {
         text-align: center;
         color: #e8c879;
-        font-size: 11.5px;
-        margin-top: 18px;
-        line-height: 1.5;
-        letter-spacing: 0.4px;
-        opacity: 0.95;
+        font-size: 11px;
+        margin-top: 17px;
+        letter-spacing: 0.5px;
+        opacity: 0.9;
     }
 
     .mensagem-natal span {
@@ -308,7 +276,10 @@
 
     .neve-menu {
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
         pointer-events: none;
         z-index: 0;
@@ -319,7 +290,7 @@
         top: -20px;
         color: rgba(255,255,255,0.55);
         font-size: 11px;
-        animation: cairNeveMenu linear infinite;
+        animation: cairNeve linear infinite;
     }
 
     .floco:nth-child(1) {
@@ -346,7 +317,7 @@
         animation-delay: 2s;
     }
 
-    @keyframes cairNeveMenu {
+    @keyframes cairNeve {
         0% {
             transform: translateY(-20px) rotate(0deg);
             opacity: 0;
@@ -354,7 +325,7 @@
         15% { opacity: 0.8; }
         85% { opacity: 0.7; }
         100% {
-            transform: translateY(100%) rotate(360deg);
+            transform: translateY(105vh) rotate(360deg);
             opacity: 0;
         }
     }
@@ -374,24 +345,18 @@
             width: 100%;
             min-height: auto;
             position: relative;
-            padding: 24px 15px;
-            border-right: none;
-            border-bottom: 2px solid rgba(212, 175, 90, 0.35);
+            padding: 20px 15px;
         }
 
         .logo-container {
             width: 120px;
             height: 120px;
-            margin-bottom: 22px;
-        }
-
-        .decoracao-natal {
-            margin: -12px 0 18px;
         }
 
         .gorro-natal {
-            transform: scale(0.8) rotate(18deg);
-            top: -22px;
+            width: 72px;
+            height: 58px;
+            top: -21px;
             right: -14px;
         }
 
@@ -399,15 +364,12 @@
             position: static;
             width: 100%;
             box-shadow: none;
-            background: rgba(0,0,0,0.14);
+            background: rgba(0,0,0,0.1);
             margin-left: 0;
-            margin-top: 6px;
         }
 
-        .dropdown-content a {
-            background: rgba(255,255,255,0.96) !important;
-            border-radius: 8px !important;
-            margin-bottom: 4px;
+        .neve-menu {
+            height: 100%;
         }
     }
 
@@ -428,7 +390,7 @@
 <nav id="menu-lateral">
 
     <!-- Neve decorativa -->
-    <div class="neve-menu" aria-hidden="true">
+    <div class="neve-menu">
         <span class="floco">❄</span>
         <span class="floco">❅</span>
         <span class="floco">❄</span>
@@ -443,14 +405,32 @@
 
         <!-- Gorro de Pai Natal -->
         <div class="gorro-natal" aria-hidden="true">
-            <div class="gorro-corpo"></div>
-            <div class="gorro-base"></div>
-            <div class="gorro-pompom"></div>
+            <svg viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gorroVermelho" x1="18" y1="12" x2="88" y2="72" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ef3340"/>
+                        <stop offset="55%" stop-color="#c81928"/>
+                        <stop offset="100%" stop-color="#8f0d19"/>
+                    </linearGradient>
+                    <linearGradient id="gorroBranco" x1="12" y1="58" x2="92" y2="82" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#e9eef5"/>
+                    </linearGradient>
+                </defs>
+                <!-- Corpo curvado do gorro -->
+                <path d="M16 64 C20 26, 56 6, 86 24 C98 31, 102 43, 98 52 C92 43, 81 40, 72 46 C69 52, 74 58, 82 62 Z" fill="url(#gorroVermelho)"/>
+                <!-- Dobra/sombra na ponta caída -->
+                <path d="M72 46 C81 40, 92 43, 98 52 C93 56, 86 58, 80 56 C74 54, 70 50, 72 46 Z" fill="#7c0a14" opacity="0.45"/>
+                <!-- Aba fofa branca -->
+                <rect x="10" y="58" width="76" height="17" rx="8.5" fill="url(#gorroBranco)" stroke="#dce4ee" stroke-width="1"/>
+                <!-- Pompom na ponta -->
+                <circle cx="101" cy="54" r="11" fill="url(#gorroBranco)" stroke="#dce4ee" stroke-width="1"/>
+            </svg>
         </div>
     </a>
 
     <!-- Decoração -->
-    <div class="decoracao-natal" aria-hidden="true">❄ ✦ 🎄 ✦ ❄</div>
+    <div class="decoracao-natal">❄ ✦ 🎄 ✦ ❄</div>
 
     <!-- Navegação -->
     <ul>
@@ -510,22 +490,19 @@
 
             <a href="https://www.facebook.com/passeiosdomiguel"
                target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Facebook">
+               rel="noopener noreferrer">
                 <i class="fab fa-facebook-f"></i>
             </a>
 
             <a href="https://www.instagram.com/passeiosdomiguel/"
                target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Instagram">
+               rel="noopener noreferrer">
                 <i class="fab fa-instagram"></i>
             </a>
 
             <a href="https://chat.whatsapp.com/GOsICa89IntAlMqS9ydUzJ"
                target="_blank"
-               rel="noopener noreferrer"
-               aria-label="WhatsApp">
+               rel="noopener noreferrer">
                 <i class="fab fa-whatsapp"></i>
             </a>
 
