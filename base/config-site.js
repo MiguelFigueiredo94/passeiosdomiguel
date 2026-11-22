@@ -140,13 +140,18 @@
         display: none !important;
       }
 
+      html[data-tema="natal"],
+      html[data-tema="natal"] body {
+        overflow-x: clip;
+      }
+
       html[data-tema="natal"] {
         --pm-natal-ouro: #e2b857;
         --pm-natal-pinheiro: #14452f;
         --pm-natal-bordeaux: #8f1d2c;
       }
 
-      /* Faixa diagonal no topo da página (acompanha o scroll da página) */
+      /* Faixa diagonal no topo da página */
       html[data-tema="natal"] #pm-faixa-diagonal-natal {
         position: absolute;
         top: 38px;
@@ -163,7 +168,7 @@
         border-top: 1.5px solid #fffbeb !important;
         border-bottom: 1.5px solid #fffbeb !important;
         box-shadow: 0 10px 24px rgba(15, 23, 42, 0.32), 0 0 18px rgba(251, 191, 36, 0.45);
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         animation: pmPulsoFaixaDiagonal 3.6s ease-in-out infinite alternate;
@@ -218,14 +223,14 @@
 
       @media (max-width: 640px) {
         html[data-tema="natal"] #pm-faixa-diagonal-natal {
-          top: 34px;
-          right: -66px;
-          width: 230px;
-          padding: 7px 14px;
+          top: 32px;
+          right: -68px;
+          width: 224px;
+          padding: 6px 12px;
         }
 
         html[data-tema="natal"] .pm-faixa-diagonal-texto {
-          font-size: 0.65rem;
+          font-size: 0.62rem;
         }
       }
 
@@ -299,6 +304,7 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
+        flex-shrink: 0;
       }
 
       html[data-tema="natal"] .pm-musica-natal-btn {
@@ -415,18 +421,21 @@
         display: block;
       }
 
-      /* Cenas de Natal: Estrelas cadentes com rasto e Pai Natal discreto sem tapar conteúdo */
+      /* Cenas de Natal: Estrelas cadentes com rasto e Pai Natal visíveis também em smartphone */
       html[data-tema="natal"] #pm-cenas-natal {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
+        position: fixed !important;
+        inset: 0 !important;
+        pointer-events: none !important;
         user-select: none;
-        z-index: 880;
-        overflow: hidden;
+        z-index: 880 !important;
+        overflow: hidden !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
       }
 
-      .pm-estrela-cadente {
-        position: fixed;
+      html[data-tema="natal"] .pm-estrela-cadente {
+        position: fixed !important;
         top: var(--pm-cadente-top, 56px);
         right: -140px;
         width: 130px;
@@ -436,10 +445,12 @@
         box-shadow: 0 0 12px rgba(251, 191, 36, 0.85);
         transform: rotate(-18deg);
         opacity: 0;
+        display: block !important;
+        visibility: visible !important;
         animation: pmEstrelaCadente var(--pm-cadente-dur, 6.5s) linear var(--pm-cadente-delay, 0s) infinite;
       }
 
-      .pm-estrela-cadente::before {
+      html[data-tema="natal"] .pm-estrela-cadente::before {
         content: "";
         position: absolute;
         left: -2px;
@@ -469,14 +480,16 @@
         }
       }
 
-      .pm-natal-pai {
-        position: fixed;
+      html[data-tema="natal"] .pm-natal-pai {
+        position: fixed !important;
         bottom: 14px;
         left: 266px;
         width: 72px;
         height: 82px;
-        opacity: 0.92;
-        filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.22));
+        opacity: 0.95 !important;
+        visibility: visible !important;
+        display: block !important;
+        filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.25));
         animation: pmBalancoSuave 4s ease-in-out infinite alternate;
       }
 
@@ -490,18 +503,20 @@
       }
 
       @media (max-width: 1024px) {
-        .pm-natal-pai {
-          left: 14px;
-          bottom: 14px;
-          width: 58px;
-          height: 66px;
+        html[data-tema="natal"] .pm-natal-pai {
+          left: 12px !important;
+          bottom: 12px !important;
+          width: 56px !important;
+          height: 64px !important;
         }
       }
 
       /* Faixa superior de Natal elegante com detalhe dourado suave */
       html[data-tema="natal"] .pm-faixa-natal {
         position: relative;
-        display: flex;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         align-items: center;
         background: linear-gradient(90deg, #0f2749 0%, #163a6d 50%, #0f2749 100%);
         color: #f8fafc;
@@ -565,6 +580,19 @@
         transform: translateY(-50%) scale(1.06);
       }
 
+      @media (max-width: 640px) {
+        html[data-tema="natal"] .pm-faixa-natal {
+          flex-wrap: wrap;
+          gap: 6px;
+          font-size: 0.78rem;
+          padding: 0.48rem 2.4rem 0.48rem 0.7rem;
+        }
+
+        html[data-tema="natal"] .pm-controles-musica-faixa {
+          margin-right: 0;
+        }
+      }
+
       /* Detalhes dourados discretos no menu e rodapé quando em modo Natal */
       html[data-tema="natal"] #menu-lateral ul li a.active {
         background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
@@ -582,21 +610,26 @@
         color: #f6df9e;
       }
 
-      /* Neve bem visível e frequente, com variação de tamanho e deriva lateral */
+      /* Neve bem visível em desktop e smartphone */
       html[data-tema="natal"] #pm-efeito-natal {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 900;
-        overflow: hidden;
+        position: fixed !important;
+        inset: 0 !important;
+        pointer-events: none !important;
+        z-index: 900 !important;
+        overflow: hidden !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
       }
 
       html[data-tema="natal"] .pm-floco-suave {
         position: absolute;
         top: -16px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(241,245,249,0.78) 65%, rgba(255,255,255,0.15) 100%);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 1px 3px rgba(15, 39, 73, 0.35);
+        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(241,245,249,0.85) 65%, rgba(255,255,255,0.2) 100%);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.75), 0 1px 3px rgba(15, 39, 73, 0.35);
+        display: block !important;
+        visibility: visible !important;
         will-change: transform;
         animation: pmQuedaSuave var(--pm-floco-dur, 8s) linear var(--pm-floco-delay, 0s) infinite;
       }
