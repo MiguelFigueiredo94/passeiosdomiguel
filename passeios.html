@@ -8,300 +8,2396 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passeios - Passeios do Miguel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Passeios | Passeios do Miguel</title>
+    <meta name="description" content="Consulte os passeios e excursões em grupo dos Passeios do Miguel (RNAAT 688/2026): próximas datas, viagens realizadas e histórico por ano.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.passeiosdomiguel.com/passeios.html">
+
+    <!-- Open Graph / WhatsApp / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:site_name" content="Passeios do Miguel">
+    <meta property="og:title" content="Passeios | Passeios do Miguel">
+    <meta property="og:description" content="Experiências autênticas, cultura e boa companhia. Veja o calendário de viagens e o histórico de passeios realizados.">
+    <meta property="og:url" content="https://www.passeiosdomiguel.com/passeios.html">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80">
+
+    <!-- Preconnect para acelerar recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="base/base-geral.css">
+
+    <!-- Dados Estruturados JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Passeios do Miguel",
+      "url": "https://www.passeiosdomiguel.com/",
+      "telephone": "+351965715465",
+      "email": "passeiosdomiguel@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Pedro do Sul",
+        "addressRegion": "Viseu",
+        "addressCountry": "PT"
+      }
+    }
+    </script>
+
     <style>
         :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f4f7f9;
-            --white: #ffffff;
-            --text: #334155;
+            --primary: var(--pm-primary, #163a6d);
+            --primary-dark: #0f2749;
+            --primary-soft: #eef4fb;
+            --accent: var(--pm-accent, #d97706);
+            --accent-hover: #b45309;
+            --bg: var(--pm-bg, #f4f7fa);
+            --text: var(--pm-text, #1a2536);
+            --muted: var(--pm-muted, #4b5a6d);
+            --surface: var(--pm-surface, #ffffff);
+            --border: var(--pm-border, #d8e1ec);
             --whatsapp: #25d366;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; min-height: 100vh; color: var(--text); }
-
-        #menu-placeholder { width: 250px; flex-shrink: 0; background-color: var(--primary); min-height: 100vh; }
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
-
-        /* BANNER */
-        .banner-passeios { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200'); 
-            background-size: cover; background-position: center; 
-            color: white; height: 380px; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--accent); 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .banner-passeios h1 { font-size: 3.5em; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* BARRA EXPERIÊNCIAS */
-        .mural-experiencias-float { 
-            background: white; padding: 20px 30px; display: flex; justify-content: center; align-items: center; gap: 30px; 
-            border-radius: 25px; margin: -50px auto 0; 
-            width: 90%; max-width: 950px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
-            border: 1px solid #e2e8f0; position: relative; z-index: 10;
+        html {
+            scroll-behavior: smooth;
         }
-        .mural-info { display: flex; align-items: center; gap: 15px; flex-grow: 1; }
-        .mural-info i { color: var(--accent); font-size: 2em; }
-        .mural-info p { font-weight: 600; color: var(--primary); font-size: 1.1em; line-height: 1.2; }
-        
-        .mural-btns { display: flex; gap: 12px; }
-        .btn-mural { 
-            padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 700; 
-            font-size: 0.9em; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: clip;
         }
-        .btn-feed { background: #f0f7ff; color: var(--primary); border: 1px solid #cde4ff; }
-        .btn-feed:hover { background: var(--primary); color: white; }
-        .btn-gal { background: #fff4e6; color: #d97706; border: 1px solid #ffe3bc; }
-        .btn-gal:hover { background: #d97706; color: white; }
 
-        /* FILTROS */
-        .filtros-container { max-width: 1200px; margin: 65px auto 20px; padding: 0 30px; text-align: center; }
-        .btn-filtro { 
-            padding: 12px 28px; margin: 5px; border: 2px solid var(--primary); border-radius: 30px; 
-            background: white; color: var(--primary); cursor: pointer; font-weight: 700; transition: 0.3s;
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
-        .btn-filtro.active { background: var(--primary); color: white; }
-        .btn-filtro:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* GRID E CARDS */
-        .seccao-branca { padding: 20px 30px 60px; }
-        .container-cards { max-width: 1200px; margin: 0 auto; }
-        .titulo-ano { color: var(--primary); font-size: 2.2em; margin: 40px 0 25px; border-left: 6px solid var(--accent); padding-left: 15px; font-weight: bold; }
-        
-        .grid-passeios { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; }
+        /* --------------------------------------------------
+           ASSISTENTE VIRTUAL (SPLASH CHAT)
+        -------------------------------------------------- */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 22, 40, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
 
-        .card-passeio { border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; background: var(--white); transition: 0.4s; display: flex; flex-direction: column; position: relative; }
-        .card-passeio:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-passeio.hidden { display: none; }
-        
-        .img-box { height: 220px; overflow: hidden; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card-passeio:hover .img-box img { transform: scale(1.1); }
-        
-        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; text-transform: uppercase; z-index: 5; }
-        .badge-aberto { background: #2ecc71; }
-        .badge-realizado { background: #94a3b8; }
-        .badge-esgotado { background: #e74c3c; }
-        .badge-ultimas { background: #f39c12; animation: pulse 2s infinite; }
-        .badge-cancelado { background: #2c3e50; }
+        .splash-bypass,
+        .splash-hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .chat-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 510px;
+            height: 640px;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px -12px rgba(10, 22, 40, 0.42);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: cardAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+        }
 
-        .card-info { padding: 30px 20px 20px; flex-grow: 1; text-align: center; position: relative; }
-        .cal-pope { width: 70px; border: 2px solid var(--primary); border-radius: 12px; margin: -65px auto 15px; background: white; position: relative; z-index: 2; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .cal-mes { background: var(--primary); color: white; font-size: 0.85em; padding: 5px; font-weight: bold; text-transform: uppercase; }
-        .cal-dia { font-size: 1.5em; font-weight: 800; padding: 8px; color: var(--primary); }
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 3px solid var(--accent);
+        }
 
-        .card-info h3 { color: var(--primary); margin-bottom: 8px; font-size: 1.5em; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .card-info p { color: #64748b; font-size: 1.1em; }
-        .card-info p i { color: var(--accent); margin-right: 5px; }
+        .assistant-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
 
-        .card-footer { padding: 20px; background: #f8fafc; border-top: 1px solid #edf2f7; }
-        .btn-v-detalhes { display: block; width: 100%; padding: 12px; background: #e2e8f0; color: var(--primary); text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; }
-        .btn-v-detalhes:hover { background: #d1d9e2; }
-        
-        .row-btns { display: grid; grid-template-columns: 1fr 60px; gap: 10px; }
-        .btn-ins { background: var(--primary); color: white; padding: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: bold; transition: 0.3s; }
-        .btn-ins:hover { background: var(--accent); }
-        .btn-wts { background: var(--whatsapp); color: white; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.4em; transition: 0.3s; }
-        .btn-wts:hover { background: #128c7e; transform: scale(1.05); }
+        .avatar-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.08rem;
+            color: #ffffff;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 11px;
+            height: 11px;
+            background: #16a34a;
+            border: 2px solid var(--primary-dark);
+            border-radius: 50%;
+        }
+
+        .assistant-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+            line-height: 1.25;
+        }
+
+        .assistant-subtitle {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .status-icon-dot {
+            font-size: 0.45rem;
+            color: #4ade80;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .icon-action-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-action-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            padding: 7px 13px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .skip-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 18px;
+            background: var(--bg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+        }
+
+        .msg-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .msg {
+            max-width: 86%;
+            padding: 11px 15px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            word-wrap: break-word;
+            animation: msgIn 0.25s ease;
+        }
+
+        .msg p + p {
+            margin-top: 8px;
+        }
+
+        .msg.bot {
+            background: var(--surface);
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .msg.user {
+            background: var(--primary);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+
+        .msg-time {
+            font-size: 0.68rem;
+            color: #64748b;
+            margin-top: 2px;
+            align-self: flex-start;
+            padding-left: 3px;
+        }
+
+        .msg-time.user-time {
+            align-self: flex-end;
+            padding-right: 3px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 11px 15px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            border-bottom-left-radius: 3px;
+            width: fit-content;
+            align-self: flex-start;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounceDot 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        .chat-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .chat-options.is-resolved .opt-card {
+            opacity: 0.55;
+        }
+
+        .opt-card {
+            background: var(--surface);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .opt-card i {
+            color: var(--accent);
+            font-size: 0.92rem;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .opt-card:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            transform: translateY(-1px);
+        }
+
+        .opt-card:disabled {
+            cursor: default;
+        }
+
+        .opt-card.full-width {
+            grid-column: span 2;
+        }
+
+        .chat-footer {
+            padding: 12px 16px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.88rem;
+            background: var(--bg);
+            color: var(--text);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.92rem;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .send-btn:disabled,
+        .chat-input:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(14px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceDot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* --------------------------------------------------
+           ESTRUTURA PRINCIPAL
+        -------------------------------------------------- */
+        main {
+            display: flex;
+            flex-direction: column;
+            margin-left: 250px;
+            min-width: 0;
+            width: calc(100% - 250px);
+        }
+
+        /* --------------------------------------------------
+           CABEÇALHO COM 3 FOTOGRAFIAS EM ROTAÇÃO
+        -------------------------------------------------- */
+        .hero-section {
+            position: relative;
+            min-height: 410px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 3.2rem 1.5rem 5.4rem;
+            border-bottom: 4px solid var(--accent);
+            overflow: hidden;
+            background: var(--primary-dark);
+        }
+
+        .hero-slides-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.03);
+            transition: opacity 0.9s ease, transform 5.5s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                135deg,
+                rgba(15, 39, 73, 0.85) 0%,
+                rgba(22, 58, 109, 0.72) 55%,
+                rgba(15, 23, 42, 0.85) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            padding: 6px 16px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            backdrop-filter: blur(6px);
+            color: #f8fafc;
+        }
+
+        .banner-kicker i {
+            color: #fbbf24;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.1rem, 4.3vw, 3.35rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.14;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-section p.hero-subtitle {
+            max-width: 640px;
+            font-size: clamp(0.98rem, 1.75vw, 1.15rem);
+            line-height: 1.6;
+            color: rgba(248, 250, 252, 0.95);
+            font-weight: 400;
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 24px;
+            height: 4px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.38);
+            cursor: pointer;
+            padding: 0;
+            transition: width 0.25s ease, background-color 0.25s ease;
+        }
+
+        .hero-dot.active {
+            width: 36px;
+            background: #fbbf24;
+        }
+
+        /* --------------------------------------------------
+           BARRA EXPERIÊNCIAS FLUTUANTE
+        -------------------------------------------------- */
+        .mural-experiencias-float {
+            background: var(--surface);
+            padding: 18px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            border-radius: 16px;
+            margin: -38px auto 0;
+            width: min(1160px, calc(100% - 64px));
+            box-shadow: 0 12px 28px rgba(15, 39, 73, 0.1);
+            border: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .mural-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mural-icone {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--primary-soft);
+            color: var(--accent);
+            display: grid;
+            place-items: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .mural-info p {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.02rem;
+            line-height: 1.3;
+        }
+
+        .mural-info span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.86rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .mural-btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-mural {
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.86rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-feed {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-feed:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .btn-gal {
+            background: var(--accent);
+            color: #ffffff;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-gal:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* --------------------------------------------------
+           BARRA DE FILTROS, ANO E PESQUISA
+        -------------------------------------------------- */
+        .filtros-wrapper {
+            max-width: 1160px;
+            width: calc(100% - 64px);
+            margin: 32px auto 12px;
+            padding: 14px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(15, 39, 73, 0.04);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .filtros-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filtros-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-filtro {
+            height: 40px;
+            padding: 0 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .btn-filtro:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+        .btn-filtro.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(22, 58, 109, 0.18);
+        }
+
+        .filtro-count {
+            font-size: 0.74rem;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--primary-dark);
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+
+        .btn-filtro.active .filtro-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        .ano-select {
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: inherit;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .ano-select:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .pesquisa-box {
+            position: relative;
+            flex: 1 1 240px;
+            max-width: 320px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pesquisa-box .fa-search {
+            position: absolute;
+            left: 13px;
+            color: var(--muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .pesquisa-input {
+            width: 100%;
+            height: 40px;
+            padding: 0 36px 0 36px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.86rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pesquisa-input:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+            box-shadow: 0 0 0 3px rgba(22, 58, 109, 0.1);
+        }
+
+        .pesquisa-input::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .btn-limpar-pesquisa {
+            position: absolute;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .btn-limpar-pesquisa.visivel {
+            display: inline-flex;
+        }
+
+        .btn-limpar-pesquisa:hover {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+        }
+
+        /* --------------------------------------------------
+           GRID E CARDS
+        -------------------------------------------------- */
+        .seccao-branca {
+            padding: 12px 32px 68px;
+            flex-grow: 1;
+        }
+
+        .container-cards {
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        .bloco-ano {
+            margin-top: 32px;
+        }
+
+        .cabecalho-ano {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .titulo-ano {
+            color: var(--primary-dark);
+            font-size: 1.75rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 14px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .contador-ano {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .grid-passeios {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .card-passeio {
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            background: var(--surface);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(15, 39, 73, 0.05);
+        }
+
+        .card-passeio:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(15, 39, 73, 0.1);
+            border-color: #c2d1e3;
+        }
+
+        .card-passeio.hidden {
+            display: none;
+        }
+
+        .img-box {
+            height: 196px;
+            overflow: hidden;
+            position: relative;
+            background: var(--primary-dark);
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+            display: block;
+        }
+
+        .card-passeio:hover .img-box img {
+            transform: scale(1.04);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 5px 11px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge-aberto { background: #15803d; }
+        .badge-realizado { background: #475569; }
+        .badge-esgotado { background: #b91c1c; }
+        .badge-ultimas { background: var(--accent); animation: pulse 2s infinite; }
+        .badge-cancelado { background: #1e293b; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.78; }
+        }
+
+        .card-info {
+            padding: 0 20px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cal-pope {
+            width: 64px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            margin: -34px auto 12px;
+            background: var(--surface);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(15, 39, 73, 0.14);
+        }
+
+        .cal-mes {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.72rem;
+            padding: 3px 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .cal-dia {
+            font-size: 1.32rem;
+            font-weight: 700;
+            padding: 5px 4px;
+            color: var(--primary-dark);
+            line-height: 1.1;
+        }
+
+        .card-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.32;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-local {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-local i {
+            color: var(--accent);
+        }
+
+        .card-footer {
+            padding: 14px 18px 18px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        .btn-v-detalhes {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--surface);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.86rem;
+            text-align: center;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-v-detalhes:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .row-btns {
+            display: grid;
+            grid-template-columns: 1fr 48px;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-ins {
+            background: var(--accent);
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.86rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-ins:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-wts {
+            background: var(--whatsapp);
+            color: #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-wts:hover {
+            background: #128c7e;
+            transform: translateY(-1px);
+        }
+
+        .estado-vazio {
+            text-align: center;
+            padding: 44px 20px;
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+            color: var(--muted);
+            margin-top: 24px;
+            display: none;
+        }
+
+        .estado-vazio.visivel {
+            display: block;
+        }
+
+        .btn-limpar-filtro {
+            margin-top: 14px;
+            padding: 9px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-limpar-filtro:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* BLOCO GRUPOS / CONSULTA */
+        .groups-cta-card {
+            margin-top: 44px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            box-shadow: 0 8px 22px rgba(15, 39, 73, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .groups-cta-text h3 {
+            color: var(--primary-dark);
+            font-size: 1.18rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .groups-cta-text p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .btn-groups-cta {
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-groups-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* BOTÃO FLUTUANTE PARA ABRIR ASSISTENTE */
+        .reopen-assistant-fab {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 900;
+            background: var(--primary-dark);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-bottom: 3px solid var(--accent);
+            border-radius: 10px;
+            padding: 11px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-family: inherit;
+        }
+
+        .reopen-assistant-fab:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .hero-slide,
+            .card-passeio,
+            .img-box img,
+            #splash-screen,
+            .chat-card,
+            .msg,
+            .status-badge.badge-ultimas {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
 
         @media (max-width: 1024px) {
-            body { display: block; }
-            #menu-placeholder { width: 100%; min-height: auto; }
-            .mural-experiencias-float { flex-direction: column; width: 95%; gap: 20px; text-align: center; border-radius: 20px; }
-            .mural-info { flex-direction: column; }
-            .banner-passeios h1 { font-size: 2.2em; }
+            body {
+                display: block;
+            }
+
+            #menu-placeholder {
+                width: 100%;
+                min-height: auto;
+            }
+
+            main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .grid-passeios {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .mural-experiencias-float {
+                width: calc(100% - 32px);
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .mural-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .mural-btns {
+                justify-content: center;
+            }
+
+            .filtros-wrapper {
+                width: calc(100% - 32px);
+                margin: 28px 16px 10px;
+                padding: 14px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filtros-left {
+                justify-content: center;
+            }
+
+            .pesquisa-box {
+                max-width: 100%;
+                flex: 1 1 auto;
+            }
+
+            .chat-card {
+                height: 100%;
+                max-height: 100%;
+                border-radius: 0;
+            }
+
+            #splash-screen {
+                padding: 0;
+            }
+
+            .chat-options {
+                grid-template-columns: 1fr;
+            }
+
+            .opt-card.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .seccao-branca {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .grid-passeios {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .btn-mural {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .groups-cta-card {
+                padding: 22px 20px;
+            }
+
+            .skip-btn span,
+            .reopen-assistant-fab span {
+                display: none;
+            }
+
+            .reopen-assistant-fab {
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                justify-content: center;
+            }
         }
     </style>
 </head>
-<body>
+<body data-pagina="geral">
+
+    <!-- ASSISTENTE VIRTUAL -->
+    <div id="splash-screen" class="splash-hidden" aria-hidden="true">
+        <div class="chat-card" role="dialog" aria-modal="true" aria-labelledby="chatAssistantTitle">
+            <div class="chat-header">
+                <div class="assistant-profile">
+                    <div class="avatar-container">
+                        <div class="avatar"><i class="fas fa-bus" aria-hidden="true"></i></div>
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="assistant-info">
+                        <h3 id="chatAssistantTitle">Passeios do Miguel</h3>
+                        <p class="assistant-subtitle">
+                            <i class="fas fa-circle status-icon-dot" aria-hidden="true"></i>
+                            <span>Atendimento Virtual</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button type="button" class="icon-action-btn" id="soundToggleBtn" aria-label="Ativar ou desativar sons do chat" title="Som ativado">
+                        <i class="fas fa-volume-up" id="soundIcon" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="icon-action-btn" id="resetChatBtn" aria-label="Reiniciar conversa" title="Reiniciar conversa">
+                        <i class="fas fa-rotate-right" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="skip-btn" id="skipBtn" aria-label="Fechar assistente">
+                        <span>Fechar</span>
+                        <i class="fas fa-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-body" id="chatBody" aria-live="polite" aria-relevant="additions"></div>
+
+            <div class="chat-footer">
+                <input
+                    type="text"
+                    class="chat-input"
+                    id="userInput"
+                    placeholder="Escreva a sua questão..."
+                    aria-label="Escreva a sua questão para o assistente"
+                    autocomplete="off"
+                >
+                <button type="button" class="send-btn" id="sendChatBtn" aria-label="Enviar mensagem">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div id="menu-placeholder"></div>
 
-    <main>
-        <div class="banner-passeios">
-            <h1>Os Nossos Passeios</h1>
-            <p>Experiências autênticas, memórias para a vida toda.</p>
-        </div>
+    <main id="mainContent">
+        <!-- CABEÇALHO COM 3 FOTOGRAFIAS EM ROTAÇÃO AUTOMÁTICA -->
+        <section class="hero-section" aria-label="Os Nossos Passeios - Passeios do Miguel">
+            <div class="hero-slides-layer" id="heroSlidesLayer">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Paisagens de montanha e rotas em grupo"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Estrada aberta e viagens organizadas"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Festividades, mercados e destinos culturais"></div>
+            </div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <span class="banner-kicker">
+                    <i class="fas fa-compass" aria-hidden="true"></i>
+                    Calendário de Viagens · RNAAT 688/2026
+                </span>
+                <h1>Os Nossos Passeios</h1>
+                <p class="hero-subtitle">Experiências autênticas, cultura e boa companhia — memórias para guardar.</p>
+            </div>
+
+            <div class="hero-dots" id="heroDots" aria-label="Indicadores das fotografias do cabeçalho">
+                <button type="button" class="hero-dot active" data-slide="0" aria-label="Fotografia 1" aria-pressed="true"></button>
+                <button type="button" class="hero-dot" data-slide="1" aria-label="Fotografia 2" aria-pressed="false"></button>
+                <button type="button" class="hero-dot" data-slide="2" aria-label="Fotografia 3" aria-pressed="false"></button>
+            </div>
+        </section>
 
         <div class="mural-experiencias-float">
             <div class="mural-info">
-                <i class="fas fa-route"></i>
-                <p>Reviva cada destino:<br><span style="font-weight: 400; font-size: 0.9em; color: #64748b;">Feedback dos viajantes e fotos dos passeios</span></p>
+                <div class="mural-icone"><i class="fas fa-route" aria-hidden="true"></i></div>
+                <p>
+                    Reviva cada destino
+                    <span>Feedback dos viajantes e fotografias das viagens realizadas</span>
+                </p>
             </div>
             <div class="mural-btns">
-                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots"></i> Mural de Memórias</a>
-                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-camera"></i> Diário de Bordo</a>
+                <a href="testemunhos.html" class="btn-mural btn-feed"><i class="fas fa-comment-dots" aria-hidden="true"></i> Mural de Memórias</a>
+                <a href="galeria.html" class="btn-mural btn-gal"><i class="fas fa-camera" aria-hidden="true"></i> Diário de Bordo</a>
             </div>
         </div>
 
-        <div class="filtros-container">
-            <button class="btn-filtro" onclick="filtrar('todos')">Todos os Passeios</button>
-            <button class="btn-filtro" onclick="filtrar('proximos')">A Realizar</button>
-            <button class="btn-filtro" onclick="filtrar('concluidos')">Realizados</button>
+        <div class="filtros-wrapper">
+            <div class="filtros-left">
+                <div class="filtros-container" role="group" aria-label="Filtrar passeios por estado">
+                    <button type="button" class="btn-filtro" data-filtro="todos">
+                        Todos os Passeios <span class="filtro-count" data-count="todos">0</span>
+                    </button>
+                    <button type="button" class="btn-filtro" data-filtro="proximos">
+                        A Realizar <span class="filtro-count" data-count="proximos">0</span>
+                    </button>
+                    <button type="button" class="btn-filtro" data-filtro="concluidos">
+                        Realizados <span class="filtro-count" data-count="concluidos">0</span>
+                    </button>
+                </div>
+
+                <select id="filtroAno" class="ano-select" aria-label="Filtrar por ano">
+                    <option value="todos">Todos os anos</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+
+            <div class="pesquisa-box">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input
+                    type="search"
+                    id="pesquisaPasseio"
+                    class="pesquisa-input"
+                    placeholder="Pesquisar destino ou passeio..."
+                    aria-label="Pesquisar destino ou passeio"
+                    autocomplete="off"
+                >
+                <button
+                    type="button"
+                    class="btn-limpar-pesquisa"
+                    id="limparPesquisaBtn"
+                    aria-label="Limpar pesquisa"
+                    title="Limpar pesquisa"
+                >
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
 
-        <section class="seccao-branca">
+        <section class="seccao-branca" aria-label="Lista de passeios">
             <div class="container-cards">
 
-<h2 class="titulo-ano" id="title-2027">2027</h2>
-                <div class="grid-passeios">
+                <!-- 2027 (ATIVAR QUANDO PRETENDER PUBLICAR) -->
+                <!--
+                <div class="bloco-ano" data-ano="2027">
+                    <div class="cabecalho-ano">
+                        <h2 class="titulo-ano" id="title-2027">2027</h2>
+                        <span class="contador-ano" id="count-2027"></span>
+                    </div>
+                    <div class="grid-passeios">
+                        <article class="card-passeio" data-status="proximos">
+                            <div class="img-box">
+                                <span class="status-badge badge-aberto">Inscrições Abertas</span>
+                                <img src="https://i.imgur.com/4G4sKVn.jpg" alt="Festa dos Tabuleiros em Tomar" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">11</div></div>
+                                <h3>Festa dos Tabuleiros</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Tomar</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="2027festadostabuleiros.html" class="btn-v-detalhes">Ver Detalhes</a>
+                                <div class="row-btns">
+                                    <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                    <a href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="btn-wts" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </article>
 
-                    <!--
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/N8PI5V5.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">07</div></div><h3>Jardim da Paz e Cultura Oriental</h3><p><i class="fas fa-map-marker-alt"></i> Bombarral</p></div>
-                        <div class="card-footer"><a href="bombarral2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    -->
+                        <article class="card-passeio" data-status="proximos">
+                            <div class="img-box">
+                                <span class="status-badge badge-aberto">Inscrições Abertas</span>
+                                <img src="https://i.imgur.com/kazu0ip.png" alt="Sexta-Feira Santa em Braga" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">26</div></div>
+                                <h3>Sexta-Feira Santa</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Braga</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="2027semanasantabraga.html" class="btn-v-detalhes">Ver Detalhes</a>
+                                <div class="row-btns">
+                                    <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                    <a href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="btn-wts" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </article>
 
-                    <!--
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/hpb7rhy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">07</div></div><h3>Semana Santa</h3><p><i class="fas fa-map-marker-alt"></i> Braga</p></div>
-                        <div class="card-footer"><a href="semanasantabraga2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    -->
+                        <article class="card-passeio" data-status="proximos">
+                            <div class="img-box">
+                                <span class="status-badge badge-aberto">Inscrições Abertas</span>
+                                <img src="https://i.imgur.com/uxOScxT.png" alt="Entrudo Chocalheiro de Podence" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">07</div></div>
+                                <h3>Entrudo Chocalheiro</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Podence · Macedo de Cavaleiros</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="2027podence.html" class="btn-v-detalhes">Ver Detalhes</a>
+                                <div class="row-btns">
+                                    <a href="inscricao.html" class="btn-ins">Inscrição</a>
+                                    <a href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="btn-wts" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                -->
 
-                    <!--
-                    <article class="card-passeio" data-status="proximos" data-date="2026-12-12">
-                        <div class="img-box"><span class="status-badge badge-aberto">Inscrições Abertas</span><img src="https://i.imgur.com/oYV0BTF.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">07</div></div><h3>Entrudo Chocalheiro</h3><p><i class="fas fa-map-marker-alt"></i> Podence</p></div>
-                        <div class="card-footer"><a href="podence2027.html" class="btn-v-detalhes">Ver Detalhes</a><div class="row-btns"><a href="inscricao.html" class="btn-ins">Inscrição</a><a href="https://wa.me/351965715465" class="btn-wts"><i class="fab fa-whatsapp"></i></a></div></div>
-                    </article>
-                    -->
-                    
+                <!-- 2026 -->
+                <div class="bloco-ano" data-ano="2026">
+                    <div class="cabecalho-ano">
+                        <h2 class="titulo-ano" id="title-2026">2026</h2>
+                        <span class="contador-ano" id="count-2026"></span>
+                    </div>
+                    <div class="grid-passeios">
+                        <article class="card-passeio" data-status="proximos">
+                            <div class="img-box">
+                                <span class="status-badge badge-esgotado">Esgotado</span>
+                                <img src="https://i.imgur.com/4aue9Fy.png" alt="Especial Natal em Salamanca — Grupo 2" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">12</div></div>
+                                <h3>Especial Natal — Grupo 2</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salamanca</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="proximos">
+                            <div class="img-box">
+                                <span class="status-badge badge-esgotado">Esgotado</span>
+                                <img src="https://i.imgur.com/4aue9Fy.png" alt="Especial Natal em Salamanca — Grupo 1" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">28</div></div>
+                                <h3>Especial Natal — Grupo 1</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salamanca</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/LloFccE.png" alt="Santoinho em Viana do Castelo" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">07</div></div>
+                                <h3>Santoinho</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Viana do Castelo</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="santoinho2026.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/VCOHAEw.png" alt="Santuário de Fátima e Aldeia Pia do Urso" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Out</div><div class="cal-dia">10</div></div>
+                                <h3>Santuário de Fátima &amp; Aldeia Pia do Urso</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Batalha &amp; Fátima</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="fatima2026.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/N5OIeOM.png" alt="Feiras Novas em Ponte de Lima" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div>
+                                <h3>Feiras Novas</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ponte de Lima</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="pontedelima.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/L58QRQc.png" alt="Festas do Povo em Campo Maior" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div>
+                                <h3>Festas do Povo</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Campo Maior</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/kX8ScBU.png" alt="Rota da Cereja no Fundão" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div>
+                                <h3>Rota da Cereja</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Fundão</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/uC6VTVp.png" alt="Festa das Cruzes em Barcelos" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div>
+                                <h3>Festa das Cruzes</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Barcelos</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-realizado">Realizado</span>
+                                <img src="https://i.imgur.com/PmjIQux.png" alt="Festa das Camélias em Celorico de Basto" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div>
+                                <h3>Festa das Camélias</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Celorico de Basto</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="camelias.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box">
+                                <span class="status-badge badge-cancelado">Cancelado</span>
+                                <img src="https://i.imgur.com/TBLxBlw.png" alt="Magia Animal em Vila Nova de Gaia" loading="lazy">
+                            </div>
+                            <div class="card-info">
+                                <div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div>
+                                <h3>Magia Animal</h3>
+                                <p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Vila Nova de Gaia</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
 
-                
-                <h2 class="titulo-ano" id="title-2026">2026</h2>
-                <div class="grid-passeios">
-                    
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-esgotado">Esgotado</span><img src="https://i.imgur.com/4aue9Fy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">12</div></div><h3>Especial Natal - Grupo 2</h3><p><i class="fas fa-map-marker-alt"></i> Salamanca</p></div>
-                        <div class="card-footer"><a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                    
-                    <article class="card-passeio" data-status="proximos">
-                        <div class="img-box"><span class="status-badge badge-esgotado">Esgotado</span><img src="https://i.imgur.com/4aue9Fy.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">28</div></div><h3>Especial Natal - Grupo 1</h3><p><i class="fas fa-map-marker-alt"></i> Salamanca</p></div>
-                        <div class="card-footer"><a href="salamanca.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                     
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/LloFccE.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">07</div></div><h3>Santoinho</h3><p><i class="fas fa-map-marker-alt"></i> Viana do Castelo</p></div>
-                        <div class="card-footer"><a href="santoinho2026.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
+                <!-- 2025 -->
+                <div class="bloco-ano" data-ano="2025">
+                    <div class="cabecalho-ano">
+                        <h2 class="titulo-ano" id="title-2025">2025</h2>
+                        <span class="contador-ano" id="count-2025"></span>
+                    </div>
+                    <div class="grid-passeios">
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png" alt="Especial de Natal em Valença do Minho e Vigo" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Especial de Natal</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Valença do Minho &amp; Vigo</p></div>
+                            <div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
 
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VCOHAEw.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Out</div><div class="cal-dia">10</div></div><h3>Santuário de Fátima & Aldeia Pia do Urso</h3><p><i class="fas fa-map-marker-alt"></i> Batalha & Fátima</p></div>
-                        <div class="card-footer"><a href="fatima2026.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                   
-                    
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/N5OIeOM.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Feiras Novas</h3><p><i class="fas fa-map-marker-alt"></i> Ponte de Lima</p></div>
-                        <div class="card-footer"><a href="pontedelima.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
-                                    
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/L58QRQc.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">08</div></div><h3>Festas do Povo</h3><p><i class="fas fa-map-marker-alt"></i> Campo Maior</p></div>
-                        <div class="card-footer"><a href="campomaior.html" class="btn-v-detalhes">Ver Detalhes</a>
-                    </article>
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png" alt="Festa da Castanha em Marvão" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Marvão</p></div>
+                            <div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
 
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/kX8ScBU.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">14</div></div><h3>Rota da Cereja</h3><p><i class="fas fa-map-marker-alt"></i> Fundão</p></div>
-                        <div class="card-footer"><a href="cereja.html" class="btn-v-detalhes">Ver Detalhes</a><div>
-                    </article>
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png" alt="Nossa Senhora d'Ajuda em Espinho" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">21</div></div><h3>Nossa Senhora d'Ajuda</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Espinho</p></div>
+                            <div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
 
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/uC6VTVp.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mai</div><div class="cal-dia">01</div></div><h3>Festa das Cruzes</h3><p><i class="fas fa-map-marker-alt"></i> Barcelos</p></div>
-                        <div class="card-footer"><a href="cruzes.html" class="btn-v-detalhes">Ver Detalhes</a><div>
-                    </article>
-                        
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/PmjIQux.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">15</div></div><h3>Festa das Camélias</h3><p><i class="fas fa-map-marker-alt"></i> Celorico de Basto</p></div>
-                        <div class="card-footer"><a href="camelias.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png" alt="Nossa Senhora d'Agonia em Viana do Castelo" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Nossa Senhora d'Agonia</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Viana do Castelo</p></div>
+                            <div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
 
-                    <article class="card-passeio" data-status="concluidos">
-                        <div class="img-box"><span class="status-badge badge-cancelado">Cancelado</span><img src="https://i.imgur.com/TBLxBlw.png"></div>
-                        <div class="card-info"><div class="cal-pope"><div class="cal-mes">Fev</div><div class="cal-dia">08</div></div><h3>Magia Animal</h3><p><i class="fas fa-map-marker-alt"></i> Vila Nova de Gaia</p></div>
-                        <div class="card-footer"><a href="gaia.html" class="btn-v-detalhes">Ver Detalhes</a></div>
-                    </article>
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png" alt="Gerês e Braga" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês &amp; Braga</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Gerês</p></div>
+                            <div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png" alt="Santuário de Fátima" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário de Fátima</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Fátima</p></div>
+                            <div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png" alt="Festival do Chocolate em Óbidos" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival do Chocolate</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Óbidos</p></div>
+                            <div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
+
+                        <article class="card-passeio" data-status="concluidos">
+                            <div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png" alt="Amendoeiras em Flor em Vila Nova de Foz Côa" loading="lazy"></div>
+                            <div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p class="card-local"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Foz Côa</p></div>
+                            <div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div>
+                        </article>
+                    </div>
                 </div>
 
-                <h2 class="titulo-ano" id="title-2025">2025</h2>
-                <div class="grid-passeios">
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/aUixZ0Y.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Dez</div><div class="cal-dia">07</div></div><h3>Especial de Natal</h3><p><i class="fas fa-map-marker-alt"></i> Valença do Minho & Vigo</p></div><div class="card-footer"><a href="vigo.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/oDpPY1r.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Nov</div><div class="cal-dia">09</div></div><h3>Festa da Castanha</h3><p><i class="fas fa-map-marker-alt"></i> Marvão</p></div><div class="card-footer"><a href="marvao.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/1OhlRDd.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Set</div><div class="cal-dia">12</div></div><h3>Nossa Senhora d'Ajuda</h3><p><i class="fas fa-map-marker-alt"></i> Espinho</p></div><div class="card-footer"><a href="espinho.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NmjlEsz.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Ago</div><div class="cal-dia">16</div></div><h3>Nossa Senhora d'Agonia</h3><p><i class="fas fa-map-marker-alt"></i> Viana do Castelo</p></div><div class="card-footer"><a href="viana.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/NqapppF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jul</div><div class="cal-dia">20</div></div><h3>Gerês & Braga</h3><p><i class="fas fa-map-marker-alt"></i> Gerês</p></div><div class="card-footer"><a href="geres.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dZF0utN.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Jun</div><div class="cal-dia">15</div></div><h3>Santuário de Fátima</h3><p><i class="fas fa-map-marker-alt"></i> Fátima</p></div><div class="card-footer"><a href="fatima.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/dJqHQFF.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Abr</div><div class="cal-dia">06</div></div><h3>Festival do Chocolate</h3><p><i class="fas fa-map-marker-alt"></i> Óbidos</p></div><div class="card-footer"><a href="obidos.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
-                    <article class="card-passeio" data-status="concluidos"><div class="img-box"><span class="status-badge badge-realizado">Realizado</span><img src="https://i.imgur.com/VJkJt5h.png"></div><div class="card-info"><div class="cal-pope"><div class="cal-mes">Mar</div><div class="cal-dia">02</div></div><h3>Amendoeiras em Flor</h3><p><i class="fas fa-map-marker-alt"></i> Foz Côa</p></div><div class="card-footer"><a href="amendoeiras.html" class="btn-v-detalhes">Ver Detalhes</a></div></article>
+                <div id="estado-vazio" class="estado-vazio">
+                    <p>Não existem passeios que correspondam ao filtro ou pesquisa atual.</p>
+                    <button type="button" class="btn-limpar-filtro" id="limparFiltroBtn">Ver todos os passeios</button>
                 </div>
+
+                <section class="groups-cta-card" aria-label="Viagens para grupos ou consultas">
+                    <div class="groups-cta-text">
+                        <h3>Tem um grupo, associação ou quer consultar próximas saídas?</h3>
+                        <p>Fale connosco para esclarecer disponibilidades, pontos de embarque ou novidades.</p>
+                    </div>
+                    <a href="contatos.html" class="btn-groups-cta">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        Falar Connosco
+                    </a>
+                </section>
             </div>
         </section>
-        
+
+        <div id="rodape-placeholder"></div>
         <div id="footer-placeholder"></div>
     </main>
 
+    <button type="button" class="reopen-assistant-fab" id="reopenAssistantBtn" aria-label="Abrir assistente virtual">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+        <span>Assistente</span>
+    </button>
+
+    <script src="base/config-site.js" defer></script>
     <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
-        }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
+        (function () {
+            "use strict";
 
-        function filtrar(categoria) {
-            const cards = document.querySelectorAll('.card-passeio');
-            const btns = document.querySelectorAll('.btn-filtro');
-            localStorage.setItem('filtroPasseios', categoria);
+            const prefersReducedMotion =
+                window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('onclick').includes(categoria)) btn.classList.add('active');
+            function safeGetSession(key) {
+                try {
+                    return window.sessionStorage.getItem(key);
+                } catch {
+                    return null;
+                }
+            }
+
+            function safeSetSession(key, value) {
+                try {
+                    window.sessionStorage.setItem(key, value);
+                } catch {
+                    // Ignora em contextos restritos
+                }
+            }
+
+            function safeGetLocal(key) {
+                try {
+                    return window.localStorage.getItem(key);
+                } catch {
+                    return null;
+                }
+            }
+
+            function safeSetLocal(key, value) {
+                try {
+                    window.localStorage.setItem(key, value);
+                } catch {
+                    // Ignora em contextos restritos
+                }
+            }
+
+            // Rotação das 3 fotografias no cabeçalho
+            const slides = Array.from(document.querySelectorAll(".hero-slide"));
+            const dots = Array.from(document.querySelectorAll(".hero-dot"));
+            let currentSlide = 0;
+            let slideTimer = null;
+
+            function showSlide(index) {
+                if (!slides.length) return;
+                currentSlide = ((index % slides.length) + slides.length) % slides.length;
+                slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
+                dots.forEach((dot, i) => {
+                    const isActive = i === currentSlide;
+                    dot.classList.toggle("active", isActive);
+                    dot.setAttribute("aria-pressed", String(isActive));
+                });
+            }
+
+            function stopAutoSlide() {
+                if (slideTimer !== null) {
+                    window.clearInterval(slideTimer);
+                    slideTimer = null;
+                }
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+                if (slides.length > 1 && !prefersReducedMotion && !document.hidden) {
+                    slideTimer = window.setInterval(() => {
+                        showSlide(currentSlide + 1);
+                    }, 5000);
+                }
+            }
+
+            dots.forEach((dot) => {
+                dot.addEventListener("click", () => {
+                    const idx = Number(dot.getAttribute("data-slide") || 0);
+                    showSlide(idx);
+                    startAutoSlide();
+                });
             });
 
-            cards.forEach(card => {
-                if (categoria === 'todos') {
-                    card.classList.remove('hidden');
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopAutoSlide();
                 } else {
-                    card.getAttribute('data-status') === categoria 
-                        ? card.classList.remove('hidden') 
-                        : card.classList.add('hidden');
+                    startAutoSlide();
                 }
             });
 
-            document.querySelectorAll('.titulo-ano').forEach(titulo => {
-                const proximoGrid = titulo.nextElementSibling;
-                const temVisiveis = Array.from(proximoGrid.children).some(c => !c.classList.contains('hidden'));
-                titulo.style.display = temVisiveis ? 'block' : 'none';
-            });
-        }
+            startAutoSlide();
 
-        window.onload = () => {
-            const ultimoFiltro = localStorage.getItem('filtroPasseios') || 'proximos';
-            filtrar(ultimoFiltro);
-        };
+            // Filtros, ano e pesquisa de passeios
+            const cards = Array.from(document.querySelectorAll(".card-passeio"));
+            const btnsFiltro = Array.from(document.querySelectorAll(".btn-filtro"));
+            const blocosAno = Array.from(document.querySelectorAll(".bloco-ano"));
+            const estadoVazio = document.getElementById("estado-vazio");
+            const filtroAnoSelect = document.getElementById("filtroAno");
+            const pesquisaInput = document.getElementById("pesquisaPasseio");
+            const limparPesquisaBtn = document.getElementById("limparPesquisaBtn");
+            const limparFiltroBtn = document.getElementById("limparFiltroBtn");
+
+            let filtroAtivo = "proximos";
+            let anoAtivo = "todos";
+            let termoPesquisa = "";
+
+            function normalizarTexto(str) {
+                return (str || "")
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .trim();
+            }
+
+            function syncLimparPesquisa() {
+                if (!limparPesquisaBtn) return;
+                limparPesquisaBtn.classList.toggle("visivel", Boolean(termoPesquisa.trim()));
+            }
+
+            function atualizarContadoresFiltros() {
+                const total = cards.length;
+                const proximos = cards.filter((c) => c.dataset.status === "proximos").length;
+                const concluidos = cards.filter((c) => c.dataset.status === "concluidos").length;
+
+                const mapa = { todos: total, proximos, concluidos };
+                document.querySelectorAll(".filtro-count[data-count]").forEach((el) => {
+                    const chave = el.getAttribute("data-count");
+                    if (chave in mapa) el.textContent = String(mapa[chave]);
+                });
+            }
+
+            function aplicarFiltros() {
+                btnsFiltro.forEach((btn) => {
+                    const ativo = btn.dataset.filtro === filtroAtivo;
+                    btn.classList.toggle("active", ativo);
+                    btn.setAttribute("aria-pressed", String(ativo));
+                });
+
+                const termoNorm = normalizarTexto(termoPesquisa);
+                let totalVisiveis = 0;
+
+                blocosAno.forEach((bloco) => {
+                    const anoBloco = bloco.dataset.ano || "";
+                    const anoOk = anoAtivo === "todos" || anoBloco === anoAtivo;
+                    let visiveisNoAno = 0;
+
+                    const cardsBloco = Array.from(bloco.querySelectorAll(".card-passeio"));
+                    cardsBloco.forEach((card) => {
+                        const matchCategoria = filtroAtivo === "todos" || card.dataset.status === filtroAtivo;
+                        const textoCard = normalizarTexto(card.textContent);
+                        const matchPesquisa = !termoNorm || textoCard.includes(termoNorm);
+                        const mostrar = anoOk && matchCategoria && matchPesquisa;
+
+                        card.classList.toggle("hidden", !mostrar);
+                        if (mostrar) {
+                            visiveisNoAno++;
+                            totalVisiveis++;
+                        }
+                    });
+
+                    bloco.style.display = visiveisNoAno > 0 ? "" : "none";
+                    const elCount = bloco.querySelector(".contador-ano");
+                    if (elCount) {
+                        elCount.textContent = visiveisNoAno === 1 ? "1 passeio" : `${visiveisNoAno} passeios`;
+                    }
+                });
+
+                if (estadoVazio) {
+                    estadoVazio.classList.toggle("visivel", totalVisiveis === 0);
+                }
+            }
+
+            function selecionarFiltro(categoria) {
+                filtroAtivo = ["todos", "proximos", "concluidos"].includes(categoria) ? categoria : "proximos";
+                safeSetLocal("filtroPasseios", filtroAtivo);
+                aplicarFiltros();
+            }
+
+            function filtrarPorPesquisaDireta(termo) {
+                termoPesquisa = termo || "";
+                if (pesquisaInput) pesquisaInput.value = termoPesquisa;
+                syncLimparPesquisa();
+                filtroAtivo = "todos";
+                anoAtivo = "todos";
+                if (filtroAnoSelect) filtroAnoSelect.value = "todos";
+                safeSetLocal("filtroPasseios", filtroAtivo);
+                aplicarFiltros();
+            }
+
+            btnsFiltro.forEach((btn) => {
+                btn.addEventListener("click", () => selecionarFiltro(btn.dataset.filtro));
+            });
+
+            if (filtroAnoSelect) {
+                filtroAnoSelect.addEventListener("change", (e) => {
+                    anoAtivo = e.target.value || "todos";
+                    aplicarFiltros();
+                });
+            }
+
+            if (pesquisaInput) {
+                pesquisaInput.addEventListener("input", (e) => {
+                    termoPesquisa = e.target.value || "";
+                    syncLimparPesquisa();
+                    aplicarFiltros();
+                });
+            }
+
+            if (limparPesquisaBtn) {
+                limparPesquisaBtn.addEventListener("click", () => {
+                    termoPesquisa = "";
+                    if (pesquisaInput) {
+                        pesquisaInput.value = "";
+                        pesquisaInput.focus();
+                    }
+                    syncLimparPesquisa();
+                    aplicarFiltros();
+                });
+            }
+
+            if (limparFiltroBtn) {
+                limparFiltroBtn.addEventListener("click", () => {
+                    termoPesquisa = "";
+                    anoAtivo = "todos";
+                    if (pesquisaInput) pesquisaInput.value = "";
+                    if (filtroAnoSelect) filtroAnoSelect.value = "todos";
+                    syncLimparPesquisa();
+                    selecionarFiltro("todos");
+                });
+            }
+
+            atualizarContadoresFiltros();
+            const guardado = safeGetLocal("filtroPasseios");
+            filtroAtivo = ["todos", "proximos", "concluidos"].includes(guardado) ? guardado : "proximos";
+            syncLimparPesquisa();
+            aplicarFiltros();
+
+            // Assistente Virtual
+            const splashScreen = document.getElementById("splash-screen");
+            const chatCard = splashScreen ? splashScreen.querySelector(".chat-card") : null;
+            const chatBody = document.getElementById("chatBody");
+            const userInput = document.getElementById("userInput");
+            const sendChatBtn = document.getElementById("sendChatBtn");
+            const skipBtn = document.getElementById("skipBtn");
+            const resetChatBtn = document.getElementById("resetChatBtn");
+            const soundToggleBtn = document.getElementById("soundToggleBtn");
+            const soundIcon = document.getElementById("soundIcon");
+            const reopenAssistantBtn = document.getElementById("reopenAssistantBtn");
+
+            let soundEnabled = safeGetSession("pm_chat_muted") !== "1";
+            let isBotBusy = false;
+            let audioCtx = null;
+
+            function updateSoundUI() {
+                if (!soundIcon || !soundToggleBtn) return;
+                soundIcon.className = soundEnabled ? "fas fa-volume-up" : "fas fa-volume-mute";
+                soundToggleBtn.setAttribute("title", soundEnabled ? "Som ativado" : "Som desativado");
+            }
+
+            updateSoundUI();
+
+            if (soundToggleBtn) {
+                soundToggleBtn.addEventListener("click", () => {
+                    soundEnabled = !soundEnabled;
+                    safeSetSession("pm_chat_muted", soundEnabled ? "0" : "1");
+                    updateSoundUI();
+                });
+            }
+
+            function getFormattedTime() {
+                const now = new Date();
+                return (
+                    now.getHours().toString().padStart(2, "0") +
+                    ":" +
+                    now.getMinutes().toString().padStart(2, "0")
+                );
+            }
+
+            function getGreetingByHour() {
+                const h = new Date().getHours();
+                if (h >= 6 && h < 12) return "Bom dia";
+                if (h >= 12 && h < 20) return "Boa tarde";
+                return "Boa noite";
+            }
+
+            function playTone(freq, type) {
+                if (!soundEnabled) return;
+                try {
+                    if (!audioCtx) {
+                        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                        if (AudioContextClass) audioCtx = new AudioContextClass();
+                    }
+                    if (!audioCtx) return;
+                    if (audioCtx.state === "suspended") audioCtx.resume();
+
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = type || "sine";
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.11);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.11);
+                } catch {
+                    // Ignora se bloqueado pelo navegador
+                }
+            }
+
+            function scrollChatToBottom() {
+                if (!chatBody) return;
+                window.requestAnimationFrame(() => {
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                });
+            }
+
+            function lockPreviousOptions() {
+                if (!chatBody) return;
+                chatBody.querySelectorAll(".chat-options:not(.is-resolved)").forEach((group) => {
+                    group.classList.add("is-resolved");
+                    group.querySelectorAll("button").forEach((b) => {
+                        b.disabled = true;
+                    });
+                });
+            }
+
+            function appendBotNodes(nodes) {
+                if (!chatBody) return;
+                const group = document.createElement("div");
+                group.className = "msg-group";
+
+                nodes.forEach((node) => {
+                    const msgDiv = document.createElement("div");
+                    msgDiv.className = "msg bot";
+                    msgDiv.appendChild(node);
+                    group.appendChild(msgDiv);
+                });
+
+                const timeSpan = document.createElement("span");
+                timeSpan.className = "msg-time";
+                timeSpan.textContent = getFormattedTime();
+                group.appendChild(timeSpan);
+
+                chatBody.appendChild(group);
+                scrollChatToBottom();
+                playTone(720, "triangle");
+            }
+
+            function appendBotText(text) {
+                const p = document.createElement("p");
+                p.textContent = text;
+                appendBotNodes([p]);
+            }
+
+            function appendUserMessage(text) {
+                if (!chatBody) return;
+                const group = document.createElement("div");
+                group.className = "msg-group";
+
+                const msgDiv = document.createElement("div");
+                msgDiv.className = "msg user";
+                msgDiv.textContent = text;
+
+                const timeSpan = document.createElement("span");
+                timeSpan.className = "msg-time user-time";
+                timeSpan.textContent = getFormattedTime();
+
+                group.appendChild(msgDiv);
+                group.appendChild(timeSpan);
+                chatBody.appendChild(group);
+                scrollChatToBottom();
+                playTone(520, "sine");
+            }
+
+            function showTyping() {
+                if (!chatBody || document.getElementById("typingIndicator")) return;
+                isBotBusy = true;
+                if (userInput) userInput.disabled = true;
+                if (sendChatBtn) sendChatBtn.disabled = true;
+
+                const typing = document.createElement("div");
+                typing.id = "typingIndicator";
+                typing.className = "typing-indicator";
+                typing.setAttribute("aria-label", "Assistente a escrever");
+                typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                chatBody.appendChild(typing);
+                scrollChatToBottom();
+            }
+
+            function hideTyping() {
+                const typing = document.getElementById("typingIndicator");
+                if (typing) typing.remove();
+                isBotBusy = false;
+                if (userInput) userInput.disabled = false;
+                if (sendChatBtn) sendChatBtn.disabled = false;
+            }
+
+            function addOptions(opts) {
+                if (!chatBody) return;
+                lockPreviousOptions();
+
+                const container = document.createElement("div");
+                container.className = "chat-options";
+
+                opts.forEach((opt) => {
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "opt-card" + (opt.full ? " full-width" : "");
+
+                    const icon = document.createElement("i");
+                    icon.className = "fas " + opt.icon;
+                    icon.setAttribute("aria-hidden", "true");
+
+                    const span = document.createElement("span");
+                    span.textContent = opt.text;
+
+                    btn.appendChild(icon);
+                    btn.appendChild(span);
+                    btn.addEventListener("click", opt.action);
+                    container.appendChild(btn);
+                });
+
+                chatBody.appendChild(container);
+                scrollChatToBottom();
+            }
+
+            function openSplash() {
+                if (!splashScreen) return;
+                splashScreen.classList.remove("splash-bypass", "splash-hidden");
+                splashScreen.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                if (reopenAssistantBtn) reopenAssistantBtn.style.display = "none";
+
+                window.setTimeout(() => {
+                    if (userInput && !userInput.disabled) {
+                        userInput.focus({ preventScroll: true });
+                    }
+                }, 150);
+            }
+
+            function closeSplash() {
+                if (!splashScreen) return;
+                splashScreen.classList.add("splash-hidden");
+                splashScreen.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+
+                if (reopenAssistantBtn) {
+                    reopenAssistantBtn.style.display = "inline-flex";
+                    reopenAssistantBtn.focus({ preventScroll: true });
+                }
+            }
+
+            function showInitialOptions() {
+                addOptions([
+                    {
+                        icon: "fa-bus",
+                        text: "Salamanca (Nov / Dez)",
+                        action: () => {
+                            closeSplash();
+                            window.location.href = "salamanca.html";
+                        }
+                    },
+                    {
+                        icon: "fa-clock-rotate-left",
+                        text: "Ver Realizados",
+                        action: () => {
+                            selecionarFiltro("concluidos");
+                            closeSplash();
+                        }
+                    },
+                    { icon: "fa-calendar-check", text: "Reservas e Contacto", action: () => handleOption("reservas") },
+                    { icon: "fa-home", text: "Ir para o Início", action: () => { window.location.href = "index.html"; } }
+                ]);
+            }
+
+            function initConversation() {
+                if (!chatBody) return;
+                hideTyping();
+                chatBody.innerHTML = "";
+
+                const p1 = document.createElement("p");
+                p1.innerHTML = `${getGreetingByHour()}. Está na página dos <strong>Passeios</strong> do Miguel.`;
+
+                const p2 = document.createElement("p");
+                p2.textContent = "Pode filtrar por categoria ou ano, pesquisar destinos ou falar connosco. Como posso ajudar?";
+
+                appendBotNodes([p1, p2]);
+                showInitialOptions();
+            }
+
+            function handleOption(key) {
+                if (isBotBusy) return;
+
+                if (key === "reservas") {
+                    appendUserMessage("Como posso reservar lugar ou tirar dúvidas?");
+                    showTyping();
+                    window.setTimeout(() => {
+                        hideTyping();
+                        appendBotText("Para informações sobre lugares, próximas saídas ou grupos, fale connosco pelo 965 715 465, WhatsApp ou na página de contactos.");
+                        addOptions([
+                            { icon: "fab fa-whatsapp", text: "Mensagem no WhatsApp", action: () => { window.open("https://wa.me/351965715465", "_blank", "noopener,noreferrer"); } },
+                            { icon: "fa-phone-alt", text: "Ligar 965 715 465", action: () => { window.location.href = "tel:+351965715465"; } },
+                            { icon: "fa-envelope", text: "Ir para Contactos", action: () => { window.location.href = "contatos.html"; }, full: true }
+                        ]);
+                    }, 550);
+                }
+            }
+
+            function sendUserMessage() {
+                if (isBotBusy || !userInput) return;
+                const text = userInput.value.trim();
+                if (!text) return;
+
+                appendUserMessage(text);
+                userInput.value = "";
+
+                const lower = normalizarTexto(text);
+                showTyping();
+
+                window.setTimeout(() => {
+                    hideTyping();
+
+                    if (lower.includes("salamanca") || lower.includes("novembro") || lower.includes("dezembro") || lower.includes("natal")) {
+                        appendBotText("Os passeios de Natal a Salamanca (28 de novembro e 12 de dezembro) constam na lista e têm página de detalhes própria.");
+                        addOptions([
+                            { icon: "fa-arrow-right", text: "Abrir Página de Salamanca", action: () => { window.location.href = "salamanca.html"; }, full: true },
+                            { icon: "fab fa-whatsapp", text: "Consultar no WhatsApp", action: () => { window.open("https://wa.me/351965715465", "_blank", "noopener,noreferrer"); } }
+                        ]);
+                    } else if (lower.includes("realizado") || lower.includes("historico") || lower.includes("2025")) {
+                        appendBotText("Posso filtrar já a lista para os passeios realizados.");
+                        addOptions([
+                            {
+                                icon: "fa-check-circle",
+                                text: "Mostrar Realizados",
+                                action: () => {
+                                    selecionarFiltro("concluidos");
+                                    closeSplash();
+                                },
+                                full: true
+                            }
+                        ]);
+                    } else if (lower.includes("viana") || lower.includes("fatima") || lower.includes("ponte de lima") || lower.includes("barcelos") || lower.includes("fundao") || lower.includes("geres") || lower.includes("obidos") || lower.includes("marvao")) {
+                        const termoEncontrado = ["viana", "fatima", "ponte de lima", "barcelos", "fundao", "geres", "obidos", "marvao"].find((t) => lower.includes(t));
+                        appendBotText(`Posso filtrar a lista para mostrar os registos relacionados com "${text}".`);
+                        addOptions([
+                            {
+                                icon: "fa-search",
+                                text: `Filtrar por "${text}"`,
+                                action: () => {
+                                    filtrarPorPesquisaDireta(termoEncontrado || text);
+                                    closeSplash();
+                                },
+                                full: true
+                            }
+                        ]);
+                    } else if (lower.includes("reserva") || lower.includes("lugar") || lower.includes("vaga") || lower.includes("telefone") || lower.includes("contacto") || lower.includes("grupo") || lower.includes("preco")) {
+                        handleOption("reservas");
+                    } else {
+                        appendBotText("Se quiser procurar um destino específico, também pode usar a barra de pesquisa na página ou falar connosco.");
+                        addOptions([
+                            { icon: "fa-envelope", text: "Ir para Contactos", action: () => { window.location.href = "contatos.html"; } },
+                            { icon: "fa-home", text: "Ir para o Início", action: () => { window.location.href = "index.html"; } }
+                        ]);
+                    }
+                }, 650);
+            }
+
+            if (sendChatBtn) sendChatBtn.addEventListener("click", sendUserMessage);
+            if (userInput) {
+                userInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        sendUserMessage();
+                    }
+                });
+            }
+            if (skipBtn) skipBtn.addEventListener("click", closeSplash);
+            if (resetChatBtn) {
+                resetChatBtn.addEventListener("click", () => {
+                    initConversation();
+                    if (userInput && !userInput.disabled) userInput.focus({ preventScroll: true });
+                });
+            }
+            if (reopenAssistantBtn) {
+                reopenAssistantBtn.addEventListener("click", () => {
+                    openSplash();
+                });
+            }
+
+            document.addEventListener("keydown", (e) => {
+                if (!splashScreen || splashScreen.classList.contains("splash-hidden")) return;
+
+                if (e.key === "Escape") {
+                    e.preventDefault();
+                    closeSplash();
+                    return;
+                }
+
+                if (e.key === "Tab" && chatCard) {
+                    const focusable = Array.from(
+                        chatCard.querySelectorAll('button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+                    );
+                    if (focusable.length > 0) {
+                        const first = focusable[0];
+                        const last = focusable[focusable.length - 1];
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
+                    }
+                }
+            });
+
+            initConversation();
+            if (reopenAssistantBtn) {
+                reopenAssistantBtn.style.display = "inline-flex";
+            }
+            document.body.style.overflow = "";
+        })();
     </script>
 </body>
 </html>

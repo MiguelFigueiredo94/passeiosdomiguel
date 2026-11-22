@@ -11,169 +11,385 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mural de Memórias - Passeios do Miguel</title>
+    <title>Testemunhos - Passeios do Miguel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="base/base-geral.css">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: #e9eff3; min-height: 100vh; display: block; color: #2d3748; }
-        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--pm-bg, #f1f5f9);
+            min-height: 100vh;
+            color: var(--pm-text, #1e293b);
+        }
+
         #menu-placeholder { width: 250px; flex-shrink: 0; }
         main { display: flex; flex-direction: column; min-width: 0; margin-left: 250px; }
 
-        /* HERO SECTION */
+        /* CABEÇALHO EDITORIAL */
         .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center; height: 340px; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; border-bottom: 5px solid #ff8c00;
-            padding: 0 20px;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.68), rgba(15, 23, 42, 0.72)),
+                              url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 290px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            border-bottom: 4px solid var(--pm-accent, #ff8c00);
+            padding: 0 24px;
         }
-        .hero-section h1 { font-size: 3.8em; text-shadow: 3px 3px 15px rgba(0,0,0,0.5); font-family: 'Kalam', cursive; margin-bottom: 5px; }
-        .hero-section p { font-size: 1.2em; font-weight: 300; max-width: 600px; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .hero-section .kicker {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .hero-section p {
+            font-size: 1.02rem;
+            font-weight: 300;
+            max-width: 620px;
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.6;
+        }
 
-        /* FORMULÁRIO ESTILO QUADRO DE NOTAS */
+        /* FORMULÁRIO PROFISSIONAL */
         .container-form {
-            max-width: 950px; width: calc(100% - 40px); margin: -50px auto 50px; z-index: 10;
+            max-width: 960px;
+            width: calc(100% - 40px);
+            margin: -42px auto 36px;
+            position: relative;
+            z-index: 10;
         }
 
         .barra-feedback {
-            background: #ffffff; padding: 30px; 
-            border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); 
-            border: 2px solid #ff8c00; position: relative;
+            background: var(--pm-surface, #ffffff);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            border: 1px solid var(--pm-border, #e2e8f0);
         }
 
-        .form-header { text-align: center; margin-bottom: 20px; }
-        .form-header h2 { font-size: 1.5em; color: #1e4d8c; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .form-header p { font-size: 0.95em; color: #64748b; margin-top: 4px; }
-
-        #status-mensagem { text-align: center; display: none; padding: 20px; }
-        #status-mensagem i { color: #28a745; font-size: 50px; margin-bottom: 15px; }
-        #status-mensagem p { font-weight: 600; color: #1e4d8c; font-size: 1.2em; }
-
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .input-estilizado { 
-            width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 12px; 
-            outline: none; font-family: 'Poppins', sans-serif; font-size: 0.95em; transition: 0.3s;
+        .form-header {
+            text-align: center;
+            margin-bottom: 22px;
         }
-        .input-estilizado:focus { border-color: #ff8c00; box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.15); }
+        .form-header h2 {
+            font-size: 1.35rem;
+            color: var(--pm-primary, #1e4d8c);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .form-header p {
+            font-size: 0.92rem;
+            color: var(--pm-muted, #64748b);
+            margin-top: 6px;
+        }
 
-        .textarea-full { grid-column: span 2; resize: vertical; min-height: 90px; }
+        #status-mensagem {
+            text-align: center;
+            display: none;
+            padding: 20px;
+        }
+        #status-mensagem i {
+            color: #16a34a;
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+        #status-mensagem p {
+            font-weight: 600;
+            color: var(--pm-primary, #1e4d8c);
+            font-size: 1.08rem;
+            line-height: 1.5;
+        }
 
-        .form-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
-        
-        .star-box { display: flex; align-items: center; gap: 10px; background: #fff7ed; padding: 8px 18px; border-radius: 50px; border: 1px solid #ffedd5; }
-        .star-box span { font-size: 0.85em; font-weight: 600; color: #c2410c; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .input-estilizado {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--pm-border, #cbd5e1);
+            border-radius: 10px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: var(--pm-surface, #ffffff);
+            color: var(--pm-text, #1e293b);
+        }
+        .input-estilizado:focus {
+            border-color: var(--pm-primary, #1e4d8c);
+            box-shadow: 0 0 0 3px rgba(30, 77, 140, 0.12);
+        }
+        .textarea-full {
+            grid-column: span 2;
+            resize: vertical;
+            min-height: 92px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .star-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid #e2e8f0;
+        }
+        .star-box span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+        }
         .star-rating { display: flex; gap: 6px; }
-        .star-rating i { color: #cbd5e1; cursor: pointer; font-size: 22px; transition: 0.2s; }
-        .star-rating i.active { color: #ff8c00; transform: scale(1.1); }
-
-        .btn-v { 
-            background: #1e4d8c; color: white; border: none; padding: 14px 32px; 
-            border-radius: 50px; font-weight: 700; cursor: pointer; display: flex; 
-            align-items: center; gap: 10px; transition: 0.3s; font-family: 'Poppins', sans-serif;
-            box-shadow: 0 4px 12px rgba(30, 77, 140, 0.2);
+        .star-rating i {
+            color: #cbd5e1;
+            cursor: pointer;
+            font-size: 19px;
+            transition: transform 0.15s ease, color 0.15s ease;
         }
-        .btn-v:hover { background: #ff8c00; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 140, 0, 0.3); }
-
-        /* MURAL ESTILO MASONRY (COLUNAS) */
-        .seccao-mural { 
-            padding: 0 40px 80px; width: 100%; max-width: 1300px; margin: 0 auto; 
-            column-count: 3; column-gap: 25px;
+        .star-rating i.active {
+            color: var(--pm-accent, #ff8c00);
         }
-        
-        .nota { 
-            display: inline-block; width: 100%; margin-bottom: 25px; padding: 30px 25px 25px; 
-            position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.06); transition: 0.3s ease; 
-            border-radius: 8px; break-inside: avoid;
+        .star-rating i:hover {
+            transform: scale(1.08);
         }
 
-        /* PINO / PIONE DE CORTIÇA */
-        .pione {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            width: 16px; height: 16px; background: #e11d48; border-radius: 50%;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3); z-index: 5;
+        .btn-v {
+            background: var(--pm-primary, #1e4d8c);
+            color: #ffffff;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-family: 'Poppins', sans-serif;
         }
-        .pione::after {
-            content: ''; position: absolute; top: 3px; left: 4px; width: 4px; height: 4px;
-            background: rgba(255,255,255,0.6); border-radius: 50%;
+        .btn-v:hover {
+            background: var(--pm-accent, #ff8c00);
+            transform: translateY(-1px);
         }
-        
-        /* ESTILOS VARIADOS DE NOTAS */
-        .nota:nth-child(4n+1) { background: #fffde7; transform: rotate(-1.5deg); }
-        .nota:nth-child(4n+2) { background: #ffffff; transform: rotate(1deg); border-top: 6px solid #ff8c00; }
-        .nota:nth-child(4n+3) { background: #eff6ff; transform: rotate(-1deg); }
-        .nota:nth-child(4n+4) { background: #f0fdf4; transform: rotate(1.5deg); }
-        
+
+        /* BARRA DE FILTRO E RESUMO */
+        .barra-filtros {
+            max-width: 1260px;
+            width: 100%;
+            margin: 0 auto 24px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .resumo-testemunhos {
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 500;
+        }
+        .resumo-testemunhos strong {
+            color: var(--pm-primary, #1e4d8c);
+        }
+        .filtro-passeio {
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            background: #ffffff;
+            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+        }
+        .filtro-passeio:focus {
+            border-color: var(--pm-primary, #1e4d8c);
+        }
+
+        /* GRELA LIMPA E PROFISSIONAL DE TESTEMUNHOS */
+        .seccao-mural {
+            padding: 0 40px 76px;
+            width: 100%;
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            align-items: start;
+        }
+
+        .nota {
+            background: var(--pm-surface, #ffffff);
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid var(--pm-border, #e2e8f0);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .nota:hover {
-            transform: scale(1.03) rotate(0deg) !important; z-index: 20;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
         }
 
-        .viagem-tag { font-size: 11px; font-weight: 800; color: #1e4d8c; text-transform: uppercase; letter-spacing: 0.8px; display: block; margin-bottom: 8px; opacity: 0.85; }
-        .stars-nota { color: #ff8c00; font-size: 13px; margin-bottom: 12px; }
-        .comentario { font-family: 'Kalam', cursive; font-size: 1.15em; color: #1e293b; line-height: 1.5; margin-bottom: 15px; }
-        .autor { font-weight: 700; color: #1e4d8c; font-size: 0.9em; text-align: right; display: block; }
+        .nota-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
 
-        /* BOTÃO FLUTUANTE DE ATALHO */
+        .viagem-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--pm-primary, #1e4d8c);
+            background: rgba(30, 77, 140, 0.08);
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stars-nota {
+            color: var(--pm-accent, #ff8c00);
+            font-size: 0.8rem;
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .comentario {
+            font-size: 0.94rem;
+            color: #334155;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .autor {
+            font-weight: 600;
+            color: var(--pm-primary, #1e4d8c);
+            font-size: 0.88rem;
+            padding-top: 10px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* BOTÃO FLUTUANTE DISCRETO */
         .btn-flutuante {
-            position: fixed; bottom: 25px; right: 25px; background: #ff8c00; color: white;
-            padding: 14px 22px; border-radius: 50px; font-weight: 700; text-decoration: none;
-            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4); display: flex; align-items: center; gap: 8px;
-            z-index: 99; transition: 0.3s;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--pm-primary, #1e4d8c);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 99;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
-        .btn-flutuante:hover { background: #1e4d8c; transform: scale(1.05); }
+        .btn-flutuante:hover {
+            background: var(--pm-accent, #ff8c00);
+            transform: translateY(-2px);
+        }
 
         /* RESPONSIVIDADE */
+        @media (max-width: 1100px) {
+            .seccao-mural { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
         @media (max-width: 1024px) {
             main { margin-left: 0; }
             #menu-placeholder { width: 100%; }
-            .seccao-mural { column-count: 2; }
         }
         @media (max-width: 768px) {
-            .seccao-mural { column-count: 1; padding: 0 20px 80px; }
+            .seccao-mural { grid-template-columns: 1fr; padding: 0 20px 72px; }
+            .barra-filtros { padding: 0 20px; }
             .form-grid { grid-template-columns: 1fr; }
             .textarea-full { grid-column: span 1; }
-            .hero-section h1 { font-size: 2.8em; }
+            .hero-section h1 { font-size: 2rem; }
+            .barra-feedback { padding: 22px; }
         }
     </style>
 </head>
-<body>
+<body data-pagina="geral">
 
     <div id="menu-placeholder"></div>
 
     <main>
         <section class="hero-section">
-            <h1>Mural de Memórias</h1>
-            <p>As recordações dos nossos passageiros em cada quilómetro percorrido.</p>
+            <span class="kicker">Avaliações de Passageiros</span>
+            <h1>Testemunhos</h1>
+            <p>Experiências reais de quem já viajou connosco em passeios organizados, seguros e pensados ao detalhe.</p>
         </section>
 
-        <!-- FORMULÁRIO DESTACADO -->
+        <!-- FORMULÁRIO -->
         <div class="container-form" id="escrever-testemunho">
             <div class="barra-feedback">
-                
+
                 <div class="form-header">
-                    <h2><i class="fas fa-pen-nib" style="color: #ff8c00;"></i> Viajou connosco? Deixe a sua pegada!</h2>
-                    <p>Partilhe a sua experiência e ajude a fazer crescer a nossa família de estrada.</p>
+                    <h2><i class="fas fa-comment-dots" style="color: var(--pm-accent, #ff8c00);"></i> Partilhe a sua experiência</h2>
+                    <p>O seu feedback ajuda futuros viajantes e permite-nos continuar a melhorar cada viagem.</p>
                 </div>
 
                 <div id="status-mensagem" data-fs-success>
-                    <i class="fas fa-heart"></i>
-                    <p>Obrigado pelo seu testemunho! <br> Em breve iremos colocar neste mural.</p>
+                    <i class="fas fa-check-circle"></i>
+                    <p>Obrigado pelo seu testemunho.<br>Será revisto e publicado em breve.</p>
                 </div>
 
                 <form id="mural-form">
                     <div class="form-grid">
                         <input type="text" name="nome" class="input-estilizado" placeholder="O seu nome" required data-fs-field>
                         <input type="text" name="passeio" class="input-estilizado" placeholder="Qual foi o passeio?" required data-fs-field>
-                        <textarea name="mensagem" class="input-estilizado textarea-full" placeholder="Escreva a sua experiência..." required data-fs-field></textarea>
+                        <textarea name="mensagem" class="input-estilizado textarea-full" placeholder="Escreva a sua opinião sobre a viagem, organização e ambiente..." required data-fs-field></textarea>
                     </div>
 
                     <div class="form-actions">
                         <div class="star-box">
-                            <span>A sua avaliação:</span>
+                            <span>Classificação:</span>
                             <div class="star-rating" id="starSelector">
                                 <i class="fas fa-star active" data-value="1"></i>
                                 <i class="fas fa-star active" data-value="2"></i>
@@ -182,11 +398,11 @@
                                 <i class="fas fa-star active" data-value="5"></i>
                             </div>
                         </div>
-                        
+
                         <input type="hidden" name="estrelas" id="estrelas-valor" value="5">
 
                         <button type="submit" class="btn-v" data-fs-submit-btn>
-                            <i class="fas fa-paper-plane"></i> Publicar no Mural
+                            <i class="fas fa-paper-plane"></i> Enviar Testemunho
                         </button>
                     </div>
                     <div style="color: #e11d48; font-size: 12px; margin-top: 10px; text-align: center;" data-fs-error></div>
@@ -194,277 +410,315 @@
             </div>
         </div>
 
-        <!-- SEÇÃO DO MURAL COM TODOS OS SEUS TESTEMUNHOS -->
-        <section class="seccao-mural">
+        <!-- RESUMO E FILTRO POR PASSEIO -->
+        <div class="barra-filtros">
+            <div class="resumo-testemunhos" id="resumoTestemunhos">
+                A mostrar <strong id="contadorTestemunhos">32</strong> testemunhos verificados
+            </div>
+            <select id="filtroPasseio" class="filtro-passeio" aria-label="Filtrar testemunhos por passeio">
+                <option value="todos">Todos os passeios</option>
+            </select>
+        </div>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <!-- GRELA DE TESTEMUNHOS -->
+        <section class="seccao-mural" id="listaTestemunhos">
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Um passeio muito divertido, com um ambiente espetacular e excelentes momentos de convívio. Foi um dia diferente, muito bem passado e que deixou vontade de voltar a participar!"</p>
-                <span class="autor">— Paula</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <span class="autor">Paula</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi um dia fantástico, cheio de alegria, música e muita animação! Gostámos muito da experiência e da forma como tudo foi organizado. Um passeio que valeu mesmo a pena!"</p>
-                <span class="autor">— Manuel</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <span class="autor">Manuel</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi muito bom."</p>
-                <span class="autor">— Odete Rego</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <span class="autor">Odete Rego</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Divertido sem dúvida."</p>
-                <span class="autor">— Luzia Oliveira</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <span class="autor">Luzia Oliveira</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi lindo sem dúvida"</p>
-                <span class="autor">— Fátima Cunha</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Santoinho</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <span class="autor">Fátima Cunha</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Santoinho</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Adorei e com boas companhias .🥰"</p>
-                <span class="autor">— Dina Mões</span>
-            </div>
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="comentario">"Eu e minha mãe fomos pela primeira vez num passeio do Miguel, foi uma muito boa experiência, o restaurante onde almoçámos foi muito bem escolhido tanto pela localização, mesmo junto ao Santuário de Nossa Senhora do Alívio, como pela comida e pelo preço.
-<br>Antes de chegarmos a ponte de lima o Miguel explicou bem o que iria acontecer e deu recomendações, para que tudo corresse da melhor forma.
-<br>Houve muita animação tanto durante a viagem como claro durante as feiras novas, que é o que qualquer um pretende.
-<br>Pretendemos voltar a viajar nos passeios do Miguel, numa próxima oportunidade."</p>
-                <span class="autor">— Alexandre e Margarida Pinto</span>
-            </div>
+                <span class="autor">Dina Mões</span>
+            </article>
 
-            
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <p class="comentario">"Eu e minha mãe fomos pela primeira vez num passeio do Miguel, foi uma muito boa experiência, o restaurante onde almoçámos foi muito bem escolhido tanto pela localização, mesmo junto ao Santuário de Nossa Senhora do Alívio, como pela comida e pelo preço.<br>Antes de chegarmos a ponte de lima o Miguel explicou bem o que iria acontecer e deu recomendações, para que tudo corresse da melhor forma.<br>Houve muita animação tanto durante a viagem como claro durante as feiras novas, que é o que qualquer um pretende.<br>Pretendemos voltar a viajar nos passeios do Miguel, numa próxima oportunidade."</p>
+                <span class="autor">Alexandre e Margarida Pinto</span>
+            </article>
+
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi um dia muito bem organizado. Gostámos muito da visita ao Santuário de Nossa Senhora do Alívio e depois das Feiras Novas. O Sr. Miguel foi sempre muito atencioso e cumpriu os horários."</p>
-                <span class="autor">— Ana Rodrigues</span>
-            </div>
+                <span class="autor">Ana Rodrigues</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Adorámos o passeio. O almoço no Restaurante do Alívio estava muito bom e foi uma ótima forma de começar o dia. Depois, Ponte de Lima e as Feiras Novas fizeram o resto. Tudo muito bem organizado."</p>
-                <span class="autor">— Manuel e Teresa Costa</span>
-            </div>
+                <span class="autor">Manuel e Teresa Costa</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Gostámos especialmente do Cortejo Etnográfico. Foi muito bonito conhecer melhor as tradições da região. O autocarro era confortável e o Sr. Miguel esteve sempre disponível. Uma experiência a repetir."</p>
-                <span class="autor">— Luís Fernandes</span>
-            </div>
+                <span class="autor">Luís Fernandes</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Uma excelente viagem, desde a saída até ao regresso. Tudo muito organizado e sem complicações. As Feiras Novas têm um ambiente fantástico e foi muito bom poder aproveitar o dia com calma."</p>
-                <span class="autor">— José Martins</span>
-            </div>
+                <span class="autor">José Martins</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Feiras Novas - Ponte de Lima</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi a nossa primeira viagem com o Passeios do Miguel e ficámos muito satisfeitos. Boa organização, simpatia e cumprimento dos horários. Gostámos muito do programa e voltaremos a participar."</p>
-                <span class="autor">— Paulo e Sandra Oliveira</span>
-            </div>
+                <span class="autor">Paulo e Sandra Oliveira</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi um dia muito bem organizado. O Sr. Miguel esteve sempre atento a tudo e cumpriu os horários, o que tornou a viagem muito tranquila. As Festas do Povo são lindíssimas e foi uma experiência que valeu mesmo a pena."</p>
-                <span class="autor">— Maria Fernandes</span>
-            </div>
+                <span class="autor">Maria Fernandes</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Gostámos muito de toda a organização. O autocarro era confortável e o ambiente durante a viagem foi excelente. O passeio pelo Tejo foi magnífico e tornou o dia ainda mais completo. Parabéns ao Sr. Miguel."</p>
-                <span class="autor">— António e Helena Martins</span>
-            </div>
+                <span class="autor">António e Helena Martins</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Um passeio muito bem pensado do início ao fim. Tudo muito organizado, sem grandes esperas e sempre com o Sr. Miguel disponível para ajudar. As Portas de Ródão e Campo Maior foram uma excelente combinação."</p>
-                <span class="autor">— Joaquim Pereira</span>
-            </div>
+                <span class="autor">Joaquim Pereira</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi a primeira vez que viajámos com o Passeios do Miguel e ficámos muito satisfeitos. Boa organização, horários cumpridos e muita simpatia. O autocarro e toda a viagem correram muito bem."</p>
-                <span class="autor">— Carlos e Rosa Almeida</span>
-            </div>
+                <span class="autor">Carlos e Rosa Almeida</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festas do Povo - Campo Maior</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festas do Povo - Campo Maior</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Um dia muito agradável e bem organizado. O Sr. Miguel foi sempre muito prestável e conseguiu manter tudo a funcionar dentro dos horários previstos. Voltaremos certamente a viajar."</p>
-                <span class="autor">— António Silva</span>
-            </div>
+                <span class="autor">António Silva</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Rota das Cerejas - Fundão</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Rota das Cerejas - Fundão</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Top Recomendo!"</p>
-                <span class="autor">— Fernando e Paula Carvalho</span>
-            </div>
+                <span class="autor">Fernando e Paula Carvalho</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Rota das Cerejas no Fundão</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Rota das Cerejas no Fundão</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Gostei muito, foi 5 estrelas."</p>
-                <span class="autor">— Pedro Lopes</span>
-            </div>
+                <span class="autor">Pedro Lopes</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Rota das Cerejas Fundão</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Rota das Cerejas Fundão</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi sensacional, muito bom mesmo, a companhia também, parabéns e vamos para próxima."</p>
-                <span class="autor">— Glauce Santos</span>
-            </div>
+                <span class="autor">Glauce Santos</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Passeio das Cerejas</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Passeio das Cerejas</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Uma experiência única, com pessoas maravilhosas, simpáticas e super divertidas. Adorei!! 👏👏"</p>
-                <span class="autor">— Lurdes Santos</span>
-            </div>
+                <span class="autor">Lurdes Santos</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Viagem a Barcelos - Batalha das Flores</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Viagem a Barcelos - Batalha das Flores</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Dia incrível, muito boa organização e ótima companhia durante todo o passeio."</p>
-                <span class="autor">— Maria Lopes</span>
-            </div>
+                <span class="autor">Maria Lopes</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Batalha das Flores - Barcelos</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Batalha das Flores - Barcelos</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Tudo impecável, desde o transporte à organização. Excelente dia!"</p>
-                <span class="autor">— Carlos Martins</span>
-            </div>
+                <span class="autor">Carlos Martins</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Passeio a Barcelos - Batalha das Flores</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Passeio a Barcelos - Batalha das Flores</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Passeio muito bem organizado, ambiente fantástico e experiência a repetir sem dúvida!"</p>
-                <span class="autor">— Ana Ferreira</span>
-            </div>
+                <span class="autor">Ana Ferreira</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Batalha das Flores - Barcelos</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Batalha das Flores - Barcelos</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Foi um dia memorável que jamais esquecerei! E sem dúvidas que o Sr. Miguel, é um excelente organizador, que proporciona momentos, muitos divertidos e agradáveis."</p>
-                <span class="autor">— Lurdes Santos</span>
-            </div>
+                <span class="autor">Lurdes Santos</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festa das Camélias — Celorico de Basto</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"O desfile temático estava lindíssimo e a cidade muito bem decorada. Um dia muito bem passado e o Miguel organiza tudo muito bem!"</p>
-                <span class="autor">— Maria Silva</span>
-            </div>
+                <span class="autor">Maria Silva</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Festa das Camélias - Celorico de Basto</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Festa das Camélias - Celorico de Basto</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"A batalha das flores foi o momento mais divertido. Adorei conhecer os jardins da cidade, excelente organizador!"</p>
-                <span class="autor">— Carlos Pires</span>
-            </div>
+                <span class="autor">Carlos Pires</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Senhora da Graça - Celorico de Basto</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Senhora da Graça - Celorico de Basto</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"A subida ao Monte Farinha é obrigatória. Que vista incrível! O Miguel organiza tudo de forma fantástica."</p>
-                <span class="autor">— Ana Rita</span>
-            </div>
+                <span class="autor">Ana Rita</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Valença e Vigo</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Valença e Vigo</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Tudo bem organizado e pensado para termos uma ótima experiência. Foi uma excelente escolha. Obrigada."</p>
-                <span class="autor">— Marta Soares</span>
-            </div>
+                <span class="autor">Marta Soares</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Valença do Minho e Vigo</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Valença do Minho e Vigo</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Passeio excelente, muito bem organizado e com um ambiente natalício fantástico em ambas as cidades. Adorei a experiência!"</p>
-                <span class="autor">— Carolina</span>
-            </div>
+                <span class="autor">Carolina</span>
+            </article>
 
-            <div class="nota">
-                <div class="pione"></div>
-                <span class="viagem-tag">Valença e Vigo</span>
-                <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <article class="nota">
+                <div class="nota-topo">
+                    <span class="viagem-tag">Valença e Vigo</span>
+                    <div class="stars-nota"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
                 <p class="comentario">"Tudo impecável, desde a organização ao espírito do grupo. Foi um dia muito bonito e bem aproveitado."</p>
-                <span class="autor">— Rui</span>
-            </div>
+                <span class="autor">Rui</span>
+            </article>
 
         </section>
 
         <!-- BOTÃO FLUTUANTE DE ATALHO -->
         <a href="#escrever-testemunho" class="btn-flutuante">
-            <i class="fas fa-comment-medical"></i> Deixar Nota
+            <i class="fas fa-pen"></i> Deixar Testemunho
         </a>
 
         <div id="rodape-placeholder"></div>
     </main>
 
+    <script src="base/config-site.js" defer></script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
         // Formspree
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { 
-            formElement: '#mural-form', 
+        formspree('initForm', {
+            formElement: '#mural-form',
             formId: 'mnjlzngy',
             onSuccess: function() {
                 document.getElementById('mural-form').style.display = 'none';
@@ -479,10 +733,10 @@
         const inputEstrelas = document.getElementById('estrelas-valor');
 
         stars.forEach(star => {
-            star.addEventListener('click', () => { 
+            star.addEventListener('click', () => {
                 selectedStars = star.getAttribute('data-value');
                 inputEstrelas.value = selectedStars;
-                updateStars(); 
+                updateStars();
             });
             star.addEventListener('mouseover', () => highlightStars(star.getAttribute('data-value')));
         });
@@ -491,12 +745,83 @@
         function highlightStars(val) { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val)); }
         function updateStars() { stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= selectedStars)); }
 
-        // Componentes Externos
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro).then(r => r.text()).then(d => { document.getElementById(id).innerHTML = d; });
+        // Agrupamento inteligente por passeio (lê e normaliza o texto escrito na etiqueta)
+        const cards = Array.from(document.querySelectorAll('#listaTestemunhos .nota'));
+        const selectFiltro = document.getElementById('filtroPasseio');
+        const contadorEl = document.getElementById('contadorTestemunhos');
+
+        function normalizarTextoPasseio(texto) {
+            return (texto || '')
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s]/g, ' ')
+                .replace(/\b(de|da|do|das|dos|no|na|nos|nas|em|a|o|e)\b/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
         }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('rodape-placeholder', 'rodape.html');
+
+        function resolverPasseioCanonico(textoOriginal) {
+            const norm = normalizarTextoPasseio(textoOriginal);
+            if (!norm) return 'Outros Passeios';
+
+            if (norm.includes('cereja') || norm.includes('fundao')) {
+                return 'Rota das Cerejas — Fundão';
+            }
+            if (norm.includes('barcelos') || norm.includes('batalha flores')) {
+                return 'Barcelos — Batalha das Flores';
+            }
+            if (norm.includes('celorico') || norm.includes('camelias') || norm.includes('senhora graca') || norm.includes('monte farinha')) {
+                return 'Celorico de Basto';
+            }
+            if (norm.includes('valenca') || norm.includes('vigo')) {
+                return 'Valença e Vigo';
+            }
+            if (norm.includes('santoinho')) {
+                return 'Santoinho';
+            }
+            if (norm.includes('feiras novas') || norm.includes('ponte lima')) {
+                return 'Feiras Novas — Ponte de Lima';
+            }
+            if (norm.includes('festas povo') || norm.includes('campo maior')) {
+                return 'Festas do Povo — Campo Maior';
+            }
+
+            return textoOriginal.trim();
+        }
+
+        const passeiosAgrupados = [];
+        cards.forEach(card => {
+            const tagTexto = (card.querySelector('.viagem-tag')?.textContent || '').trim();
+            const canonico = resolverPasseioCanonico(tagTexto);
+            card.dataset.passeioCanonico = canonico;
+            if (!passeiosAgrupados.includes(canonico)) {
+                passeiosAgrupados.push(canonico);
+            }
+        });
+
+        passeiosAgrupados.forEach(nomePasseio => {
+            const opt = document.createElement('option');
+            opt.value = nomePasseio;
+            opt.textContent = nomePasseio;
+            selectFiltro.appendChild(opt);
+        });
+
+        function atualizarContador() {
+            const visiveis = cards.filter(c => c.style.display !== 'none').length;
+            if (contadorEl) contadorEl.textContent = String(visiveis);
+        }
+
+        selectFiltro.addEventListener('change', () => {
+            const escolhido = selectFiltro.value;
+            cards.forEach(card => {
+                const canonico = card.dataset.passeioCanonico || '';
+                card.style.display = (escolhido === 'todos' || canonico === escolhido) ? '' : 'none';
+            });
+            atualizarContador();
+        });
+
+        atualizarContador();
     </script>
 </body>
 </html>

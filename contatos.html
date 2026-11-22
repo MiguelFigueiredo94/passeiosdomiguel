@@ -11,17 +11,34 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos - Passeios do Miguel</title>
+    <title>Contactos | Passeios do Miguel</title>
+    <meta name="description" content="Fale com os Passeios do Miguel (RNAAT 688/2026): telefone, WhatsApp, e-mail direto, pontos de embarque e formulário de contacto.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.passeiosdomiguel.com/contatos.html">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="base/base-geral.css">
 
     <style>
         :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f8fafc;
-            --text: #334155;
+            --primary: var(--pm-primary, #163a6d);
+            --primary-dark: #0f2749;
+            --primary-soft: #eef4fb;
+            --accent: var(--pm-accent, #d97706);
+            --accent-hover: #b45309;
+            --bg: var(--pm-bg, #f4f7fa);
+            --text: var(--pm-text, #1a2536);
+            --muted: var(--pm-muted, #4b5a6d);
+            --surface: var(--pm-surface, #ffffff);
+            --border: var(--pm-border, #d8e1ec);
             --whatsapp: #25d366;
+            --whatsapp-dark: #15803d;
         }
 
         * {
@@ -31,11 +48,17 @@
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             background-color: var(--bg);
             display: flex;
             color: var(--text);
             min-height: 100vh;
+            overflow-x: clip;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
         #menu-placeholder {
@@ -53,270 +76,405 @@
         /* BANNER */
         .banner-contatos {
             background:
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1200&q=80');
-
+                linear-gradient(125deg, rgba(15, 39, 73, 0.85) 0%, rgba(22, 58, 109, 0.72) 55%, rgba(15, 23, 42, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
-            background-position: center;
-            height: 380px;
-
+            background-position: center 45%;
+            min-height: 390px;
+            padding: 48px 28px 68px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            color: white;
+            color: #ffffff;
             text-align: center;
+            border-bottom: 4px solid var(--accent);
+            position: relative;
+        }
 
-            border-bottom: 5px solid var(--accent);
+        .banner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #fde68a;
+            margin-bottom: 14px;
         }
 
         .banner-contatos h1 {
-            font-size: 3.2em;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-size: clamp(2.1rem, 4.3vw, 3.1rem);
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
             margin-bottom: 10px;
             font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.14;
         }
 
         .banner-contatos p {
-            font-size: 1.3em;
-            max-width: 700px;
-            font-weight: 300;
+            font-size: clamp(0.98rem, 1.75vw, 1.12rem);
+            max-width: 680px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: rgba(248, 250, 252, 0.95);
         }
 
         /* CONTACTOS RÁPIDOS */
         .quick-contact {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: -35px;
-            padding: 0 20px;
+            gap: 16px;
+            margin-top: -30px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 5;
+            flex-wrap: wrap;
         }
 
         .contact-pill {
-            background: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-
-            display: flex;
+            background: var(--surface);
+            padding: 13px 22px;
+            border-radius: 12px;
+            display: inline-flex;
             align-items: center;
             gap: 12px;
-
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-
+            box-shadow: 0 10px 24px rgba(15, 39, 73, 0.1);
             text-decoration: none;
             color: var(--text);
-
-            font-weight: 700;
-            transition: 0.3s;
-
-            border: 1px solid #e2e8f0;
-            font-size: 1em;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            border: 1px solid var(--border);
+            font-size: 0.94rem;
         }
 
         .contact-pill:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 14px 28px rgba(15, 39, 73, 0.14);
+        }
+
+        .contact-pill-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.25;
+        }
+
+        .contact-pill-meta small {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--muted);
         }
 
         .btn-call i {
             color: var(--primary);
-            font-size: 1.3em;
+            font-size: 1.2rem;
         }
 
         .btn-whats i {
-            color: var(--whatsapp);
-            font-size: 1.4em;
+            color: var(--whatsapp-dark);
+            font-size: 1.3rem;
         }
 
         /* GRELHA CONTACTOS */
         .grid-contatos {
-            max-width: 1250px;
-            margin: 60px auto 40px;
-            padding: 0 30px;
-
+            max-width: 1200px;
+            width: 100%;
+            margin: 48px auto 24px;
+            padding: 0 32px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 20px;
         }
 
         .card-contato {
-            background: #fff;
-            padding: 30px 15px;
-            border-radius: 20px;
+            background: var(--surface);
+            padding: 26px 20px;
+            border-radius: 14px;
             text-align: center;
-
-            border: 1px solid #eef0f2;
-
-            transition: 0.4s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-
-            text-decoration: none;
-
+            border: 1px solid var(--border);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 6px 20px rgba(15, 39, 73, 0.04);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .card-contato:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: #c2d1e3;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(15, 39, 73, 0.08);
         }
 
-        .card-contato i {
-            font-size: 2em;
+        .card-icon-wrap {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            background: var(--primary-soft);
             color: var(--primary);
-            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .card-contato:hover .card-icon-wrap {
+            background: var(--primary);
+            color: #ffffff;
         }
 
         .card-contato strong {
-            font-size: 1.15em;
-            margin-bottom: 12px;
-            color: var(--primary);
+            font-size: 1.04rem;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
             display: block;
+            font-weight: 600;
         }
 
         .card-contato p {
-            font-size: 0.95em;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: var(--text);
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .card-sub {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 8px;
             line-height: 1.4;
-            color: #555;
         }
 
-        /* SECÇÃO DO FORMULÁRIO E MASCOTE INTERATIVA */
-        .form-section {
+        .card-actions-row {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-copy-mini {
+            background: var(--bg);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-copy-mini:hover {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+        .btn-copy-mini.copied {
+            background: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+
+        /* BARRA DE ATALHOS RÁPIDOS DE ASSUNTO */
+        .topic-shortcuts-bar {
             max-width: 1200px;
-            margin: 0 auto 80px;
-            padding: 0 30px;
             width: 100%;
-        }
-
-        /* CARTÃO INTERATIVO DA MASCOTE */
-        .assistant-card {
-            background: linear-gradient(135deg, var(--primary), #2a65b0);
-            border-radius: 25px;
-            padding: 40px;
-            color: white;
+            margin: 0 auto 24px;
+            padding: 0 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 30px;
-            box-shadow: 0 15px 35px rgba(30, 77, 140, 0.2);
-            position: relative;
-            overflow: hidden;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
-        .assistant-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            pointer-events: none;
+        .topic-shortcuts-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topic-chips {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .topic-chip-btn {
+            background: var(--surface);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+            font-family: inherit;
+        }
+
+        .topic-chip-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            transform: translateY(-1px);
+        }
+
+        /* SECÇÃO DO FORMULÁRIO */
+        .form-section {
+            max-width: 1200px;
+            margin: 0 auto 68px;
+            padding: 0 32px;
+            width: 100%;
+        }
+
+        .assistant-card {
+            background: linear-gradient(125deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: 16px;
+            padding: 32px 36px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: 0 14px 32px rgba(15, 39, 73, 0.16);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-bottom: 4px solid var(--accent);
         }
 
         .assistant-avatar-wrapper {
             position: relative;
             flex-shrink: 0;
+            z-index: 1;
         }
 
         .assistant-avatar {
-            width: 110px;
-            height: 110px;
-            background: white;
-            border-radius: 50%;
+            width: 84px;
+            height: 84px;
+            background: var(--surface);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 3.5rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            animation: bounce 2.5s infinite ease-in-out;
-            border: 4px solid var(--accent);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            font-size: 2.3rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+            border: 3px solid var(--accent);
         }
 
         .assistant-badge {
             position: absolute;
-            bottom: 0;
-            right: 0;
-            background: var(--whatsapp);
-            width: 24px;
-            height: 24px;
+            bottom: -3px;
+            right: -3px;
+            background: #16a34a;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 3px solid var(--primary-dark);
         }
 
         .assistant-content {
             flex-grow: 1;
+            z-index: 1;
+        }
+
+        .assistant-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #fde68a;
+            margin-bottom: 8px;
         }
 
         .assistant-bubble {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            padding: 20px 25px;
-            border-radius: 18px;
-            border-top-left-radius: 4px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 18px 22px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .assistant-bubble h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.28rem;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 600;
         }
 
         .assistant-bubble p {
-            font-size: 1.05rem;
-            opacity: 0.95;
-            line-height: 1.5;
+            font-size: 0.94rem;
+            color: rgba(248, 250, 252, 0.94);
+            line-height: 1.55;
+            font-weight: 400;
         }
 
         .btn-open-form {
             background: var(--accent);
-            color: white;
+            color: #ffffff;
             border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1em;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.94rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+            gap: 10px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            z-index: 1;
+            font-family: inherit;
         }
 
         .btn-open-form:hover {
-            transform: scale(1.05);
-            background: #e67e00;
-            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.5);
+            transform: translateY(-2px);
+            background: var(--accent-hover);
         }
 
         /* OVERLAY E PAINEL DESLIZANTE DO FORMULÁRIO */
         .drawer-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(10, 22, 40, 0.65);
             backdrop-filter: blur(4px);
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .drawer-overlay.active {
@@ -329,12 +487,12 @@
             top: 0;
             right: -600px;
             width: 100%;
-            max-width: 550px;
+            max-width: 540px;
             height: 100vh;
-            background: white;
+            background: var(--surface);
             z-index: 9999;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -12px 0 34px rgba(10, 22, 40, 0.24);
+            transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             overflow-y: auto;
@@ -345,127 +503,157 @@
         }
 
         .drawer-header {
-            background: var(--primary);
-            color: white;
-            padding: 25px 30px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 10;
+            border-bottom: 3px solid var(--accent);
         }
 
         .drawer-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.22rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-weight: 600;
         }
 
         .btn-close-drawer {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            transition: 0.2s;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
         }
 
         .btn-close-drawer:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
         .drawer-body {
-            padding: 35px 30px;
+            padding: 24px;
             flex-grow: 1;
+        }
+
+        .drawer-intro {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.55;
         }
 
         .grupo-input {
             position: relative;
-            margin-bottom: 22px;
+            margin-bottom: 16px;
         }
 
-        .grupo-input i {
+        .grupo-input > i {
             position: absolute;
-            left: 18px;
-            top: 18px;
-            color: #94a3b8;
-            font-size: 1.1em;
-            transition: 0.3s;
+            left: 15px;
+            top: 15px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            pointer-events: none;
+        }
+
+        .grupo-input:focus-within > i {
+            color: var(--primary);
         }
 
         .form-container input,
+        .form-container select,
         .form-container textarea {
             width: 100%;
-            padding: 18px 18px 18px 50px;
-
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-
-            font-size: 1em;
+            padding: 12px 14px 12px 42px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.92rem;
             outline: none;
-
-            transition: 0.3s;
-
-            background: #f8fafc;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            background: var(--bg);
+            color: var(--text);
             font-family: inherit;
         }
 
+        .form-container textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
         .form-container input:focus,
+        .form-container select:focus,
         .form-container textarea:focus {
-            border-color: var(--accent);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+            border-color: var(--primary);
+            background: var(--surface);
+            box-shadow: 0 0 0 3px rgba(22, 58, 109, 0.1);
         }
 
-        .form-container input:focus + i,
-        .form-container textarea:focus + i {
-            color: var(--accent);
+        .char-counter {
+            text-align: right;
+            font-size: 0.74rem;
+            color: var(--muted);
+            margin-top: -10px;
+            margin-bottom: 14px;
         }
 
-        .form-container button {
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .form-container button[type="submit"] {
             background: var(--primary);
-            color: white;
-
-            padding: 20px;
+            color: #ffffff;
+            padding: 14px 18px;
             border: none;
-            border-radius: 12px;
-
+            border-radius: 8px;
             width: 100%;
-
-            font-weight: bold;
-            font-size: 1.1em;
-
+            font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: 0.3s;
-
+            transition: background-color 0.2s ease, transform 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 8px 15px rgba(30, 77, 140, 0.2);
+            gap: 10px;
+            font-family: inherit;
         }
 
-        .form-container button:hover {
+        .form-container button[type="submit"]:hover:not(:disabled) {
             background: var(--accent);
-            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
         }
 
-        /* MENSAGENS */
+        .form-container button[type="submit"]:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         .mensagem-status {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
             display: none;
+            line-height: 1.45;
         }
 
         .mensagem-sucesso {
@@ -480,10 +668,46 @@
             border: 1px solid #fca5a5;
         }
 
-        /* RESPONSIVO */
-        @media (max-width: 1100px) {
+        .whatsapp-shortcut-box {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-shortcut-box span {
+            font-size: 0.82rem;
+            color: #14532d;
+            font-weight: 500;
+        }
+
+        .btn-whatsapp-inline {
+            background: var(--whatsapp-dark);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-whatsapp-inline:hover {
+            background: #166534;
+        }
+
+        @media (max-width: 1150px) {
             .grid-contatos {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -500,7 +724,7 @@
             .assistant-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 30px 20px;
+                padding: 28px 22px;
             }
 
             .assistant-bubble h3 {
@@ -508,34 +732,35 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
             .grid-contatos {
                 grid-template-columns: 1fr;
+                padding: 0 18px;
+                margin-top: 36px;
+            }
+
+            .topic-shortcuts-bar {
+                padding: 0 18px;
             }
 
             .banner-contatos {
-                height: 300px;
-                padding: 20px;
+                min-height: 320px;
+                padding: 36px 20px 56px;
             }
 
-            .banner-contatos h1 {
-                font-size: 2.2em;
-            }
-
-            .grid-contatos,
             .form-section {
-                padding: 0 15px;
+                padding: 0 18px;
             }
 
             .quick-contact {
                 flex-direction: column;
                 align-items: center;
-                margin-top: -50px;
+                margin-top: -26px;
             }
 
             .contact-pill {
                 width: 100%;
-                max-width: 300px;
+                max-width: 340px;
                 justify-content: center;
             }
 
@@ -546,221 +771,425 @@
     </style>
 </head>
 
-<body>
+<body data-pagina="geral">
 
     <div id="menu-placeholder"></div>
 
-    <main>
+    <main id="mainContent">
 
-        <div class="banner-contatos">
+        <section class="banner-contatos" aria-label="Contactos - Passeios do Miguel">
+            <span class="banner-badge"><i class="fas fa-compass" aria-hidden="true"></i> Passeios do Miguel · RNAAT 688/2026</span>
             <h1>Fale Connosco</h1>
-            <p>Estamos à distância de um clique para ajudar na sua próxima viagem.</p>
-        </div>
+            <p>Estamos à distância de um clique para esclarecer dúvidas, confirmar embarques ou planear a sua próxima viagem em grupo.</p>
+        </section>
 
         <div class="quick-contact">
             <a href="tel:+351965715465" class="contact-pill btn-call">
-                <i class="fas fa-phone-alt"></i>
-                Ligar: 965 715 465
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                <div class="contact-pill-meta">
+                    <span>Ligar: 965 715 465</span>
+                    <small>Chamada rede móvel nacional</small>
+                </div>
             </a>
 
-            <a href="https://wa.me/351965715465" target="_blank" class="contact-pill btn-whats">
-                <i class="fab fa-whatsapp"></i>
-                Mensagem WhatsApp
+            <a href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="contact-pill btn-whats">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <div class="contact-pill-meta">
+                    <span>Mensagem WhatsApp</span>
+                    <small>Atendimento rápido e direto</small>
+                </div>
             </a>
         </div>
 
-        <section class="grid-contatos">
+        <section class="grid-contatos" aria-label="Informações de contacto">
 
             <div class="card-contato">
-                <i class="fas fa-user-tie"></i>
+                <div class="card-icon-wrap">
+                    <i class="fas fa-user-tie" aria-hidden="true"></i>
+                </div>
                 <strong>Responsável</strong>
                 <p>Miguel Figueiredo</p>
+                <span class="card-sub">Organização e acompanhamento direto</span>
             </div>
 
             <div class="card-contato">
-                <i class="fas fa-map-marked-alt"></i>
-                <strong>Localização</strong>
+                <div class="card-icon-wrap">
+                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+                </div>
+                <strong>Base &amp; Embarques</strong>
                 <p>São Pedro do Sul, Viseu</p>
+                <span class="card-sub">Partidas habituais na região de Viseu e Lafões</span>
             </div>
 
             <div class="card-contato">
-                <i class="fas fa-calendar-check"></i>
+                <div class="card-icon-wrap">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                </div>
                 <strong>Disponibilidade</strong>
                 <p>Segunda a Domingo</p>
+                <span class="card-sub">Apoio a reservas, grupos e itinerários</span>
+                <div class="card-actions-row">
+                    <button type="button" class="btn-copy-mini" data-copy="965715465" aria-label="Copiar número de telefone 965 715 465">
+                        <i class="fas fa-copy" aria-hidden="true"></i> <span>Copiar 965 715 465</span>
+                    </button>
+                </div>
             </div>
 
-            <a href="mailto:passeiosdomiguel@gmail.com" class="card-contato">
-                <i class="fas fa-envelope-open-text"></i>
+            <div class="card-contato">
+                <div class="card-icon-wrap">
+                    <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
+                </div>
                 <strong>E-mail Direto</strong>
-                <p>passeiosdomiguel@gmail.com</p>
-            </a>
+                <p><a href="mailto:passeiosdomiguel@gmail.com" style="color: inherit; text-decoration: none;">passeiosdomiguel@gmail.com</a></p>
+                <span class="card-sub">Resposta habitual em menos de 24h</span>
+                <div class="card-actions-row">
+                    <button type="button" class="btn-copy-mini" data-copy="passeiosdomiguel@gmail.com" aria-label="Copiar endereço de e-mail passeiosdomiguel@gmail.com">
+                        <i class="fas fa-copy" aria-hidden="true"></i> <span>Copiar e-mail</span>
+                    </button>
+                </div>
+            </div>
 
         </section>
 
-        <!-- SECÇÃO DA MASCOTE INTERATIVA -->
-        <section class="form-section">
+        <div class="topic-shortcuts-bar" aria-label="Atalhos de contacto por assunto">
+            <span class="topic-shortcuts-label">
+                <i class="fas fa-bolt" style="color: var(--accent);" aria-hidden="true"></i> Abrir formulário já com tema:
+            </span>
+            <div class="topic-chips">
+                <button type="button" class="topic-chip-btn" data-topic="Reserva ou informação sobre passeio">
+                    <i class="fas fa-ticket-alt" aria-hidden="true"></i> Reservas e Passeios
+                </button>
+                <button type="button" class="topic-chip-btn" data-topic="Pontos de embarque e horários">
+                    <i class="fas fa-map-pin" aria-hidden="true"></i> Embarques e Horários
+                </button>
+                <button type="button" class="topic-chip-btn" data-topic="Grupo ou excursão privada">
+                    <i class="fas fa-users" aria-hidden="true"></i> Grupos e Excursões
+                </button>
+            </div>
+        </div>
+
+        <section class="form-section" aria-label="Enviar mensagem">
             <div class="assistant-card">
                 <div class="assistant-avatar-wrapper">
                     <div class="assistant-avatar">
-                        <i class="fas fa-bus"></i>
+                        <i class="fas fa-bus" aria-hidden="true"></i>
                     </div>
-                    <span class="assistant-badge"></span>
+                    <span class="assistant-badge" title="Disponível"></span>
                 </div>
                 <div class="assistant-content">
+                    <div class="assistant-status-pill">
+                        <i class="fas fa-circle" style="font-size: 0.55rem; color: #4ade80;" aria-hidden="true"></i>
+                        Atendimento personalizado
+                    </div>
                     <div class="assistant-bubble">
-                        <h3><i class="fas fa-comment-dots" style="color: var(--accent);"></i> Olá! Precisa de ajuda?</h3>
-                        <p>Tem alguma dúvida sobre os próximos passeios, reservas ou quer apenas deixar o seu feedback? Clique no botão ao lado para me enviar uma mensagem!</p>
+                        <h3><i class="fas fa-comment-dots" style="color: var(--accent);" aria-hidden="true"></i> Olá! Como podemos ajudar hoje?</h3>
+                        <p>Tem dúvidas sobre próximos passeios, lugares disponíveis, locais de embarque ou excursões para grupos? Abra o formulário e deixe a sua mensagem.</p>
                     </div>
                 </div>
                 <button type="button" class="btn-open-form" id="btn-open-drawer">
-                    <i class="fas fa-pen"></i>
+                    <i class="fas fa-pen" aria-hidden="true"></i>
                     Escrever Mensagem
                 </button>
             </div>
         </section>
 
-        <!-- OVERLAY E FORMULÁRIO DESLIZANTE -->
         <div class="drawer-overlay" id="drawer-overlay"></div>
 
-        <aside class="form-drawer" id="form-drawer">
+        <aside class="form-drawer" id="form-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
             <div class="drawer-header">
-                <h2><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Enviar Mensagem</h2>
-                <button type="button" class="btn-close-drawer" id="btn-close-drawer">
-                    <i class="fas fa-times"></i>
+                <h2 id="drawerTitle"><i class="fas fa-paper-plane" style="color: var(--accent);" aria-hidden="true"></i> Enviar Mensagem</h2>
+                <button type="button" class="btn-close-drawer" id="btn-close-drawer" aria-label="Fechar formulário de contacto">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
 
             <div class="drawer-body form-container">
-                <p style="margin-bottom: 25px; color: #64748b; font-size: 0.95em;">
-                    Preencha os seus dados abaixo. Prometemos responder em menos de 24 horas!
+                <p class="drawer-intro">
+                    Preencha os seus dados abaixo. Respondemos habitualmente em menos de 24 horas por telefone, WhatsApp ou e-mail.
                 </p>
 
                 <form id="contact-form">
-                    <div class="grupo-input">
-                        <input
-                            type="text"
-                            name="nome"
-                            placeholder="O seu nome"
-                            required
-                        >
-                        <i class="fas fa-user"></i>
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="website_hp">Website</label>
+                        <input type="text" id="website_hp" name="website" tabindex="-1" autocomplete="off">
                     </div>
 
                     <div class="grupo-input">
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="O seu endereço de e-mail"
-                            required
-                        >
-                        <i class="fas fa-at"></i>
+                        <input type="text" id="campo-nome" name="nome" placeholder="O seu nome" required>
+                        <i class="fas fa-user" aria-hidden="true"></i>
                     </div>
 
                     <div class="grupo-input">
-                        <input
-                            type="tel"
-                            name="telefone"
-                            placeholder="O seu contacto telefone"
-                            required
-                        >
-                        <i class="fas fa-phone"></i>
+                        <input type="email" id="campo-email" name="email" placeholder="O seu endereço de e-mail" required>
+                        <i class="fas fa-at" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="grupo-input">
+                        <input type="tel" id="campo-telefone" name="telefone" placeholder="O seu telefone / WhatsApp" required>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="grupo-input">
+                        <select id="campo-assunto" name="assunto" aria-label="Assunto do contacto">
+                            <option value="Reserva ou informação sobre passeio">Reserva ou informação sobre passeio</option>
+                            <option value="Pontos de embarque e horários">Pontos de embarque e horários</option>
+                            <option value="Grupo ou excursão privada">Grupo ou excursão privada</option>
+                            <option value="Feedback ou outro assunto">Feedback ou outro assunto</option>
+                        </select>
+                        <i class="fas fa-tag" aria-hidden="true"></i>
                     </div>
 
                     <div class="grupo-input">
                         <textarea
+                            id="campo-mensagem"
                             name="mensagem"
                             rows="5"
-                            placeholder="Como podemos ajudar no seu próximo passeio?"
+                            maxlength="1200"
+                            placeholder="Escreva aqui a sua questão, data pretendida ou número de lugares..."
                             required
                         ></textarea>
-                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-comment-alt" aria-hidden="true"></i>
                     </div>
+                    <div class="char-counter" id="contador-caracteres">0 / 1200 caracteres</div>
 
-                    <button type="submit">
-                        Enviar Mensagem
-                        <i class="fas fa-paper-plane"></i>
+                    <button type="submit" id="btn-submit-form">
+                        <span id="btn-submit-label">Enviar Mensagem</span>
+                        <i class="fas fa-paper-plane" id="btn-submit-icon" aria-hidden="true"></i>
                     </button>
 
-                    <div
-                        id="mensagem-sucesso"
-                        class="mensagem-status mensagem-sucesso"
-                    >
-                        ✔️ Mensagem enviada com sucesso!
+                    <div id="mensagem-sucesso" class="mensagem-status mensagem-sucesso">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i> Mensagem enviada com sucesso! Obrigado pelo contacto.
                     </div>
 
-                    <div
-                        id="mensagem-erro"
-                        class="mensagem-status mensagem-erro"
-                    >
-                        ❌ Ocorreu um erro ao enviar. Tente novamente.
+                    <div id="mensagem-erro" class="mensagem-status mensagem-erro">
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <span id="mensagem-erro-texto">Ocorreu um erro ao enviar. Tente novamente ou fale via WhatsApp.</span>
+                    </div>
+
+                    <div id="whatsapp-shortcut-box" class="whatsapp-shortcut-box">
+                        <span>Prefere falar diretamente por mensagem?</span>
+                        <a id="btn-whatsapp-dinamico" href="https://wa.me/351965715465" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-inline">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Abrir WhatsApp
+                        </a>
                     </div>
                 </form>
             </div>
         </aside>
 
+        <div id="rodape-placeholder"></div>
         <div id="footer-placeholder"></div>
 
     </main>
 
-    <!-- SCRIPT DE CARREGAMENTO DOS COMPONENTES -->
-    <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(id).innerHTML = data;
-                })
-                .catch(error => console.error('Erro:', error));
-        }
+    <script src="base/config-site.js" defer></script>
 
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
+    <script>
+        document.querySelectorAll('.btn-copy-mini').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const valor = btn.getAttribute('data-copy') || '';
+                const labelEl = btn.querySelector('span');
+                const iconEl = btn.querySelector('i');
+                if (!valor || !labelEl || !iconEl) return;
+
+                const textoOriginal = labelEl.textContent;
+                let copiou = false;
+
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(valor);
+                        copiou = true;
+                    }
+                } catch {
+                    copiou = false;
+                }
+
+                if (!copiou) {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = valor;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    try {
+                        copiou = document.execCommand('copy');
+                    } catch {
+                        copiou = false;
+                    }
+                    tempInput.remove();
+                }
+
+                if (copiou) {
+                    btn.classList.add('copied');
+                    iconEl.className = 'fas fa-check';
+                    labelEl.textContent = 'Copiado!';
+
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        iconEl.className = 'fas fa-copy';
+                        labelEl.textContent = textoOriginal;
+                    }, 2200);
+                }
+            });
+        });
     </script>
 
-    <!-- SCRIPT DA ANIMAÇÃO DO PAINEL / MASCOTE -->
     <script>
         const btnOpenDrawer = document.getElementById('btn-open-drawer');
         const btnCloseDrawer = document.getElementById('btn-close-drawer');
         const drawerOverlay = document.getElementById('drawer-overlay');
         const formDrawer = document.getElementById('form-drawer');
+        const campoNome = document.getElementById('campo-nome');
+        const campoAssunto = document.getElementById('campo-assunto');
+        const campoMensagem = document.getElementById('campo-mensagem');
+        const contadorCaracteres = document.getElementById('contador-caracteres');
+        const btnWhatsappDinamico = document.getElementById('btn-whatsapp-dinamico');
 
-        function openDrawer() {
+        function atualizarLinkWhatsApp() {
+            if (!btnWhatsappDinamico) return;
+            const assunto = campoAssunto ? campoAssunto.value : 'passeios';
+            const nome = campoNome && campoNome.value.trim() ? ` (sou ${campoNome.value.trim()})` : '';
+            const texto = `Olá Miguel${nome}, gostaria de falar sobre: ${assunto}.`;
+            btnWhatsappDinamico.href = `https://wa.me/351965715465?text=${encodeURIComponent(texto)}`;
+        }
+
+        function atualizarContador() {
+            if (!campoMensagem || !contadorCaracteres) return;
+            const atual = campoMensagem.value.length;
+            const maximo = campoMensagem.getAttribute('maxlength') || 1200;
+            contadorCaracteres.textContent = `${atual} / ${maximo} caracteres`;
+        }
+
+        function openDrawer(assuntoSelecionado = null) {
+            if (assuntoSelecionado && campoAssunto) {
+                campoAssunto.value = assuntoSelecionado;
+            }
+            atualizarLinkWhatsApp();
+            atualizarContador();
+
             formDrawer.classList.add('active');
+            formDrawer.setAttribute('aria-hidden', 'false');
             drawerOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fundo
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                if (campoNome) {
+                    campoNome.focus({ preventScroll: true });
+                }
+            }, 220);
         }
 
         function closeDrawer() {
             formDrawer.classList.remove('active');
+            formDrawer.setAttribute('aria-hidden', 'true');
             drawerOverlay.classList.remove('active');
             document.body.style.overflow = '';
+
+            if (btnOpenDrawer) {
+                btnOpenDrawer.focus({ preventScroll: true });
+            }
         }
 
-        btnOpenDrawer.addEventListener('click', openDrawer);
+        btnOpenDrawer.addEventListener('click', () => openDrawer());
         btnCloseDrawer.addEventListener('click', closeDrawer);
         drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Tecla ESC fecha o formulário
+        document.querySelectorAll('.topic-chip-btn').forEach((chip) => {
+            chip.addEventListener('click', () => {
+                const topico = chip.getAttribute('data-topic');
+                openDrawer(topico);
+            });
+        });
+
+        if (campoAssunto) {
+            campoAssunto.addEventListener('change', atualizarLinkWhatsApp);
+        }
+        if (campoNome) {
+            campoNome.addEventListener('input', atualizarLinkWhatsApp);
+        }
+        if (campoMensagem) {
+            campoMensagem.addEventListener('input', atualizarContador);
+        }
+
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && formDrawer.classList.contains('active')) {
+            if (!formDrawer || !formDrawer.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                e.preventDefault();
                 closeDrawer();
+                return;
+            }
+
+            if (e.key === 'Tab') {
+                const focusable = Array.from(
+                    formDrawer.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href]')
+                );
+                if (focusable.length > 0) {
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
             }
         });
     </script>
 
-    <!-- SCRIPT DO SUBMIT FORMSPREE -->
     <script>
         const form = document.getElementById("contact-form");
+        const btnSubmit = document.getElementById("btn-submit-form");
+        const btnSubmitLabel = document.getElementById("btn-submit-label");
+        const btnSubmitIcon = document.getElementById("btn-submit-icon");
+        const mensagemErroTexto = document.getElementById("mensagem-erro-texto");
+
+        function setSubmittingState(isSubmitting) {
+            btnSubmit.disabled = isSubmitting;
+            btnSubmitLabel.textContent = isSubmitting ? "A enviar..." : "Enviar Mensagem";
+            btnSubmitIcon.className = isSubmitting ? "fas fa-spinner fa-spin" : "fas fa-paper-plane";
+        }
+
+        function mostrarErro(texto) {
+            const mensagemErro = document.getElementById("mensagem-erro");
+            mensagemErroTexto.textContent = texto;
+            mensagemErro.style.display = "block";
+        }
 
         form.addEventListener("submit", async function(e) {
             e.preventDefault();
 
-            const data = new FormData(form);
+            const honeypot = form.querySelector('input[name="website"]');
+            if (honeypot && honeypot.value.trim() !== "") {
+                return;
+            }
+
+            const nomeInput = form.querySelector('input[name="nome"]');
+            const emailInput = form.querySelector('input[name="email"]');
+            const telefoneInput = form.querySelector('input[name="telefone"]');
+            const mensagemInput = form.querySelector('textarea[name="mensagem"]');
+
+            const nomeLimpo = (nomeInput?.value || "").trim();
+            const emailLimpo = (emailInput?.value || "").trim();
+            const telefoneLimpo = (telefoneInput?.value || "").trim();
+            const mensagemLimpa = (mensagemInput?.value || "").trim();
+
             const mensagemSucesso = document.getElementById("mensagem-sucesso");
             const mensagemErro = document.getElementById("mensagem-erro");
 
             mensagemSucesso.style.display = "none";
             mensagemErro.style.display = "none";
+
+            if (!nomeLimpo || !emailLimpo || !telefoneLimpo || !mensagemLimpa) {
+                mostrarErro("Por favor, preencha todos os campos obrigatórios com informação válida.");
+                return;
+            }
+
+            if (nomeInput) nomeInput.value = nomeLimpo;
+            if (emailInput) emailInput.value = emailLimpo;
+            if (telefoneInput) telefoneInput.value = telefoneLimpo;
+            if (mensagemInput) mensagemInput.value = mensagemLimpa;
+
+            const data = new FormData(form);
+            setSubmittingState(true);
 
             try {
                 const response = await fetch("https://formspree.io/f/mdawddar", {
@@ -774,17 +1203,20 @@
                 if (response.ok) {
                     mensagemSucesso.style.display = "block";
                     form.reset();
+                    atualizarContador();
+                    atualizarLinkWhatsApp();
 
-                    // Opcional: Fechar o painel após 3 segundos com sucesso
                     setTimeout(() => {
                         closeDrawer();
                         mensagemSucesso.style.display = "none";
-                    }, 3000);
+                    }, 4000);
                 } else {
-                    mensagemErro.style.display = "block";
+                    mostrarErro("Ocorreu um erro ao enviar a mensagem. Tente novamente ou fale diretamente via WhatsApp.");
                 }
             } catch (error) {
-                mensagemErro.style.display = "block";
+                mostrarErro("Não foi possível concluir o envio agora. Verifique a ligação ou fale via WhatsApp.");
+            } finally {
+                setSubmittingState(false);
             }
         });
     </script>

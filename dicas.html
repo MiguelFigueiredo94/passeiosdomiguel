@@ -8,325 +8,1018 @@
       gtag('js', new Date());
       gtag('config', 'G-G0BKTCRNV9');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas de Viagem - Passeios do Miguel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Dicas de Viagem | Passeios do Miguel</title>
+    <meta name="description" content="Recomendações e dicas práticas para preparar os seus passeios em grupo com os Passeios do Miguel (RNAAT 688/2026): pontualidade, vestuário, documentos, embarque e convivência.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.passeiosdomiguel.com/dicas.html">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:site_name" content="Passeios do Miguel">
+    <meta property="og:title" content="Dicas de Viagem | Passeios do Miguel">
+    <meta property="og:description" content="Orientações práticas para viajar com conforto, segurança e pontualidade em cada excursão organizada.">
+    <meta property="og:url" content="https://www.passeiosdomiguel.com/dicas.html">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="base/base-geral.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Passeios do Miguel",
+      "url": "https://www.passeiosdomiguel.com/",
+      "telephone": "+351965715465",
+      "email": "passeiosdomiguel@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Pedro do Sul",
+        "addressRegion": "Viseu",
+        "addressCountry": "PT"
+      }
+    }
+    </script>
+
     <style>
         :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f8fafc;
-            --text: #334155;
-            --border: #e2e8f0;
+            --primary: var(--pm-primary, #163a6d);
+            --primary-dark: #0f2749;
+            --primary-soft: #eef4fb;
+            --accent: var(--pm-accent, #d97706);
+            --accent-hover: #b45309;
+            --bg: var(--pm-bg, #f4f7fa);
+            --text: var(--pm-text, #1a2536);
+            --muted: var(--pm-muted, #4b5a6d);
+            --surface: var(--pm-surface, #ffffff);
+            --border: var(--pm-border, #d8e1ec);
         }
 
-        /* 1. ESTRUTURA GLOBAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            background-color: var(--bg); 
-            min-height: 100vh; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            display: flex;
+            background-color: var(--bg);
+            min-height: 100vh;
             color: var(--text);
+            overflow-x: clip;
         }
 
-        /* 2. MENU LATERAL */
-        #menu-placeholder { width: 250px; flex-shrink: 0; }
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
 
-        /* 3. CONTEÚDO PRINCIPAL */
-        main { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+        #menu-placeholder {
+            width: 250px;
+            flex-shrink: 0;
+        }
 
-        /* 4. BANNER ORIGINAL */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* BANNER COM CARROSSEL DE 3 IMAGENS */
         .banner-dicas {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; 
-            background-position: center;
-            height: 300px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            color: white; 
-            text-align: center; 
-            border-bottom: 5px solid var(--accent);
-            padding: 20px;
+            position: relative;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+            padding: 44px 24px 64px;
+            overflow: hidden;
+            background: var(--primary-dark);
         }
 
-        .banner-dicas h1 { 
-            font-size: clamp(2.2em, 5vw, 3em); 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
-            margin-bottom: 8px;
+        .hero-slides-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.03);
+            transition: opacity 0.9s ease, transform 5.5s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                125deg,
+                rgba(15, 39, 73, 0.86) 0%,
+                rgba(22, 58, 109, 0.74) 55%,
+                rgba(15, 23, 42, 0.86) 100%
+            );
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 740px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 15px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            backdrop-filter: blur(6px);
+            color: #fde68a;
+        }
+
+        .banner-dicas h1 {
+            font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.15;
         }
 
         .banner-dicas p {
-            font-size: clamp(1em, 2.5vw, 1.2em);
-            font-weight: 300;
+            font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+            font-weight: 400;
+            max-width: 650px;
+            line-height: 1.6;
+            color: rgba(248, 250, 252, 0.95);
         }
 
-        /* 5. ABA DE DICAS DE OURO (INTEGRADA COM CORES DO SITE) */
+        .hero-dots {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 24px;
+            height: 4px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.38);
+            cursor: pointer;
+            padding: 0;
+            transition: width 0.25s ease, background-color 0.25s ease;
+        }
+
+        .hero-dot.active {
+            width: 36px;
+            background: #fbbf24;
+        }
+
+        /* DICAS DE OURO */
         .ouro-bar {
-            background: #ffffff; 
-            border-bottom: 1px solid var(--border); 
-            padding: 25px 20px;
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 22px 24px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
             flex-wrap: wrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 14px rgba(15, 39, 73, 0.03);
         }
 
-        .ouro-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            max-width: 420px; 
+        .ouro-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: 460px;
+            flex: 1 1 320px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
         }
 
-        .ouro-item i { 
-            font-size: 32px; 
-            color: var(--accent); 
+        .ouro-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--primary-soft);
+            color: var(--accent);
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
-        .ouro-item h4 { 
-            color: var(--primary); 
-            font-size: 1.1em; 
-            margin-bottom: 2px; 
-            font-weight: 700;
+        .ouro-item h4 {
+            color: var(--primary-dark);
+            font-size: 0.98rem;
+            margin-bottom: 3px;
+            font-weight: 600;
         }
 
-        .ouro-item p { 
-            color: #64748b; 
-            font-size: 0.9em; 
-            line-height: 1.4; 
+        .ouro-item p {
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.45;
         }
 
-        /* 6. CONTEÚDO DAS DICAS */
-        .seccao-dicas { 
-            padding: 40px 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            width: 100%; 
-            flex-grow: 1; 
+        /* CONTEÚDO DAS DICAS */
+        .seccao-dicas {
+            padding: 36px 32px 64px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
         }
 
-        .container-dicas { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 20px; 
-            align-items: start; /* Impede que caixas vizinhas estiquem em branco */
+        /* BARRA DE FILTROS E PESQUISA */
+        .filtros-dicas {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 26px;
+            box-shadow: 0 6px 20px rgba(15, 39, 73, 0.04);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .filtros-dicas-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chips-dicas {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-chip-dica {
+            height: 38px;
+            padding: 0 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-chip-dica:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+        .btn-chip-dica.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .resumo-dicas {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .pesquisa-dica-box {
+            position: relative;
+            flex: 1 1 240px;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pesquisa-dica-box .fa-search {
+            position: absolute;
+            left: 12px;
+            color: var(--muted);
+            font-size: 0.84rem;
+            pointer-events: none;
+        }
+
+        .pesquisa-dica-input {
+            width: 100%;
+            height: 38px;
+            padding: 0 32px 0 34px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .pesquisa-dica-input:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .btn-limpar-dica {
+            position: absolute;
+            right: 6px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .btn-limpar-dica.visivel {
+            display: inline-flex;
+        }
+
+        .btn-limpar-dica:hover {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+        }
+
+        .container-dicas {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            align-items: stretch;
         }
 
         .card-dica {
-            background: #fff; 
-            border-radius: 12px; 
-            padding: 25px; 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            box-shadow: 0 6px 20px rgba(15, 39, 73, 0.04);
             border: 1px solid var(--border);
-            border-left: 5px solid var(--primary); 
-            transition: 0.3s ease;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .card-dica:hover { 
-            transform: translateY(-4px); 
-            border-left-color: var(--accent); 
-            border-color: var(--accent);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+        .card-dica:hover {
+            transform: translateY(-3px);
+            border-left-color: var(--accent);
+            border-color: #c2d1e3;
+            box-shadow: 0 12px 24px rgba(15, 39, 73, 0.08);
         }
 
-        .card-dica i { 
-            font-size: 28px; 
-            color: var(--accent); 
-            flex-shrink: 0; 
-            margin-top: 3px; 
+        .card-dica.hidden {
+            display: none;
         }
 
-        .card-dica h3 { 
-            color: var(--primary); 
-            margin-bottom: 8px; 
-            font-size: 1.15em; 
-            font-weight: 700;
+        .dica-icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: var(--primary-soft);
+            color: var(--accent);
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        .card-dica p { 
-            color: #555; 
-            font-size: 0.95em; 
-            line-height: 1.6; 
+        .dica-body {
+            flex: 1;
+            min-width: 0;
         }
 
-        .card-dica a { 
-            color: var(--primary); 
-            font-weight: bold; 
-            text-decoration: none; 
-            border-bottom: 2px solid var(--accent); 
-            transition: 0.2s;
+        .card-dica h3 {
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card-dica p {
+            color: var(--text);
+            font-size: 0.92rem;
+            line-height: 1.58;
+            font-weight: 400;
+        }
+
+        .card-dica a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent);
+            transition: color 0.2s ease;
         }
 
         .card-dica a:hover {
-            color: var(--accent);
+            color: var(--accent-hover);
         }
 
-        /* RODAPÉ */
-        .footer-wrapper { padding: 40px 20px 20px; margin-top: auto; }
+        .estado-vazio-dicas {
+            text-align: center;
+            padding: 36px 20px;
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+            color: var(--muted);
+            margin-top: 12px;
+            display: none;
+        }
 
-        /* RESPONSIVIDADE */
+        .estado-vazio-dicas.visivel {
+            display: block;
+        }
+
+        .btn-reset-dicas {
+            margin-top: 12px;
+            padding: 9px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .btn-reset-dicas:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* CTA FINAL */
+        .cta-dicas-card {
+            margin-top: 36px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            box-shadow: 0 8px 22px rgba(15, 39, 73, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-dicas-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.12rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .cta-dicas-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .cta-dicas-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-dicas {
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .btn-cta-dicas:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-cta-secundario {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-cta-secundario:hover {
+            border-color: var(--primary);
+            background: #e1ecf8;
+        }
+
+        .footer-wrapper {
+            padding: 24px 20px 20px;
+            margin-top: auto;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .hero-slide,
+            .card-dica,
+            .btn-chip-dica,
+            .btn-cta-dicas,
+            .btn-cta-secundario {
+                transition: none !important;
+            }
+        }
+
         @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            #menu-placeholder { width: 100%; height: auto; }
-            .container-dicas { grid-template-columns: 1fr; }
-            .ouro-bar { gap: 20px; text-align: left; }
+            body {
+                display: block;
+            }
+
+            #menu-placeholder {
+                width: 100%;
+                height: auto;
+            }
+
+            main {
+                width: 100%;
+            }
+
+            .container-dicas {
+                grid-template-columns: 1fr;
+            }
+
+            .ouro-bar {
+                gap: 16px;
+                justify-content: stretch;
+            }
+
+            .ouro-item {
+                max-width: 100%;
+                flex: 1 1 280px;
+            }
+
+            .pesquisa-dica-box {
+                max-width: 100%;
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .seccao-dicas {
+                padding: 28px 16px 48px;
+            }
+
+            .banner-dicas {
+                min-height: 310px;
+                padding: 36px 18px 54px;
+            }
+
+            .card-dica {
+                padding: 18px;
+                gap: 14px;
+            }
+
+            .cta-dicas-card {
+                padding: 20px;
+            }
+
+            .cta-dicas-actions {
+                width: 100%;
+            }
+
+            .btn-cta-dicas,
+            .btn-cta-secundario {
+                flex: 1 1 auto;
+                justify-content: center;
+            }
         }
     </style>
 </head>
-<body>
+<body data-pagina="geral">
 
     <div id="menu-placeholder"></div>
 
-    <main>
-        <div class="banner-dicas">
-            <h1>💡 Dicas do Miguel</h1>
-            <p>Prepare-se para viver momentos inesquecíveis connosco.</p>
-        </div>
+    <main id="mainContent">
+        <section class="banner-dicas" aria-roledescription="carousel" aria-label="Dicas de Viagem — Passeios do Miguel">
+            <div class="hero-slides-layer" id="heroSlidesLayer">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Preparação e planeamento de viagem"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Estrada aberta e passeios em grupo"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Convívio, cultura e descoberta em cada destino"></div>
+            </div>
 
-        <section class="ouro-bar">
+            <div class="hero-overlay"></div>
+
+            <div class="banner-content">
+                <span class="banner-kicker">
+                    <i class="fas fa-compass" aria-hidden="true"></i>
+                    Preparação de Viagem · RNAAT 688/2026
+                </span>
+                <h1>Dicas do Miguel</h1>
+                <p>Orientações práticas para viajar com tranquilidade, conforto e pontualidade em cada passeio em grupo.</p>
+            </div>
+
+            <div class="hero-dots" id="heroDots" aria-label="Indicadores das fotografias do cabeçalho">
+                <button type="button" class="hero-dot active" data-slide="0" aria-label="Fotografia 1 de 3" aria-pressed="true"></button>
+                <button type="button" class="hero-dot" data-slide="1" aria-label="Fotografia 2 de 3" aria-pressed="false"></button>
+                <button type="button" class="hero-dot" data-slide="2" aria-label="Fotografia 3 de 3" aria-pressed="false"></button>
+            </div>
+        </section>
+
+        <section class="ouro-bar" aria-label="Recomendações essenciais">
             <div class="ouro-item">
-                <i class="fas fa-stopwatch"></i>
+                <div class="ouro-icon"><i class="fas fa-stopwatch" aria-hidden="true"></i></div>
                 <div>
-                    <h4>Dica de Ouro: Pontualidade</h4>
-                    <p>Recomendamos chegar 15 min antes ao ponto de encontro para a partida a horas.</p>
+                    <h4>Pontualidade nos Embarques</h4>
+                    <p>Recomendamos chegar com 15 minutos de antecedência ao ponto de encontro definido para cada saída.</p>
                 </div>
             </div>
             <div class="ouro-item">
-                <i class="fas fa-cloud-sun"></i>
+                <div class="ouro-icon"><i class="fas fa-cloud-sun" aria-hidden="true"></i></div>
                 <div>
-                    <h4>Dica de Ouro: Clima</h4>
-                    <p>Verifique o tempo na véspera e prepare o seu vestuário e acessórios.</p>
+                    <h4>Previsão Meteorológica</h4>
+                    <p>Consulte o tempo na véspera da viagem para adequar vestuário, calçado e acessórios ao destino.</p>
                 </div>
             </div>
         </section>
 
-        <section class="seccao-dicas">
-            <div class="container-dicas">
-                
-                <div class="card-dica">
-                    <i class="fas fa-shoe-prints"></i>
-                    <div>
-                        <h3>Calçado Habitual</h3>
-                        <p>Use sapatilhas confortáveis e já habituadas ao seu pé. Evite estrear sapatos novos em dias de passeio.</p>
+        <section class="seccao-dicas" aria-label="Lista de dicas práticas">
+            <div class="filtros-dicas">
+                <div class="filtros-dicas-left">
+                    <div class="chips-dicas" role="group" aria-label="Filtrar dicas por categoria">
+                        <button type="button" class="btn-chip-dica active" data-cat="todas">Todas (12)</button>
+                        <button type="button" class="btn-chip-dica" data-cat="preparacao">Preparação</button>
+                        <button type="button" class="btn-chip-dica" data-cat="bordo">A Bordo</button>
+                        <button type="button" class="btn-chip-dica" data-cat="destino">Destino &amp; Grupo</button>
                     </div>
+                    <span class="resumo-dicas" id="resumoDicas">12 dicas</span>
                 </div>
 
-                <div class="card-dica">
-                    <i class="fas fa-tshirt"></i>
-                    <div>
-                        <h3>Roupa Prática (Cebola)</h3>
-                        <p>Escolha vestuário que dê liberdade. Vestir em camadas é o ideal para as variações de temperatura.</p>
-                    </div>
+                <div class="pesquisa-dica-box">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input
+                        type="search"
+                        id="pesquisaDica"
+                        class="pesquisa-dica-input"
+                        placeholder="Pesquisar dica..."
+                        aria-label="Pesquisar dica"
+                        autocomplete="off"
+                    >
+                    <button type="button" class="btn-limpar-dica" id="limparDicaBtn" aria-label="Limpar pesquisa">
+                        <i class="fas fa-xmark" aria-hidden="true"></i>
+                    </button>
                 </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-battery-full"></i>
-                    <div>
-                        <h3>Registe os Momentos</h3>
-                        <p>Traga o telemóvel carregado e um powerbank. Não vai querer ficar sem bateria no meio das paisagens!</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-faucet-drip"></i>
-                    <div>
-                        <h3>Água e Lanches</h3>
-                        <p>Tenha sempre consigo uma garrafa de água e um snack leve (bolachas ou fruta) para o trajeto.</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-chair"></i>
-                    <div>
-                        <h3>Marcação de Lugares</h3>
-                        <p>Os lugares no autocarro são por ordem de inscrição. Reserve cedo para assegurar os seus favoritos!</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-wallet"></i>
-                    <div>
-                        <h3>Dinheiro (Numerário)</h3>
-                        <p>Em aldeias ou feiras isoladas, nem sempre há multibanco. Traga alguns euros para o café ou lembranças.</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-pills"></i>
-                    <div>
-                        <h3>Saúde e Bem-estar</h3>
-                        <p>Não esqueça os seus medicamentos diários. Um kit para o enjoo pode ser um grande aliado nas curvas.</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fab fa-facebook-messenger"></i>
-                    <div>
-                        <h3>Partilha de Fotos</h3>
-                        <p>Junte-se ao nosso <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank">Grupo de Facebook</a> para ver e partilhar as fotos das viagens!</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-sun"></i>
-                    <div>
-                        <h3>Proteção Solar</h3>
-                        <p>Mesmo em dias nublados, o sol de passeio cansa a pele. Use protetor e não esqueça os óculos de sol.</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-sd-card"></i>
-                    <div>
-                        <h3>Memória do Telemóvel</h3>
-                        <p>Verifique se tem espaço para novas fotos e vídeos. Vai precisar de muita memória para as recordações!</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-id-card"></i>
-                    <div>
-                        <h3>Documentos à Mão</h3>
-                        <p>Mantenha o seu Cartão de Cidadão sempre consigo. É essencial para qualquer eventualidade.</p>
-                    </div>
-                </div>
-
-                <div class="card-dica">
-                    <i class="fas fa-grin-beam"></i>
-                    <div>
-                        <h3>Boa Disposição</h3>
-                        <p>O ingrediente principal! Venha com espírito aberto para conhecer novos lugares e fazer novas amizades.</p>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="container-dicas">
+                <article class="card-dica" data-cat="destino">
+                    <div class="dica-icon-box"><i class="fas fa-shoe-prints" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Calçado Confortável e Testado</h3>
+                        <p>Prefira calçado já testado e adequado a caminhadas ou visitas prolongadas. Evite estrear sapatos em dias de passeio.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="preparacao">
+                    <div class="dica-icon-box"><i class="fas fa-tshirt" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Vestuário em Camadas</h3>
+                        <p>Opte por roupa prática e confortável, em camadas, para acompanhar facilmente as variações térmicas entre manhã, tarde e regresso.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="bordo">
+                    <div class="dica-icon-box"><i class="fas fa-battery-full" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Bateria e Carregamento</h3>
+                        <p>Saia com o equipamento carregado e, se possível, leve uma bateria portátil (powerbank) para todo o dia.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="bordo">
+                    <div class="dica-icon-box"><i class="fas fa-faucet-drip" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Hidratação e Reforço Ligeiro</h3>
+                        <p>Tenha sempre água consigo e um reforço alimentar ligeiro para manter o conforto durante os trajetos.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="preparacao">
+                    <div class="dica-icon-box"><i class="fas fa-chair" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Antecedência na Inscrição</h3>
+                        <p>A atribuição de lugares acompanha a ordem de inscrição. Reservar com antecedência facilita a escolha e a organização do grupo.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="destino">
+                    <div class="dica-icon-box"><i class="fas fa-wallet" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Numerário Disponível</h3>
+                        <p>Em mercados, feiras ou localidades de menor dimensão nem sempre existe terminal de pagamento. Leve algum numerário para pequenas despesas.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="preparacao">
+                    <div class="dica-icon-box"><i class="fas fa-pills" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Medicação e Cuidados Pessoais</h3>
+                        <p>Leve sempre a medicação diária necessária e, caso tenha sensibilidade ao movimento, um apoio preventivo adequado.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="destino">
+                    <div class="dica-icon-box"><i class="fab fa-facebook-messenger" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Comunidade e Partilha</h3>
+                        <p>Acompanhe o <a href="https://www.facebook.com/groups/passeiosdomiguel" target="_blank" rel="noopener noreferrer">Grupo de Facebook</a> para rever registos fotográficos e memórias das viagens realizadas.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="destino">
+                    <div class="dica-icon-box"><i class="fas fa-sun" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Proteção Solar</h3>
+                        <p>Mesmo com céu parcialmente nublado, a exposição ao ar livre exige cuidados. Utilize protetor solar e óculos de proteção.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="bordo">
+                    <div class="dica-icon-box"><i class="fas fa-sd-card" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Espaço de Armazenamento</h3>
+                        <p>Verifique previamente a memória livre no telemóvel ou câmara para registar fotos e vídeos sem interrupções.</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="preparacao">
+                    <div class="dica-icon-box"><i class="fas fa-id-card" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Identificação Válida</h3>
+                        <p>Mantenha o documento de identificação válido consigo durante toda a viagem (e documento válido para circulação transfronteiriça em destinos em Espanha).</p>
+                    </div>
+                </article>
+
+                <article class="card-dica" data-cat="destino">
+                    <div class="dica-icon-box"><i class="fas fa-grin-beam" aria-hidden="true"></i></div>
+                    <div class="dica-body">
+                        <h3>Espírito de Grupo e Convívio</h3>
+                        <p>O respeito pelos horários, pelo grupo e pela cultura local faz toda a diferença para uma experiência agradável para todos.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div id="estado-vazio-dicas" class="estado-vazio-dicas">
+                <p>Não existem dicas que correspondam ao filtro ou pesquisa atual.</p>
+                <button type="button" class="btn-reset-dicas" id="resetDicasBtn">Mostrar todas as dicas</button>
+            </div>
+
+            <section class="cta-dicas-card" aria-label="Próximos passos">
+                <div>
+                    <h3>Tem alguma dúvida sobre horários, embarques ou condições da viagem?</h3>
+                    <p>Consulte o calendário de passeios ou fale diretamente connosco antes da partida.</p>
+                </div>
+                <div class="cta-dicas-actions">
+                    <a href="passeios.html" class="btn-cta-secundario">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        Ver Passeios
+                    </a>
+                    <a href="contatos.html" class="btn-cta-dicas">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        Falar Connosco
+                    </a>
+                </div>
+            </section>
         </section>
 
         <div class="footer-wrapper">
+            <div id="rodape-placeholder"></div>
             <div id="footer-placeholder"></div>
         </div>
-
     </main>
 
+    <script src="base/config-site.js" defer></script>
     <script>
-        function carregar(id, url) {
-            fetch(url).then(res => res.text()).then(data => document.getElementById(id).innerHTML = data);
-        }
-        carregar('menu-placeholder', 'menu.html');
-        carregar('footer-placeholder', 'rodape.html');
-    </script>
+        (function () {
+            "use strict";
 
+            const prefersReducedMotion =
+                window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            // Carrossel de 3 imagens no cabeçalho
+            const slides = Array.from(document.querySelectorAll(".hero-slide"));
+            const dots = Array.from(document.querySelectorAll(".hero-dot"));
+            let currentSlide = 0;
+            let slideTimer = null;
+
+            function showSlide(index) {
+                if (!slides.length) return;
+                currentSlide = ((index % slides.length) + slides.length) % slides.length;
+                slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
+                dots.forEach((dot, i) => {
+                    const isActive = i === currentSlide;
+                    dot.classList.toggle("active", isActive);
+                    dot.setAttribute("aria-pressed", String(isActive));
+                });
+            }
+
+            function stopAutoSlide() {
+                if (slideTimer !== null) {
+                    window.clearInterval(slideTimer);
+                    slideTimer = null;
+                }
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+                if (slides.length > 1 && !prefersReducedMotion && !document.hidden) {
+                    slideTimer = window.setInterval(() => {
+                        showSlide(currentSlide + 1);
+                    }, 5000);
+                }
+            }
+
+            dots.forEach((dot) => {
+                dot.addEventListener("click", () => {
+                    const idx = Number(dot.getAttribute("data-slide") || 0);
+                    showSlide(idx);
+                    startAutoSlide();
+                });
+            });
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopAutoSlide();
+                } else {
+                    startAutoSlide();
+                }
+            });
+
+            startAutoSlide();
+
+            // Filtro e pesquisa de dicas
+            const cards = Array.from(document.querySelectorAll(".card-dica"));
+            const chips = Array.from(document.querySelectorAll(".btn-chip-dica"));
+            const resumoDicas = document.getElementById("resumoDicas");
+            const pesquisaInput = document.getElementById("pesquisaDica");
+            const limparDicaBtn = document.getElementById("limparDicaBtn");
+            const estadoVazio = document.getElementById("estado-vazio-dicas");
+            const resetDicasBtn = document.getElementById("resetDicasBtn");
+
+            let catAtiva = "todas";
+            let termo = "";
+
+            function normalizar(str) {
+                return (str || "")
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .trim();
+            }
+
+            function syncLimpar() {
+                if (!limparDicaBtn) return;
+                limparDicaBtn.classList.toggle("visivel", Boolean(termo.trim()));
+            }
+
+            function aplicarFiltroDicas() {
+                chips.forEach((chip) => {
+                    const ativo = chip.dataset.cat === catAtiva;
+                    chip.classList.toggle("active", ativo);
+                    chip.setAttribute("aria-pressed", String(ativo));
+                });
+
+                const termoNorm = normalizar(termo);
+                let visiveis = 0;
+
+                cards.forEach((card) => {
+                    const catOk = catAtiva === "todas" || card.dataset.cat === catAtiva;
+                    const textoOk = !termoNorm || normalizar(card.textContent).includes(termoNorm);
+                    const mostrar = catOk && textoOk;
+                    card.classList.toggle("hidden", !mostrar);
+                    if (mostrar) visiveis++;
+                });
+
+                if (resumoDicas) {
+                    resumoDicas.textContent = visiveis === 1 ? "1 dica" : `${visiveis} dicas`;
+                }
+
+                if (estadoVazio) {
+                    estadoVazio.classList.toggle("visivel", visiveis === 0);
+                }
+            }
+
+            chips.forEach((chip) => {
+                chip.addEventListener("click", () => {
+                    catAtiva = chip.dataset.cat || "todas";
+                    aplicarFiltroDicas();
+                });
+            });
+
+            if (pesquisaInput) {
+                pesquisaInput.addEventListener("input", (e) => {
+                    termo = e.target.value || "";
+                    syncLimpar();
+                    aplicarFiltroDicas();
+                });
+            }
+
+            if (limparDicaBtn) {
+                limparDicaBtn.addEventListener("click", () => {
+                    termo = "";
+                    if (pesquisaInput) {
+                        pesquisaInput.value = "";
+                        pesquisaInput.focus();
+                    }
+                    syncLimpar();
+                    aplicarFiltroDicas();
+                });
+            }
+
+            if (resetDicasBtn) {
+                resetDicasBtn.addEventListener("click", () => {
+                    catAtiva = "todas";
+                    termo = "";
+                    if (pesquisaInput) pesquisaInput.value = "";
+                    syncLimpar();
+                    aplicarFiltroDicas();
+                });
+            }
+
+            aplicarFiltroDicas();
+        })();
+    </script>
 </body>
 </html>

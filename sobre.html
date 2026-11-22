@@ -11,199 +11,1593 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Nossa História - Passeios do Miguel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>A Nossa História | Passeios do Miguel</title>
+    <meta name="description" content="Conheça a história dos Passeios do Miguel (RNAAT 688/2026): da origem solidária à família de estrada a partir de São Pedro do Sul.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.passeiosdomiguel.com/sobre.html">
+
+    <!-- Open Graph / WhatsApp / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:site_name" content="Passeios do Miguel">
+    <meta property="og:title" content="A Nossa História | Passeios do Miguel">
+    <meta property="og:description" content="Onde cada quilómetro conta uma memória. Conheça a nossa história, os nossos valores e a forma como acompanhamos cada grupo.">
+    <meta property="og:url" content="https://www.passeiosdomiguel.com/sobre.html">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80">
+
+    <!-- Preconnect para acelerar recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="base/base-geral.css">
+
+    <!-- Dados Estruturados JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Passeios do Miguel",
+      "url": "https://www.passeiosdomiguel.com/",
+      "telephone": "+351965715465",
+      "email": "passeiosdomiguel@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Pedro do Sul",
+        "addressRegion": "Viseu",
+        "addressCountry": "PT"
+      }
+    }
+    </script>
+
     <style>
-        /* 1. ESTRUTURA BASE (IGUAL ÀS OUTRAS PÁGINAS) */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #f4f7f9; 
+        :root {
+            --primary: var(--pm-primary, #163a6d);
+            --primary-dark: #0f2749;
+            --primary-soft: #eef4fb;
+            --accent: var(--pm-accent, #d97706);
+            --accent-hover: #b45309;
+            --bg: var(--pm-bg, #f4f7fa);
+            --text: var(--pm-text, #1a2536);
+            --muted: var(--pm-muted, #4b5a6d);
+            --surface: var(--pm-surface, #ffffff);
+            --border: var(--pm-border, #d8e1ec);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg);
             min-height: 100vh;
-            display: block;
-            color: #334155;
+            color: var(--text);
+            overflow-x: clip;
         }
 
-        #menu-placeholder { width: 250px; flex-shrink: 0; }
-
-        main { 
-            display: flex; 
-            flex-direction: column; 
-            min-width: 0; 
-            margin-left: 250px; 
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
-        /* 2. CABEÇALHO HERO (MANTIDO RETO PARA CONSISTÊNCIA) */
-        .hero-section {
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                              url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200');
-            background-size: cover; 
-            background-position: center; 
-            height: 380px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
+        /* --------------------------------------------------
+           ASSISTENTE VIRTUAL (SPLASH CHAT)
+        -------------------------------------------------- */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 22, 40, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            color: white; 
-            text-align: center; 
-            border-bottom: 5px solid #ff8c00; /* Linha Laranja de assinatura */
+            padding: 20px;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
         }
-        .hero-section h1 { font-size: 3.5em; font-weight: 800; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-section p { font-size: 1.3em; font-weight: 300; padding: 0 20px; }
 
-        /* 3. TIMELINE NARRATIVA COM SCROLL REVEAL */
-        .content-section { 
-            padding: 80px 40px; 
-            max-width: 950px; 
-            margin: 0 auto; 
+        .splash-bypass,
+        .splash-hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .chat-card {
+            background: var(--surface);
+            width: 100%;
+            max-width: 510px;
+            height: 640px;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px -12px rgba(10, 22, 40, 0.42);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: cardAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .assistant-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .avatar-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.08rem;
+            color: #ffffff;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 11px;
+            height: 11px;
+            background: #16a34a;
+            border: 2px solid var(--primary-dark);
+            border-radius: 50%;
+        }
+
+        .assistant-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+            line-height: 1.25;
+        }
+
+        .assistant-subtitle {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .status-icon-dot {
+            font-size: 0.45rem;
+            color: #4ade80;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .icon-action-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-action-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            padding: 7px 13px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .skip-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 18px;
+            background: var(--bg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scroll-behavior: smooth;
+        }
+
+        .msg-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .msg {
+            max-width: 86%;
+            padding: 11px 15px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            word-wrap: break-word;
+            animation: msgIn 0.25s ease;
+        }
+
+        .msg p + p {
+            margin-top: 8px;
+        }
+
+        .msg.bot {
+            background: var(--surface);
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .msg.user {
+            background: var(--primary);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+
+        .msg-time {
+            font-size: 0.68rem;
+            color: #64748b;
+            margin-top: 2px;
+            align-self: flex-start;
+            padding-left: 3px;
+        }
+
+        .msg-time.user-time {
+            align-self: flex-end;
+            padding-right: 3px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 11px 15px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            border-bottom-left-radius: 3px;
+            width: fit-content;
+            align-self: flex-start;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: bounceDot 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        .chat-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .chat-options.is-resolved .opt-card {
+            opacity: 0.55;
+        }
+
+        .opt-card {
+            background: var(--surface);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .opt-card i {
+            color: var(--accent);
+            font-size: 0.92rem;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .opt-card:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            transform: translateY(-1px);
+        }
+
+        .opt-card:disabled {
+            cursor: default;
+        }
+
+        .opt-card.full-width {
+            grid-column: span 2;
+        }
+
+        .chat-footer {
+            padding: 12px 16px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.88rem;
+            background: var(--bg);
+            color: var(--text);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.92rem;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .send-btn:disabled,
+        .chat-input:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(14px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceDot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* --------------------------------------------------
+           ESTRUTURA PRINCIPAL
+        -------------------------------------------------- */
+        main {
+            display: flex;
+            flex-direction: column;
+            margin-left: 250px;
+            min-width: 0;
+        }
+
+        /* --------------------------------------------------
+           CABEÇALHO COM 3 FOTOGRAFIAS EM ROTAÇÃO
+        -------------------------------------------------- */
+        .hero-section {
+            position: relative;
+            min-height: 430px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+            overflow: hidden;
+            background: var(--primary-dark);
+        }
+
+        .hero-slides-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.03);
+            transition: opacity 0.9s ease, transform 5.5s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                135deg,
+                rgba(15, 39, 73, 0.85) 0%,
+                rgba(22, 58, 109, 0.72) 55%,
+                rgba(15, 23, 42, 0.85) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 52px 24px 62px;
+            max-width: 860px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            backdrop-filter: blur(6px);
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #f8fafc;
+            margin-bottom: 16px;
+        }
+
+        .hero-kicker i {
+            color: #fbbf24;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.1rem, 4.3vw, 3.4rem);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .hero-section p.hero-subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            max-width: 680px;
+            font-weight: 400;
+            line-height: 1.62;
+            color: rgba(248, 250, 252, 0.95);
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 24px;
+            height: 4px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.38);
+            cursor: pointer;
+            padding: 0;
+            transition: width 0.25s ease, background-color 0.25s ease;
+        }
+
+        .hero-dot.active {
+            width: 36px;
+            background: #fbbf24;
+        }
+
+        /* --------------------------------------------------
+           CONTEÚDO E TIMELINE NARRATIVA
+        -------------------------------------------------- */
+        .content-container {
+            padding: 60px 40px 72px;
+            max-width: 980px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .highlights-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 52px;
+        }
+
+        .highlight-pill {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 6px 18px rgba(15, 39, 73, 0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .highlight-pill i {
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .highlight-pill strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .highlight-pill span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.5;
+        }
+
+        .timeline-section {
             position: relative;
         }
 
-        /* A linha da timeline */
-        .content-section::before {
+        .timeline-section::before {
             content: '';
             position: absolute;
-            left: 65px;
-            top: 80px;
-            bottom: 80px;
+            left: 23px;
+            top: 24px;
+            bottom: 24px;
             width: 2px;
-            background: linear-gradient(to bottom, #ff8c00, #1e4d8c);
-            opacity: 0.3;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            opacity: 0.35;
         }
 
-        /* Efeito de aparecer ao baixar */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.65s ease-out, transform 0.65s ease-out;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .fase { 
-            display: flex; 
-            gap: 40px; 
-            margin-bottom: 60px; 
-            position: relative; 
+        .fase {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 36px;
+            position: relative;
             z-index: 1;
         }
 
-        .fase-icon { 
-            background: white; 
-            color: #ff8c00; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 20px; 
-            flex-shrink: 0; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid #ff8c00;
-            transition: 0.3s;
+        .fase-icon {
+            background: var(--surface);
+            color: var(--accent);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(15, 39, 73, 0.08);
+            border: 1px solid var(--border);
+            border-bottom: 3px solid var(--accent);
         }
 
-        .fase-content { 
-            background: white; 
-            padding: 35px; 
-            border-radius: 24px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
-            border-left: 5px solid #ff8c00; /* Detalhe lateral para dar cor */
+        .fase.fase-destino .fase-icon {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .fase-content {
+            background: var(--surface);
+            padding: 30px 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(15, 39, 73, 0.05);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
             flex-grow: 1;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
 
-        .fase-content h3 { color: #1e4d8c; margin-bottom: 10px; font-size: 1.4em; }
-        .fase-content p { color: #475569; line-height: 1.8; font-size: 1.15em; }
+        .fase-content:hover {
+            box-shadow: 0 12px 28px rgba(15, 39, 73, 0.08);
+            transform: translateY(-2px);
+        }
 
-        /* 4. QUOTE E RODAPÉ */
+        .fase.fase-destino .fase-content {
+            border-left-color: var(--primary);
+        }
+
+        .fase-step {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .fase.fase-destino .fase-step {
+            color: var(--primary);
+        }
+
+        .fase-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.32rem;
+            font-weight: 600;
+        }
+
+        .fase-content p {
+            color: var(--muted);
+            line-height: 1.78;
+            font-size: 0.98rem;
+        }
+
+        .fase-content p strong {
+            color: var(--primary-dark);
+        }
+
+        /* CITAÇÃO INSTITUCIONAL */
         .quote-especial {
-            margin-top: 40px;
-            padding: 40px;
-            background: linear-gradient(135deg, #1e4d8c 0%, #0f172a 100%);
-            color: white;
-            border-radius: 24px;
+            margin-top: 20px;
+            padding: 38px 32px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-bottom: 4px solid var(--accent);
             text-align: center;
+            box-shadow: 0 12px 28px rgba(15, 39, 73, 0.14);
         }
-        .quote-especial p { font-size: 1.4em; font-style: italic; }
-        .quote-especial span { display: block; margin-top: 15px; color: #ff8c00; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* RESPONSIVIDADE */
+        .quote-especial p {
+            font-size: clamp(1.12rem, 2vw, 1.38rem);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .quote-especial span {
+            display: block;
+            margin-top: 14px;
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 0.84rem;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+        }
+
+        /* CTA FINAL */
+        .about-cta-card {
+            margin-top: 36px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            box-shadow: 0 8px 22px rgba(15, 39, 73, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .about-cta-text h3 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-cta-text p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .about-cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-action {
+            background: var(--accent);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-primary-action:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary-action {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-secondary-action:hover {
+            background: #e2ecf8;
+            border-color: var(--primary);
+        }
+
+        /* BOTÃO FLUTUANTE PARA ABRIR ASSISTENTE */
+        .reopen-assistant-fab {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 900;
+            background: var(--primary-dark);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-bottom: 3px solid var(--accent);
+            border-radius: 10px;
+            padding: 11px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-family: inherit;
+        }
+
+        .reopen-assistant-fab:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .hero-slide,
+            .reveal,
+            .fase-content,
+            .btn-primary-action,
+            #splash-screen,
+            .chat-card,
+            .msg {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
         @media (max-width: 1024px) {
-            main { margin-left: 0; }
-            #menu-placeholder { width: 100%; }
-            .content-section::before { left: 35px; }
-            .fase { gap: 20px; }
-            .fase-content { padding: 25px; }
+            main {
+                margin-left: 0;
+            }
+
+            .highlights-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-card {
+                height: 100%;
+                max-height: 100%;
+                border-radius: 0;
+            }
+
+            #splash-screen {
+                padding: 0;
+            }
+
+            .chat-options {
+                grid-template-columns: 1fr;
+            }
+
+            .opt-card.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .content-container {
+                padding: 40px 18px 56px;
+            }
+
+            .timeline-section::before {
+                left: 19px;
+            }
+
+            .fase {
+                gap: 16px;
+                margin-bottom: 26px;
+            }
+
+            .fase-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .fase-content {
+                padding: 22px 20px;
+            }
+
+            .about-cta-card {
+                padding: 22px 20px;
+            }
+
+            .skip-btn span,
+            .reopen-assistant-fab span {
+                display: none;
+            }
+
+            .reopen-assistant-fab {
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                justify-content: center;
+            }
         }
     </style>
 </head>
-<body>
+<body data-pagina="geral">
+
+    <!-- ASSISTENTE VIRTUAL -->
+    <div id="splash-screen" class="splash-hidden" aria-hidden="true">
+        <div class="chat-card" role="dialog" aria-modal="true" aria-labelledby="chatAssistantTitle">
+            <div class="chat-header">
+                <div class="assistant-profile">
+                    <div class="avatar-container">
+                        <div class="avatar"><i class="fas fa-bus" aria-hidden="true"></i></div>
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="assistant-info">
+                        <h3 id="chatAssistantTitle">Passeios do Miguel</h3>
+                        <p class="assistant-subtitle">
+                            <i class="fas fa-circle status-icon-dot" aria-hidden="true"></i>
+                            <span>Atendimento Virtual</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button type="button" class="icon-action-btn" id="soundToggleBtn" aria-label="Ativar ou desativar sons do chat" title="Som ativado">
+                        <i class="fas fa-volume-up" id="soundIcon" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="icon-action-btn" id="resetChatBtn" aria-label="Reiniciar conversa" title="Reiniciar conversa">
+                        <i class="fas fa-rotate-right" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="skip-btn" id="skipBtn" aria-label="Fechar assistente">
+                        <span>Fechar</span>
+                        <i class="fas fa-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-body" id="chatBody" aria-live="polite" aria-relevant="additions"></div>
+
+            <div class="chat-footer">
+                <input
+                    type="text"
+                    class="chat-input"
+                    id="userInput"
+                    placeholder="Escreva a sua questão..."
+                    aria-label="Escreva a sua questão para o assistente"
+                    autocomplete="off"
+                >
+                <button type="button" class="send-btn" id="sendChatBtn" aria-label="Enviar mensagem">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div id="menu-placeholder"></div>
 
-    <main>
-        <section class="hero-section">
-            <h1>A Nossa História</h1>
-            <p>Onde cada quilómetro conta uma memória.</p>
-        </section>
-
-        <section class="content-section">
-            
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-seedling"></i></div>
-                <div class="fase-content">
-                    <h3>A Semente</h3>
-                    <p>Tudo começou de forma genuína: dois passeios organizados para ajudar uma causa. O que nasceu como um gesto solidário, rapidamente revelou uma paixão adormecida pelo convívio e pela descoberta do nosso Portugal.</p>
-                </div>
+    <main id="mainContent">
+        <!-- CABEÇALHO COM 3 FOTOGRAFIAS EM ROTAÇÃO AUTOMÁTICA -->
+        <section class="hero-section" aria-label="A Nossa História - Passeios do Miguel">
+            <div class="hero-slides-layer" id="heroSlidesLayer">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Estrada aberta e início de viagem em grupo"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Percurso panorâmico e descoberta de novos horizontes"></div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1600&q=80');" role="img" aria-label="Património, cultura e encontros de viagem"></div>
             </div>
 
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-heart"></i></div>
-                <div class="fase-content">
-                    <h3>A Família de Estrada</h3>
-                    <p>Foi o vosso sorriso e o incentivo constante que me fizeram olhar mais longe. <strong>"Miguel, quando é o próximo?"</strong> tornou-se a frase que deu vida a este projeto. Deixámos de ser apenas um grupo e passámos a ser uma família.</p>
-                </div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <span class="hero-kicker">
+                    <i class="fas fa-compass" aria-hidden="true"></i>
+                    Identidade · Origem e Percurso
+                </span>
+                <h1>A Nossa História</h1>
+                <p class="hero-subtitle">Onde cada quilómetro conta uma memória.</p>
             </div>
 
-            <div class="fase reveal">
-                <div class="fase-icon"><i class="fas fa-compass"></i></div>
-                <div class="fase-content" style="border-left-color: #1e4d8c;">
-                    <h3>O Destino Hoje</h3>
-                    <p>Hoje, este espaço é o ponto de encontro para quem procura viagens descontraídas e repletas de alma. Do coração de São Pedro do Sul para o país inteiro, cada destino é escolhido a pensar na vossa alegria.</p>
-                </div>
-            </div>
-
-            <div class="quote-especial reveal">
-                <p>"Criamos caminhos, partilhamos destinos e guardamos amizades para a vida."</p>
-                <span>Passeios do Miguel</span>
+            <div class="hero-dots" id="heroDots" aria-label="Indicadores das fotografias do cabeçalho">
+                <button type="button" class="hero-dot active" data-slide="0" aria-label="Fotografia 1" aria-pressed="true"></button>
+                <button type="button" class="hero-dot" data-slide="1" aria-label="Fotografia 2" aria-pressed="false"></button>
+                <button type="button" class="hero-dot" data-slide="2" aria-label="Fotografia 3" aria-pressed="false"></button>
             </div>
         </section>
 
+        <div class="content-container">
+            <div class="highlights-strip">
+                <div class="highlight-pill">
+                    <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    <div>
+                        <strong>Origem com Propósito</strong>
+                        <span>Nascido da partilha, do convívio e da vontade de juntar pessoas.</span>
+                    </div>
+                </div>
+                <div class="highlight-pill">
+                    <i class="fas fa-location-dot" aria-hidden="true"></i>
+                    <div>
+                        <strong>Raízes em São Pedro do Sul</strong>
+                        <span>Partidas próximas e ligações a vários pontos da região e do país.</span>
+                    </div>
+                </div>
+                <div class="highlight-pill">
+                    <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                    <div>
+                        <strong>Turismo Licenciado</strong>
+                        <span>Atividade registada no RNAAT (688/2026) com foco na confiança.</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="timeline-section" aria-label="Percurso da história">
+                <div class="fase reveal">
+                    <div class="fase-icon"><i class="fas fa-seedling" aria-hidden="true"></i></div>
+                    <div class="fase-content">
+                        <span class="fase-step">Etapa 01 · O Início</span>
+                        <h3>A Semente</h3>
+                        <p>Tudo começou de forma genuína: dois passeios organizados para ajudar uma causa. O que nasceu como um gesto solidário, rapidamente revelou uma paixão adormecida pelo convívio e pela descoberta do nosso Portugal.</p>
+                    </div>
+                </div>
+
+                <div class="fase reveal">
+                    <div class="fase-icon"><i class="fas fa-heart" aria-hidden="true"></i></div>
+                    <div class="fase-content">
+                        <span class="fase-step">Etapa 02 · A Comunidade</span>
+                        <h3>A Família de Estrada</h3>
+                        <p>Foi o vosso sorriso e o incentivo constante que me fizeram olhar mais longe. <strong>"Miguel, quando é o próximo?"</strong> tornou-se a frase que deu vida a este projeto. Deixámos de ser apenas um grupo e passámos a ser uma família.</p>
+                    </div>
+                </div>
+
+                <div class="fase fase-destino reveal">
+                    <div class="fase-icon"><i class="fas fa-compass" aria-hidden="true"></i></div>
+                    <div class="fase-content">
+                        <span class="fase-step">Etapa 03 · Presente</span>
+                        <h3>O Destino Hoje</h3>
+                        <p>Hoje, este espaço é o ponto de encontro para quem procura viagens descontraídas e repletas de alma. Do coração de São Pedro do Sul para o país inteiro, cada destino é escolhido a pensar na vossa alegria.</p>
+                    </div>
+                </div>
+
+                <div class="quote-especial reveal">
+                    <p>"Criamos caminhos, partilhamos destinos e guardamos amizades para a vida."</p>
+                    <span>Passeios do Miguel</span>
+                </div>
+            </section>
+
+            <section class="about-cta-card reveal" aria-label="Próximos passos">
+                <div class="about-cta-text">
+                    <h3>Quer fazer parte da próxima viagem?</h3>
+                    <p>Veja os roteiros disponíveis ou fale diretamente connosco para esclarecer dúvidas.</p>
+                </div>
+                <div class="about-cta-actions">
+                    <a href="passeios.html" class="btn-primary-action">
+                        <i class="fas fa-route" aria-hidden="true"></i>
+                        Ver Próximas Viagens
+                    </a>
+                    <a href="contatos.html" class="btn-secondary-action">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        Contactos
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <div id="rodape-placeholder"></div>
         <div id="footer-placeholder"></div>
     </main>
 
-    <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(response => response.text())
-                .then(data => { document.getElementById(id).innerHTML = data; })
-                .catch(error => console.error('Erro:', error));
-        }
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
+    <button type="button" class="reopen-assistant-fab" id="reopenAssistantBtn" aria-label="Abrir assistente virtual">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+        <span>Assistente</span>
+    </button>
 
-        // Lógica de Scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+    <script src="base/config-site.js" defer></script>
+    <script>
+        (function () {
+            "use strict";
+
+            const prefersReducedMotion =
+                window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            function safeGetSession(key) {
+                try {
+                    return window.sessionStorage.getItem(key);
+                } catch {
+                    return null;
+                }
+            }
+
+            function safeSetSession(key, value) {
+                try {
+                    window.sessionStorage.setItem(key, value);
+                } catch {
+                    // Ignora em contextos restritos
+                }
+            }
+
+            // Rotação das 3 fotografias no cabeçalho
+            const slides = Array.from(document.querySelectorAll(".hero-slide"));
+            const dots = Array.from(document.querySelectorAll(".hero-dot"));
+            let currentSlide = 0;
+            let slideTimer = null;
+
+            function showSlide(index) {
+                if (!slides.length) return;
+                currentSlide = ((index % slides.length) + slides.length) % slides.length;
+                slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
+                dots.forEach((dot, i) => {
+                    const isActive = i === currentSlide;
+                    dot.classList.toggle("active", isActive);
+                    dot.setAttribute("aria-pressed", String(isActive));
+                });
+            }
+
+            function stopAutoSlide() {
+                if (slideTimer !== null) {
+                    window.clearInterval(slideTimer);
+                    slideTimer = null;
+                }
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+                if (slides.length > 1 && !prefersReducedMotion && !document.hidden) {
+                    slideTimer = window.setInterval(() => {
+                        showSlide(currentSlide + 1);
+                    }, 5000);
+                }
+            }
+
+            dots.forEach((dot) => {
+                dot.addEventListener("click", () => {
+                    const idx = Number(dot.getAttribute("data-slide") || 0);
+                    showSlide(idx);
+                    startAutoSlide();
+                });
             });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopAutoSlide();
+                } else {
+                    startAutoSlide();
+                }
+            });
+
+            startAutoSlide();
+
+            // Revelação suave ao scroll (ou imediata se reduced-motion ativo)
+            const revealEls = Array.from(document.querySelectorAll(".reveal"));
+            if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+                revealEls.forEach((el) => el.classList.add("active"));
+            } else {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("active");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.12 }
+                );
+                revealEls.forEach((el) => observer.observe(el));
+            }
+
+            // Assistente Virtual
+            const splashScreen = document.getElementById("splash-screen");
+            const chatCard = splashScreen ? splashScreen.querySelector(".chat-card") : null;
+            const chatBody = document.getElementById("chatBody");
+            const userInput = document.getElementById("userInput");
+            const sendChatBtn = document.getElementById("sendChatBtn");
+            const skipBtn = document.getElementById("skipBtn");
+            const resetChatBtn = document.getElementById("resetChatBtn");
+            const soundToggleBtn = document.getElementById("soundToggleBtn");
+            const soundIcon = document.getElementById("soundIcon");
+            const reopenAssistantBtn = document.getElementById("reopenAssistantBtn");
+
+            let soundEnabled = safeGetSession("pm_chat_muted") !== "1";
+            let isBotBusy = false;
+            let audioCtx = null;
+
+            function updateSoundUI() {
+                if (!soundIcon || !soundToggleBtn) return;
+                soundIcon.className = soundEnabled ? "fas fa-volume-up" : "fas fa-volume-mute";
+                soundToggleBtn.setAttribute("title", soundEnabled ? "Som ativado" : "Som desativado");
+            }
+
+            updateSoundUI();
+
+            if (soundToggleBtn) {
+                soundToggleBtn.addEventListener("click", () => {
+                    soundEnabled = !soundEnabled;
+                    safeSetSession("pm_chat_muted", soundEnabled ? "0" : "1");
+                    updateSoundUI();
+                });
+            }
+
+            function getFormattedTime() {
+                const now = new Date();
+                return (
+                    now.getHours().toString().padStart(2, "0") +
+                    ":" +
+                    now.getMinutes().toString().padStart(2, "0")
+                );
+            }
+
+            function getGreetingByHour() {
+                const h = new Date().getHours();
+                if (h >= 6 && h < 12) return "Bom dia";
+                if (h >= 12 && h < 20) return "Boa tarde";
+                return "Boa noite";
+            }
+
+            function playTone(freq, type) {
+                if (!soundEnabled) return;
+                try {
+                    if (!audioCtx) {
+                        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                        if (AudioContextClass) audioCtx = new AudioContextClass();
+                    }
+                    if (!audioCtx) return;
+                    if (audioCtx.state === "suspended") audioCtx.resume();
+
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = type || "sine";
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.11);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.11);
+                } catch {
+                    // Ignora se bloqueado pelo navegador
+                }
+            }
+
+            function scrollChatToBottom() {
+                if (!chatBody) return;
+                window.requestAnimationFrame(() => {
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                });
+            }
+
+            function lockPreviousOptions() {
+                if (!chatBody) return;
+                chatBody.querySelectorAll(".chat-options:not(.is-resolved)").forEach((group) => {
+                    group.classList.add("is-resolved");
+                    group.querySelectorAll("button").forEach((b) => {
+                        b.disabled = true;
+                    });
+                });
+            }
+
+            function appendBotNodes(nodes) {
+                if (!chatBody) return;
+                const group = document.createElement("div");
+                group.className = "msg-group";
+
+                nodes.forEach((node) => {
+                    const msgDiv = document.createElement("div");
+                    msgDiv.className = "msg bot";
+                    msgDiv.appendChild(node);
+                    group.appendChild(msgDiv);
+                });
+
+                const timeSpan = document.createElement("span");
+                timeSpan.className = "msg-time";
+                timeSpan.textContent = getFormattedTime();
+                group.appendChild(timeSpan);
+
+                chatBody.appendChild(group);
+                scrollChatToBottom();
+                playTone(720, "triangle");
+            }
+
+            function appendBotText(text) {
+                const p = document.createElement("p");
+                p.textContent = text;
+                appendBotNodes([p]);
+            }
+
+            function appendUserMessage(text) {
+                if (!chatBody) return;
+                const group = document.createElement("div");
+                group.className = "msg-group";
+
+                const msgDiv = document.createElement("div");
+                msgDiv.className = "msg user";
+                msgDiv.textContent = text;
+
+                const timeSpan = document.createElement("span");
+                timeSpan.className = "msg-time user-time";
+                timeSpan.textContent = getFormattedTime();
+
+                group.appendChild(msgDiv);
+                group.appendChild(timeSpan);
+                chatBody.appendChild(group);
+                scrollChatToBottom();
+                playTone(520, "sine");
+            }
+
+            function showTyping() {
+                if (!chatBody || document.getElementById("typingIndicator")) return;
+                isBotBusy = true;
+                if (userInput) userInput.disabled = true;
+                if (sendChatBtn) sendChatBtn.disabled = true;
+
+                const typing = document.createElement("div");
+                typing.id = "typingIndicator";
+                typing.className = "typing-indicator";
+                typing.setAttribute("aria-label", "Assistente a escrever");
+                typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                chatBody.appendChild(typing);
+                scrollChatToBottom();
+            }
+
+            function hideTyping() {
+                const typing = document.getElementById("typingIndicator");
+                if (typing) typing.remove();
+                isBotBusy = false;
+                if (userInput) userInput.disabled = false;
+                if (sendChatBtn) sendChatBtn.disabled = false;
+            }
+
+            function addOptions(opts) {
+                if (!chatBody) return;
+                lockPreviousOptions();
+
+                const container = document.createElement("div");
+                container.className = "chat-options";
+
+                opts.forEach((opt) => {
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "opt-card" + (opt.full ? " full-width" : "");
+
+                    const icon = document.createElement("i");
+                    icon.className = "fas " + opt.icon;
+                    icon.setAttribute("aria-hidden", "true");
+
+                    const span = document.createElement("span");
+                    span.textContent = opt.text;
+
+                    btn.appendChild(icon);
+                    btn.appendChild(span);
+                    btn.addEventListener("click", opt.action);
+                    container.appendChild(btn);
+                });
+
+                chatBody.appendChild(container);
+                scrollChatToBottom();
+            }
+
+            function openSplash() {
+                if (!splashScreen) return;
+                splashScreen.classList.remove("splash-bypass", "splash-hidden");
+                splashScreen.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                if (reopenAssistantBtn) reopenAssistantBtn.style.display = "none";
+
+                window.setTimeout(() => {
+                    if (userInput && !userInput.disabled) {
+                        userInput.focus({ preventScroll: true });
+                    }
+                }, 150);
+            }
+
+            function closeSplash() {
+                if (!splashScreen) return;
+                splashScreen.classList.add("splash-hidden");
+                splashScreen.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+
+                if (reopenAssistantBtn) {
+                    reopenAssistantBtn.style.display = "inline-flex";
+                    reopenAssistantBtn.focus({ preventScroll: true });
+                }
+            }
+
+            function showInitialOptions() {
+                addOptions([
+                    { icon: "fa-bus", text: "Salamanca (28 Nov)", action: () => handleOption("salamanca") },
+                    { icon: "fa-calendar-days", text: "Próximas Viagens", action: () => handleOption("proximos") },
+                    { icon: "fa-calendar-check", text: "Reservas e Contacto", action: () => handleOption("reservas") },
+                    { icon: "fa-home", text: "Ir para o Início", action: () => { window.location.href = "index.html"; } }
+                ]);
+            }
+
+            function initConversation() {
+                if (!chatBody) return;
+                hideTyping();
+                chatBody.innerHTML = "";
+
+                const p1 = document.createElement("p");
+                p1.innerHTML = `${getGreetingByHour()}. Está na página <strong>A Nossa História</strong> dos Passeios do Miguel.`;
+
+                const p2 = document.createElement("p");
+                p2.textContent = "O próximo passeio em destaque é Salamanca a 28 de novembro. Em que posso ajudar?";
+
+                appendBotNodes([p1, p2]);
+                showInitialOptions();
+            }
+
+            function handleOption(key) {
+                if (isBotBusy) return;
+
+                if (key === "salamanca") {
+                    appendUserMessage("Quero saber mais sobre o passeio a Salamanca.");
+                    showTyping();
+                    window.setTimeout(() => {
+                        hideTyping();
+                        appendBotText("A viagem a Salamanca realiza-se a 28 de novembro de 2026. Pode ver os detalhes na página de passeios ou falar connosco.");
+                        addOptions([
+                            { icon: "fa-arrow-right", text: "Abrir Página de Passeios", action: () => { window.location.href = "passeios.html"; }, full: true },
+                            { icon: "fab fa-whatsapp", text: "Consultar no WhatsApp", action: () => { window.open("https://wa.me/351965715465", "_blank", "noopener,noreferrer"); } }
+                        ]);
+                    }, 550);
+                } else if (key === "proximos") {
+                    appendUserMessage("Quais são as próximas viagens?");
+                    showTyping();
+                    window.setTimeout(() => {
+                        hideTyping();
+                        appendBotText("Pode descobrir as viagens disponíveis, datas e detalhes de cada programa na nossa página de passeios.");
+                        addOptions([
+                            { icon: "fa-arrow-right", text: "Abrir Página de Passeios", action: () => { window.location.href = "passeios.html"; }, full: true },
+                            { icon: "fa-question-circle", text: "Outra Questão", action: showInitialOptions }
+                        ]);
+                    }, 550);
+                } else if (key === "reservas") {
+                    appendUserMessage("Como posso reservar lugar?");
+                    showTyping();
+                    window.setTimeout(() => {
+                        hideTyping();
+                        appendBotText("Para reservar ou tirar dúvidas, fale diretamente connosco pelo 965 715 465, WhatsApp ou na página de contactos.");
+                        addOptions([
+                            { icon: "fab fa-whatsapp", text: "Mensagem no WhatsApp", action: () => { window.open("https://wa.me/351965715465", "_blank", "noopener,noreferrer"); } },
+                            { icon: "fa-phone-alt", text: "Ligar 965 715 465", action: () => { window.location.href = "tel:+351965715465"; } },
+                            { icon: "fa-envelope", text: "Ir para Contactos", action: () => { window.location.href = "contatos.html"; }, full: true }
+                        ]);
+                    }, 550);
+                }
+            }
+
+            function sendUserMessage() {
+                if (isBotBusy || !userInput) return;
+                const text = userInput.value.trim();
+                if (!text) return;
+
+                appendUserMessage(text);
+                userInput.value = "";
+
+                const lower = text.toLowerCase();
+                showTyping();
+
+                window.setTimeout(() => {
+                    hideTyping();
+
+                    if (lower.includes("salamanca") || lower.includes("novembro") || lower.includes("natal")) {
+                        handleOption("salamanca");
+                    } else if (lower.includes("passeio") || lower.includes("viagem") || lower.includes("destino") || lower.includes("data") || lower.includes("agenda") || lower.includes("programa")) {
+                        appendBotText("Pode consultar as próximas viagens e datas disponíveis na nossa página de passeios.");
+                        addOptions([
+                            { icon: "fa-bus", text: "Ver Próximas Viagens", action: () => { window.location.href = "passeios.html"; } },
+                            { icon: "fa-home", text: "Ir para o Início", action: () => { window.location.href = "index.html"; } }
+                        ]);
+                    } else if (lower.includes("preco") || lower.includes("preço") || lower.includes("valor") || lower.includes("pagar") || lower.includes("pagamento") || lower.includes("condi")) {
+                        appendBotText("Os valores e condições de cada viagem estão indicados no respetivo programa ou podem ser confirmados diretamente connosco.");
+                        addOptions([
+                            { icon: "fa-list", text: "Ver Viagens", action: () => { window.location.href = "passeios.html"; } },
+                            { icon: "fab fa-whatsapp", text: "Consultar no WhatsApp", action: () => { window.open("https://wa.me/351965715465", "_blank", "noopener,noreferrer"); } }
+                        ]);
+                    } else if (lower.includes("reserva") || lower.includes("lugar") || lower.includes("vaga") || lower.includes("telefone") || lower.includes("contacto") || lower.includes("grupo")) {
+                        handleOption("reservas");
+                    } else {
+                        appendBotText("Obrigado pela mensagem. Se quiser ver os passeios ou falar connosco diretamente, aqui tem os atalhos:");
+                        addOptions([
+                            { icon: "fa-bus", text: "Ver Próximas Viagens", action: () => { window.location.href = "passeios.html"; } },
+                            { icon: "fa-envelope", text: "Ir para Contactos", action: () => { window.location.href = "contatos.html"; } }
+                        ]);
+                    }
+                }, 650);
+            }
+
+            if (sendChatBtn) sendChatBtn.addEventListener("click", sendUserMessage);
+            if (userInput) {
+                userInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        sendUserMessage();
+                    }
+                });
+            }
+            if (skipBtn) skipBtn.addEventListener("click", closeSplash);
+            if (resetChatBtn) {
+                resetChatBtn.addEventListener("click", () => {
+                    initConversation();
+                    if (userInput && !userInput.disabled) userInput.focus({ preventScroll: true });
+                });
+            }
+            if (reopenAssistantBtn) {
+                reopenAssistantBtn.addEventListener("click", () => {
+                    openSplash();
+                });
+            }
+
+            document.addEventListener("keydown", (e) => {
+                if (!splashScreen || splashScreen.classList.contains("splash-hidden")) return;
+
+                if (e.key === "Escape") {
+                    e.preventDefault();
+                    closeSplash();
+                    return;
+                }
+
+                if (e.key === "Tab" && chatCard) {
+                    const focusable = Array.from(
+                        chatCard.querySelectorAll('button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+                    );
+                    if (focusable.length > 0) {
+                        const first = focusable[0];
+                        const last = focusable[focusable.length - 1];
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
+                    }
+                }
+            });
+
+            initConversation();
+            if (reopenAssistantBtn) {
+                reopenAssistantBtn.style.display = "inline-flex";
+            }
+            document.body.style.overflow = "";
+        })();
     </script>
 </body>
 </html>

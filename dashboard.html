@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Local — Passeios do Miguel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="base/base-geral.css" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    main.pm-main-layout {
+      margin-left: 250px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pm-painel-wrap {
+      max-width: 780px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.25rem 3rem;
+      flex-grow: 1;
+    }
+
+    .pm-painel-card {
+      background: var(--pm-surface, #ffffff);
+      border: 1px solid var(--pm-border, #d9e2ec);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 6px 20px rgba(15, 35, 60, 0.05);
+    }
+
+    .pm-painel-card h2 {
+      margin-top: 0;
+      font-size: 1.15rem;
+      color: var(--pm-primary, #1e4d8c);
+    }
+
+    .pm-botoes-tema {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .pm-btn-secundario {
+      background: transparent;
+      color: inherit;
+      border: 1px solid var(--pm-border, #cbd5e1);
+      border-radius: 8px;
+      padding: 0.65rem 1.1rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .pm-btn-secundario:hover {
+      background: rgba(15, 76, 129, 0.05);
+    }
+
+    .pm-campo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pm-campo label {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .pm-campo input[type="text"] {
+      padding: 0.65rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid var(--pm-border, #cbd5e1);
+      font-size: 0.95rem;
+      background: var(--pm-surface, #ffffff);
+      color: var(--pm-text, #162238);
+    }
+
+    .pm-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .pm-estado-box {
+      background: rgba(15, 76, 129, 0.06);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .pm-feedback {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--pm-primary, #1e4d8c);
+      min-height: 1.2em;
+    }
+
+    @media (max-width: 1024px) {
+      main.pm-main-layout {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body data-pagina="geral">
+  <div id="menu-placeholder"></div>
+
+  <main class="pm-main-layout">
+    <div class="pm-painel-wrap">
+      <h1>Controlo Local do Site</h1>
+      <p>Testa o tema e os avisos globais no teu computador antes de publicares.</p>
+
+      <section class="pm-painel-card">
+        <h2>1. Tema do Site</h2>
+        <p>Alterna entre o visual habitual e o tema de Natal.</p>
+        <div class="pm-botoes-tema">
+          <button type="button" id="btn-tema-normal" class="pm-btn-primario">Tema Normal</button>
+          <button type="button" id="btn-tema-natal" class="pm-btn-primario">Tema de Natal 🎄</button>
+          <button type="button" id="btn-repor" class="pm-btn-secundario">Repor Padrão</button>
+        </div>
+        <div id="feedback-tema" class="pm-feedback"></div>
+      </section>
+
+      <section class="pm-painel-card">
+        <h2>2. Barra de Aviso Global</h2>
+        <form id="form-aviso">
+          <label class="pm-check">
+            <input type="checkbox" id="aviso-ativo" />
+            Mostrar barra de aviso no topo das páginas
+          </label>
+
+          <div class="pm-campo">
+            <label for="aviso-texto">Mensagem do aviso</label>
+            <input type="text" id="aviso-texto" placeholder="Ex.: Já estão abertas as inscrições para o passeio de Natal!" />
+          </div>
+
+          <div class="pm-campo">
+            <label for="aviso-link-texto">Texto do link (opcional)</label>
+            <input type="text" id="aviso-link-texto" placeholder="Ex.: Ver passeios" />
+          </div>
+
+          <div class="pm-campo">
+            <label for="aviso-link-href">Destino do link (opcional)</label>
+            <input type="text" id="aviso-link-href" placeholder="Ex.: passeios.html" />
+          </div>
+
+          <button type="submit" id="btn-guardar-aviso" class="pm-btn-primario">Guardar Aviso</button>
+          <div id="feedback-aviso" class="pm-feedback"></div>
+        </form>
+      </section>
+
+      <section class="pm-painel-card">
+        <h2>3. Estado Atual</h2>
+        <div id="resumo-estado" class="pm-estado-box"></div>
+      </section>
+    </div>
+
+    <div id="footer-placeholder"></div>
+  </main>
+
+  <script src="base/config-site.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.SiteConfig) {
+        console.error("SiteConfig não foi carregado.");
+        return;
+      }
+
+      const btnNormal = document.getElementById("btn-tema-normal");
+      const btnNatal = document.getElementById("btn-tema-natal");
+      const btnRepor = document.getElementById("btn-repor");
+      const formAviso = document.getElementById("form-aviso");
+
+      const inputAtivo = document.getElementById("aviso-ativo");
+      const inputTexto = document.getElementById("aviso-texto");
+      const inputLinkTexto = document.getElementById("aviso-link-texto");
+      const inputLinkHref = document.getElementById("aviso-link-href");
+
+      const feedbackTema = document.getElementById("feedback-tema");
+      const feedbackAviso = document.getElementById("feedback-aviso");
+      const resumoEstado = document.getElementById("resumo-estado");
+
+      function sincronizarUI() {
+        const cfg = window.SiteConfig.get();
+        inputAtivo.checked = Boolean(cfg.avisoGlobal.ativo);
+        inputTexto.value = cfg.avisoGlobal.texto || "";
+        inputLinkTexto.value = cfg.avisoGlobal.linkTexto || "";
+        inputLinkHref.value = cfg.avisoGlobal.linkHref || "";
+
+        resumoEstado.innerHTML =
+          `<strong>Tema ativo:</strong> ${cfg.tema === "natal" ? "Natal 🎄" : "Normal"}<br>` +
+          `<strong>Aviso global:</strong> ${cfg.avisoGlobal.ativo ? "Ativo" : "Desligado"}` +
+          (cfg.avisoGlobal.texto ? ` — "${cfg.avisoGlobal.texto}"` : "");
+      }
+
+      async function publicarSeAtivo(elFeedback, msgLocal, msgServidor) {
+        const cfg = window.SiteConfig.get();
+        if (!cfg.integracao?.ativo) {
+          elFeedback.textContent = msgLocal;
+          return;
+        }
+        try {
+          elFeedback.textContent = "A publicar no servidor...";
+          await window.SiteConfig.publicarServidor();
+          elFeedback.textContent = msgServidor;
+        } catch (err) {
+          console.error(err);
+          elFeedback.textContent = `${msgLocal} (falhou envio ao servidor)`;
+        }
+      }
+
+      btnNormal.addEventListener("click", async () => {
+        window.SiteConfig.setTema("normal");
+        sincronizarUI();
+        await publicarSeAtivo(
+          feedbackTema,
+          "Tema alterado para Normal (local).",
+          "Tema Normal publicado para o site."
+        );
+      });
+
+      btnNatal.addEventListener("click", async () => {
+        window.SiteConfig.setTema("natal");
+        sincronizarUI();
+        await publicarSeAtivo(
+          feedbackTema,
+          "Tema alterado para Natal (local).",
+          "Tema de Natal publicado para o site 🎄"
+        );
+      });
+
+      btnRepor.addEventListener("click", async () => {
+        window.SiteConfig.reset();
+        sincronizarUI();
+        feedbackAviso.textContent = "";
+        await publicarSeAtivo(
+          feedbackTema,
+          "Configuração reposta para o padrão (local).",
+          "Configuração reposta e publicada."
+        );
+      });
+
+      formAviso.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        window.SiteConfig.setAviso({
+          ativo: inputAtivo.checked,
+          texto: inputTexto.value.trim(),
+          linkTexto: inputLinkTexto.value.trim(),
+          linkHref: inputLinkHref.value.trim()
+        });
+        sincronizarUI();
+        await publicarSeAtivo(
+          feedbackAviso,
+          "Aviso guardado localmente.",
+          "Aviso publicado para o site."
+        );
+      });
+
+      sincronizarUI();
+    });
+  </script>
+</body>
+</html>

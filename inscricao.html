@@ -14,14 +14,16 @@
     <title>Inscrição - Passeios do Miguel</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="base/base-geral.css">
 
     <style>
         :root {
-            --primary: #1e4d8c;
-            --accent: #ff8c00;
-            --bg: #f4f7f9;
-            --text: #334155;
-            --border: #e2e8f0;
+            --primary: var(--pm-primary, #1e4d8c);
+            --accent: var(--pm-accent, #ff8c00);
+            --bg: var(--pm-bg, #f4f7f9);
+            --text: var(--pm-text, #334155);
+            --surface: var(--pm-surface, #ffffff);
+            --border: var(--pm-border, #e2e8f0);
             --success: #10b981;
         }
 
@@ -67,6 +69,7 @@
             text-align: center;
             border-bottom: 5px solid var(--accent);
             padding: 0 20px;
+            transition: border-color 0.25s ease;
         }
 
         .hero-section h1 {
@@ -92,10 +95,11 @@
         .container-form {
             max-width: 850px;
             margin: 0 auto;
-            background: white;
+            background: var(--surface);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            border: 1px solid var(--border);
             position: relative;
         }
 
@@ -124,8 +128,8 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: #e2e8f0;
-            color: #64748b;
+            background: var(--border);
+            color: var(--pm-muted, #64748b);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,7 +151,7 @@
         .step-divider {
             flex-grow: 1;
             height: 2px;
-            background: #e2e8f0;
+            background: var(--border);
             margin: 0 15px;
         }
 
@@ -183,8 +187,13 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #334155;
+            color: var(--text);
             font-size: 0.95em;
+        }
+
+        .req-star {
+            color: #dc2626;
+            font-weight: 700;
         }
 
         .input-icon-group { position: relative; }
@@ -202,20 +211,20 @@
 
         input, select {
             width: 100%;
-            padding: 16px 16px 16px 48px;
-            border: 2px solid #e2e8f0;
+            padding: 15px 16px 15px 48px;
+            border: 2px solid var(--border);
             border-radius: 14px;
             font-size: 1em;
             transition: all 0.3s ease;
-            background: #fcfdfe;
-            color: #1e293b;
+            background: var(--bg);
+            color: var(--text);
             font-family: inherit;
         }
 
         input:focus, select:focus {
             border-color: var(--primary);
             outline: none;
-            background: #fff;
+            background: var(--surface);
             box-shadow: 0 0 0 4px rgba(30, 77, 140, 0.08);
         }
 
@@ -226,6 +235,35 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+        }
+
+        .consent-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-top: 8px;
+            margin-bottom: 22px;
+        }
+
+        .consent-toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.92em;
+            color: var(--text);
+            margin-bottom: 0;
+        }
+
+        .consent-toggle input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* OPÇÃO DE ALMOÇO ESPECÍFICA */
@@ -276,11 +314,13 @@
             user-select: none;
             font-weight: 700;
             color: var(--primary);
+            margin-bottom: 0;
         }
 
         .checkbox-custom-toggle input[type="checkbox"] {
             width: 22px;
             height: 22px;
+            padding: 0;
             accent-color: var(--accent);
             cursor: pointer;
         }
@@ -327,12 +367,12 @@
         }
 
         .btn-prev {
-            background: #e2e8f0;
-            color: #475569;
+            background: var(--border);
+            color: var(--text);
             width: 35%;
         }
 
-        .btn-prev:hover { background: #cbd5e1; }
+        .btn-prev:hover { filter: brightness(0.96); }
 
         .btn-enviar {
             background: var(--primary);
@@ -349,11 +389,11 @@
 
         /* CARTÃO ACOMPANHANTE E EMERGÊNCIA */
         .card-extra {
-            background: #f8fafc;
+            background: var(--bg);
             padding: 22px;
             border-radius: 16px;
             margin-top: 18px;
-            border: 2px dashed #cbd5e1;
+            border: 2px dashed var(--border);
         }
 
         .card-emergencia {
@@ -366,14 +406,14 @@
 
         /* RESUMO DA RESERVA COM PREÇO TOTAL */
         .summary-box {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background: var(--bg);
             border-radius: 16px;
             padding: 22px;
             margin-top: 25px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--border);
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
@@ -382,7 +422,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.92em;
-            color: #64748b;
+            color: var(--pm-muted, #64748b);
         }
 
         .summary-row strong {
@@ -390,7 +430,7 @@
         }
 
         .summary-total-row {
-            border-top: 2px dashed #cbd5e1;
+            border-top: 2px dashed var(--border);
             padding-top: 12px;
             margin-top: 4px;
             display: flex;
@@ -412,8 +452,8 @@
 
         /* ESTILOS DOS DADOS DE PAGAMENTO */
         .card-pagamento {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
+            background: var(--bg);
+            border: 2px solid var(--border);
             border-radius: 16px;
             padding: 20px;
             margin-top: 20px;
@@ -431,7 +471,7 @@
 
         .pagamento-instrucoes {
             font-size: 0.88em;
-            color: #64748b;
+            color: var(--pm-muted, #64748b);
             margin-bottom: 15px;
         }
 
@@ -443,8 +483,8 @@
         }
 
         .metodo-pagamento {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 14px;
         }
@@ -457,7 +497,7 @@
             font-size: 0.95em;
             margin-bottom: 10px;
             padding-bottom: 6px;
-            border-bottom: 1px solid #f1f5f9;
+            border-bottom: 1px solid var(--border);
         }
 
         .metodo-header i {
@@ -477,7 +517,7 @@
         }
 
         .metodo-detalhe strong {
-            color: #1e293b;
+            color: var(--text);
             font-size: 0.95em;
             word-break: break-all;
         }
@@ -524,7 +564,7 @@
         }
 
         .resumo-pagamento-sucesso {
-            background: #ffffff;
+            background: var(--surface);
             padding: 14px;
             border-radius: 12px;
             margin: 15px 0;
@@ -571,7 +611,7 @@
     </style>
 </head>
 
-<body>
+<body data-pagina="geral">
 
     <div id="menu-placeholder"></div>
 
@@ -595,7 +635,7 @@
                     <div class="step-divider"></div>
                     <div class="step-item" id="step-tab-2">
                         <div class="step-number">2</div>
-                        <span>Os Seus Dados</span>
+                        <span>Dados Essenciais</span>
                     </div>
                 </div>
 
@@ -611,22 +651,28 @@
                         <h2><i class="fas fa-bus"></i> Escolha a Sua Viagem</h2>
 
                         <div class="campo-grupo">
-                            <label>Destino Pretendido</label>
+                            <label>Destino Pretendido <span class="req-star">*</span></label>
                             <div class="input-icon-group">
                                 <select id="passeioEscolhido" name="Passeio" onchange="verificarOpcoesPasseio()" required>
                                     <option value="">Selecione um destino...</option>
-                                    <option value="Feiras Novas" data-data="2026-09-12" data-preco="25">
-                                        Feiras Novas (Ponte de Lima) - 12 de Setembro - 25€ / pessoa
+                                    <option value="Salamanca - Grupo 1 (28 Nov 2026)" data-data="2026-11-28" data-preco="40" data-almoco-opcional="20">
+                                        Salamanca (Grupo 1) - 28 de Novembro de 2026 - 40€ / pessoa
                                     </option>
-                                    <option value="Santuário de Fátima" data-data="2026-10-10" data-preco="29">
-                                        Santuário de Fátima - 10 de Outubro - 29€ / pessoa
+                                    <option value="Salamanca - Grupo 2 (12 Dez 2026)" data-data="2026-12-12" data-preco="40" data-almoco-opcional="20">
+                                        Salamanca (Grupo 2) - 12 de Dezembro de 2026 - 40€ / pessoa
                                     </option>
-                                    <option value="Santoinho" data-data="2026-11-07" data-preco="58">
-                                        Santoinho & Viana do Castelo - 07 de Novembro - 58€ / pessoa
+
+                                    <!--
+                                    <option value="Entrudo Chocalheiro - Podence (07 Fev 2027)" data-data="2027-02-07" data-preco="25">
+                                        Entrudo Chocalheiro (Podence) - 07 de Fevereiro de 2027 - 25€ / pessoa
                                     </option>
-                                    <option value="Salamanca" data-data="2026-12-05" data-preco="40" data-almoco-opcional="20">
-                                        Salamanca - 28 de novembro - 40€ / pessoa
+                                    <option value="Sexta-Feira Santa - Braga (26 Mar 2027)" data-data="2027-03-26" data-preco="25">
+                                        Sexta-Feira Santa (Braga) - 26 de Março de 2027 - 25€ / pessoa
                                     </option>
+                                    <option value="Festa dos Tabuleiros - Tomar (11 Jul 2027)" data-data="2027-07-11" data-preco="30">
+                                        Festa dos Tabuleiros (Tomar) - 11 de Julho de 2027 - 30€ / pessoa
+                                    </option>
+                                    -->
                                 </select>
                                 <i class="fas fa-route"></i>
                             </div>
@@ -637,8 +683,8 @@
                             <div class="almoco-info">
                                 <i class="fas fa-utensils"></i>
                                 <div>
-                                    <strong>Almoço Típico Incluído?</strong>
-                                    <span>Possibilidade de incluir refeição completa no passeio selecionado</span>
+                                    <strong>Almoço Típico Opcional?</strong>
+                                    <span>Incluir refeição completa no passeio selecionado</span>
                                 </div>
                             </div>
                             <label class="checkbox-custom-toggle">
@@ -663,16 +709,16 @@
                         </div>
 
                         <button type="button" class="btn-next" onclick="proximoPasso()">
-                            Continuar para os Seus Dados <i class="fas fa-arrow-right"></i>
+                            Continuar para os Dados Essenciais <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
 
-                    <!-- PASSO 2: DADOS PESSOAIS + CONTACTO DE EMERGÊNCIA + PAGAMENTO -->
+                    <!-- PASSO 2: DADOS ESSENCIAIS (ALINHADOS COM A FICHA DE CLIENTE) -->
                     <div class="form-step" id="step-2">
-                        <h2><i class="fas fa-user-circle"></i> Dados do Titular da Reserva</h2>
+                        <h2><i class="fas fa-user-circle"></i> Dados Pessoais e de Embarque</h2>
 
                         <div class="campo-grupo">
-                            <label>Nome Completo</label>
+                            <label>Nome Completo <span class="req-star">*</span></label>
                             <div class="input-icon-group">
                                 <input type="text" name="nomeResponsavel" placeholder="Como consta no Cartão de Cidadão" required>
                                 <i class="fas fa-user"></i>
@@ -681,15 +727,15 @@
 
                         <div class="grid-inputs">
                             <div class="campo-grupo">
-                                <label>Telemóvel</label>
+                                <label>Telefone / Telemóvel <span class="req-star">*</span></label>
                                 <div class="input-icon-group">
-                                    <input type="tel" name="contactoResponsavel" placeholder="9xx xxx xxx" required>
+                                    <input type="tel" name="contactoResponsavel" placeholder="9xxxxxxxx" required>
                                     <i class="fas fa-phone"></i>
                                 </div>
                             </div>
 
                             <div class="campo-grupo">
-                                <label>Data de Nascimento</label>
+                                <label>Data de Nascimento <span class="req-star">*</span></label>
                                 <div class="input-icon-group">
                                     <input type="date" name="nascimentoResponsavel" required>
                                     <i class="fas fa-calendar-alt"></i>
@@ -697,43 +743,68 @@
                             </div>
                         </div>
 
-                        <div class="campo-grupo">
-                            <label>Localidade</label>
-                            <div class="input-icon-group">
-                                <input type="text" name="localidadeResponsavel" placeholder="Ex: São Pedro do Sul" required>
-                                <i class="fas fa-map-marker-alt"></i>
+                        <div class="grid-inputs">
+                            <div class="campo-grupo">
+                                <label>Email</label>
+                                <div class="input-icon-group">
+                                    <input type="email" name="emailResponsavel" placeholder="email@exemplo.pt">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
                             </div>
+
+                            <div class="campo-grupo">
+                                <label>Localidade <span class="req-star">*</span></label>
+                                <div class="input-icon-group">
+                                    <input type="text" name="localidadeResponsavel" placeholder="Ex: São Pedro do Sul" required>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="campo-grupo">
+                            <label>Ponto Habitual de Subida / Paragem <span class="req-star">*</span></label>
+                            <div class="input-icon-group">
+                                <input type="text" name="pontoSubida" placeholder="Local ou paragem onde pretende embarcar" required>
+                                <i class="fas fa-location-dot"></i>
+                            </div>
+                        </div>
+
+                        <div class="consent-box">
+                            <label class="consent-toggle">
+                                <input type="checkbox" name="autorizaSMS" value="Sim">
+                                <span>Autorizo a receção de SMS / mensagens informativas sobre a viagem e próximos passeios</span>
+                            </label>
                         </div>
 
                         <!-- CONTACTO DE EMERGÊNCIA / SEGURANÇA -->
                         <div class="card-emergencia">
                             <h3 style="color:#166534; font-size:1.05em; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
-                                <i class="fas fa-shield-alt" style="color:#16a34a"></i> Contacto de Segurança / Emergência
+                                <i class="fas fa-shield-alt" style="color:#16a34a"></i> Contacto de Emergência
                             </h3>
 
                             <div class="campo-grupo">
-                                <label>Nome do Contacto de Emergência</label>
+                                <label>Nome do Contacto de Emergência <span class="req-star">*</span></label>
                                 <div class="input-icon-group">
-                                    <input type="text" name="nomeEmergencia" placeholder="Nome de um familiar ou amigo" required>
+                                    <input type="text" name="nomeEmergencia" placeholder="Nome da pessoa de contacto" required>
                                     <i class="fas fa-user-shield"></i>
                                 </div>
                             </div>
 
                             <div class="grid-inputs">
                                 <div class="campo-grupo">
-                                    <label>Telemóvel de Emergência</label>
+                                    <label>Telefone de Emergência <span class="req-star">*</span></label>
                                     <div class="input-icon-group">
-                                        <input type="tel" name="contactoEmergencia" placeholder="9xx xxx xxx" required>
+                                        <input type="tel" name="contactoEmergencia" placeholder="9xxxxxxxx" required>
                                         <i class="fas fa-phone-alt"></i>
                                     </div>
                                 </div>
 
                                 <div class="campo-grupo">
-                                    <label>Grau de Parentesco / Relação</label>
+                                    <label>Parentesco / Relação <span class="req-star">*</span></label>
                                     <div class="input-icon-group">
                                         <select name="parentescoEmergencia" required>
                                             <option value="">Selecione...</option>
-                                            <option value="Cônjuge / Companheiro(a)">Cônjuge / Companheiro(a)</option>
+                                            <option value="Cônjuge">Cônjuge</option>
                                             <option value="Filho(a)">Filho(a)</option>
                                             <option value="Pai / Mãe">Pai / Mãe</option>
                                             <option value="Irmão / Irmã">Irmão / Irmã</option>
@@ -812,9 +883,9 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="aviso-comprovativo">
-                                <i class="fas fa-info-circle"></i> 
+                                <i class="fas fa-info-circle"></i>
                                 <span>Por favor, inclua o seu <strong>Nome e Passeio</strong> na descrição do pagamento e envie o comprovativo por WhatsApp.</span>
                             </div>
                         </div>
@@ -834,13 +905,13 @@
                         <div class="sucesso-icon"><i class="fas fa-check-circle"></i></div>
                         <h3>Inscrição Enviada com Sucesso!</h3>
                         <p>A sua reserva foi registada. Para concluir o processo, por favor efetue o pagamento para os dados abaixo e envie o comprovativo:</p>
-                        
+
                         <div class="resumo-pagamento-sucesso">
-                            <p><strong>MB WAY:</strong> 9XX XXX XXX</p>
-                            <p><strong>IBAN:</strong> PT50 0000 0000 0000 0000 0000 0</p>
+                            <p><strong>MB WAY:</strong> 965 715 465</p>
+                            <p><strong>IBAN:</strong> PT50 0045 8723 4040 6724 4720 2</p>
                         </div>
 
-                        <a href="https://wa.me/3519XXXXXXXX?text=Ol%C3%A1%21%20Envio%20em%20anexo%20o%20comprovativo%20de%20pagamento%20da%20minha%20reserva." target="_blank" class="btn-whatsapp-comprovativo">
+                        <a href="https://wa.me/351965715465?text=Ol%C3%A1%21%20Envio%20em%20anexo%20o%20comprovativo%20de%20pagamento%20da%20minha%20reserva." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-comprovativo">
                             <i class="fab fa-whatsapp"></i> Enviar Comprovativo por WhatsApp
                         </a>
                     </div>
@@ -859,17 +930,8 @@
 
     </main>
 
+    <script src="base/config-site.js" defer></script>
     <script>
-        function carregarComponente(id, ficheiro) {
-            fetch(ficheiro)
-                .then(res => res.text())
-                .then(data => document.getElementById(id).innerHTML = data)
-                .catch(err => console.error("Erro ao carregar:", ficheiro));
-        }
-
-        carregarComponente('menu-placeholder', 'menu.html');
-        carregarComponente('footer-placeholder', 'rodape.html');
-
         window.onload = () => {
             ocultarPasseiosPassados();
 
@@ -877,7 +939,14 @@
             const passeio = params.get('passeio');
 
             if (passeio) {
-                document.getElementById('passeioEscolhido').value = passeio.replace(/\+/g, ' ');
+                const select = document.getElementById('passeioEscolhido');
+                const alvo = passeio.replace(/\+/g, ' ').toLowerCase();
+                for (const opt of select.options) {
+                    if (opt.value.toLowerCase().includes(alvo)) {
+                        select.value = opt.value;
+                        break;
+                    }
+                }
             }
 
             verificarOpcoesPasseio();
@@ -893,9 +962,7 @@
             opcoes.forEach(opcao => {
                 const dataPasseioStr = opcao.getAttribute('data-data');
                 if (dataPasseioStr) {
-                    const dataPasseio = new Date(dataPasseioStr);
-                    dataPasseio.setHours(0, 0, 0, 0);
-
+                    const dataPasseio = new Date(dataPasseioStr + 'T00:00:00');
                     if (dataPasseio < hoje) {
                         opcao.style.display = 'none';
                         opcao.disabled = true;
@@ -909,7 +976,7 @@
             const selectPasseio = document.getElementById('passeioEscolhido');
             const boxAlmoco = document.getElementById('box-almoco-opcional');
             const checkAlmoco = document.getElementById('checkAlmoco');
-            
+
             const selectedOpt = selectPasseio.options[selectPasseio.selectedIndex];
             const temAlmocoOpcional = selectedOpt ? selectedOpt.getAttribute('data-almoco-opcional') : null;
 
@@ -927,7 +994,7 @@
         function calcularPrecoTotal() {
             const selectPasseio = document.getElementById('passeioEscolhido');
             const selectedOpt = selectPasseio.options[selectPasseio.selectedIndex];
-            
+
             const precoBaseStr = selectedOpt ? selectedOpt.getAttribute('data-preco') : 0;
             const precoBase = precoBaseStr ? parseFloat(precoBaseStr) : 0;
 
@@ -941,7 +1008,6 @@
             const precoPorPessoa = precoBase + valorAlmocoExtra;
             const precoTotal = precoPorPessoa * totalPessoas;
 
-            // Atualiza Interface
             document.getElementById('summary-preco-total').textContent = precoTotal + '€';
             document.getElementById('inputValorTotalEstimado').value = precoTotal + '€ (' + totalPessoas + ' pess. x ' + precoPorPessoa + '€)';
 
@@ -949,7 +1015,9 @@
             const txtExtras = document.getElementById('summary-extras-txt');
             if (valorAlmocoExtra > 0) {
                 rowExtras.style.display = 'flex';
-                txtExtras.textContent = 'Com Almoço (+' + valorAlmocoExtra + '€/pess.)';
+                txtExtras.textContent = checkAlmoco && checkAlmoco.checked
+                    ? 'Com Almoço (+' + valorAlmocoExtra + '€/pess.)'
+                    : 'Sem Almoço (opcional +' + valorAlmocoExtra + '€/pess.)';
             } else {
                 rowExtras.style.display = 'none';
             }
@@ -958,7 +1026,7 @@
         // NAVEGAÇÃO ENTRE PASSOS (PASSO 1 ➔ PASSO 2)
         function proximoPasso() {
             const selectPasseio = document.getElementById('passeioEscolhido');
-            if(!selectPasseio.value) {
+            if (!selectPasseio.value) {
                 alert('Por favor, selecione primeiro o passeio pretendido.');
                 selectPasseio.focus();
                 return;
@@ -970,7 +1038,6 @@
             document.getElementById('step-tab-1').classList.add('completed');
             document.getElementById('step-tab-2').classList.add('active');
 
-            // Atualiza resumo no Passo 2
             document.getElementById('summary-passeio-txt').textContent = selectPasseio.options[selectPasseio.selectedIndex].value;
             calcularPrecoTotal();
         }
@@ -983,7 +1050,7 @@
             document.getElementById('step-tab-1').classList.remove('completed');
         }
 
-        // GERAÇÃO DINÂMICA DOS CAMPOS DOS ACOMPANHANTES
+        // GERAÇÃO DINÂMICA DOS CAMPOS DOS ACOMPANHANTES (MESMOS DADOS DO TITULAR)
         function gerarCampos() {
             const qtd = parseInt(document.getElementById('numPessoas').value);
             const container = document.getElementById('camposDinamicos');
@@ -997,30 +1064,106 @@
             for (let i = 1; i <= qtd; i++) {
                 container.innerHTML += `
                 <div class="card-extra">
-                    <h3 style="color:var(--primary); margin-bottom:15px; font-size:1em; display:flex; align-items:center; gap:8px;">
+                    <h3 style="color:var(--primary); margin-bottom:18px; font-size:1.08em; display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-user-plus" style="color:var(--accent)"></i>
-                        Acompanhante ${i}
+                        Acompanhante ${i} — Dados Pessoais e de Embarque
                     </h3>
 
                     <div class="campo-grupo">
+                        <label>Nome Completo <span class="req-star">*</span></label>
                         <div class="input-icon-group">
-                            <input type="text" name="nomeExtra${i}" placeholder="Nome Completo do Acompanhante" required>
+                            <input type="text" name="nomeExtra${i}" placeholder="Como consta no Cartão de Cidadão" required>
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
 
                     <div class="grid-inputs">
                         <div class="campo-grupo">
+                            <label>Telefone / Telemóvel <span class="req-star">*</span></label>
+                            <div class="input-icon-group">
+                                <input type="tel" name="telExtra${i}" placeholder="9xxxxxxxx" required>
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+
+                        <div class="campo-grupo">
+                            <label>Data de Nascimento <span class="req-star">*</span></label>
                             <div class="input-icon-group">
                                 <input type="date" name="nascExtra${i}" required>
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="grid-inputs">
+                        <div class="campo-grupo">
+                            <label>Email</label>
+                            <div class="input-icon-group">
+                                <input type="email" name="emailExtra${i}" placeholder="email@exemplo.pt">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
 
                         <div class="campo-grupo">
+                            <label>Localidade <span class="req-star">*</span></label>
                             <div class="input-icon-group">
-                                <input type="tel" name="telExtra${i}" placeholder="Telemóvel (Opcional)">
-                                <i class="fas fa-phone"></i>
+                                <input type="text" name="localidadeExtra${i}" placeholder="Ex: São Pedro do Sul" required>
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label>Ponto Habitual de Subida / Paragem <span class="req-star">*</span></label>
+                        <div class="input-icon-group">
+                            <input type="text" name="pontoSubidaExtra${i}" placeholder="Local ou paragem onde pretende embarcar" required>
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                    </div>
+
+                    <div class="consent-box">
+                        <label class="consent-toggle">
+                            <input type="checkbox" name="autorizaSMSExtra${i}" value="Sim">
+                            <span>Autorizo a receção de SMS / mensagens informativas sobre a viagem e próximos passeios</span>
+                        </label>
+                    </div>
+
+                    <div class="card-emergencia">
+                        <h4 style="color:#166534; font-size:1em; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-shield-alt" style="color:#16a34a"></i> Contacto de Emergência — Acompanhante ${i}
+                        </h4>
+
+                        <div class="campo-grupo">
+                            <label>Nome do Contacto de Emergência <span class="req-star">*</span></label>
+                            <div class="input-icon-group">
+                                <input type="text" name="nomeEmergenciaExtra${i}" placeholder="Nome da pessoa de contacto" required>
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                        </div>
+
+                        <div class="grid-inputs">
+                            <div class="campo-grupo">
+                                <label>Telefone de Emergência <span class="req-star">*</span></label>
+                                <div class="input-icon-group">
+                                    <input type="tel" name="contactoEmergenciaExtra${i}" placeholder="9xxxxxxxx" required>
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                            </div>
+
+                            <div class="campo-grupo">
+                                <label>Parentesco / Relação <span class="req-star">*</span></label>
+                                <div class="input-icon-group">
+                                    <select name="parentescoEmergenciaExtra${i}" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Cônjuge">Cônjuge</option>
+                                        <option value="Filho(a)">Filho(a)</option>
+                                        <option value="Pai / Mãe">Pai / Mãe</option>
+                                        <option value="Irmão / Irmã">Irmão / Irmã</option>
+                                        <option value="Outro Familiar">Outro Familiar</option>
+                                        <option value="Amigo(a)">Amigo(a)</option>
+                                    </select>
+                                    <i class="fas fa-heart"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1057,7 +1200,6 @@
                     mensagemSucesso.style.display = "block";
                     form.reset();
                     document.getElementById('camposDinamicos').innerHTML = '';
-                    // Rola a tela até à mensagem de sucesso
                     mensagemSucesso.scrollIntoView({ behavior: 'smooth' });
                 } else {
                     mensagemErro.style.display = "block";
