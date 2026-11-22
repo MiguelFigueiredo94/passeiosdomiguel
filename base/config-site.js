@@ -22,7 +22,7 @@
   ];
 
   const CONFIG_PADRAO = {
-    tema: "normal", // "normal" | "natal"
+    tema: "natal", // "normal" | "natal"
     natal: {
       imagemCabecalhoUrl: "",
       textoDiagonal: TEXTO_FAIXA_DIAGONAL_NATAL,
@@ -843,15 +843,16 @@
   function lerConfigLocal() {
     try {
       const guardado = localStorage.getItem(STORAGE_KEY);
-      if (!guardado) return clonarPadrao();
-      const parsed = JSON.parse(guardado);
       const padrao = clonarPadrao();
+      if (!guardado) return padrao;
+      const parsed = JSON.parse(guardado);
       const listaGuardada = Array.isArray(parsed?.natal?.musicasUrl)
         ? parsed.natal.musicasUrl.filter((u) => typeof u === "string" && u.trim())
         : [];
       return {
         ...padrao,
         ...(parsed && typeof parsed === "object" ? parsed : {}),
+        tema: padrao.tema,
         natal: {
           ...padrao.natal,
           ...(parsed?.natal && typeof parsed.natal === "object" ? parsed.natal : {}),
